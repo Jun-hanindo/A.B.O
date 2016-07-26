@@ -1,0 +1,22 @@
+{
+  "name": "AHLOO Web Admin",
+  "authors": [
+    "Roni Yusuf <roni.y@smooets.com>"
+  ],
+  "description": "Admin Panel for AHLOO",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "AdminLTE": "admin-lte#^2.3.2",
+    "font-awesome": "fontawesome#^4.5.0"
+  }
+}
