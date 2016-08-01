@@ -4,12 +4,34 @@ AsiaBoxOffice is a ticketing service. In AsiaBoxOffice, customer can choose whic
 ticket will be emailed to your email account.
 
 ## Code Example
+```php
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $data = [
+            'user' => user_info(),
+            'formProfile' => [
+                'method' => 'PUT',
+                'url' => URL::route('admin-profile-update', 'profile'),
+                'files' => true,
+            ],
+            'formPassword' => [
+                'method' => 'PUT',
+                'url' => URL::route('admin-profile-update', 'password'),
+            ],
+            'skins' => config('general.skins'),
+        ];
 
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
-
+        return view('backend.profile', $data);
+    }
+```
 ## Motivation
 
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+You Are The Semicolon to My Statement;
 
 ## Installation
 
@@ -36,12 +58,15 @@ A short description of the motivation behind the creation and maintenance of the
 
 
 ## API Reference
-
+[Guzzle HTTP](https://github.com/guzzle/guzzle "Guzzle HTTP")
 
 
 ## Contributors
-
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
+| Contributors     | Are                |
+| ---------------- |:------------------:|
+| Irvan Resna      | Web Developer      |
+| Arief Gusti      | Project Coordinator|
+| M Raufan         | Web Designer       |
 
 ## License
 
