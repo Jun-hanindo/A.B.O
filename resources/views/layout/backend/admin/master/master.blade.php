@@ -22,6 +22,7 @@
         {!! Html::style('assets/backend/admin/css/skins/skin-'.$skin.'.min.css') !!}
         {!! Html::style('assets/plugins/pace/pace.min.css') !!}
         {!! Html::style('assets/plugins/sweetalert/sweetalert.css') !!}
+        {!! Html::style('assets/backend/admin/css/style.css') !!}
         <link rel="shortcut icon" href="{{ asset('assets/frontend/images/favico.ico') }}">
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 

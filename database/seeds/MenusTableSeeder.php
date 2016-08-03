@@ -40,20 +40,19 @@ class MenusTableSeeder extends Seeder
     {
         return [
             ['is_parent' => false, 'name' => str_slug('Dashboard'), 'display_name' => 'Dashboard', 'icon' => 'tachometer', 'href' => 'admin/dashboard', 'pattern' => 'dashboard'],
-            ['is_parent' => true, 'name' => str_slug('User Management'), 'display_name' => 'User Trustee Management', 'icon' => 'users', 'href' => '#', 'pattern' => 'admin/user-trustees', 'child' => [
+            ['is_parent' => true, 'name' => str_slug('User Management'), 'display_name' => 'Accounts Management', 'icon' => 'users', 'href' => '#', 'pattern' => 'admin/user-trustees', 'child' => [
                 ['name' => str_slug('Menu Management'), 'display_name' => 'Menu Management', 'icon' => 'bars', 'href' => 'admin/user-trustees/menus', 'pattern' => 'admin/user-trustees'],
                 ['name' => str_slug('Role Management'), 'display_name' => 'Role Management', 'icon' => 'user-secret', 'href' => 'admin/user-trustees/roles', 'pattern' => 'admin/user-trustees'],
                 ['name' => str_slug('User Management'), 'display_name' => 'User Management', 'icon' => 'users', 'href' => 'admin/user-trustees/users', 'pattern' => 'admin/user-trustees'],
             ]],
-            ['is_parent' => false, 'name' => str_slug('Application Management'), 'display_name' => 'Manajemen Pengajuan', 'icon' => 'folder', 'href' => 'admin/application/management', 'pattern' => 'admin/application/management'],
-            ['is_parent' => false, 'name' => str_slug('Branch Management'), 'display_name' => 'Manajemen Cabang', 'icon' => 'archive', 'href' => 'admin/management/branch', 'pattern' => 'admin/management/branch'],
-
-            ['is_parent' => true, 'name' => str_slug('Master Region'), 'display_name' => 'Master Wilayah', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/master', 'child' => [
-                ['name' => str_slug('Master Province'), 'display_name' => 'Provinsi', 'icon' => 'map', 'href' => 'admin/master/province', 'pattern' => 'admin/master'],
-                ['name' => str_slug('Master City'), 'display_name' => 'Kota', 'icon' => 'map', 'href' => 'admin/master/city', 'pattern' => 'admin/master'],
-                ['name' => str_slug('Master District'), 'display_name' => 'Kecamatan', 'icon' => 'map', 'href' => 'admin/master/district', 'pattern' => 'admin/master'],
-                ['name' => str_slug('Master Village'), 'display_name' => 'Kelurahan', 'icon' => 'map', 'href' => 'admin/master/village', 'pattern' => 'admin/master'],
-            ]],
+            ['is_parent' => false, 'name' => str_slug('Events'), 'display_name' => 'Events', 'icon' => 'calender', 'href' => '#', 'pattern' => 'admin/event/index'],
+            ['is_parent' => false, 'name' => str_slug('Price Plan'), 'display_name' => 'Price Plan', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/price-plan/index'],
+            ['is_parent' => false, 'name' => str_slug('Venue'), 'display_name' => 'Venue', 'icon' => 'archive', 'href' => 'admin/venue/index', 'pattern' => 'admin/venue/index'],
+            ['is_parent' => false, 'name' => str_slug('Settings'), 'display_name' => 'Settings', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/setting/index'],
+            ['is_parent' => false, 'name' => str_slug('Trail'), 'display_name' => 'Trail', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/trail/index'],
+            ['is_parent' => false, 'name' => str_slug('System Log'), 'display_name' => 'System Log', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/system-log/index'],
+            ['is_parent' => false, 'name' => str_slug('Customer Report'), 'display_name' => 'Customer Report', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/customer-report/index'],
+            ['is_parent' => false, 'name' => str_slug('Logout'), 'display_name' => 'Logout', 'icon' => 'sign-out', 'href' => 'admin/logout', 'pattern' => 'admin/logout/index'],
         ];
     }
 }

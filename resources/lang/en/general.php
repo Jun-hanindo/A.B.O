@@ -46,7 +46,7 @@ return [
     'confirmation_delete' => 'Are you sure want to continue delete data ',
     'confirmation_restore' => 'Are you sure want to continue restore activated data ',
 
-    'create_new' => 'Create New',
+    'create_new' => 'Add New',
     'edit' => 'Edit',
     'list' => 'List',
     'view' => 'View',
@@ -58,6 +58,7 @@ return [
     'button_update' => 'Update',
     'button_cancel' => 'Cancel',
     'button_delete' => 'Delete',
+    'button_publish' => 'Publish',
 
     'management' => 'Management',
     'countries' => 'Countries',
@@ -93,6 +94,26 @@ return [
     'get_list_following_error' => 'Get list following user has been failed',
 
     'data_empty' => 'Data is empty',
+
+    'bulk_action' => 'Bulk Action',
+    'apply'  => 'Apply',
+
+    'venues' => 'Venues',
+    'venue'  => 'Venue',
+    'venue_title' => 'Venue Title',
+    'max_capacity' => 'Max Capacity',
+    'post_by' => 'Post By',
+    'avaibility' => 'Avaibility',
+    'enable' => 'Enable',
+    'disable' => 'Disable',
+    'venue_name' => 'Venue Name',
+    'add' => 'Add',
+    'description' => 'Description',
+    'getting_to_venue_by_mrt' => 'Getting to venue by MRT',
+    'getting_to_venue_by_car' => 'Getting to venue by Car',
+    'getting_to_venue_by_taxi_uber' => 'Getting to venue by Taxi/Uber',
+    'link_map' => 'Link Map',
+    'google_maps' => 'Google Maps'
 
 
     

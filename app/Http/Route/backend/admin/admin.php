@@ -77,6 +77,69 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::get('users/{id}/show', array('as' => 'admin-show-users', 'uses' => 'UsersController@show'));
 
     });
+
+    Route::group(['prefix' => 'event'], function () {
+        Route::get('index', array('as' => 'admin-event-index', 'uses' => 'EventsController@index'));
+        Route::get('create', array('as' => 'admin-create-event', 'uses' => 'EventsController@create'));
+        Route::post('store', array('as' => 'admin-post-event', 'uses' => 'EventsController@store'));
+        Route::get('{id}/edit', array('as' => 'admin-edit-event', 'uses' => 'EventsController@edit'));
+        Route::post('{id}/update', array('as' => 'admin-update-event', 'uses' => 'EventsController@update'));
+        Route::delete('{id}/delete', array('as' => 'admin-delete-event', 'uses' => 'EventsController@destroy'));
+    });
+
+    Route::group(['prefix' => 'price-plan'], function () {
+        Route::get('index', array('as' => 'admin-price-plan-index', 'uses' => 'PricePlansController@index'));
+        Route::get('create', array('as' => 'admin-create-price-plan', 'uses' => 'PricePlansController@create'));
+        Route::post('store', array('as' => 'admin-post-price-plan', 'uses' => 'PricePlansController@store'));
+        Route::get('{id}/edit', array('as' => 'admin-edit-price-plan', 'uses' => 'PricePlansController@edit'));
+        Route::post('{id}/update', array('as' => 'admin-update-price-plan', 'uses' => 'PricePlansController@update'));
+        Route::delete('{id}/delete', array('as' => 'admin-delete-price-plan', 'uses' => 'PricePlansController@destroy'));
+    });
+
+    Route::group(['prefix' => 'venue'], function () {
+        Route::get('index', array('as' => 'admin-venue-index', 'uses' => 'VenuesController@index'));
+        Route::get('create', array('as' => 'admin-create-venue', 'uses' => 'VenuesController@create'));
+        Route::post('store', array('as' => 'admin-post-venue', 'uses' => 'VenuesController@store'));
+        Route::get('{id}/edit', array('as' => 'admin-edit-venue', 'uses' => 'VenuesController@edit'));
+        Route::post('{id}/update', array('as' => 'admin-update-venue', 'uses' => 'VenuesController@update'));
+        Route::delete('{id}/delete', array('as' => 'admin-delete-venue', 'uses' => 'VenuesController@destroy'));
+    });
+
+    Route::group(['prefix' => 'setting'], function () {
+        Route::get('index', array('as' => 'admin-setting-index', 'uses' => 'SettingsController@index'));
+        Route::get('create', array('as' => 'admin-create-setting', 'uses' => 'SettingsController@create'));
+        Route::post('store', array('as' => 'admin-post-setting', 'uses' => 'SettingsController@store'));
+        Route::get('{id}/edit', array('as' => 'admin-edit-setting', 'uses' => 'SettingsController@edit'));
+        Route::post('{id}/update', array('as' => 'admin-update-setting', 'uses' => 'SettingsController@update'));
+        Route::delete('{id}/delete', array('as' => 'admin-delete-setting', 'uses' => 'SettingsController@destroy'));
+    });
+
+    Route::group(['prefix' => 'trail'], function () {
+        Route::get('index', array('as' => 'admin-trail-index', 'uses' => 'TrailsController@index'));
+        Route::get('create', array('as' => 'admin-create-trail', 'uses' => 'TrailsController@create'));
+        Route::post('store', array('as' => 'admin-post-trail', 'uses' => 'TrailsController@store'));
+        Route::get('{id}/edit', array('as' => 'admin-edit-trail', 'uses' => 'TrailsController@edit'));
+        Route::post('{id}/update', array('as' => 'admin-update-trail', 'uses' => 'TrailsController@update'));
+        Route::delete('{id}/delete', array('as' => 'admin-delete-trail', 'uses' => 'TrailsController@destroy'));
+    });
+
+    Route::group(['prefix' => 'system-log'], function () {
+        Route::get('index', array('as' => 'admin-system-log-index', 'uses' => 'SystemlogsController@index'));
+        Route::get('create', array('as' => 'admin-create-system-log', 'uses' => 'SystemlogsController@create'));
+        Route::post('store', array('as' => 'admin-post-system-log', 'uses' => 'SystemlogsController@store'));
+        Route::get('{id}/edit', array('as' => 'admin-edit-system-log', 'uses' => 'SystemlogsController@edit'));
+        Route::post('{id}/update', array('as' => 'admin-update-system-log', 'uses' => 'SystemlogsController@update'));
+        Route::delete('{id}/delete', array('as' => 'admin-delete-system-log', 'uses' => 'SystemlogsController@destroy'));
+    });
+
+    Route::group(['prefix' => 'customer-report'], function () {
+        Route::get('index', array('as' => 'admin-customer-report-index', 'uses' => 'CustomerReportsController@index'));
+        Route::get('create', array('as' => 'admin-create-customer-report', 'uses' => 'CustomerReportsController@create'));
+        Route::post('store', array('as' => 'admin-post-customer-report', 'uses' => 'CustomerReportsController@store'));
+        Route::get('{id}/edit', array('as' => 'admin-edit-customer-report', 'uses' => 'CustomerReportsController@edit'));
+        Route::post('{id}/update', array('as' => 'admin-update-customer-report', 'uses' => 'CustomerReportsController@update'));
+        Route::delete('{id}/delete', array('as' => 'admin-delete-customer-report', 'uses' => 'CustomerReportsController@destroy'));
+    });
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () {

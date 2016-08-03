@@ -6,3 +6,4 @@
 Homestead.json
 Homestead.yaml
 /public/storage/*
+/storage/logs/
