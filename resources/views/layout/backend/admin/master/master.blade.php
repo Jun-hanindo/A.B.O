@@ -124,6 +124,7 @@
         {!! Html::script('assets/plugins/sweetalert/sweetalert.min.js') !!}
         {!! Html::script('assets/backend/admin/js/custom.js') !!}
         {!! Html::script('assets/plugins/datepicker/bootstrap-datepicker.js') !!}
+        {!! Html::script('assets/plugins/tinymce/tinymce.min.js') !!}
 
         <script>
             $(document).ajaxStart(function() {
