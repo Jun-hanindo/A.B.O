@@ -14,6 +14,12 @@
         .input-group[class*=col-]{
             padding: 0 15px;
         }
+        .datepicker.dropdown-menu{
+            z-index: 1100 !important;
+        }
+        #datepicker{
+            border-radius: 0;
+        }
     </style>
 @endsection
 
@@ -111,7 +117,7 @@
                 <div class="form-group">
                     {!! Form::label('date', trans('general.date'), array('class' => 'col-sm-3 control-label pull-left')) !!}
                     <div class="col-sm-4">
-                        {!! Form::text('date', old('date'), ['class' => 'form-control','maxlength'=>'255', 'id' => 'datepicker']) !!}
+                        {!! Form::text('date', old('date'), ['class' => 'form-control datepicker','maxlength'=>'255', 'id' => 'datepicker']) !!}
                     </div>
                 </div>
                 <div class="form-group">

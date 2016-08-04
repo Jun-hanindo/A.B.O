@@ -14,6 +14,12 @@
         .input-group[class*=col-]{
             padding: 0 15px;
         }
+        .datepicker.dropdown-menu{
+            z-index: 1100 !important;
+        }
+        #datepicker{
+            border-radius: 0;
+        }
     </style>
 @endsection
 

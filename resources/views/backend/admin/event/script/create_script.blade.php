@@ -35,6 +35,10 @@
                 $('#button_save').show();
             });
 
+            $(".datepicker").datepicker( {
+                format: "mm/dd/yyyy",
+            });
+
 
         });
     </script>
