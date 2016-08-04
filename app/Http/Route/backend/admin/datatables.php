@@ -42,6 +42,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
          *  Code By : Nova (Smooets)
         */
         Route::get('branch', array('as' => 'datatables-branch', 'uses' => 'BranchController@datatables'));
+
+        Route::get('venue', array('as' => 'datatables-venue', 'uses' => 'VenuesController@datatables'));
+        Route::get('event', array('as' => 'datatables-event', 'uses' => 'EventsController@datatables'));
+        
+
     });
 
 });

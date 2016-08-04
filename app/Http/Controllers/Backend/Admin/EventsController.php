@@ -5,10 +5,9 @@ namespace App\Http\Controllers\Backend\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Backend\Admin\BaseController;
-use App\Http\Requests\Backend\admin\venue\VenueRequest;
+use App\Http\Controllers\Controller;
 
-class VenuesController extends BaseController
+class EventsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,16 +17,16 @@ class VenuesController extends BaseController
     public function index()
     {
         //
-        return view('backend.admin.venue.index');
+        return view('backend.admin.event.index');
     }
 
     public function datatables()
     {
          return datatables($this->model->datatables())
-                ->addColumn('action', function ($venue) {
-                    $url = route('admin-edit-venue',$venue->id);
+                ->addColumn('action', function ($event) {
+                    $url = route('admin-edit-event',$event->id);
 
-                    return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$venue->id.'" data-name="'.$venue->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                    return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$event->id.'" data-name="'.$event->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
                 })
                 ->make(true);
     }
@@ -40,7 +39,7 @@ class VenuesController extends BaseController
     public function create()
     {
         //
-        return view('backend.admin.venue.create');
+        return view('backend.admin.event.create');
     }
 
     /**
@@ -49,11 +48,11 @@ class VenuesController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(VenueRequest $request)
+    public function store(Request $request)
     {
         //
         $param = $request->all();
-        $saveData = $this->model->insertNewVenue($param);
+        $saveData = $this->model->insertNewEvent($param);
         if(!empty($saveData))
         {
         
@@ -68,6 +67,19 @@ class VenuesController extends BaseController
         }
     }
 
+
+    public function priceDetailDatatables($id)
+    {
+        $data = $this->model->findEventByID($id);
+         return datatables($this->model->datatables($data))
+                ->addColumn('action', function ($event) {
+                    $url = route('admin-edit-event',$event->id);
+
+                    return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$event->id.'" data-name="'.$event->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                })
+                ->make(true);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -76,15 +88,16 @@ class VenuesController extends BaseController
      */
     public function edit($id)
     {
-        $data = $this->model->findVenueByID($id);
+        //
+        $data = $this->model->findEventByID($id);
         if(!empty($data)) {
 
-            return view('backend.admin.venue.edit',$data);
+            return view('backend.admin.event.edit',$data);
 
         } else {
 
             flash()->success(trans('general.data_not_found'));
-            return redirect()->route('admin-index-venue');
+            return redirect()->route('admin-index-event');
 
         }
     }
@@ -96,20 +109,20 @@ class VenuesController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(VenueRequest $request, $id)
+    public function update(Request $request, $id)
     {
         //
         $param = $request->all();
-        $updateData = $this->model->updateVenue($param,$id);
+        $updateData = $this->model->updateEvent($param,$id);
         if(!empty($updateData)) {
 
             flash()->success(trans('general.update_success'));
-            return redirect()->route('admin-index-venue');
+            return redirect()->route('admin-index-event');
 
         } else {
 
             flash()->error(trans('general.update_error'));
-            return redirect()->route('admin-edit-venue')->withInput();
+            return redirect()->route('admin-edit-event')->withInput();
 
         }
     }
@@ -127,12 +140,12 @@ class VenuesController extends BaseController
         if(!empty($data)) {
 
             flash()->success(trans('general.delete_success'));
-            return redirect()->route('admin-index-venue');
+            return redirect()->route('admin-index-event');
 
         } else {
 
             flash()->success(trans('general.data_not_found'));
-            return redirect()->route('admin-index-venue');
+            return redirect()->route('admin-index-event');
 
         }
     }

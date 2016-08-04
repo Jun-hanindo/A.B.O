@@ -79,7 +79,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     });
 
     Route::group(['prefix' => 'event'], function () {
-        Route::get('index', array('as' => 'admin-event-index', 'uses' => 'EventsController@index'));
+        Route::get('', array('as' => 'admin-index-event', 'uses' => 'EventsController@index'));
         Route::get('create', array('as' => 'admin-create-event', 'uses' => 'EventsController@create'));
         Route::post('store', array('as' => 'admin-post-event', 'uses' => 'EventsController@store'));
         Route::get('{id}/edit', array('as' => 'admin-edit-event', 'uses' => 'EventsController@edit'));
@@ -88,7 +88,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     });
 
     Route::group(['prefix' => 'price-plan'], function () {
-        Route::get('index', array('as' => 'admin-price-plan-index', 'uses' => 'PricePlansController@index'));
+        Route::get('', array('as' => 'admin-index-price-plan', 'uses' => 'PricePlansController@index'));
         Route::get('create', array('as' => 'admin-create-price-plan', 'uses' => 'PricePlansController@create'));
         Route::post('store', array('as' => 'admin-post-price-plan', 'uses' => 'PricePlansController@store'));
         Route::get('{id}/edit', array('as' => 'admin-edit-price-plan', 'uses' => 'PricePlansController@edit'));
@@ -97,7 +97,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     });
 
     Route::group(['prefix' => 'venue'], function () {
-        Route::get('index', array('as' => 'admin-venue-index', 'uses' => 'VenuesController@index'));
+        Route::get('', array('as' => 'admin-index-venue', 'uses' => 'VenuesController@index'));
         Route::get('create', array('as' => 'admin-create-venue', 'uses' => 'VenuesController@create'));
         Route::post('store', array('as' => 'admin-post-venue', 'uses' => 'VenuesController@store'));
         Route::get('{id}/edit', array('as' => 'admin-edit-venue', 'uses' => 'VenuesController@edit'));
@@ -106,7 +106,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     });
 
     Route::group(['prefix' => 'setting'], function () {
-        Route::get('index', array('as' => 'admin-setting-index', 'uses' => 'SettingsController@index'));
+        Route::get('', array('as' => 'admin-index-setting', 'uses' => 'SettingsController@index'));
         Route::get('create', array('as' => 'admin-create-setting', 'uses' => 'SettingsController@create'));
         Route::post('store', array('as' => 'admin-post-setting', 'uses' => 'SettingsController@store'));
         Route::get('{id}/edit', array('as' => 'admin-edit-setting', 'uses' => 'SettingsController@edit'));
@@ -115,7 +115,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     });
 
     Route::group(['prefix' => 'trail'], function () {
-        Route::get('index', array('as' => 'admin-trail-index', 'uses' => 'TrailsController@index'));
+        Route::get('', array('as' => 'admin-index-trail', 'uses' => 'TrailsController@index'));
         Route::get('create', array('as' => 'admin-create-trail', 'uses' => 'TrailsController@create'));
         Route::post('store', array('as' => 'admin-post-trail', 'uses' => 'TrailsController@store'));
         Route::get('{id}/edit', array('as' => 'admin-edit-trail', 'uses' => 'TrailsController@edit'));
@@ -124,7 +124,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     });
 
     Route::group(['prefix' => 'system-log'], function () {
-        Route::get('index', array('as' => 'admin-system-log-index', 'uses' => 'SystemlogsController@index'));
+        Route::get('', array('as' => 'admin-index-system-log', 'uses' => 'SystemlogsController@index'));
         Route::get('create', array('as' => 'admin-create-system-log', 'uses' => 'SystemlogsController@create'));
         Route::post('store', array('as' => 'admin-post-system-log', 'uses' => 'SystemlogsController@store'));
         Route::get('{id}/edit', array('as' => 'admin-edit-system-log', 'uses' => 'SystemlogsController@edit'));
@@ -133,7 +133,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     });
 
     Route::group(['prefix' => 'customer-report'], function () {
-        Route::get('index', array('as' => 'admin-customer-report-index', 'uses' => 'CustomerReportsController@index'));
+        Route::get('', array('as' => 'admin-index-customer-report', 'uses' => 'CustomerReportsController@index'));
         Route::get('create', array('as' => 'admin-create-customer-report', 'uses' => 'CustomerReportsController@create'));
         Route::post('store', array('as' => 'admin-post-customer-report', 'uses' => 'CustomerReportsController@store'));
         Route::get('{id}/edit', array('as' => 'admin-edit-customer-report', 'uses' => 'CustomerReportsController@edit'));

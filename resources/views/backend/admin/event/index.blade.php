@@ -1,7 +1,7 @@
 @extends('layout.backend.admin.master.master')
 
 @section('title')
-{{ trans('general.venues') }}
+{{ trans('general.events') }}
 @endsection
 
 @section('header')
@@ -17,8 +17,8 @@
 @section('content')
     <div class="box box-primary">
         <div class="box-header">
-            <h3 class="box-title">{{ trans('general.venue') }}</h3>
-            <a class="btn btn-primary" href="{{ route('admin-create-venue') }}" title="{{ trans('general.create_new') }}">{{ trans('general.create_new') }}</a>
+            <h3 class="box-title">{{ trans('general.events') }}</h3>
+            <a class="btn btn-primary" href="{{ route('admin-create-event') }}" title="{{ trans('general.create_new') }}">{{ trans('general.create_new') }}</a>
         </div>
         <div class="box-body">
             @include('flash::message')
@@ -33,12 +33,11 @@
                         </div>
                     </div>
                 </div>
-                <table id="venue-datatables" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
+                <table id="event-datatables" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                     <thead>
                         <tr>
                             <th class="center-align"><input type="checkbox" class="editor-active"></th>
-                            <th class="center-align">{{ trans('general.venue_title') }}</th>
-                            <th class="center-align">{{ trans('general.max_capacity') }}</th>
+                            <th class="center-align">{{ trans('general.event_title') }}</th>
                             <th class="center-align">{{ trans('general.post_by') }}</th>
                             <th class="center-align">{{ trans('general.avaibility') }}</th>
                         </tr>
@@ -46,8 +45,7 @@
                     <tbody>
                     <tr>
                         <td class="center-align"><input type="checkbox" class="editor-active"></td>
-                        <td>Jakarta Convention Center</br><a href="#">Edit</a></td>
-                        <td>10.000</td>
+                        <td>Maroon5 Concert @ Jakarta</br><a href="#">Edit</a></td>
                         <td>admin</td>
                         <td><div class="btn-group">
                             <button type="button" class="btn btn-info">Disabled</button>
@@ -57,8 +55,7 @@
                     </tr>
                     <tr>
                       <td class="center-align"><input type="checkbox" class="editor-active"></td>
-                      <td>Bayfront Avanue</br><a href="#">Edit</a></td>
-                      <td>30.000</td>
+                      <td>Noah Concert @ Kuala Lumpur</br><a href="#">Edit</a></td>
                       <td>admin</td>
                       <td><div class="btn-group">
                             <button type="button" class="btn btn-info">Disabled</button>
@@ -68,8 +65,7 @@
                     </tr>
                     <tr>
                       <td class="center-align"><input type="checkbox" class="editor-active"></td>
-                      <td>National Stadium</br><a href="#">Edit</a></td>
-                      <td>48.000</td>
+                      <td>Cat Steven Big Concert @ Singapore</br><a href="#">Edit</a></td>
                       <td>admin</td>
                       <td><div class="btn-group">
                             <button type="button" class="btn btn-info">Disabled</button>
@@ -82,4 +78,4 @@
         </div>
     </div>
 @endsection
-@include('backend.admin.venue.script.index_script')
+@include('backend.admin.event.script.index_script')

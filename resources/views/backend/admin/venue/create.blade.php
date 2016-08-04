@@ -19,10 +19,12 @@
                             <div class="form-group{{ Form::hasError('venue_name') }} venue_name">
                                 {!! Form::label('venue_name', trans('general.venue_name')) !!}
                                 {!! Form::text('venue_name', old('venue_name'), ['class' => 'form-control','maxlength'=>'255']) !!}
+                                {!! Form::errorMsg('venue_name') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('description') }} description">
                                 {!! Form::label('description', trans('general.description')) !!}
                                 {!! Form::textarea('description', old('description'), ['class' => 'form-control', 'rows'=> '5']) !!}
+                                {!! Form::errorMsg('description') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('getting_to_venue_by_mrt') }} getting_to_venue_by_mrt">
                                 {!! Form::label('getting_to_venue_by_mrt', trans('general.getting_to_venue_by_mrt')) !!}
@@ -47,7 +49,7 @@
                                 {!! Form::text('google_maps', old('google_maps'), ['class' => 'form-control','maxlength'=>'255']) !!}
                             </div>
                             <div class="box-footer">
-                                <a href="{{ route('admin-index-city') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>
+                                <a href="{{ route('admin-index-venue') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>
                                 <input class="btn btn-primary pull-right" title="{{ trans('general.button_save') }}" type="button" value="{{ trans('general.button_publish') }}" id="button_submit">
                             </div>
                         </div>

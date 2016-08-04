@@ -45,14 +45,33 @@ class MenusTableSeeder extends Seeder
                 ['name' => str_slug('Role Management'), 'display_name' => 'Role Management', 'icon' => 'user-secret', 'href' => 'admin/user-trustees/roles', 'pattern' => 'admin/user-trustees'],
                 ['name' => str_slug('User Management'), 'display_name' => 'User Management', 'icon' => 'users', 'href' => 'admin/user-trustees/users', 'pattern' => 'admin/user-trustees'],
             ]],
-            ['is_parent' => false, 'name' => str_slug('Events'), 'display_name' => 'Events', 'icon' => 'calender', 'href' => '#', 'pattern' => 'admin/event/index'],
-            ['is_parent' => false, 'name' => str_slug('Price Plan'), 'display_name' => 'Price Plan', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/price-plan/index'],
-            ['is_parent' => false, 'name' => str_slug('Venue'), 'display_name' => 'Venue', 'icon' => 'archive', 'href' => 'admin/venue/index', 'pattern' => 'admin/venue/index'],
-            ['is_parent' => false, 'name' => str_slug('Settings'), 'display_name' => 'Settings', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/setting/index'],
-            ['is_parent' => false, 'name' => str_slug('Trail'), 'display_name' => 'Trail', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/trail/index'],
-            ['is_parent' => false, 'name' => str_slug('System Log'), 'display_name' => 'System Log', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/system-log/index'],
-            ['is_parent' => false, 'name' => str_slug('Customer Report'), 'display_name' => 'Customer Report', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/customer-report/index'],
-            ['is_parent' => false, 'name' => str_slug('Logout'), 'display_name' => 'Logout', 'icon' => 'sign-out', 'href' => 'admin/logout', 'pattern' => 'admin/logout/index'],
+            ['is_parent' => true, 'name' => str_slug('Manage Pages'), 'display_name' => 'Manage Pages', 'icon' => 'files-o', 'href' => '#', 'pattern' => 'admin/manage-pages', 'child' => [
+                ['name' => str_slug('Contact Us'), 'display_name' => 'Contact Us', 'icon' => 'phone-square', 'href' => '#', 'pattern' => 'admin/manage-pages'],
+                ['name' => str_slug('Terms and Conditions'), 'display_name' => 'Terms and Conditions', 'icon' => 'file-text', 'href' => '#', 'pattern' => 'admin/manage-pages'],
+                ['name' => str_slug('FAQ'), 'display_name' => 'FAQ', 'icon' => 'users', 'href' => '#', 'pattern' => 'admin/manage-pages'],
+                ['name' => str_slug('Career'), 'display_name' => 'Career', 'icon' => 'briefcase', 'href' => '#', 'pattern' => 'admin/manage-pages'],
+                ['name' => str_slug('Privacy Policy'), 'display_name' => 'Privacy Policy', 'icon' => 'lock', 'href' => '#', 'pattern' => 'admin/manage-pages'],
+                ['name' => str_slug('About Us'), 'display_name' => 'About Us', 'icon' => 'info-circle', 'href' => '#', 'pattern' => 'admin/manage-pages'],
+            ]],
+            ['is_parent' => false, 'name' => str_slug('Events'), 'display_name' => 'Events', 'icon' => 'calendar', 'href' => 'admin/event', 'pattern' => 'admin/event'],
+            ['is_parent' => false, 'name' => str_slug('Price Plan'), 'display_name' => 'Price Plan', 'icon' => 'money', 'href' => '#', 'pattern' => 'admin/price-plan'],
+            ['is_parent' => false, 'name' => str_slug('Venue'), 'display_name' => 'Venue', 'icon' => 'map', 'href' => 'admin/venue', 'pattern' => 'admin/venue'],
+            ['is_parent' => false, 'name' => str_slug('Settings'), 'display_name' => 'Settings', 'icon' => 'cogs', 'href' => '#', 'pattern' => 'admin/setting'],
+            ['is_parent' => false, 'name' => str_slug('Trail'), 'display_name' => 'Trail', 'icon' => 'road', 'href' => '#', 'pattern' => 'admin/trail'],
+            ['is_parent' => false, 'name' => str_slug('System Log'), 'display_name' => 'System Log', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/system-log'],
+            ['is_parent' => false, 'name' => str_slug('Customer Report'), 'display_name' => 'Customer Report', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/customer-report'],
+            ['is_parent' => false, 'name' => str_slug('Logout'), 'display_name' => 'Logout', 'icon' => 'sign-out', 'href' => 'admin/logout', 'pattern' => 'admin/logout'],
+
+            /*['is_parent' => false, 'name' => str_slug('Application Management'), 'display_name' => 'Manajemen Pengajuan', 'icon' => 'folder', 'href' => 'admin/application/management', 'pattern' => 'admin/application/management'],
+            ['is_parent' => false, 'name' => str_slug('Branch Management'), 'display_name' => 'Manajemen Cabang', 'icon' => 'archive', 'href' => 'admin/management/branch', 'pattern' => 'admin/management/branch'],
+
+            ['is_parent' => true, 'name' => str_slug('Master Region'), 'display_name' => 'Master Wilayah', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/master', 'child' => [
+                ['name' => str_slug('Master Province'), 'display_name' => 'Provinsi', 'icon' => 'map', 'href' => 'admin/master/province', 'pattern' => 'admin/master'],
+                ['name' => str_slug('Master City'), 'display_name' => 'Kota', 'icon' => 'map', 'href' => 'admin/master/city', 'pattern' => 'admin/master'],
+                ['name' => str_slug('Master District'), 'display_name' => 'Kecamatan', 'icon' => 'map', 'href' => 'admin/master/district', 'pattern' => 'admin/master'],
+                ['name' => str_slug('Master Village'), 'display_name' => 'Kelurahan', 'icon' => 'map', 'href' => 'admin/master/village', 'pattern' => 'admin/master'],
+            ]],*/
+
         ];
     }
 }

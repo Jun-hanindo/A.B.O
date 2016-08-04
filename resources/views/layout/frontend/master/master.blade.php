@@ -103,8 +103,10 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="pull-right right-header">
-                    <a href="#">Login / Register</a>
+                <div class="pull-right right-header login-register">
+                    <a href="https://asiaboxoffice.nliven.co/account/login" target="_blank">Login</a>
+                    <span> / </span>
+                    <a href="https://asiaboxoffice.nliven.co/account/register" target="_blank">Register</a>      
                 </div>
             </div>
         </div>
@@ -196,8 +198,12 @@
                         <div class="information-title">
                             My Account
                         </div>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Login / Register</a></li>
+                        <ul class="list-unstyled login-register">
+                            <li>
+                                <a href="https://asiaboxoffice.nliven.co/account/login" target="_blank">Login</a>
+                                <span> / </span>
+                                <a href="https://asiaboxoffice.nliven.co/account/register" target="_blank">Register</a>
+                            </li>
                             <li><a href="#">Subscribe Us</a></li>
                         </ul>
                     </div>
