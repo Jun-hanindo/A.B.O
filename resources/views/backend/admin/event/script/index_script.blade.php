@@ -23,6 +23,12 @@
                 order: [[ 1, 'asc' ]]
             });
         }
+
+        $(".monthpicker").datepicker( {
+            format: "mm/yyyy",
+            viewMode: "months",
+            minViewMode: "months"
+        });
         
 
     });

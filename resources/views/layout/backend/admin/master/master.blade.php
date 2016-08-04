@@ -23,6 +23,7 @@
         {!! Html::style('assets/plugins/pace/pace.min.css') !!}
         {!! Html::style('assets/plugins/sweetalert/sweetalert.css') !!}
         {!! Html::style('assets/backend/admin/css/style.css') !!}
+        {!! Html::style('assets/plugins/datepicker/datepicker3.css') !!}
         <link rel="shortcut icon" href="{{ asset('assets/frontend/images/favico.ico') }}">
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 
@@ -121,8 +122,8 @@
         {!! Html::script('assets/plugins/HoldOn/HoldOn.min.js') !!}
         {!! Html::script('assets/plugins/pace/pace.min.js') !!}
         {!! Html::script('assets/plugins/sweetalert/sweetalert.min.js') !!}
-        {!! Html::script('assets/frontend/js/custom.js') !!}
         {!! Html::script('assets/backend/admin/js/custom.js') !!}
+        {!! Html::script('assets/plugins/datepicker/bootstrap-datepicker.js') !!}
 
         <script>
             $(document).ajaxStart(function() {

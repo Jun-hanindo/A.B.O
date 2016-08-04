@@ -24,12 +24,15 @@
             @include('flash::message')
             <form id="form">
                 <div class="col-md-12">
-                    <div class="row  form-group">
+                    <div class="form-group row">
                         <div class=" col-md-2 nopadding">
                             {!! Form::select('bulk_action', array('' => 'Bulk Action', 'delete' => 'Delete', 'enable' => 'Enable', 'disable' => 'Disable'), old('bulk_action'), array('class' => 'form-control','data-option' => old('bulk_action'))) !!}
                         </div>
                         <div class=" col-md-2">
                             <button type="button" id="{{ trans('general.button_apply') }}" class="btn btn-primary" title="{{ trans('general.button_apply') }}">{{ trans('general.button_apply') }}</button>
+                        </div>
+                        <div class=" col-md-2">
+                            <input name="filter-date" class="monthpicker form-control" value="{{ date('m/Y') }}">
                         </div>
                     </div>
                 </div>
