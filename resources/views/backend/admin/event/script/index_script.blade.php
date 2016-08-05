@@ -5,7 +5,7 @@
     <script>
     $(document).ready(function() {
         loadData();
-        loadEnableDisabled('avaibility-check');
+        loadSwitchButton('avaibility-check');
 
         function loadData()
         {
