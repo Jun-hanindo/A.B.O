@@ -5,29 +5,36 @@
     <script>
     $(document).ready(function() {
         loadData();
+        loadEnableDisabled('avaibility-check');
 
         function loadData()
         {
             var table = $('#event-datatables').DataTable();
             table.destroy();
             $('#event-datatables').DataTable({
-                columnDefs: [ {
+                columnDefs: [{
+                    targets: [0, 3],
                     orderable: false,
-                    className: 'select-checkbox',
-                    targets:   0
-                } ],
-                select: {
-                    style:    'os',
-                    selector: 'td:first-child'
-                },
+                    searchable: false,
+                }],
                 order: [[ 1, 'asc' ]]
             });
+
+            return table;
         }
 
         $(".monthpicker").datepicker( {
             format: "mm/yyyy",
             viewMode: "months",
             minViewMode: "months"
+        });
+        
+        $('.select_all-checkbox').on('click', function(){
+            datatablesSelectAll(loadData());
+        });
+
+        $('.item-checkbox').on('click', function(){
+            datatablesCheckbox(loadData());
         });
         
 

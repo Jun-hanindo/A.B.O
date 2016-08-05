@@ -53,9 +53,18 @@ class MenusTableSeeder extends Seeder
                 ['name' => str_slug('Privacy Policy'), 'display_name' => 'Privacy Policy', 'icon' => 'lock', 'href' => 'admin/manage-pages/privacy-policy', 'pattern' => 'admin/manage-pages'],
                 ['name' => str_slug('About Us'), 'display_name' => 'About Us', 'icon' => 'info-circle', 'href' => 'admin/manage-pages/about-us', 'pattern' => 'admin/manage-pages'],
             ]],
-            ['is_parent' => false, 'name' => str_slug('Events'), 'display_name' => 'Events', 'icon' => 'calendar', 'href' => 'admin/event', 'pattern' => 'admin/event'],
-            ['is_parent' => false, 'name' => str_slug('Price Plan'), 'display_name' => 'Price Plan', 'icon' => 'money', 'href' => '#', 'pattern' => 'admin/price-plan'],
-            ['is_parent' => false, 'name' => str_slug('Venue'), 'display_name' => 'Venue', 'icon' => 'map', 'href' => 'admin/venue', 'pattern' => 'admin/venue'],
+            ['is_parent' => true, 'name' => str_slug('Events'), 'display_name' => 'Events', 'icon' => 'calendar', 'href' => '#', 'pattern' => 'admin/event', 'child' => [
+                ['name' => str_slug('Regiter Event'), 'display_name' => 'Register Event', 'icon' => 'plus-circle', 'href' => 'admin/event/create', 'pattern' => 'admin/event'],
+                ['name' => str_slug('List Event'), 'display_name' => 'List Event', 'icon' => 'bars', 'href' => 'admin/event/index', 'pattern' => 'admin/event'],
+            ]],
+            ['is_parent' => true, 'name' => str_slug('Promotions'), 'display_name' => 'Promotions', 'icon' => 'tags', 'href' => '#', 'pattern' => 'admin/promotion', 'child' => [
+                ['name' => str_slug('Add Promotion'), 'display_name' => 'Add Promotion', 'icon' => 'plus-circle', 'href' => '#', 'pattern' => 'admin/promotion'],
+                ['name' => str_slug('List Promotion'), 'display_name' => 'List Promotion', 'icon' => 'bars', 'href' => '#', 'pattern' => 'admin/promotion'],
+            ]],
+            ['is_parent' => true, 'name' => str_slug('Venue'), 'display_name' => 'Venue', 'icon' => 'map', 'href' => '#', 'pattern' => 'admin/venue', 'child' => [
+                ['name' => str_slug('Add Venue'), 'display_name' => 'Add Venue', 'icon' => 'plus-circle', 'href' => 'admin/venue/create', 'pattern' => 'admin/venue'],
+                ['name' => str_slug('List Venue'), 'display_name' => 'List Venue', 'icon' => 'bars', 'href' => 'admin/venue/index', 'pattern' => 'admin/venue'],
+            ]],
             ['is_parent' => false, 'name' => str_slug('Settings'), 'display_name' => 'Settings', 'icon' => 'cogs', 'href' => '#', 'pattern' => 'admin/setting'],
             ['is_parent' => false, 'name' => str_slug('Trail'), 'display_name' => 'Trail', 'icon' => 'road', 'href' => '#', 'pattern' => 'admin/trail'],
             ['is_parent' => false, 'name' => str_slug('System Log'), 'display_name' => 'System Log', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/system-log'],

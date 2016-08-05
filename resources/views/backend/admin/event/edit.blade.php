@@ -83,7 +83,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('event_type') }} event_type">
                                 {!! Form::label('event_type', trans('general.event_type')) !!}
-                                {!! Form::text('event_type', $data->event_type, ['class' => 'form-control','maxlength'=>'255']) !!}
+                                {!! Form::text('event_type', $data->event_type, ['class' => 'form-control event_type','maxlength'=>'255']) !!}
                             </div>
                             <div class="form-group{{ Form::hasError('venue') }} venue">
                                 {!! Form::label('venue', trans('general.venue')) !!}

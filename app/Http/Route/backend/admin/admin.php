@@ -79,7 +79,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     });
 
     Route::group(['prefix' => 'event'], function () {
-        Route::get('', array('as' => 'admin-index-event', 'uses' => 'EventsController@index'));
+        Route::get('index', array('as' => 'admin-index-event', 'uses' => 'EventsController@index'));
         Route::get('create', array('as' => 'admin-create-event', 'uses' => 'EventsController@create'));
         Route::post('store', array('as' => 'admin-post-event', 'uses' => 'EventsController@store'));
         Route::get('{id}/edit', array('as' => 'admin-edit-event', 'uses' => 'EventsController@edit'));
@@ -87,17 +87,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::delete('{id}/delete', array('as' => 'admin-delete-event', 'uses' => 'EventsController@destroy'));
     });
 
-    Route::group(['prefix' => 'price-plan'], function () {
-        Route::get('', array('as' => 'admin-index-price-plan', 'uses' => 'PricePlansController@index'));
-        Route::get('create', array('as' => 'admin-create-price-plan', 'uses' => 'PricePlansController@create'));
-        Route::post('store', array('as' => 'admin-post-price-plan', 'uses' => 'PricePlansController@store'));
-        Route::get('{id}/edit', array('as' => 'admin-edit-price-plan', 'uses' => 'PricePlansController@edit'));
-        Route::post('{id}/update', array('as' => 'admin-update-price-plan', 'uses' => 'PricePlansController@update'));
-        Route::delete('{id}/delete', array('as' => 'admin-delete-price-plan', 'uses' => 'PricePlansController@destroy'));
+    Route::group(['prefix' => 'promotion'], function () {
+        Route::get('index', array('as' => 'admin-index-promorion', 'uses' => 'PromotionsController@index'));
+        Route::get('create', array('as' => 'admin-create-promorion', 'uses' => 'PromotionsController@create'));
+        Route::post('store', array('as' => 'admin-post-promorion', 'uses' => 'PromotionsController@store'));
+        Route::get('{id}/edit', array('as' => 'admin-edit-promorion', 'uses' => 'PromotionsController@edit'));
+        Route::post('{id}/update', array('as' => 'admin-update-promorion', 'uses' => 'PromotionsController@update'));
+        Route::delete('{id}/delete', array('as' => 'admin-delete-promorion', 'uses' => 'PromotionsController@destroy'));
     });
 
     Route::group(['prefix' => 'venue'], function () {
-        Route::get('', array('as' => 'admin-index-venue', 'uses' => 'VenuesController@index'));
+        Route::get('index', array('as' => 'admin-index-venue', 'uses' => 'VenuesController@index'));
         Route::get('create', array('as' => 'admin-create-venue', 'uses' => 'VenuesController@create'));
         Route::post('store', array('as' => 'admin-post-venue', 'uses' => 'VenuesController@store'));
         Route::get('{id}/edit', array('as' => 'admin-edit-venue', 'uses' => 'VenuesController@edit'));

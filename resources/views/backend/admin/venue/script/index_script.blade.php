@@ -5,25 +5,31 @@
     <script>
     $(document).ready(function() {
         loadData();
+        loadEnableDisabled('avaibility-check');
 
         function loadData()
         {
             var table = $('#venue-datatables').DataTable();
             table.destroy();
             $('#venue-datatables').DataTable({
-                columnDefs: [ {
+                columnDefs: [{
+                    targets: [0, 4],
                     orderable: false,
-                    className: 'select-checkbox',
-                    targets:   0
-                } ],
-                select: {
-                    style:    'os',
-                    selector: 'td:first-child'
-                },
+                    searchable: false,
+                }],
                 order: [[ 1, 'asc' ]]
             });
+
+            return table;
         }
         
+        $('.select_all-checkbox').on('click', function(){
+            datatablesSelectAll(loadData());
+        });
+
+        $('.item-checkbox').on('click', function(){
+            datatablesCheckbox(loadData());
+        });
 
     });
     </script>

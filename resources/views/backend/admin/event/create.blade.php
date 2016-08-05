@@ -82,8 +82,8 @@
                                 {!! Form::file('sidebar_image', old('sidebar_image'), ['class' => 'form-control']) !!}
                             </div>
                             <div class="form-group{{ Form::hasError('event_type') }} event_type">
-                                {!! Form::label('event_type', trans('general.event_type')) !!}
-                                {!! Form::text('event_type', old('event_type'), ['class' => 'form-control','maxlength'=>'255']) !!}
+                                {!! Form::label('event_type', trans('general.event_type'), array('class' => 'full-width')) !!}
+                                <input type="checkbox" name="event_type" class="form-control event_type-check" data-animate="false" data-on-text="Enabled" data-off-text="Disabled" checked>
                             </div>
                             <div class="form-group{{ Form::hasError('venue') }} venue">
                                 {!! Form::label('venue', trans('general.venue')) !!}

@@ -58,12 +58,12 @@ class VenuesController extends BaseController
         {
         
             flash()->success(trans('general.save_success'));
-            return redirect()->route('admin-index-event');
+            return redirect()->route('admin-index-venue');
         
         } else {
 
             flash()->error(trans('general.save_error'));
-            return redirect()->route('admin-create-event')->withInput();
+            return redirect()->route('admin-create-venue')->withInput();
         
         }
     }

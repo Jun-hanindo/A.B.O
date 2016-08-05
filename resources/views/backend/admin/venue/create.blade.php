@@ -60,4 +60,3 @@
         </div>
     </div>
 @endsection
-@include('backend.admin.city.script.create_script')

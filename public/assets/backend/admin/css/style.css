@@ -7,3 +7,6 @@
 .nomargin {
    margin: 0 !important;
 }
+.full-width {
+    display:block;
+}

@@ -5,6 +5,7 @@
         $(document).ready(function(){
 
             loadData();
+            loadSwitchButton('event_type-check')
 
             function loadData()
             {
