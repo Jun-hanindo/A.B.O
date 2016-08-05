@@ -16,9 +16,13 @@
                     <div class="box-body">
                         <div class="error"></div>
                             <div class="form-group{{ Form::hasError('description') }} description">
-                                {!! Form::textarea('description', old('description'), ['class' => 'form-control tinymce','rows'=>'18']) !!}
+                                {!! Form::textarea('description', old('description'), ['class' => 'form-control tinymce','rows'=>'15']) !!}
                                 {!! Form::errorMsg('description') !!}
                             </div>
+                    </div>
+                    <div class="box-footer">
+                        <a href="{{ route('admin-index-event') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>
+                        <input class="btn btn-primary" title="{{ trans('general.button_publish') }}" type="button" value="{{ trans('general.button_publish') }}" id="button_submit">
                     </div>
                 {!! Form::close() !!}
             </div>
