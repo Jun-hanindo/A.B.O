@@ -17,7 +17,7 @@
 @section('content')
     <div class="box box-primary">
         <div class="box-header">
-            <h3 class="box-title">{{ trans('general.venue') }}</h3>
+            <h3 class="box-title">{{ trans('general.venues') }}</h3>
             <a class="btn btn-primary" href="{{ route('admin-create-venue') }}" title="{{ trans('general.create_new') }}">{{ trans('general.create_new') }}</a>
         </div>
         <div class="box-body">

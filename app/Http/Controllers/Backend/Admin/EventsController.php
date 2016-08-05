@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Backend\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Backend\Admin\BaseController;
+use App\Http\Requests\Backend\admin\event\EventRequest;
 
-class EventsController extends Controller
+class EventsController extends BaseController
 {
     /**
      * Display a listing of the resource.

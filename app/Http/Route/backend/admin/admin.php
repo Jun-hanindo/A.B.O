@@ -140,6 +140,21 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::post('{id}/update', array('as' => 'admin-update-customer-report', 'uses' => 'CustomerReportsController@update'));
         Route::delete('{id}/delete', array('as' => 'admin-delete-customer-report', 'uses' => 'CustomerReportsController@destroy'));
     });
+
+    Route::group(['prefix' => 'manage-pages'], function () {
+        Route::get('contact-us', array('as' => 'admin-contact-us', 'uses' => 'ManagePagesController@createEditContactUs'));
+        Route::post('contact-us/store-update', array('as' => 'admin-post-update-contact-us', 'uses' => 'ManagePagesController@storeUpdateContactUs'));
+        Route::get('terms-and-conditions', array('as' => 'admin-terms-and-conditions', 'uses' => 'ManagePagesController@createEditTermsAndConditions'));
+        Route::post('terms-and-conditions/store-update', array('as' => 'admin-post-update-terms-and-conditions', 'uses' => 'ManagePagesController@storeUpdateTermsAndConditions'));
+        Route::get('faq', array('as' => 'admin-faq', 'uses' => 'ManagePagesController@createEditFaq'));
+        Route::post('faq/store-update', array('as' => 'admin-post-update-faq', 'uses' => 'ManagePagesController@storeUpdateFaq'));
+        Route::get('career', array('as' => 'admin-career', 'uses' => 'ManagePagesController@createEditCareer'));
+        Route::post('career/store-update', array('as' => 'admin-post-update-career', 'uses' => 'ManagePagesController@storeUpdateCareer'));
+        Route::get('privacy-policy', array('as' => 'admin-privacy-policy', 'uses' => 'ManagePagesController@createEditPrivacyPolicy'));
+        Route::post('privacy-policy/store-update', array('as' => 'admin-post-update-privacy-policy', 'uses' => 'ManagePagesController@storeUpdatePrivacyPolicy'));
+        Route::get('about-us', array('as' => 'admin-about-us', 'uses' => 'ManagePagesController@createEditAboutUs'));
+        Route::post('about-us/store-update', array('as' => 'admin-post-update-about-us', 'uses' => 'ManagePagesController@storeUpdateAboutUs'));
+    });
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () {

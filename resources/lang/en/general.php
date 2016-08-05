@@ -136,6 +136,15 @@ return [
     'additional_info' => 'Additional Info',
     'add_more_schedules_and_prices' => 'add more schedules and prices',
     'add_schedule_and_price' => 'Add Schedule and Price',
+    
+    'manage_page' => 'Manage Page',
+    'contact_us' => 'Contact Us',
+    'terms_and_conditions' => 'Terms and Conditions',
+    'privacy_policy' => 'Privacy Policy',
+    'about_us' => 'About Us',
+    'career' => 'Career',
+    'page' => 'Page',
+    'faq' => 'FAQ',
 
 
 
