@@ -124,8 +124,8 @@
         {!! Html::script('assets/plugins/pace/pace.min.js') !!}
         {!! Html::script('assets/plugins/sweetalert/sweetalert.min.js') !!}
         {!! Html::script('assets/backend/admin/js/custom.js') !!}
-        {!! Html::script('assets/plugins/datepicker/bootstrap-datepicker.js') !!}
         {!! Html::script('assets/plugins/tinymce/tinymce.min.js') !!}
+        {!! Html::script('assets/plugins/datepicker/bootstrap-datepicker.js') !!}
         {!! Html::script('assets/plugins/bootstrap-switch/bootstrap-switch.min.js') !!}
 
         <script>

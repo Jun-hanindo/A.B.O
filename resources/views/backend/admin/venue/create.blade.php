@@ -16,41 +16,51 @@
                     <div class="box-body">
                         <div class="error"></div>
                         <div class="col-md-9">
-                            <div class="form-group{{ Form::hasError('venue_name') }} venue_name">
-                                {!! Form::label('venue_name', trans('general.venue_name')) !!}
-                                {!! Form::text('venue_name', old('venue_name'), ['class' => 'form-control','maxlength'=>'255']) !!}
-                                {!! Form::errorMsg('venue_name') !!}
+                            <div class="form-group{{ Form::hasError('name') }} name">
+                                {!! Form::label('name', trans('general.venue_name').' *') !!}
+                                {!! Form::text('name', old('name'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.venue_name')]) !!}
+                                {!! Form::errorMsg('name') !!}
                             </div>
-                            <div class="form-group{{ Form::hasError('description') }} description">
-                                {!! Form::label('description', trans('general.description')) !!}
-                                {!! Form::textarea('description', old('description'), ['class' => 'form-control', 'rows'=> '5']) !!}
-                                {!! Form::errorMsg('description') !!}
+                            <div class="form-group{{ Form::hasError('address') }} address">
+                                {!! Form::label('address', trans('general.address').' *') !!}
+                                {!! Form::textarea('address', old('address'), ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.address')]) !!}
+                                {!! Form::errorMsg('address') !!}
                             </div>
-                            <div class="form-group{{ Form::hasError('getting_to_venue_by_mrt') }} getting_to_venue_by_mrt">
-                                {!! Form::label('getting_to_venue_by_mrt', trans('general.getting_to_venue_by_mrt')) !!}
-                                {!! Form::textarea('getting_to_venue_by_mrt', old('getting_to_venue_by_mrt'), ['class' => 'form-control', 'rows'=> '5']) !!}
+                            <div class="form-group{{ Form::hasError('mrtdirection') }} mrtdirection">
+                                {!! Form::label('mrtdirection', trans('general.mrtdirection').' *') !!}
+                                {!! Form::textarea('mrtdirection', old('mrtdirection'), ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.mrtdirection')]) !!}
+                                {!! Form::errorMsg('mrtdirection') !!}
                             </div>
-                            <div class="form-group{{ Form::hasError('getting_to_venue_by_car') }} getting_to_venue_by_car">
-                                {!! Form::label('getting_to_venue_by_car', trans('general.getting_to_venue_by_car')) !!}
-                                {!! Form::textarea('getting_to_venue_by_car', old('getting_to_venue_by_car'), ['class' => 'form-control', 'rows'=> '5']) !!}
+                            <div class="form-group{{ Form::hasError('cardirection') }} cardirection">
+                                {!! Form::label('cardirection', trans('general.cardirection').' *') !!}
+                                {!! Form::textarea('cardirection', old('cardirection'), ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.cardirection')]) !!}
+                                {!! Form::errorMsg('cardirection') !!}
                             </div>
-                            <div class="form-group{{ Form::hasError('getting_to_venue_by_taxi_uber') }} getting_to_venue_by_taxi_uber">
-                                {!! Form::label('getting_to_venue_by_taxi_uber', trans('general.getting_to_venue_by_taxi_uber')) !!}
-                                {!! Form::textarea('getting_to_venue_by_taxi_uber', old('getting_to_venue_by_taxi_uber'), ['class' => 'form-control', 'rows'=> '5']) !!}
+                            <div class="form-group{{ Form::hasError('taxidirection') }} taxidirection">
+                                {!! Form::label('taxidirection', trans('general.taxidirection').' *') !!}
+                                {!! Form::textarea('taxidirection', old('taxidirection'), ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.taxidirection')]) !!}
+                                {!! Form::errorMsg('taxidirection') !!}
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group{{ Form::hasError('link_map') }} link_map">
-                                {!! Form::label('link_map', trans('general.link_map')) !!}
-                                {!! Form::text('link_map', old('link_map'), ['class' => 'form-control','maxlength'=>'255']) !!}
+                            <div class="form-group{{ Form::hasError('capacity') }} capacity">
+                                {!! Form::label('capacity', trans('general.capacity').' *') !!}
+                                {!! Form::text('capacity', old('capacity'), ['class' => 'form-control number-only','maxlength'=>'255', 'placeholder' => trans('general.capacity')]) !!}
+                                {!! Form::errorMsg('capacity') !!}
                             </div>
-                            <div class="form-group{{ Form::hasError('google_maps') }} google_maps">
-                                {!! Form::label('google_maps', trans('general.google_maps')) !!}
-                                {!! Form::text('google_maps', old('google_maps'), ['class' => 'form-control','maxlength'=>'255']) !!}
+                            <div class="form-group{{ Form::hasError('link_map') }} link_map">
+                                {!! Form::label('link_map', trans('general.link_map').' *') !!}
+                                {!! Form::text('link_map', old('link_map'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.link_map')]) !!}
+                                {!! Form::errorMsg('link_map') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('gmap_link') }} gmap_link">
+                                {!! Form::label('gmap_link', trans('general.gmap_link').' *') !!}
+                                {!! Form::text('gmap_link', old('gmap_link'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.gmap_link')]) !!}
+                                {!! Form::errorMsg('gmap_link') !!}
                             </div>
                             <div class="box-footer">
                                 <a href="{{ route('admin-index-venue') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>
-                                <input class="btn btn-primary pull-right" title="{{ trans('general.button_save') }}" type="button" value="{{ trans('general.button_publish') }}" id="button_submit">
+                                <input class="btn btn-primary pull-right" title="{{ trans('general.button_save') }}" type="submit" value="{{ trans('general.button_publish') }}" id="button_submit">
                             </div>
                         </div>
                         

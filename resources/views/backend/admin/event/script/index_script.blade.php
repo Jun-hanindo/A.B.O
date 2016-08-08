@@ -12,12 +12,19 @@
             var table = $('#event-datatables').DataTable();
             table.destroy();
             $('#event-datatables').DataTable({
-                columnDefs: [{
-                    targets: [0, 3],
-                    orderable: false,
-                    searchable: false,
-                }],
-                order: [[ 1, 'asc' ]]
+                processing: true,
+                serverSide: true,
+                ajax: '{!! URL::route("datatables-event") !!}',
+                columns: [
+                    {data: 'id', name: 'id', searchable: false, orderable: false},
+                    {data: 'title', name: 'title'},
+                    {data: 'user_id', name: 'user_id'},
+                    {data: 'avaibility', name: 'avaibility', searchable: false, orderable: false}
+                ],
+                "fnDrawCallback": function() {
+                    //Initialize checkbos for enable/disable user
+                    $(".avaibility-check").bootstrapSwitch({onText: "Enabled", offText:"Disabled", animate: false});
+                }
             });
 
             return table;

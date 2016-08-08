@@ -45,25 +45,6 @@
                             <th class="center-align">{{ trans('general.avaibility') }}</th>
                         </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td><input type="checkbox" class="item-checkbox"></td>
-                        <td>Maroon5 Concert @ Jakarta</br><a href="#">Edit</a></td>
-                        <td>admin</td>
-                        <td><input type="checkbox" name="avaibility" class="avaibility-check" data-animate="false" data-on-text="Enabled" data-off-text="Disabled" checked></td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="item-checkbox"></td>
-                      <td>Noah Concert @ Kuala Lumpur</br><a href="#">Edit</a></td>
-                      <td>admin</td>
-                      <td><input type="checkbox" name="avaibility" class="avaibility-check" data-animate="false" data-on-text="Enabled" data-off-text="Disabled" checked></td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="item-checkbox"></td>
-                      <td>Cat Steven Big Concert @ Singapore</br><a href="#">Edit</a></td>
-                      <td>admin</td>
-                      <td><input type="checkbox" name="avaibility" class="avaibility-check" data-animate="false" data-on-text="Enabled" data-off-text="Disabled"></td>
-                    </tr>
                 </table>
             </form>
         </div>

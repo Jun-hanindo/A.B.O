@@ -38,33 +38,11 @@
                         <tr>
                             <th><input name="select_all" value="1" type="checkbox" class="select_all-checkbox"></th>
                             <th class="center-align">{{ trans('general.venue_title') }}</th>
-                            <th class="center-align">{{ trans('general.max_capacity') }}</th>
+                            <th class="center-align">{{ trans('general.address') }}</th>
                             <th class="center-align">{{ trans('general.post_by') }}</th>
                             <th class="center-align">{{ trans('general.avaibility') }}</th>
                         </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td><input type="checkbox" class="item-checkbox"></td>
-                        <td>Jakarta Convention Center</br><a href="#">Edit</a></td>
-                        <td>10.000</td>
-                        <td>admin</td>
-                        <td><input type="checkbox" name="avaibility" class="avaibility-check" data-animate="false" data-on-text="Enabled" data-off-text="Disabled" checked></td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="item-checkbox"></td>
-                      <td>Bayfront Avanue</br><a href="#">Edit</a></td>
-                      <td>30.000</td>
-                      <td>admin</td>
-                      <td><input type="checkbox" name="avaibility" class="avaibility-check" data-animate="false" data-on-text="Enabled" data-off-text="Disabled"></td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="item-checkbox"></td>
-                      <td>National Stadium</br><a href="#">Edit</a></td>
-                      <td>48.000</td>
-                      <td>admin</td>
-                      <td><input type="checkbox" name="avaibility" class="avaibility-check" data-animate="false" data-on-text="Enabled" data-off-text="Disabled"></td>
-                    </tr>
                 </table>
             </form>
         </div>

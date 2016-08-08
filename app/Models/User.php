@@ -639,4 +639,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     }
 
+    public function venues() {
+        return $this->hasMany('App\Venue', 'user_id');
+    }
+
+    public function events() {
+        return $this->hasMany('App\Event', 'user_id');
+    }
+
 }

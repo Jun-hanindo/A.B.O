@@ -5,19 +5,26 @@
     <script>
     $(document).ready(function() {
         loadData();
-        loadSwitchButton('avaibility-check');
 
         function loadData()
         {
             var table = $('#venue-datatables').DataTable();
             table.destroy();
             $('#venue-datatables').DataTable({
-                columnDefs: [{
-                    targets: [0, 4],
-                    orderable: false,
-                    searchable: false,
-                }],
-                order: [[ 1, 'asc' ]]
+                processing: true,
+                serverSide: true,
+                ajax: '{!! URL::route("datatables-venue") !!}',
+                columns: [
+                    {data: 'id', name: 'id', searchable: false, orderable: false},
+                    {data: 'name', name: 'name'},
+                    {data: 'address', name: 'address'},
+                    {data: 'user_id', name: 'user_id'},
+                    {data: 'avaibility', name: 'avaibility', searchable: false, orderable: false}
+                ],
+                "fnDrawCallback": function() {
+                    //Initialize checkbos for enable/disable user
+                    $(".avaibility-check").bootstrapSwitch({onText: "Enabled", offText:"Disabled", animate: false});
+                }
             });
 
             return table;

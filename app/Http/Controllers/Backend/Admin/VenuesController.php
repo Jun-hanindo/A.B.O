@@ -5,15 +5,22 @@ namespace App\Http\Controllers\Backend\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Models\User;
+use App\Models\Venue;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\venue\VenueRequest;
 
 class VenuesController extends BaseController
 {
+
+    public function __construct(Venue $model)
+    {
+        parent::__construct($model);
+
+    }
+    
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -21,21 +28,41 @@ class VenuesController extends BaseController
         return view('backend.admin.venue.index');
     }
 
+    /**
+     * Show list for venue
+     * 
+     * @return Response
+     */
     public function datatables()
     {
          return datatables($this->model->datatables())
-                ->addColumn('action', function ($venue) {
+                ->editColumn('id', function ($venue) {
+                    return '<input type="checkbox" name="checkboxid['.$venue->id.']" class="item-checkbox">';
+                })
+                ->editColumn('name', function ($venue) {
                     $url = route('admin-edit-venue',$venue->id);
-
-                    return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$venue->id.'" data-name="'.$venue->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                    return $venue->name.'</br><a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit">Edit</a>&nbsp;';
+                })
+                ->editColumn('user_id', function ($venue){
+                    $username = $venue->user->first_name.' '.$venue->user->last_name;
+                    return $username;
+                })
+                ->editColumn('avaibility', function ($venue) {
+                    if($venue->avaibility == TRUE){
+                        $checked = 'checked';
+                    }else{
+                        $checked = '';
+                    }
+                    return '<input type="checkbox" name="avaibility['.$venue->id.']" class="avaibility-check" data-id="'.$venue->id.'" '.$checked.'>';
                 })
                 ->make(true);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Show the form for create new venue.
+     * paths url    : admin/venue/create 
+     * methode      : GET
+     * @return Response
      */
     public function create()
     {
@@ -44,16 +71,25 @@ class VenuesController extends BaseController
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Save data venue.
+     * path url     : admin/venue/store
+     * methode      : POST
+     * @param  $name        Name Venue
+     * @param  $address     Address Venue
+     * @param  $getting_to_venue_by_mrt     How to getting to venue by mrt
+     * @param  $getting_to_venue_by_car How to getting to venue by car
+     * @param  $getting_to_venue_by_taxi_uber   How to getting to venue by taxi or uber
+     * @param  $max_capacity    Maximal Capacity venue
+     * @param  $link_map    Link map venue
+     * @param  $google_maps     Google maps venue
+     * @return Response
      */
-    public function store(VenueRequest $request)
+    public function store(VenueRequest $req)
     {
         //
-        $param = $request->all();
-        $saveData = $this->model->insertNewVenue($param);
+        $param = $req->all();
+        $user_id = $this->currentUser->id;
+        $saveData = $this->model->insertNewVenue($param, $user_id);
         if(!empty($saveData))
         {
         
@@ -69,17 +105,18 @@ class VenuesController extends BaseController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
+     * Show form for edit venue.
+     * paths url    : admin/venue/{id}/edit 
+     * methode      : GET
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
         $data = $this->model->findVenueByID($id);
         if(!empty($data)) {
 
-            return view('backend.admin.venue.edit',$data);
+            return view('backend.admin.venue.edit')->withData($data);
 
         } else {
 
@@ -90,16 +127,24 @@ class VenuesController extends BaseController
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * Update data venue.
+     * path url     : admin/venue/{id}/update
+     * methode      : POST
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  $name        Name Venue
+     * @param  $address     Address Venue
+     * @param  $getting_to_venue_by_mrt     How to getting to venue by mrt
+     * @param  $getting_to_venue_by_car How to getting to venue by car
+     * @param  $getting_to_venue_by_taxi_uber   How to getting to venue by taxi or uber
+     * @param  $max_capacity    Maximal Capacity venue
+     * @param  $link_map    Link map venue
+     * @param  $google_maps     Google maps venue
+     * @return Response
      */
-    public function update(VenueRequest $request, $id)
+    public function update(VenueRequest $req, $id)
     {
         //
-        $param = $request->all();
+        $param = $req->all();
         $updateData = $this->model->updateVenue($param,$id);
         if(!empty($updateData)) {
 
@@ -115,10 +160,11 @@ class VenuesController extends BaseController
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
+     * Delete data venue.
+     * paths url    : admin/venue/{id} 
+     * methode      : DELETE
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

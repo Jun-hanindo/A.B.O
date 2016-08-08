@@ -4,7 +4,7 @@ namespace App\Http\Requests\Backend\admin\event;
 
 use App\Http\Requests\Request;
 
-class CountryRequest extends Request
+class EventRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,14 @@ class CountryRequest extends Request
     public function rules()
     {
         return [
-            'title' => 'required'
+            'title'             => 'required',
+            'description'       => 'required',
+            'admission'         => 'required',
+            'featured_image1'   => 'required',
+            'featured_image2'   => 'required',
+            'featured_image3'   => 'required',
+            'buylink'           => 'required',
+            'venue_id'          => 'required',
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Backend\admin\venue;
 
 use App\Http\Requests\Request;
 
-class CountryRequest extends Request
+class VenueRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,16 @@ class CountryRequest extends Request
      * @return array
      */
     public function rules()
-    {
+    { 
         return [
-            'title' => 'required'
+            'name'              => 'required',
+            'address'           => 'required',
+            'mrtdirection'      => 'required',
+            'cardirection'      => 'required',
+            'taxidirection'     => 'required',
+            'capacity'          => 'required',
+            'link_map'          => 'required',
+            'gmap_link'         => 'required'
         ];
     }
 }
