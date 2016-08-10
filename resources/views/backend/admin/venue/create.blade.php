@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('gmap_link') }} gmap_link">
                                 {!! Form::label('gmap_link', trans('general.gmap_link').' *') !!}
-                                {!! Form::text('gmap_link', old('gmap_link'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.gmap_link')]) !!}
+                                {!! Form::text('gmap_link', old('gmap_link'), ['class' => 'form-control','maxlength'=>'1000', 'placeholder' => trans('general.gmap_link')]) !!}
                                 {!! Form::errorMsg('gmap_link') !!}
                             </div>
                             <div class="box-footer">
