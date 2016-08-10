@@ -82,9 +82,21 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::get('', array('as' => 'admin-index-event', 'uses' => 'EventsController@index'));
         Route::get('create', array('as' => 'admin-create-event', 'uses' => 'EventsController@create'));
         Route::post('store', array('as' => 'admin-post-event', 'uses' => 'EventsController@store'));
+        Route::post('auto-store', array('as' => 'admin-auto-post-event', 'uses' => 'EventsController@autoStore'));
         Route::get('{id}/edit', array('as' => 'admin-edit-event', 'uses' => 'EventsController@edit'));
         Route::post('{id}/update', array('as' => 'admin-update-event', 'uses' => 'EventsController@update'));
         Route::delete('{id}/delete', array('as' => 'admin-delete-event', 'uses' => 'EventsController@destroy'));
+
+        
+    });
+
+    Route::group(['prefix' => 'event-schedule'], function () {
+        Route::post('store', array('as' => 'admin-post-event-schedule', 'uses' => 'EventSchedulesController@store'));
+        Route::get('{id}/edit', array('as' => 'admin-edit-event-schedule', 'uses' => 'EventSchedulesController@edit'));
+        Route::post('{id}/update', array('as' => 'admin-update-event-schedule', 'uses' => 'EventSchedulesController@update'));
+        Route::delete('{id}/delete', array('as' => 'admin-delete-event-schedule', 'uses' => 'EventSchedulesController@destroy'));
+
+        
     });
 
     Route::group(['prefix' => 'promotion'], function () {

@@ -35,6 +35,7 @@
                     <div class="box-body">
                         <div class="error"></div>
                         <div class="col-md-9">
+                            <input type="hidden" name="id" class="form-control" id="id_event">
                             <div class="form-group{{ Form::hasError('title') }} title">
                                 {!! Form::label('title', trans('general.title').' *') !!}
                                 {!! Form::text('title', old('title'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.title')]) !!}
@@ -57,7 +58,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('price_detail') }} price_detail">
                                 {!! Form::label('price_info', trans('general.price_detail').' *') !!}
-                                <table id="price-detail-datatables" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
+                                <table id="event-schedule-datatables" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                                     <thead>
                                         <tr>
                                             <th class="center-align"></th>
@@ -89,7 +90,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('event_type') }} event_type">
                                 {!! Form::label('event_type', trans('general.event_type').' *', array('class' => 'full-width')) !!}
-                                <input type="checkbox" name="event_type" class="form-control event_type-check" data-animate="false" data-on-text="Enabled" data-off-text="Disabled" >
+                                {!! Form::checkbox('event_type', '1', true, ['class' => 'form-control event_type-check', 'data-animate' => 'false', 'data-on-text' => 'Enabled', 'data-off-text' => 'Disabled']) !!}
                             </div>
                             <div class="form-group{{ Form::hasError('venue_id') }} venue_id">
                                 {!! Form::label('venue_id', trans('general.venue').' *') !!}
@@ -113,51 +114,45 @@
         </div>
     </div>
     <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="ModalLabel"><span id="title-create" style="display:none">{{ trans('general.add_schedule_and_price') }}</span><span id="title-update" style="display:none">{{ trans('general.edit') }}</span></h4>
-          </div>
-          <div class="modal-body">
-            <div class="error"></div>
-            <form id="form" class="form-horizontal">
-                <div class="form-group">
-                    {!! Form::label('date', trans('general.date'), array('class' => 'col-sm-3 control-label pull-left')) !!}
-                    <div class="col-sm-4">
-                        {!! Form::text('date', old('date'), ['class' => 'form-control datepicker','maxlength'=>'255', 'id' => 'datepicker']) !!}
-                    </div>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="ModalLabel"><span id="title-create" style="display:none">{{ trans('general.add_schedule_and_price') }}</span><span id="title-update" style="display:none">{{ trans('general.edit') }}</span></h4>
                 </div>
-                <div class="form-group">
-                    {!! Form::label('time', trans('general.time'), array('class' => 'col-sm-3 control-label')) !!}
-                    <div class="col-sm-9">
-                        {!! Form::text('time', old('time'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.time')]) !!}
-                    </div>
+                <div class="modal-body">
+                    <div class="error"></div>
+                    <form id="form" class="form-horizontal" id="form-event-schedule">
+                        <div class="form-group">
+                            {!! Form::label('date_at', trans('general.date'), array('class' => 'col-sm-3 control-label pull-left')) !!}
+                            <div class="col-sm-4">
+                                <input type="text" name="date_at" class="form-control datepicker" id="name" maxlength="255">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('time_period', trans('general.time'), array('class' => 'col-sm-3 control-label')) !!}
+                            <div class="col-sm-9">
+                                <input type="text" name="time_period" class="form-control" id="name" maxlength="255" placeholder = {{trans('general.time')}}>
+                            </div>
+                        </div>
+                        <div class="form-group{{ Form::hasError('schedule_category') }} schedule_category">
+                            {!! Form::label('price_info', trans('general.schedule_category'), array('class' => 'col-sm-3 control-label')) !!}
+                        </div>
+                        <table id="schedule-category-datatables" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
+                            <thead>
+                                <tr>
+                                    <th class="center-align"></th>
+                                    <th>{{ trans('general.info') }}</th>
+                                    <th>{{ trans('general.price') }}</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <a class="actAddSub add-underline col-offset-2" href="javascript:void(0)" title="{{ trans('general.add_schedule_category') }}"><u>+ {{ trans('general.add_schedule_category') }}</u></a>
+                    </form>
                 </div>
-                <div class="form-group">
-                    {!! Form::label('additional_info', trans('general.additional_info'), array('class' => 'col-sm-3 control-label pull-left')) !!}
-                    <div class="col-sm-9">
-                        {!! Form::textarea('additional_info', old('additional_info'), ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.additional_info')]) !!}
-                    </div>
-                </div>
-                <div class="form-group">
-                    {!! Form::label('price', trans('general.price'), array('class' => 'col-sm-3 control-label pull-left')) !!}
-                    <div class="col-sm-9 input-group">
-                        <span class="input-group-addon">$</span>
-                        {!! Form::text('price', old('price'), ['class' => 'form-control','maxlength'=>'255']) !!}
-                    </div>
-                </div>
-                <div class="form-group">
-                    {!! Form::label('price', trans('general.price'), array('class' => 'col-sm-3 control-label pull-left')) !!}
-                    <div class="col-sm-4">
-                        {!! Form::select('price', array('id' => '/person'), old('role'), array('class' => 'form-control','data-option' => old('price'))) !!}
-                    </div>
-                </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" id="button_save" class="btn btn-primary" title="{{ trans('general.button_save') }}">{{ trans('general.button_save') }}</button>
-          </div>
+            <div class="modal-footer">
+                <button type="button" id="button_save_schedule" class="btn btn-primary" title="{{ trans('general.button_save') }}">{{ trans('general.button_save') }}</button>
+            </div>
         </div>
       </div>
     </div>

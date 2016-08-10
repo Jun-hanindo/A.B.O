@@ -45,6 +45,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
 
         Route::get('venue', array('as' => 'datatables-venue', 'uses' => 'VenuesController@datatables'));
         Route::get('event', array('as' => 'datatables-event', 'uses' => 'EventsController@datatables'));
+        Route::get('event-schedule', array('as' => 'datatables-event-schedule', 'uses' => 'EventSchedulesController@datatables'));
+        Route::get('event-schedule-category', array('as' => 'datatables-event-schedule-category', 'uses' => 'EventScheduleCategoriesController@datatables'));
         
 
     });

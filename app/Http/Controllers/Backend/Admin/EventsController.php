@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\User;
 use App\Models\Venue;
 use App\Models\Event;
+use App\Models\EventSchedule;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\event\EventRequest;
 
@@ -92,17 +93,29 @@ class EventsController extends BaseController
         }
     }
 
-
-    public function priceDetailDatatables($id)
+    public function autoStore(Request $req)
     {
-        $data = $this->model->findEventByID($id);
-         return datatables($this->model->datatables($data))
-                ->addColumn('action', function ($event) {
-                    $url = route('admin-edit-event',$event->id);
+        $param = $req->all();
+        $user_id = $this->currentUser->id;
+        $saveData = $this->model->autoInsertNewEvent($param, $user_id);
+        if(!empty($saveData))
+        {
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'last_insert_id' => $saveData->id,
+                'message' => '<strong>'.$saveData->title.'</strong> '.trans('general.save_success')
+            ],200);
+        
+        } else {
 
-                    return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$event->id.'" data-name="'.$event->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
-                })
-                ->make(true);
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.save_error')
+            ],400);
+        
+        }
     }
 
     /**
@@ -140,7 +153,7 @@ class EventsController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, $id)
+    public function update(EventRequest $req, $id)
     {
         //
         $param = $req->all();
@@ -180,4 +193,7 @@ class EventsController extends BaseController
 
         }
     }
+
+
+
 }

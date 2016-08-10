@@ -137,6 +137,8 @@ return [
     'additional_info' => 'Additional Info',
     'add_more_schedules_and_prices' => 'add more schedules and prices',
     'add_schedule_and_price' => 'Add Schedule and Price',
+    'add_schedule_category' => 'Add Schedule Category',
+    'schedule_category' => 'Schedule Category',
     
     'manage_page' => 'Manage Page',
     'contact_us' => 'Contact Us',

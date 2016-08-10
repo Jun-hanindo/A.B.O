@@ -27,6 +27,12 @@ class Event extends Model
 
     }
 
+    public function eventSchedules()
+    {
+        return $this->belongsTo('App\Models\eventSchedules', 'event_id');
+
+    }
+
     /**
      * Return event's query for Datatables.
      *
@@ -93,6 +99,62 @@ class Event extends Model
 	    		$img3 = Image::make($featured_image3);
 	            $img3->save($pathDest.'/'.$filename3); 
 	        }
+            return $this;
+        } else {
+            return false;
+        }
+    }
+
+    function autoInsertNewEvent($param, $user_id)
+    {
+        $this->user_id = $user_id;
+        $this->title = $param['title'];
+        $this->description = $param['description'];
+        $this->admission = $param['admission'];
+        $this->buylink = $param['buylink'];
+        $this->event_type = isset($param['event_type']);
+        $this->venue_id = $param['venue_id'];
+        $this->avaibility = false;
+
+        $pathDest = public_path().'/uploads/events';
+        if(!File::exists($pathDest)) {
+            File::makeDirectory($pathDest, $mode=0777,true,true);
+        }
+
+        if (isset($param['featured_image1'])) {
+            $featured_image1 = $param['featured_image1'];
+            $extension1 = $featured_image1->getClientOriginalExtension();
+            $filename1 = "image1".time().'.'.$extension1;
+            $this->featured_image1 = $filename1;
+        }
+
+        if (isset($param['featured_image2'])) {
+            $featured_image2 = $param['featured_image2'];
+            $extension2 = $featured_image2->getClientOriginalExtension();
+            $filename2 = "image2".time().'.'.$extension2;
+            $this->featured_image2 = $filename2;
+        }
+
+        if (isset($param['featured_image3'])) {
+            $featured_image3 = $param['featured_image3'];
+            $extension3 = $featured_image3->getClientOriginalExtension();
+            $filename3 = "image3".time().'.'.$extension3;
+            $this->featured_image3 = $filename3;
+        }
+
+        if($this->save()){
+            if (isset($featured_image1)) {
+                $img1 = Image::make($featured_image1);
+                $img1->save($pathDest.'/'.$filename1); 
+            }
+            if (isset($featured_image2)) {
+                $img2 = Image::make($featured_image2);
+                $img2->save($pathDest.'/'.$filename2); 
+            }
+            if (isset($featured_image3)) {
+                $img3 = Image::make($featured_image3);
+                $img3->save($pathDest.'/'.$filename3); 
+            }
             return $this;
         } else {
             return false;
@@ -191,6 +253,58 @@ class Event extends Model
     }
     
     public function deleteByID($id)
+    {
+        $data = $this->find($id);
+        if(!empty($data)) {
+            $data->delete();
+            return $data;
+        } else {
+            return false;
+        }
+    }
+
+    public function insertNewEventSchedule($param)
+    {
+        $this->date_at = $param['date_at'];
+        $this->time_period = $param['time_period'];
+        if($this->save()){
+            return $this;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateEventSchedule($param, $id)
+    {
+        $data = $this->find($id);
+        if(!empty($data)){
+            $data->date_at = $param['date_at'];
+            $data->time_period = $param['time_period'];
+            if($data->save()){
+                return $data;
+            } else {
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    public function findEventScheduleByID($id)
+    {
+        $data = $this->find($id);
+        if (!empty($data)) {
+        
+            return $data;
+        
+        } else {
+        
+            return false;
+
+        }
+    }
+
+    public function deleteEventScheduleByID($id)
     {
         $data = $this->find($id);
         if(!empty($data)) {
