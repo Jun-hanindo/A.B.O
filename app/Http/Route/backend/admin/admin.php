@@ -79,7 +79,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     });
 
     Route::group(['prefix' => 'event'], function () {
-        Route::get('index', array('as' => 'admin-index-event', 'uses' => 'EventsController@index'));
+        Route::get('', array('as' => 'admin-index-event', 'uses' => 'EventsController@index'));
         Route::get('create', array('as' => 'admin-create-event', 'uses' => 'EventsController@create'));
         Route::post('store', array('as' => 'admin-post-event', 'uses' => 'EventsController@store'));
         Route::get('{id}/edit', array('as' => 'admin-edit-event', 'uses' => 'EventsController@edit'));
@@ -97,7 +97,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     });
 
     Route::group(['prefix' => 'venue'], function () {
-        Route::get('index', array('as' => 'admin-index-venue', 'uses' => 'VenuesController@index'));
+        Route::get('', array('as' => 'admin-index-venue', 'uses' => 'VenuesController@index'));
         Route::get('create', array('as' => 'admin-create-venue', 'uses' => 'VenuesController@create'));
         Route::post('store', array('as' => 'admin-post-venue', 'uses' => 'VenuesController@store'));
         Route::get('{id}/edit', array('as' => 'admin-edit-venue', 'uses' => 'VenuesController@edit'));

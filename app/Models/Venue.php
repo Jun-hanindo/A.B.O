@@ -57,6 +57,12 @@ class Venue extends Model
         }
     }
 
+    /**
+     * Find venue data by id
+     * @param id    id venue  
+     * 
+     * @return [type]
+     */
     public function findVenueByID($id)
     {
         $data = $this->find($id);
@@ -72,6 +78,11 @@ class Venue extends Model
     }
 
 
+    /**
+     * @param  [type]
+     * @param  [type]
+     * @return [type]
+     */
     function updateVenue($param, $id)
     {
         $data = $this->find($id);
@@ -98,6 +109,11 @@ class Venue extends Model
         }
     }
     
+    /**
+     * Delete data venue
+     * @param  $id     venue id 
+     * @return Response
+     */
     public function deleteByID($id)
     {
         $data = $this->find($id);
@@ -109,6 +125,10 @@ class Venue extends Model
         }
     }
 
+    /**
+     * Venue list for dropdown
+     * @return Response
+     */
     public static function dropdown()
     {
         return static::orderBy('name')->where('avaibility', 'TRUE')->lists('name', 'id');

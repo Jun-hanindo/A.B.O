@@ -41,7 +41,8 @@ class VenuesController extends BaseController
                 })
                 ->editColumn('name', function ($venue) {
                     $url = route('admin-edit-venue',$venue->id);
-                    return $venue->name.'</br><a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit">Edit</a>&nbsp;';
+                    return $venue->name.'</br><a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit">Edit</a>&nbsp;
+                        <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$venue->id.'" data-button="delete">Delete</a>';
                 })
                 ->editColumn('user_id', function ($venue){
                     $username = $venue->user->first_name.' '.$venue->user->last_name;

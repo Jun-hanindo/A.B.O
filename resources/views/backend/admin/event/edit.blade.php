@@ -49,6 +49,11 @@
                                 {!! Form::label('admission', trans('general.admission')) !!}
                                 {!! Form::textarea('admission', $data->admission, ['class' => 'form-control', 'rows'=> '7', 'placeholder' => trans('general.admission')]) !!}
                             </div>
+                            <div class="form-group{{ Form::hasError('price_info') }} price_info">
+                                {!! Form::label('price_info', trans('general.price_info').' *') !!}
+                                {!! Form::textarea('price_info', $data->price_info, ['class' => 'form-control', 'rows'=> '7', 'placeholder' => trans('general.price_info')]) !!}
+                                {!! Form::errorMsg('price_info') !!}
+                            </div>
                             <div class="form-group{{ Form::hasError('price_detail') }} price_detail">
                                 {!! Form::label('price_info', trans('general.price_detail')) !!}
                                 <table id="price-detail-datatables" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
