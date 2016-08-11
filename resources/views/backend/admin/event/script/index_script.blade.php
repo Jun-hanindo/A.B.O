@@ -43,6 +43,25 @@
         $('.item-checkbox').on('click', function(){
             datatablesCheckbox(loadData());
         });
+
+        $('#event-datatables').on('switchChange.bootstrapSwitch', '.avaibility-check', function(event, state) {
+            var id = $(this).attr('data-id');
+            var uri = "{{ URL::route('admin-update-event-avaibility', "::param") }}";
+            uri = uri.replace('::param', id);
+            var val = $(this).is(":checked") ? true : false;
+            $.ajax({
+                    url: uri,
+                    type: "POST",
+                    dataType: 'json',
+                    data: "avaibility="+val,
+                    success: function (data) {
+                        $('.error').addClass('alert alert-success').html(data.message);
+                    },
+                    error: function(response){
+                        $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
+                    }
+                });
+        });
         
 
     });

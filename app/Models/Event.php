@@ -264,6 +264,24 @@ class Event extends Model
         }
     }
 
+    public function changeAvaibility($param, $id){
+        $data = $this->find($id);
+        if (!empty($data)) {
+            $data->avaibility = $param['avaibility'];
+            if($data->save()) {
+                return $data;
+            } else {
+                return false;
+
+            }
+        
+        } else {
+
+            return false;
+
+        }
+    }
+
 
     function updateAvaibilityFalse($id)
     {

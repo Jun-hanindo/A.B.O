@@ -87,6 +87,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::post('{id}/update', array('as' => 'admin-update-event', 'uses' => 'EventsController@update'));
         Route::post('{id}/auto-update', array('as' => 'admin-auto-update-event', 'uses' => 'EventsController@autoUpdate'));
         Route::delete('{id}/delete', array('as' => 'admin-delete-event', 'uses' => 'EventsController@destroy'));
+        Route::post('{id}/avaibility-edit', array('as' => 'admin-update-event-avaibility', 'uses' => 'EventsController@avaibilityUpdate'));
 
         
     });
@@ -96,7 +97,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::get('{id}/edit', array('as' => 'admin-edit-event-schedule', 'uses' => 'EventSchedulesController@edit'));
         Route::post('{id}/update', array('as' => 'admin-update-event-schedule', 'uses' => 'EventSchedulesController@update'));
         Route::delete('{id}/delete', array('as' => 'admin-delete-event-schedule', 'uses' => 'EventSchedulesController@destroy'));
-        Route::delete('{id}/getdata', array('as' => 'admin-get-event-schedule', 'uses' => 'EventSchedulesController@countSchedule'));
+        Route::delete('{id}/count', array('as' => 'admin-count-event-schedule', 'uses' => 'EventSchedulesController@countSchedule'));
 
         
     });
@@ -106,7 +107,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::get('{id}/edit', array('as' => 'admin-edit-event-schedule-category', 'uses' => 'EventScheduleCategoriesController@edit'));
         Route::post('{id}/update', array('as' => 'admin-update-event-schedule-category', 'uses' => 'EventScheduleCategoriesController@update'));
         Route::delete('{id}/delete', array('as' => 'admin-delete-event-schedule-category', 'uses' => 'EventScheduleCategoriesController@destroy'));
-        Route::delete('{id}/getdata', array('as' => 'admin-get-event-schedule-category', 'uses' => 'EventScheduleCategoriesController@countScheduleCategory'));
 
         
     });
@@ -127,7 +127,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::get('{id}/edit', array('as' => 'admin-edit-venue', 'uses' => 'VenuesController@edit'));
         Route::post('{id}/update', array('as' => 'admin-update-venue', 'uses' => 'VenuesController@update'));
         Route::delete('{id}/delete', array('as' => 'admin-delete-venue', 'uses' => 'VenuesController@destroy'));
-        Route::post('{id}/avaibility-edit', array('as' => 'admin-edit-venue-avaibility', 'uses' => 'VenuesController@avaibilityEdit'));
+        Route::post('{id}/avaibility-edit', array('as' => 'admin-update-venue-avaibility', 'uses' => 'VenuesController@avaibilityUpdate'));
     });
 
     Route::group(['prefix' => 'setting'], function () {

@@ -137,7 +137,7 @@ class Venue extends Model
     public function changeAvaibility($param, $id){
         $data = $this->find($id);
         if (!empty($data)) {
-            $data->name = isset($param['avaibility']);
+            $data->avaibility = $param['avaibility'];
             if($data->save()) {
                 return $data;
             } else {

@@ -38,34 +38,24 @@
             datatablesCheckbox(loadData());
         });
 
-        // $('.avaibility-check').on( 'click', function () {
-        //     var id = $(this).attr('data-id');
-        //     console.log(1);
-        //     $.ajax({
-        //             url: "{{ URL::to('admin/venue')}}"+'/'+id+'/avaibility-edit',
-        //             type: "POST",
-        //             dataType: 'json',
-        //             data: $("#form").serialize(),
-        //             success: function (data) {
-        //                 HoldOn.close();
-        //                 loadData();
-        //                 $('#modal-form').modal('hide');
-        //                 $('.error').addClass('alert alert-success').html(data.message);
-        //             },
-        //             error: function(response){
-        //                 HoldOn.close();
-        //                 if (response.status === 422) {
-        //                     var data = response.responseJSON;
-        //                     $.each(data,function(key,val){
-        //                         $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
-        //                         $('.'+key).addClass('has-error');
-        //                     });
-        //                 } else {
-        //                     $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
-        //                 }
-        //             }
-        //         });
-        // });
+        $('#venue-datatables').on('switchChange.bootstrapSwitch', '.avaibility-check', function(event, state) {
+            var id = $(this).attr('data-id');
+            var uri = "{{ URL::route('admin-update-venue-avaibility', "::param") }}";
+            uri = uri.replace('::param', id);
+            var val = $(this).is(":checked") ? true : false;
+            $.ajax({
+                    url: uri,
+                    type: "POST",
+                    dataType: 'json',
+                    data: "avaibility="+val,
+                    success: function (data) {
+                        $('.error').addClass('alert alert-success').html(data.message);
+                    },
+                    error: function(response){
+                        $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
+                    }
+                });
+        });
 
     });
     </script>

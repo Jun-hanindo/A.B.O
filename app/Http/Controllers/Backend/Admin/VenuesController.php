@@ -184,20 +184,25 @@ class VenuesController extends BaseController
         }
     }
 
-    public function avaibilityEdit(VenueRequest $req, $id)
+    public function avaibilityUpdate(Request $req, $id)
     {
         $param = $req->all();
-        $data = $this->model->findVenueByID($id);
-        $updateData = $this->model->changeAvaibility($param,$id);
+        $updateData = $this->model->changeAvaibility($param, $id);
         if(!empty($updateData)) {
 
-            flash()->success($data->name.' '.trans('general.update_success'));
-            return redirect()->route('admin-index-venue');
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
+            ],200);
 
         } else {
 
-            flash()->error(trans('general.update_error'));
-            return redirect()->route('admin-index-venue');
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.update_error')
+            ],400);
 
         }
     }

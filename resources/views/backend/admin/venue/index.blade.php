@@ -24,6 +24,7 @@
         </div>
         <div class="box-body">
             @include('flash::message')
+            <div class="error"></div>
             <form id="form">
                 <!-- <div class="col-md-12">
                     <div class="row  form-group">

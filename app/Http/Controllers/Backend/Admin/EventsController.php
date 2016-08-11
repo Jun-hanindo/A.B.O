@@ -218,6 +218,29 @@ class EventsController extends BaseController
         }
     }
 
+    public function avaibilityUpdate(Request $req, $id)
+    {
+        $param = $req->all();
+        $updateData = $this->model->changeAvaibility($param, $id);
+        if(!empty($updateData)) {
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
+            ],200);
+
+        } else {
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.update_error')
+            ],400);
+
+        }
+    }
+
     public function draft(Request $req)
     {
         //
