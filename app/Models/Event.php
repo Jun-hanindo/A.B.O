@@ -29,7 +29,7 @@ class Event extends Model
 
     public function eventSchedules()
     {
-        return $this->belongsTo('App\Models\eventSchedules', 'event_id');
+        return $this->hasMany('App\Models\eventSchedules', 'event_id');
 
     }
 
@@ -186,6 +186,7 @@ class Event extends Model
 	        $data->buylink = $param['buylink'];
 	        $data->event_type = isset($param['event_type']);
 	        $data->venue_id = $param['venue_id'];
+            $this->avaibility = true;
 
             if(array_key_exists('featured_image1', $param)) {
                 $pathDest = public_path().'/uploads/events';
@@ -253,58 +254,6 @@ class Event extends Model
     }
     
     public function deleteByID($id)
-    {
-        $data = $this->find($id);
-        if(!empty($data)) {
-            $data->delete();
-            return $data;
-        } else {
-            return false;
-        }
-    }
-
-    public function insertNewEventSchedule($param)
-    {
-        $this->date_at = $param['date_at'];
-        $this->time_period = $param['time_period'];
-        if($this->save()){
-            return $this;
-        } else {
-            return false;
-        }
-    }
-
-    public function updateEventSchedule($param, $id)
-    {
-        $data = $this->find($id);
-        if(!empty($data)){
-            $data->date_at = $param['date_at'];
-            $data->time_period = $param['time_period'];
-            if($data->save()){
-                return $data;
-            } else {
-                return false;
-            }
-        }else{
-            return false;
-        }
-    }
-
-    public function findEventScheduleByID($id)
-    {
-        $data = $this->find($id);
-        if (!empty($data)) {
-        
-            return $data;
-        
-        } else {
-        
-            return false;
-
-        }
-    }
-
-    public function deleteEventScheduleByID($id)
     {
         $data = $this->find($id);
         if(!empty($data)) {

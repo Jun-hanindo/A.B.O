@@ -39,7 +39,8 @@ class EventsController extends BaseController
                 })
                 ->editColumn('title', function ($event) {
                     $url = route('admin-edit-event',$event->id);
-                    return $event->title.'</br><a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit">Edit</a>&nbsp;';
+                    return $event->title.'</br><a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit">Edit</a>&nbsp;
+                        <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$event->id.'" data-button="delete">Delete</a>';
                 })
                 ->editColumn('user_id', function ($event){
                     $username = $event->user->first_name.' '.$event->user->last_name;
@@ -168,6 +169,29 @@ class EventsController extends BaseController
             flash()->error(trans('general.update_error'));
             return redirect()->route('admin-edit-event')->withInput();
 
+        }
+    }
+
+    public function autoUpdate(Request $req, $id)
+    {
+        $param = $req->all();
+        $updateData = $this->model->updateEvent($param,$id);
+        if(!empty($updateData))
+        {
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
+            ],200);
+        
+        } else {
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.save_error')
+            ],400);
+        
         }
     }
 

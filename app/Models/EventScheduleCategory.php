@@ -4,23 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EventSchedule extends Model
+class EventScheduleCategory extends Model
 {
-    protected $table = 'event_schedules';
+    protected $table = 'event_schedule_categories';
 
     /*protected $fillable = [
         'user_id', 'name', 'address', 'mrtdirection', 'cardirection', 'taxidirection', 'capacity', 'link_map', 'gmap_link'
     ];*/
 
-    public function event()
+    public function eventSchedule()
     {
-        return $this->belongsTo('App\Models\Event', 'event_id');
-
-    }
-
-    public function eventScheduleCategories()
-    {
-        return $this->hasMany('App\Models\eventScheduleCategories', 'event_schedule_id');
+        return $this->belongsTo('App\Models\eventSchedule', 'event_schedule_id');
 
     }
 
@@ -30,10 +24,10 @@ class EventSchedule extends Model
      * @return \Illuminate\Database\Eloquent\Builder
      */
 
-    function datatables($event_id)
+    function datatables($event_schedule_id)
     {
 
-    	return static::select('id', 'date_at', 'time_period', 'event_id')->where('event_id', $event_id);
+    	return static::select('id', 'additional_info', 'price', 'price_cat', 'event_schedule_id')->where('event_schedule_id', $event_schedule_id);
     
     }
 
@@ -42,11 +36,12 @@ class EventSchedule extends Model
      * Insert new data venue
      * @return [type]
      */
-    function insertNewEventSchedule($param)
+    function insertNewEventScheduleCategory($param)
     {
-        $this->event_id = $param['event_id'];
-        $this->date_at = date('Y-m-d',strtotime($param['date_at']));
-    	$this->time_period = $param['time_period'];
+        $this->event_schedule_id = $param['event_schedule_id'];
+        $this->additional_info = $param['additional_info'];
+    	$this->price = $param['price'];
+        $this->price_cat = $param['price_cat'];
 
     	if($this->save()){
             return $this;
@@ -55,20 +50,7 @@ class EventSchedule extends Model
         }
     }
 
-    function autoInsertNewEventSchedule($param)
-    {
-        $this->event_id = isset($param['event_id']);
-        $this->date_at = $param['date_at'];
-        $this->time_period = $param['time_period'];
-
-        if($this->save()){
-            return $this;
-        } else {
-            return false;
-        }
-    }
-
-    public function findEventScheduleByID($id)
+    public function findEventScheduleCategoryByID($id)
     {
         $data = $this->find($id);
         if (!empty($data)) {
@@ -83,12 +65,14 @@ class EventSchedule extends Model
     }
 
 
-    function updateEventSchedule($param, $id)
+    function updateEventScheduleCategory($param, $id)
     {
         $data = $this->find($id);
         if (!empty($data)) {
-           	$data->date_at = $param['date_at'];
-	    	$data->time_period = $param['time_period'];
+            $data->event_schedule_id = $param['event_schedule_id'];
+            $data->additional_info = $param['additional_info'];
+            $data->price = $param['price'];
+            $data->price_cat = $param['price_cat'];
 
             if($data->save()){
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Backend\admin\event;
 
 use App\Http\Requests\Request;
 
-class EventScheduleRequest extends Request
+class EventScheduleCategoryRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class EventScheduleRequest extends Request
     public function rules()
     {
         return [
-            'date_at'   => 'required',
-            'time_period'             => 'required',
+            'additional_info'   => 'required',
+            'price'             => 'required',
+            'price_cat'             => 'required',
         ];
     }
 }

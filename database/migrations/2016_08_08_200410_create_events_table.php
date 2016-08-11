@@ -17,12 +17,12 @@ class CreateEventsTable extends Migration
             $table->integer('user_id')->nullable();
             $table->integer('venue_id')->nullable();
             $table->string('title')->nullable();
-            $table->text('description')->nullable();;
-            $table->string('featured_image1')->nullable();;
-            $table->string('featured_image2')->nullable();;
-            $table->string('featured_image3')->nullable();;
-            $table->string('buylink')->nullable();;
-            $table->string('admission')->nullable();;
+            $table->text('description')->nullable();
+            $table->string('featured_image1')->nullable();
+            $table->string('featured_image2')->nullable();
+            $table->string('featured_image3')->nullable();
+            $table->string('buylink')->nullable();
+            $table->string('admission')->nullable();
             $table->boolean('avaibility')->default(true);
             $table->boolean('event_type')->default(true);
             $table->timestamps();

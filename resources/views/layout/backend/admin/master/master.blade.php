@@ -25,7 +25,7 @@
         {!! Html::style('assets/backend/admin/css/style.css') !!}
         {!! Html::style('assets/plugins/datepicker/datepicker3.css') !!}
         {!! Html::style('assets/plugins/bootstrap-switch/bootstrap-switch.min.css') !!}
-        {!! Html::style('assets/plugins/submodal/bs.sm.min.css') !!}
+        
         <link rel="shortcut icon" href="{{ asset('assets/frontend/images/favico.ico') }}">
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 
@@ -128,7 +128,7 @@
         {!! Html::script('assets/plugins/tinymce/tinymce.min.js') !!}
         {!! Html::script('assets/plugins/datepicker/bootstrap-datepicker.js') !!}
         {!! Html::script('assets/plugins/bootstrap-switch/bootstrap-switch.min.js') !!}
-        {!! Html::script('assets/plugins/submodal/bs.sm.min.js') !!}
+        
 
         <script>
             $(document).ajaxStart(function() {

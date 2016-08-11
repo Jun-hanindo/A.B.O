@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Backend\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Models\Event;
 use App\Models\EventSchedule;
+use App\Models\EventScheduleCategory;
 use App\Http\Controllers\Backend\Admin\BaseController;
-use App\Http\Requests\Backend\admin\event\EventScheduleRequest;
+use App\Http\Requests\Backend\admin\event\EventScheduleCategoryRequest;
 
-class EventSchedulesController extends BaseController
+class EventScheduleCategoriesController extends BaseController
 {
 
-    public function __construct(EventSchedule $model)
+    public function __construct(EventScheduleCategory $model)
     {
         parent::__construct($model);
 
@@ -22,28 +22,30 @@ class EventSchedulesController extends BaseController
     public function datatables(Request $req)
     {
         $param = $req->all();
-        $event_id = $param['event_id'];
-         return datatables($this->model->datatables($event_id))
-                ->addColumn('action', function ($schedule) {
-
-                    return '<input type="hidden" name="id" class="form-control" id="id_schedule" value="'.$schedule->id.'">
-                    <a href="javascript:void(0)" data-id="'.$schedule->id.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw">
-                    </i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$schedule->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+        $schedule_id = $param['schedule_id'];
+         return datatables($this->model->datatables($schedule_id))
+                ->addColumn('action', function ($category) {
+                    return '<input type="hidden" name="id" class="form-control" id="id_category" value="'.$category->id.'">
+                    <a href="javascript:void(0)" data-id="'.$category->id.'" class="btn btn-warning btn-xs actEditCategory" title="Edit"><i class="fa fa-pencil-square-o fa-fw">
+                    </i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$category->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                })
+                ->editColumn('price', function ($category){
+                    $price = $category->price.$category->price_cat;
+                    return $price;
                 })
                 ->make(true);
     }
 
-    public function store(EventScheduleRequest $req)
+    public function store(EventScheduleCategoryRequest $req)
     {
         $param = $req->all();
-        $saveData = $this->model->insertNewEventSchedule($param);
+        $saveData = $this->model->insertNewEventScheduleCategory($param);
         if(!empty($saveData))
         {
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
-                'last_insert_id' => $saveData->id,
-                'message' => '<strong>'.$saveData->date_at.'</strong> '.trans('general.save_success')
+                'message' => '<strong>'.$saveData->price.'</strong> '.trans('general.save_success')
             ],200);
         
         } else {
@@ -59,7 +61,7 @@ class EventSchedulesController extends BaseController
 
     public function edit($id)
     {
-        $data = $this->model->findEventScheduleByID($id);
+        $data = $this->model->findEventScheduleCategoryByID($id);
         if(!empty($data)) {
 
             return response()->json([
@@ -78,16 +80,16 @@ class EventSchedulesController extends BaseController
         }
     }
 
-    public function update(EventScheduleRequest $req, $id)
+    public function update(EventScheduleCategoryRequest $req, $id)
     {
         $param = $req->all();
-        $updateData = $this->model->updateEventSchedule($param,$id);
+        $updateData = $this->model->updateEventScheduleCategory($param,$id);
         if(!empty($updateData)) {
 
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
-                'message' => '<strong>'.$updateData->date_at.'</strong> '.trans('general.update_success')
+                'message' => '<strong>'.$updateData->price.'</strong> '.trans('general.update_success')
             ],200);
 
         } else {
