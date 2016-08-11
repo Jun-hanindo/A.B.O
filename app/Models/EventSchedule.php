@@ -83,7 +83,7 @@ class EventSchedule extends Model
     }
 
 
-    function updateEventSchedule($param, $id)
+    public function updateEventSchedule($param, $id)
     {
         $data = $this->find($id);
         if (!empty($data)) {
@@ -114,5 +114,10 @@ class EventSchedule extends Model
         } else {
             return false;
         }
+    }
+
+    public function countSchedule($event_id)
+    {
+        return EventSchedule::where('event_id', $event_id)->count();
     }
 }

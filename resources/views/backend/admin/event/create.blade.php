@@ -36,6 +36,8 @@
                         <div class="error"></div>
                         <div class="col-md-9">
                             <input type="hidden" name="id" class="form-control" id="event_id">
+                            <input type="hidden" name="id" class="form-control" id="count_schedule">
+                            <input type="hidden" name="id" class="form-control" id="count_category">
                             <div class="form-group{{ Form::hasError('title') }} title">
                                 {!! Form::label('title', trans('general.title').' *') !!}
                                 {!! Form::text('title', old('title'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.title')]) !!}
@@ -43,17 +45,17 @@
                             </div>
                             <div class="form-group{{ Form::hasError('description') }} description">
                                 {!! Form::label('description', trans('general.description').' *') !!}
-                                {!! Form::textarea('description', old('description'), ['class' => 'form-control', 'rows'=> '12', 'placeholder' => trans('general.description')]) !!}
+                                {!! Form::textarea('description', old('description'), ['class' => 'form-control tinymce', 'rows'=> '12', 'placeholder' => trans('general.description')]) !!}
                                 {!! Form::errorMsg('description') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('admission') }} admission">
                                 {!! Form::label('admission', trans('general.admission').' *') !!}
-                                {!! Form::textarea('admission', old('admission'), ['class' => 'form-control', 'rows'=> '7', 'placeholder' => trans('general.admission')]) !!}
+                                {!! Form::textarea('admission', old('admission'), ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.admission')]) !!}
                                 {!! Form::errorMsg('admission') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('price_info') }} price_info">
                                 {!! Form::label('price_info', trans('general.price_info').' *') !!}
-                                {!! Form::textarea('price_info', old('price_info'), ['class' => 'form-control', 'rows'=> '7', 'placeholder' => trans('general.price_info')]) !!}
+                                {!! Form::textarea('price_info', old('price_info'), ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.price_info')]) !!}
                                 {!! Form::errorMsg('price_info') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('price_detail') }} price_detail">
@@ -90,7 +92,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('event_type') }} event_type">
                                 {!! Form::label('event_type', trans('general.event_type').' *', array('class' => 'full-width')) !!}
-                                {!! Form::checkbox('event_type', '1', true, ['class' => 'form-control event_type-check', 'data-animate' => 'false', 'data-on-text' => 'Enabled', 'data-off-text' => 'Disabled']) !!}
+                                {!! Form::checkbox('event_type', '1', true, ['class' => 'form-control event_type-check', 'data-animate' => 'false', 'data-on-text' => 'General', 'data-off-text' => 'Seated']) !!}
                             </div>
                             <div class="form-group{{ Form::hasError('venue_id') }} venue_id">
                                 {!! Form::label('venue_id', trans('general.venue').' *') !!}
@@ -105,6 +107,7 @@
                             <div class="box-footer">
                                 <a href="{{ route('admin-index-event') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>
                                 <input class="btn btn-primary pull-right" title="{{ trans('general.button_save') }}" type="submit" value="{{ trans('general.button_publish') }}" id="button_submit">
+                                <button type="button" id="button_draft" class="btn btn-primary pull-right" title="{{ trans('general.button_draft') }}">{{ trans('general.button_draft') }}</button>
                             </div>
                         </div>
                         
@@ -183,7 +186,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-4 col-offser-3">
+                            <div class="col-sm-4 col-offset-3">
                                 {!! Form::select('price_cat', array('/person' => '/person'), old('role'), array('class' => 'form-control','data-option' => old('price_cat'))) !!}
                             </div>
                         </div>

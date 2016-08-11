@@ -183,4 +183,22 @@ class VenuesController extends BaseController
 
         }
     }
+
+    public function avaibilityEdit(VenueRequest $req, $id)
+    {
+        $param = $req->all();
+        $data = $this->model->findVenueByID($id);
+        $updateData = $this->model->changeAvaibility($param,$id);
+        if(!empty($updateData)) {
+
+            flash()->success($data->name.' '.trans('general.update_success'));
+            return redirect()->route('admin-index-venue');
+
+        } else {
+
+            flash()->error(trans('general.update_error'));
+            return redirect()->route('admin-index-venue');
+
+        }
+    }
 }

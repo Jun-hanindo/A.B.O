@@ -24,22 +24,22 @@
                             </div>
                             <div class="form-group{{ Form::hasError('address') }} address">
                                 {!! Form::label('address', trans('general.address')) !!}
-                                {!! Form::textarea('address', $data->address, ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.address')]) !!}
+                                {!! Form::textarea('address', $data->address, ['class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.address')]) !!}
                                 {!! Form::errorMsg('address') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('mrtdirection') }} mrtdirection">
                                 {!! Form::label('mrtdirection', trans('general.mrtdirection')) !!}
-                                {!! Form::textarea('mrtdirection', $data->mrtdirection, ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.mrtdirection')]) !!}
+                                {!! Form::textarea('mrtdirection', $data->mrtdirection, ['class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.mrtdirection')]) !!}
                                 {!! Form::errorMsg('mrtdirection') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('cardirection') }} cardirection">
                                 {!! Form::label('cardirection', trans('general.cardirection')) !!}
-                                {!! Form::textarea('cardirection', $data->cardirection, ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.cardirection')]) !!}
+                                {!! Form::textarea('cardirection', $data->cardirection, ['class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.cardirection')]) !!}
                                 {!! Form::errorMsg('cardirection') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('taxidirection') }} taxidirection">
                                 {!! Form::label('taxidirection', trans('general.taxidirection')) !!}
-                                {!! Form::textarea('taxidirection', $data->taxidirection, ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.taxidirection')]) !!}
+                                {!! Form::textarea('taxidirection', $data->taxidirection, ['class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.taxidirection')]) !!}
                                 {!! Form::errorMsg('taxidirection') !!}
                             </div>
                         </div>
@@ -71,4 +71,4 @@
         </div>
     </div>
 @endsection
-@include('backend.admin.city.script.create_script')
+@include('backend.admin.venue.script.create_script')

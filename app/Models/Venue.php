@@ -133,4 +133,22 @@ class Venue extends Model
     {
         return static::orderBy('name')->where('avaibility', 'TRUE')->lists('name', 'id');
     }
+
+    public function changeAvaibility($param, $id){
+        $data = $this->find($id);
+        if (!empty($data)) {
+            $data->name = isset($param['avaibility']);
+            if($data->save()) {
+                return $data;
+            } else {
+                return false;
+
+            }
+        
+        } else {
+
+            return false;
+
+        }
+    }
 }

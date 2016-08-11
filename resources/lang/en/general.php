@@ -60,6 +60,7 @@ return [
     'button_delete' => 'Delete',
     'button_publish' => 'Publish',
     'button_apply'  => 'Apply',
+    'button_draft'  => 'Draft',
 
     'management' => 'Management',
     'countries' => 'Countries',

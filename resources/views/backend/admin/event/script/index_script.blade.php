@@ -16,7 +16,7 @@
                 serverSide: true,
                 ajax: '{!! URL::route("datatables-event") !!}',
                 columns: [
-                    {data: 'id', name: 'id', searchable: false, orderable: false},
+                    // {data: 'id', name: 'id', searchable: false, orderable: false},
                     {data: 'title', name: 'title'},
                     {data: 'user_id', name: 'user_id'},
                     {data: 'avaibility', name: 'avaibility', searchable: false, orderable: false}

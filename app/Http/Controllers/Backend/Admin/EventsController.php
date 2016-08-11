@@ -218,6 +218,40 @@ class EventsController extends BaseController
         }
     }
 
+    public function draft(Request $req)
+    {
+        //
+        $param = $req->all();
+        if($param['event_id'] == ''){
+            $user_id = $this->currentUser->id;
+            $saveData = $this->model->autoInsertNewEvent($param, $user_id);
+            if(!empty($updateData)) {
+
+                flash()->success(trans('general.update_success'));
+                return redirect()->route('admin-index-event');
+
+            } else {
+
+                flash()->error(trans('general.update_error'));
+                return redirect()->route('admin-edit-event')->withInput();
+
+            }
+        }else{
+            $updateData = $this->model->updateEvent($param,$id);
+            if(!empty($updateData)) {
+                $this->model->updateAvaibilityFalse($id);
+                flash()->success(trans('general.update_success'));
+                return redirect()->route('admin-index-event');
+
+            } else {
+
+                flash()->error(trans('general.update_error'));
+                return redirect()->route('admin-edit-event')->withInput();
+
+            }
+        }
+    }
+
 
 
 }

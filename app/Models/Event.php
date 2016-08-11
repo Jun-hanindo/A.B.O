@@ -263,4 +263,26 @@ class Event extends Model
             return false;
         }
     }
+
+
+    function updateAvaibilityFalse($id)
+    {
+        $data = $this->find($id);
+        if (!empty($data)) {
+            $this->avaibility = false;
+
+            if($data->save()){
+
+                return $data;
+
+            } else {
+                return false;    
+            }
+        
+        } else {
+
+            return false;
+
+        }
+    }
 }

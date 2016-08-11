@@ -69,7 +69,6 @@ class EventScheduleCategory extends Model
     {
         $data = $this->find($id);
         if (!empty($data)) {
-            $data->event_schedule_id = $param['event_schedule_id'];
             $data->additional_info = $param['additional_info'];
             $data->price = $param['price'];
             $data->price_cat = $param['price_cat'];
@@ -98,5 +97,10 @@ class EventScheduleCategory extends Model
         } else {
             return false;
         }
+    }
+
+    public function countScheduleCategory($schedule_id)
+    {
+        return EventSchedule::where('schedule_id', $schedule_id)->count();
     }
 }

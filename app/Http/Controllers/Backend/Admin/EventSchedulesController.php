@@ -25,7 +25,6 @@ class EventSchedulesController extends BaseController
         $event_id = $param['event_id'];
          return datatables($this->model->datatables($event_id))
                 ->addColumn('action', function ($schedule) {
-
                     return '<input type="hidden" name="id" class="form-control" id="id_schedule" value="'.$schedule->id.'">
                     <a href="javascript:void(0)" data-id="'.$schedule->id.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw">
                     </i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$schedule->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
@@ -101,6 +100,42 @@ class EventSchedulesController extends BaseController
         }
     }
 
+    public function destroy($id)
+    {
+        //
+        $data = $this->model->deleteByID($id);
+        if(!empty($data)) {
 
+            flash()->success(trans('general.delete_success'));
+            return redirect()->route('admin-index-event');
+
+        } else {
+
+            flash()->success(trans('general.data_not_found'));
+            return redirect()->route('admin-index-event');
+
+        }
+    }
+
+    public function countSchedule($event_id)
+    {
+        $data = $this->model->countSchedule($event_id);
+        if(!empty($data)) {
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'Success',
+                'data' => $data
+            ],200);
+
+        } else {
+            return response()->json([
+                'code' => 400,
+                'status' => 'error',
+                'message' => trans('general.data_not_found')
+            ],400);
+        }
+    }
 
 }

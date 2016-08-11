@@ -103,6 +103,27 @@ class EventScheduleCategoriesController extends BaseController
         }
     }
 
+    public function countScheduleCategory($schedule_id)
+    {
+        $data = $this->model->countScheduleCategory($schedule_id);
+        if(!empty($data)) {
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'Success',
+                'data' => $data
+            ],200);
+
+        } else {
+            return response()->json([
+                'code' => 400,
+                'status' => 'error',
+                'message' => trans('general.data_not_found')
+            ],400);
+        }
+    }
+
 
 
 }

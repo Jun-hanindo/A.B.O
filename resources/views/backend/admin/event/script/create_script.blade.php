@@ -3,10 +3,13 @@
     {!! Html::script('assets/plugins/datatables/dataTables.bootstrap.min.js') !!}
     <script type="text/javascript">
         $(document).ready(function(){
+            loadTinyMce();
+            $('#button_submit').hide();
+            $('#button_draft').show();
 
-            // $(".datepicker").datepicker( {
-            //     format: "mm/dd/yyyy",
-            // });
+            $(".datepicker").datepicker( {
+                format: "yyyy-mm-dd",
+            });
 
             var event_id = $('#event_id').val();
             if(event_id == ''){
@@ -14,6 +17,7 @@
             }
             loadDataSchedule(event_id);
             loadSwitchButton('event_type-check');
+            countSchedule(event_id)
 
             function loadDataSchedule(event_id)
             {
@@ -31,14 +35,28 @@
                         url: '{!! URL::route("datatables-event-schedule") !!}',
                         data: {
                             'event_id': event_id
-                        }
+                        },
+                        // complete: function(data){
+                        //     var res = data.responseText;
+                        //     var json = JSON.parse(res);
+                        //     $('#count_schedule').val(json.recordsTotal);
+                        //     if(json.recordsTotal > 0)
+                        //     {
+                        //         $('#button_submit').show();
+                        //         $('#button_draft').hide();
+                        //     }else{
+                        //         $('#button_submit').hide();
+                        //         $('#button_draft').show();
+                        //     }
+                        // }
                     },
                     columns: [
                         {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
                         {data: 'date_at', name: 'date_at'},
                         {data: 'time_period', name: 'time_period'}
-                    ]
+                    ],
                 });
+                //return table;
             }
 
             function loadDataScheduleCategory(schedule_id)
@@ -57,6 +75,11 @@
                         url: '{!! URL::route("datatables-event-schedule-category") !!}',
                         data: {
                             'schedule_id': schedule_id
+                        },
+                        complete: function(data){
+                            var res = data.responseText;
+                            var json = JSON.parse(res);
+                            $('#count_category').val(json.recordsTotal);
                         }
                     },
                     columns: [
@@ -65,6 +88,8 @@
                         {data: 'price', name: 'price'}
                     ]
                 });
+
+                //return table;
             }
 
             $('.actAdd').on('click',function(){
@@ -161,7 +186,7 @@
                     success: function (data) {
                         var event_id = data.last_insert_id;
                         $('#event_id').val(event_id);
-                        $('#form-event').attr('action', "{{ URL::to('admin/event')}}"+'/'+event_id+'/edit');
+                        $('#form-event').attr('action', "{{ URL::to('admin/event')}}"+'/'+event_id+'/update');
                         window.history.pushState("string", data.status, "{{ URL::to('admin/event')}}"+'/'+event_id+'/edit');
                         $('#modal-form-schedule').modal('show');
                         $('#title-create-schedule').show();
@@ -439,6 +464,20 @@
 
                 });
             });
+
+            $('#event-schedule-category-datatables tbody').on( 'click', '.actEditCategory', function () {
+                $('#modal-form-category').modal('show');
+                $('#modal-form-schedule').modal('hide');
+                $('#title-create-category').hide();
+                $('#title-update-category').show();
+                $('#button_update_category').show();
+                $('#button_save_category').hide();
+
+                var id = $(this).data('id');
+                console.log(id);
+                getDataEventScheduleCategory(id);
+
+            });
                 
 
             $('#modal-form-category').on('show.bs.modal', function (e) {
@@ -446,6 +485,7 @@
                 $(".form-group").removeClass('has-error');
                 $('.error').removeClass('alert alert-danger');
                 $('.error').html('');
+                
 
                 $("#button_save_category").unbind('click').bind('click', function () {
                     var schedule_id = $('#schedule_id').val();
@@ -528,10 +568,52 @@
                     });
                 }
             });
+
+            function countSchedule(event_id){
+                $.ajax({
+                    url: "{{ URL::to('admin/event-schedule')}}"+'/'+event_id+'/getdata',
+                    type: "get",
+                    dataType: 'json',
+                    success: function (response) {
+                        if(response.data.active == false) {
+                            response.data.active = 'false';
+                        } else {
+                            response.data.active = 'true';
+                        }
+                        var data = response.data;
+                        $("#count_schedule").val(data);
+                    },
+                    error: function(response){
+                        response.responseJSON.message;
+                    }
+                });
+            }
+
+            // function countScheduleCategory(schedule_id)
+            // {
+            //     $.ajax({
+            //         url: "{{ URL::to('admin/event-schedule-category')}}"+'/'+schedule_id+'/getdata',
+            //         type: "get",
+            //         dataType: 'json',
+            //         success: function (response) {
+            //             if(response.data.active == false) {
+            //                 response.data.active = 'false';
+            //             } else {
+            //                 response.data.active = 'true';
+            //             }
+            //             var data = response.data;
+            //             $("#count_category").val(data);
+            //         },
+            //         error: function(response){
+            //             response.responseJSON.message;
+            //         }
+            //     });
+            // }
             
 
 
             function clearInput(){
+                $('#date_at').data('datepicker').setDate(null);
                 $('#schedule_id').val('');
                 $("#time_period").val('');
                 var schedule_id = $('#schedule_id').val();
