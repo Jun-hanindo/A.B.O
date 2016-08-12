@@ -69,17 +69,20 @@
         <div class="container">
             <h2>New Release</h2>
             <div class="row">
-                <div class="col-md-4 box-release">
-                    <img src="{{ asset('assets/frontend/images/mj-poster.png') }}">
-                    <div class="boxInfo info1">
-                        <ul>
-                            <li class="eventType">CONCERTS</li>
-                            <li class="eventName">Michael Jackson ONE</li>
-                            <li class="eventDate"><i class="fa fa-calendar-o"></i> 17 June 2016</li>
-                            <li class="eventPlace">Singapore Indoor Stadium</li>
-                        </ul>
+                <a href="{{URL::route('event')}}">
+                    <div class="col-md-4 box-release">
+                        <img src="{{ asset('assets/frontend/images/mj-poster.png') }}">
+                        <div class="boxInfo info1">
+                            <ul>
+                                <li class="eventType">CONCERTS</li>
+                                <li class="eventName">Michael Jackson ONE</li>
+                                <li class="eventDate"><i class="fa fa-calendar-o"></i> 17 June 2016</li>
+                                <li class="eventPlace">Singapore Indoor Stadium</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                </a>
+                <a href="{{URL::route('event-seated')}}">
                 <div class="col-md-4 box-release">
                     <img src="{{ asset('assets/frontend/images/savour-poster.png') }}">
                     <div class="boxInfo info2">
@@ -91,6 +94,7 @@
                         </ul>
                     </div>
                 </div>
+                </a>
                 <div class="col-md-4 box-release">
                     <img src="{{ asset('assets/frontend/images/madona-poster.png') }}">
                     <div class="boxInfo info3">

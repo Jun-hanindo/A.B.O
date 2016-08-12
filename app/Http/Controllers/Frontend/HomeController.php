@@ -36,4 +36,24 @@ class HomeController extends Controller
     {
         return view('frontend.partials.event_seated');
     }
+
+    public function careers()
+    {
+        return view('frontend.partials.careers');
+    }
+
+    public function contactUs()
+    {
+        return view('frontend.partials.contact_us');
+    }
+
+    public function ourCompany()
+    {
+        return view('frontend.partials.our_company');
+    }
+
+    public function supportFaq()
+    {
+        return view('frontend.partials.support_faq');
+    }
 }

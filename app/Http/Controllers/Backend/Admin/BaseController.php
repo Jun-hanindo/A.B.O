@@ -39,6 +39,8 @@ abstract class BaseController extends Controller
         } else {
             $currentUserLogin ='';
         }
+
+        \View::share ('user_login',$currentUserLogin);
     }
 
     protected function getClassAndMethodRoute($method = null)

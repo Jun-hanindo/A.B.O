@@ -2,14 +2,26 @@
   background-color: #89C21F;
 }
 
-.bg-purple{
-  background-color: #A00077;
-}
-
 .bg-black{
 	background-color: #000000;
 }
 
 .bg-white{
 	background-color: #fff;
+}
+
+.bg-purple{
+  background-color: #A00077 !important;
+}
+
+.bg-grey{
+  background-color: #4A4949 !important;
+}
+
+.bg-purple2{
+  background-color: #5A0086 !important;
+}
+
+.bg-red{
+  background-color: #B30000 !important;
 }

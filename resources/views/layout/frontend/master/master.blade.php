@@ -22,95 +22,98 @@
       <![endif]-->
    </head>
    <body>
-      <header>
-        <div id="top-header">
-            <div class="container">
-                <div class="pull-left left-header">
-                    <nav class="main-menu" role="navigation">
-                        <ul class="nav-menu">
-                            <li class="nav-item">
-                                <a href="#"><img src="{{ asset('assets/frontend/images/logo.png') }}" class="logo"></a>
-                            </li>
-                            <li class="nav-item">
-                                <div class="cd-dropdown-wrapper">
-                                    <a class="cd-dropdown-trigger" href="#0"><img src="{{ asset('assets/frontend/images/singapore-flag.png') }}"> Singapore</a>
-                                    <nav class="cd-dropdown">
-                                        <h2>Title</h2>
-                                        <a href="#0" class="cd-close">Close</a>
-                                        <ul class="cd-dropdown-content">
-                                            <li class="has-childern">
-                                                <a href="#">Select Country / Language</a>
-                                            </li>
-                                            <li class="has-childern">
-                                                <div class="countryList">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#">
-                                                                <img src="{{ asset('assets/frontend/images/asia.png') }}"><br>
-                                                                <span>Asia</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <img src="{{ asset('assets/frontend/images/singaporebig-flag.png') }}"><br>
-                                                                <span>Singapore</span>
-                                                            </a>
-                                                            <ul>
-                                                                <li><a href="#"></a>English</li>
-                                                                <li><a href="#"></a>简体中文</li>
-                                                            </ul>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <img src="{{ asset('assets/frontend/images/malaysiabig-flag.png') }}"><br>
-                                                                <span>Malaysia</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <img src="{{ asset('assets/frontend/images/indonesiabig-flag.png') }}"><br>
-                                                                <span>Indonesia</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                        </ul> <!-- .cd-dropdown-content -->
-                                    </nav> <!-- .cd-dropdown -->
-                                </div> <!-- .cd-dropdown-wrapper -->
-                            </li>
-                            <li class="nav-item">
-                                <div class="nav-search">
-                                    <form>
-                                        <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-search"></i>
-                                        </span>
-                                        <input type="text" class="form-control input-search" placeholder="Search in Singapore...">
+        <div class="page-wrapper">
+          <header>
+            <div id="top-header">
+                <div class="container">
+                    <div class="pull-left left-header">
+                        <nav class="main-menu" role="navigation">
+                            <ul class="nav-menu">
+                                <li class="nav-item">
+                                    <a href="#"><img src="{{ asset('assets/frontend/images/logo.png') }}" class="logo"></a>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="cd-dropdown-wrapper">
+                                        <a class="cd-dropdown-trigger" href="#0"><img src="{{ asset('assets/frontend/images/singapore-flag.png') }}"> Singapore</a>
+                                        <nav class="cd-dropdown">
+                                            <h2>Title</h2>
+                                            <a href="#0" class="cd-close">Close</a>
+                                            <ul class="cd-dropdown-content">
+                                                <li class="has-childern">
+                                                    <a href="#">Select Country / Language</a>
+                                                </li>
+                                                <li class="has-childern">
+                                                    <div class="countryList">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <img src="{{ asset('assets/frontend/images/asia.png') }}"><br>
+                                                                    <span>Asia</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <img src="{{ asset('assets/frontend/images/singaporebig-flag.png') }}"><br>
+                                                                    <span>Singapore</span>
+                                                                </a>
+                                                                <!-- <ul>
+                                                                    <li><a href="#"></a>English</li>
+                                                                    <li><a href="#"></a>简体中文</li>
+                                                                </ul> -->
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <img src="{{ asset('assets/frontend/images/malaysiabig-flag.png') }}"><br>
+                                                                    <span>Malaysia</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <img src="{{ asset('assets/frontend/images/indonesiabig-flag.png') }}"><br>
+                                                                    <span>Indonesia</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </ul> <!-- .cd-dropdown-content -->
+                                        </nav> <!-- .cd-dropdown -->
+                                    </div> <!-- .cd-dropdown-wrapper -->
+                                </li>
+                                <li class="nav-item">
+                                    <div class="nav-search">
+                                        <form>
+                                            <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-search"></i>
+                                            </span>
+                                            <input type="text" class="form-control input-search" placeholder="Search in Singapore...">
+                                        </div>
+                                        </form>
                                     </div>
-                                    </form>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ URL::route('discover')}}" class="hover-li">Discover</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ URL::route('promotion')}}" class="hover-li">Promotions</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="hover-li">Support</a>
-                            </li>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ URL::route('discover')}}" class="hover-li">Discover</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ URL::route('promotion')}}" class="hover-li">Promotions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="hover-li">Support</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="pull-right right-header">
+                        <ul>
+                            <li><a href="https://asiaboxoffice.nliven.co/account/login">Login</a></li>
+                            <li>/</li>
+                            <li><a href="https://asiaboxoffice.nliven.co/account/register">Register</a></li>
                         </ul>
-                    </nav>
-                </div>
-                <div class="pull-right right-header login-register">
-                    <a href="https://asiaboxoffice.nliven.co/account/login" target="_blank">Login</a>
-                    <span> / </span>
-                    <a href="https://asiaboxoffice.nliven.co/account/register" target="_blank">Register</a>      
+                    </div> 
                 </div>
             </div>
-        </div>
-      </header>
+          </header>
 
       <!-- Start Main Content -->
         @yield('content')
@@ -136,7 +139,7 @@
                             <img src="{{ asset('assets/frontend/images/ico-regis.png') }}">
                         </div>
                         <div class="linkFoot">
-                            <a href="#">Register ></a>
+                            <a href="https://asiaboxoffice.nliven.co/account/register">Register ></a>
                         </div>
                         <div class="capFoot">
                             <p>Buy tickets from us and more.</p>
@@ -158,7 +161,7 @@
                             <img src="{{ asset('assets/frontend/images/ico-company.png') }}">
                         </div>
                         <div class="linkFoot">
-                            <a href="#">Our Company ></a>
+                            <a href="{{URL::route('our-company')}}">Our Company ></a>
                         </div>
                         <div class="capFoot">
                             <p>About us, jobs and partnerships.</p>
@@ -170,61 +173,65 @@
         <div id="footer2">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2 information-box">
-                        <div class="information-title">
-                            Events
+                    <div class="col-md-2">
+                        <div class="information-box mobile-collapse">
+                            <div class="information-title mobile-collapse-header">
+                                Events
+                            </div>
+                            <ul class="list-unstyled mobile-collapse-body">
+                                <li><a href="{{URL::route('home')}}">Home</a></li>
+                                <li><a href="#">Search For</a></li>
+                                <li><a href="{{URL::route('event')}}">Events</a></li>
+                                <li><a href="{{URL::route('discover')}}">Discover Events</a></li>
+                                <li><a href="{{URL::route('promotion')}}">Promotions</a></li>
+                            </ul>
                         </div>
-                        <ul class="list-unstyled">
-                            <li><a href="{{URL::route('home')}}">Home</a></li>
-                            <li><a href="#">Search For</a></li>
-                            <li><a href="{{URL::route('event')}}">Events</a></li>
-                            <li><a href="{{URL::route('discover')}}">Discover Events</a></li>
-                            <li><a href="{{URL::route('promotion')}}">Promotions</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3 information-box">
-                        <div class="information-title">
-                            Support
-                        </div>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Ways To Buy Tickets</a></li>
-                            <li><a href="#">Frequently Asked Questions</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Terms And Conditions</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2 information-box">
-                        <div class="information-title">
-                            My Account
-                        </div>
-                        <ul class="list-unstyled login-register">
-                            <li>
-                                <a href="https://asiaboxoffice.nliven.co/account/login" target="_blank">Login</a>
-                                <span> / </span>
-                                <a href="https://asiaboxoffice.nliven.co/account/register" target="_blank">Register</a>
-                            </li>
-                            <li><a href="#">Subscribe Us</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2 information-box">
-                        <div class="information-title">
-                            Our Company
-                        </div>
-                        <ul class="list-unstyled">
-                            <li><a href="#"> About Asia Box Office</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
                     </div>
                     <div class="col-md-3">
-                        <div class="information-title">
+                        <div class="information-box mobile-collapse">
+                            <div class="information-title mobile-collapse-header">
+                                Support
+                            </div>
+                            <ul class="list-unstyled mobile-collapse-body">
+                                <li><a href="#">Ways To Buy Tickets</a></li>
+                                <li><a href="{{URL::route('support-faq')}}">Frequently Asked Questions</a></li>
+                                <li><a href="{{URL::route('contact-us')}}">Contact Us</a></li>
+                                <li><a href="#">Terms And Conditions</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="information-box mobile-collapse">
+                            <div class="information-title mobile-collapse-header">
+                                My Account
+                            </div>
+                            <ul class="list-unstyled mobile-collapse-body">
+                                <li><a href="https://asiaboxoffice.nliven.co/account/login">Login / Register</a></li>
+                                <li><a href="#">Subscribe Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="information-box mobile-collapse">
+                            <div class="information-title mobile-collapse-header">
+                                Our Company
+                            </div>
+                            <ul class="list-unstyled mobile-collapse-body">
+                                <li><a href="{{URL::route('our-company')}}"> About Asia Box Office</a></li>
+                                <li><a href="{{URL::route('careers')}}">Careers</a></li>
+                                <li><a href="{{URL::route('contact-us')}}">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="information-title mobile-collapse-header">
                             Follow Us On Facebook
                         </div>
                         <div class="facebookLike">
                             <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=124&layout=button_count&action=like&size=small&show_faces=true&share=true&height=46&appId=336369053042" width="124" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
                         </div>
-                        <div class="information-title">
+                        <div class="information-title mobile-collapse-header">
                             Download Our Mobile App
                         </div>
                         <div class="mobileApp">
@@ -239,7 +246,7 @@
             <div class="container">
                 <div class="row footer-bottom">
                     <div class="col-md-12">
-                        <div class="col-md-2">
+                        <div class="col-md-2 logo-footer">
                             <img src="{{ asset('assets/frontend/images/logo.png') }}">
                         </div>
                         <div class="col-md-10">
@@ -252,9 +259,48 @@
             </div>
         </div>
     </footer>
+      </div>
    </body>
     {!! Html::script('assets/frontend/js/jquery-2.1.1.js') !!}
     {!! Html::script('assets/frontend/js/jquery.menu-aim.js') !!}
     {!! Html::script('assets/frontend/js/main.js') !!}
     {!! Html::script('assets/frontend/js/bootstrap.min.js') !!}
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('.mobile-collapse-header').click(function() {
+     
+          $(this).next('ul').slideToggle();
+          $(this).next('.facebookLike').slideToggle();
+          $(this).next('.mobileApp').slideToggle();
+          return false;
+        });
+        $(window).resize(toggleFooter);
+            toggleFooter();
+        })
+
+        toggleFooter = function (){
+          var current_width = $(window).width();
+        if (current_width < 960) {
+              toggleFooter();
+        }else{
+           
+        $('.mobile-collapse-header').next('ul').slideDown();
+        $('.mobile-collapse-header').next('.facebookLike').slideDown();
+        $('.mobile-collapse-header').next('.mobileApp').slideDown();
+        }
+
+
+        }
+
+
+        $('.mobile-collapse-header-top').click(function(){
+        $('.mobile-collapse-body-top').slideToggle();
+        })
+
+        $('.mobile-flag').click(function(){
+        $('.mobile-flag-collapse').slideToggle();
+        })
+
+   </script>
 </html>

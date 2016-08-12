@@ -272,8 +272,9 @@
                             response.data.active = 'true';
                         }
                         var data = response.data;
-                        $('#modal-form-slider #event_id_slider').val(data.event_id);
+                        //$('#modal-form-slider #event_id_slider').val(data.event_id);
                         $('#modal-form-slider #id_slider').val(data.id);
+                        //$('#event_id_slider').select2('data', {id: 1, a_key: '12'});
                     },
                     error: function(response){
                         loadData();
@@ -336,6 +337,8 @@
                 },
                 formatAjaxError:function(a,b,c){return"Not Found .."}
             });
+
+
             $("#event_id_slider").select2({
                 ajax: {
                     url: "{{route('list-combo-event')}}",
