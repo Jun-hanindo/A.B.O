@@ -69,7 +69,7 @@
         <div class="container">
             <h2>New Release</h2>
             <div class="row">
-                <a href="{{URL::route('event')}}">
+                <a href="{{URL::route('event-seated')}}">
                     <div class="col-md-4 box-release">
                         <img src="{{ asset('assets/frontend/images/mj-poster.png') }}">
                         <div class="boxInfo info1">
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{URL::route('event-seated')}}">
+                <a href="{{URL::route('event')}}">
                 <div class="col-md-4 box-release">
                     <img src="{{ asset('assets/frontend/images/savour-poster.png') }}">
                     <div class="boxInfo info2">
