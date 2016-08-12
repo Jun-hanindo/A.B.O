@@ -10,5 +10,6 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'HomeController@contactUs'));
     Route::get('our-company', array('as' => 'our-company', 'uses' => 'HomeController@ourCompany'));
     Route::get('support-faq', array('as' => 'support-faq', 'uses' => 'HomeController@supportFaq'));
+    Route::get('search-result', array('as' => 'search-result', 'uses' => 'HomeController@searchResult'));
     // Route::get('application', array('as' => 'front-form-application', 'uses' => 'ApplicationController@applicationForm'));
 });

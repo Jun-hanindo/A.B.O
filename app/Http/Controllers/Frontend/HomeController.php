@@ -56,4 +56,9 @@ class HomeController extends Controller
     {
         return view('frontend.partials.support_faq');
     }
+
+    public function searchResult()
+    {
+        return view('frontend.partials.search_result');
+    }
 }
