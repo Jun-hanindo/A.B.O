@@ -1,7 +1,7 @@
 @extends('layout.frontend.master.master')
 @section('title', 'Asia Box Office')
 @section('content')
-<section class="eventBanner">
+        <section class="eventBanner">
           <div class="imageBanner">
               <img src="{{ asset('assets/frontend/images/banner2-bg.png') }}">
           </div>
