@@ -76,17 +76,17 @@
                         <div class="col-md-3">
                             <div class="form-group{{ Form::hasError('featured_image1') }} featured_image1">
                                 {!! Form::label('featured_image1', trans('general.featured_image1').' *') !!}
-                                {!! Form::file('featured_image1', old('featured_image1'), ['class' => 'form-control']) !!}
+                                <input id="featured_image1" name="featured_image1" class="form-control" type="file" value="{{$data->featured_image1}}">
                                 {!! Form::errorMsg('featured_image1') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image2') }} featured_image2">
                                 {!! Form::label('featured_image2', trans('general.featured_image2').' *') !!}
-                                {!! Form::file('featured_image2', old('featured_image2'), ['class' => 'form-control']) !!}
+                                <input id="featured_image2" name="featured_image2" class="form-control" type="file" value="{{$data->featured_image1}}">
                                 {!! Form::errorMsg('featured_image2') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image3') }} featured_image3">
                                 {!! Form::label('featured_image3', trans('general.featured_image3').' *') !!}
-                                {!! Form::file('featured_image3', old('featured_image3'), ['class' => 'form-control']) !!}
+                                <input id="featured_image3" name="featured_image3" class="form-control" type="file" value="{{$data->featured_image1}}">
                                 {!! Form::errorMsg('featured_image3') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('event_type') }} event_type">
@@ -187,7 +187,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-4 col-offset-3">
+                            <div class="col-sm-4  col-sm-offset-3">
                                 {!! Form::select('price_cat', array('/person' => '/person'), old('role'), array('class' => 'form-control','data-option' => old('price_cat'))) !!}
                             </div>
                         </div>
@@ -199,6 +199,44 @@
           </div>
         </div>
       </div>
+    </div>
+    <div id="delete-modal-schedule" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{ trans('general.confirmation_delete') }} <strong id="name"></strong> ?</p>
+                </div>
+                <div class="modal-footer">
+                    {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
+                        <a id="delete-modal-cancel" href="#" class="btn btn-default" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
+                        <a id="delete-modal-schedule" href="#" class="btn btn-primary" data-dismiss="modal">Continue</a>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="delete-modal-category" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{ trans('general.confirmation_delete') }} <strong id="name"></strong> ?</p>
+                </div>
+                <div class="modal-footer">
+                    {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
+                        <a id="delete-modal-cancel" href="#" class="btn btn-default" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
+                        <a id="delete-modal-category" href="#" class="btn btn-primary" data-dismiss="modal">Continue</a>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 @include('backend.admin.event.script.create_script')

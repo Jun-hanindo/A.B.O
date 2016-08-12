@@ -286,6 +286,22 @@ class EventsController extends BaseController
         }
     }
 
+    public function comboEvent(Request $request){
+        $term = $request->q;
+        
+        $results = Event::where('avaibility', true)->where('title', 'ilike', '%'.$term.'%')->get();
 
+        foreach ($results as $result) {
+            $data[] = array('id'=>$result->id,'text'=>$result->title);
+        }
+        
+        
+        $resData = array(
+            "success" => true,
+            "results" => $data);
+
+        return json_encode($resData);
+        exit;
+    }
 
 }

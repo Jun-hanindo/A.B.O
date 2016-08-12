@@ -33,6 +33,11 @@ class Event extends Model
 
     }
 
+    public function homepage()
+    {
+        return $this->belongsTo('App\Models\Homepage','event_id');
+    }
+
     /**
      * Return event's query for Datatables.
      *
@@ -56,6 +61,7 @@ class Event extends Model
     	$this->title = $param['title'];
     	$this->description = $param['description'];
         $this->admission = $param['admission'];
+        $this->price_info = $param['price_info'];
         $this->buylink = $param['buylink'];
         $this->event_type = isset($param['event_type']);
         $this->venue_id = $param['venue_id'];
@@ -111,6 +117,7 @@ class Event extends Model
         $this->title = $param['title'];
         $this->description = $param['description'];
         $this->admission = $param['admission'];
+        $this->price_info = $param['price_info'];
         $this->buylink = $param['buylink'];
         $this->event_type = isset($param['event_type']);
         $this->venue_id = $param['venue_id'];
@@ -183,6 +190,7 @@ class Event extends Model
            	$data->title = $param['title'];
 	    	$data->description = $param['description'];
 	        $data->admission = $param['admission'];
+            $data->price_info = $param['price_info'];
 	        $data->buylink = $param['buylink'];
 	        $data->event_type = isset($param['event_type']);
 	        $data->venue_id = $param['venue_id'];
@@ -257,6 +265,14 @@ class Event extends Model
     {
         $data = $this->find($id);
         if(!empty($data)) {
+            $pathDest = public_path().'/uploads/events';
+            $oldImage1 = $data->featured_image1;
+            $oldImage2 = $data->featured_image2;
+            $oldImage3 = $data->featured_image3;
+            File::delete($pathDest.'/'.$oldImage1);
+            File::delete($pathDest.'/'.$oldImage2);
+            File::delete($pathDest.'/'.$oldImage3);
+
             $data->delete();
             return $data;
         } else {

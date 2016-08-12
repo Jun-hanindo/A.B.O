@@ -27,7 +27,7 @@ class EventScheduleCategoriesController extends BaseController
                 ->addColumn('action', function ($category) {
                     return '<input type="hidden" name="id" class="form-control" id="id_category" value="'.$category->id.'">
                     <a href="javascript:void(0)" data-id="'.$category->id.'" class="btn btn-warning btn-xs actEditCategory" title="Edit"><i class="fa fa-pencil-square-o fa-fw">
-                    </i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$category->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                    </i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDeleteCategory" title="Delete" data-id="'.$category->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
                 })
                 ->editColumn('price', function ($category){
                     $price = $category->price.$category->price_cat;
@@ -83,13 +83,13 @@ class EventScheduleCategoriesController extends BaseController
     public function update(EventScheduleCategoryRequest $req, $id)
     {
         $param = $req->all();
-        $updateData = $this->model->updateEventScheduleCategory($param,$id);
+        $updateData = $this->model->updateEventScheduleCategory($param, $id);
         if(!empty($updateData)) {
 
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
-                'message' => '<strong>'.$updateData->price.'</strong> '.trans('general.update_success')
+                'message' => '<strong>'.$updateData->additional_info.'</strong> '.trans('general.update_success')
             ],200);
 
         } else {
@@ -98,6 +98,29 @@ class EventScheduleCategoriesController extends BaseController
                 'code' => 400,
                 'status' => 'success',
                 'message' => trans('general.update_error')
+            ],400);
+
+        }
+    }
+
+    public function destroy($id)
+    {
+        //
+        $data = $this->model->deleteByID($id);
+        if(!empty($data)) {
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => '<strong>'.$data->additional_info.'</strong> '.trans('general.delete_success')
+            ],200);
+
+        } else {
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.data_not_found')
             ],400);
 
         }

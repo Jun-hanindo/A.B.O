@@ -48,13 +48,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::delete('city/{id}/delete', array('as' => 'admin-delete-city', 'uses' => 'CitiesController@destroy'));
 
         //route Category
-        Route::get('category', array('as' => 'admin-index-category', 'uses' => 'CategoriesController@index'));
-        Route::get('category/create', array('as' => 'admin-create-category', 'uses' => 'CategoriesController@create'));
-        Route::post('category/store', array('as' => 'admin-post-category', 'uses' => 'CategoriesController@store'));
-        Route::get('category/{id}/edit', array('as' => 'admin-edit-category', 'uses' => 'CategoriesController@edit'));
-        Route::post('category/{id}/update', array('as' => 'admin-update-category', 'uses' => 'CategoriesController@update'));
-        Route::delete('category/{id}/delete', array('as' => 'admin-delete-category', 'uses' => 'CategoriesController@destroy'));
-        Route::post('category/parent-combo', array('as' => 'list-parent-category', 'uses' => 'CategoriesController@listParentCategory'));
+        // Route::get('category', array('as' => 'admin-index-category', 'uses' => 'CategoriesController@index'));
+        // Route::get('category/create', array('as' => 'admin-create-category', 'uses' => 'CategoriesController@create'));
+        // Route::post('category/store', array('as' => 'admin-post-category', 'uses' => 'CategoriesController@store'));
+        // Route::get('category/{id}/edit', array('as' => 'admin-edit-category', 'uses' => 'CategoriesController@edit'));
+        // Route::post('category/{id}/update', array('as' => 'admin-update-category', 'uses' => 'CategoriesController@update'));
+        // Route::delete('category/{id}/delete', array('as' => 'admin-delete-category', 'uses' => 'CategoriesController@destroy'));
+        // Route::post('category/parent-combo', array('as' => 'list-parent-category', 'uses' => 'CategoriesController@listParentCategory'));
 
         //route Hastags
         Route::get('hastag', array('as' => 'admin-index-hastag', 'uses' => 'HastagsController@index'));
@@ -89,6 +89,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::delete('{id}/delete', array('as' => 'admin-delete-event', 'uses' => 'EventsController@destroy'));
         Route::post('{id}/avaibility-edit', array('as' => 'admin-update-event-avaibility', 'uses' => 'EventsController@avaibilityUpdate'));
         Route::post('draft', array('as' => 'admin-draft-event', 'uses' => 'EventsController@draft'));
+        Route::get('combo', array('as' => 'list-combo-event', 'uses' => 'EventsController@comboEvent'));
 
         
     });
@@ -113,14 +114,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         
     });
 
-    Route::group(['prefix' => 'promotion'], function () {
-        Route::get('index', array('as' => 'admin-index-promorion', 'uses' => 'PromotionsController@index'));
-        Route::get('create', array('as' => 'admin-create-promorion', 'uses' => 'PromotionsController@create'));
-        Route::post('store', array('as' => 'admin-post-promorion', 'uses' => 'PromotionsController@store'));
-        Route::get('{id}/edit', array('as' => 'admin-edit-promorion', 'uses' => 'PromotionsController@edit'));
-        Route::post('{id}/update', array('as' => 'admin-update-promorion', 'uses' => 'PromotionsController@update'));
-        Route::delete('{id}/delete', array('as' => 'admin-delete-promorion', 'uses' => 'PromotionsController@destroy'));
-    });
+    // Route::group(['prefix' => 'promotion'], function () {
+    //     Route::get('index', array('as' => 'admin-index-promorion', 'uses' => 'PromotionsController@index'));
+    //     Route::get('create', array('as' => 'admin-create-promorion', 'uses' => 'PromotionsController@create'));
+    //     Route::post('store', array('as' => 'admin-post-promorion', 'uses' => 'PromotionsController@store'));
+    //     Route::get('{id}/edit', array('as' => 'admin-edit-promorion', 'uses' => 'PromotionsController@edit'));
+    //     Route::post('{id}/update', array('as' => 'admin-update-promorion', 'uses' => 'PromotionsController@update'));
+    //     Route::delete('{id}/delete', array('as' => 'admin-delete-promorion', 'uses' => 'PromotionsController@destroy'));
+    // });
 
     Route::group(['prefix' => 'venue'], function () {
         Route::get('', array('as' => 'admin-index-venue', 'uses' => 'VenuesController@index'));
@@ -132,41 +133,41 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::post('{id}/avaibility-edit', array('as' => 'admin-update-venue-avaibility', 'uses' => 'VenuesController@avaibilityUpdate'));
     });
 
-    Route::group(['prefix' => 'setting'], function () {
-        Route::get('', array('as' => 'admin-index-setting', 'uses' => 'SettingsController@index'));
-        Route::get('create', array('as' => 'admin-create-setting', 'uses' => 'SettingsController@create'));
-        Route::post('store', array('as' => 'admin-post-setting', 'uses' => 'SettingsController@store'));
-        Route::get('{id}/edit', array('as' => 'admin-edit-setting', 'uses' => 'SettingsController@edit'));
-        Route::post('{id}/update', array('as' => 'admin-update-setting', 'uses' => 'SettingsController@update'));
-        Route::delete('{id}/delete', array('as' => 'admin-delete-setting', 'uses' => 'SettingsController@destroy'));
-    });
+    // Route::group(['prefix' => 'setting'], function () {
+    //     Route::get('', array('as' => 'admin-index-setting', 'uses' => 'SettingsController@index'));
+    //     Route::get('create', array('as' => 'admin-create-setting', 'uses' => 'SettingsController@create'));
+    //     Route::post('store', array('as' => 'admin-post-setting', 'uses' => 'SettingsController@store'));
+    //     Route::get('{id}/edit', array('as' => 'admin-edit-setting', 'uses' => 'SettingsController@edit'));
+    //     Route::post('{id}/update', array('as' => 'admin-update-setting', 'uses' => 'SettingsController@update'));
+    //     Route::delete('{id}/delete', array('as' => 'admin-delete-setting', 'uses' => 'SettingsController@destroy'));
+    // });
 
-    Route::group(['prefix' => 'trail'], function () {
-        Route::get('', array('as' => 'admin-index-trail', 'uses' => 'TrailsController@index'));
-        Route::get('create', array('as' => 'admin-create-trail', 'uses' => 'TrailsController@create'));
-        Route::post('store', array('as' => 'admin-post-trail', 'uses' => 'TrailsController@store'));
-        Route::get('{id}/edit', array('as' => 'admin-edit-trail', 'uses' => 'TrailsController@edit'));
-        Route::post('{id}/update', array('as' => 'admin-update-trail', 'uses' => 'TrailsController@update'));
-        Route::delete('{id}/delete', array('as' => 'admin-delete-trail', 'uses' => 'TrailsController@destroy'));
-    });
+    // Route::group(['prefix' => 'trail'], function () {
+    //     Route::get('', array('as' => 'admin-index-trail', 'uses' => 'TrailsController@index'));
+    //     Route::get('create', array('as' => 'admin-create-trail', 'uses' => 'TrailsController@create'));
+    //     Route::post('store', array('as' => 'admin-post-trail', 'uses' => 'TrailsController@store'));
+    //     Route::get('{id}/edit', array('as' => 'admin-edit-trail', 'uses' => 'TrailsController@edit'));
+    //     Route::post('{id}/update', array('as' => 'admin-update-trail', 'uses' => 'TrailsController@update'));
+    //     Route::delete('{id}/delete', array('as' => 'admin-delete-trail', 'uses' => 'TrailsController@destroy'));
+    // });
 
-    Route::group(['prefix' => 'system-log'], function () {
-        Route::get('', array('as' => 'admin-index-system-log', 'uses' => 'SystemlogsController@index'));
-        Route::get('create', array('as' => 'admin-create-system-log', 'uses' => 'SystemlogsController@create'));
-        Route::post('store', array('as' => 'admin-post-system-log', 'uses' => 'SystemlogsController@store'));
-        Route::get('{id}/edit', array('as' => 'admin-edit-system-log', 'uses' => 'SystemlogsController@edit'));
-        Route::post('{id}/update', array('as' => 'admin-update-system-log', 'uses' => 'SystemlogsController@update'));
-        Route::delete('{id}/delete', array('as' => 'admin-delete-system-log', 'uses' => 'SystemlogsController@destroy'));
-    });
+    // Route::group(['prefix' => 'system-log'], function () {
+    //     Route::get('', array('as' => 'admin-index-system-log', 'uses' => 'SystemlogsController@index'));
+    //     Route::get('create', array('as' => 'admin-create-system-log', 'uses' => 'SystemlogsController@create'));
+    //     Route::post('store', array('as' => 'admin-post-system-log', 'uses' => 'SystemlogsController@store'));
+    //     Route::get('{id}/edit', array('as' => 'admin-edit-system-log', 'uses' => 'SystemlogsController@edit'));
+    //     Route::post('{id}/update', array('as' => 'admin-update-system-log', 'uses' => 'SystemlogsController@update'));
+    //     Route::delete('{id}/delete', array('as' => 'admin-delete-system-log', 'uses' => 'SystemlogsController@destroy'));
+    // });
 
-    Route::group(['prefix' => 'customer-report'], function () {
-        Route::get('', array('as' => 'admin-index-customer-report', 'uses' => 'CustomerReportsController@index'));
-        Route::get('create', array('as' => 'admin-create-customer-report', 'uses' => 'CustomerReportsController@create'));
-        Route::post('store', array('as' => 'admin-post-customer-report', 'uses' => 'CustomerReportsController@store'));
-        Route::get('{id}/edit', array('as' => 'admin-edit-customer-report', 'uses' => 'CustomerReportsController@edit'));
-        Route::post('{id}/update', array('as' => 'admin-update-customer-report', 'uses' => 'CustomerReportsController@update'));
-        Route::delete('{id}/delete', array('as' => 'admin-delete-customer-report', 'uses' => 'CustomerReportsController@destroy'));
-    });
+    // Route::group(['prefix' => 'customer-report'], function () {
+    //     Route::get('', array('as' => 'admin-index-customer-report', 'uses' => 'CustomerReportsController@index'));
+    //     Route::get('create', array('as' => 'admin-create-customer-report', 'uses' => 'CustomerReportsController@create'));
+    //     Route::post('store', array('as' => 'admin-post-customer-report', 'uses' => 'CustomerReportsController@store'));
+    //     Route::get('{id}/edit', array('as' => 'admin-edit-customer-report', 'uses' => 'CustomerReportsController@edit'));
+    //     Route::post('{id}/update', array('as' => 'admin-update-customer-report', 'uses' => 'CustomerReportsController@update'));
+    //     Route::delete('{id}/delete', array('as' => 'admin-delete-customer-report', 'uses' => 'CustomerReportsController@destroy'));
+    // });
 
     Route::group(['prefix' => 'manage-pages'], function () {
         Route::get('contact-us', array('as' => 'admin-contact-us', 'uses' => 'ManagePagesController@createEditContactUs'));
@@ -181,6 +182,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::post('privacy-policy/store-update', array('as' => 'admin-post-update-privacy-policy', 'uses' => 'ManagePagesController@storeUpdatePrivacyPolicy'));
         Route::get('about-us', array('as' => 'admin-about-us', 'uses' => 'ManagePagesController@createEditAboutUs'));
         Route::post('about-us/store-update', array('as' => 'admin-post-update-about-us', 'uses' => 'ManagePagesController@storeUpdateAboutUs'));
+    });
+
+    Route::group(['prefix' => 'homepage'], function () {
+        Route::get('', array('as' => 'admin-index-homepage', 'uses' => 'HomepagesController@index'));
+        Route::get('create', array('as' => 'admin-create-homepage', 'uses' => 'HomepagesController@create'));
+        Route::post('store', array('as' => 'admin-post-homepage', 'uses' => 'HomepagesController@store'));
+        Route::get('{id}/edit', array('as' => 'admin-edit-homepage', 'uses' => 'HomepagesController@edit'));
+        Route::post('{id}/update', array('as' => 'admin-update-homepage', 'uses' => 'HomepagesController@update'));
+        Route::delete('{id}/delete', array('as' => 'admin-delete-homepage', 'uses' => 'HomepagesController@destroy'));
+
+        
     });
 });
 
