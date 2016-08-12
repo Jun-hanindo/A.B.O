@@ -181,8 +181,7 @@
                             </div>
                             <ul class="list-unstyled mobile-collapse-body">
                                 <li><a href="{{URL::route('home')}}">Home</a></li>
-                                <li><a href="{{URL::route('search-result')}}">Search For</a></li>
-                                <li><a href="{{URL::route('event')}}">Events</a></li>
+                                <li><a href="{{URL::route('search-result')}}">Search For Events</a></li>
                                 <li><a href="{{URL::route('discover')}}">Discover Events</a></li>
                                 <li><a href="{{URL::route('promotion')}}">Promotions</a></li>
                             </ul>
