@@ -33,7 +33,7 @@ class EventSchedule extends Model
     function datatables($event_id)
     {
 
-    	return static::select('id', 'date_at', 'time_period', 'event_id')->where('event_id', $event_id);
+    	return static::select('id', 'date_at', 'start_time', 'end_time', 'event_id')->where('event_id', $event_id);
     
     }
 
@@ -46,7 +46,8 @@ class EventSchedule extends Model
     {
         $this->event_id = $param['event_id'];
         $this->date_at = date('Y-m-d',strtotime($param['date_at']));
-    	$this->time_period = $param['time_period'];
+    	$this->start_time = $param['start_time'];
+        $this->end_time = $param['end_time'];
 
     	if($this->save()){
             return $this;
@@ -59,7 +60,8 @@ class EventSchedule extends Model
     {
         $this->event_id = isset($param['event_id']);
         $this->date_at = $param['date_at'];
-        $this->time_period = $param['time_period'];
+        $this->start_time = $param['start_time'];
+        $this->end_time = $param['end_time'];
 
         if($this->save()){
             return $this;
@@ -88,7 +90,8 @@ class EventSchedule extends Model
         $data = $this->find($id);
         if (!empty($data)) {
            	$data->date_at = $param['date_at'];
-	    	$data->time_period = $param['time_period'];
+	    	$data->start_time = $param['start_time'];
+            $data->end_time = $param['end_time'];
 
             if($data->save()){
 

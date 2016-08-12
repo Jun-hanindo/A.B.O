@@ -99,8 +99,8 @@ class EventScheduleCategory extends Model
         }
     }
 
-    public function countScheduleCategory($schedule_id)
+    public static function countScheduleCategory($schedule_id)
     {
-        return EventSchedule::where('schedule_id', $schedule_id)->count();
+        return EventScheduleCategory::where('event_schedule_id', $schedule_id)->count();
     }
 }

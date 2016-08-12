@@ -35,9 +35,8 @@
                     <div class="box-body">
                         <div class="error"></div>
                         <div class="col-md-9">
-                            <input type="hidden" name="id" class="form-control" id="event_id" value={{ $data->id }}>
-                            <input type="hidden" name="id" class="form-control" id="count_schedule">
-                            <input type="hidden" name="id" class="form-control" id="count_category">
+                            <input type="hidden" name="event_id" class="form-control" id="event_id" value={{ $data->id }}>
+                            <input type="hidden" name="count_schedule" class="form-control" id="count_schedule">
                             <div class="form-group{{ Form::hasError('title') }} title">
                                 {!! Form::label('title', trans('general.title')) !!}
                                 {!! Form::text('title', $data->title, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.title')]) !!}
@@ -123,7 +122,7 @@
                     <h4 class="modal-title" id="ModalLabel"><span id="title-create-schedule" style="display:none">{{ trans('general.add_schedule_and_price') }}</span><span id="title-update-schedule" style="display:none">{{ trans('general.edit') }}</span></h4>
                 </div>
                 <div class="modal-body">
-                    <div class="error"></div>
+                    <div class="error-modal"></div>
                     <form class="form-horizontal" id="form-event-schedule">
                         <input type="hidden" name="id" class="form-control" id="schedule_id">
                         <div class="form-group date_at">
@@ -132,10 +131,14 @@
                                 <input type="text" name="date_at" class="form-control datepicker" id="date_at" maxlength="255">
                             </div>
                         </div>
-                        <div class="form-group time_period">
-                            {!! Form::label('time_period', trans('general.time'), array('class' => 'col-sm-3 control-label')) !!}
-                            <div class="col-sm-9">
-                                <input type="text" name="time_period" class="form-control" id="time_period" maxlength="255" placeholder = {{trans('general.time')}}>
+                        <div class="form-group time">
+                            {!! Form::label('time', trans('general.time'), array('class' => 'col-sm-3 control-label')) !!}
+                            <div class="col-sm-3">
+                                <input type="text" name="start_time" class="form-control" id="start_time" maxlength="255" placeholder = {{trans('general.start_time')}}>
+                            </div>
+                            {!! Form::label('end_time', '-', array('class' => 'col-sm-1 control-label')) !!}
+                            <div class="col-sm-3">
+                                <input type="text" name="end_time" class="form-control" id="end_time" maxlength="255" placeholder = {{trans('general.end_time')}}>
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('price_detail') }} price_detail">
@@ -168,7 +171,6 @@
                     <h4 class="modal-title" id="ModalLabel"><span id="title-create-category" style="display:none">{{ trans('general.add_schedule_and_price') }}</span><span id="title-update-category" style="display:none">{{ trans('general.edit') }}</span></h4>
                 </div>
                 <div class="modal-body">
-                    <div class="error"></div>
                     <form class="form-horizontal" id="form-event-category">
                         <input type="hidden" name="id" class="form-control" id="category_id">
                         <div class="form-group">

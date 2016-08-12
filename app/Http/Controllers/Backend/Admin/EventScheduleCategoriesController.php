@@ -103,6 +103,7 @@ class EventScheduleCategoriesController extends BaseController
         }
     }
 
+
     public function countScheduleCategory($schedule_id)
     {
         $data = $this->model->countScheduleCategory($schedule_id);

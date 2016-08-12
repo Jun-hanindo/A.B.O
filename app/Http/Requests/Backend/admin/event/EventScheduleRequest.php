@@ -25,7 +25,7 @@ class EventScheduleRequest extends Request
     {
         return [
             'date_at'   => 'required',
-            'time_period'             => 'required',
+            'start_time'             => 'required',
         ];
     }
 }

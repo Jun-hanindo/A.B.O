@@ -140,6 +140,8 @@ return [
     'add_schedule_and_price' => 'Add Schedule and Price',
     'add_schedule_category' => 'Add Schedule Category',
     'schedule_category' => 'Schedule Category',
+    'start_time' => 'Start Time',
+    'end_time' => 'End Time',
     
     'manage_page' => 'Manage Page',
     'contact_us' => 'Contact Us',

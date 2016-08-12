@@ -245,31 +245,42 @@ class EventsController extends BaseController
     {
         //
         $param = $req->all();
+        $id = $param['event_id'];
         if($param['event_id'] == ''){
             $user_id = $this->currentUser->id;
             $saveData = $this->model->autoInsertNewEvent($param, $user_id);
             if(!empty($updateData)) {
-
-                flash()->success(trans('general.update_success'));
-                return redirect()->route('admin-index-event');
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => '<strong>'.$saveData->title.'</strong> '.trans('general.save_success')
+                ],200);
 
             } else {
 
-                flash()->error(trans('general.update_error'));
-                return redirect()->route('admin-edit-event')->withInput();
+                return response()->json([
+                    'code' => 400,
+                    'status' => 'success',
+                    'message' => trans('general.save_error')
+                ],400);
 
             }
         }else{
             $updateData = $this->model->updateEvent($param,$id);
             if(!empty($updateData)) {
-                $this->model->updateAvaibilityFalse($id);
-                flash()->success(trans('general.update_success'));
-                return redirect()->route('admin-index-event');
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
+                ],200);
 
             } else {
 
-                flash()->error(trans('general.update_error'));
-                return redirect()->route('admin-edit-event')->withInput();
+                return response()->json([
+                    'code' => 400,
+                    'status' => 'success',
+                    'message' => trans('general.update_error')
+                ],400);
 
             }
         }

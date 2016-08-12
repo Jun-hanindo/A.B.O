@@ -50,6 +50,7 @@
                     data: "avaibility="+val,
                     success: function (data) {
                         $('.error').addClass('alert alert-success').html(data.message);
+                        $('.alert-dismissible').remove();
                     },
                     error: function(response){
                         $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
