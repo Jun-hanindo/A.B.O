@@ -31,7 +31,7 @@
                         <nav class="main-menu" role="navigation">
                             <ul class="nav-menu">
                                 <li class="nav-item">
-                                    <a href="#"><img src="{{ asset('assets/frontend/images/logo.png') }}" class="logo"></a>
+                                    <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/logo.png') }}" class="logo"></a>
                                 </li>
                                 <li class="nav-item">
                                     <div class="cd-dropdown-wrapper">
