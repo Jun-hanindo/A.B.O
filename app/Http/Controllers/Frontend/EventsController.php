@@ -20,7 +20,7 @@ class EventsController extends Controller
     public function index($slug)
     {
         $result['event'] = $this->model->findEventBySlug($slug);
-        $result['src'] = env('APP_URL').'/uploads/events/';
+        $result['src'] = url('uploads/events');
         if($result['event']->event_type == 'true'){
             return view('frontend.partials.event', $result); 
         }else{

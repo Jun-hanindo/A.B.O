@@ -23,7 +23,7 @@ class HomeController extends Controller
     {
         $result['sliders'] = $this->model->getHomepage('slider');
         $result['events'] = $this->model->getHomepage('event');
-        $result['src'] = env('APP_URL').'/uploads/events/';
+        $result['src'] = url('uploads/events');
         return view('frontend.partials.homepage', $result); 
     }
 
