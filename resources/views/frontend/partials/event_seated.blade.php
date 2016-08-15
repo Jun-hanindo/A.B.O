@@ -23,47 +23,50 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="information-title">
-                            <i class="fa fa-calendar"></i> 12 - 15 May 2016
-                        </div>
-                        <ul class="list-unstyled">
-                            <li class="liParent">
-                                <table>
-                                    <tr>
-                                        <td>12 May, Thu</td>
-                                        <td>Dinner</td>
-                                        <td>6.00PM - 11.00PM</td>
-                                    </tr>
-                                </table>
-                            </li>
-                            <li class="liParent">
-                                <table>
-                                    <tr>
-                                        <td>13 May, Fri</td>
-                                        <td>Dinner</td>
-                                        <td>6.00PM - 11.00PM</td>
-                                    </tr>
-                                </table>
-                            </li>
-                            <li class="liParent">
-                                <table>
-                                    <tr>
-                                        <td>14 May, Sat</td>
-                                        <td>Dinner</td>
-                                        <td>6.00PM - 11.00PM</td>
-                                    </tr>
-                                </table>
-                            </li>
-                            <li class="liParent">
-                                <table>
-                                    <tr>
-                                        <td>15 May, Sun</td>
-                                        <td>Full-Day</td>
-                                        <td>6.00PM - 11.00PM</td>
-                                    </tr>
-                                </table>
-                            </li>
-                        </ul>
+                        @php 
+                            $schedules = $event->EventSchedule;
+                            $i = 0;
+                            $count = count($schedules);
+                        @endphp
+                        @if(!empty($schedules))
+                            <div class="information-title">
+                                <i class="fa fa-calendar"></i> 
+                                @foreach($schedules as $sch)
+                                    @if ($i == 0)
+                                        {!! date('d', strtotime($sch->date_at)) !!}
+                                    @else if($i == $count - 1)
+                                        {!! date('F Y', strtotime($sch->date_at)) !!} 
+                                    @endif
+                                    
+                                @endforeach
+                            </div>
+                            <ul class="list-unstyled">
+                                @foreach($schedules as $sch)
+                                    <li class="liParent">
+                                        <table>
+                                            <tr>
+                                                <td>{{ date('d F, D', strtotime($sch->date_at)) }}</td>
+                                                <td>
+                                                    @php 
+                                                        $prices = $sch->EventScheduleCategory;
+                                                        $first = true;
+                                                    @endphp
+                                                    @if(!empty($prices))
+                                                        @foreach($prices as $pri) 
+                                                            @if($first)
+                                                                {{ $pri->additional_info }}
+                                                                {{ $first = false }}
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                </td>
+                                                <td>{{ $sch->start_time.'-'.$sch->end_time }}</td>
+                                            </tr>
+                                        </table>
+                                    </li>  
+                                @endforeach
+                            </ul>
+                        @endif
                     </div>
                     <div class="col-md-4 place">
                         <div class="information-title">
@@ -87,10 +90,10 @@
                                 {!! $event->price_info !!}
                             </li>
                             <li class="liParent">
-                              <form action="{{ $event->buylink }}">
+                              <form action="{{ $event->Venue->link_map }}" style="display:inline-block">
                                   <button class="btn btnSeat bg-black">See Seat Map</button>
                               </form>
-                              <form action="{{ $event->buylink }}">
+                              <form action="{{ $event->buylink }}" style="display:inline-block">
                                   <button class="btn btnticket bg-white">More Ticket Info</button>
                               </form>
                             </li>
@@ -149,6 +152,21 @@
                                                       <div class="row">
                                                           <div class="">
                                                               <section id="promotion" class="sectionEvent">
+                                                                  <img src="{{ asset('assets/frontend/images/starhublogo.png') }}">
+                                                                  <h3>StarHub Customers Pre-Sale</h3>
+                                                                  <p>Show StarHub bill or subscription on any device such as mobile phone or tablet.</p>
+                                                                  <p>Start Date: 24 February 2016 <br>10:00AM onwards at Singapore Indoor Stadium Box Office and SingPost outlets</p>
+                                                                  <p>End Date: 26 February 2016 <br>Singapore Indoor Stadium Box Office: 8:00PM</p>
+                                                                  <a href="#">View the various timings of SingPost outlets' operating hours </a>
+                                                              </section>
+
+                                                              <section id="promotion2" class="sectionEvent">
+                                                                  <img src="{{ asset('assets/frontend/images/ocbclogo.png') }}">
+                                                                  <h3>OCBC Cards Pre-Sale</h3>
+                                                                  <p>Start Date: 24 February 2016 <br>10:00AM across all channels</p>
+                                                                  <p>End Date: 26 February 2016, 11:59PM </p>
+                                                                  <h3>*General Sales</h3>
+                                                                  <p>Start Date: 1 March 2016 <br>10:00AM across all channels</p>
                                                               </section>
                                                           </div>
                                                       </div>

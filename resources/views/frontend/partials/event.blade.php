@@ -143,7 +143,13 @@
                                                       <div class="row">
                                                           <div class="">
                                                               <section id="promotion" class="sectionEvent">
-                                                                  
+                                                                  <img src="{{ asset('assets/frontend/images/dbs.png') }}">
+                                                                  <h3>DBS Credit Card Discount</h3>
+                                                                  <ul>
+                                                                      <li>10 percent for lunch sessions</li>
+                                                                      <li>15 percent for dinner sessions</li>
+                                                                      <li>Every additional $30 spent qualifies for 1 Live Your Passion vote</li>
+                                                                  </ul>
                                                               </section>
                                                           </div>
                                                       </div>
