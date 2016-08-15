@@ -7,18 +7,83 @@
             $('#button_submit').hide();
             $('#button_draft').show();
 
+            $('.image').change(function(){
+                var name = $(this).attr('data-name');
+                $("#div-preview_"+name).show();
+                preview(this,$(this).data('type'),name);
+            });
+
+            $('#button_draft').on('click',function(){
+                var fd = new FormData();
+                var silde_i = $('#featured_image1').prop('files')[0];
+                var thumb_i = $('#featured_image2').prop('files')[0];
+                var side_i = $('#featured_image3').prop('files')[0];
+                if(silde_i != undefined){
+                    fd.append('featured_image1',silde_i);
+                }
+                if(thumb_i != undefined){
+                    fd.append('featured_image2',thumb_i);
+                }
+                if(side_i != undefined){
+                    fd.append('featured_image3',side_i);
+                }
+
+                for (i=0; i < tinyMCE.editors.length; i++){
+                    var content = tinyMCE.editors[i].save();
+                }
+
+
+                var other_data = $('#form-event').serializeArray();
+                $.each(other_data,function(key,input){
+                    fd.append(input.name,input.value);
+                });
+                $.ajax({
+                    url: "{{ route('admin-draft-event') }}",
+                    type: "POST",
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    data: fd,
+                    success: function (data) {
+                        window.location.href = "{{ route('admin-index-event') }}"
+                    },
+                    error: function(response){
+                        location.reload();
+                    }
+                });
+            }); 
+
             var event_id = $('#event_id').val();
-            if(event_id == ''){
+            if(event_id != ''){
+                countSchedule(event_id);
+            }else{
                 event_id = 0;
             }
-            countSchedule(event_id);
             loadDataSchedule(event_id);
             loadSwitchButton('event_type-check');
 
-            $(".datepicker").datepicker( {
-                format: "yyyy-mm-dd",
-            });
-            $('#start_time, #end_time').timepicker();
+            function countSchedule(event_id)
+            {
+                var uri = "{{ URL::route('admin-count-event-schedule', "::param") }}";
+                uri = uri.replace('::param', event_id);
+                $.ajax({
+                    url: uri,
+                    type: "get",
+                    dataType: 'json',
+                    success: function (response) {
+                        if(response.data.active == false) {
+                            response.data.active = 'false';
+                        } else {
+                            response.data.active = 'true';
+                        }
+                        var data = response.data;
+                        $("#count_schedule").val(data);
+                    },
+                    error: function(response){
+                        response.responseJSON.message;
+                    }
+                });
+            }  
 
             function loadDataSchedule(event_id)
             {
@@ -49,7 +114,7 @@
                     }
                 });
                 //return table;
-            }    
+            }
 
             function handleScheduleCategory()
             {
@@ -60,7 +125,6 @@
                         bool = false;
                     }
                 });
-                console.log(count_s);
                 if(count_s > 0 && bool == true){
                     $('#button_submit').show();
                     $('#button_draft').hide();
@@ -70,7 +134,23 @@
                 }
             }    
 
-            $('#button_draft').on('click',function(){
+            $(".datepicker").datepicker( {
+                format: "yyyy-mm-dd",
+            });
+
+            $('#start_time, #end_time').timepicker();   
+
+            $('.actAdd').on('click',function(){
+                var event_id = $('#event_id').val();
+                var schedule_id = $('#schedule_id').val();
+                autoSaveUpdateEvent();
+
+                clearInput();
+
+            });  
+
+            function autoSaveUpdateEvent()
+            {
                 var fd = new FormData();
                 var silde_i = $('#featured_image1').prop('files')[0];
                 var thumb_i = $('#featured_image2').prop('files')[0];
@@ -83,6 +163,10 @@
                 }
                 if(side_i != undefined){
                     fd.append('featured_image3',side_i);
+                }
+
+                for (i=0; i < tinyMCE.editors.length; i++){
+                    var content = tinyMCE.editors[i].save();
                 }
 
                 var other_data = $('#form-event').serializeArray();
@@ -97,120 +181,37 @@
                     contentType: false,
                     data: fd,
                     success: function (data) {
-                        
-                        window.location.href = "{{ route('admin-index-event') }}"
-                    },
-                    error: function(response){
-                        location.reload();
-                    }
-                });
-            });  
-
-            $('.actAdd').on('click',function(){
-                var event_id = $('#event_id').val();
-                var schedule_id = $('#schedule_id').val();
-
-                if(event_id == ''){
-                    autoSaveEvent();
-                }else{
-                    autoUpdateEvent(event_id);
-                }  
-
-                if(schedule_id == ''){
-                    schedule_id = 0;
-                }
-
-                clearInput();
-
-            });
-
-            function autoSaveEvent()
-            {
-                var fd = new FormData();
-                var silde_i = $('#featured_image1').prop('files')[0];
-                var thumb_i = $('#featured_image2').prop('files')[0];
-                var side_i = $('#featured_image3').prop('files')[0];
-                if(silde_i != undefined){
-                    fd.append('featured_image1',silde_i);
-                }
-                if(thumb_i != undefined){
-                    fd.append('featured_image2',thumb_i);
-                }
-                if(side_i != undefined){
-                    fd.append('featured_image3',side_i);
-                }
-
-                var other_data = $('#form-event').serializeArray();
-                $.each(other_data,function(key,input){
-                    fd.append(input.name,input.value);
-                });
-                $.ajax({
-                    url: "{{ route('admin-auto-post-event') }}",
-                    type: "POST",
-                    dataType: 'json',
-                    processData: false,
-                    contentType: false,
-                    data: fd,
-                    success: function (data) {
-                        var event_id = data.last_insert_id;
-                        $('#event_id').val(event_id);
-                        $('#form-event').attr('action', "{{ URL::to('admin/event')}}"+'/'+event_id+'/update');
-                        window.history.pushState("string", data.status, "{{ URL::to('admin/event')}}"+'/'+event_id+'/edit');
-                        $('#modal-form-schedule').modal('show');
-                        $('#title-create-schedule').show();
-                        $('#title-update-schedule').hide();
-                        $('#button_update_schedule').hide();
-                        $('#button_save_schedule').show();
-                        
+                        var event_id = $('#event_id').val();
+                        if(event_id != ''){
+                            $('#modal-form-schedule').modal('show');
+                            $('#title-create-schedule').show();
+                            $('#title-update-schedule').hide();
+                            $('#button_update_schedule').hide();
+                            $('#button_save_schedule').show();
+                        }else{
+                            event_id = data.last_insert_id;
+                            $('#event_id').val(event_id);
+                            var uri = "{{ URL::route('admin-update-event', "::param") }}";
+                            uri = uri.replace('::param', event_id);
+                            var uri2 = "{{ URL::route('admin-edit-event', "::param") }}";
+                            uri2 = uri2.replace('::param', event_id);
+                            $('#form-event').attr('action', uri);
+                            window.history.pushState("string", data.status, uri2);
+                            $('#modal-form-schedule').modal('show');
+                            $('#title-create-schedule').show();
+                            $('#title-update-schedule').hide();
+                            $('#button_update_schedule').hide();
+                            $('#button_save_schedule').show();
+                        }  
                     },
                     error: function(response){
                         $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
                     }
                 });
             }
+               
 
-            function autoUpdateEvent(id)
-            {
-                var fd = new FormData();
-                var silde_i = $('#featured_image1').prop('files')[0];
-                var thumb_i = $('#featured_image2').prop('files')[0];
-                var side_i = $('#featured_image3').prop('files')[0];
-                if(silde_i != undefined){
-                    fd.append('featured_image1',silde_i);
-                }
-                if(thumb_i != undefined){
-                    fd.append('featured_image2',thumb_i);
-                }
-                if(side_i != undefined){
-                    fd.append('featured_image3',side_i);
-                }
-
-                var other_data = $('#form-event').serializeArray();
-                $.each(other_data,function(key,input){
-                    fd.append(input.name,input.value);
-                });
-                $.ajax({
-                    url: "{{ URL::to('admin/event')}}"+'/'+id+'/auto-update',
-                    type: "POST",
-                    dataType: 'json',
-                    processData: false,
-                    contentType: false,
-                    data: fd,
-                    success: function (data) {
-                        $('#modal-form-schedule').modal('show');
-                        $('#title-create-schedule').show();
-                        $('#title-update-schedule').hide();
-                        $('#button_update_schedule').hide();
-                        $('#button_save_schedule').show();
-                        //window.history.pushState("string", data.status, "{{ URL::to('admin/event')}}"+'/'+id+'/edit');
-                        
-                    },
-                    error: function(response){
-                        $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
-                    }
-                });
-            }
-                
+            //linechecked    
 
             $('#modal-form-schedule').on('show.bs.modal', function (e) {
                 $(".tooltip-field").remove();
@@ -231,10 +232,6 @@
 
                 function saveEventSchedule(event_id)
                 {
-                    $(".tooltip-field").remove();
-                    $(".form-group").removeClass('has-error');
-                    $('.error').removeClass('alert alert-danger');
-                    $('.error').html('');
                     modal_loader();
                     $.ajax({
                         url: "{{ route('admin-post-event-schedule') }}",
@@ -245,7 +242,6 @@
                             HoldOn.close();
                             var schedule_id = data.last_insert_id;
                             $('#schedule_id').val(schedule_id);
-
                             loadDataSchedule(event_id); 
                             $('#modal-form-schedule').modal('hide');
                             $('.error').addClass('alert alert-success').html(data.message);
@@ -267,14 +263,12 @@
 
                 function updateEventSchedule(event_id)
                 {
-                    $(".tooltip-field").remove();
-                    $(".form-group").removeClass('has-error');
-                    $('.error').removeClass('alert alert-danger');
-                    $('.error').html('');
                     var id = $("#schedule_id").val();
+                    var uri = "{{ URL::route('admin-update-event-schedule', "::param") }}";
+                    uri = uri.replace('::param', id);
                     modal_loader();
                     $.ajax({
-                        url: "{{ URL::to('admin/event-schedule')}}"+'/'+id+'/update',
+                        url: uri,
                         type: "POST",
                         dataType: 'json',
                         data: $("#form-event-schedule").serialize(),
@@ -298,101 +292,6 @@
                         }
                     });
                 }
-            });
-
-            $('#event-schedule-datatables tbody').on( 'click', '.actEdit', function () {
-                $('#modal-form-schedule').modal('show');
-                $('#title-create-schedule').hide();
-                $('#title-update-schedule').show();
-                $('#button_update_schedule').show();
-                $('#button_save_schedule').hide();
-
-                var id = $(this).data('id');
-                getDataEventSchedule(id);
-
-            });
-
-
-            function getDataEventSchedule(id){
-                $.ajax({
-                        url: "{{ URL::to('admin/event-schedule')}}"+'/'+id+'/edit',
-                        type: "get",
-                        dataType: 'json',
-                        success: function (response) {
-                            if(response.data.active == false) {
-                                response.data.active = 'false';
-                            } else {
-                                response.data.active = 'true';
-                            }
-                            var data = response.data;
-                            $("#schedule_id").val(data.id);
-                            $("#date_at").val(data.date_at);
-                            $("#time_period").val(data.time_period);
-                            var schedule_id = data.id;
-                            if(schedule_id == ''){
-                                schedule_id = 0;
-                            }
-                            loadDataScheduleCategory(schedule_id);
-                        },
-                        error: function(response){
-                            loadDataSchedule(event_id);
-                            $('#modal-form-schedule').modal('hide');
-                            $('.error').addClass('alert alert-success').html(response.responseJSON.message);
-                        }
-                    });
-            }
-
-            $('#event-schedule-datatables tbody').on( 'click', '.actDelete', function () {
-                var id = $(this).attr('data-id');
-                $('#delete-modal-schedule').modal('show');
-                $('#delete-modal-schedule').attr('data-id', id);
-            });  
-
-            $('#delete-modal-schedule').on( 'click', function () {
-                var id = $(this).attr('data-id');
-                var uri = "{{ URL::route('admin-delete-event-schedule', "::param") }}";
-                uri = uri.replace('::param', id);
-                $.ajax({
-                    url: uri,
-                    type: "DELETE",
-                    success: function (data) {
-                        $('.error').addClass('alert alert-success').html(data.message);
-                        var event_id = $('#event_id').val();
-                        loadDataSchedule(event_id);
-                        countSchedule(event_id);
-                    },
-                    error: function(response){
-                        $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
-                        var event_id = $('#event_id').val();
-                        loadDataSchedule(event_id);
-                        countSchedule(event_id);
-                    }
-                }); 
-            });
-
-            $('#delete-modal-category').on( 'click', function () {
-                $(".form-group").removeClass('has-error');
-                $('.error-modal').removeClass('alert alert-danger');
-                $('.error-modal').html('');
-                var id = $(this).attr('data-id');
-                var uri = "{{ URL::route('admin-delete-event-schedule-category', "::param") }}";
-                uri = uri.replace('::param', id);
-                $.ajax({
-                    url: uri,
-                    type: "DELETE",
-                    success: function (data) {
-                        $('.error-modal').addClass('alert alert-success').html(data.message);
-                        $('#modal-form-schedule').modal('show');
-                        var schedule_id = $('#schedule_id').val();
-                        var category_id = $('#category_id').val();  
-                        loadDataScheduleCategory(schedule_id);    
-                        loadDataSchedule(event_id);  
-                        countSchedule(event_id);
-                    },
-                    error: function(response){
-                        $('.error-modal').addClass('alert alert-danger').html(response.responseJSON.message);
-                    }
-                }); 
             });
 
             function autoSaveSchedule(event_id)
@@ -477,6 +376,102 @@
                     }
                 });
             }
+
+            $('#event-schedule-datatables tbody').on( 'click', '.actEdit', function () {
+                $('#modal-form-schedule').modal('show');
+                $('#title-create-schedule').hide();
+                $('#title-update-schedule').show();
+                $('#button_update_schedule').show();
+                $('#button_save_schedule').hide();
+
+                var id = $(this).data('id');
+                getDataEventSchedule(id);
+
+            });
+
+
+            function getDataEventSchedule(id){
+                $.ajax({
+                        url: "{{ URL::to('admin/event-schedule')}}"+'/'+id+'/edit',
+                        type: "get",
+                        dataType: 'json',
+                        success: function (response) {
+                            if(response.data.active == false) {
+                                response.data.active = 'false';
+                            } else {
+                                response.data.active = 'true';
+                            }
+                            var data = response.data;
+                            $("#schedule_id").val(data.id);
+                            $("#date_at").val(data.date_at);
+                            $("#start_time").val(data.start_time);
+                            $("#end_time").val(data.end_time);
+                            var schedule_id = data.id;
+                            if(schedule_id == ''){
+                                schedule_id = 0;
+                            }
+                            loadDataScheduleCategory(schedule_id);
+                        },
+                        error: function(response){
+                            loadDataSchedule(event_id);
+                            $('#modal-form-schedule').modal('hide');
+                            $('.error').addClass('alert alert-success').html(response.responseJSON.message);
+                        }
+                    });
+            }
+
+            $('#event-schedule-datatables tbody').on( 'click', '.actDelete', function () {
+                var id = $(this).attr('data-id');
+                $('#delete-modal-schedule').modal('show');
+                $('#delete-modal-schedule').attr('data-id', id);
+            });  
+
+            $('#delete-modal-schedule').on( 'click', function () {
+                var id = $(this).attr('data-id');
+                var uri = "{{ URL::route('admin-delete-event-schedule', "::param") }}";
+                uri = uri.replace('::param', id);
+                $.ajax({
+                    url: uri,
+                    type: "DELETE",
+                    success: function (data) {
+                        $('.error').addClass('alert alert-success').html(data.message);
+                        var event_id = $('#event_id').val();
+                        loadDataSchedule(event_id);
+                        countSchedule(event_id);
+                    },
+                    error: function(response){
+                        $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
+                        var event_id = $('#event_id').val();
+                        loadDataSchedule(event_id);
+                        countSchedule(event_id);
+                    }
+                }); 
+            });
+
+            $('#delete-modal-category').on( 'click', function () {
+                $(".form-group").removeClass('has-error');
+                $('.error-modal').removeClass('alert alert-danger');
+                $('.error-modal').html('');
+                var id = $(this).attr('data-id');
+                var uri = "{{ URL::route('admin-delete-event-schedule-category', "::param") }}";
+                uri = uri.replace('::param', id);
+                $.ajax({
+                    url: uri,
+                    type: "DELETE",
+                    success: function (data) {
+                        $('.error-modal').addClass('alert alert-success').html(data.message);
+                        $('#modal-form-schedule').modal('show');
+                        var schedule_id = $('#schedule_id').val();
+                        var category_id = $('#category_id').val();  
+                        loadDataScheduleCategory(schedule_id);    
+                        loadDataSchedule(event_id);  
+                        countSchedule(event_id);
+                    },
+                    error: function(response){
+                        $('.error-modal').addClass('alert alert-danger').html(response.responseJSON.message);
+                    }
+                }); 
+            });
 
             function loadDataScheduleCategory(schedule_id)
             {
@@ -673,39 +668,18 @@
                 }
             });
 
-            function countSchedule(event_id)
-            {
-                var uri = "{{ URL::route('admin-count-event-schedule', "::param") }}";
-                uri = uri.replace('::param', event_id);
-                $.ajax({
-                    url: uri,
-                    type: "get",
-                    dataType: 'json',
-                    success: function (response) {
-                        if(response.data.active == false) {
-                            response.data.active = 'false';
-                        } else {
-                            response.data.active = 'true';
-                        }
-                        var data = response.data;
-                        $("#count_schedule").val(data);
-                    },
-                    error: function(response){
-                        response.responseJSON.message;
-                    }
-                });
-            }  
-
 
             function clearInput(){
                 $('#date_at').data('datepicker').setDate(null);
                 $('#schedule_id').val('');
-                $("#time_period").val('');
-                var schedule_id = $('#schedule_id').val();
-                if(schedule_id == ''){
-                    schedule_id = 0;
-                }
-                loadDataScheduleCategory(schedule_id);
+                var dt = new Date();
+                var time = dt.getHours() + ":" + dt.getMinutes()
+                $("#start_time, #end_time").timepicker('setTime', time);
+                // var schedule_id = $('#schedule_id').val();
+                // if(schedule_id == ''){
+                //     schedule_id = 0;
+                // }
+                // loadDataScheduleCategory(schedule_id);
             }
             function clearInputCategory(){
                 $('#category_id').val('');

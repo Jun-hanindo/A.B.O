@@ -23,15 +23,32 @@ class EventRequest extends Request
      */
     public function rules()
     {
-        return [
-            'title'             => 'required',
-            'description'       => 'required',
-            'admission'         => 'required',
-            'featured_image1'   => 'required',
-            'featured_image2'   => 'required',
-            'featured_image3'   => 'required',
-            'buylink'           => 'required',
-            'venue_id'          => 'required',
-        ];
+        $req = Request::all();
+        if(isset($req['event_id']) && !empty($req['event_id'])) {
+            return [
+                'title'             => 'required',
+                'description'       => 'required',
+                'admission'         => 'required',
+                'featured_image1'   => 'mimes:jpg,jpeg,png,gif|max:100',
+                'featured_image2'   => 'mimes:jpg,jpeg,png,gif|max:100',
+                'featured_image3'   => 'mimes:jpg,jpeg,png,gif|max:100',
+                'buylink'           => 'required',
+                'venue_id'          => 'required',
+            ];
+
+        } else {
+
+            return [
+                'title'             => 'required',
+                'description'       => 'required',
+                'admission'         => 'required',
+                'featured_image1'   => 'required|mimes:jpg,jpeg,png,gif|max:100',
+                'featured_image2'   => 'required|mimes:jpg,jpeg,png,gif|max:100',
+                'featured_image3'   => 'required|mimes:jpg,jpeg,png,gif|max:100',
+                'buylink'           => 'required',
+                'venue_id'          => 'required',
+            ];
+                
+        }
     }
 }

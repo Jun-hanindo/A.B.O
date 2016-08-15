@@ -15,9 +15,9 @@ class Homepage extends Model
         'user_id', 'name', 'address', 'mrtdirection', 'cardirection', 'taxidirection', 'capacity', 'link_map', 'gmap_link'
     ];*/
 
-    public function events()
+    public function Event()
     {
-        return $this->hasMany('App\Models\events', 'event_id');
+        return $this->belongsTo('App\Models\Event', 'event_id');
 
     }
     public static function datatablesSlider()
@@ -99,6 +99,11 @@ class Homepage extends Model
 
         }
     }  
+
+    public function countEventByCategory($category)
+    {
+        return Homepage::where('category', $category)->count();
+    }
 
     
 }

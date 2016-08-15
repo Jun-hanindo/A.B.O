@@ -94,30 +94,30 @@ class EventsController extends BaseController
         }
     }
 
-    public function autoStore(Request $req)
-    {
-        $param = $req->all();
-        $user_id = $this->currentUser->id;
-        $saveData = $this->model->autoInsertNewEvent($param, $user_id);
-        if(!empty($saveData))
-        {
-            return response()->json([
-                'code' => 200,
-                'status' => 'success',
-                'last_insert_id' => $saveData->id,
-                'message' => '<strong>'.$saveData->title.'</strong> '.trans('general.save_success')
-            ],200);
+    // public function autoStore(Request $req)
+    // {
+    //     $param = $req->all();
+    //     $user_id = $this->currentUser->id;
+    //     $saveData = $this->model->insertNewEvent($param, $user_id);
+    //     if(!empty($saveData))
+    //     {
+    //         return response()->json([
+    //             'code' => 200,
+    //             'status' => 'success',
+    //             'last_insert_id' => $saveData->id,
+    //             'message' => '<strong>'.$saveData->title.'</strong> '.trans('general.save_success')
+    //         ],200);
         
-        } else {
+    //     } else {
 
-            return response()->json([
-                'code' => 400,
-                'status' => 'success',
-                'message' => trans('general.save_error')
-            ],400);
+    //         return response()->json([
+    //             'code' => 400,
+    //             'status' => 'success',
+    //             'message' => trans('general.save_error')
+    //         ],400);
         
-        }
-    }
+    //     }
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -129,6 +129,19 @@ class EventsController extends BaseController
     {
         //
         $data = $this->model->findEventByID($id);
+        $data->src = url('uploads/events');
+        if(isset($data->featured_image1)){
+            $data->src_featured_image1 = $data->src.'/'.$data->featured_image1; 
+        }
+
+        if(isset($data->featured_image2)){
+            $data->src_featured_image2 = $data->src.'/'.$data->featured_image2; 
+        }
+
+        if(isset($data->featured_image3)){
+            $data->src_featured_image3 = $data->src.'/'.$data->featured_image3; 
+        }
+
         $data['dropdown'] = Venue::dropdown();
         if($data['event_type'] == TRUE){
             $data['checked'] = 'checked';
@@ -172,28 +185,28 @@ class EventsController extends BaseController
         }
     }
 
-    public function autoUpdate(Request $req, $id)
-    {
-        $param = $req->all();
-        $updateData = $this->model->updateEvent($param,$id);
-        if(!empty($updateData))
-        {
-            return response()->json([
-                'code' => 200,
-                'status' => 'success',
-                'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
-            ],200);
+    // public function autoUpdate(Request $req, $id)
+    // {
+    //     $param = $req->all();
+    //     $updateData = $this->model->updateEvent($param,$id);
+    //     if(!empty($updateData))
+    //     {
+    //         return response()->json([
+    //             'code' => 200,
+    //             'status' => 'success',
+    //             'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
+    //         ],200);
         
-        } else {
+    //     } else {
 
-            return response()->json([
-                'code' => 400,
-                'status' => 'success',
-                'message' => trans('general.save_error')
-            ],400);
+    //         return response()->json([
+    //             'code' => 400,
+    //             'status' => 'success',
+    //             'message' => trans('general.save_error')
+    //         ],400);
         
-        }
-    }
+    //     }
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -246,13 +259,15 @@ class EventsController extends BaseController
         //
         $param = $req->all();
         $id = $param['event_id'];
-        if($param['event_id'] == ''){
+        if($id == ''){
             $user_id = $this->currentUser->id;
-            $saveData = $this->model->autoInsertNewEvent($param, $user_id);
-            if(!empty($updateData)) {
+            $saveData = $this->model->insertNewEvent($param, $user_id);
+            $this->model->updateAvaibilityFalse($saveData->id);
+            if(!empty($saveData)) {
                 return response()->json([
                     'code' => 200,
                     'status' => 'success',
+                    'last_insert_id' => $saveData->id,
                     'message' => '<strong>'.$saveData->title.'</strong> '.trans('general.save_success')
                 ],200);
 
@@ -267,6 +282,7 @@ class EventsController extends BaseController
             }
         }else{
             $updateData = $this->model->updateEvent($param,$id);
+            $this->model->updateAvaibilityFalse($id);
             if(!empty($updateData)) {
                 return response()->json([
                     'code' => 200,

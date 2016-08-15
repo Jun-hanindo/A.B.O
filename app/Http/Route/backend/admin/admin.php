@@ -82,10 +82,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::get('', array('as' => 'admin-index-event', 'uses' => 'EventsController@index'));
         Route::get('create', array('as' => 'admin-create-event', 'uses' => 'EventsController@create'));
         Route::post('store', array('as' => 'admin-post-event', 'uses' => 'EventsController@store'));
-        Route::post('auto-store', array('as' => 'admin-auto-post-event', 'uses' => 'EventsController@autoStore'));
         Route::get('{id}/edit', array('as' => 'admin-edit-event', 'uses' => 'EventsController@edit'));
         Route::post('{id}/update', array('as' => 'admin-update-event', 'uses' => 'EventsController@update'));
-        Route::post('{id}/auto-update', array('as' => 'admin-auto-update-event', 'uses' => 'EventsController@autoUpdate'));
         Route::delete('{id}/delete', array('as' => 'admin-delete-event', 'uses' => 'EventsController@destroy'));
         Route::post('{id}/avaibility-edit', array('as' => 'admin-update-event-avaibility', 'uses' => 'EventsController@avaibilityUpdate'));
         Route::post('draft', array('as' => 'admin-draft-event', 'uses' => 'EventsController@draft'));
@@ -191,6 +189,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::get('{id}/edit', array('as' => 'admin-edit-homepage', 'uses' => 'HomepagesController@edit'));
         Route::post('{id}/update', array('as' => 'admin-update-homepage', 'uses' => 'HomepagesController@update'));
         Route::delete('{id}/delete', array('as' => 'admin-delete-homepage', 'uses' => 'HomepagesController@destroy'));
+        Route::get('{category}/count-category', array('as' => 'admin-count-category-homepage', 'uses' => 'HomepagesController@countByCategory'));
 
         
     });

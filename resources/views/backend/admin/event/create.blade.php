@@ -20,6 +20,9 @@
         #date_at{
             border-radius: 0;
         }
+        img[src=""] {
+            display: none;
+        }
     </style>
 @endsection
 
@@ -76,18 +79,27 @@
                         <div class="col-md-3">
                             <div class="form-group{{ Form::hasError('featured_image1') }} featured_image1">
                                 {!! Form::label('featured_image1', trans('general.featured_image1').' *') !!}
-                                <input id="featured_image1" name="featured_image1" class="form-control" type="file" value="">
+                                <input id="featured_image1" name="featured_image1" class="form-control image" data-name="image1" type="file" value="">
                                 {!! Form::errorMsg('featured_image1') !!}
+                            </div>
+                            <div class="form-group privew" id="div-preview_image1" data-name="image1" style="display:none">
+                                <img src="" name="preview" id="preview_image1" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image2') }} featured_image2">
                                 {!! Form::label('featured_image2', trans('general.featured_image2').' *') !!}
-                                <input id="featured_image2" name="featured_image2" class="form-control" type="file" value="">
+                                <input id="featured_image2" name="featured_image2" class="form-control image" data-name="image2" type="file" value="">
                                 {!! Form::errorMsg('featured_image2') !!}
+                            </div>
+                            <div class="form-group privew" id="div-preview_image2" data-name="image2" style="display:none">
+                                <img src="" name="preview" id="preview_image2" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image3') }} featured_image3">
                                 {!! Form::label('featured_image3', trans('general.featured_image3').' *') !!}
-                                <input id="featured_image3" name="featured_image3" class="form-control" type="file" value="">
+                                <input id="featured_image3" name="featured_image3" class="form-control image" data-name="image3" type="file" value="">
                                 {!! Form::errorMsg('featured_image3') !!}
+                            </div>
+                            <div class="form-group privew" id="div-preview_image3" data-name="image3" style="display:none">
+                                <img src="" name="preview" id="preview_image3" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('event_type') }} event_type">
                                 {!! Form::label('event_type', trans('general.event_type').' *', array('class' => 'full-width')) !!}
@@ -115,6 +127,7 @@
             </div>
         </div>
     </div>
+    
     <div class="modal fade" id="modal-form-schedule" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -164,6 +177,7 @@
         </div>
       </div>
     </div>
+
     <div class="modal fade" id="modal-form-category" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -172,6 +186,7 @@
                     <h4 class="modal-title" id="ModalLabel"><span id="title-create-category" style="display:none">{{ trans('general.add_schedule_and_price') }}</span><span id="title-update-category" style="display:none">{{ trans('general.edit') }}</span></h4>
                 </div>
                 <div class="modal-body">
+                    <div class="error-modal"></div>
                     <form class="form-horizontal" id="form-event-category">
                         <input type="hidden" name="id" class="form-control" id="category_id">
                         <div class="form-group">

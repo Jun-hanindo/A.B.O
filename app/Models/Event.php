@@ -15,27 +15,27 @@ class Event extends Model
         'user_id', 'name', 'address', 'mrtdirection', 'cardirection', 'taxidirection', 'capacity', 'link_map', 'gmap_link'
     ];*/
 
-    public function user()
+    public function User()
     {
         return $this->belongsTo('App\Models\User', 'user_id');
 
     }
 
-    public function venue()
+    public function Venue()
     {
         return $this->belongsTo('App\Models\Venue', 'venue_id');
 
     }
 
-    public function eventSchedules()
+    public function EventSchedule()
     {
-        return $this->hasMany('App\Models\eventSchedules', 'event_id');
+        return $this->hasMany('App\Models\EventSchedule', 'event_id');
 
     }
 
-    public function homepage()
+    public function Homepage()
     {
-        return $this->belongsTo('App\Models\Homepage','event_id');
+        return $this->hasMany('App\Models\Homepage','event_id');
     }
 
     /**
@@ -65,6 +65,7 @@ class Event extends Model
         $this->buylink = $param['buylink'];
         $this->event_type = isset($param['event_type']);
         $this->venue_id = $param['venue_id'];
+        $this->avaibility = true;
 
         $pathDest = public_path().'/uploads/events';
         if(!File::exists($pathDest)) {
@@ -111,63 +112,6 @@ class Event extends Model
         }
     }
 
-    function autoInsertNewEvent($param, $user_id)
-    {
-        $this->user_id = $user_id;
-        $this->title = $param['title'];
-        $this->description = $param['description'];
-        $this->admission = $param['admission'];
-        $this->price_info = $param['price_info'];
-        $this->buylink = $param['buylink'];
-        $this->event_type = isset($param['event_type']);
-        $this->venue_id = $param['venue_id'];
-        $this->avaibility = false;
-
-        $pathDest = public_path().'/uploads/events';
-        if(!File::exists($pathDest)) {
-            File::makeDirectory($pathDest, $mode=0777,true,true);
-        }
-
-        if (isset($param['featured_image1'])) {
-            $featured_image1 = $param['featured_image1'];
-            $extension1 = $featured_image1->getClientOriginalExtension();
-            $filename1 = "image1".time().'.'.$extension1;
-            $this->featured_image1 = $filename1;
-        }
-
-        if (isset($param['featured_image2'])) {
-            $featured_image2 = $param['featured_image2'];
-            $extension2 = $featured_image2->getClientOriginalExtension();
-            $filename2 = "image2".time().'.'.$extension2;
-            $this->featured_image2 = $filename2;
-        }
-
-        if (isset($param['featured_image3'])) {
-            $featured_image3 = $param['featured_image3'];
-            $extension3 = $featured_image3->getClientOriginalExtension();
-            $filename3 = "image3".time().'.'.$extension3;
-            $this->featured_image3 = $filename3;
-        }
-
-        if($this->save()){
-            if (isset($featured_image1)) {
-                $img1 = Image::make($featured_image1);
-                $img1->save($pathDest.'/'.$filename1); 
-            }
-            if (isset($featured_image2)) {
-                $img2 = Image::make($featured_image2);
-                $img2->save($pathDest.'/'.$filename2); 
-            }
-            if (isset($featured_image3)) {
-                $img3 = Image::make($featured_image3);
-                $img3->save($pathDest.'/'.$filename3); 
-            }
-            return $this;
-        } else {
-            return false;
-        }
-    }
-
     public function findEventByID($id)
     {
         $data = $this->find($id);
@@ -194,56 +138,58 @@ class Event extends Model
 	        $data->buylink = $param['buylink'];
 	        $data->event_type = isset($param['event_type']);
 	        $data->venue_id = $param['venue_id'];
-            $this->avaibility = true;
+            $data->avaibility = true;
 
-            if(array_key_exists('featured_image1', $param)) {
-                $pathDest = public_path().'/uploads/events';
+            $pathDest = public_path().'/uploads/events';
+            if(!File::exists($pathDest)) {
+                File::makeDirectory($pathDest, $mode=0777,true,true);
+            }
+            
+            if(isset($param['featured_image1'])){
                 $oldImage = $data->featured_image1;
                 File::delete($pathDest.'/'.$oldImage);
                 
                 $featured_image1 = $param['featured_image1'];
                 $extension1 = $featured_image1->getClientOriginalExtension();
 
-                $filename1 = "featured_image1".time().'.'.$extension1;
+                $filename1 = "image1".time().'.'.$extension1;
                 $data->featured_image1 = $filename1;
             }
 
-            if(array_key_exists('featured_image2', $param)) {
-                $pathDest = public_path().'/uploads/events';
+            if(isset($param['featured_image2'])){
                 $oldImage = $data->featured_image2;
                 File::delete($pathDest.'/'.$oldImage);
                 
                 $featured_image2 = $param['featured_image2'];
                 $extension2 = $featured_image2->getClientOriginalExtension();
 
-                $filename2 = "featured_image2".time().'.'.$extension2;
+                $filename2 = "image2".time().'.'.$extension2;
                 $data->featured_image2 = $filename2;
             }
 
-            if(array_key_exists('featured_image3', $param)) {
-                $pathDest = public_path().'/uploads/events';
+            if(isset($param['featured_image3'])){
                 $oldImage = $data->featured_image3;
                 File::delete($pathDest.'/'.$oldImage);
                 
                 $featured_image3 = $param['featured_image3'];
                 $extension3 = $featured_image3->getClientOriginalExtension();
 
-                $filename3 = "featured_image3".time().'.'.$extension3;
+                $filename3 = "image3".time().'.'.$extension3;
                 $data->featured_image3 = $filename3;
             }
 
             if($data->save()){
-                if(array_key_exists('featured_image1', $param)) {
+                if(isset($param['featured_image1'])){
                     $img1 = Image::make($featured_image1);
                     $img1->save($pathDest.'/'.$filename1);
                 }
 
-                if(array_key_exists('featured_image2', $param)) {
+                if(isset($param['featured_image2'])){
                     $img2 = Image::make($featured_image2);
                     $img2->save($pathDest.'/'.$filename2);
                 }
 
-                if(array_key_exists('featured_image3', $param)) {
+                if(isset($param['featured_image3'])){
                     $img3 = Image::make($featured_image3);
                     $img3->save($pathDest.'/'.$filename3);
                 }
@@ -303,7 +249,7 @@ class Event extends Model
     {
         $data = $this->find($id);
         if (!empty($data)) {
-            $this->avaibility = false;
+            $data->avaibility = false;
 
             if($data->save()){
 

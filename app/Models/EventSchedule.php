@@ -12,7 +12,7 @@ class EventSchedule extends Model
         'user_id', 'name', 'address', 'mrtdirection', 'cardirection', 'taxidirection', 'capacity', 'link_map', 'gmap_link'
     ];*/
 
-    public function event()
+    public function Event()
     {
         return $this->belongsTo('App\Models\Event', 'event_id');
 

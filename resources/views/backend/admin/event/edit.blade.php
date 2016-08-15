@@ -20,6 +20,9 @@
         #date_at{
             border-radius: 0;
         }
+        img[src=""] {
+            display: none;
+        }
     </style>
 @endsection
 
@@ -76,18 +79,28 @@
                         <div class="col-md-3">
                             <div class="form-group{{ Form::hasError('featured_image1') }} featured_image1">
                                 {!! Form::label('featured_image1', trans('general.featured_image1').' *') !!}
-                                <input id="featured_image1" name="featured_image1" class="form-control" type="file" value="{{$data->featured_image1}}">
+                                <input id="featured_image1" name="featured_image1" class="form-control image" data-name="image1" type="file" value="{{$data->featured_image1}}">
                                 {!! Form::errorMsg('featured_image1') !!}
+                            </div>
+                            <div class="form-group preview" id="div-preview_image1" data-name="image1">
+                                <img src="{{$data->src_featured_image1}}" name="preview" id="preview_image1" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image2') }} featured_image2">
                                 {!! Form::label('featured_image2', trans('general.featured_image2').' *') !!}
-                                <input id="featured_image2" name="featured_image2" class="form-control" type="file" value="{{$data->featured_image1}}">
+                                <input id="featured_image2" name="featured_image2" class="form-control image" data-name="image2" type="file" value="{{$data->featured_image1}}">
                                 {!! Form::errorMsg('featured_image2') !!}
+                                
+                            </div>
+                            <div class="form-group preview" id="div-preview_image2" data-name="image2">
+                                <img src="{{$data->src_featured_image2}}" name="preview" id="preview_image2" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image3') }} featured_image3">
                                 {!! Form::label('featured_image3', trans('general.featured_image3').' *') !!}
-                                <input id="featured_image3" name="featured_image3" class="form-control" type="file" value="{{$data->featured_image1}}">
+                                <input id="featured_image3" name="featured_image3" class="form-control image" data-name="image3" type="file" value="{{$data->featured_image1}}">
                                 {!! Form::errorMsg('featured_image3') !!}
+                            </div>
+                            <div class="form-group preview" id="div-preview_image3" data-name="image3">
+                                <img src="{{$data->src_featured_image3}}" name="preview" id="preview_image3" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('event_type') }} event_type">
                                 {!! Form::label('event_type', trans('general.event_type').' *', array('class' => 'full-width')) !!}

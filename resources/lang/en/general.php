@@ -155,7 +155,7 @@ return [
     'homepages' => 'Homepages',
     'homepage' => 'Homepage',
     'slider' => 'Slider',
-    'max_3_event' => 'Maximum 3 event for each category',
+    'max_3_event' => 'Maximum 3 event',
 
 
 

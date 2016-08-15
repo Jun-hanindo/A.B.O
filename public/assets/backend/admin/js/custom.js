@@ -13,6 +13,19 @@ var slug = function(str) {
     return $slug.toLowerCase();
 }
 
+preview = function(me,type,elementId){
+  if (me.files && me.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          // $('#image')
+          //     .attr('src', e.target.result);
+          $("#preview_"+elementId).attr('src',e.target.result);
+      };
+    
+      reader.readAsDataURL(me.files[0]);
+  }
+}
+
 $(".number-only").keydown(function (e) {
     // Allow: backspace, delete, tab, escape, enter and .
     if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
