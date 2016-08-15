@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use File;
@@ -9,7 +10,16 @@ use Image;
 
 class Event extends Model
 {
+    use Sluggable;
     protected $table = 'events';
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 
     /*protected $fillable = [
         'user_id', 'name', 'address', 'mrtdirection', 'cardirection', 'taxidirection', 'capacity', 'link_map', 'gmap_link'
@@ -29,7 +39,7 @@ class Event extends Model
 
     public function EventSchedule()
     {
-        return $this->hasMany('App\Models\EventSchedule', 'event_id');
+        return $this->hasMany('App\Models\EventSchedule', 'event_id')->orderBy('date_at');
 
     }
 
@@ -96,14 +106,17 @@ class Event extends Model
     	if($this->save()){
 	        if (isset($featured_image1)) {
 	    		$img1 = Image::make($featured_image1);
+                $img1->resize(1440, 400);
 	            $img1->save($pathDest.'/'.$filename1); 
 	        }
 	        if (isset($featured_image2)) {
 	    		$img2 = Image::make($featured_image2);
+                $img2->resize(370, 250);
 	            $img2->save($pathDest.'/'.$filename2); 
 	        }
 	        if (isset($featured_image3)) {
 	    		$img3 = Image::make($featured_image3);
+                $img3->resize(150, 101);
 	            $img3->save($pathDest.'/'.$filename3); 
 	        }
             return $this;
@@ -181,16 +194,19 @@ class Event extends Model
             if($data->save()){
                 if(isset($param['featured_image1'])){
                     $img1 = Image::make($featured_image1);
+                    $img1->resize(1440, 400);
                     $img1->save($pathDest.'/'.$filename1);
                 }
 
                 if(isset($param['featured_image2'])){
                     $img2 = Image::make($featured_image2);
+                    $img2->resize(370, 250);
                     $img2->save($pathDest.'/'.$filename2);
                 }
 
                 if(isset($param['featured_image3'])){
                     $img3 = Image::make($featured_image3);
+                    $img3->resize(150, 101);
                     $img3->save($pathDest.'/'.$filename3);
                 }
 
@@ -261,6 +277,20 @@ class Event extends Model
         
         } else {
 
+            return false;
+
+        }
+    }
+
+    public function findEventBySlug($slug)
+    {
+        $data = Event::where('slug' , '=', $slug)->first();
+        if (!empty($data)) {
+        
+            return $data;
+        
+        } else {
+        
             return false;
 
         }

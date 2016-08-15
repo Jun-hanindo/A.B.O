@@ -3,16 +3,18 @@
 @section('content')
         <section class="eventBanner">
           <div class="imageBanner">
-              <img src="{{ asset('assets/frontend/images/banner2-bg.png') }}">
+              <img src="{{ $src.$event->featured_image1 }}">
           </div>
           <div class="infoBanner bg-purple">
               <div class="container">
                   <div class="detail">
-                      <h5>FOOD / BEVERAGE</h5>
-                      <h2>SAVOUR Gourmet 2016</h2>
+                      <h5><!-- category --></h5>
+                      <h2>{{ $event->title }}</h2>
                   </div>
                   <div class="moreDetail">
-                      <button class="btn btnDetail">Buy Now</button>
+                      <form action="{{ $event->buylink }}">
+                          <button class="btn btnDetail">Buy Now</button>
+                      </form>
                   </div>
               </div>
           </div>
@@ -65,12 +67,15 @@
                     </div>
                     <div class="col-md-4 place">
                         <div class="information-title">
-                            <i class="fa fa-map-marker"></i> Singapore Indoor Stadium
+                            <i class="fa fa-map-marker"></i> {{ $event->Venue->name }}
                         </div>
                         <ul class="list-unstyled">
-                            <li>2 Stadium Walk</li>
-                            <li>Singapore 018956</li>
-                            <li><button class="btn btnSeemap">See Map</button></li>
+                            <li>{!! $event->Venue->address !!}</li>
+                            <li>
+                              <form action="{{ $event->Venue->link_map }}">
+                                  <button class="btn btnSeemap">See Map</button>
+                              </form>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-md-4 ticket">
@@ -79,40 +84,15 @@
                         </div>
                         <ul class="list-unstyled">
                             <li class="liParent">
-                                <table>
-                                    <tr>
-                                        <td>Category 1</td>
-                                        <td>S$338</td>
-                                    </tr>
-                                </table>
+                                {!! $event->price_info !!}
                             </li>
                             <li class="liParent">
-                                <table>
-                                    <tr>
-                                        <td>Category 2</td>
-                                        <td>S$338</td>
-                                    </tr>
-                                </table>
-                            </li>
-                            <li class="liParent">
-                                <table>
-                                    <tr>
-                                        <td>Category 3</td>
-                                        <td>S$338</td>
-                                    </tr>
-                                </table>
-                            </li>
-                            <li class="liParent">
-                                <table>
-                                    <tr>
-                                        <td>Category 4</td>
-                                        <td>S$338</td>
-                                    </tr>
-                                </table>
-                            </li>
-                            <li class="liParent">
-                              <button class="btn btnSeat bg-black">See Seat Map</button>
-                              <button class="btn btnticket bg-white">More Ticket Info</button>
+                              <form action="{{ $event->buylink }}">
+                                  <button class="btn btnSeat bg-black">See Seat Map</button>
+                              </form>
+                              <form action="{{ $event->buylink }}">
+                                  <button class="btn btnticket bg-white">More Ticket Info</button>
+                              </form>
                             </li>
                         </ul>
                     </div>
@@ -149,9 +129,7 @@
                                                       <div class="row">
                                                           <div class="">
                                                               <section id="about" class="sectionEvent">
-                                                                  <h3>Michael Jackson, An Immersive Journey</h3>
-                                                                  <p>Hailed by Rolling Stone as “A virtual parade of ‘wow’ moments,” Michael Jackson ONE is an electrifying fusion of acrobatics, dance and visuals that reflects the dynamic showmanship of the King of Pop, immersing the audience into the world of Michael's music. Driven by his biggest hits heard like never before in a riveting, state-of-the-art surround-sound environment Michael Jackson ONE by Cirque du Soleil performs exclusively at Mandalay Bay Resort and Casino in Las Vegas.</p>
-                                                                  <p>Read more at <a href="https://www.cirquedusoleil.com/michael-jackson-one#hh5mXkMov8O4eFtq.99" target="_blank">https://www.cirquedusoleil.com/michael-jackson-one#hh5mXkMov8O4eFtq.99</a></p>
+                                                                  {!! $event->description !!} 
                                                               </section>
                                                           </div>
                                                       </div>
@@ -171,21 +149,6 @@
                                                       <div class="row">
                                                           <div class="">
                                                               <section id="promotion" class="sectionEvent">
-                                                                  <img src="{{ asset('assets/frontend/images/starhublogo.png') }}">
-                                                                  <h3>StarHub Customers Pre-Sale</h3>
-                                                                  <p>Show StarHub bill or subscription on any device such as mobile phone or tablet.</p>
-                                                                  <p>Start Date: 24 February 2016 <br>10:00AM onwards at Singapore Indoor Stadium Box Office and SingPost outlets</p>
-                                                                  <p>End Date: 26 February 2016 <br>Singapore Indoor Stadium Box Office: 8:00PM</p>
-                                                                  <a href="#">View the various timings of SingPost outlets' operating hours </a>
-                                                              </section>
-
-                                                              <section id="promotion2" class="sectionEvent">
-                                                                  <img src="{{ asset('assets/frontend/images/ocbclogo.png') }}">
-                                                                  <h3>OCBC Cards Pre-Sale</h3>
-                                                                  <p>Start Date: 24 February 2016 <br>10:00AM across all channels</p>
-                                                                  <p>End Date: 26 February 2016, 11:59PM </p>
-                                                                  <h3>*General Sales</h3>
-                                                                  <p>Start Date: 1 March 2016 <br>10:00AM across all channels</p>
                                                               </section>
                                                           </div>
                                                       </div>
@@ -205,26 +168,26 @@
                                                       <div class="row">
                                                           <div class="">
                                                               <section id="venue" class="sectionEvent">
-                                                                  <h3>Singapore Indoor Stadium</h3>
-                                                                  <p>2 Stadium Walk <br>Singapore 018956</p>
+                                                                  <h3>{!! $event->Venue->name !!}</h3>
+                                                                  {!! $event->Venue->address !!}
 
                                                                   <div class="mapEvent">
-                                                                      <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script><div style='overflow:hidden;height:200px;width:100%;'><div id='gmap_canvas' style='height:200px;width:100%;'></div><div><small><a href="http://embedgooglemaps.com">                 embed google maps             </a></small></div><div><small><a href="https:/disclaimergenerator.net">disclaimer example</a></small></div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style></div><script type='text/javascript'>function init_map(){var myOptions = {zoom:10,center:new google.maps.LatLng(1.3006453,103.87442529999998),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(1.3006453,103.87442529999998)});infowindow = new google.maps.InfoWindow({content:'<strong>Singapore Indoor Stadium</strong><br>2 Stadium Walk, Singapore<br>'});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
+                                                                      {!! $event->Venue->gmap_link !!}
                                                                   </div>
 
                                                                   <h3>Getting to the Venue</h3>
                                                                   <ul>
                                                                       <li class="mrt">
                                                                           <h3>By MRT</h3>
-                                                                          <p>Take the Circle Line to Bayfront MRT Station and take Exit A  or you can alight at Downtown MRT Station and take Exit B</p>
+                                                                          {!! $event->Venue->mrtdirection !!}
                                                                       </li>
                                                                       <li class="taxi">
                                                                           <h3>By Taxi / UBER Drop Off</h3>
-                                                                          <p>If you are taking a taxi or an UBER, the closest drop off point is at Marina Bay Sands Exhibition Centre, just a 3 min walk from SAVOUR 2016.</p>
+                                                                          {!! $event->Venue->cardirection !!}
                                                                       </li>
                                                                       <li class="car">
                                                                           <h3>By Car</h3>
-                                                                          <p>No parking on site. There is public parking available at the Wilson Open Air Carpark on Bayfront Avenue. Parking will not be validated. We encourage guests to carpool or explore one of the many public transport options if you plan on drinking at this event. Please drink responsibly.</p>
+                                                                          {!! $event->Venue->taxidirection !!}
                                                                       </li>
                                                                   </ul>
                                                               </section>
@@ -246,29 +209,7 @@
                                                       <div class="row">
                                                           <div class="">
                                                               <section id="rules" class="sectionEvent">
-                                                                  <h3>Rating / Age Limit</h3>
-                                                                  <ul>
-                                                                      <li>Children under 3 years of age may be admitted free of charge provided they do not occupy a seat (they must be seated on the lap of a parent or guardian).</li>
-                                                                      <li>Children aged 3 years and above must purchase a ticket for admission.</li>
-                                                                      <li>All children below 12 years of age must be accompanied by a parent or guardian.</li>
-                                                                  </ul>
-                                                                  <h3>Late Seating Advisory</h3>
-                                                                  <ul>
-                                                                      <li>For the enjoyment of all audience members, all events start promptly at the time printed on the ticket.</li>
-                                                                      <li>Please be seated 15 minutes before the performance start time.</li>
-                                                                      <li>Late arrival may result in non-admittance until a suitable break in the performance.</li>
-                                                                  </ul>
-                                                                  <h3>Photography / Video Recording Rules</h3>
-                                                                  <ul>
-                                                                      <li>Photography, Video Recording and Audio Recording is strictly prohibited during the performance.</li>
-                                                                      <li>All DSLR / Cameras with interchangeable lens is strictly prohibited inside the auditorium and must be checked in into the Theatres Cloak Room.</li>
-                                                                  </ul>
-                                                                  <h3>Booster Seats</h3>
-                                                                  <ul>
-                                                                      <li>Booster seats are available on a "first come, first served" basis from 1 hour prior to show up until show time.</li>
-                                                                      <li>Booster seats are not guaranteed and are not included with the purchase of your ticket. Patrons are welcome to bring their own booster seats.</li>
-                                                                      <li>Booster seats provided by Marina Bay Sands may not be taken out of the Theatre Foyer at any time.</li>
-                                                                  </ul>
+                                                                  {!! $event->admission !!}
                                                               </section>
                                                           </div>
                                                       </div>

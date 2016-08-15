@@ -4,16 +4,27 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 
+use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use View;
+use App\Models\Homepage;
+use App\Models\Event;
+//use View;
 
 class HomeController extends Controller
 {
+    public function __construct(Homepage $model)
+    {
+        parent::__construct($model);
+    }
+
     public function index()
     {
-        return view('frontend.partials.homepage');
+        $result['sliders'] = $this->model->getHomepage('slider');
+        $result['events'] = $this->model->getHomepage('event');
+        $result['src'] = env('APP_URL').'/uploads/events/';
+        return view('frontend.partials.homepage', $result); 
     }
 
     public function discover()
@@ -21,10 +32,10 @@ class HomeController extends Controller
         return view('frontend.partials.discover');
     }
 
-    public function event()
-    {
-        return view('frontend.partials.event');
-    }
+    // public function event()
+    // {
+    //     return view('frontend.partials.event');
+    // }
 
     public function promotion()
     {
@@ -32,10 +43,10 @@ class HomeController extends Controller
     }
 
 
-    public function eventSeated()
-    {
-        return view('frontend.partials.event_seated');
-    }
+    // public function eventSeated()
+    // {
+    //     return view('frontend.partials.event_seated');
+    // }
 
     public function careers()
     {

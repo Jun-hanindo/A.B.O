@@ -18,9 +18,9 @@ class EventSchedule extends Model
 
     }
 
-    public function eventScheduleCategories()
+    public function EventScheduleCategory()
     {
-        return $this->hasMany('App\Models\eventScheduleCategories', 'event_schedule_id');
+        return $this->hasMany('App\Models\EventScheduleCategory', 'event_schedule_id')->orderBy('price');
 
     }
 
@@ -122,5 +122,9 @@ class EventSchedule extends Model
     public function countSchedule($event_id)
     {
         return EventSchedule::where('event_id', $event_id)->count();
+    }
+
+    public function getFirstDate($event_id){
+        return 1;
     }
 }

@@ -12,4 +12,6 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('support-faq', array('as' => 'support-faq', 'uses' => 'HomeController@supportFaq'));
     Route::get('search-result', array('as' => 'search-result', 'uses' => 'HomeController@searchResult'));
     // Route::get('application', array('as' => 'front-form-application', 'uses' => 'ApplicationController@applicationForm'));
+    // 
+    Route::get('event/{slug}', array('as' => 'event-detail', 'uses' => 'EventsController@index'));
 });

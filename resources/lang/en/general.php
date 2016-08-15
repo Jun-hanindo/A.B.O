@@ -156,6 +156,20 @@ return [
     'homepage' => 'Homepage',
     'slider' => 'Slider',
     'max_3_event' => 'Maximum 3 event',
+    'general' => 'General',
+    'seated' => 'Seated',
+    // 'january' => 'January',
+    // 'february' => 'February',
+    // 'march' => 'March',
+    // 'april' => 'April',
+    // 'may' => 'May',
+    // 'june' => 'June',
+    // 'july' => 'July',
+    // 'august' => 'August',
+    // 'september' => 'September',
+    // 'october' => 'October',
+    // 'november' => 'November',
+    // 'december' => 'December',
 
 
 

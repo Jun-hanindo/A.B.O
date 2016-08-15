@@ -12,9 +12,9 @@ class EventScheduleCategory extends Model
         'user_id', 'name', 'address', 'mrtdirection', 'cardirection', 'taxidirection', 'capacity', 'link_map', 'gmap_link'
     ];*/
 
-    public function eventSchedule()
+    public function EventSchedule()
     {
-        return $this->belongsTo('App\Models\eventSchedule', 'event_schedule_id');
+        return $this->belongsTo('App\Models\EventSchedule', 'event_schedule_id');
 
     }
 

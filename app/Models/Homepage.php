@@ -105,5 +105,10 @@ class Homepage extends Model
         return Homepage::where('category', $category)->count();
     }
 
+    public function getHomepage($category)
+    {
+        return Homepage::where('category', $category)->get();
+    }
+
     
 }
