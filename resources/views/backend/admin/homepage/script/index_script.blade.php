@@ -82,6 +82,11 @@
                 },
                 error: function(response){
                     response.responseJSON.message;
+                    $('#modal-form').modal('show');
+                    $('#title-create').show();
+                    $('#title-update').hide();
+                    $('#button_update').hide();
+                    $('#button_save').show();
                 }
             });
         });
