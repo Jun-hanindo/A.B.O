@@ -45,7 +45,7 @@ class EventScheduleCategoriesController extends BaseController
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
-                'message' => '<strong>'.$saveData->price.'</strong> '.trans('general.save_success')
+                'message' => '<strong>'.trans('general.price_info').'</strong> '.trans('general.save_success')
             ],200);
         
         } else {
@@ -89,7 +89,7 @@ class EventScheduleCategoriesController extends BaseController
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
-                'message' => '<strong>'.$updateData->additional_info.'</strong> '.trans('general.update_success')
+                'message' => '<strong>'.trans('general.price_info').'</strong> '.trans('general.update_success')
             ],200);
 
         } else {
@@ -112,7 +112,7 @@ class EventScheduleCategoriesController extends BaseController
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
-                'message' => '<strong>'.$data->additional_info.'</strong> '.trans('general.delete_success')
+                'message' => '<strong>'.trans('general.price_info').'</strong> '.trans('general.delete_success')
             ],200);
 
         } else {

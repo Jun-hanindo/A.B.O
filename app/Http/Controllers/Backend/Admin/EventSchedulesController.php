@@ -48,7 +48,7 @@ class EventSchedulesController extends BaseController
                 'code' => 200,
                 'status' => 'success',
                 'last_insert_id' => $saveData->id,
-                'message' => '<strong>'.$saveData->date_at.'</strong> '.trans('general.save_success')
+                'message' => '<strong>'.trans('general.schedule').'</strong> '.trans('general.save_success')
             ],200);
         
         } else {
@@ -92,7 +92,7 @@ class EventSchedulesController extends BaseController
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
-                'message' => '<strong>'.$updateData->date_at.'</strong> '.trans('general.update_success')
+                'message' => '<strong>'.trans('general.schedule').'</strong> '.trans('general.update_success')
             ],200);
 
         } else {
@@ -115,7 +115,7 @@ class EventSchedulesController extends BaseController
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
-                'message' => '<strong>'.$data->date_at.'</strong> '.trans('general.delete_success')
+                'message' => '<strong>'.trans('general.schedule').'</strong> '.trans('general.delete_success')
             ],200);
 
         } else {

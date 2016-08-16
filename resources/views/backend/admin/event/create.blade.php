@@ -56,12 +56,12 @@
                                 {!! Form::errorMsg('admission') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('price_info') }} price_info">
-                                {!! Form::label('price_info', trans('general.price_info').' *') !!}
-                                {!! Form::textarea('price_info', old('price_info'), ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.price_info')]) !!}
+                                {!! Form::label('price_info', trans('general.schedule_info').' *') !!}
+                                {!! Form::textarea('price_info', old('price_info'), ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.schedule_info')]) !!}
                                 {!! Form::errorMsg('price_info') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('price_detail') }} price_detail">
-                                {!! Form::label('price_info', trans('general.price_detail').' *') !!}
+                                {!! Form::label('price_info', trans('general.schedule_and_price_detail').' *') !!}
                                 <table id="event-schedule-datatables" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                                     <thead>
                                         <tr>
@@ -190,9 +190,9 @@
                     <form class="form-horizontal" id="form-event-category">
                         <input type="hidden" name="id" class="form-control" id="category_id">
                         <div class="form-group">
-                            {!! Form::label('additional_info', trans('general.additional_info'), array('class' => 'col-sm-3 control-label pull-left')) !!}
+                            {!! Form::label('additional_info', trans('general.price_info'), array('class' => 'col-sm-3 control-label pull-left')) !!}
                             <div class="col-sm-9">
-                                {!! Form::textarea('additional_info', old('additional_info'), ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.additional_info')]) !!}
+                                {!! Form::textarea('additional_info', old('additional_info'), ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.price_info')]) !!}
                             </div>
                         </div>
                         <div class="form-group">
