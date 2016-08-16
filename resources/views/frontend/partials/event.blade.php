@@ -32,12 +32,16 @@
                             <div class="information-title">
                                 <i class="fa fa-calendar"></i> 
                                 @foreach($schedules as $sch)
-                                    @if ($i == 0)
+                                    @if ($i == 0 && $count > 1)
                                         {!! date('d', strtotime($sch->date_at)) !!}
-                                    @else if($i == $count - 1)
-                                        {!! date('F Y', strtotime($sch->date_at)) !!} 
+                                    @elseif ($i == 0 && $count == 1)
+                                        {!! date('d F Y', strtotime($sch->date_at)) !!} 
+                                    @elseif ($i == $count - 1 && $count > 1)
+                                        {!! ' - '.date('d F Y', strtotime($sch->date_at)) !!} 
                                     @endif
-                                    
+                                    @php 
+                                        $i++
+                                    @endphp
                                 @endforeach
                             </div>
                             <ul class="list-unstyled">
@@ -84,7 +88,7 @@
                     <div class="col-md-4 ticket">
                         <div class="information-title">
                             <i class="fa fa-ticket"></i> 
-
+                            {{ '$'.$min->price }}
                         </div>
                         <ul class="list-unstyled">
                             <li>{!! $event->price_info !!}</li>
