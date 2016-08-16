@@ -56,7 +56,7 @@ class Event extends Model
     function datatables()
     {
 
-    	return static::select('id', 'title', 'venue_id', 'user_id', 'avaibility');
+    	return static::select('id', 'title', 'venue_id', 'user_id', 'avaibility')->orderBy('created_at', 'desc');
     
     }
 
