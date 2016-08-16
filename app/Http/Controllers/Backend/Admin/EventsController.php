@@ -257,6 +257,9 @@ class EventsController extends BaseController
     public function draft(Request $req)
     {
         //
+        $this->validate($req, [
+            'title' => 'required',
+        ]);
         $param = $req->all();
         $id = $param['event_id'];
         if($id == ''){

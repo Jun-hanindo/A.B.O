@@ -48,7 +48,16 @@
                         window.location.href = "{{ route('admin-index-event') }}"
                     },
                     error: function(response){
-                        location.reload();
+                        if (response.status === 422) {
+                            var data = response.responseJSON;
+                            $.each(data,function(key,val){
+                                $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
+                                $('.'+key).addClass('has-error');
+                            });
+                        } else {
+                            $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
+                        }
+                        
                     }
                 });
             }); 
@@ -205,7 +214,15 @@
                         }  
                     },
                     error: function(response){
-                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        if (response.status === 422) {
+                            var data = response.responseJSON;
+                            $.each(data,function(key,val){
+                                $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
+                                $('.'+key).addClass('has-error');
+                            });
+                        } else {
+                            $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        }
                     }
                 });
             }
