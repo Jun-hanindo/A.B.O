@@ -83,7 +83,7 @@ class EventsController extends BaseController
         if(!empty($saveData))
         {
         
-            flash()->success(trans('general.save_success'));
+            flash()->success($saveData->title.' '.trans('general.save_success'));
             return redirect()->route('admin-index-event');
         
         } else {
@@ -174,7 +174,7 @@ class EventsController extends BaseController
         $updateData = $this->model->updateEvent($param,$id);
         if(!empty($updateData)) {
 
-            flash()->success(trans('general.update_success'));
+            flash()->success($updateData->title.' '.trans('general.update_success'));
             return redirect()->route('admin-index-event');
 
         } else {
@@ -240,7 +240,7 @@ class EventsController extends BaseController
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
-                'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
+                'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
             ],200);
 
         } else {

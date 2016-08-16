@@ -94,7 +94,7 @@ class VenuesController extends BaseController
         if(!empty($saveData))
         {
         
-            flash()->success(trans('general.save_success'));
+            flash()->success($saveData->name.' '.trans('general.save_success'));
             return redirect()->route('admin-index-venue');
         
         } else {
@@ -149,7 +149,7 @@ class VenuesController extends BaseController
         $updateData = $this->model->updateVenue($param,$id);
         if(!empty($updateData)) {
 
-            flash()->success(trans('general.update_success'));
+            flash()->success($updateData->name.' '.trans('general.update_success'));
             return redirect()->route('admin-index-venue');
 
         } else {

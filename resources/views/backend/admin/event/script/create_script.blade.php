@@ -205,7 +205,7 @@
                         }  
                     },
                     error: function(response){
-                        $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
+                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                     }
                 });
             }
@@ -244,7 +244,7 @@
                             $('#schedule_id').val(schedule_id);
                             loadDataSchedule(event_id); 
                             $('#modal-form-schedule').modal('hide');
-                            $('.error').addClass('alert alert-success').html(data.message);
+                            $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                         },
                         error: function(response){
                             HoldOn.close();
@@ -255,7 +255,7 @@
                                     $('.'+key).addClass('has-error');
                                 });
                             } else {
-                                $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
+                                $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                             }
                         }
                     });
@@ -276,7 +276,7 @@
                             HoldOn.close();
                             loadDataSchedule(event_id);
                             $('#modal-form-schedule').modal('hide');
-                            $('.error').addClass('alert alert-success').html(data.message);
+                            $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                         },
                         error: function(response){
                             HoldOn.close();
@@ -287,7 +287,7 @@
                                     $('.'+key).addClass('has-error');
                                 });
                             } else {
-                                $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
+                                $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                             }
                         }
                     });
@@ -310,7 +310,7 @@
                         HoldOn.close();
                         var schedule_id = data.last_insert_id;
                         $('#schedule_id').val(schedule_id);
-                        $('.error').addClass('alert alert-success').html(data.message);
+                        $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
 
                         loadDataSchedule(event_id); 
                         countSchedule(event_id);
@@ -331,7 +331,7 @@
                                 $('.'+key).addClass('has-error');
                             });
                         } else {
-                            $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
+                            $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                         }
                     }
                 });
@@ -360,7 +360,7 @@
                         $('#title-update-category').hide();
                         $('#button_update_category').hide();
                         $('#button_save_category').show();
-                        $('.error').addClass('alert alert-success').html(data.message);
+                        $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                     },
                     error: function(response){
                         HoldOn.close();
@@ -371,7 +371,7 @@
                                 $('.'+key).addClass('has-error');
                             });
                         } else {
-                            $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
+                            $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                         }
                     }
                 });
@@ -415,7 +415,7 @@
                         error: function(response){
                             loadDataSchedule(event_id);
                             $('#modal-form-schedule').modal('hide');
-                            $('.error').addClass('alert alert-success').html(response.responseJSON.message);
+                            $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                         }
                     });
             }
@@ -434,13 +434,13 @@
                     url: uri,
                     type: "DELETE",
                     success: function (data) {
-                        $('.error').addClass('alert alert-success').html(data.message);
+                        $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                         var event_id = $('#event_id').val();
                         loadDataSchedule(event_id);
                         countSchedule(event_id);
                     },
                     error: function(response){
-                        $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
+                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                         var event_id = $('#event_id').val();
                         loadDataSchedule(event_id);
                         countSchedule(event_id);
@@ -459,7 +459,7 @@
                     url: uri,
                     type: "DELETE",
                     success: function (data) {
-                        $('.error-modal').addClass('alert alert-success').html(data.message);
+                        $('.error-modal').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                         $('#modal-form-schedule').modal('show');
                         var schedule_id = $('#schedule_id').val();
                         var category_id = $('#category_id').val();  
@@ -468,7 +468,7 @@
                         countSchedule(event_id);
                     },
                     error: function(response){
-                        $('.error-modal').addClass('alert alert-danger').html(response.responseJSON.message);
+                        $('.error-modal').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                     }
                 }); 
             });
@@ -563,7 +563,7 @@
                         },
                         error: function(response){
                             $('#modal-form-schedule').modal('hide');
-                            $('.error').addClass('alert alert-success').html(response.responseJSON.message);
+                            $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                         }
                     });
             }
@@ -612,7 +612,7 @@
                             $('#title-update-schedule').show();
                             $('#button_update_schedule').show();
                             $('#button_save_schedule').hide();
-                            $('.error-modal').addClass('alert alert-success').html(data.message);
+                            $('.error-modal').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                         },
                         error: function(response){
                             HoldOn.close();
@@ -623,7 +623,7 @@
                                     $('.'+key).addClass('has-error');
                                 });
                             } else {
-                                $('.error-modal').addClass('alert alert-danger').html(response.responseJSON.message);
+                                $('.error-modal').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                             }
                         }
                     });
@@ -650,7 +650,7 @@
                             $('#title-update-schedule').show();
                             $('#button_update_schedule').show();
                             $('#button_save_schedule').hide();
-                            $('.error-modal').addClass('alert alert-success').html(data.message);
+                            $('.error-modal').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                         },
                         error: function(response){
                             HoldOn.close();
@@ -661,7 +661,7 @@
                                     $('.'+key).addClass('has-error');
                                 });
                             } else {
-                                $('.error-modal').addClass('alert alert-danger').html(response.responseJSON.message);
+                                $('.error-modal').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                             }
                         }
                     });

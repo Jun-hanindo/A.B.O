@@ -141,7 +141,7 @@
                             loadDataEvent();
                         }
                         $('#modal-form').modal('hide');
-                        $('.error-'+category).addClass('alert alert-success').html(data.message);
+                        $('.error-'+category).html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                     },
                     error: function(response){
                         HoldOn.close();
@@ -182,7 +182,7 @@
                             loadDataEvent();
                         }
                         $('#modal-form').modal('hide');
-                        $('.error-'+category).addClass('alert alert-success').html(data.message);
+                        $('.error-'+category).html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                     },
                     error: function(response){
                         HoldOn.close();
@@ -228,8 +228,8 @@
                         }else{
                             loadDataEvent();
                         }
-                        $('#modal-form-slider').modal('hide');
-                        $('.error-slider').addClass('alert alert-success').html(response.responseJSON.message);
+                        $('#modal-form').modal('hide');
+                        $('.error-'+category).addClass('alert alert-success').html(response.responseJSON.message);
                     }
                 });
         }
