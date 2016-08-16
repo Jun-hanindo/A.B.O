@@ -161,6 +161,7 @@ return [
     'max_3_event' => 'Maximum 3 event',
     'general' => 'General',
     'seated' => 'Seated',
+    'event_categories' => 'Event Categories'
     // 'january' => 'January',
     // 'february' => 'February',
     // 'march' => 'March',

@@ -88,6 +88,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::post('{id}/avaibility-edit', array('as' => 'admin-update-event-avaibility', 'uses' => 'EventsController@avaibilityUpdate'));
         Route::post('draft', array('as' => 'admin-draft-event', 'uses' => 'EventsController@draft'));
         Route::get('combo', array('as' => 'list-combo-event', 'uses' => 'EventsController@comboEvent'));
+        Route::get('category', array('as' => 'admin-index-event-category', 'uses' => 'CategoriesController@index'));
+        Route::get('category/create', array('as' => 'admin-create-event-category', 'uses' => 'CategoriesController@create'));
+        Route::post('category/store', array('as' => 'admin-post-event-category', 'uses' => 'CategoriesController@store'));
+        Route::get('category/{id}/edit', array('as' => 'admin-edit-event-category', 'uses' => 'CategoriesController@edit'));
+        Route::post('category/{id}/update', array('as' => 'admin-update-event-category', 'uses' => 'CategoriesController@update'));
+        Route::delete('category/{id}/delete', array('as' => 'admin-delete-event-category', 'uses' => 'CategoriesController@destroy'));
 
         
     });

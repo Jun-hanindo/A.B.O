@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Venue;
 use App\Models\Event;
 use App\Models\EventSchedule;
+use App\Models\Category;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\event\EventRequest;
 
@@ -65,6 +66,7 @@ class EventsController extends BaseController
     public function create()
     {
         $data['dropdown'] = Venue::dropdown();
+        $data['categories'] = Category::dropdown();
         return view('backend.admin.event.create')->withData($data);
     }
 
@@ -130,6 +132,7 @@ class EventsController extends BaseController
         //
         $data = $this->model->findEventByID($id);
         $data->src = url('uploads/events');
+        $data->categories_selected = $data->categories()->get();
         if(isset($data->featured_image1)){
             $data->src_featured_image1 = $data->src.'/'.$data->featured_image1; 
         }
@@ -143,6 +146,7 @@ class EventsController extends BaseController
         }
 
         $data['dropdown'] = Venue::dropdown();
+        $data['categories'] = Category::dropdown();
         if($data['event_type'] == TRUE){
             $data['checked'] = 'checked';
         }else{

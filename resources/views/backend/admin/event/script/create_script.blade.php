@@ -4,6 +4,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
             loadTinyMce();
+            $(".categories").select2();
             $('#button_submit').hide();
             $('#button_draft').show();
 

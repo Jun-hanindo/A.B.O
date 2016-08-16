@@ -23,25 +23,9 @@ class CategoryRequest extends Request
      */
     public function rules()
     {
-        $req = Request::all();
-
-        if(isset($req['id'])) {
-            $id = $req['id'];
-            return [
-                'name'         => 'required|unique:categories,name'.($id?",$id" : ''),
-                'parent' => 'required',
-                'slug' => 'required'
-            ];
-
-        } else {
-
-            return [
-                'name' => 'required|unique:categories,name',
-                'parent' => 'required',
-                'slug' => 'required'
-            ];
-                
-        }
-        
+        return [
+            'name'          => 'required',
+            'description'   => 'required',
+        ];
     }
 }

@@ -48,6 +48,12 @@ class Event extends Model
         return $this->hasMany('App\Models\Homepage','event_id');
     }
 
+    public function Categories()
+    {
+        return $this->belongsToMany('App\Models\Category', 'event_categories', 'event_id', 'category_id');
+
+    }
+
     /**
      * Return event's query for Datatables.
      *
@@ -119,6 +125,7 @@ class Event extends Model
                 $img3->resize(150, 101);
 	            $img3->save($pathDest.'/'.$filename3); 
 	        }
+            $this->categories()->attach($param['categories']);
             return $this;
         } else {
             return false;
@@ -209,6 +216,7 @@ class Event extends Model
                     $img3->resize(150, 101);
                     $img3->save($pathDest.'/'.$filename3);
                 }
+                $data->categories()->sync($param['categories']);
 
                 return $data;
 

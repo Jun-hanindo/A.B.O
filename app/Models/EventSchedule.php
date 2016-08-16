@@ -123,8 +123,4 @@ class EventSchedule extends Model
     {
         return EventSchedule::where('event_id', $event_id)->count();
     }
-
-    public function getFirstDate($event_id){
-        return 1;
-    }
 }
