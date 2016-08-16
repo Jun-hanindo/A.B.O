@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Homepage;
 use App\Models\Event;
+use App\Models\Category;
 //use View;
 
 class HomeController extends Controller
@@ -29,7 +30,12 @@ class HomeController extends Controller
 
     public function discover()
     {
-        return view('frontend.partials.discover');
+        $result['sliders'] = $this->model->getHomepage('slider');
+        $result['category'] = Category::all();
+        $result['src'] = url('uploads/events').'/';
+        $modelEvent = new Event();
+        $result['events'] = $modelEvent->getEvent();
+        return view('frontend.partials.discover', $result);
     }
 
     // public function event()

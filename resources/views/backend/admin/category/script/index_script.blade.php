@@ -57,12 +57,13 @@
             {
                 modal_loader();
                 var name = $("#name").val();
+                var icon = $("#icon").val();
                 var description = tinyMCE.get('description').getContent();
                 $.ajax({
                     url: "{{ route('admin-post-event-category') }}",
                     type: "POST",
                     dataType: 'json',
-                    data: {'name':name,"description":description},
+                    data: {'name':name,"description":description,"icon":icon},
                     success: function (data) {
                         HoldOn.close();
                         loadData();
@@ -88,6 +89,7 @@
             {
                 
                 var name = $("#name").val();
+                var icon = $("#icon").val();
                 var description = tinyMCE.get('description').getContent();
                 var id = $("#id").val();
                 modal_loader();
@@ -97,7 +99,7 @@
                     url: uri,
                     type: "POST",
                     dataType: 'json',
-                    data: {'name':name,"description":description},
+                    data: {'name':name,"description":description,"icon":icon},
                     success: function (data) {
                         HoldOn.close();
                         loadData();
@@ -139,6 +141,7 @@
 
                     $("#id").val(data.id);
                     $("#name").val(data.name);
+                    $("#icon").val(data.icon);
                     tinyMCE.get('description').setContent(data.description);
                 },
                 error: function(response){
@@ -151,6 +154,7 @@
 
         function clearInput(){
             $("#name").val('');
+            $("#icon").val('');
             $("#id").val('');
             tinyMCE.get('description').setContent('');
         }

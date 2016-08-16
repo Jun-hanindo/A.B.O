@@ -37,7 +37,7 @@
                                     <div class="moreDetail">
                                         <form action="{{ URL::route('event-detail', $slider->Event->slug) }}">
                                             <button class="btn btnDetail">More Details</button>
-                                        </form>
+                    </form>
                                         
                                     </div>
                                 </div>
@@ -63,34 +63,34 @@
             <h2>New Release</h2>
             <div class="row">
                 @foreach($events as $key => $event) 
-                <a href="{{ URL::route('event-detail', $event->Event->slug) }}">
-                    <div class="col-md-4 box-release">
-                        <img src="{{ $src.$event->Event->featured_image2 }}">
-                        <div class="boxInfo info1">
-                            <ul>
-                                <li class="eventType">{{ $event->Event->event_type == true ? trans('general.general') : trans('general.seated') }}</li>
-                                <li class="eventName">{{ $event->Event->title }}</li>
-                                @php 
-                                    $schedule = $event->Event->EventSchedule;
-                                    $first = true;
-                                @endphp
-                                @if(!empty($schedule))
-                                    @foreach($schedule as $sch)
-                                        @if($first)
-                                            <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ date('d F Y', strtotime($sch->date_at)) }}</li>
-                                            {{ $first = false }}
-                                        @endif
-                                    @endforeach
-                                @endif
-                                <li class="eventPlace">{{ $event->Event->Venue->name }}</li>
-                            </ul>
+                    <a href="{{ URL::route('event-detail', $event->Event->slug) }}">
+                        <div class="col-md-4 box-release">
+                            <img src="{{ $src.$event->Event->featured_image2 }}">
+                            <div class="boxInfo info1">
+                                <ul>
+                                    <li class="eventType">{{ $event->Event->event_type == true ? trans('general.general') : trans('general.seated') }}</li>
+                                    <li class="eventName">{{ $event->Event->title }}</li>
+                                    @php 
+                                        $schedule = $event->Event->EventSchedule;
+                                        $first = true;
+                                    @endphp
+                                    @if(!empty($schedule))
+                                        @foreach($schedule as $sch)
+                                            @if($first)
+                                                <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ date('d F Y', strtotime($sch->date_at)) }}</li>
+                                                {{ $first = false }}
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                    <li class="eventPlace">{{ $event->Event->Venue->name }}</li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
-                </a>
             </div>
             <div class="loadMore">
-                <button class="btn btnLoad">Discover More Events</button>
+                        <a href="{{ URL::route('discover')}}" class="btn btnLoad">Discover More Events</a>
             </div>
         </div>
     </section>

@@ -322,4 +322,9 @@ class Event extends Model
 
         }
     }
+
+    public function getEvent()
+    {
+        return Event::where('avaibility', true)->get();
+    }
 }

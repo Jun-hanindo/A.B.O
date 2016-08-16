@@ -50,6 +50,7 @@ class Category extends Model
     {
         $this->name = $param['name'];
         $this->description = $param['description'];
+        $this->icon = $param['icon'];
 
         if($this->save()){
             return $this;
@@ -79,6 +80,7 @@ class Category extends Model
         if (!empty($data)) {
             $data->name = $param['name'];
             $data->description = $param['description'];
+            $data->icon = $param['icon'];
 
             if($data->save()){
 
