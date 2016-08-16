@@ -64,5 +64,49 @@ class UsersTableSeeder extends Seeder
 
             Sentinel::findRoleBySlug($this->roleSlugsArray[$rand])->users()->attach(Sentinel::findById($i));
         }
+
+        Sentinel::registerAndActivate([
+            'avatar' => $avatar,
+            'email' => 'jun.ledesma@hanindogroup.com',
+            'password' => 'HAS#55',
+            'first_name' => 'Super',
+            'last_name' => 'Administrator',
+            'is_admin' => true,
+        ]);
+
+        Sentinel::findRoleBySlug('super-admin')->users()->attach(Sentinel::findById(6));
+
+        Sentinel::registerAndActivate([
+            'avatar' => $avatar,
+            'email' => 'dimas.taufiq@hanindogroup.com',
+            'password' => 'HAS#55',
+            'first_name' => 'Super',
+            'last_name' => 'Administrator',
+            'is_admin' => true,
+        ]);
+
+        Sentinel::findRoleBySlug('super-admin')->users()->attach(Sentinel::findById(7));
+
+        Sentinel::registerAndActivate([
+            'avatar' => $avatar,
+            'email' => 'agus.ramadhoni@hanindogroup.com',
+            'password' => 'HAS#55',
+            'first_name' => 'Super',
+            'last_name' => 'Administrator',
+            'is_admin' => true,
+        ]);
+
+        Sentinel::findRoleBySlug('super-admin')->users()->attach(Sentinel::findById(8));
+
+        Sentinel::registerAndActivate([
+            'avatar' => $avatar,
+            'email' => 'klaudia.ginting@hanindogroup.com',
+            'password' => 'HAS#55',
+            'first_name' => 'Super',
+            'last_name' => 'Administrator',
+            'is_admin' => true,
+        ]);
+
+        Sentinel::findRoleBySlug('super-admin')->users()->attach(Sentinel::findById(9));
     }
 }
