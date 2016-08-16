@@ -69,8 +69,8 @@ class UsersTableSeeder extends Seeder
             'avatar' => $avatar,
             'email' => 'jun.ledesma@hanindogroup.com',
             'password' => 'HAS#55',
-            'first_name' => 'Super',
-            'last_name' => 'Administrator',
+            'first_name' => 'Jun',
+            'last_name' => 'Ledesma',
             'is_admin' => true,
         ]);
 
@@ -80,8 +80,8 @@ class UsersTableSeeder extends Seeder
             'avatar' => $avatar,
             'email' => 'dimas.taufiq@hanindogroup.com',
             'password' => 'HAS#55',
-            'first_name' => 'Super',
-            'last_name' => 'Administrator',
+            'first_name' => 'Dimas',
+            'last_name' => 'Taufiq',
             'is_admin' => true,
         ]);
 
@@ -91,8 +91,8 @@ class UsersTableSeeder extends Seeder
             'avatar' => $avatar,
             'email' => 'agus.ramadhoni@hanindogroup.com',
             'password' => 'HAS#55',
-            'first_name' => 'Super',
-            'last_name' => 'Administrator',
+            'first_name' => 'Agus',
+            'last_name' => 'Ramadhoni',
             'is_admin' => true,
         ]);
 
@@ -102,8 +102,8 @@ class UsersTableSeeder extends Seeder
             'avatar' => $avatar,
             'email' => 'klaudia.ginting@hanindogroup.com',
             'password' => 'HAS#55',
-            'first_name' => 'Super',
-            'last_name' => 'Administrator',
+            'first_name' => 'Klaudia',
+            'last_name' => 'Ginting',
             'is_admin' => true,
         ]);
 
