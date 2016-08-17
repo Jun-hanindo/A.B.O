@@ -2,12 +2,12 @@
 
 @section('title', 'User Management')
 
-@section('breadcrumb')
+{{-- @section('breadcrumb')
     <ol class="breadcrumb">
         <li><a href="{!! action('Backend\Admin\DashboardController@index') !!}"><i class="fa fa-users"></i> Home</a></li>
         <li class="active">User Management</li>
     </ol>
-@endsection
+@endsection --}}
 
 @section('header')
     {!! Html::style('assets/plugins/datatables/dataTables.bootstrap.css') !!}
@@ -19,7 +19,7 @@
     </style>
 @endsection
 
-@section('page-header', 'User Management')
+{{-- @section('page-header', 'User Management') --}}
 
 @section('content')
     <div class="box box-primary">

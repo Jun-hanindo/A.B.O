@@ -31,28 +31,18 @@ class HomeController extends Controller
     public function discover()
     {
         $result['sliders'] = $this->model->getHomepage('slider');
-        $result['category'] = Category::all();
         $result['src'] = url('uploads/events').'/';
+        $result['categories'] = Category::all();
         $modelEvent = new Event();
-        $result['events'] = $modelEvent->getEvent();
+        $limit = 9;
+        $result['events'] = $modelEvent->getEvent($limit);
         return view('frontend.partials.discover', $result);
     }
-
-    // public function event()
-    // {
-    //     return view('frontend.partials.event');
-    // }
 
     public function promotion()
     {
         return view('frontend.partials.promotion');
     }
-
-
-    // public function eventSeated()
-    // {
-    //     return view('frontend.partials.event_seated');
-    // }
 
     public function careers()
     {

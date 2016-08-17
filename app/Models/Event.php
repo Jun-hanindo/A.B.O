@@ -125,7 +125,9 @@ class Event extends Model
                 $img3->resize(150, 101);
 	            $img3->save($pathDest.'/'.$filename3); 
 	        }
-            $this->categories()->attach($param['categories']);
+            if(isset($param['categories'])){
+                $this->categories()->attach($param['categories']);
+            }
             return $this;
         } else {
             return false;
@@ -216,7 +218,10 @@ class Event extends Model
                     $img3->resize(150, 101);
                     $img3->save($pathDest.'/'.$filename3);
                 }
-                $data->categories()->sync($param['categories']);
+                if(isset($param['categories'])){
+                    $data->categories()->sync($param['categories']);
+                }
+                
 
                 return $data;
 
@@ -323,8 +328,74 @@ class Event extends Model
         }
     }
 
-    public function getEvent()
+    public function setImageUrl($event){
+        if($event->featured_image1 != ''){
+            $event->featured_image1_url = url('uploads/events').'/'.$event->featured_image1;
+        }
+
+        if($event->featured_image2 != ''){
+            $event->featured_image2_url = url('uploads/events').'/'.$event->featured_image2;
+        }
+
+        if($event->featured_image3 != ''){
+            $event->featured_image3_url = url('uploads/events').'/'.$event->featured_image3;
+        }
+    }
+
+    public function getEvent($limit)
     {
-        return Event::where('avaibility', true)->get();
+        $events = Event::where('avaibility', true)->paginate($limit);
+        if(count($events) > 0){
+            foreach ($events as $key => $event) {
+                $this->setImageUrl($event);
+                $event->venue = $event->Venue;
+
+                $schedule = $event->EventSchedule;
+                $first = true;
+                if(!empty($schedule)){
+                    foreach($schedule as $sch){
+                        if($first){
+                            $event->first_date = date('d F Y', strtotime($sch->date_at));
+                            $first = false;
+                        }
+                    }
+                }
+            }
+            return $events;
+        }else{
+            return false;
+        }
+    }
+
+    public function getEventByCategory($category, $limit)
+    {
+
+        $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
+            'events.slug as slug', 'events.venue_id as venue_id', 'events.avaibility as avaibility', 
+            'events.event_type as event_type', 'event_categories.category_id as category_id')
+            ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
+            ->where('event_categories.category_id','=',$category)
+            ->where('events.avaibility','=',true)
+            ->paginate($limit);
+
+        if(count($events) > 0){
+            foreach ($events as $key => $event) {
+                $this->setImageUrl($event);
+                $event->venue = $event->Venue;
+                $schedule = EventSchedule::where('event_id', $event->id)->get();
+                $first = true;
+                if(!empty($schedule)){
+                    foreach($schedule as $sch){
+                        if($first){
+                            $event->first_date = date('d F Y', strtotime($sch->date_at));
+                            $first = false;
+                        }
+                    }
+                }
+            }
+            return $events;
+        }else{
+            return false;
+        }
     }
 }

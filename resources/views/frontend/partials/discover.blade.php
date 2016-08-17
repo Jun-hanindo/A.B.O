@@ -2,23 +2,20 @@
 @section('title', 'Asia Box Office')
 @section('content')
 <section class="discoverCategory">
-  <div class="container">
-      <h2>Discover</h2>
-      <div class="tabCategory">
-          <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#new" aria-controls="home" role="tab" data-toggle="tab"><img src="{{ asset('assets/frontend/images/catNew.png') }}"><br>What's New</a></li>
-            <li role="presentation"><a href="#art" aria-controls="profile" role="tab" data-toggle="tab"><img src="{{ asset('assets/frontend/images/catArt.png') }}"><br>Arts / Culture</a></li>
-            <li role="presentation"><a href="#comedy" aria-controls="messages" role="tab" data-toggle="tab"><img src="{{ asset('assets/frontend/images/catComedy.png') }}"><br>Comedy</a></li>
-            <li role="presentation"><a href="#concert" aria-controls="settings" role="tab" data-toggle="tab"><img src="{{ asset('assets/frontend/images/catConcert.png') }}"><br>Concerts</a></li>
-            <li role="presentation"><a href="#dance" aria-controls="home" role="tab" data-toggle="tab"><img src="{{ asset('assets/frontend/images/catDance.png') }}"><br>Dance</a></li>
-            <li role="presentation"><a href="#family" aria-controls="profile" role="tab" data-toggle="tab"><img src="{{ asset('assets/frontend/images/catFamily.png') }}"><br>Family</a></li>
-            <li role="presentation"><a href="#food" aria-controls="messages" role="tab" data-toggle="tab"><img src="{{ asset('assets/frontend/images/catFood.png') }}"><br>F & B</a></li>
-            <li role="presentation"><a href="#mice" aria-controls="settings" role="tab" data-toggle="tab"><i class="fa fa-briefcase"></i><br>MICE</a></li>
-            <li role="presentation"><a href="#music" aria-controls="settings" role="tab" data-toggle="tab"><i class="fa fa-music"></i><br>Musical</a></li>
-            <li role="presentation"><a href="#sport" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-trophy"></i><br>Sports</a></li>
-        </ul>
+    <div class="container">
+        <h2>Discover</h2>
+        @if(!empty($categories))
+            <div class="tabCategory">
+                <ul class="nav nav-tabs" role="tablist">
+                @foreach($categories as $key => $category) 
+                    <li role="presentation"><a href="{{ URL::route('category-detail', $category->slug) }}" aria-controls="{{$category->slug}}" role="tab">
+                        <i class="fa fa-{{ $category->icon }}" width="23px" height="23px"></i><br>{{ $category->name }}</a>
+                    </li>
+                @endforeach
+                </ul>
+            </div>
+        @endif
     </div>
-</div>
 </section>
 @if(!empty($sliders))
     <section class="slider-home">
@@ -56,7 +53,7 @@
                                 <div class="moreDetail">
                                     <form action="{{ URL::route('event-detail', $slider->Event->slug) }}">
                                         <button class="btn btnDetail">More Details</button>
-                </form>
+                                    </form>
                                     
                                 </div>
                             </div>
@@ -79,38 +76,32 @@
 @if(!empty($events))
     <section class="newRelease">
         <div class="container">
-            <div class="row">
+            <div class="row append-events">
                 @foreach($events as $key => $event) 
                     <a href="{{ URL::route('event-detail', $event->slug) }}">
                         <div class="col-md-4 box-release">
-                            <img src="{{ $src.$event->featured_image2 }}">
+                            <img src="{{ $event->featured_image2_url }}">
                             <div class="boxInfo info1">
                                 <ul>
                                     <li class="eventType">{{ $event->event_type == true ? trans('general.general') : trans('general.seated') }}</li>
                                     <li class="eventName">{{ $event->title }}</li>
-                                    @php 
-                                        $schedule = $event->EventSchedule;
-                                        $first = true;
-                                    @endphp
-                                    @if(!empty($schedule))
-                                        @foreach($schedule as $sch)
-                                            @if($first)
-                                                <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ date('d F Y', strtotime($sch->date_at)) }}</li>
-                                                {{ $first = false }}
-                                            @endif
-                                        @endforeach
+                                    @if($event->first_date != '')
+                                        <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ $event->first_date }}</li>
                                     @endif
-                                    <li class="eventPlace">{{ $event->Venue->name }}</li>
+                                    <li class="eventPlace">{{ $event->venue->name }}</li>
                                 </ul>
                             </div>
                         </div>
                     </a>
                 @endforeach
             </div>
-            <div class="loadMore">
-                <button class="btn btnLoad">Load More Events</button>
-            </div>
+            @if($events->nextPageUrl() != null)
+                <div class="loadMore">
+                  <a href="javascript:void(0)" class="btn btnLoad">Load More Events</a>
+                </div>
+            @endif
         </div>
     </section>
 @endif
 @stop
+@include('frontend.partials.script.discover_script')

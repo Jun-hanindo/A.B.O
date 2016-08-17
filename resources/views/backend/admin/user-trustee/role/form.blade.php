@@ -6,7 +6,7 @@
     {!! Html::style('assets/plugins/select2/select2.min.css') !!}
 @endsection
 
-@section('page-header', 'Role Management <small>'.$title.'</small>')
+{{-- @section('page-header', 'Role Management <small>'.$title.'</small>')
 
 @section('breadcrumb')
     <ol class="breadcrumb">
@@ -14,7 +14,7 @@
         <li><a href="{!! action('Backend\Admin\UserTrustee\RoleController@index') !!}">Role Management</a></li>
         <li class="active">{{ $title }}</li>
     </ol>
-@endsection
+@endsection --}}
 
 @section('content')
     <div class="row">

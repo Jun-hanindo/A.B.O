@@ -20,7 +20,7 @@ class Category extends Model
 
     public function Events()
     {
-        return $this->belongsToMany('App\Models\Events', 'event_categories', 'event_id', 'category_id');
+        return $this->belongsToMany('App\Models\Event', 'event_categories', 'event_id', 'category_id');
 
     }
 
@@ -111,5 +111,19 @@ class Category extends Model
     public static function dropdown()
     {
         return static::orderBy('name')->lists('name', 'id');
+    }
+
+    public function findCategoryBySlug($slug)
+    {
+        $data = Category::where('slug' , '=', $slug)->first();
+        if (!empty($data)) {
+        
+            return $data;
+        
+        } else {
+        
+            return false;
+
+        }
     }
 }

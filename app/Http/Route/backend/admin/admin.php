@@ -180,8 +180,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::post('terms-and-conditions/store-update', array('as' => 'admin-post-update-terms-and-conditions', 'uses' => 'ManagePagesController@storeUpdateTermsAndConditions'));
         Route::get('faq', array('as' => 'admin-faq', 'uses' => 'ManagePagesController@createEditFaq'));
         Route::post('faq/store-update', array('as' => 'admin-post-update-faq', 'uses' => 'ManagePagesController@storeUpdateFaq'));
-        Route::get('career', array('as' => 'admin-career', 'uses' => 'ManagePagesController@createEditCareer'));
-        Route::post('career/store-update', array('as' => 'admin-post-update-career', 'uses' => 'ManagePagesController@storeUpdateCareer'));
+        Route::get('careers', array('as' => 'admin-career', 'uses' => 'ManagePagesController@createEditCareer'));
+        Route::post('careers/store-update', array('as' => 'admin-post-update-career', 'uses' => 'ManagePagesController@storeUpdateCareer'));
         Route::get('privacy-policy', array('as' => 'admin-privacy-policy', 'uses' => 'ManagePagesController@createEditPrivacyPolicy'));
         Route::post('privacy-policy/store-update', array('as' => 'admin-post-update-privacy-policy', 'uses' => 'ManagePagesController@storeUpdatePrivacyPolicy'));
         Route::get('about-us', array('as' => 'admin-about-us', 'uses' => 'ManagePagesController@createEditAboutUs'));

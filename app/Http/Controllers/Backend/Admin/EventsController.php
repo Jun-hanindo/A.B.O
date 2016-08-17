@@ -132,7 +132,6 @@ class EventsController extends BaseController
         //
         $data = $this->model->findEventByID($id);
         $data->src = url('uploads/events');
-        $data->categories_selected = $data->categories()->get();
         if(isset($data->featured_image1)){
             $data->src_featured_image1 = $data->src.'/'.$data->featured_image1; 
         }
@@ -144,6 +143,14 @@ class EventsController extends BaseController
         if(isset($data->featured_image3)){
             $data->src_featured_image3 = $data->src.'/'.$data->featured_image3; 
         }
+
+        $cat_selected = $data->categories()->get();
+        $selected = [];
+        foreach ($cat_selected as $key => $value) {
+            $selected[] = $value->id;
+        }
+        $data['selected'] = $selected;
+
 
         $data['dropdown'] = Venue::dropdown();
         $data['categories'] = Category::dropdown();

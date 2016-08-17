@@ -265,6 +265,8 @@
     {!! Html::script('assets/frontend/js/jquery.menu-aim.js') !!}
     {!! Html::script('assets/frontend/js/main.js') !!}
     {!! Html::script('assets/frontend/js/bootstrap.min.js') !!}
+    
+    @yield('script')
 
     <script type="text/javascript">
     $(document).ready(function(){

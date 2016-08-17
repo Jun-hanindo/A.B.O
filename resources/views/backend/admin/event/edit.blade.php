@@ -47,8 +47,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('category') }} category">
                                 {!! Form::label('category', trans('general.category')) !!}
-                                {{-- $data->categories_selected --}}
-                                {!! Form::select('categories[]', $data['categories'], null, ['class' => 'form-control categories', 'multiple' => 'multiple', 'id' => 'categories']) !!}
+                                {!! Form::select('categories[]', $data['categories'], $data['selected'], ['class' => 'form-control categories', 'multiple' => 'multiple', 'id' => 'categories']) !!}
                                 {!! Form::errorMsg('category') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('description') }} description">

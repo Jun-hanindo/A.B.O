@@ -28,4 +28,39 @@ class EventsController extends Controller
             return view('frontend.partials.event_seated', $result); 
         }
     }
+
+    public function eventDiscover()
+    {
+        try {
+            $limit = 9;
+            $events = $this->model->getEvent($limit);
+            if($events) {
+
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => 'success',
+                    'data' => $events
+                ],200);
+
+            } else {
+
+                return response()->json([
+                    'code' => 400,
+                    'status' => 'error',
+                    'data' => array(),
+                    'message' => trans('general.data_empty')
+                ],400);
+            
+            }
+    
+        } catch (\Exception $e) {
+            return response()->json([
+                'code' => 400,
+                'status' => 'error',
+                'data' => array(),
+                'message' => $e->getMessage()
+            ],400);
+        }   
+    }
 }

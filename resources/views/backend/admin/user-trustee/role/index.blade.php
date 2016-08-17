@@ -12,14 +12,14 @@
     </style>
 @endsection
 
-@section('page-header', 'Role Management')
+{{-- @section('page-header', 'Role Management')
 
 @section('breadcrumb')
     <ol class="breadcrumb">
         <li><a href="{!! action('Backend\Admin\DashboardController@index') !!}"><i class="fa fa-user-secret"></i> Home</a></li>
         <li class="active">Role Management</li>
     </ol>
-@endsection
+@endsection --}}
 
 @section('content')
     <div class="box box-primary">

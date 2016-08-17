@@ -49,7 +49,7 @@ class MenusTableSeeder extends Seeder
                 ['name' => str_slug('Contact Us'), 'display_name' => 'Contact Us', 'icon' => 'phone-square', 'href' => 'admin/manage-pages/contact-us', 'pattern' => 'admin/manage-pages'],
                 ['name' => str_slug('Terms and Conditions'), 'display_name' => 'Terms and Conditions', 'icon' => 'file-text', 'href' => 'admin/manage-pages/terms-and-conditions', 'pattern' => 'admin/manage-pages'],
                 ['name' => str_slug('FAQ'), 'display_name' => 'FAQ', 'icon' => 'question-circle', 'href' => 'admin/manage-pages/faq', 'pattern' => 'admin/manage-pages'],
-                ['name' => str_slug('Career'), 'display_name' => 'Career', 'icon' => 'briefcase', 'href' => 'admin/manage-pages/career', 'pattern' => 'admin/manage-pages'],
+                ['name' => str_slug('Career'), 'display_name' => 'Career', 'icon' => 'briefcase', 'href' => 'admin/manage-pages/careers', 'pattern' => 'admin/manage-pages'],
                 ['name' => str_slug('Privacy Policy'), 'display_name' => 'Privacy Policy', 'icon' => 'lock', 'href' => 'admin/manage-pages/privacy-policy', 'pattern' => 'admin/manage-pages'],
                 ['name' => str_slug('About Us'), 'display_name' => 'About Us', 'icon' => 'info-circle', 'href' => 'admin/manage-pages/about-us', 'pattern' => 'admin/manage-pages'],
             ]],

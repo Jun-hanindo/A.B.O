@@ -37,7 +37,7 @@
                                     <div class="moreDetail">
                                         <form action="{{ URL::route('event-detail', $slider->Event->slug) }}">
                                             <button class="btn btnDetail">More Details</button>
-                    </form>
+                                        </form>
                                         
                                     </div>
                                 </div>
