@@ -13,7 +13,7 @@ class AddColumnPriceInfoToEvent extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->text('price_info')->nullable();
+            $table->text('slug')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ class AddColumnPriceInfoToEvent extends Migration
     public function down()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn('price_info');
+            $table->dropColumn('slug');
         });
     }
 }

@@ -12,9 +12,12 @@ class ModifyAddmisionTypeEvents extends Migration
      */
     public function up()
     {
-        Schema::table('events', function ($table) {
-            $table->text('admission')->change();
-        });
+        DB::statement("ALTER TABLE events 
+            ALTER COLUMN admission TYPE text");
+        // Schema::table('events', function ($table) {
+        //     $sql = 'ALTER TABLE events ALTER COLUMN admission TYPE text';
+        //     $table->text('admission')->change();
+        // });
     }
 
     /**
@@ -24,8 +27,11 @@ class ModifyAddmisionTypeEvents extends Migration
      */
     public function down()
     {
-        Schema::table('events', function ($table) {
-            $table->string('admission')->change();
-        });
+        DB::statement("ALTER TABLE events 
+            ALTER COLUMN admission TYPE varchar");
+        // Schema::table('events', function ($table) {
+        //     $sql = 'ALTER TABLE events ALTER COLUMN admission TYPE character varying(255)';
+        //     $table->string('admission')->change();
+        // });
     }
 }
