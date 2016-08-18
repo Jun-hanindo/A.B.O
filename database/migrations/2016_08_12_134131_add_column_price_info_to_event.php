@@ -13,7 +13,7 @@ class AddColumnPriceInfoToEvent extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->text('slug')->nullable();
+            $table->string('slug')->nullable();
         });
     }
 
