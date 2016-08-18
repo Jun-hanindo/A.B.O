@@ -7,6 +7,11 @@
         @if(!empty($categories))
             <div class="tabCategory">
                 <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#new" aria-controls="home" role="tab" data-toggle="tab">
+                        <i class="fa fa-certificate" width="23px" height="23px"></i><br>What's New
+                    </a>
+                </li>
                 @foreach($categories as $key => $category) 
                     <li role="presentation"><a href="{{ URL::route('category-detail', $category->slug) }}" aria-controls="{{$category->slug}}" role="tab">
                         <i class="fa fa-{{ $category->icon }}" width="23px" height="23px"></i><br>{{ $category->name }}</a>

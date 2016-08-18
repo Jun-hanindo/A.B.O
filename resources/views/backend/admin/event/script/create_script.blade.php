@@ -4,7 +4,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
             loadTinyMce();
-            $(".categories").select2();
+            var select2 = $(".categories").select2();
             $('#button_submit').hide();
             $('#button_draft').show();
 
@@ -653,7 +653,6 @@
                     $(".form-group").removeClass('has-error');
                     $('.error-modal').removeClass('alert alert-danger');
                     $('.error-modal').html('');
-                    console.log($('#form-event-category').serialize());
                     modal_loader();
                     $.ajax({
                         url: "{{ URL::to('admin/event-schedule-category')}}"+'/'+id+'/update',
@@ -705,7 +704,67 @@
                 $("#price").val('');
             }
 
+            $('.addCategory').on('click',function(){
+                $('#modal-form-cat').modal('show');
+                $('#title-create-cat').show();
+                $('#button_save-cat').show();
+            });
+
+
+            $('#modal-form-cat').on('show.bs.modal', function (e) {
+                $("#button_save-cat").unbind('click').bind('click', function () {
+                    save();                
+                });
+                clearInputCat();
+
+                function save()
+                {
+                    modal_loader();
+                    var name = $("#name-cat").val();
+                    var icon = $("#icon-cat").val();
+                    var description = tinyMCE.get('description-cat').getContent();
+                    $.ajax({
+                        url: "{{ route('admin-post-event-category') }}",
+                        type: "POST",
+                        dataType: 'json',
+                        data: {'name':name,"description":description,"icon":icon},
+                        success: function (data) {
+                            HoldOn.close();
+
+                            $("select.categories").append('<option value="'+data.last_id+'" selected="selected">'+name+'</option>');
+                            //console.log($(".categories").select2('data'));
+                            //var set = $(".categories").select2('data', { id:data.last_id, text: name});
+                            var existingData = $(".categories").select2("data");
+                            existingData.push({ id: data.last_id, text: name });
+                            $(".categories").select2("data", existingData);
+                            console.log($(".categories").select2("data", existingData));
+                            $('#modal-form-cat').modal('hide');
+                            $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        },
+                        error: function(response){
+                            HoldOn.close();
+                            if (response.status === 422) {
+                                var data = response.responseJSON;
+
+                                $.each(data,function(key,val){
+                                    $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key+'-cat'));
+                                    $('.'+key+'-cat').addClass('has-error');
+                                });
+                            } else {
+                                $('.error-modal-cat').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                            }
+                        }
+                    });
+                }
+
+            });
 
         });
+
+        function clearInputCat(){
+            $("#name-cat").val('');
+            $("#icon-cat").val('');
+            tinyMCE.get('description-cat').setContent('');
+        }
     </script>
 @endsection

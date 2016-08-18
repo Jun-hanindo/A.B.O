@@ -54,6 +54,7 @@ class CategoriesController extends BaseController
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
+                'last_id' => $saveData->id,
                 'message' => '<strong>'.$saveData->name.'</strong> '.trans('general.save_success')
             ],200);
         
@@ -147,6 +148,24 @@ class CategoriesController extends BaseController
             return redirect()->route('admin-index-event-category');
 
         }
+    }
+
+    public function comboCategory(Request $request){
+        $term = $request->q;
+        
+        $results = Category::where('name', 'ilike', '%'.$term.'%')->get();
+
+        foreach ($results as $result) {
+            $data[] = array('id'=>$result->id,'text'=>$result->name);
+        }
+        
+        
+        $resData = array(
+            "success" => true,
+            "results" => $data);
+
+        return json_encode($resData);
+        exit;
     }
 
 }

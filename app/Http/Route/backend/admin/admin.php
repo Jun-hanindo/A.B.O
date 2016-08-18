@@ -11,9 +11,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
 
         // Menu Management...
         Route::resource('menus', 'MenuController', ['except' => 'show']);
+        Route::delete('menus/{id}/delete', 'MenuController@destroy');
 
         // Role Management...
         Route::resource('roles', 'RoleController', ['except' => 'show']);
+        Route::delete('roles/{id}/delete', 'RoleController@delete');
 
         // User Trustee Management...
         Route::resource('users', 'UserController', ['except' => 'show']);
@@ -94,6 +96,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::get('category/{id}/edit', array('as' => 'admin-edit-event-category', 'uses' => 'CategoriesController@edit'));
         Route::post('category/{id}/update', array('as' => 'admin-update-event-category', 'uses' => 'CategoriesController@update'));
         Route::delete('category/{id}/delete', array('as' => 'admin-delete-event-category', 'uses' => 'CategoriesController@destroy'));
+        Route::get('category/combo', array('as' => 'list-combo-event-category', 'uses' => 'CategoriesController@comboCategory'));
 
         
     });

@@ -8,7 +8,7 @@
             <div class="tabCategory">
                 <ul class="nav nav-tabs" role="tablist">
                 @foreach($categories as $key => $cat) 
-                    <li role="presentation"><a href="{{ URL::route('category-detail', $cat->slug) }}" aria-controls="{{$cat->slug}}" role="tab">
+                    <li role="presentation" class="{{ $category->slug == $cat->slug ? 'active' : '' }}""><a href="{{ URL::route('category-detail', $cat->slug) }}" aria-controls="{{$cat->slug}}" role="tab">
                         <i class="fa fa-{{ $cat->icon }}" width="23px" height="23px"></i><br>{{ $cat->name }}</a>
                     </li>
                 @endforeach
@@ -27,7 +27,7 @@
                             <img src="{{ $event->featured_image2_url }}">
                             <div class="boxInfo info1">
                                 <ul>
-                                    <li class="eventType">{{ $event->event_type == true ? trans('general.general') : trans('general.seated') }}</li>
+                                    <li class="eventType"></li>
                                     <li class="eventName">{{ $event->title }}</li>
                                     @if($event->first_date != '')
                                         <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ $event->first_date }}</li>

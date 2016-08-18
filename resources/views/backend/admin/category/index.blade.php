@@ -52,10 +52,17 @@
                 <div class="form-group name">
                     <label for="event" class="control-label">{{ trans('general.name') }} :</label>
                     {!! Form::text('name', old('name'), array('id' => 'name', 'class' => 'form-control')) !!}
+                    {!! Form::errorMsg('name') !!}
+                </div>
+                <div class="form-group icon">
                     <label for="event" class="control-label">{{ trans('general.icon') }} :</label>
                     {!! Form::text('icon', old('icon'), array('id' => 'icon', 'class' => 'form-control')) !!}
+                    {!! Form::errorMsg('icon') !!}
+                </div>
+                <div class="form-group description">
                     <label for="event" class="control-label">{{ trans('general.description') }} :</label>
                     {!! Form::textarea('description', old('description'), array('id' => 'description', 'class' => 'form-control tinymce')) !!}
+                    {!! Form::errorMsg('description') !!}
                 </div>
                 
             </form>

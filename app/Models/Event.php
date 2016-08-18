@@ -344,7 +344,9 @@ class Event extends Model
 
     public function getEvent($limit)
     {
-        $events = Event::where('avaibility', true)->paginate($limit);
+        $events = Event::where('avaibility', true)
+            ->orderBy('created_at', 'desc')
+            ->paginate($limit);
         if(count($events) > 0){
             foreach ($events as $key => $event) {
                 $this->setImageUrl($event);
@@ -376,6 +378,7 @@ class Event extends Model
             ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
             ->where('event_categories.category_id','=',$category)
             ->where('events.avaibility','=',true)
+            ->orderBy('events.created_at', 'desc')
             ->paginate($limit);
 
         if(count($events) > 0){

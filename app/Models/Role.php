@@ -20,7 +20,8 @@ class Role extends Model
      */
     public static function dropdown()
     {
-        return static::orderBy('name')->whereNotIn('slug', ['super-admin'])->lists('name', 'id');
+        //return static::orderBy('name')->whereNotIn('slug', ['super-admin'])->lists('name', 'id');
+        return static::orderBy('name')->lists('name', 'id');
     }
 
     public function UserRoles()

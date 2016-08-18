@@ -168,11 +168,11 @@ class UserController extends BaseController
                 'role' => null,
                 'phone' => null,
                 'address' => null,
-                'branch' => null,
-                'username' =>null
+                //'branch' => null,
+                //'username' =>null
             ],
             'dropdown' => Role::dropdown(),
-            'dropdown_branch' => $this->branchLocation->dropdown(),
+            //'dropdown_branch' => $this->branchLocation->dropdown(),
         ];
 
         if ($id > 0) {
@@ -180,9 +180,8 @@ class UserController extends BaseController
             $data['form']['method'] = 'PUT';
             $data['user'] = User::findOrFail($id);
             $data['user']['role'] = $data['user']->roles[0]->id;
-            $data['user']['branch'] = $data['user']->branch_id;
+            //$data['user']['branch'] = $data['user']->branch_id;
         }
-
         return view('backend.admin.user-trustee.user.form', $data);
     }
 
@@ -195,6 +194,8 @@ class UserController extends BaseController
      */
     private function storeUpdate(Request $request, $id = 0)
     {
+
+        
         $data = $request->except('_token', 'avatar', 'role');
         if ($request->hasFile('avatar')) {
             if ($avatar = $this->processAvatar($request)) {
@@ -202,14 +203,16 @@ class UserController extends BaseController
             }
         }
 
-        $data['branch_id'] = $data['branch'];
+        //$data['branch_id'] = isset($data['branch']);
+        $data['branch_id'] = true;
         if (! $id) {
             $data['password'] = str_random();
             $data['is_admin'] = true;
         }
-
         // Saving to database...
         return $this->transaction(function ($model) use ($id, $request, $data) {
+
+        
             if ($id) {
                 $user = Sentinel::findById($id);
                 if (isset($data['avatar'])) {
@@ -221,6 +224,7 @@ class UserController extends BaseController
 
                 $user = Sentinel::update($user, $data);
             } else {
+                //dd(Sentinel::registerAndActivate($data));
                 $user = Sentinel::registerAndActivate($data);
                 $roleSlug = strtolower(Role::find($request->input('role'))->slug);
                 $data['full_name'] = $data['first_name'].' '.$data['last_name'];

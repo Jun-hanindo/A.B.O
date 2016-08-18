@@ -115,7 +115,7 @@ class RoleController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         return $this->transaction(function ($model) use ($id) {
             $this->model->findOrFail($id)->delete();
@@ -133,7 +133,8 @@ class RoleController extends BaseController
                 ->addColumn('action', function ($role) {
                     $url = action('Backend\Admin\UserTrustee\RoleController@edit', $role->id);
 
-                    $action = '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>';
+                    $action = '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
+                    <a href="#" class="btn btn-danger btn-xs" title="Delete" data-id="'.$role->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
 
                     /*if (! $role->is_super_admin) {
                         $action .= '&nbsp;<a href="#" class="btn btn-danger btn-xs" title="Delete" data-id="'.$role->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';

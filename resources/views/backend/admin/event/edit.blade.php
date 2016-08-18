@@ -45,11 +45,6 @@
                                 {!! Form::text('title', $data->title, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.title')]) !!}
                                 {!! Form::errorMsg('title') !!}
                             </div>
-                            <div class="form-group{{ Form::hasError('category') }} category">
-                                {!! Form::label('category', trans('general.category')) !!}
-                                {!! Form::select('categories[]', $data['categories'], $data['selected'], ['class' => 'form-control categories', 'multiple' => 'multiple', 'id' => 'categories']) !!}
-                                {!! Form::errorMsg('category') !!}
-                            </div>
                             <div class="form-group{{ Form::hasError('description') }} description">
                                 {!! Form::label('description', trans('general.description')) !!}
                                 {!! Form::textarea('description', $data->description, ['class' => 'form-control tinymce', 'rows'=> '12', 'placeholder' => trans('general.description')]) !!}
@@ -119,6 +114,11 @@
                             <div class="form-group{{ Form::hasError('buylink') }} buylink">
                                 {!! Form::label('buylink', trans('general.buylink')) !!}
                                 {!! Form::text('buylink', $data->buylink, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.buylink')]) !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('category') }} category">
+                                {!! Form::label('category', trans('general.category')) !!} <a href="javascript:void(0)" class="btn btn-warning btn-xs addCategory" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
+                                {!! Form::select('categories[]', $data['categories'], $data['selected'], ['class' => 'form-control categories', 'multiple' => 'multiple', 'id' => 'categories']) !!}
+                                {!! Form::errorMsg('category') !!}
                             </div>
                             <div class="box-footer">
                                 <a href="{{ route('admin-index-event') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>
@@ -218,6 +218,40 @@
         </div>
       </div>
     </div>
+
+    <div class="modal fade" id="modal-form-cat" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="ModalLabel"><span id="title-create-cat" style="display:none">{{ trans('general.create_new') }}</span></h4>
+          </div>
+          <div class="modal-body">
+            <div class="error-modal-cat"></div>
+            <form id="form-cat">
+                <input type="hidden" name="id" class="form-control" id="id-cat">
+                <div class="form-group name">
+                    <label for="event" class="control-label">{{ trans('general.name') }} :</label>
+                    {!! Form::text('name-cat', old('name'), array('id' => 'name-cat', 'class' => 'form-control')) !!}
+                </div>
+                <div class="form-group icon">
+                    <label for="event" class="control-label">{{ trans('general.icon') }} :</label>
+                    {!! Form::text('icon-cat', old('icon'), array('id' => 'icon-cat', 'class' => 'form-control')) !!}
+                </div>
+                <div class="form-group description">
+                    <label for="event" class="control-label">{{ trans('general.description') }} :</label>
+                    {!! Form::textarea('description-cat', old('description'), array('id' => 'description-cat', 'class' => 'form-control tinymce')) !!}
+                </div>
+                
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="button_save-cat" class="btn btn-primary" title="{{ trans('general.button_save') }}">{{ trans('general.button_save') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <div id="delete-modal-schedule" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
