@@ -12,9 +12,8 @@ class ModifyColumnGmapLinkVenue extends Migration
      */
     public function up()
     {
-        Schema::table('venues', function ($table) {
-            $table->string('gmap_link', 1000)->change();
-        });
+        DB::statement("ALTER TABLE venues 
+            ALTER COLUMN gmap_link TYPE text");
     }
 
     /**
@@ -24,8 +23,7 @@ class ModifyColumnGmapLinkVenue extends Migration
      */
     public function down()
     {
-        Schema::table('venues', function ($table) {
-            $table->string('gmap_link', 255)->change();
-        });
+        DB::statement("ALTER TABLE venues 
+            ALTER COLUMN gmap_link TYPE varchar");
     }
 }

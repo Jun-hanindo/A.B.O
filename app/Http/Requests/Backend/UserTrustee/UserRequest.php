@@ -31,7 +31,7 @@ class UserRequest extends Request
 
         return [
             'avatar' => 'image',
-            'username' => 'required|unique:users,username'.$id,
+            // 'username' => 'required|unique:users,username'.$id,
             'email' => 'required|email|unique:users,email'.$id,
             'first_name' => 'required',
             'last_name' => 'required',

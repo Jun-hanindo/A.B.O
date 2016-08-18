@@ -4,7 +4,7 @@
     {{ trans('general.users') }} {{ trans('general.management') }} - {{ trans('general.view') }}
 @endsection
 
-@section('page-header')
+{{-- @section('page-header')
     {{ trans('general.users') }} {{ trans('general.management') }} <small>{{trans('general.view')}}</small>
 @endsection
 
@@ -14,7 +14,7 @@
         <li><a href="{!! route('admin-index-users') !!}">{{ trans('general.users') }} {{ trans('general.management') }}</a></li>
         <li class="active">{{ trans('general.view') }}</li>
     </ol>
-@endsection
+@endsection --}}
 
 @section('content')
     <div class="row">
@@ -25,12 +25,12 @@
                 </div>
                     {!! Form::open(array('class'=>'form-horizontal')) !!}
                     <div class="box-body">
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             {!! Form::label('username', 'Username', ['class' => 'col-sm-3 control-label ']) !!}
                             <div class="col-sm-9">
                                 <div class="form-control no-border">: {{ $data->username }}</div>
                             </div>
-                        </div>
+                        </div> --}}
                         
                         <div class="form-group">
                             {!! Form::label('email', 'Email', ['class' => 'col-sm-3 control-label']) !!}
@@ -67,7 +67,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ Form::hasError('bio') }} bio">
+                        {{-- <div class="form-group{{ Form::hasError('bio') }} bio">
                             {!! Form::label('bio', 'Bio', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 <div class="form-control no-border">: {{ $data->bio }}</div>
@@ -93,7 +93,7 @@
                             <div class="col-sm-9">
                                 <div class="form-control no-border">: {{ $data->city ? $data->city : "-" }}</div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group{{ Form::hasError('address') }} address">
                             {!! Form::label('address', 'Address', ['class' => 'col-sm-3 control-label']) !!}
@@ -104,7 +104,8 @@
 
                     </div>
                     <div class="box-footer">
-                        <a href="{{ route('admin-index-users') }}" class="btn btn-default">{{ trans('general.button_back') }}</a>
+
+                        <a href="{!! action('Backend\Admin\UserTrustee\UserController@index') !!}" class="btn btn-default">{{ trans('general.button_back') }}</a>
                     </div>
                     {!! Form::close() !!}
             </div>
