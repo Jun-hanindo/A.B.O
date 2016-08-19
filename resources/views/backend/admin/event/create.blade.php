@@ -116,7 +116,7 @@
                                 {!! Form::errorMsg('buylink') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('category') }} category">
-                                {!! Form::label('category', trans('general.category')) !!} <a href="javascript:void(0)" class="btn btn-warning btn-xs addCategory" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
+                                {!! Form::label('category', trans('general.category')) !!} <a href="javascript:void(0)" class="btn btn-primary btn-xs addCategory" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
                                 {!! Form::select('categories[]', $data['categories'], null, ['class' => 'form-control categories', 'multiple' => 'multiple', 'id' => 'categories']) !!}
                                 {!! Form::errorMsg('category') !!}
                             </div>
