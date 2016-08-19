@@ -36,7 +36,6 @@ class HomeController extends Controller
         $modelEvent = new Event();
         $limit = 9;
         $result['events'] = $modelEvent->getEvent($limit);
-        dd($result['events']);
         return view('frontend.partials.discover', $result);
     }
 
