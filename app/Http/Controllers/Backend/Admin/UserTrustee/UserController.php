@@ -24,11 +24,11 @@ class UserController extends BaseController
      *
      * @return void
      */
-    public function __construct(User $model, BranchLocation $branchLocation)
+    public function __construct(User $model/*, BranchLocation $branchLocation*/)
     {
         parent::__construct($model);
-        $this->branchLocation = $branchLocation;
-        $this->middleware('SentinelHasAccess:user-management');
+        /*$this->branchLocation = $branchLocation;
+        $this->middleware('SentinelHasAccess:user-management');*/
     }
 
     /**
@@ -168,7 +168,7 @@ class UserController extends BaseController
                 'role' => null,
                 'phone' => null,
                 'address' => null,
-                //'branch' => null,
+                'branch' => null,
                 //'username' =>null
             ],
             'dropdown' => Role::dropdown(),
@@ -203,15 +203,13 @@ class UserController extends BaseController
             }
         }
 
-        //$data['branch_id'] = isset($data['branch']);
-        $data['branch_id'] = true;
+        //$data['branch_id'] = 1;
         if (! $id) {
             $data['password'] = str_random();
             $data['is_admin'] = true;
         }
         // Saving to database...
         return $this->transaction(function ($model) use ($id, $request, $data) {
-
         
             if ($id) {
                 $user = Sentinel::findById($id);
@@ -224,15 +222,16 @@ class UserController extends BaseController
 
                 $user = Sentinel::update($user, $data);
             } else {
-                //dd(Sentinel::registerAndActivate($data));
+
+                //dd($data);
                 $user = Sentinel::registerAndActivate($data);
                 $roleSlug = strtolower(Role::find($request->input('role'))->slug);
                 $data['full_name'] = $data['first_name'].' '.$data['last_name'];
                 $data['role_slug'] = $roleSlug;
 
-                Mail::send('backend.emails.registration', $data, function ($message) use ($data) {
-                    $message->to($data['email'], $data['full_name'])->subject('Your account has registered.');
-                });
+                // Mail::send('backend.emails.registration', $data, function ($message) use ($data) {
+                //     $message->to($data['email'], $data['full_name'])->subject('Your account has registered.');
+                // });
             }
 
             $role = Sentinel::findRoleById($request->input('role'));

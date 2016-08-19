@@ -97,6 +97,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::post('category/{id}/update', array('as' => 'admin-update-event-category', 'uses' => 'CategoriesController@update'));
         Route::delete('category/{id}/delete', array('as' => 'admin-delete-event-category', 'uses' => 'CategoriesController@destroy'));
         Route::get('category/combo', array('as' => 'list-combo-event-category', 'uses' => 'CategoriesController@comboCategory'));
+        Route::post('category/{id}/avaibility-edit', array('as' => 'admin-update-category-avaibility', 'uses' => 'CategoriesController@avaibilityUpdate'));
 
         
     });

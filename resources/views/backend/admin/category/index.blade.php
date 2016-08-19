@@ -26,12 +26,12 @@
         <div class="box-body">
             @include('flash::message')
             <div class="error"></div>
-            <table id="event-categories-table" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
+            <table id="categories-table" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                 <thead>
                     <tr>
-                        <th class="center-align">Name</th>
-                        <th class="center-align">Description</th>
-                        <th width="12%">Action</th>
+                        <th class="center-align">{{ trans('general.name') }}</th>
+                        <th class="center-align">{{ trans('general.avaibility_on_discover') }}</th>
+                        <th width="12%">{{ trans('general.action') }}</th>
                     </tr>
                 </thead>
             </table>

@@ -37,7 +37,7 @@ class Category extends Model
     function datatables()
     {
 
-        return static::select('id', 'name', 'description');
+        return static::select('id', 'name', 'avaibility');
     
     }
 
@@ -51,6 +51,14 @@ class Category extends Model
         $this->name = $param['name'];
         $this->description = $param['description'];
         $this->icon = $param['icon'];
+
+        $count_avaibility = $this->getCategory();
+
+        if(count($count_avaibility) <= 8){
+            $this->avaibility = true;
+        }else{
+            $this->avaibility = false;
+        }
 
         if($this->save()){
             return $this;
@@ -108,6 +116,24 @@ class Category extends Model
         }
     }
 
+    public function changeAvaibility($param, $id){
+        $data = $this->find($id);
+        if (!empty($data)) {
+            $data->avaibility = $param['avaibility'];
+            if($data->save()) {
+                return $data;
+            } else {
+                return false;
+
+            }
+        
+        } else {
+
+            return false;
+
+        }
+    }
+
     public static function dropdown()
     {
         return static::orderBy('name')->lists('name', 'id');
@@ -125,5 +151,9 @@ class Category extends Model
             return false;
 
         }
+    }
+
+    public function getCategory(){
+        return Category::where('avaibility' , true)->orderBy('name', 'asc')->get();
     }
 }

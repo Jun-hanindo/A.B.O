@@ -35,6 +35,14 @@ class CategoriesController extends BaseController
                 return '<a href="javascript:void(0)" data-id="'.$category->id.'" data-name="'.$category->name.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
                     &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$category->id.'" data-name="'.$category->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
             })
+            ->editColumn('avaibility', function ($category) {
+                if($category->avaibility == TRUE){
+                    $checked = 'checked';
+                }else{
+                    $checked = '';
+                }
+                return '<input type="checkbox" name="avaibility['.$category->id.']" class="avaibility-check" data-id="'.$category->id.'" '.$checked.'>';
+            })
             ->make(true);
     }
 
@@ -166,6 +174,38 @@ class CategoriesController extends BaseController
 
         return json_encode($resData);
         exit;
+    }
+
+    public function avaibilityUpdate(Request $req, $id)
+    {
+        $param = $req->all();
+        $count = count($this->model->getCategory());
+        if($count <= 8 || $param['avaibility'] == 'false' ){
+            $updateData = $this->model->changeAvaibility($param, $id);
+            if(!empty($updateData)) {
+
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
+                ],200);
+
+            } else {
+
+                return response()->json([
+                    'code' => 400,
+                    'status' => 'success',
+                    'message' => trans('general.update_error')
+                ],400);
+
+            }
+        }else if($param['avaibility'] == 'true'){
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.update_error').', '.trans('general.limit_9')
+            ],400);
+        }
     }
 
 }

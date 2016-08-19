@@ -163,6 +163,9 @@ return [
     'seated' => 'Seated',
     'event_categories' => 'Event Categories',
     'icon' => 'Icon',
+    'avaibility_on_discover' => 'Avaibility on Discover',
+    'action'    => 'Action',
+    'limit_9' => 'Limit 9 Items'
     // 'january' => 'January',
     // 'february' => 'February',
     // 'march' => 'March',

@@ -32,7 +32,8 @@ class HomeController extends Controller
     {
         $result['sliders'] = $this->model->getHomepage('slider');
         $result['src'] = url('uploads/events').'/';
-        $result['categories'] = Category::all();
+        $modelCategory = new Category();
+        $result['categories'] = $modelCategory->getCategory();
         $modelEvent = new Event();
         $limit = 9;
         $result['events'] = $modelEvent->getEvent($limit);

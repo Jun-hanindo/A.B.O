@@ -22,9 +22,9 @@ class CategoriesController extends Controller
     {
         $result['category'] = $this->model->findCategoryBySlug($slug);
         $id = $result['category']->id;
-        $result['categories'] = Category::all();
+        $result['categories'] = $this->model->getCategory();
         $modelEvent = new Event();
-        $limit = 3;
+        $limit = 9;
         $result['events'] = $modelEvent->getEventByCategory($id, $limit);
         if($req->ajax()){
             

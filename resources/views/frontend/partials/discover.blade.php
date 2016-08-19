@@ -35,12 +35,15 @@
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">   
-                    @foreach($sliders as $key => $slider)           
+                    @foreach($sliders as $key => $slider)  
+                        @php
+                            $cat = $slider->Event->Categories->first();
+                        @endphp          
                         <div class="item {{ $key == 0 ? 'active' : ' '}}">
                           <img src="{{ $src.$slider->Event->featured_image1 }}" alt="...">
                           <div class="carousel-caption">
                             <div class="container">
-                                <h5></h5>
+                                <h5>{{ $cat['name'] }}</h5>
                                 <h2>{{ $slider->Event->title }}</h2>
                                 @php 
                                     $schedule = $slider->Event->EventSchedule;
@@ -88,7 +91,10 @@
                             <img src="{{ $event->featured_image2_url }}">
                             <div class="boxInfo info1">
                                 <ul>
-                                    <li class="eventType">{{ $event->event_type == true ? trans('general.general') : trans('general.seated') }}</li>
+                                    @php
+                                        $cat = $event->Categories->first();
+                                    @endphp
+                                    <li class="eventType">{{ $cat['name'] }}</li>
                                     <li class="eventName">{{ $event->title }}</li>
                                     @if($event->first_date != '')
                                         <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ $event->first_date }}</li>

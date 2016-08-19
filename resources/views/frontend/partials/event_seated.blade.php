@@ -8,7 +8,10 @@
           <div class="infoBanner bg-purple">
               <div class="container">
                   <div class="detail">
-                      <h5><!-- category --></h5>
+                      @php
+                          $cat = $event->Categories->first();
+                      @endphp
+                      <h5>{{ $cat['name'] }}</h5>
                       <h2>{{ $event->title }}</h2>
                   </div>
                   <div class="moreDetail">

@@ -32,7 +32,7 @@
                             <img src="{{ $event->featured_image2_url }}">
                             <div class="boxInfo info1">
                                 <ul>
-                                    <li class="eventType"></li>
+                                    <li class="eventType">{{ $category->name }}</li>
                                     <li class="eventName">{{ $event->title }}</li>
                                     @if($event->first_date != '')
                                         <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ $event->first_date }}</li>

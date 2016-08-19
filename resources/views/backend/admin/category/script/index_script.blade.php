@@ -10,18 +10,43 @@
 
         function loadData()
         {
-            var table = $('#event-categories-table').DataTable();
+            var table = $('#categories-table').DataTable();
             table.destroy();
-            $('#event-categories-table').DataTable({
+            $('#categories-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '{!! URL::route("datatables-event-category") !!}',
                 columns: [
                     {data: 'name', name: 'name'},
-                    {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false}
-                ]
+                    {data: 'avaibility', name: 'avaibility', searchable: false, orderable: false},
+                    {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
+                ],
+                "fnDrawCallback": function() {
+                    //Initialize checkbos for enable/disable user
+                    $(".avaibility-check").bootstrapSwitch({onText: "Enabled", offText:"Disabled", animate: false});
+                }
             });
+            return table;
         }
+
+        $('#categories-table').on('switchChange.bootstrapSwitch', '.avaibility-check', function(event, state) {
+            var id = $(this).attr('data-id');
+            var uri = "{{ URL::route('admin-update-category-avaibility', "::param") }}";
+            uri = uri.replace('::param', id);
+            var val = $(this).is(":checked") ? true : false;
+            $.ajax({
+                    url: uri,
+                    type: "POST",
+                    dataType: 'json',
+                    data: "avaibility="+val,
+                    success: function (data) {
+                        $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    },
+                    error: function(response){
+                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    }
+                });
+        });
 
         $('.actAdd').on('click',function(){
             $('#modal-form').modal('show');
@@ -31,7 +56,7 @@
             $('#button_save').show();
         });
 
-        $('#event-categories-table tbody').on( 'click', '.actEdit', function () {
+        $('#categories-table tbody').on( 'click', '.actEdit', function () {
             $('#modal-form').modal('show');
             $('#title-create').hide();
             $('#title-update').show();
