@@ -1,4 +1,4 @@
-@extends('backend.auth-template')
+@extends('layout.backend.admin.auth.auth_template')
 
 @section('content')
     <p class="login-box-msg">Type your new password</p>

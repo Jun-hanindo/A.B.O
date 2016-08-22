@@ -8,5 +8,10 @@
    margin: 0 !important;
 }
 .full-width {
-    display:block;
+	display: block;
+    width: 100%;
+    float: left;
+}
+.pull-none{
+	float: none;
 }

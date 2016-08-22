@@ -205,7 +205,7 @@ class UserController extends BaseController
 
         //$data['branch_id'] = 1;
         if (! $id) {
-            $data['password'] = str_random();
+            $data['password'] = str_random(8);
             $data['is_admin'] = true;
         }
         // Saving to database...
@@ -229,9 +229,10 @@ class UserController extends BaseController
                 $data['full_name'] = $data['first_name'].' '.$data['last_name'];
                 $data['role_slug'] = $roleSlug;
 
-                // Mail::send('backend.emails.registration', $data, function ($message) use ($data) {
-                //     $message->to($data['email'], $data['full_name'])->subject('Your account has registered.');
-                // });
+                Mail::send('backend.emails.registration', $data, function ($message) use ($data) {
+                    //$message->from('no-reply@asiaboxoffice.com', 'No Reply Asia Box Office');
+                    $message->to($data['email'], $data['full_name'])->subject('Your account has registered.');
+                });
             }
 
             $role = Sentinel::findRoleById($request->input('role'));

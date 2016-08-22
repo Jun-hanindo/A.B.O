@@ -633,12 +633,12 @@ class AuthController extends Controller
         if (! Reminder::exists($user, $request->input('code'))) {
             flash()->error('You have no right to change password!');
 
-            return redirect()->action('Backend\AuthController@getLogin');
+            return redirect()->action('Auth\AuthController@getLogin');
         }
 
         $data = [
             'form' => [
-                'url' => action('Backend\Admin\AuthController@postChangePassword'),
+                'url' => action('Auth\AuthController@postChangePassword'),
                 'autocomplete' => 'off',
             ],
             'data' => $request->all(),
@@ -665,6 +665,6 @@ class AuthController extends Controller
 
         flash()->success('Password successfully changed!');
 
-        return redirect()->action('Backend\Admin\AuthController@getLogin');
+        return redirect()->action('Auth\AuthController@getLogin');
     }
 }

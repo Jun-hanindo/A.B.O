@@ -122,14 +122,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         
     });
 
-    // Route::group(['prefix' => 'promotion'], function () {
-    //     Route::get('index', array('as' => 'admin-index-promorion', 'uses' => 'PromotionsController@index'));
-    //     Route::get('create', array('as' => 'admin-create-promorion', 'uses' => 'PromotionsController@create'));
-    //     Route::post('store', array('as' => 'admin-post-promorion', 'uses' => 'PromotionsController@store'));
-    //     Route::get('{id}/edit', array('as' => 'admin-edit-promorion', 'uses' => 'PromotionsController@edit'));
-    //     Route::post('{id}/update', array('as' => 'admin-update-promorion', 'uses' => 'PromotionsController@update'));
-    //     Route::delete('{id}/delete', array('as' => 'admin-delete-promorion', 'uses' => 'PromotionsController@destroy'));
-    // });
+    Route::group(['prefix' => 'promotion'], function () {
+        Route::get('', array('as' => 'admin-index-promotion', 'uses' => 'PromotionsController@index'));
+        Route::get('create', array('as' => 'admin-create-promotion', 'uses' => 'PromotionsController@create'));
+        Route::post('store', array('as' => 'admin-post-promotion', 'uses' => 'PromotionsController@store'));
+        Route::get('{id}/edit', array('as' => 'admin-edit-promotion', 'uses' => 'PromotionsController@edit'));
+        Route::post('{id}/update', array('as' => 'admin-update-promotion', 'uses' => 'PromotionsController@update'));
+        Route::delete('{id}/delete', array('as' => 'admin-delete-promotion', 'uses' => 'PromotionsController@destroy'));
+        Route::post('{id}/avaibility-edit', array('as' => 'admin-update-promotion-avaibility', 'uses' => 'PromotionsController@avaibilityUpdate'));
+    });
 
     Route::group(['prefix' => 'venue'], function () {
         Route::get('', array('as' => 'admin-index-venue', 'uses' => 'VenuesController@index'));
@@ -178,18 +179,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     // });
 
     Route::group(['prefix' => 'manage-pages'], function () {
-        Route::get('contact-us', array('as' => 'admin-contact-us', 'uses' => 'ManagePagesController@createEditContactUs'));
-        Route::post('contact-us/store-update', array('as' => 'admin-post-update-contact-us', 'uses' => 'ManagePagesController@storeUpdateContactUs'));
-        Route::get('terms-and-conditions', array('as' => 'admin-terms-and-conditions', 'uses' => 'ManagePagesController@createEditTermsAndConditions'));
-        Route::post('terms-and-conditions/store-update', array('as' => 'admin-post-update-terms-and-conditions', 'uses' => 'ManagePagesController@storeUpdateTermsAndConditions'));
-        Route::get('faq', array('as' => 'admin-faq', 'uses' => 'ManagePagesController@createEditFaq'));
-        Route::post('faq/store-update', array('as' => 'admin-post-update-faq', 'uses' => 'ManagePagesController@storeUpdateFaq'));
-        Route::get('careers', array('as' => 'admin-career', 'uses' => 'ManagePagesController@createEditCareer'));
-        Route::post('careers/store-update', array('as' => 'admin-post-update-career', 'uses' => 'ManagePagesController@storeUpdateCareer'));
-        Route::get('privacy-policy', array('as' => 'admin-privacy-policy', 'uses' => 'ManagePagesController@createEditPrivacyPolicy'));
-        Route::post('privacy-policy/store-update', array('as' => 'admin-post-update-privacy-policy', 'uses' => 'ManagePagesController@storeUpdatePrivacyPolicy'));
-        Route::get('about-us', array('as' => 'admin-about-us', 'uses' => 'ManagePagesController@createEditAboutUs'));
-        Route::post('about-us/store-update', array('as' => 'admin-post-update-about-us', 'uses' => 'ManagePagesController@storeUpdateAboutUs'));
+        Route::get('/{slug}', array('as' => 'admin-contact-us', 'uses' => 'ManagePagesController@createEdit'));
+        Route::post('{slug}/store-update', array('as' => 'admin-post-update-contact-us', 'uses' => 'ManagePagesController@storeUpdate'));
     });
 
     Route::group(['prefix' => 'homepage'], function () {
