@@ -10,6 +10,7 @@ use App\Models\Venue;
 use App\Models\Event;
 use App\Models\EventSchedule;
 use App\Models\Category;
+use App\Models\Promotion;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\event\EventRequest;
 
@@ -329,6 +330,32 @@ class EventsController extends BaseController
         $resData = array(
             "success" => true,
             "results" => $data);
+
+        return json_encode($resData);
+        exit;
+    }
+
+    public function comboEventByPromotion(Request $request){
+        $term = $request->q;
+        
+        $results = Event::select('events.id as id', 'events.title')
+            ->join('event_promotions', 'event_promotions.event_id', '=', 'events.id')
+            ->join('promotions', 'promotions.id', '=', 'event_promotions.promotion_id')
+            ->where('events.avaibility', true)
+            ->where('promotions.avaibility', true)
+            ->where('events.title', 'ilike', '%'.$term.'%')
+            ->groupBy('events.id')
+            ->get();
+
+        foreach ($results as $result) {
+            $data[] = array('id'=>$result->id,'text'=>$result->title);
+        }
+        
+        
+        $resData = array(
+            "success" => true,
+            "results" => $data
+        );
 
         return json_encode($resData);
         exit;

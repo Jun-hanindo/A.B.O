@@ -38,6 +38,7 @@
             </table>
         </div>
     </div>
+
     <div class="box box-primary">
         <div class="box-header">
             <h3 class="box-title">{{ trans('general.event') }}</h3>
@@ -51,6 +52,30 @@
             @include('flash::message')
             <div class="error-event"></div>
             <table id="homepage-events-table" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
+                <thead>
+                    <tr>
+                        <th class="center-align">Event</th>
+                        <!-- <th class="center-align">Category</th> -->
+                        <th width="12%">Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <div class="box box-primary">
+        <div class="box-header">
+            <h3 class="box-title">{{ trans('general.promotion') }}</h3>
+            <div class="pull-right">
+                <span class="error-add-promotion"></span>
+                <a class="btn btn-primary actAdd" href="javascript:void(0)" data-category="promotion" title="{{ trans('general.create_new') }}"><i class="fa fa-plus fa-fw"></i></a>
+                
+            </div>
+        </div>
+        <div class="box-body">
+            @include('flash::message')
+            <div class="error-promotion"></div>
+            <table id="homepage-promotions-table" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                 <thead>
                     <tr>
                         <th class="center-align">Event</th>

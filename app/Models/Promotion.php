@@ -20,7 +20,7 @@ class Promotion extends Model
 
     public function Events()
     {
-        return $this->belongsToMany('App\Models\Event', 'event_promotions', 'event_id', 'promotion_id');
+        return $this->belongsToMany('App\Models\Event', 'event_promotions', 'promotion_id', 'event_id');
 
     }
 
@@ -33,6 +33,21 @@ class Promotion extends Model
     {
 
     	return static::select('id', 'title', 'user_id', 'avaibility')->orderBy('created_at', 'desc');
+    
+    }
+
+    function datatablesByEvent($event_id)
+    {
+
+        $events = Promotion::select('promotions.id as id','promotions.title as title', 'promotions.start_date as start_date',
+            'promotions.end_date as end_date', 'event_promotions.event_id as event_id')
+            ->join('event_promotions', 'event_promotions.promotion_id', '=', 'promotions.id')
+            ->where('promotions.avaibility', true)
+            ->where('event_id', '=', $event_id)
+            //->orderBy('promotions.created_at', 'desc')
+            ->get();
+
+        return $events;
     
     }
 
@@ -67,9 +82,14 @@ class Promotion extends Model
     	if($this->save()){
             if (isset($featured_image)) {
                 $img = Image::make($featured_image);
-                $img->resize(57, 17);
+                $img->resize(50, 50);
                 $img->save($pathDest.'/'.$filename); 
             }
+
+            if(isset($param['event_id'])){
+                $this->events()->attach($param['event_id']);
+            }
+
             return $this;
         } else {
             return false;
@@ -133,7 +153,7 @@ class Promotion extends Model
             if($data->save()) {
                 if(isset($param['featured_image'])){
                     $img = Image::make($featured_image);
-                    $img->resize(57, 17);
+                    $img->resize(50, 50);
                     $img->save($pathDest.'/'.$filename);
                 }
                 return $data;
@@ -162,6 +182,7 @@ class Promotion extends Model
             $oldImage = $data->featured_image;
             File::delete($pathDest.'/'.$oldImage);
             $data->delete();
+            $data->events()->detach();
             return $data;
         } else {
             return false;
@@ -172,10 +193,10 @@ class Promotion extends Model
      * Promotion list for dropdown
      * @return Response
      */
-    public static function dropdown()
-    {
-        return static::orderBy('title')->where('avaibility', 'TRUE')->lists('title', 'id');
-    }
+    // public static function dropdown()
+    // {
+    //     return static::orderBy('title')->where('avaibility', 'TRUE')->lists('title', 'id');
+    // }
 
     public function changeAvaibility($param, $id){
         $data = $this->find($id);

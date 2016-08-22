@@ -20,20 +20,12 @@ class Homepage extends Model
         return $this->belongsTo('App\Models\Event', 'event_id');
 
     }
-    public static function datatablesSlider()
+    public static function datatables($category)
     {
 
         return static::select('homepages.id as id', 'events.title as event', 'homepages.category as category')
                         ->leftJoin('events', 'homepages.event_id','=','events.id')
-                        ->where('homepages.category', '=', 'slider');
-        
-    }
-    public static function datatablesEvent()
-    {
-
-        return static::select('homepages.id as id', 'events.title as event', 'homepages.category as category')
-                        ->leftJoin('events', 'homepages.event_id','=','events.id')
-                        ->where('homepages.category', '=', 'event');
+                        ->where('homepages.category', '=', $category);
         
     }
 

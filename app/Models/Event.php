@@ -54,6 +54,12 @@ class Event extends Model
 
     }
 
+    public function Promotions()
+    {
+        return $this->belongsToMany('App\Models\Promotion', 'event_promotions', 'event_id', 'promotion_id');
+
+    }
+
     /**
      * Return event's query for Datatables.
      *

@@ -59,6 +59,22 @@ class PromotionsController extends BaseController
                 ->make(true);
     }
 
+    public function datatablesByEvent(Request $req)
+    {
+        $param = $req->all();
+        $event_id = $param['event_id'];
+         return datatables($this->model->datatablesByEvent($event_id))
+                ->addColumn('action', function ($promotion) {
+                    return '<a href="javascript:void(0)" data-id="'.$promotion->id.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw">
+                    </i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDeletePromotion" title="Delete" data-id="'.$promotion->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                })
+                ->editColumn('date', function ($promotion){
+                    $time_period = date('d F Y', strtotime($promotion->start_date)).' - '.date('d F Y', strtotime($promotion->end_date));
+                    return $time_period;
+                })
+                ->make(true);
+    }
+
     /**
      * Show the form for create new promotion.
      * paths url    : admin/promotion/create 
@@ -91,17 +107,41 @@ class PromotionsController extends BaseController
         $param = $req->all();
         $user_id = $this->currentUser->id;
         $saveData = $this->model->insertNewPromotion($param, $user_id);
-        if(!empty($saveData))
-        {
-        
-            flash()->success($saveData->title.' '.trans('general.save_success'));
-            return redirect()->route('admin-index-promotion');
-        
-        } else {
 
-            flash()->error(trans('general.save_error'));
-            return redirect()->route('admin-create-promotion')->withInput();
-        
+        if($req->ajax()){
+
+            if(!empty($saveData))
+            {
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'last_insert_id' => $saveData->id,
+                    'message' => '<strong>'.$saveData->title.'</strong> '.trans('general.save_success')
+                ],200);
+            
+            } else {
+
+                return response()->json([
+                    'code' => 400,
+                    'status' => 'success',
+                    'message' => trans('general.save_error')
+                ],400);
+            
+            }
+
+        }else{
+            if(!empty($saveData))
+            {
+            
+                flash()->success($saveData->title.' '.trans('general.save_success'));
+                return redirect()->route('admin-index-promotion');
+            
+            } else {
+
+                flash()->error(trans('general.save_error'));
+                return redirect()->route('admin-create-promotion')->withInput();
+            
+            }
         }
     }
 
@@ -112,22 +152,42 @@ class PromotionsController extends BaseController
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit(Request $req, $id)
     {
         $data = $this->model->findPromotionByID($id);
         $data->src = url('uploads/promotions');
         if(isset($data->featured_image)){
             $data->src_featured_image = $data->src.'/'.$data->featured_image; 
         }
-        if(!empty($data)) {
 
-            return view('backend.admin.promotion.edit')->withData($data);
+        if($req->ajax()){
+            if(!empty($data)) {
 
-        } else {
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => 'Success',
+                    'data' => $data
+                ],200);
 
-            flash()->success(trans('general.data_not_found'));
-            return redirect()->route('admin-index-promotion');
+            } else {
+                return response()->json([
+                    'code' => 400,
+                    'status' => 'error',
+                    'message' => trans('general.data_not_found')
+                ],400);
+            }
+        }else{
+            if(!empty($data)) {
 
+                return view('backend.admin.promotion.edit')->withData($data);
+
+            } else {
+
+                flash()->success(trans('general.data_not_found'));
+                return redirect()->route('admin-index-promotion');
+
+            }
         }
     }
 
@@ -151,17 +211,41 @@ class PromotionsController extends BaseController
         //
         $param = $req->all();
         $updateData = $this->model->updatePromotion($param,$id);
-        if(!empty($updateData)) {
 
-            flash()->success($updateData->title.' '.trans('general.update_success'));
-            return redirect()->route('admin-index-promotion');
+        if($req->ajax()){
 
-        } else {
+            if(!empty($updateData)) {
 
-            flash()->error(trans('general.update_error'));
-            return redirect()->route('admin-edit-promotion')->withInput();
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
+                ],200);
 
+            } else {
+
+                return response()->json([
+                    'code' => 400,
+                    'status' => 'success',
+                    'message' => trans('general.update_error')
+                ],400);
+
+            }
+
+        }else{
+            if(!empty($updateData)) {
+
+                flash()->success($updateData->title.' '.trans('general.update_success'));
+                return redirect()->route('admin-index-promotion');
+
+            } else {
+
+                flash()->error(trans('general.update_error'));
+                return redirect()->route('admin-edit-promotion')->withInput();
+
+            }
         }
+
     }
 
     /**
@@ -171,20 +255,40 @@ class PromotionsController extends BaseController
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $req, $id)
     {
         //
         $data = $this->model->deleteByID($id);
-        if(!empty($data)) {
+        if($req->ajax()){
+            if(!empty($data)) {
 
-            flash()->success(trans('general.delete_success'));
-            return redirect()->route('admin-index-promotion');
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => '<strong>'.trans('general.promotion').'</strong> '.trans('general.delete_success')
+                ],200);
 
-        } else {
+            } else {
 
-            flash()->success(trans('general.data_not_found'));
-            return redirect()->route('admin-index-promotion');
+                return response()->json([
+                    'code' => 400,
+                    'status' => 'success',
+                    'message' => trans('general.data_not_found')
+                ],400);
 
+            }
+        }else{
+            if(!empty($data)) {
+
+                flash()->success(trans('general.delete_success'));
+                return redirect()->route('admin-index-promotion');
+
+            } else {
+
+                flash()->success(trans('general.data_not_found'));
+                return redirect()->route('admin-index-promotion');
+
+            }
         }
     }
 

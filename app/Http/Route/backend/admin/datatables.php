@@ -47,10 +47,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::get('event', array('as' => 'datatables-event', 'uses' => 'EventsController@datatables'));
         Route::get('event-schedule', array('as' => 'datatables-event-schedule', 'uses' => 'EventSchedulesController@datatables'));
         Route::get('event-schedule-category', array('as' => 'datatables-event-schedule-category', 'uses' => 'EventScheduleCategoriesController@datatables'));
-        Route::get('homepage-slider', array('as' => 'datatables-homepage-slider', 'uses' => 'HomepagesController@datatablesSlider'));
-        Route::get('homepage-event', array('as' => 'datatables-homepage-event', 'uses' => 'HomepagesController@datatablesEvent'));
+        Route::get('homepage', array('as' => 'datatables-homepage', 'uses' => 'HomepagesController@datatables'));
         Route::get('event-category', array('as' => 'datatables-event-category', 'uses' => 'CategoriesController@datatables'));
         Route::get('promotion', array('as' => 'datatables-promotion', 'uses' => 'PromotionsController@datatables'));
+        Route::get('event-promotion', array('as' => 'datatables-event-promotion', 'uses' => 'PromotionsController@datatablesByEvent'));
         
 
     });

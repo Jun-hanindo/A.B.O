@@ -176,6 +176,8 @@ return [
     'featured_image' => 'Featured Image',
     'start_date' => 'Start Date',
     'end_date' => 'End Date',
+    'add_more_promotion' => 'add more promotion',
+    'add_promotion' => 'Add Promotion',
     // 'january' => 'January',
     // 'february' => 'February',
     // 'march' => 'March',

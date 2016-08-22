@@ -17,7 +17,7 @@
         .datepicker.dropdown-menu{
             z-index: 1100 !important;
         }
-        #date_at{
+        #date_at, #start_date, #end_date{
             border-radius: 0;
         }
         img[src=""] {
@@ -73,7 +73,20 @@
                                         </tr>
                                     </thead>
                                 </table>
-                                <a class="actAdd add-underline" href="javascript:void(0)" title="{{ trans('general.add_more_schedules_and_prices') }}"><u>+ {{ trans('general.add_more_schedules_and_prices') }}</u></a>
+                                <a class="actAdd add-underline" data-name="schedule" href="javascript:void(0)" title="{{ trans('general.add_more_schedules_and_prices') }}"><u>+ {{ trans('general.add_more_schedules_and_prices') }}</u></a>
+                            </div>
+                            <div class="form-group{{ Form::hasError('promotion') }} promotion">
+                                {!! Form::label('promotion', trans('general.promotion')) !!}
+                                <table id="event-promotion-datatables" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
+                                    <thead>
+                                        <tr>
+                                            <th class="center-align"></th>
+                                            <th>{{ trans('general.title') }}</th>
+                                            <th>{{ trans('general.date') }}</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <a class="addPromotion add-underline" data-name="promotion" href="javascript:void(0)" title="{{ trans('general.add_more_promotion') }}"><u>+ {{ trans('general.add_more_promotion') }}</u></a>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -116,7 +129,7 @@
                                 {!! Form::errorMsg('buylink') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('category') }} category">
-                                {!! Form::label('category', trans('general.category')) !!} <a href="javascript:void(0)" class="btn btn-primary btn-xs addCategory" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
+                                {!! Form::label('category', trans('general.category')) !!} <a href="javascript:void(0)" class="btn btn-primary btn-xs addCategory" title="Add"><i class="fa fa-pencil-square-o fa-fw"></i></a>
                                 {!! Form::select('categories[]', $data['categories'], null, ['class' => 'form-control categories', 'multiple' => 'multiple', 'id' => 'categories']) !!}
                                 {!! Form::errorMsg('category') !!}
                             </div>
@@ -221,8 +234,79 @@
         </div>
       </div>
     </div>
-
-
+    
+    <div class="modal fade" id="modal-form-promotion" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="ModalLabel"><span id="title-create-promotion" style="display:none">{{ trans('general.add_promotion') }}</span><span id="title-update-promotion" style="display:none">{{ trans('general.edit') }}</span></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="error-modal"></div>
+                    <form id="form-event-promotion">
+                        <input type="hidden" name="id" class="form-control" id="promotion_id">
+                            <div class="form-group{{ Form::hasError('title') }} title">
+                                {!! Form::label('title', trans('general.title').' *') !!}
+                                {!! Form::text('title-promo', old('title-promo'), ['id' => 'title-promo', 'class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.title')]) !!}
+                                {!! Form::errorMsg('title') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('description') }} description">
+                                {!! Form::label('description', trans('general.description').' *') !!}
+                                {!! Form::textarea('description-promo', old('description-promo'), ['id' => 'description-promo', 'class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.description')]) !!}
+                                {!! Form::errorMsg('description') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('discount') }} discount full-width">
+                                {!! Form::label('discount', trans('general.discount').' *', array('class' => 'full-width ')) !!}
+                                <div class="col-sm-3 input-group" style="padding:0;">
+                                    {!! Form::text('discount', old('discount'), ['id' => 'discount', 'class' => 'form-control number-only','maxlength'=>'255', 'placeholder' => trans('general.discount')]) !!}
+                                    <div class="input-group-addon">%</div>
+                                    {!! Form::errorMsg('discount') !!}
+                                </div>
+                            </div>
+                            <div class="form-group{{ Form::hasError('discount_period') }} discount_period full-width">
+                                {!! Form::label('discount_period', trans('general.discount_period').' *', array('class' => 'full-width ')) !!}
+                                <div class="col-sm-3 row">
+                                    {!! Form::text('start_date', old('start_date'), ['class' => 'form-control  datepicker', 'id' => 'start_date', 'maxlength'=>'255', 'placeholder' => trans('general.start_date')]) !!}
+                                    {!! Form::errorMsg('start_date') !!}
+                                </div>
+                                {!! Form::label('to', trans('general.to'), array('class' => 'col-sm-1 control-label')) !!}
+                                <div class="col-sm-3 row">
+                                    {!! Form::text('end_date', old('end_date'), ['class' => 'form-control  datepicker', 'id' => 'end_date','maxlength'=>'255', 'placeholder' => trans('general.end_date')]) !!}
+                                    {!! Form::errorMsg('end_date') !!}
+                                </div>
+                            </div>
+                            <div class="form-group{{ Form::hasError('promotion_code') }} promotion_code full-width">
+                                {!! Form::label('promotion_code', trans('general.promotion_code').' *', array('class' => 'full-width ')) !!}
+                                <div class="col-sm-4 row">
+                                    {!! Form::text('code', old('code'), ['id' => 'code', 'class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.promotion_code')]) !!}
+                                    {!! Form::errorMsg('promotion_code') !!}
+                                </div>
+                            </div>
+                            <div class="form-group{{ Form::hasError('featured_image') }} featured_image">
+                                {!! Form::label('featured_image', trans('general.featured_image').' *') !!}
+                                <input id="featured_image" name="featured_image" class="form-control image" data-name="image" type="file" value="">
+                                {!! Form::errorMsg('featured_image') !!}
+                            </div>
+                            <div class="form-group privew" id="div-preview_image" data-name="image" style="display:none">
+                                <img src="" name="preview" id="preview_image" height="20%" width="20%">
+                            </div>
+                            <div class="form-group{{ Form::hasError('category') }} category">
+                                {!! Form::label('category', trans('general.category')) !!}
+                                {!! Form::select('category', array('discounts' => 'Discounts',
+                                                                'lucky-draws' => 'Lucky Draws', 
+                                                                'early-bird' => 'Early Bird'), old('category'), ['class' => 'form-control category', 'id' => 'category']) !!}
+                                {!! Form::errorMsg('category') !!}
+                            </div>
+                    </form>
+                </div>
+            <div class="modal-footer">
+                <button type="button" id="button_save_promotion" class="btn btn-primary" title="{{ trans('general.button_save') }}">{{ trans('general.button_save') }}</button>
+                <button type="button" id="button_update_promotion" class="btn btn-primary" title="{{ trans('general.button_update') }}">{{ trans('general.button_update') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="modal fade" id="modal-form-cat" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
       <div class="modal-dialog" role="document">
@@ -461,6 +545,26 @@
                     {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
                         <a id="delete-modal-cancel" href="#" class="btn btn-default" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
                         <a id="delete-modal-category" href="#" class="btn btn-primary" data-dismiss="modal">Continue</a>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="delete-modal-promotion" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{ trans('general.confirmation_delete') }} <strong id="name"></strong> ?</p>
+                </div>
+                <div class="modal-footer">
+                    {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
+                        <a id="delete-modal-cancel" href="#" class="btn btn-default" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
+                        <a id="delete-modal-promotion" href="#" class="btn btn-primary" data-dismiss="modal">Continue</a>
                     {!! Form::close() !!}
                 </div>
             </div>

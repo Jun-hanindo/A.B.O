@@ -19,7 +19,7 @@
         <div class="box-header">
             <h3 class="box-title">{{ trans('general.promotions') }}</h3>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('admin-create-promotion') }}" title="{{ trans('general.create_new') }}"><i class="fa fa-plus fa-fw"></i></a>
+                {{-- <a class="btn btn-primary" href="{{ route('admin-create-promotion') }}" title="{{ trans('general.create_new') }}"><i class="fa fa-plus fa-fw"></i></a> --}}
             </div>
         </div>
         <div class="box-body">

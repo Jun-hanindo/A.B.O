@@ -29,21 +29,11 @@ class HomepagesController extends BaseController
         return view('backend.admin.homepage.index');
     }
 
-    public function datatablesSlider()
+    public function datatables(Request $req)
     {
-
-        return datatables($this->model->datatablesSlider())
-            ->addColumn('action', function ($homepage) {
-                return '<a href="javascript:void(0)" data-id="'.$homepage->id.'" data-name="'.$homepage->event.'" data-category="'.$homepage->category.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
-                    &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$homepage->id.'" data-name="'.$homepage->event.'" data-category="'.$homepage->category.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
-            })
-            ->make(true);
-    }
-
-    public function datatablesEvent()
-    {
-
-        return datatables($this->model->datatablesEvent())
+        $param = $req->all();
+        $category = $param['category'];
+        return datatables($this->model->datatables($category))
             ->addColumn('action', function ($homepage) {
                 return '<a href="javascript:void(0)" data-id="'.$homepage->id.'" data-name="'.$homepage->event.'" data-category="'.$homepage->category.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
                     &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$homepage->id.'" data-name="'.$homepage->event.'" data-category="'.$homepage->category.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';

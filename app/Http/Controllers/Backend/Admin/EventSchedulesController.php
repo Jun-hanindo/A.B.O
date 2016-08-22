@@ -31,6 +31,10 @@ class EventSchedulesController extends BaseController
                     <a href="javascript:void(0)" data-id="'.$schedule->id.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw">
                     </i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$schedule->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
                 })
+                ->editColumn('date_at', function ($schedule){
+                    $date_at = date('d F Y', strtotime($schedule->date_at));
+                    return $date_at;
+                })
                 ->editColumn('start_time', function ($schedule){
                     $time_period = $schedule->start_time.' - '.$schedule->end_time;
                     return $time_period;
