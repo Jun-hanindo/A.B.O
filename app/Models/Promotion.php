@@ -82,7 +82,7 @@ class Promotion extends Model
     	if($this->save()){
             if (isset($featured_image)) {
                 $img = Image::make($featured_image);
-                $img->resize(50, 50);
+                $img->resize(50, 30);
                 $img->save($pathDest.'/'.$filename); 
             }
 
@@ -153,7 +153,7 @@ class Promotion extends Model
             if($data->save()) {
                 if(isset($param['featured_image'])){
                     $img = Image::make($featured_image);
-                    $img->resize(50, 50);
+                    $img->resize(50, 30);
                     $img->save($pathDest.'/'.$filename);
                 }
                 return $data;
