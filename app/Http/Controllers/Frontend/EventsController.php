@@ -22,6 +22,7 @@ class EventsController extends Controller
         $result['event'] = $this->model->findEventBySlug($slug);
         $result['min'] = $this->model->minPrice($slug);
         $result['src'] = url('uploads/events').'/';
+        $result['src2'] = url('uploads/promotions').'/';
         if($result['event']->event_type == 'true'){
             return view('frontend.partials.event', $result); 
         }else{
@@ -29,38 +30,38 @@ class EventsController extends Controller
         }
     }
 
-    public function eventDiscover()
-    {
-        try {
-            $limit = 9;
-            $events = $this->model->getEvent($limit);
-            if($events) {
+    // public function eventDiscover()
+    // {
+    //     try {
+    //         $limit = 3;
+    //         $events = $this->model->getEvent($limit);
+    //         if($events) {
 
-                return response()->json([
-                    'code' => 200,
-                    'status' => 'success',
-                    'message' => 'success',
-                    'data' => $events
-                ],200);
+    //             return response()->json([
+    //                 'code' => 200,
+    //                 'status' => 'success',
+    //                 'message' => 'success',
+    //                 'data' => $events
+    //             ],200);
 
-            } else {
+    //         } else {
 
-                return response()->json([
-                    'code' => 400,
-                    'status' => 'error',
-                    'data' => array(),
-                    'message' => trans('general.data_empty')
-                ],400);
+    //             return response()->json([
+    //                 'code' => 400,
+    //                 'status' => 'error',
+    //                 'data' => array(),
+    //                 'message' => trans('general.data_empty')
+    //             ],400);
             
-            }
+    //         }
     
-        } catch (\Exception $e) {
-            return response()->json([
-                'code' => 400,
-                'status' => 'error',
-                'data' => array(),
-                'message' => $e->getMessage()
-            ],400);
-        }   
-    }
+    //     } catch (\Exception $e) {
+    //         return response()->json([
+    //             'code' => 400,
+    //             'status' => 'error',
+    //             'data' => array(),
+    //             'message' => $e->getMessage()
+    //         ],400);
+    //     }   
+    // }
 }

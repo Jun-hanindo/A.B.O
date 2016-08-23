@@ -13,7 +13,7 @@
                     </a>
                 </li>
                 @foreach($categories as $key => $cat) 
-                    <li role="presentation" class="{{ $category->slug == $cat->slug ? 'active' : '' }}""><a href="{{ URL::route('category-detail', $cat->slug) }}" aria-controls="{{$cat->slug}}" role="tab">
+                    <li role="presentation" class="{{ $category->slug == $cat->slug ? 'active' : '' }}"><a href="{{ URL::route('category-detail', $cat->slug) }}" aria-controls="{{$cat->slug}}" role="tab">
                         <i class="fa fa-{{ $cat->icon }}" width="23px" height="23px"></i><br>{{ $cat->name }}</a>
                     </li>
                 @endforeach

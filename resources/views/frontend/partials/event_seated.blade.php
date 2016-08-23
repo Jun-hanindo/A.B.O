@@ -158,23 +158,22 @@
                                                   <div class="main-content">
                                                       <div class="row">
                                                           <div class="">
-                                                              <section id="promotion" class="sectionEvent">
-                                                                  <img src="{{ asset('assets/frontend/images/starhublogo.png') }}">
-                                                                  <h3>StarHub Customers Pre-Sale</h3>
-                                                                  <p>Show StarHub bill or subscription on any device such as mobile phone or tablet.</p>
-                                                                  <p>Start Date: 24 February 2016 <br>10:00AM onwards at Singapore Indoor Stadium Box Office and SingPost outlets</p>
-                                                                  <p>End Date: 26 February 2016 <br>Singapore Indoor Stadium Box Office: 8:00PM</p>
-                                                                  <a href="#">View the various timings of SingPost outlets' operating hours </a>
-                                                              </section>
-
-                                                              <section id="promotion2" class="sectionEvent">
-                                                                  <img src="{{ asset('assets/frontend/images/ocbclogo.png') }}">
-                                                                  <h3>OCBC Cards Pre-Sale</h3>
-                                                                  <p>Start Date: 24 February 2016 <br>10:00AM across all channels</p>
-                                                                  <p>End Date: 26 February 2016, 11:59PM </p>
-                                                                  <h3>*General Sales</h3>
-                                                                  <p>Start Date: 1 March 2016 <br>10:00AM across all channels</p>
-                                                              </section>
+                                                              @php
+                                                                    $promotions = $event->promotions()->where('avaibility', true)->orderBy('start_date')->get()
+                                                                @endphp
+                                                                @if(!empty($promotions))
+                                                                    @foreach($promotions as $key => $promotion) 
+                                                                        <section id="promotion" class="sectionEvent">
+                                                                            <img src="{{ $src2.$promotion->featured_image }}">
+                                                                            <h3>{{ $promotion->title }}</h3>
+                                                                            {!! $promotion->description !!}
+                                                                            <p>Discount: {{ $promotion->discount }}%</p>
+                                                                            <p>Start Date: {{ date('d F Y', strtotime($promotion->start_date)) }}</p>
+                                                                            <p>Start Date: {{ date('d F Y', strtotime($promotion->end_date)) }}</p>
+                                                                        </section>
+                                                                    @endforeach
+                                                                @endif
+                                                              
                                                           </div>
                                                       </div>
                                                   </div>

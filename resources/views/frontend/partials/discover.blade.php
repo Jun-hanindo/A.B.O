@@ -91,10 +91,7 @@
                             <img src="{{ $event->featured_image2_url }}">
                             <div class="boxInfo info1">
                                 <ul>
-                                    @php
-                                        $cat = $event->Categories->first();
-                                    @endphp
-                                    <li class="eventType">{{ $cat['name'] }}</li>
+                                    <li class="eventType">{{ $event->cat_name }}</li>
                                     <li class="eventName">{{ $event->title }}</li>
                                     @if($event->first_date != '')
                                         <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ $event->first_date }}</li>

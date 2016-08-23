@@ -355,9 +355,11 @@ class Event extends Model
             ->paginate($limit);
         if(count($events) > 0){
             foreach ($events as $key => $event) {
+                $cat = $event->Categories->first();
+                $event->cat_name = $cat['name'];
+
                 $this->setImageUrl($event);
                 $event->venue = $event->Venue;
-
                 $schedule = $event->EventSchedule;
                 $first = true;
                 if(!empty($schedule)){
@@ -389,6 +391,9 @@ class Event extends Model
 
         if(count($events) > 0){
             foreach ($events as $key => $event) {
+                $cat = Category::where('id', $category)->first();
+                $event->cat_name = $cat->name;
+
                 $this->setImageUrl($event);
                 $event->venue = $event->Venue;
                 $schedule = EventSchedule::where('event_id', $event->id)->get();
@@ -401,6 +406,79 @@ class Event extends Model
                         }
                     }
                 }
+            }
+            return $events;
+        }else{
+            return false;
+        }
+    }
+
+    public function getEventByPromotion($limit){
+        $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
+            'events.slug as slug', 'events.venue_id as venue_id', 'events.avaibility as avaibility', 
+            'promotions.id as promotion_id', 'promotions.featured_image as featured_image', 
+            'promotions.start_date as start_date', 'promotions.end_date as end_date', 'promotions.category as category',
+            'promotions.title as promo_title')
+            ->join('event_promotions', 'event_promotions.event_id', '=', 'events.id')
+            ->join('promotions', 'promotions.id', '=', 'event_promotions.promotion_id')
+            ->where('events.avaibility','=',true)
+            ->where('promotions.avaibility','=',true)
+            //->groupBy('events.id')
+            ->orderBy('events.id', 'asc')
+            ->orderBy('promotions.start_date', 'asc')
+            //->get();
+            ->paginate($limit);
+
+        if(count($events) > 0){
+            foreach ($events as $key => $event) {
+                $this->setImageUrl($event);
+                $event->start = date('d F Y', strtotime($event->start_date));
+                $event->end = date('d F Y', strtotime($event->end_date));
+                if($event->category == 'discount'){
+                    $event->category = 'DISCOUNTS';
+                }elseif($event->category == 'early-bird'){
+                    $event->category = 'EARLY BIRD';
+                }else{
+                    $event->category = 'LUCKY DRAW';
+                }
+                $event->featured_image_url = url('uploads/promotions').'/'.$event->featured_image;
+            }
+            return $events;
+        }else{
+            return false;
+        }
+    }
+
+    public function getEventByCategoryPromotion($category,$limit){
+        $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
+            'events.slug as slug', 'events.venue_id as venue_id', 'events.avaibility as avaibility', 
+            'promotions.id as promotion_id', 'promotions.featured_image as featured_image', 
+            'promotions.start_date as start_date', 'promotions.end_date as end_date', 'promotions.category as category',
+            'promotions.title as promo_title')
+            ->join('event_promotions', 'event_promotions.event_id', '=', 'events.id')
+            ->join('promotions', 'promotions.id', '=', 'event_promotions.promotion_id')
+            ->where('events.avaibility','=', true)
+            ->where('promotions.avaibility','=', true)
+            ->where('promotions.category','=', $category)
+            //->groupBy('events.id')
+            ->orderBy('events.id', 'asc')
+            ->orderBy('promotions.start_date', 'asc')
+            //->get();
+            ->paginate($limit);
+
+        if(count($events) > 0){
+            foreach ($events as $key => $event) {
+                $this->setImageUrl($event);
+                $event->start = date('d F Y', strtotime($event->start_date));
+                $event->end = date('d F Y', strtotime($event->end_date));
+                if($event->category == 'discount'){
+                    $event->category = 'DISCOUNTS';
+                }elseif($event->category == 'early-bird'){
+                    $event->category = 'EARLY BIRD';
+                }else{
+                    $event->category = 'LUCKY DRAW';
+                }
+                $event->featured_image_url = url('uploads/promotions').'/'.$event->featured_image;
             }
             return $events;
         }else{

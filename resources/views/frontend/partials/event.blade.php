@@ -138,32 +138,38 @@
                                               </div>
                                           </div>
                                       </div>
-                                      <div class="promoBox boxBorder">
-                                          <div class="row">
-                                              <div class="side-left col-md-3">
-                                                  <div class="aboutDesc">
-                                                      <h4>Promotions</h4>
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-9">
-                                                  <div class="main-content">
-                                                      <div class="row">
-                                                          <div class="">
-                                                              <section id="promotion" class="sectionEvent">
-                                                                  <img src="{{ asset('assets/frontend/images/dbs.png') }}">
-                                                                  <h3>DBS Credit Card Discount</h3>
-                                                                  <ul>
-                                                                      <li>10 percent for lunch sessions</li>
-                                                                      <li>15 percent for dinner sessions</li>
-                                                                      <li>Every additional $30 spent qualifies for 1 Live Your Passion vote</li>
-                                                                  </ul>
-                                                              </section>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
+                                        <div class="promoBox boxBorder">
+                                            <div class="row">
+                                                <div class="side-left col-md-3">
+                                                    <div class="aboutDesc">
+                                                        <h4>Promotions</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="main-content">
+                                                        <div class="row">
+                                                            <div class="">
+                                                                @php
+                                                                    $promotions = $event->promotions()->where('avaibility', true)->orderBy('start_date')->get()
+                                                                @endphp
+                                                                @if(!empty($promotions))
+                                                                    @foreach($promotions as $key => $promotion) 
+                                                                        <section id="promotion" class="sectionEvent">
+                                                                            <img src="{{ $src2.$promotion->featured_image }}">
+                                                                            <h3>{{ $promotion->title }}</h3>
+                                                                            {!! $promotion->description !!}
+                                                                            <p>Discount: {{ $promotion->discount }}%</p>
+                                                                            <p>Start Date: {{ date('d F Y', strtotime($promotion->start_date)) }}</p>
+                                                                            <p>Start Date: {{ date('d F Y', strtotime($promotion->end_date)) }}</p>
+                                                                        </section>
+                                                                    @endforeach
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                       <div class="venueBox boxBorder">
                                           <div class="row">
                                               <div class="side-left col-md-3">

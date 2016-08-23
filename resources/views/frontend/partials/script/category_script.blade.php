@@ -30,11 +30,6 @@
                     }
                     var events = response.data.data;
                     $.each(events,function(key,val){
-                        if(val.event_type == true){
-                            val.event_type = "{{ trans('general.general') }}"
-                        }else{
-                            val.event_type = "{{ trans('general.seated') }}"
-                        }
                         var uri2 = "{{ URL::route('event-detail', "::param") }}";
                         uri2 = uri2.replace('::param', val.slug);
                         var first_date = '';
@@ -48,7 +43,7 @@
                                     +'<img src="'+val.featured_image2_url+'">'
                                     +'<div class="boxInfo info1">'
                                         +'<ul>'
-                                            +'<li class="eventType">'+val.event_type+'</li>'
+                                            +'<li class="eventType">'+val.cat_name+'</li>'
                                             +'<li class="eventName">'+val.title+'</li>'
                                             +first_date
                                             +'<li class="eventPlace">'+val.venue.name+'</li>'

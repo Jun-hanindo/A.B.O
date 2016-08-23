@@ -3,13 +3,21 @@
 @section('content')
     <section class="discoverCategory">
           <div class="container">
-              <h2>Promotions</h2>
+                <h2>
+                    @if($slug == 'discounts')
+                        {{ 'DISCOUNTS' }}
+                    @elseif($slug == 'early-bird')
+                        {{ 'EARLY BIRD' }}
+                    @else
+                        {{ 'LUCKY DRAW' }}
+                    @endif
+                </h2>
               <div class="tabCategory">
                   <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#new" aria-controls="home" role="tab" data-toggle="tab"><img src="{{ asset('assets/frontend/images/catNew.png') }}"><br>What's New</a></li>
-                    <li role="presentation"><a href="{{ URL::route('promotion-detail', 'discounts') }}"><i class="fa fa-tag"></i><br>Discounts</a></li>
-                    <li role="presentation"><a href="{{ URL::route('promotion-detail', 'lucky-draws') }}"><i class="fa fa-gift"></i><br>Lucky Draws</a></li>
-                    <li role="presentation"><a href="{{ URL::route('promotion-detail', 'early-bird') }}"><i class="fa fa-ticket"></i><br>Early Bird</a></li>
+                    <li role="presentation"><a href="{{ URL::route('promotion') }}"><img src="{{ asset('assets/frontend/images/catNew.png') }}"><br>What's New</a></li>
+                    <li role="presentation" class="{{ $slug == 'discounts' ? 'active' : '' }}"><a href="{{ URL::route('promotion-detail', 'discounts') }}"><i class="fa fa-tag"></i><br>Discounts</a></li>
+                    <li role="presentation" class="{{ $slug == 'lucky-draws' ? 'active' : '' }}"><a href="{{ URL::route('promotion-detail', 'lucky-draws') }}"><i class="fa fa-gift"></i><br>Lucky Draws</a></li>
+                    <li role="presentation" class="{{ $slug == 'early-bird' ? 'active' : '' }}"><a href="{{ URL::route('promotion-detail', 'early-bird') }}"><i class="fa fa-ticket"></i><br>Early Bird</a></li>
                   </ul>
               </div>
           </div>
@@ -34,11 +42,11 @@
             </div>
             @if($events->nextPageUrl() != null)
                 <div class="loadMore">
-                  <a href="javascript:void(0)" class="btn btnLoad">Load More Promotions</a>
+                  <a href="javascript:void(0)" class="btn btnLoad" data-slug="{{ $slug }}">Load More Promotions</a>
                 </div>
             @endif
         </div>
     </section>
     @endif
 @stop
-@include('frontend.partials.script.promotion_script')
+@include('frontend.partials.script.promotion_category_script')

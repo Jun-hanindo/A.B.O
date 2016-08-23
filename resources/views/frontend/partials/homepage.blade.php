@@ -101,44 +101,51 @@
         </div>
     </section>
     @endif
+    @if(!empty($promotions))
     <section class="latestPromo">
         <div class="container">
             <h2>Latest Promotions</h2>
-            <div class="row">
-                <div class="col-md-4 box-promo">
-                    <img src="{{ asset('assets/frontend/images/mj-poster.png') }}" class="image-promo">
-                    <div class="boxInfo promo1">
-                        <ul>
-                            <li class="eventType">EARLY BIRD</li>
-                            <li class="eventName">Pre-sale for StarHub Customers <img src="{{ asset('assets/frontend/images/starhub-logo.png') }}"></li>
-                            <li class="eventPlace">Valid From 1 - 10 June 2016</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4 box-promo">
-                    <img src="{{ asset('assets/frontend/images/dining-poster.png') }}" class="image-promo">
-                    <div class="boxInfo promo1">
-                        <ul>
-                            <li class="eventType">DISCOUNTS</li>
-                            <li class="eventName">Enjoy 5% off Dining Before Event <img src="{{ asset('assets/frontend/images/esplanade-logo.png') }}"></li>
-                            <li class="eventPlace">Valid From May - October 2016</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4 box-promo">
-                    <img src="{{ asset('assets/frontend/images/blue-poster.png') }}" class="image-promo">
-                    <div class="boxInfo promo1">
-                        <ul>
-                            <li class="eventType">DISCOUNTS</li>
-                            <li class="eventName">Enjoy 10% off with MasterCard <img src="{{ asset('assets/frontend/images/master-logo.png') }}"></li>
-                            <li class="eventPlace">Valid From 27 May - 20 August 2016</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="row">                
+                @foreach($promotions as $key => $promotion) 
+                @php
+                    $data = $promotion->Event->promotions()->where('avaibility', true)->orderBy('start_date')->first();
+                @endphp
+                    {{-- <a href="{{ URL::route('event-detail', $promotion->Event->slug) }}"> --}}
+                        <div class="col-md-4 box-promo">
+                            <img src="{{ $src.$promotion->Event->featured_image2 }}" class="image-promo">
+                            <div class="boxInfo promo1">
+                                <ul>
+                                    <li class="eventType">
+                                        @if($data->category == 'discounts')
+                                            {{ $data->category = 'DISCOUNTS' }}
+                                        @elseif($data->category == 'early-bird')
+                                            {{ $data->category = 'EARLY BIRD' }}
+                                        @else
+                                            {{ $data->category = 'LUCKY DRAW' }}
+                                        @endif
+                                    </li>
+                                    <li class="eventName">{{$data->title}} <img src="{{ $src2.$data->featured_image }}"></li>
+                                    <li class="eventPlace">
+                                        @php
+                                            $d_start = date('d', strtotime($data->start_date));
+                                            $m_start = date('m', strtotime($data->start_date));
+                                            $y_start = date('Y', strtotime($data->start_date));
+                                            $d_end = date('d', strtotime($data->end_date));
+                                            $m_end = date('m', strtotime($data->end_date));
+                                            $y_end =  date('Y', strtotime($data->end_date));
+                                        @endphp
+                                        Valid From {{ date('d F Y', strtotime($data->start_date)).' - '.date('d F Y', strtotime($data->end_date)) }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    <!-- </a> -->
+                @endforeach
             </div>
             <div class="loadMore">
-                <button class="btn btnLoad">More Promotions</button>
+                <a href="{{ URL::route('promotion')}}" class="btn btnLoad">More Promotions</a>
             </div>
         </div>
     </section>
+    @endif
 @stop

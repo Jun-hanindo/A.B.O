@@ -14,6 +14,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     // Route::get('application', array('as' => 'front-form-application', 'uses' => 'ApplicationController@applicationForm'));
     // 
     Route::get('event/{slug}', array('as' => 'event-detail', 'uses' => 'EventsController@index'));
-    Route::get('event-discover', array('as' => 'event-discover', 'uses' => 'EventsController@eventDiscover'));
+    //Route::get('event-discover', array('as' => 'event-discover', 'uses' => 'EventsController@eventDiscover'));
     Route::get('category/{slug}', array('as' => 'category-detail', 'uses' => 'CategoriesController@index'));
+    Route::get('promotion/{slug}', array('as' => 'promotion-detail', 'uses' => 'PromotionsController@index'));
 });

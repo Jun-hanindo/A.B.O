@@ -24,11 +24,13 @@ class HomeController extends Controller
     {
         $result['sliders'] = $this->model->getHomepage('slider');
         $result['events'] = $this->model->getHomepage('event');
+        $result['promotions'] = $this->model->getHomepage('promotion');
         $result['src'] = url('uploads/events').'/';
+        $result['src2'] = url('uploads/promotions').'/';
         return view('frontend.partials.homepage', $result); 
     }
 
-    public function discover()
+    public function discover(Request $req)
     {
         $result['sliders'] = $this->model->getHomepage('slider');
         $result['src'] = url('uploads/events').'/';
@@ -37,12 +39,67 @@ class HomeController extends Controller
         $modelEvent = new Event();
         $limit = 9;
         $result['events'] = $modelEvent->getEvent($limit);
-        return view('frontend.partials.discover', $result);
+        if($req->ajax()){      
+            $events = $result['events'];
+
+            if($events) {
+
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => 'success',
+                    'data' => $events
+                ],200);
+
+            } else {
+
+                return response()->json([
+                    'code' => 400,
+                    'status' => 'error',
+                    'data' => array(),
+                    'message' => trans('general.data_empty')
+                ],400);
+            
+            }
+            
+        }else{
+            return view('frontend.partials.discover', $result);
+        }
+        
     }
 
-    public function promotion()
+    public function promotion(Request $req)
     {
-        return view('frontend.partials.promotion');
+        $modelEvent = new Event();
+        $limit = 9;
+        $result['events'] = $modelEvent->getEventByPromotion($limit);
+
+        if($req->ajax()){      
+            $events = $result['events'];
+
+            if($events) {
+
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => 'success',
+                    'data' => $events
+                ],200);
+
+            } else {
+
+                return response()->json([
+                    'code' => 400,
+                    'status' => 'error',
+                    'data' => array(),
+                    'message' => trans('general.data_empty')
+                ],400);
+            
+            }
+            
+        }else{
+            return view('frontend.partials.promotion', $result);
+        } 
     }
 
     public function careers()
