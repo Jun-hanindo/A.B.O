@@ -432,8 +432,25 @@ class Event extends Model
         if(count($events) > 0){
             foreach ($events as $key => $event) {
                 $this->setImageUrl($event);
-                $event->start = date('d F Y', strtotime($event->start_date));
-                $event->end = date('d F Y', strtotime($event->end_date));
+                //$event->start = date('d F Y', strtotime($event->start_date));
+                //$event->end = date('d F Y', strtotime($event->end_date));
+
+                $m_start = date('m', strtotime($event->start_date));
+                $m_end = date('m', strtotime($event->end_date));
+
+                $y_start = date('Y', strtotime($event->start_date));
+                $y_end = date('Y', strtotime($event->end_date));
+
+                
+                if($m_start == $m_end && $y_start == $y_end){
+                    $event->valid_date = date('d', strtotime($event->start_date)).' - '.date('d F Y', strtotime($event->end_date));
+                }elseif($m_start != $m_end && $y_start == $y_end){
+                    $event->valid_date = date('d F', strtotime($event->start_date)).' - '.date('d F Y', strtotime($event->end_date));
+                }else{
+                    $event->valid_date = date('d F Y', strtotime($event->start_date)).' - '.date('d F Y', strtotime($event->end_date));
+                }
+
+
                 if($event->category == 'discount'){
                     $event->category = 'DISCOUNTS';
                 }elseif($event->category == 'early-bird'){
@@ -469,8 +486,23 @@ class Event extends Model
         if(count($events) > 0){
             foreach ($events as $key => $event) {
                 $this->setImageUrl($event);
-                $event->start = date('d F Y', strtotime($event->start_date));
-                $event->end = date('d F Y', strtotime($event->end_date));
+                //$event->start = date('d F Y', strtotime($event->start_date));
+                //$event->end = date('d F Y', strtotime($event->end_date));
+
+                $m_start = date('m', strtotime($event->start_date));
+                $m_end = date('m', strtotime($event->end_date));
+
+                $y_start = date('Y', strtotime($event->start_date));
+                $y_end = date('Y', strtotime($event->end_date));
+
+                if($m_start == $m_end && $y_start == $y_end){
+                    $event->valid_date = date('d', strtotime($event->start_date)).' - '.date('d F Y', strtotime($event->end_date));
+                }elseif($m_start != $m_end && $y_start == $y_end){
+                    $event->valid_date = date('d F', strtotime($event->start_date)).' - '.date('d F Y', strtotime($event->end_date));
+                }else{
+                    $event->valid_date = date('d F Y', strtotime($event->start_date)).' - '.date('d F Y', strtotime($event->end_date));
+                }
+
                 if($event->category == 'discount'){
                     $event->category = 'DISCOUNTS';
                 }elseif($event->category == 'early-bird'){

@@ -125,16 +125,23 @@
                                         @endif
                                     </li>
                                     <li class="eventName">{{$data->title}} <img src="{{ $src2.$data->featured_image }}"></li>
-                                    <li class="eventPlace">
+                                    <li class="eventPlace">Valid From
                                         @php
-                                            $d_start = date('d', strtotime($data->start_date));
                                             $m_start = date('m', strtotime($data->start_date));
-                                            $y_start = date('Y', strtotime($data->start_date));
-                                            $d_end = date('d', strtotime($data->end_date));
                                             $m_end = date('m', strtotime($data->end_date));
-                                            $y_end =  date('Y', strtotime($data->end_date));
+
+                                            $y_start = date('Y', strtotime($data->start_date));
+                                            $y_end = date('Y', strtotime($data->end_date));
                                         @endphp
-                                        Valid From {{ date('d F Y', strtotime($data->start_date)).' - '.date('d F Y', strtotime($data->end_date)) }}
+
+                                        
+                                        @if($m_start == $m_end && $y_start == $y_end)
+                                            {{ date('d', strtotime($data->start_date)).' - '.date('d F Y', strtotime($data->end_date)) }}
+                                        @elseif($m_start != $m_end && $y_start == $y_end)
+                                            {{ date('d F', strtotime($data->start_date)).' - '.date('d F Y', strtotime($data->end_date)) }}
+                                        @else
+                                            {{ date('d F Y', strtotime($data->start_date)).' - '.date('d F Y', strtotime($data->end_date)) }}
+                                        @endif
                                     </li>
                                 </ul>
                             </div>

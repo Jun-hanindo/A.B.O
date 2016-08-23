@@ -34,7 +34,7 @@
                             <ul>
                                 <li class="eventType">{{ $event->category }}</li>
                                 <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}"></li>
-                                <li class="eventPlace">Valid From {{ $event->start.' - '.$event->end }}</li>
+                                <li class="eventPlace">Valid From {{ $event->valid_date }}</li>
                             </ul>
                         </div>
                     </div>
