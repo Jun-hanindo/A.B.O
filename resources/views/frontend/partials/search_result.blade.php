@@ -6,6 +6,7 @@
         <div class="col-md-3">
             <div class="sidebar">
                 <ul>
+                    <form id="filter-form">
                     <li class="sidebar-head">
                             <h4>Filters</h4>
                     </li>
@@ -14,13 +15,21 @@
                         <div class="collapse" id="categories">
                             <div class="collapse-search">
                                 <ul>
-                                    <li><a href="#">Categories 1</a></li>
-                                    <li><a href="#">Categories 2</a></li>
-                                    <!-- @if(!empty($categories))
-                                        @foreach($categories as $key => $category) 
-                                             <li class="checkbox"><label><input type="checkbox" name="category[]" class="cat-filter" value="{{$category->name}}"> {{ $category->name }}</label></li>
-                                        @endforeach
-                                    @endif -->
+                                    <li>
+                                        @if(!empty($categories))
+                                            @foreach($categories as $key => $category) 
+                                                 <li class="checkbox"><label><input type="checkbox" name="cat[]" class="cat-filter" value="{{$category->slug}}"
+                                                    @if(!empty($cats_sel))
+                                                        @foreach($cats_sel as $k => $cat_sel) 
+                                                            @if($cat_sel == $category->slug)
+                                                                checked
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                    > {{ $category->name }}</label></li>
+                                            @endforeach
+                                        @endif
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -41,8 +50,19 @@
                         <div class="collapse" id="time">
                             <div class="collapse-search">
                                 <ul>
-                                    <li><a href="#">Time 1</a></li>
-                                    <li><a href="#">Time 2</a></li>
+                                    <li>
+                                        <select id="filter-period" name="period" class="form-control">
+                                            <option value="all" >All</option>
+
+                                            @for($x = 1; $x < 12; $x+=2) 
+                                                @if($x == 1)
+                                                    <option value="{{ $x }}" {{ $period_sel == $x ? 'selected' : '' }}>{{ $x }} month from now</option>
+                                                @else
+                                                    <option value="{{ $x }}" {{ $period_sel == $x ? 'selected' : '' }}>{{ $x }} months from now</option>
+                                                @endif
+                                            @endfor
+                                        </select>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -54,10 +74,11 @@
                                         <ul>
                                             <li>
                                                 @if(!empty($venues))
-                                                    <select id="filter-venue" name="filter-venue" class="form-control">
-                                                        <option value="all" >Venue</option>
+                                                    <select id="filter-venue" name="venue" class="form-control">
+                                                        <option value="all" >All</option>
+
                                                         @foreach($venues as $key => $venue) 
-                                                            <option value="{{ $venue->slug }}" >{{ $venue->name }}</option>
+                                                            <option value="{{ $venue->slug }}" {{ $venue_sel == $venue->slug ? 'selected' : '' }} >{{ $venue->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 @endif 
@@ -66,6 +87,7 @@
                                     </div>
                                 </div>
                         </li>
+                    </form>
                 </ul>
             </div>
         </div>

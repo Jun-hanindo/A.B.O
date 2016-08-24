@@ -530,8 +530,8 @@ class Event extends Model
     {
         $q = $param['q'];
         $sort = $param['sort'];
-        //$venue = $param['venue'];
-        $events = Event::select('events.id as id','events.title as title', 'events.featured_image3 as featured_image3',
+        
+        $query = Event::select('events.id as id','events.title as title', 'events.featured_image3 as featured_image3',
             'events.slug as slug', 'events.avaibility as avaibility', 'events.background_color as background_color', 
              DB::RAW("array_to_string(array_agg(DISTINCT venues.name), ',')  as venue"), 
              DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',') as category"), 
@@ -543,14 +543,42 @@ class Event extends Model
             ->join('event_schedules', 'event_schedules.event_id', '=', 'events.id')
             ->join('event_schedule_categories', 'event_schedule_categories.event_schedule_id', '=', 'event_schedules.id')
             ->where('events.avaibility','=', true)
-            ->where('categories.avaibility','=', true)
-            ->where('date_at','>', date('Y-m-d'))
-            ->where('events.title','ilike','%'.$q.'%')
+            ->where('categories.avaibility','=', true);
+            //->where('date_at','>', date('Y-m-d'));
+            //->groupBy('events.id')
+            //->orderBy($sort)
+            //->get()
+            //;
+        if(isset($param['venue']) && $param['venue'] != 'all'){
+            $venue = $param['venue'];
+            $query->where('venues.slug', $venue);
+        }
+
+
+
+        if(isset($param['period']) && $param['period'] != 'all'){
+            $period = $param['period'];
+            $query->whereBetween('event_schedules.date_at', array(date('Y-m-d'), date('Y-m-d', strtotime(date('Y-m-d')." +".$period.'months'))));
+            //$query->where(date('Y-m-d'),'>=', date('Y-m-d', strtotime(date('Y-m-d')." -".$period.'months')));
+        }
+
+        if(isset($param['cat'])){
+            $cats = $param['cat'];
+            foreach ($cats as $key => $cat) {
+                if($key == 0){
+                    $query->where('categories.slug', $cat);
+                }else{
+                    $query->orWhere('categories.slug', $cat);
+                }
+            }
+        }
+
+        $events = $query->where('events.title','ilike','%'.$q.'%')
             ->orWhere('categories.name','ilike','%'.$q.'%')
             ->groupBy('events.id')
             ->orderBy($sort)
-            //->paginate($limit)
-            ->get();
+            ->get()
+            ;
 
         //dd($events->toSql());
         //dd($events);
