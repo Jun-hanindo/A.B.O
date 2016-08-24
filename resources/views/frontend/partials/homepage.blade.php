@@ -69,7 +69,7 @@
                     <a href="{{ URL::route('event-detail', $event->Event->slug) }}">
                         <div class="col-md-4 box-release">
                             <img src="{{ $src.$event->Event->featured_image2 }}">
-                            <div class="boxInfo info1">
+                            <div class="boxInfo bg-{{ $event->Event->background_color }}">
                                 <ul>
                                     @php
                                         $cat = $event->Event->Categories->first();

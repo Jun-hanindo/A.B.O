@@ -384,7 +384,8 @@ class Event extends Model
 
         $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
             'events.slug as slug', 'events.venue_id as venue_id', 'events.avaibility as avaibility', 
-            'events.event_type as event_type', 'event_categories.category_id as category_id')
+            'events.background_color as background_color', 'events.event_type as event_type', 
+            'event_categories.category_id as category_id')
             ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
             ->where('event_categories.category_id','=',$category)
             ->where('events.avaibility','=',true)
