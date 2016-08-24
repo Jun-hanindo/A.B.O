@@ -52,8 +52,16 @@
                                 <div class="collapse" id="venue">
                                     <div class="collapse-search">
                                         <ul>
-                                            <li><a href="#">Venue 1</a></li>
-                                            <li><a href="#">Venue 2</a></li>
+                                            <li>
+                                                @if(!empty($venues))
+                                                    <select id="filter-venue" name="filter-venue" class="form-control">
+                                                        <option value="all" >Venue</option>
+                                                        @foreach($venues as $key => $venue) 
+                                                            <option value="{{ $venue->slug }}" >{{ $venue->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                @endif 
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

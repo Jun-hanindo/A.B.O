@@ -530,6 +530,7 @@ class Event extends Model
     {
         $q = $param['q'];
         $sort = $param['sort'];
+        //$venue = $param['venue'];
         $events = Event::select('events.id as id','events.title as title', 'events.featured_image3 as featured_image3',
             'events.slug as slug', 'events.avaibility as avaibility', 'events.background_color as background_color', 
              DB::RAW("array_to_string(array_agg(DISTINCT venues.name), ',')  as venue"), 

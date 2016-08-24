@@ -24,24 +24,25 @@
                                     @endphp 
                                     <h5>{{ $cat['name'] }}</h5>
                                     <h2>{{ $slider->Event->title }}</h2>
-                                    @php 
-                                        $schedule = $slider->Event->EventSchedule;
-                                        $first = true;
-                                    @endphp
-                                    @if(!empty($schedule))
-                                        @foreach($schedule as $sch)
-                                            @if($first)
-                                                <div class="eventDate"><i class="fa fa-calendar"></i> {{ date('d F Y', strtotime($sch->date_at)) }}</div>
-                                                {{ $first = false }}
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                    <div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->Event->Venue->name }}</div>
+                                    <ul>
+                                        @php 
+                                            $schedule = $slider->Event->EventSchedule;
+                                            $first = true;
+                                        @endphp
+                                        @if(!empty($schedule))
+                                            @foreach($schedule as $sch)
+                                                @if($first)
+                                                    <li><div class="eventDate"><i class="fa fa-calendar"></i>{{ date('d F Y', strtotime($sch->date_at)) }}</div></li>
+                                                    {{ $first = false }}
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                        <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->Event->Venue->name }}</div></li>
+                                    </ul>
                                     <div class="moreDetail">
-                                        <form action="{{ URL::route('event-detail', $slider->Event->slug) }}">
+                                        <form action="{{ URL::route('event-detail', $slider->Event->slug) }}" style="margin-bottom:0;">
                                             <button class="btn btnDetail">More Details</button>
                                         </form>
-                                        
                                     </div>
                                 </div>
                               </div>
@@ -69,7 +70,7 @@
                     <a href="{{ URL::route('event-detail', $event->Event->slug) }}">
                         <div class="col-md-4 box-release">
                             <img src="{{ $src.$event->Event->featured_image2 }}">
-                            <div class="boxInfo bg-{{ $event->Event->background_color }}">
+                            <div class="boxInfo box-info1 bg-{{ $event->Event->background_color }}">
                                 <ul>
                                     @php
                                         $cat = $event->Event->Categories->first();
@@ -80,14 +81,16 @@
                                         $schedule = $event->Event->EventSchedule;
                                         $first = true;
                                     @endphp
+                                    <li class="eventDate"><i class="fa fa-calendar-o"></i> 
                                     @if(!empty($schedule))
                                         @foreach($schedule as $sch)
                                             @if($first)
-                                                <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ date('d F Y', strtotime($sch->date_at)) }}</li>
+                                                {{ date('d F Y', strtotime($sch->date_at)) }}
                                                 {{ $first = false }}
                                             @endif
                                         @endforeach
                                     @endif
+                                    </li>
                                     <li class="eventPlace">{{ $event->Event->Venue->name }}</li>
                                 </ul>
                             </div>

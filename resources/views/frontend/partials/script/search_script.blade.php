@@ -1,6 +1,10 @@
 @section('script')
 
 <script type="text/javascript">
+       var q = $(".input-search").val(); 
+       var sort = $('#sort-search').val();
+       var venue = $('#filter-venue').val();
+
         $(document).ready(function(){
 
             $(".btnLoad").on('click', function(){
@@ -10,7 +14,12 @@
 
             $('#sort-search').on('change', function(){
                 var val = $(this).val();
-                sortResult(val)
+                sortFilterResult(val, venue)
+            });
+
+            $('#filter-venue').on('change', function(){
+                var val = $(this).val();
+                sortFilterResult(sort, val)
             });
 
             $('.cat-filter').on('click', function(){
@@ -19,21 +28,16 @@
 
         });
 
-
-       var q = $(".input-search").val(); 
-       var sort = $('#sort-search').val();
-       var venue = $('#sort-search').val();
-
-        function sortResult(sort)
+        function sortFilterResult(sort, venue)
         {
             $.ajax({
                 url: "{{ route('event-search-get') }}",
                 type: "GET",
                 dataType: 'json',
-                data: {'sort':sort,'q':q},
+                data: {'sort':sort,'q':q, 'venue':venue},
                 success: function (response) {
 
-                    var uri = "{{ URL::to('search')}}?q="+q+'&sort='+sort;
+                    var uri = "{{ URL::to('search')}}?q="+q+'&sort='+sort+'&venue='+venue;
                     window.location.href = uri;
                 },
                 error: function(response){

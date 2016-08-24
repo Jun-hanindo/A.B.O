@@ -42,6 +42,7 @@ class EventsController extends Controller
         $results['venues'] = $modelVenue->getVenue();
         $results['q'] = $param['q'];
         $results['sort'] = $param['sort'];
+        $results['venue_sel'] = isset($param['venue']);
         if($req->ajax()) {
             return response()->json([
                 'code' => 200,

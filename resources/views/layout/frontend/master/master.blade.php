@@ -202,6 +202,7 @@
                 </div>
             </div>
           </header>
+          
 
       <!-- Start Main Content -->
         @yield('content')

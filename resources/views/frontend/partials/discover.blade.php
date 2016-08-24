@@ -45,21 +45,23 @@
                             <div class="container">
                                 <h5>{{ $cat['name'] }}</h5>
                                 <h2>{{ $slider->Event->title }}</h2>
-                                @php 
-                                    $schedule = $slider->Event->EventSchedule;
-                                    $first = true;
-                                @endphp
-                                @if(!empty($schedule))
-                                    @foreach($schedule as $sch)
-                                        @if($first)
-                                            <div class="eventDate"><i class="fa fa-calendar"></i> {{ date('d F Y', strtotime($sch->date_at)) }}</div>
-                                            {{ $first = false }}
-                                        @endif
-                                    @endforeach
-                                @endif
-                                <div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->Event->Venue->name }}</div>
+                                <ul>
+                                    @php 
+                                        $schedule = $slider->Event->EventSchedule;
+                                        $first = true;
+                                    @endphp
+                                    @if(!empty($schedule))
+                                        @foreach($schedule as $sch)
+                                            @if($first)
+                                                <li><div class="eventDate"><i class="fa fa-calendar"></i>{{ date('d F Y', strtotime($sch->date_at)) }}</div></li>
+                                                {{ $first = false }}
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                    <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->Event->Venue->name }}</div></li>
+                                </ul>
                                 <div class="moreDetail">
-                                    <form action="{{ URL::route('event-detail', $slider->Event->slug) }}">
+                                    <form action="{{ URL::route('event-detail', $slider->Event->slug) }}" style="margin-bottom:0;">
                                         <button class="btn btnDetail">More Details</button>
                                     </form>
                                     
