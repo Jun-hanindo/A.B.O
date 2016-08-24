@@ -4,7 +4,6 @@
 <section class="discoverCategory">
     <div class="container">
         <h2>Discover</h2>
-        @if(!empty($categories))
             <div class="tabCategory">
                 <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active">
@@ -12,14 +11,15 @@
                         <i class="fa fa-certificate" width="23px" height="23px"></i><br>What's New
                     </a>
                 </li>
-                @foreach($categories as $key => $category) 
-                    <li role="presentation"><a href="{{ URL::route('category-detail', $category->slug) }}" aria-controls="{{$category->slug}}" role="tab">
-                        <i class="fa fa-{{ $category->icon }}" width="23px" height="23px"></i><br>{{ $category->name }}</a>
-                    </li>
-                @endforeach
+                @if(!empty($categories))
+                    @foreach($categories as $key => $category) 
+                        <li role="presentation"><a href="{{ URL::route('category-detail', $category->slug) }}" aria-controls="{{$category->slug}}" role="tab">
+                            <i class="fa fa-{{ $category->icon }}" width="23px" height="23px"></i><br>{{ $category->name }}</a>
+                        </li>
+                    @endforeach
+                @endif
                 </ul>
             </div>
-        @endif
     </div>
 </section>
 @if(!empty($sliders))

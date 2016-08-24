@@ -87,6 +87,7 @@ class Event extends Model
         $this->buylink = $param['buylink'];
         $this->event_type = isset($param['event_type']);
         $this->venue_id = $param['venue_id'];
+        $this->background_color = $param['background_color'];
         $this->avaibility = true;
 
         $pathDest = public_path().'/uploads/events';
@@ -166,6 +167,7 @@ class Event extends Model
 	        $data->buylink = $param['buylink'];
 	        $data->event_type = isset($param['event_type']);
 	        $data->venue_id = $param['venue_id'];
+            $data->background_color = $param['background_color'];
             $data->avaibility = true;
 
             $pathDest = public_path().'/uploads/events';
@@ -389,7 +391,8 @@ class Event extends Model
             ->orderBy('events.created_at', 'desc')
             ->paginate($limit);
 
-        if(count($events) > 0){
+        if(count($events) > 0)
+        {
             foreach ($events as $key => $event) {
                 $cat = Category::where('id', $category)->first();
                 $event->cat_name = $cat->name;
@@ -413,7 +416,8 @@ class Event extends Model
         }
     }
 
-    public function getEventByPromotion($limit){
+    public function getEventByPromotion($limit)
+    {
         $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
             'events.slug as slug', 'events.venue_id as venue_id', 'events.avaibility as avaibility', 
             'promotions.id as promotion_id', 'promotions.featured_image as featured_image', 
@@ -429,7 +433,8 @@ class Event extends Model
             //->get();
             ->paginate($limit);
 
-        if(count($events) > 0){
+        if(count($events) > 0)
+        {
             foreach ($events as $key => $event) {
                 $this->setImageUrl($event);
                 //$event->start = date('d F Y', strtotime($event->start_date));
@@ -466,7 +471,8 @@ class Event extends Model
         }
     }
 
-    public function getEventByCategoryPromotion($category,$limit){
+    public function getEventByCategoryPromotion($category,$limit)
+    {
         $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
             'events.slug as slug', 'events.venue_id as venue_id', 'events.avaibility as avaibility', 
             'promotions.id as promotion_id', 'promotions.featured_image as featured_image', 
@@ -483,7 +489,8 @@ class Event extends Model
             //->get();
             ->paginate($limit);
 
-        if(count($events) > 0){
+        if(count($events) > 0)
+        {
             foreach ($events as $key => $event) {
                 $this->setImageUrl($event);
                 //$event->start = date('d F Y', strtotime($event->start_date));
@@ -516,6 +523,47 @@ class Event extends Model
         }else{
             return false;
         }
+    }
+
+    public function search($param/*, $limit*/)
+    {
+        $q = $param['q'];
+        $sort = $param['sort'];
+        $events = Event::select('events.id as id','events.title as title', 'events.featured_image3 as featured_image3',
+            'events.slug as slug', 'events.avaibility as avaibility', 'events.background_color as background_color', 
+             DB::RAW("array_to_string(array_agg(DISTINCT venues.name), ',')  as venue"), 
+             DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',') as category"), 
+             DB::RAW("min(DISTINCT event_schedules.date_at) as date"), 
+             DB::RAW("min(DISTINCT event_schedule_categories.price) as price"))
+            ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
+            ->join('categories', 'categories.id', '=', 'event_categories.category_id')
+            ->join('venues', 'venues.id', '=', 'events.venue_id')
+            ->join('event_schedules', 'event_schedules.event_id', '=', 'events.id')
+            ->join('event_schedule_categories', 'event_schedule_categories.event_schedule_id', '=', 'event_schedules.id')
+            ->where('events.avaibility','=', true)
+            ->where('categories.avaibility','=', true)
+            ->where('date_at','>', date('Y-m-d'))
+            ->where('events.title','ilike','%'.$q.'%')
+            ->orWhere('categories.name','ilike','%'.$q.'%')
+            ->groupBy('events.id')
+            ->orderBy($sort)
+            //->paginate($limit)
+            ->get();
+
+        //dd($events->toSql());
+        //dd($events);
+
+        if(count($events) > 0)
+        {
+            foreach ($events as $key => $event) {
+                $this->setImageUrl($event);
+            }
+            return $events;
+        }else{
+            return false;
+        }
+
+        return $events;
     }
 
     

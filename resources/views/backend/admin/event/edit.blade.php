@@ -133,6 +133,15 @@
                                 {!! Form::select('categories[]', $data['categories'], $data['selected'], ['class' => 'form-control categories', 'multiple' => 'multiple', 'id' => 'categories']) !!}
                                 {!! Form::errorMsg('category') !!}
                             </div>
+                            <div class="form-group{{ Form::hasError('category') }} background_color">
+                                {!! Form::label('background_color', trans('general.background_color')) !!}
+                                {!! Form::select('background_color', array('green' => 'Green',
+                                                                'purple' => 'Purple', 
+                                                                'grey' => 'Grey', 
+                                                                'purple2' => 'Dark Purple', 
+                                                                'red' => 'Red'), $data->background_color, ['class' => 'form-control background_color', 'id' => 'background_color']) !!}
+                                {!! Form::errorMsg('background_color') !!}
+                            </div>
                             <div class="box-footer">
                                 <a href="{{ route('admin-index-event') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>
                                 <input class="btn btn-primary pull-right" title="{{ trans('general.button_save') }}" type="submit" value="{{ trans('general.button_publish') }}" id="button_submit">

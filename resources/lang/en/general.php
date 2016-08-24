@@ -178,6 +178,7 @@ return [
     'end_date' => 'End Date',
     'add_more_promotion' => 'add more promotion',
     'add_promotion' => 'Add Promotion',
+    'background_color' => 'Background Color',
     // 'january' => 'January',
     // 'february' => 'February',
     // 'march' => 'March',

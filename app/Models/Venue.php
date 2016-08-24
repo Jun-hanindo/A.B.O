@@ -151,4 +151,9 @@ class Venue extends Model
 
         }
     }
+
+
+    public function getVenue(){
+        return Venue::where('avaibility' , true)->orderBy('name', 'asc')->get();
+    }
 }

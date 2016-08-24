@@ -430,13 +430,10 @@ body{
   }
   .cd-dropdown-content .countryList{
     color: #fff;
-    height: auto;
+    height: 140px;
     line-height: 50px;
     font-size: 1.5rem;
     border: none;
-    transform: none;
-    backface-visibility: visible;
-    -webkit-backface-visibility: visible;
   }
   .cd-dropdown-content .cd-divider, .cd-dropdown-content ul .cd-divider {
     background-color: transparent;
@@ -1125,6 +1122,7 @@ body{
 
 .box-promo .boxInfo ul li img{
   float: right;
+  margin-top: -15px;
 }
 
 .box-release .boxInfo{
@@ -1263,20 +1261,17 @@ footer .information-title{
 }
 
 .cd-dropdown-content .countryList ul li a{
-  min-height: 108px;
-  padding: 0 0 10px;
+  min-height: 100px;
 }
 
 .cd-dropdown-content .countryList ul li{
-  float: left;
+  display: inline-block;
   list-style: none;
   padding: 10px;
-  width: 25%;
 }
 
 .cd-dropdown-content .countryList ul{
   text-align: center;
-  position: relative;
 }
 
 .carousel-caption .eventDate,
@@ -1651,7 +1646,7 @@ footer .information-title{
 }
 .mobile-collapse-body-top li a {
     display: block;
-    padding: 15px 15px 20px;
+    padding: 15px;
     color: #fff;
     text-align: center;
     text-decoration: none;
@@ -1685,9 +1680,9 @@ footer .information-title{
 }
 
 .mobile-flag-collapse li {
-    float: left;
+    display: inline-block;
     text-align: center;
-    width: 50%;
+    width: 46%;
     padding: 0;
 }
 
@@ -1701,7 +1696,6 @@ footer .information-title{
 
 .mobile-flag-collapse li a {
     display: inline-block !important;
-    position: relative;
 }
 
 .about-content{
@@ -2530,16 +2524,6 @@ footer .information-title{
   padding: 10px;
 }
 
-.item ul{
-  list-style-type: none;
-  padding: 0;
-  display: inline-flex;
-}
-
-.item ul .eventPlace{
-  padding-left: 10px;
-}
-
 .box-promo a{
   text-decoration: none;
   color: #000000;
@@ -2575,6 +2559,16 @@ footer .information-title{
   width: 150px;
   background-color: #000000;
   border-color: #000000;
+}
+
+.item ul{
+  list-style-type: none;
+  padding: 0;
+  display: inline-flex;
+}
+
+.item ul .eventPlace{
+  padding-left: 10px;
 }
 
 @media (max-width: 1210px){
@@ -2757,6 +2751,12 @@ footer .information-title{
 .no-arrow:before{
   display: none !important
 }
+
+
+
+
+
+
 
 
 

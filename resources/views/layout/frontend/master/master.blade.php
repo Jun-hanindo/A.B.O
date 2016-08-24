@@ -46,33 +46,41 @@
                                                 <li class="has-childern">
                                                     <div class="countryList">
                                                         <ul>
-                                                            <li>
-                                                                <a href="#">
+                                                            <li class="lang-box">
+                                                                <a href="#" class="no-arrow">
                                                                     <img src="{{ asset('assets/frontend/images/asia.png') }}"><br>
                                                                     <span>Asia</span>
                                                                 </a>
                                                             </li>
-                                                            <li>
-                                                                <a href="#">
+                                                            <li class="lang-box">
+                                                                <a href="#" class="lang-link">
                                                                     <img src="{{ asset('assets/frontend/images/singaporebig-flag.png') }}"><br>
                                                                     <span>Singapore</span>
                                                                 </a>
-                                                                <!-- <ul>
+                                                                <ul>
                                                                     <li><a href="#"></a>English</li>
                                                                     <li><a href="#"></a>简体中文</li>
-                                                                </ul> -->
+                                                                </ul>
                                                             </li>
-                                                            <li>
-                                                                <a href="#">
+                                                            <li class="lang-box">
+                                                                <a href="#" class="lang-link">
                                                                     <img src="{{ asset('assets/frontend/images/malaysiabig-flag.png') }}"><br>
                                                                     <span>Malaysia</span>
                                                                 </a>
+                                                                <ul>
+                                                                    <li><a href="#"></a>English</li>
+                                                                    <li><a href="#"></a>简体中文</li>
+                                                                </ul>
                                                             </li>
-                                                            <li>
-                                                                <a href="#">
+                                                            <li class="lang-box">
+                                                                <a href="#" class="lang-link">
                                                                     <img src="{{ asset('assets/frontend/images/indonesiabig-flag.png') }}"><br>
                                                                     <span>Indonesia</span>
                                                                 </a>
+                                                                <ul>
+                                                                    <li><a href="#"></a>English</li>
+                                                                    <li><a href="#"></a>简体中文</li>
+                                                                </ul>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -83,12 +91,13 @@
                                 </li>
                                 <li class="nav-item">
                                     <div class="nav-search">
-                                        <form>
+                                        <form action="{{route('event-search-get')}}" method="get">
                                             <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="fa fa-search"></i>
                                             </span>
-                                            <input type="text" class="form-control input-search" placeholder="Search in Singapore...">
+                                            <input type="text" name="q" value="{{@$q}}" class="form-control input-search" placeholder="Search in Singapore...">
+                                            <input type="hidden" name="sort" value="date">
                                         </div>
                                         </form>
                                     </div>
@@ -112,6 +121,84 @@
                             <li><a href="https://asiaboxoffice.nliven.co/account/register">Register</a></li>
                         </ul>
                     </div> 
+                </div>
+            </div>
+            <div id="mobile-header">
+                <div class="mobile-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div class="mobile-search">
+                                    <a href="#"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="mobile-logo">
+                                    <img src="{{ asset('assets/frontend/images/logo.png') }}">
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="mobile-menu">
+                                    <div class="mobile-collapse-top">
+                                        <div class="mobile-collapse-header-top">
+                                            <i class="fa fa-align-justify"></i>
+                                        </div>
+                                        <ul class="list-unstyled mobile-collapse-body-top">
+                                            <li class="collapse-child clearfix">
+                                                <a href="#" class="mobile-flag">
+                                                    <img src="{{ asset('assets/frontend/images/mobile-singapore.png') }}">
+                                                    Singapore
+                                                </a>
+                                                <ul class="list-unstyled mobile-flag-collapse">
+                                                    <li class="li-flag">
+                                                        <a href="#" class="no-arrow">
+                                                            <img src="{{ asset('assets/frontend/images/mobile-asia-expand.png') }}">
+                                                            Asia
+                                                        </a>
+                                                    </li>
+                                                    <li class="li-flag">
+                                                        <a href="#" class="flag-expand">
+                                                            <img src="{{ asset('assets/frontend/images/mobile-singapore-expand.png') }}">
+                                                            Singapore
+                                                        </a>
+                                                        <ul class="list-unstyled collapse-flag">
+                                                            <li><a href="#">English</a></li>
+                                                            <li><a href="#">简体中文</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="li-flag">
+                                                        <a href="#" class="flag-expand">
+                                                            <img src="{{ asset('assets/frontend/images/mobile-malay-expand.png') }}">
+                                                            Malaysia
+                                                        </a>
+                                                        <ul class="list-unstyled collapse-flag">
+                                                            <li><a href="#">English</a></li>
+                                                            <li><a href="#">简体中文</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="li-flag">
+                                                        <a href="#" class="flag-expand">
+                                                            <img src="{{ asset('assets/frontend/images/mobile-indo-expand.png') }}">
+                                                            Indonesia
+                                                        </a>
+                                                        <ul class="list-unstyled collapse-flag">
+                                                            <li><a href="#">English</a></li>
+                                                            <li><a href="#">简体中文</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{{ URL::route('discover')}}">Discover</a></li>
+                                            <li><a href="{{ URL::route('promotion')}}">Promotions</a></li>
+                                            <li><a href="#">Support</a></li>
+                                            <li><a href="https://asiaboxoffice.nliven.co/account/login">Login</a> / <a href="https://asiaboxoffice.nliven.co/account/register"> Register</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
           </header>
@@ -269,17 +356,17 @@
     @yield('script')
 
     <script type="text/javascript">
-    $(document).ready(function(){
-        $('.mobile-collapse-header').click(function() {
+   $(document).ready(function(){
+    $('.mobile-collapse-header').click(function() {
      
           $(this).next('ul').slideToggle();
           $(this).next('.facebookLike').slideToggle();
           $(this).next('.mobileApp').slideToggle();
           return false;
-        });
+      });
         $(window).resize(toggleFooter);
-            toggleFooter();
-        })
+        toggleFooter();
+         })
 
         toggleFooter = function (){
           var current_width = $(window).width();
@@ -301,7 +388,51 @@
         })
 
         $('.mobile-flag').click(function(){
+          $(this).toggleClass('shown');
         $('.mobile-flag-collapse').slideToggle();
+        })
+
+        $('.lang-box').click(function(){
+          $('.lang-box ul').slideUp();
+          $(this).find('.lang-link').removeClass('shown')
+          if ($(this).find('ul').is(':visible')){
+            $('.lang-box ul').slideUp();
+            $(this).find('.lang-link').removeClass('shown')
+          }else{
+            $(this).find('ul').slideDown();
+            $('.lang-link').removeClass('shown')
+            $(this).find('.lang-link').addClass('shown')
+          }
+          
+        })
+
+        $('.cd-dropdown-trigger').click(function(){
+          if ($(this).is(':not(.dropdown-is-active)')){
+            $('.lang-box ul').hide();
+            $('.lang-link').removeClass('shown')
+          }
+        })
+
+
+         $('.li-flag').click(function(){
+          $('.li-flag ul').slideUp();
+          $(this).find('.flag-expand').removeClass('shown')
+          if ($(this).find('ul').is(':visible')){
+            $('.li-flag ul').slideUp();
+           $(this).find('.flag-expand').removeClass('shown')
+          }else{
+            $(this).find('ul').slideDown();
+            $('.flag-expand').removeClass('shown')
+            $(this).find('.flag-expand').addClass('shown')
+          }
+          
+        })
+
+         $('.mobile-flag').click(function(){
+          if ($(this).is(':not(.shown)')){
+             $('.li-flag ul').hide();
+            $('.flag-expand').removeClass('shown')
+          }
         })
 
    </script>

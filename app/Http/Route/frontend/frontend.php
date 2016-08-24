@@ -17,4 +17,5 @@ Route::group(['namespace' => 'Frontend'], function () {
     //Route::get('event-discover', array('as' => 'event-discover', 'uses' => 'EventsController@eventDiscover'));
     Route::get('category/{slug}', array('as' => 'category-detail', 'uses' => 'CategoriesController@index'));
     Route::get('promotion/{slug}', array('as' => 'promotion-detail', 'uses' => 'PromotionsController@index'));
+    Route::get('search', array('as' => 'event-search-get', 'uses' => 'EventsController@searchResult'));
 });

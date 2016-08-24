@@ -5,7 +5,7 @@
           <div class="imageBanner">
               <img src="{{ $src.$event->featured_image1 }}">
           </div>
-          <div class="infoBanner bg-purple">
+          <div class="infoBanner bg-{{ $event->background_color }}">
               <div class="container">
                   <div class="detail">
                       @php

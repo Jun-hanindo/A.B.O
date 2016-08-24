@@ -8,6 +8,8 @@ use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Models\Category;
+use App\Models\Venue;
 //use View;
 
 class EventsController extends Controller
@@ -28,6 +30,29 @@ class EventsController extends Controller
         }else{
             return view('frontend.partials.event_seated', $result); 
         }
+    }
+
+    public function searchResult(Request $req){
+        $param = $req->all();
+        $limit = 5;
+        $results['events'] = $this->model->search($param, $limit);
+        $modelCategory = new Category();
+        $results['categories'] = $modelCategory->getCategory();
+        $modelVenue = new Venue();
+        $results['venues'] = $modelVenue->getVenue();
+        $results['q'] = $param['q'];
+        $results['sort'] = $param['sort'];
+        if($req->ajax()) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'success',
+                'data' => $results
+            ],200);
+
+        }
+        return view('frontend.partials.search_result', $results);
+
     }
 
     // public function eventDiscover()
