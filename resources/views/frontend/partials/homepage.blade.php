@@ -113,8 +113,9 @@
                 @php
                     $data = $promotion->Event->promotions()->where('avaibility', true)->orderBy('start_date')->first();
                 @endphp
-                    {{-- <a href="{{ URL::route('event-detail', $promotion->Event->slug) }}"> --}}
-                        <div class="col-md-4 box-promo">
+
+                    <div class="col-md-4 box-promo">
+                        <a href="#promoModal{{ $promotion->id }}" data-toggle="modal">
                             <img src="{{ $src.$promotion->Event->featured_image2 }}" class="image-promo">
                             <div class="boxInfo promo1">
                                 <ul>
@@ -148,8 +149,55 @@
                                     </li>
                                 </ul>
                             </div>
+                        </a>
+                        <div class="modal fade promoModal" id="promoModal{{ $promotion->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">{{$data->title}}</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="promoBanner">
+                                            <img height="166px" src="{{ $src.$promotion->Event->featured_image1 }}">
+                                        </div>
+                                        <div class="descPromoModal">
+                                            <h4>About This Promotion</h4>
+                                            <div class="promoBannerDesc">
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <p>{!! $data->description !!}</p>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img src="{{ $src2.$data->featured_image }}" class="promoLogo">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <h4>How to Participate </h4>
+                                            <p>Show StarHub bill or subscription on any device such as mobile phone or tablet.</p> -->
+                                            <h4>Promotion Period</h4>
+                                            <p>Start Date: {{ date('d F Y', strtotime($data->start_date)) }}</p>
+                                            <br>
+                                            <p>End Date: {{ date('d F Y', strtotime($data->end_date)) }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <h4>Get Your Early Bird Tickets Now!</h4>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <form action="{{ $promotion->Event->buylink }}">
+                                                    <button type="button" class="btn btn-primary">Buy Now</button>
+                                                </form>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    <!-- </a> -->
+                    </div>
                 @endforeach
             </div>
             <div class="loadMore">

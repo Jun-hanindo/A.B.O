@@ -108,16 +108,16 @@
                                 @if(!empty($events))
                                     @foreach($events as $key => $event) 
                                         <tr class="bg-{{ $event->background_color }} tr-search">
-                                            <td class="searchpic"><img src="{{ $event->featured_image3_url }}"></td>
-                                            <td class="jobs">{{ $event->title }}</td>
-                                            <td class="date">{{ date('d M Y', strtotime($event->date)) }}</td>
+                                            <td class="searchpic"><a href="{{ URL::route('event-detail', $event->slug) }}"><img src="{{ $event->featured_image3_url }}"></a></td>
+                                            <td class="jobs"><a href="{{ URL::route('event-detail', $event->slug) }}">{{ $event->title }}</a></td>
+                                            <td class="date"><a href="{{ URL::route('event-detail', $event->slug) }}">{{ date('d M Y', strtotime($event->date)) }}</a></td>
                                             </td>
-                                            <td class="place">{{ $event->venue }}</td>
-                                            <td class="type">
+                                            <td class="place"><a href="{{ URL::route('event-detail', $event->slug) }}">{{ $event->venue }}</a></td>
+                                            <td class="type"><a href="{{ URL::route('event-detail', $event->slug) }}">
                                                 @php
                                                         $cat = explode(',', $event->category)
                                                 @endphp
-                                                {{ $cat[0] }}</td>
+                                                {{ $cat[0] }}</a></td>
                                         </tr>
                                     @endforeach
                                 @endif

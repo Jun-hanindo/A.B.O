@@ -419,9 +419,9 @@ class Event extends Model
 
     public function getEventByPromotion($limit)
     {
-        $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
-            'events.slug as slug', 'events.venue_id as venue_id', 'events.avaibility as avaibility', 
-            'promotions.id as promotion_id', 'promotions.featured_image as featured_image', 
+        $events = Event::select('events.id as id','events.title as title', 'events.featured_image1 as featured_image1', 
+            'events.featured_image2 as featured_image2', 'events.slug as slug', 'events.venue_id as venue_id', 
+            'events.avaibility as avaibility', 'promotions.id as promotion_id', 'promotions.featured_image as featured_image', 
             'promotions.start_date as start_date', 'promotions.end_date as end_date', 'promotions.category as category',
             'promotions.title as promo_title')
             ->join('event_promotions', 'event_promotions.event_id', '=', 'events.id')

@@ -15,7 +15,7 @@
                       <h2>{{ $event->title }}</h2>
                   </div>
                   <div class="moreDetail">
-                      <form action="{{ $event->buylink }}">
+                      <form action="{{ $event->buylink }}" style="margin-bottom:0;">
                           <button class="btn btnDetail">Buy Now</button>
                       </form>
                   </div>
@@ -82,9 +82,7 @@
                         <ul class="list-unstyled">
                             <li>{!! $event->Venue->address !!}</li>
                             <li>
-                              <form action="{{ $event->Venue->link_map }}">
-                                  <button class="btn btnSeemap">See Map</button>
-                              </form>
+                              <a href="{{ $event->Venue->link_map }}" class="btn btnSeemap">See Map</a>
                             </li>
                         </ul>
                     </div>
@@ -97,12 +95,8 @@
                                 {!! $event->price_info !!}
                             </li>
                             <li class="liParent">
-                              <form action="{{ $event->Venue->link_map }}" style="display:inline-block">
-                                  <button class="btn btnSeat bg-black">See Seat Map</button>
-                              </form>
-                              <form action="{{ $event->buylink }}" style="display:inline-block">
-                                  <button class="btn btnticket bg-white">More Ticket Info</button>
-                              </form>
+                              <a href="{{ $event->Venue->link_map }}" class="btn btnSeat bg-black">See Seat Map</a>
+                              <a href="{{ $event->buylink }}" class="btn btnticket bg-white">More Ticket Info</a>
                             </li>
                         </ul>
                     </div>
@@ -169,7 +163,7 @@
                                                                             {!! $promotion->description !!}
                                                                             <p>Discount: {{ $promotion->discount }}%</p>
                                                                             <p>Start Date: {{ date('d F Y', strtotime($promotion->start_date)) }}</p>
-                                                                            <p>Start Date: {{ date('d F Y', strtotime($promotion->end_date)) }}</p>
+                                                                            <p>End Date: {{ date('d F Y', strtotime($promotion->end_date)) }}</p>
                                                                         </section>
                                                                     @endforeach
                                                                 @endif
