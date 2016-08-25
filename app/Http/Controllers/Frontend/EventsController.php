@@ -32,10 +32,26 @@ class EventsController extends Controller
         }
     }
 
+    public function search(Request $req){
+        $param = $req->all();
+        $limit = 5;
+        $results['events'] = $this->model->search($param, $limit);
+
+        if($req->ajax()) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'success',
+                'data' => $results
+            ],200);
+
+        }
+    }
+
     public function searchResult(Request $req){
         $param = $req->all();
-        //$limit = 5;
-        $results['events'] = $this->model->search($param);
+        $limit = 0;
+        $results['events'] = $this->model->search($param, $limit);
         $modelCategory = new Category();
         $results['categories'] = $modelCategory->getCategory();
         $modelVenue = new Venue();

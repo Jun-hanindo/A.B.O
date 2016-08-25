@@ -93,12 +93,16 @@
                                     <div class="nav-search">
                                         <form action="{{route('event-search-get')}}" method="get">
                                             <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-search"></i>
-                                            </span>
-                                            <input type="text" name="q" value="{{@$q}}" class="form-control input-search" placeholder="Search in Singapore...">
-                                            <input type="hidden" name="sort" value="date">
-                                        </div>
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-search"></i>
+                                                </span>
+                                                <input type="text" name="q" value="{{@$q}}" class="form-control input-search" placeholder="Search in Singapore...">
+                                                <input type="hidden" id="sort-text" name="sort" value="date">
+                                            </div>
+    
+                                            <ul class="notification-drawer" data-type="inbox" id="ul-search" style="display:none;background-color:#fff;width: 450px;position: absolute;top: 50px;border-radius: 5px;padding:0px;box-shadow: 0 5px 15px rgba(0,0,0,.5)">
+                                                <span class="append-search"></span>
+                                            </ul>
                                         </form>
                                     </div>
                                 </li>
@@ -353,10 +357,14 @@
     {!! Html::script('assets/frontend/js/jquery.menu-aim.js') !!}
     {!! Html::script('assets/frontend/js/main.js') !!}
     {!! Html::script('assets/frontend/js/bootstrap.min.js') !!}
+    {!! Html::script('assets/frontend/js/custom.js') !!}
     
     @yield('script')
 
     <script type="text/javascript">
+
+    var base_url = {!! json_encode(url('/')) !!};
+
    $(document).ready(function(){
     $('.mobile-collapse-header').click(function() {
      

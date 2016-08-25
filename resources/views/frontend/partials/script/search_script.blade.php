@@ -40,9 +40,26 @@
                 success: function (response) {
                     var val = $('#filter-form').serialize();
                     var uri = 'q='+q+'&sort='+sort+'&'+val;
-                    uri = "{{ URL::to('search')}}?"+uri;
+                    uri = "{{ URL::to('search/result')}}?"+uri;
                     //console.log(uri);
-                    window.location.href = uri;
+                    //window.location.href = uri;
+                    window.history.pushState("string", response.status, uri);
+                    $('.search-list table').html('');
+                    var events = response.data.events;
+                    $.each(events,function(key, val){
+                        var uri = "{{ URL::route('event-detail', "::param") }}";
+                        uri = uri.replace('::param', val.slug);
+                        var html = '<tr class="bg-'+val.background_color+' tr-search">'
+                            +'<td class="searchpic"><a href="'+uri+'"><img src="'+val.featured_image3_url+'"></a></td>'
+                            +'<td class="jobs"><a href="'+uri+'">'+val.title+'</a></td>'
+                            +'<td class="date"><a href="'+uri+'">'+val.date_set+'</a></td>'
+                            +'<td class="place"><a href="'+uri+'">'+val.venue+'</a></td>'
+                            +'<td class="type"><a href="'+uri+'">'+val.category+'</a></td>'
+                            +'</tr>>';
+                        //console.log(html);
+                        $('.search-list table').append(html);
+                    });
+
                 },
                 error: function(response){
                     response.responseJSON.message
@@ -50,11 +67,10 @@
             });
         }
 
-        function filterCategory(cat){
-        }
-
-        function filterVenue(venue){
-           
+        function resetFilterSearch(){
+            $('.cat-filter').prop('checked', false);
+            $('#filter-venue').val('all');
+            $('#filter-period').val('all');
         }
 
 </script>

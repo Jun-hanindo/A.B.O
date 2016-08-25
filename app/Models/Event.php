@@ -475,7 +475,7 @@ class Event extends Model
     }
 
     public function getEventByCategoryPromotion($category,$limit)
-    {
+    {        
         $events = Event::select('events.id as id','events.title as title', 'events.featured_image1 as featured_image1', 
             'events.featured_image2 as featured_image2', 'events.slug as slug', 'events.venue_id as venue_id', 
             'events.buylink as buylink', 'events.avaibility as avaibility', 'event_promotions.id as ep_id',
@@ -530,7 +530,7 @@ class Event extends Model
         }
     }
 
-    public function search($param/*, $limit*/)
+    public function search($param, $limit)
     {
         $q = $param['q'];
         $sort = $param['sort'];
@@ -580,9 +580,14 @@ class Event extends Model
         $events = $query->where('events.title','ilike','%'.$q.'%')
             ->orWhere('categories.name','ilike','%'.$q.'%')
             ->groupBy('events.id')
-            ->orderBy($sort)
-            ->get()
-            ;
+            ->orderBy($sort);
+            //->get();
+
+        if($limit > 0){
+            $query->take($limit);
+        }
+
+        $events = $query->get();
 
         //dd($events->toSql());
         //dd($events);
@@ -591,6 +596,10 @@ class Event extends Model
         {
             foreach ($events as $key => $event) {
                 $this->setImageUrl($event);
+                $event->date_set = date('d M Y', strtotime($event->date));
+
+                $cats = explode(',', $event->category);
+                $event->category = $cats[0];
             }
             return $events;
         }else{
