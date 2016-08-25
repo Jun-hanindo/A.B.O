@@ -135,7 +135,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('category') }} background_color">
                                 {!! Form::label('background_color', trans('general.background_color')) !!} 
-                                {!! Form::select('background_color', array('green' => 'Green',\ 
+                                {!! Form::select('background_color', array('green' => 'Green',
                                                                 'purple' => 'Purple', 
                                                                 'grey' => 'Grey', 
                                                                 'purple2' => 'Dark Purple', 
