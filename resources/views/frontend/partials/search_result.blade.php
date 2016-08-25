@@ -8,7 +8,7 @@
                 <ul>
                     <form id="filter-form">
                     <li class="sidebar-head">
-                            <h4>Filters</h4>
+                            <h4>Filters <a href="javascript:void(0)" class="reset-filter" style='right:30px;font-size:13px;position:absolute'><i class="fa fa-undo"></i> Reset</a></h4>
                     </li>
                     <li class="sidebar-menu-top sidebar-search">
                         <a data-toggle="collapse" href="#categories" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Categories</a>

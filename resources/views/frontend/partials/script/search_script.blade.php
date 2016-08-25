@@ -14,6 +14,7 @@
 
             $('#sort-search').on('change', function(){
                 var val = $(this).val();
+                resetFilterSearch();
                 sortFilterResult(val);
             });
 
@@ -24,6 +25,11 @@
             $('.cat-filter').on('click', function(e){
                 sortFilterResult(sort);
             });
+
+            $('.reset-filter').on('click', function(e){
+                resetFilterSearch();
+                sortFilterResult(sort);
+            })
 
         });
 
