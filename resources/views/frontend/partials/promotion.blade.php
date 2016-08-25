@@ -21,13 +21,62 @@
             <div class="row append-events">
                 @foreach($events as $key => $event)
                     <div class="col-md-4 box-promo">
-                        <img src="{{ $event->featured_image2_url }}" class="image-promo">
-                        <div class="boxInfo promo1">
-                            <ul>
-                                <li class="eventType">{{ $event->category }}</li>
-                                <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}"></li>
-                                <li class="eventPlace">Valid From {{ $event->valid_date }}</li>
-                            </ul>
+                        <a href="#promoModal{{ $event->ep_id }}" data-toggle="modal">
+                          <img src="{{ $event->featured_image2_url }}" class="image-promo">
+                          <div class="boxInfo promo1">
+                              <ul>
+                                  <li class="eventType">{{ $event->category }}</li>
+                                  <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}"></li>
+                                  <li class="eventPlace">Valid From {{ $event->valid_date }}</li>
+                              </ul>
+                          </div>
+                        </a>
+                        <div class="modal fade promoModal" id="promoModal{{ $event->ep_id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">{{$event->promo_title}}</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="promoBanner">
+                                            <img height="166px" src="{{ $event->featured_image1_url }}">
+                                        </div>
+                                        <div class="descPromoModal">
+                                            <h4>About This Promotion</h4>
+                                            <div class="promoBannerDesc">
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <p>{!! $event->promo_desc !!}</p>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img src="{{ $event->featured_image_url }}" class="promoLogo">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <h4>How to Participate </h4>
+                                            <p>Show StarHub bill or subscription on any device such as mobile phone or tablet.</p> -->
+                                            <h4>Promotion Period</h4>
+                                            <p>Start Date: {{ date('d F Y', strtotime($event->start_date)) }}</p>
+                                            <br>
+                                            <p>End Date: {{ date('d F Y', strtotime($event->end_date)) }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <h4>Get Your Early Bird Tickets Now!</h4>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <form action="{{ $event->buylink }}">
+                                                    <button type="button" class="btn btn-primary">Buy Now</button>
+                                                </form>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @endforeach

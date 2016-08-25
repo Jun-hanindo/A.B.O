@@ -421,8 +421,10 @@ class Event extends Model
     {
         $events = Event::select('events.id as id','events.title as title', 'events.featured_image1 as featured_image1', 
             'events.featured_image2 as featured_image2', 'events.slug as slug', 'events.venue_id as venue_id', 
-            'events.avaibility as avaibility', 'promotions.id as promotion_id', 'promotions.featured_image as featured_image', 
-            'promotions.start_date as start_date', 'promotions.end_date as end_date', 'promotions.category as category',
+            'events.buylink as buylink', 'events.avaibility as avaibility', 'event_promotions.id as ep_id', 
+            'promotions.id as promotion_id', 'promotions.featured_image as featured_image', 
+            'promotions.description as promo_desc', 'promotions.start_date as start_date', 
+            'promotions.end_date as end_date', 'promotions.category as category',
             'promotions.title as promo_title')
             ->join('event_promotions', 'event_promotions.event_id', '=', 'events.id')
             ->join('promotions', 'promotions.id', '=', 'event_promotions.promotion_id')
@@ -474,10 +476,12 @@ class Event extends Model
 
     public function getEventByCategoryPromotion($category,$limit)
     {
-        $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
-            'events.slug as slug', 'events.venue_id as venue_id', 'events.avaibility as avaibility', 
-            'promotions.id as promotion_id', 'promotions.featured_image as featured_image', 
-            'promotions.start_date as start_date', 'promotions.end_date as end_date', 'promotions.category as category',
+        $events = Event::select('events.id as id','events.title as title', 'events.featured_image1 as featured_image1', 
+            'events.featured_image2 as featured_image2', 'events.slug as slug', 'events.venue_id as venue_id', 
+            'events.buylink as buylink', 'events.avaibility as avaibility', 'event_promotions.id as ep_id',
+            'promotions.id as promotion_id', 'promotions.featured_image as featured_image',  
+            'promotions.description as promo_desc', 'promotions.start_date as start_date', 
+            'promotions.end_date as end_date', 'promotions.category as category',
             'promotions.title as promo_title')
             ->join('event_promotions', 'event_promotions.event_id', '=', 'events.id')
             ->join('promotions', 'promotions.id', '=', 'event_promotions.promotion_id')
