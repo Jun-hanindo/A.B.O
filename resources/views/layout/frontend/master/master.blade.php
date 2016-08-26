@@ -101,7 +101,7 @@
                                                 <input type="hidden" id="sort-text" name="sort" value="date">
                                             </div>
     
-                                            <ul class="notification-drawer" data-type="inbox" id="ul-search" style="display:none;background-color:#fff;width: 450px;position: absolute;top: 50px;border-radius: 5px;padding:0px;box-shadow: 0 5px 15px rgba(0,0,0,.5)">
+                                            <ul class="notification-drawer" data-type="inbox" id="ul-search" style="display:none">
                                                 <span class="append-search"></span>
                                             </ul>
                                         </form>

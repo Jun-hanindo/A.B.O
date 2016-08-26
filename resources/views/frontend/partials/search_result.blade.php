@@ -54,7 +54,7 @@
                                         <select id="filter-period" name="period" class="form-control">
                                             <option value="all" >All</option>
 
-                                            @for($x = 1; $x < 12; $x+=2) 
+                                            @for($x = 3; $x < 4; $x+=2) 
                                                 @if($x == 1)
                                                     <option value="{{ $x }}" {{ $period_sel == $x ? 'selected' : '' }}>{{ $x }} month from now</option>
                                                 @else
