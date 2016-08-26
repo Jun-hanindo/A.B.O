@@ -59,21 +59,21 @@
                         <div class="form-group{{ Form::hasError('facebook') }} facebook">
                             {!! Form::label('facebook', trans('general.facebook'), ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::text('setting[facebook]', isset($data['facebook']) ? $data['facebook'] : null, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.facebook')]) !!}
+                                {!! Form::text('setting[facebook]', isset($data['facebook']) ? $data['facebook'] : null, ['class' => 'form-control', 'placeholder' => trans('general.facebook')]) !!}
                                 {!! Form::errorMsg('facebook') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('google_play') }} google_play">
                             {!! Form::label('google_play', trans('general.google_play'), ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::text('setting[google_play]', isset($data['google_play']) ? $data['google_play'] : null, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.google_play')]) !!}
+                                {!! Form::text('setting[google_play]', isset($data['google_play']) ? $data['google_play'] : null, ['class' => 'form-control', 'placeholder' => trans('general.google_play')]) !!}
                                 {!! Form::errorMsg('google_play') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('apple_store') }} apple_store">
                             {!! Form::label('apple_store', trans('general.apple_store'), ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::text('setting[apple_store]', isset($data['apple_store']) ? $data['apple_store'] : null, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.apple_store')]) !!}
+                                {!! Form::text('setting[apple_store]', isset($data['apple_store']) ? $data['apple_store'] : null, ['class' => 'form-control', 'placeholder' => trans('general.apple_store')]) !!}
                                 {!! Form::errorMsg('apple_store') !!}
                             </div>
                         </div>
