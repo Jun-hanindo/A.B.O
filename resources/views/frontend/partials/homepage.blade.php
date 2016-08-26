@@ -75,8 +75,8 @@
                                     @php
                                         $cat = $event->Event->Categories->first();
                                     @endphp      
-                                    <li class="eventType">{{ $cat['name'] }}</li>
-                                    <li class="eventName">{{ $event->Event->title }}</li>
+                                    <li class="eventType">{{ $cat['name'] }}&nbsp;</li>
+                                    <li class="eventName">{{ string_limit($event->Event->title) }}</li>
                                     @php 
                                         $schedule = $event->Event->EventSchedule;
                                         $first = true;
@@ -128,7 +128,7 @@
                                             {{ $data->category = 'LUCKY DRAW' }}
                                         @endif
                                     </li>
-                                    <li class="eventName">{{$data->title}} <img src="{{ $src2.$data->featured_image }}"></li>
+                                    <li class="eventName">{{ string_limit($data->title) }} <img src="{{ $src2.$data->featured_image }}"></li>
                                     <li class="eventPlace">Valid From
                                         @php
                                             $m_start = date('m', strtotime($data->start_date));

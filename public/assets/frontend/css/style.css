@@ -1129,6 +1129,7 @@ body{
 
 .box-release .boxInfo{
   color: #fff;
+  height: 170px;
 }
 
 .box-release .boxInfo .eventType{

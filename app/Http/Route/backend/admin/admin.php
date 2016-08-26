@@ -143,14 +143,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::post('{id}/avaibility-edit', array('as' => 'admin-update-venue-avaibility', 'uses' => 'VenuesController@avaibilityUpdate'));
     });
 
-    // Route::group(['prefix' => 'setting'], function () {
-    //     Route::get('', array('as' => 'admin-index-setting', 'uses' => 'SettingsController@index'));
-    //     Route::get('create', array('as' => 'admin-create-setting', 'uses' => 'SettingsController@create'));
-    //     Route::post('store', array('as' => 'admin-post-setting', 'uses' => 'SettingsController@store'));
-    //     Route::get('{id}/edit', array('as' => 'admin-edit-setting', 'uses' => 'SettingsController@edit'));
-    //     Route::post('{id}/update', array('as' => 'admin-update-setting', 'uses' => 'SettingsController@update'));
-    //     Route::delete('{id}/delete', array('as' => 'admin-delete-setting', 'uses' => 'SettingsController@destroy'));
-    // });
+    Route::group(['prefix' => 'setting'], function () {
+        Route::get('', array('as' => 'admin-index-setting', 'uses' => 'SettingsController@index'));
+        Route::post('update', array('as' => 'admin-update-setting', 'uses' => 'SettingsController@storeUpdate'));
+    });
 
     // Route::group(['prefix' => 'trail'], function () {
     //     Route::get('', array('as' => 'admin-index-trail', 'uses' => 'TrailsController@index'));

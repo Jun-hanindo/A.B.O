@@ -132,3 +132,16 @@ if (! function_exists('has_access')) {
         return Sentinel::check()->{$method}($permissions);
     }
 }
+
+if (! function_exists('string_limit')) {
+    /**
+     * Generate new datetime from configured format datetime.
+     *
+     * @param  string $datetime
+     * @return string
+     */
+    function string_limit($string)
+    {
+        return str_limit($string, 75);
+    }
+}

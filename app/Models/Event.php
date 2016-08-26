@@ -228,6 +228,8 @@ class Event extends Model
                 }
                 if(isset($param['categories'])){
                     $data->categories()->sync($param['categories']);
+                }else{
+                    $data->categories()->detach();
                 }
                 
 
@@ -360,6 +362,8 @@ class Event extends Model
                 $cat = $event->Categories->first();
                 $event->cat_name = $cat['name'];
 
+                $event->title = string_limit($event->title);
+
                 $this->setImageUrl($event);
                 $event->venue = $event->Venue;
                 $schedule = $event->EventSchedule;
@@ -397,6 +401,8 @@ class Event extends Model
             foreach ($events as $key => $event) {
                 $cat = Category::where('id', $category)->first();
                 $event->cat_name = $cat->name;
+
+                $event->title = string_limit($event->title);
 
                 $this->setImageUrl($event);
                 $event->venue = $event->Venue;
@@ -442,6 +448,7 @@ class Event extends Model
                 $this->setImageUrl($event);
                 //$event->start = date('d F Y', strtotime($event->start_date));
                 //$event->end = date('d F Y', strtotime($event->end_date));
+                $event->promo_title = string_limit($event->promo_title);
 
                 $m_start = date('m', strtotime($event->start_date));
                 $m_end = date('m', strtotime($event->end_date));
@@ -500,6 +507,7 @@ class Event extends Model
                 $this->setImageUrl($event);
                 //$event->start = date('d F Y', strtotime($event->start_date));
                 //$event->end = date('d F Y', strtotime($event->end_date));
+                $event->promo_title = string_limit($event->promo_title);
 
                 $m_start = date('m', strtotime($event->start_date));
                 $m_end = date('m', strtotime($event->end_date));
