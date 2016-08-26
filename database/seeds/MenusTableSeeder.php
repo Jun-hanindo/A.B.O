@@ -59,10 +59,11 @@ class MenusTableSeeder extends Seeder
                 ['name' => str_slug('List Event'), 'display_name' => 'List Event', 'icon' => 'bars', 'href' => 'admin/event', 'pattern' => 'admin/event'],
                 ['name' => str_slug('Category'), 'display_name' => 'Categories', 'icon' => 'bars', 'href' => 'admin/event/category', 'pattern' => 'admin/event'],
             ]],
-            ['is_parent' => true, 'name' => str_slug('Promotions'), 'display_name' => 'Promotions', 'icon' => 'tags', 'href' => '#', 'pattern' => 'admin/promotion', 'child' => [
-                ['name' => str_slug('Add Promotion'), 'display_name' => 'Add Promotion', 'icon' => 'plus-circle', 'href' => 'admin/promotion/create', 'pattern' => 'admin/promotion'],
-                ['name' => str_slug('List Promotion'), 'display_name' => 'List Promotion', 'icon' => 'bars', 'href' => 'admin/promotion', 'pattern' => 'admin/promotion'],
-            ]],
+            ['is_parent' => false, 'name' => str_slug('Promotions'), 'display_name' => 'Promotions', 'icon' => 'tags', 'href' => 'admin/promotion', 'pattern' => 'admin/promotion'],
+            // ['is_parent' => true, 'name' => str_slug('Promotions'), 'display_name' => 'Promotions', 'icon' => 'tags', 'href' => '#', 'pattern' => 'admin/promotion', 'child' => [
+            //     ['name' => str_slug('Add Promotion'), 'display_name' => 'Add Promotion', 'icon' => 'plus-circle', 'href' => 'admin/promotion/create', 'pattern' => 'admin/promotion'],
+            //     ['name' => str_slug('List Promotion'), 'display_name' => 'List Promotion', 'icon' => 'bars', 'href' => 'admin/promotion', 'pattern' => 'admin/promotion'],
+            // ]],
             ['is_parent' => true, 'name' => str_slug('Venue'), 'display_name' => 'Venue', 'icon' => 'map', 'href' => '#', 'pattern' => 'admin/venue', 'child' => [
                 ['name' => str_slug('Add Venue'), 'display_name' => 'Add Venue', 'icon' => 'plus-circle', 'href' => 'admin/venue/create', 'pattern' => 'admin/venue'],
                 ['name' => str_slug('List Venue'), 'display_name' => 'List Venue', 'icon' => 'bars', 'href' => 'admin/venue', 'pattern' => 'admin/venue'],
