@@ -183,6 +183,9 @@ return [
     'settings'  => 'Setting',
     'language'  => 'Language',
     'currency'  => 'Currency',
+    'facebook'  => 'Facebook',
+    'google_play'   => 'Google Play',
+    'apple_store'   => 'Apple Store'
     // 'january' => 'January',
     // 'february' => 'February',
     // 'march' => 'March',

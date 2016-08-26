@@ -328,8 +328,8 @@
                             Download Our Mobile App
                         </div>
                         <div class="mobileApp">
-                            <a href="#"><img src="{{ asset('assets/frontend/images/appstore.png') }}"></a>
-                            <a href="#"><img src="{{ asset('assets/frontend/images/playstore.png') }}"></a>
+                            <a href="{{ $setting['apple_store'] }}"><img src="{{ asset('assets/frontend/images/appstore.png') }}"></a>
+                            <a href="{{ $setting['google_play'] }}"><img src="{{ asset('assets/frontend/images/playstore.png') }}"></a>
                         </div>
                     </div>
                 </div>
