@@ -1,7 +1,14 @@
-@font-face {
+/*@font-face {
     font-family: 'proxima_nova_alt_cn_rgregular';
     src: url('../fonts/mark_simonson_-_proxima_nova_alt_condensed_regular-webfont.woff2') format('woff2'),
          url('../fonts/mark_simonson_-_proxima_nova_alt_condensed_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}*/
+@font-face {
+    font-family: 'proxima_nova_alt_cn_rgregular';
+    src: url('../fonts/Mark Simonson - Proxima Nova Light.woff2') format('woff2'),
+         url('../fonts/Mark Simonson - Proxima Nova Light.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
