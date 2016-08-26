@@ -16,6 +16,11 @@ class Setting extends Model
     //     return $this->belongsTo('App\Models\User', 'user_id');
 
     // }
+    // 
+    
+    function getValueByName($name){
+        return Setting::where('name', $name)->first();
+    }
 
 
     /**

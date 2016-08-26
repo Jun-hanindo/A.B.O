@@ -24,8 +24,13 @@ class SettingsController extends BaseController
      */
     public function index()
     {
-        //
-        return view('backend.admin.setting.form');
+        $settings = Setting::all();
+        $data = [];
+        foreach ($settings as $key => $value) {
+            $data[$value->name] = $value->value;
+        }
+        $result['data'] = $data;
+        return view('backend.admin.setting.form', $result);
     }
 
     public function storeUpdate(SettingRequest $req)

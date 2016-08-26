@@ -12,23 +12,48 @@
                 <div class="box-header">
                     <h3 class="box-title">{{ trans('general.setting') }}</h3>
                 </div>
+
                 {!! Form::open(array('url' => route('admin-update-setting'),'method'=>'POST','id'=>'form-setting', 'class' => "form-horizontal")) !!}
                     <div class="box-body">
                         <div class="error"></div>
                         <div class="form-group{{ Form::hasError('language') }} language">
                             {!! Form::label('language', trans('general.language').' *', ['class' => 'col-sm-3 control-label']) !!}
-
                             <div class="col-sm-9">
-                                {!! Form::select('setting[language]', array('default' => 'Default'), null, ['class' => 'form-control']) !!}
+                                {!! Form::select('setting[language]', array('english' => 'English',
+                                                                'singapore' => 'Singapore', 
+                                                                'malaysia' => 'Malaysia', 
+                                                                'indonesia' => 'Indonesia'), isset($data['language']) ? $data['language'] : null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('language') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('currency') }} currency">
                             {!! Form::label('currency', trans('general.currency').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::select('setting[currency]', array('default' => 'Default'), null, ['class' => 'form-control']) !!}
-                                {!! Form::errorMsg('currency') !!}
-                            </div>
+                            {!! Form::select('setting[currency]', array('AUD' => 'Australian Dollar',
+                                                                'BRL' => 'Brazilian Real', 
+                                                                'CAD' => 'Canadian Dollar', 
+                                                                'CZK' => 'Czech Koruna',
+                                                                'DKK' => 'Danish Krone',
+                                                                'EUR' => 'Euro', 
+                                                                'HKD' => 'Hong Kong Dollar', 
+                                                                'HUF' => 'Hungarian Forint',
+                                                                'ILS' => 'Israeli New Sheqel', 
+                                                                'IDR' => 'Indonesian Rupiah', 
+                                                                'JPY' => 'Japanese Yen',
+                                                                'MYR' => 'Malaysian Ringgit',
+                                                                'MXN' => 'Mexican Peso',
+                                                                'NOK' => 'Norwegian Krone',
+                                                                'NZD' => 'New Zealand Dollar',
+                                                                'PHP' => 'Philippine Peso',
+                                                                'PLN' => 'Polish Zloty',
+                                                                'GBP' => 'Pound Sterling',
+                                                                'SGD' => 'Singapore Dollar',
+                                                                'SEK' => 'Swedish Krona',
+                                                                'CHF' => 'Swiss Franc',
+                                                                'TWD' => 'Taiwan New Dollar',
+                                                                'THB' => 'Thai Baht',
+                                                                'TRY' => 'Turkish Lira',
+                                                                'USD' => 'U.S. Dollar'), isset($data['currency']) ? $data['currency'] : null, ['class' => 'form-control']) !!}
                         </div>
                         
                     </div>
