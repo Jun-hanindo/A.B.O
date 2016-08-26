@@ -585,11 +585,17 @@ class Event extends Model
             }
         }
 
-        $events = $query->where('events.title','ilike','%'.$q.'%')
-            ->orWhere('categories.name','ilike','%'.$q.'%')
-            ->groupBy('events.id')
+        // $events = $query->where('events.title','ilike','%'.$q.'%')
+        //     ->orWhere('categories.name','ilike','%'.$q.'%')
+        //     ->groupBy('events.id')
+        //     ->orderBy($sort);
+        $events = $query->where(function ($a) use ($q) {
+            $a->where('events.title','ilike','%'.$q.'%')
+                  ->orWhere('categories.name','ilike','%'.$q.'%');
+        })
+        ->groupBy('events.id')
             ->orderBy($sort);
-            //->get();
+        
 
         if($limit > 0){
             $query->take($limit);
