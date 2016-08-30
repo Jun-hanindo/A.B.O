@@ -19,11 +19,13 @@
                 columns: [
                     {data: 'name', name: 'name'},
                     {data: 'avaibility', name: 'avaibility', searchable: false, orderable: false},
+                    {data: 'status', name: 'status', searchable: false, orderable: false},
                     {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
                 ],
                 "fnDrawCallback": function() {
                     //Initialize checkbos for enable/disable user
-                    $(".avaibility-check").bootstrapSwitch({onText: "Enabled", offText:"Disabled", animate: false});
+                    $(".avaibility-check").bootstrapSwitch({onText: "Show", offText:"Off", animate: false});
+                    $(".status-check").bootstrapSwitch({onText: "Active", offText:"Inactive", animate: false});
                 }
             });
             return table;
@@ -39,6 +41,25 @@
                     type: "POST",
                     dataType: 'json',
                     data: "avaibility="+val,
+                    success: function (data) {
+                        $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    },
+                    error: function(response){
+                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    }
+                });
+        });
+
+        $('#categories-table').on('switchChange.bootstrapSwitch', '.status-check', function(event, state) {
+            var id = $(this).attr('data-id');
+            var uri = "{{ URL::route('admin-update-category-status', "::param") }}";
+            uri = uri.replace('::param', id);
+            var val = $(this).is(":checked") ? true : false;
+            $.ajax({
+                    url: uri,
+                    type: "POST",
+                    dataType: 'json',
+                    data: "status="+val,
                     success: function (data) {
                         $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                     },

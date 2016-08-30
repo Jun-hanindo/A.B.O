@@ -36,6 +36,13 @@
                                 {!! Form::errorMsg('avatar') !!}
                             </div>
                         </div>
+                        <div class="form-group">
+                            {!! Form::label('role', 'Role', ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::select('role', $dropdown, null, ['class' => 'form-control']) !!}
+                                {!! Form::errorMsg('role') !!}
+                            </div>
+                        </div>
                         {{-- <div class="form-group{{ Form::hasError('username') }}">
                             {!! Form::label('username', 'Username', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
@@ -44,42 +51,35 @@
                             </div>
                         </div> --}}
                         <div class="form-group{{ Form::hasError('email') }}">
-                            {!! Form::label('email', 'Email', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('email', 'Email *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('email', null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('email') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('first_name') }}">
-                            {!! Form::label('first_name', 'First Name', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('first_name', 'First Name *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('first_name', null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('first_name') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('last_name') }}">
-                            {!! Form::label('last_name', 'Last Name', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('last_name', 'Last Name *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('last_name', null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('last_name') !!}
                             </div>
                         </div>
-                        <div class="form-group">
-                            {!! Form::label('role', 'Role', ['class' => 'col-sm-3 control-label']) !!}
-                            <div class="col-sm-9">
-                                {!! Form::select('role', $dropdown, null, ['class' => 'form-control']) !!}
-                                {!! Form::errorMsg('role') !!}
-                            </div>
-                        </div>
                         <div class="form-group{{ Form::hasError('phone') }}">
-                            {!! Form::label('phone', 'Phone', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('phone', 'Phone *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('phone', null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('phone') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('address') }}">
-                            {!! Form::label('address', 'Address', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('address', 'Address *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::textarea('address', null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('address') !!}
@@ -94,7 +94,7 @@
                         </div> --}}
                     </div>
                     <div class="box-footer">
-                        {!! link_to_action('Backend\Admin\UserTrustee\UserController@index', 'Back', [], ['class' => 'btn btn-default']).' '.Form::submit('Save', ['class' => 'btn btn-primary pull-right', 'title' => 'Save']) !!}
+                        {!! link_to_action('Backend\Admin\UserTrustee\UserController@index', trans('general.button_cancel'), [], ['class' => 'btn btn-default']).' '.Form::submit('Save', ['class' => 'btn btn-primary pull-right', 'title' => 'Save']) !!}
                     </div>
                 {!! Form::close() !!}
             </div>

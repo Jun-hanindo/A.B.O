@@ -99,6 +99,7 @@ class MenuController extends BaseController
     {
         return $this->transaction(function ($model) use ($id) {
             $this->model->findOrFail($id)->delete();
+            //$this->model->deleteByID($id);
         }, true);
     }
 

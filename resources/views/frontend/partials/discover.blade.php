@@ -27,48 +27,60 @@
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
+                @php 
+                    $i = 0;
+                @endphp
                 @foreach($sliders as $key => $slider) 
-                    <li data-target="#carousel-example-generic" data-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : ' '}}"></li>
+                    @if($slider->Event->avaibility) 
+                        <li data-target="#carousel-example-generic" data-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : ' '}}"></li>
+                        @php 
+                            $i++
+                        @endphp
+                    @endif
                 @endforeach
             </ol>
 
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">   
+                    @php 
+                        $i = 0;
+                    @endphp 
                     @foreach($sliders as $key => $slider)  
                         @php
-                            $cat = $slider->Event->Categories->first();
-                        @endphp          
-                        <div class="item {{ $key == 0 ? 'active' : ' '}}">
-                          <img src="{{ $src.$slider->Event->featured_image1 }}" alt="...">
-                          <div class="carousel-caption">
-                            <div class="container">
-                                <h5>{{ $cat['name'] }}</h5>
-                                <h2>{{ $slider->Event->title }}</h2>
-                                <ul>
-                                    @php 
-                                        $schedule = $slider->Event->EventSchedule;
-                                        $first = true;
-                                    @endphp
-                                    @if(!empty($schedule))
-                                        @foreach($schedule as $sch)
-                                            @if($first)
-                                                <li><div class="eventDate"><i class="fa fa-calendar"></i>{{ date('d F Y', strtotime($sch->date_at)) }}</div></li>
-                                                {{ $first = false }}
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                    <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->Event->Venue->name }}</div></li>
-                                </ul>
-                                <div class="moreDetail">
-                                    <form action="{{ URL::route('event-detail', $slider->Event->slug) }}" style="margin-bottom:0;">
-                                        <button class="btn btnDetail">More Details</button>
-                                    </form>
-                                    
+                           $cat = $slider->Event->Categories()->where('avaibility', true)->where('status', true)->first();
+                        @endphp  
+                            @if($slider->Event->avaibility)        
+                                <div class="item {{ $i == 0 ? 'active' : ' '}}">
+                                  <img src="{{ $src.$slider->Event->featured_image1 }}" alt="...">
+                                  <div class="carousel-caption">
+                                    <div class="container">
+                                        <h5>{{ $cat->name }}</h5>
+                                        <h2>{{ $slider->Event->title }}</h2>
+                                        <ul>
+                                            @php 
+                                                $schedule = $slider->Event->EventSchedule()->first();
+                                            @endphp
+                                            <li><div class="eventDate"><i class="fa fa-calendar"></i>
+                                                @if(!empty($schedule))
+                                                    {{ date('d F Y', strtotime($schedule->date_at)) }}
+                                                @endif
+                                            </div></li>
+                                            <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->Event->Venue->name }}</div></li>
+                                        </ul>
+                                        <div class="moreDetail">
+                                            <form action="{{ URL::route('event-detail', $slider->Event->slug) }}" style="margin-bottom:0;">
+                                                <button class="btn btnDetail">More Details</button>
+                                            </form>
+                                            
+                                        </div>
+                                    </div>
+                                  </div>
                                 </div>
-                            </div>
-                          </div>
-                        </div>
+                            @php 
+                                $i++
+                            @endphp
+                        @endif
                     @endforeach
                 </div>
             
@@ -95,9 +107,7 @@
                                 <ul>
                                     <li class="eventType">{{ $event->cat_name }}&nbsp;</li>
                                     <li class="eventName">{{ $event->title }}</li>
-                                    @if($event->first_date != '')
-                                        <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ $event->first_date }}</li>
-                                    @endif
+                                    <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ $event->first_date }}</li>
                                     <li class="eventPlace">{{ $event->venue->name }}</li>
                                 </ul>
                             </div>

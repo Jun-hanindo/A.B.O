@@ -6,40 +6,45 @@
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
-                    @foreach($sliders as $key => $slider) 
-                        @if($slider->Event->avaibility)  
-                            <li data-target="#carousel-example-generic" data-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : ' '}}"></li>
+                    @php 
+                        $i = 0;
+                    @endphp 
+                    @foreach($sliders as $key => $slider)
+                        @if($slider->Event->avaibility) 
+                            <li data-target="#carousel-example-generic" data-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : ' '}}"></li>
+                            @php 
+                                $i++
+                            @endphp
                         @endif
                     @endforeach
                 </ol>
 
 
                     <!-- Wrapper for slides -->
-                    <div class="carousel-inner">   
+                    <div class="carousel-inner"> 
+                        @php 
+                            $i = 0;
+                        @endphp
                         @foreach($sliders as $key => $slider)
-                            @if($slider->Event->avaibility)    
-                                <div class="item {{ $key == 0 ? 'active' : ' '}}">
+                            @if($slider->Event->avaibility)
+                                <div class="item {{ $i == 0 ? 'active' : ' '}}">
                                   <img src="{{ $src.$slider->Event->featured_image1 }}" alt="...">
                                   <div class="carousel-caption">
                                     <div class="container">
                                         @php
-                                            $cat = $slider->Event->Categories->first();
+                                            $cat = $slider->Event->Categories()->where('avaibility', true)->where('status', true)->first();
                                         @endphp 
-                                        <h5>{{ $cat['name'] }}</h5>
+                                        <h5>{{ $cat->name }}</h5>
                                         <h2>{{ $slider->Event->title }}</h2>
                                         <ul>
                                             @php 
-                                                $schedule = $slider->Event->EventSchedule;
-                                                $first = true;
+                                                $schedule = $slider->Event->EventSchedule()->first();
                                             @endphp
-                                            @if(!empty($schedule))
-                                                @foreach($schedule as $sch)
-                                                    @if($first)
-                                                        <li><div class="eventDate"><i class="fa fa-calendar"></i>{{ date('d F Y', strtotime($sch->date_at)) }}</div></li>
-                                                        {{ $first = false }}
-                                                    @endif
-                                                @endforeach
-                                            @endif
+                                            <li><div class="eventDate"><i class="fa fa-calendar"></i>
+                                                @if(!empty($schedule))
+                                                    {{ date('d F Y', strtotime($schedule->date_at)) }}
+                                                @endif
+                                            </div></li>
                                             <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->Event->Venue->name }}</div></li>
                                         </ul>
                                         <div class="moreDetail">
@@ -50,6 +55,9 @@
                                     </div>
                                   </div>
                                 </div>
+                                @php 
+                                    $i++
+                                @endphp
                             @endif
                         @endforeach
                     </div>
@@ -78,23 +86,23 @@
                                 <div class="boxInfo box-info1 bg-{{ $event->Event->background_color }}">
                                     <ul>
                                         @php
-                                            $cat = $event->Event->Categories->first();
+                                            $cat = $event->Event->Categories()->where('avaibility', true)->where('status', true)->first();
                                         @endphp      
-                                        <li class="eventType">{{ $cat['name'] }}&nbsp;</li>
+                                        <li class="eventType">
+                                            @if(!empty($cat))
+                                                {{ $cat->name }}
+                                            @else
+                                                &nbsp;
+                                            @endif
+                                        </li>
                                         <li class="eventName">{{ string_limit($event->Event->title) }}</li>
                                         @php 
-                                            $schedule = $event->Event->EventSchedule;
-                                            $first = true;
+                                            $schedule = $event->Event->EventSchedule()->first();
                                         @endphp
                                         <li class="eventDate"><i class="fa fa-calendar-o"></i> 
-                                        @if(!empty($schedule))
-                                            @foreach($schedule as $sch)
-                                                @if($first)
-                                                    {{ date('d F Y', strtotime($sch->date_at)) }}
-                                                    {{ $first = false }}
-                                                @endif
-                                            @endforeach
-                                        @endif
+                                            @if(!empty($schedule))
+                                                {{ date('d F Y', strtotime($schedule->date_at)) }}
+                                            @endif
                                         </li>
                                         <li class="eventPlace">{{ $event->Event->Venue->name }}</li>
                                     </ul>

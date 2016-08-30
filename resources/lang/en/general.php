@@ -185,7 +185,8 @@ return [
     'currency'  => 'Currency',
     'facebook'  => 'Facebook',
     'google_play'   => 'Google Play',
-    'apple_store'   => 'Apple Store'
+    'apple_store'   => 'Apple Store',
+    'status'    => 'Status',
     // 'january' => 'January',
     // 'february' => 'February',
     // 'march' => 'March',

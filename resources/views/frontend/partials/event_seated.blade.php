@@ -8,10 +8,7 @@
           <div class="infoBanner bg-{{ $event->background_color }}">
               <div class="container">
                   <div class="detail">
-                      @php
-                          $cat = $event->Categories->first();
-                      @endphp
-                      <h5>{{ $cat['name'] }}</h5>
+                      <h5>{{ $event->category }}</h5>
                       <h2>{{ $event->title }}</h2>
                   </div>
                   <div class="moreDetail">
@@ -27,7 +24,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         @php 
-                            $schedules = $event->EventSchedule;
+                            $schedules = $event->schedules;
                             $i = 0;
                             $count = count($schedules);
                         @endphp
@@ -55,16 +52,10 @@
                                                 <td>{{ date('d F, D', strtotime($sch->date_at)) }}</td>
                                                 <td>
                                                     @php 
-                                                        $prices = $sch->EventScheduleCategory;
-                                                        $first = true;
+                                                        $prices = $sch->EventScheduleCategory()->first();
                                                     @endphp
                                                     @if(!empty($prices))
-                                                        @foreach($prices as $pri) 
-                                                            @if($first)
-                                                                {{ $pri->additional_info }}
-                                                                {{ $first = false }}
-                                                            @endif
-                                                        @endforeach
+                                                        {{ $prices->additional_info }}
                                                     @endif
                                                 </td>
                                                 <td>{{ $sch->start_time.'-'.$sch->end_time }}</td>
@@ -88,7 +79,7 @@
                     </div>
                     <div class="col-md-4 ticket">
                         <div class="information-title">
-                            <i class="fa fa-ticket"></i> {{ '$'.$min->price }}
+                            <i class="fa fa-ticket"></i> {{ !empty($min) ? '$'.$min->price: '' }}
                         </div>
                         <ul class="list-unstyled">
                             <li class="liParent">
@@ -153,7 +144,7 @@
                                                       <div class="row">
                                                           <div class="">
                                                               @php
-                                                                    $promotions = $event->promotions()->where('avaibility', true)->orderBy('start_date')->get()
+                                                                    $promotions = $event->promotions;
                                                                 @endphp
                                                                 @if(!empty($promotions))
                                                                     @foreach($promotions as $key => $promotion) 

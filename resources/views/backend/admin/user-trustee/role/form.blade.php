@@ -26,7 +26,7 @@
                 {!! Form::modelHorizontal($data, $form) !!}
                     <div class="box-body">
                         <div class="form-group{{ Form::hasError('name') }}">
-                            {!! Form::label('name', 'Name', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('name', 'Name *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('name') !!}
@@ -42,7 +42,7 @@
                             </div>
                         @endif
                         <div class="form-group{{ Form::hasError('permissions') }}">
-                            {!! Form::label('permissions', 'Permissions', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('permissions', 'Permissions *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::select('permissions[]', $data['dropdown'], null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'permissions']) !!}
                                 {!! Form::errorMsg('permissions') !!}
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        {!! link_to_action('Backend\Admin\UserTrustee\RoleController@index', 'Back', [], ['class' => 'btn btn-default']).' '.Form::submit('Save', ['class' => 'btn btn-primary pull-right', 'title' => 'Save']) !!}
+                        {!! link_to_action('Backend\Admin\UserTrustee\RoleController@index', trans('general.button_cancel'), [], ['class' => 'btn btn-default']).' '.Form::submit('Save', ['class' => 'btn btn-primary pull-right', 'title' => 'Save']) !!}
                     </div>
                 {!! Form::close() !!}
             </div>

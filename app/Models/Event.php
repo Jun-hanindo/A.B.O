@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
 use File;
 use Image;
@@ -11,7 +12,10 @@ use Image;
 class Event extends Model
 {
     use Sluggable;
+    use SoftDeletes;
     protected $table = 'events';
+    protected $dates = ['deleted_at'];
+
     public function sluggable()
     {
         return [
@@ -250,6 +254,21 @@ class Event extends Model
     {
         $data = $this->find($id);
         if(!empty($data)) {
+            // $data->status = false;
+            // if($data->save()) {
+            //     $pathDest = public_path().'/uploads/events';
+            //     $oldImage1 = $data->featured_image1;
+            //     $oldImage2 = $data->featured_image2;
+            //     $oldImage3 = $data->featured_image3;
+            //     File::delete($pathDest.'/'.$oldImage1);
+            //     File::delete($pathDest.'/'.$oldImage2);
+            //     File::delete($pathDest.'/'.$oldImage3);
+            //     return $data;
+            // } else {
+            //     return false;
+
+            // }
+
             $pathDest = public_path().'/uploads/events';
             $oldImage1 = $data->featured_image1;
             $oldImage2 = $data->featured_image2;
@@ -257,8 +276,8 @@ class Event extends Model
             File::delete($pathDest.'/'.$oldImage1);
             File::delete($pathDest.'/'.$oldImage2);
             File::delete($pathDest.'/'.$oldImage3);
-
             $data->delete();
+            $data->Homepage()->delete();
             return $data;
         } else {
             return false;
@@ -309,25 +328,9 @@ class Event extends Model
     {
         $data = Event::where('slug' , '=', $slug)->first();
         if (!empty($data)) {
-        
-            return $data;
-        
-        } else {
-        
-            return false;
-
-        }
-    }
-
-    public function minPrice($slug)
-    {
-        $data = DB::table('events')
-        ->select('events.id as id', 'price')
-        ->leftjoin('event_schedules', 'events.id', '=', 'event_schedules.event_id')
-        ->leftjoin('event_schedule_categories', 'event_schedules.id', '=', 'event_schedule_categories.event_schedule_id')
-        ->where('events.slug','=',$slug)
-        ->orderBy('price', 'ASC')->first();
-        if (!empty($data)) {
+            $data->schedules = $data->EventSchedule()/*->where('status', true)*/->get();
+            $data->category = $data->Categories()->where('avaibility', true)->where('status', true)->first()->name;
+            $data->promotions = $data->promotions()->where('avaibility', true)/*->where('status', true)*/->orderBy('start_date')->get();
         
             return $data;
         
@@ -355,27 +358,40 @@ class Event extends Model
     public function getEvent($limit)
     {
         $events = Event::where('avaibility', true)
+            // ->where('status', true)
             ->orderBy('created_at', 'desc')
             ->paginate($limit);
         if(count($events) > 0){
             foreach ($events as $key => $event) {
-                $cat = $event->Categories->first();
-                $event->cat_name = $cat['name'];
 
                 $event->title = string_limit($event->title);
 
-                $this->setImageUrl($event);
-                $event->venue = $event->Venue;
-                $schedule = $event->EventSchedule;
-                $first = true;
-                if(!empty($schedule)){
-                    foreach($schedule as $sch){
-                        if($first){
-                            $event->first_date = date('d F Y', strtotime($sch->date_at));
-                            $first = false;
-                        }
-                    }
+                $cat = $event->Categories->where('avaibility', true)->where('status', true)->first();
+                if(!empty($cat)){
+                    $event->cat_name = $cat['name'];
+                }else{
+                    $event->cat_name = '';
                 }
+
+                $this->setImageUrl($event);
+
+                $event->venue = $event->Venue;
+                
+                $schedule = $event->EventSchedule()/*->where('status', true)*/->first();
+                if(!empty($schedule)){
+                    $event->first_date = date('d F Y', strtotime($schedule->date_at));
+                }else{
+                    $event->first_date = '';
+                }
+                // $first = true;
+                // if(!empty($schedule)){
+                //     foreach($schedule as $sch){
+                //         if($first){
+                //             $event->first_date = date('d F Y', strtotime($sch->date_at));
+                //             $first = false;
+                //         }
+                //     }
+                // }
             }
             return $events;
         }else{
@@ -392,6 +408,7 @@ class Event extends Model
             'event_categories.category_id as category_id')
             ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
             ->where('event_categories.category_id','=',$category)
+            //->where('events.status', true)
             ->where('events.avaibility','=',true)
             ->orderBy('events.created_at', 'desc')
             ->paginate($limit);
@@ -399,23 +416,32 @@ class Event extends Model
         if(count($events) > 0)
         {
             foreach ($events as $key => $event) {
-                $cat = Category::where('id', $category)->first();
+                $cat = Category::where('id', $category)->where('avaibility', true)->where('status', true)->first();
                 $event->cat_name = $cat->name;
 
                 $event->title = string_limit($event->title);
 
                 $this->setImageUrl($event);
+
                 $event->venue = $event->Venue;
-                $schedule = EventSchedule::where('event_id', $event->id)->get();
-                $first = true;
+
+                $schedule = $event->EventSchedule()/*->where('status', true)*/->first();
+                //$schedule = EventSchedule::where('event_id', $event->id)->get();
                 if(!empty($schedule)){
-                    foreach($schedule as $sch){
-                        if($first){
-                            $event->first_date = date('d F Y', strtotime($sch->date_at));
-                            $first = false;
-                        }
-                    }
+                    $event->first_date = date('d F Y', strtotime($schedule->date_at));
+                }else{
+                    $event->first_date = '';
                 }
+                // $first = true;
+                // if(!empty($schedule)){
+                //     foreach($schedule as $sch){
+                //         if($first){
+                //             $event->first_date = date('d F Y', strtotime($sch->date_at));
+                //             $first = false;
+                //         }
+                //     }
+                // }
+                
             }
             return $events;
         }else{
@@ -436,6 +462,8 @@ class Event extends Model
             ->join('promotions', 'promotions.id', '=', 'event_promotions.promotion_id')
             ->where('events.avaibility','=',true)
             ->where('promotions.avaibility','=',true)
+            //->where('events.status','=',true)
+            //->where('promotions.status','=',true)
             //->groupBy('events.id')
             ->orderBy('events.id', 'asc')
             ->orderBy('promotions.start_date', 'asc')
@@ -449,6 +477,9 @@ class Event extends Model
                 //$event->start = date('d F Y', strtotime($event->start_date));
                 //$event->end = date('d F Y', strtotime($event->end_date));
                 $event->promo_title = string_limit($event->promo_title);
+
+                $event->start_date = date('d F Y', strtotime($event->start_date));
+                $event->end_date = date('d F Y', strtotime($event->end_date));
 
                 $m_start = date('m', strtotime($event->start_date));
                 $m_end = date('m', strtotime($event->end_date));
@@ -494,6 +525,8 @@ class Event extends Model
             ->join('promotions', 'promotions.id', '=', 'event_promotions.promotion_id')
             ->where('events.avaibility','=', true)
             ->where('promotions.avaibility','=', true)
+            //->where('events.status','=',true)
+            // ->where('promotions.status','=',true)
             ->where('promotions.category','=', $category)
             //->groupBy('events.id')
             ->orderBy('events.id', 'asc')
@@ -508,6 +541,9 @@ class Event extends Model
                 //$event->start = date('d F Y', strtotime($event->start_date));
                 //$event->end = date('d F Y', strtotime($event->end_date));
                 $event->promo_title = string_limit($event->promo_title);
+
+                $event->start_date = date('d F Y', strtotime($event->start_date));
+                $event->end_date = date('d F Y', strtotime($event->end_date));
 
                 $m_start = date('m', strtotime($event->start_date));
                 $m_end = date('m', strtotime($event->end_date));
@@ -538,6 +574,30 @@ class Event extends Model
         }
     }
 
+    //checked
+
+    public function minPrice($slug)
+    {
+        $data = DB::table('events')
+        ->select('events.id as id', 'price')
+        ->leftjoin('event_schedules', 'events.id', '=', 'event_schedules.event_id')
+        ->leftjoin('event_schedule_categories', 'event_schedules.id', '=', 'event_schedule_categories.event_schedule_id')
+        ->where('events.slug','=',$slug)
+        //->where('events.status', true)
+        // ->where('event_schedules.status', true)
+        // ->where('event_schedule_categories.status', true)
+        ->orderBy('price', 'ASC')->first();
+        if (!empty($data)) {
+        
+            return $data;
+        
+        } else {
+        
+            return false;
+
+        }
+    }
+
     public function search($param, $limit)
     {
         $q = $param['q'];
@@ -555,7 +615,12 @@ class Event extends Model
             ->join('event_schedules', 'event_schedules.event_id', '=', 'events.id')
             ->join('event_schedule_categories', 'event_schedule_categories.event_schedule_id', '=', 'event_schedules.id')
             ->where('events.avaibility','=', true)
-            ->where('categories.avaibility','=', true);
+            //->where('categories.avaibility','=', true)
+            ->where('categories.status', true);
+            //->where('events.status','=', true);
+            //->where('categories.status','=', true)
+            /*->where('event_schedules.status','=', true)*/
+            //->where('event_schedule_categories.status','=', true);
             //->where('date_at','>', date('Y-m-d'));
             //->groupBy('events.id')
             //->orderBy($sort)

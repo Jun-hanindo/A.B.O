@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
 use File;
 use Image;
 
 class Homepage extends Model
 {
+    use SoftDeletes;
     protected $table = 'homepages';
+    protected $dates = ['deleted_at'];
 
     /*protected $fillable = [
         'user_id', 'name', 'address', 'mrtdirection', 'cardirection', 'taxidirection', 'capacity', 'link_map', 'gmap_link'
@@ -79,27 +82,30 @@ class Homepage extends Model
 
     public function deleteByID($id)
     {
-        $findData = $this->find($id);
-        if($findData) {
-            
-            $findData->delete();
-            return $findData;
+        $data = $this->find($id);
+        if(!empty($data)) {
+            $data->delete();
+            return $data;
+            // $data->status = false;
+            // if($data->save()) {
+            //     return $data;
+            // } else {
+            //     return false;
 
+            // }
         } else {
-
             return false;
-
         }
     }  
 
     public function countEventByCategory($category)
     {
-        return Homepage::where('category', $category)->count();
+        return Homepage::where('category', $category)/*->where('status', true)*/->count();
     }
 
     public function getHomepage($category)
     {
-        return Homepage::where('category', $category)->get();
+        return Homepage::where('category', $category)/*->where('status', true)*/->get();
     }
 
     

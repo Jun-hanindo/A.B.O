@@ -55,4 +55,22 @@ class Menu extends Model
 
         return $return->lists('display_name', 'id');
     }
+
+    public function deleteByID($id)
+    {
+        $data = $this->find($id);
+        if(!empty($data)) {
+            $data->delete();
+            return $data;
+            // $data->status = false;
+            // if($data->save()) {
+            //     return $data;
+            // } else {
+            //     return false;
+
+            // }
+        } else {
+            return false;
+        }
+    }
 }

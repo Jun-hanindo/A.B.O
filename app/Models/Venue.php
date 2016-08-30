@@ -5,11 +5,14 @@ namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Venue extends Model
 {
     use Sluggable;
+    use SoftDeletes;
     protected $table = 'venues';
+    protected $dates = ['deleted_at'];
     public function sluggable()
     {
         return [
@@ -41,7 +44,7 @@ class Venue extends Model
     function datatables()
     {
 
-    	return static::select('id', 'name', 'address', 'user_id', 'avaibility');
+    	return static::select('id', 'name', 'address', 'user_id', 'avaibility')/*->where('status', true)*/;
     
     }
 
@@ -131,6 +134,13 @@ class Venue extends Model
         if(!empty($data)) {
             $data->delete();
             return $data;
+            // $data->status = false;
+            // if($data->save()) {
+            //     return $data;
+            // } else {
+            //     return false;
+
+            // }
         } else {
             return false;
         }
@@ -142,7 +152,9 @@ class Venue extends Model
      */
     public static function dropdown()
     {
-        return static::orderBy('name')->where('avaibility', 'TRUE')->lists('name', 'id');
+        return static::orderBy('name')->where('avaibility', 'TRUE')
+        /*->where('status', true)*/
+        ->lists('name', 'id');
     }
 
     public function changeAvaibility($param, $id){
@@ -165,6 +177,8 @@ class Venue extends Model
 
 
     public function getVenue(){
-        return Venue::where('avaibility' , true)->orderBy('name', 'asc')->get();
+        return Venue::where('avaibility' , true)
+        /*->where('status', true)*/
+        ->orderBy('name', 'asc')->get();
     }
 }

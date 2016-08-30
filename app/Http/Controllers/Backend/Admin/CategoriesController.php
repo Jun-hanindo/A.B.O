@@ -43,6 +43,14 @@ class CategoriesController extends BaseController
                 }
                 return '<input type="checkbox" name="avaibility['.$category->id.']" class="avaibility-check" data-id="'.$category->id.'" '.$checked.'>';
             })
+            ->editColumn('status', function ($category) {
+                if($category->status == TRUE){
+                    $checked = 'checked';
+                }else{
+                    $checked = '';
+                }
+                return '<input type="checkbox" name="status['.$category->id.']" class="status-check" data-id="'.$category->id.'" '.$checked.'>';
+            })
             ->make(true);
     }
 
@@ -158,23 +166,23 @@ class CategoriesController extends BaseController
         }
     }
 
-    public function comboCategory(Request $request){
-        $term = $request->q;
+    // public function comboCategory(Request $request){
+    //     $term = $request->q;
         
-        $results = Category::where('name', 'ilike', '%'.$term.'%')->get();
+    //     $results = Category::where('name', 'ilike', '%'.$term.'%')->where('status', true)->get();
 
-        foreach ($results as $result) {
-            $data[] = array('id'=>$result->id,'text'=>$result->name);
-        }
+    //     foreach ($results as $result) {
+    //         $data[] = array('id'=>$result->id,'text'=>$result->name);
+    //     }
         
         
-        $resData = array(
-            "success" => true,
-            "results" => $data);
+    //     $resData = array(
+    //         "success" => true,
+    //         "results" => $data);
 
-        return json_encode($resData);
-        exit;
-    }
+    //     return json_encode($resData);
+    //     exit;
+    // }
 
     public function avaibilityUpdate(Request $req, $id)
     {
@@ -205,6 +213,30 @@ class CategoriesController extends BaseController
                 'status' => 'success',
                 'message' => trans('general.update_error').', '.trans('general.limit_9')
             ],400);
+        }
+    }
+
+    public function statusUpdate(Request $req, $id)
+    {
+        $param = $req->all();
+        $count = count($this->model->getCategory());
+        $updateData = $this->model->changeStatus($param, $id);
+        if(!empty($updateData)) {
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
+            ],200);
+
+        } else {
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.update_error')
+            ],400);
+
         }
     }
 

@@ -57,9 +57,9 @@
                                             <!-- <h4>How to Participate </h4>
                                             <p>Show StarHub bill or subscription on any device such as mobile phone or tablet.</p> -->
                                             <h4>Promotion Period</h4>
-                                            <p>Start Date: {{ date('d F Y', strtotime($event->start_date)) }}</p>
+                                            <p>Start Date: {{ $event->start_date }}</p>
                                             <br>
-                                            <p>End Date: {{ date('d F Y', strtotime($event->end_date)) }}</p>
+                                            <p>End Date: {{ $event->end_date }}</p>
                                         </div>
                                     </div>
                                     <div class="modal-footer">

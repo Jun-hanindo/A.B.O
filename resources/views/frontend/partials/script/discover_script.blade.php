@@ -28,10 +28,6 @@
                     $.each(events,function(key,val){
                         var uri = "{{ URL::route('event-detail', "::param") }}";
                         uri = uri.replace('::param', val.slug);
-                        var first_date = '';
-                        if(val.first_date != ''){
-                            first_date = '<li class="eventDate"><i class="fa fa-calendar-o"></i> '+val.first_date+'</li>'
-                        }
                         
                         var htmlTop = 
                             '<a href="'+uri+'">'
@@ -41,7 +37,7 @@
                                         +'<ul>'
                                             +'<li class="eventType">'+val.cat_name+'</li>'
                                             +'<li class="eventName">'+val.title+'</li>'
-                                            +first_date
+                                            +'<li class="eventDate"><i class="fa fa-calendar-o"></i> '+val.first_date+'</li>'
                                             +'<li class="eventPlace">'+val.venue.name+'</li>'
                                         +'</ul>'
                                     +'</div>'

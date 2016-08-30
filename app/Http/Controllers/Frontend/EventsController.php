@@ -22,13 +22,17 @@ class EventsController extends Controller
     public function index($slug)
     {
         $result['event'] = $this->model->findEventBySlug($slug);
-        $result['min'] = $this->model->minPrice($slug);
-        $result['src'] = url('uploads/events').'/';
-        $result['src2'] = url('uploads/promotions').'/';
-        if($result['event']->event_type == 'true'){
-            return view('frontend.partials.event', $result); 
+        if(!empty($result['event']) && $result['event']->avaibility){
+            $result['min'] = $this->model->minPrice($slug);
+            $result['src'] = url('uploads/events').'/';
+            $result['src2'] = url('uploads/promotions').'/';
+            if($result['event']->event_type == 'true'){
+                return view('frontend.partials.event', $result); 
+            }else{
+                return view('frontend.partials.event_seated', $result); 
+            }
         }else{
-            return view('frontend.partials.event_seated', $result); 
+            return view('errors.404');
         }
     }
 

@@ -45,7 +45,7 @@
             <div class="content">
                 <div class="title">500</div>
                 <div class="title">Internal server error.</div>
-                <div><span style="color: #000000;"><a href="{{ URL::to('admin/login') }}" class="btn btn-info"><font color="black"><strong>Back to home</strong></font></a></span></div>
+                <div><span style="color: #000000;"><a href="{{ URL::to('') }}" class="btn btn-info"><font color="black"><strong>Back to home</strong></font></a></span></div>
             </div>
         </div>
     </body>

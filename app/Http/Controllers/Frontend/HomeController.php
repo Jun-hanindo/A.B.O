@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Homepage;
 use App\Models\Event;
 use App\Models\Category;
+use App\Models\ManagePage;
 //use View;
 
 class HomeController extends Controller
@@ -102,9 +103,22 @@ class HomeController extends Controller
         } 
     }
 
+    function pageContent($slug){
+        $modelPage = new ManagePage();
+        $page = $modelPage->findPageBySlug($slug);
+        if(!empty($page)){
+            $data['content'] = $page->content;
+        }else{
+            $data['content'] = '';
+        }
+
+        return $data;
+    }
+
     public function careers()
     {
-        return view('frontend.partials.careers');
+        $data['content'] = $this->pageContent('careers');
+        return view('frontend.partials.careers', $data);
     }
 
     public function contactUs()

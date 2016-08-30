@@ -21,37 +21,43 @@ class CategoriesController extends Controller
     public function index(Request $req, $slug)
     {
         $result['category'] = $this->model->findCategoryBySlug($slug);
-        $id = $result['category']->id;
-        $result['categories'] = $this->model->getCategory();
-        $modelEvent = new Event();
-        $limit = 9;
-        $result['events'] = $modelEvent->getEventByCategory($id, $limit);
-        if($req->ajax()){
-            
-            $events = $result['events'];
 
-            if($events) {
+        if(!empty($result['category']) && $result['category']->status){
+            $id = $result['category']->id;
+            $result['categories'] = $this->model->getCategory();
+            $modelEvent = new Event();
+            $limit = 9;
+            $result['events'] = $modelEvent->getEventByCategory($id, $limit);
+            if($req->ajax()){
+                
+                $events = $result['events'];
 
-                return response()->json([
-                    'code' => 200,
-                    'status' => 'success',
-                    'message' => 'success',
-                    'data' => $events
-                ],200);
+                if($events) {
 
-            } else {
+                    return response()->json([
+                        'code' => 200,
+                        'status' => 'success',
+                        'message' => 'success',
+                        'data' => $events
+                    ],200);
 
-                return response()->json([
-                    'code' => 400,
-                    'status' => 'error',
-                    'data' => array(),
-                    'message' => trans('general.data_empty')
-                ],400);
-            
+                } else {
+
+                    return response()->json([
+                        'code' => 400,
+                        'status' => 'error',
+                        'data' => array(),
+                        'message' => trans('general.data_empty')
+                    ],400);
+                
+                }
+                
+            }else{
+                return view('frontend.partials.category', $result); 
             }
-            
         }else{
-            return view('frontend.partials.category', $result); 
+            return view('errors.404');
+            
         }
     }
 }

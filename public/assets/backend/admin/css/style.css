@@ -15,3 +15,6 @@
 .pull-none{
 	float: none;
 }
+.close{
+	opacity: 1;
+}

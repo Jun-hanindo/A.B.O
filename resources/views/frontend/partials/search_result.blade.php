@@ -26,7 +26,7 @@
                                                             @endif
                                                         @endforeach
                                                     @endif
-                                                    > {{ $category->name }}</label></li>
+                                                    {{ $category->name }}</label></li>
                                             @endforeach
                                         @endif
                                     </li>
@@ -214,14 +214,9 @@
                                         </div>
                                         <div class="mobile-search-desc">
                                             <ul>
-                                                <li class="date">{{ date('d M Y', strtotime($event->date)) }}</li>
+                                                <li class="date">{{ $event->date_set }}</li>
                                                 <li class="place">{{ $event->venue }}</li>
-                                                <li class="type">
-                                                    @php
-                                                        $cat = explode(',', $event->category)
-                                                    @endphp
-                                                    {{ $cat[0] }}
-                                                </li>
+                                                <li class="type">{{ $event->category }}</li>
                                             </ul>
                                         </div>
                                     </div>

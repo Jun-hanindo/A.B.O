@@ -320,7 +320,7 @@ class EventsController extends BaseController
     public function comboEvent(Request $request){
         $term = $request->q;
         
-        $results = Event::where('avaibility', true)->where('title', 'ilike', '%'.$term.'%')->get();
+        $results = Event::where('avaibility', true)->where('title', 'ilike', '%'.$term.'%')/*->where('status', true)*/->get();
 
         foreach ($results as $result) {
             $data[] = array('id'=>$result->id,'text'=>$result->title);
@@ -344,6 +344,8 @@ class EventsController extends BaseController
             ->where('events.avaibility', true)
             ->where('promotions.avaibility', true)
             ->where('events.title', 'ilike', '%'.$term.'%')
+            //->where('promotions.status', true)
+            //->where('events.status', true)
             ->groupBy('events.id')
             ->get();
 

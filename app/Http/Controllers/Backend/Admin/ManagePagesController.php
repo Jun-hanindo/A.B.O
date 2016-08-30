@@ -5,102 +5,62 @@ namespace App\Http\Controllers\Backend\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Models\ManagePage;
 use App\Http\Controllers\Backend\Admin\BaseController;
+use App\Http\Requests\Backend\admin\manage_page\ManagePageRequest;
 
 class ManagePagesController extends BaseController
 {
+
+    public function __construct(ManagePage $model)
+    {
+        parent::__construct($model);
+
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function createEditContactUs()
+    public function index($slug)
     {
-        //
-        return view('backend.admin.manage_page.contact_us.form');
+        $page = $this->model->findPageBySlug($slug);
+        if(!empty($page)){
+            $data['content'] = $page->content;
+        }else{
+            $data['content'] = '';
+        }
+        $data['slug'] = $slug;
+        if($slug == 'contact-us'){
+            $data['title'] = trans('general.contact_us');
+        }elseif($slug == 'terms-and-conditions'){
+            $data['title'] = trans('general.terms_and_conditions');
+        }elseif($slug == 'privacy-policy'){
+            $data['title'] = trans('general.privacy_policy');
+        }elseif($slug == 'about-us'){
+            $data['title'] = trans('general.about_us');
+        }elseif($slug == 'careers'){
+            $data['title'] = trans('general.career');
+        }elseif($slug == 'faq'){
+            $data['title'] = trans('general.faq');
+        }
+        return view('backend.admin.manage_page.form', $data);
     }
 
-    public function storeUpdateContactUs(){
-        
-    }
+    public function storeUpdate(ManagePageRequest $req, $slug){
+        $param = $req->all();
+        $user_id = $this->currentUser->id;
+        $updateData = $this->model->updateManagePage($param, $slug, $user_id);
+        if(!empty($updateData)) {
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createEditTermsAndConditions()
-    {
-        //
-        return view('backend.admin.manage_page.terms_and_conditions.form');
-    }
+            flash()->success($updateData->name.' '.trans('general.update_success'));
+            return redirect()->route('admin-manage-page', $slug);
 
-    public function storeUpdateTermsAndConditions(){
-        
-    }
+        } else {
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function createEditFaq()
-    {
-        //
-        return view('backend.admin.manage_page.faq.form');
-    }
+            flash()->error(trans('general.update_error'));
+            return redirect()->route('admin-manage-page', $slug)->withInput();
 
-    public function storeUpdateFaq(){
-        
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function createEditCareer()
-    {
-        //
-        return view('backend.admin.manage_page.career.form');
-    }
-
-    public function storeUpdateCareer(){
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function createEditPrivacyPolicy()
-    {
-        //
-        return view('backend.admin.manage_page.privacy_policy.form');
-    }
-
-    public function storeUpdatePrivacyPolicy(){
-        
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function createEditAboutUs()
-    {
-        //
-        return view('backend.admin.manage_page.about_us.form');
-    }
-
-    public function storeUpdateAboutUs(){
-        
+        }
     }
 }

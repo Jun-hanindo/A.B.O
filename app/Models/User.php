@@ -64,7 +64,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             'users.phone'
         )
         ->join('role_users', 'role_users.user_id', '=', 'users.id')
-        ->join('roles', 'role_users.role_id', '=', 'roles.id');
+        ->join('roles', 'role_users.role_id', '=', 'roles.id')
+        ->orderBy('users.created_at', 'desc');
 
         return $return;
     }

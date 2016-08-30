@@ -4,11 +4,15 @@ namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
     use Sluggable;
+    use SoftDeletes;
     protected $table = 'categories';
+    protected $dates = ['deleted_at'];
+
     public function sluggable()
     {
         return [
@@ -20,7 +24,7 @@ class Category extends Model
 
     public function Events()
     {
-        return $this->belongsToMany('App\Models\Event', 'event_categories', 'event_id', 'category_id');
+        return $this->belongsToMany('App\Models\Event', 'event_categories', 'category_id', 'event_id');
 
     }
 
@@ -37,7 +41,7 @@ class Category extends Model
     function datatables()
     {
 
-        return static::select('id', 'name', 'avaibility');
+        return static::select('id', 'name', 'avaibility', 'status');
     
     }
 
@@ -110,7 +114,16 @@ class Category extends Model
         $data = $this->find($id);
         if(!empty($data)) {
             $data->delete();
+            $data->events()->detach();
             return $data;
+            // $data->status = false;
+            // if($data->save()) {
+            //     $data->events()->detach();
+            //     return $data;
+            // } else {
+            //     return false;
+
+            // }
         } else {
             return false;
         }
@@ -134,9 +147,27 @@ class Category extends Model
         }
     }
 
+    public function changeStatus($param, $id){
+        $data = $this->find($id);
+        if (!empty($data)) {
+            $data->status = $param['status'];
+            if($data->save()) {
+                return $data;
+            } else {
+                return false;
+
+            }
+        
+        } else {
+
+            return false;
+
+        }
+    }
+
     public static function dropdown()
     {
-        return static::orderBy('name')->lists('name', 'id');
+        return static::where('avaibility' , true)->where('status', true)->orderBy('name')->lists('name', 'id');
     }
 
     public function findCategoryBySlug($slug)
@@ -154,6 +185,6 @@ class Category extends Model
     }
 
     public function getCategory(){
-        return Category::where('avaibility' , true)->orderBy('name', 'asc')->get();
+        return Category::where('avaibility' , true)->where('status', true)->orderBy('name', 'asc')->get();
     }
 }

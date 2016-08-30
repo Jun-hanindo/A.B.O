@@ -97,7 +97,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-search"></i>
                                                 </span>
-                                                <input type="text" name="q" value="{{@$q}}" class="form-control input-search" placeholder="Search in Singapore...">
+                                                <input type="text" name="q" value="{{@$q}}" class="form-control input-search" placeholder="Search...">
                                                 <input type="hidden" id="sort-text" name="sort" value="date">
                                             </div>
     

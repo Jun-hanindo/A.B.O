@@ -99,6 +99,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::delete('category/{id}/delete', array('as' => 'admin-delete-event-category', 'uses' => 'CategoriesController@destroy'));
         Route::get('category/combo', array('as' => 'list-combo-event-category', 'uses' => 'CategoriesController@comboCategory'));
         Route::post('category/{id}/avaibility-edit', array('as' => 'admin-update-category-avaibility', 'uses' => 'CategoriesController@avaibilityUpdate'));
+        Route::post('category/{id}/status-edit', array('as' => 'admin-update-category-status', 'uses' => 'CategoriesController@statusUpdate'));
 
         
     });
@@ -176,8 +177,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     // });
 
     Route::group(['prefix' => 'manage-pages'], function () {
-        Route::get('/{slug}', array('as' => 'admin-contact-us', 'uses' => 'ManagePagesController@createEdit'));
-        Route::post('{slug}/store-update', array('as' => 'admin-post-update-contact-us', 'uses' => 'ManagePagesController@storeUpdate'));
+        Route::get('/{slug}', array('as' => 'admin-manage-page', 'uses' => 'ManagePagesController@index'));
+        Route::post('{slug}/store-update', array('as' => 'admin-post-update-manage-page', 'uses' => 'ManagePagesController@storeUpdate'));
     });
 
     Route::group(['prefix' => 'homepage'], function () {

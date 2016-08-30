@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EventSchedule extends Model
 {
+    use SoftDeletes;
     protected $table = 'event_schedules';
+    protected $dates = ['deleted_at'];
 
     /*protected $fillable = [
         'user_id', 'name', 'address', 'mrtdirection', 'cardirection', 'taxidirection', 'capacity', 'link_map', 'gmap_link'
@@ -20,7 +23,7 @@ class EventSchedule extends Model
 
     public function EventScheduleCategory()
     {
-        return $this->hasMany('App\Models\EventScheduleCategory', 'event_schedule_id')->orderBy('price');
+        return $this->hasMany('App\Models\EventScheduleCategory', 'event_schedule_id')/*->where('status', true)*/->orderBy('price');
 
     }
 
@@ -33,7 +36,7 @@ class EventSchedule extends Model
     function datatables($event_id)
     {
 
-    	return static::select('id', 'date_at', 'start_time', 'end_time', 'event_id')->where('event_id', $event_id);
+    	return static::select('id', 'date_at', 'start_time', 'end_time', 'event_id')->where('event_id', $event_id)/*->where('status', true)*/;
     
     }
 
@@ -114,6 +117,13 @@ class EventSchedule extends Model
         if(!empty($data)) {
             $data->delete();
             return $data;
+            // $data->status = false;
+            // if($data->save()) {
+            //     return $data;
+            // } else {
+            //     return false;
+
+            // }
         } else {
             return false;
         }
@@ -121,6 +131,6 @@ class EventSchedule extends Model
 
     public function countSchedule($event_id)
     {
-        return EventSchedule::where('event_id', $event_id)->count();
+        return EventSchedule::where('event_id', $event_id)/*->where('status', true)*/->count();
     }
 }

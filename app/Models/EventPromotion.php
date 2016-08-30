@@ -30,10 +30,10 @@ class EventPromotion extends Model
      * @return \Illuminate\Database\Eloquent\Builder
      */
 
-    function datatablesByEvent($event_id)
-    {
+    // function datatablesByEvent($event_id)
+    // {
 
-        return static::select('id', 'start_date', 'end_date', 'title', 'event_id')->where('event_id', $event_id);
+    //     return static::select('id', 'start_date', 'end_date', 'title', 'event_id')->where('event_id', $event_id);
     
-    }
+    // }
 }

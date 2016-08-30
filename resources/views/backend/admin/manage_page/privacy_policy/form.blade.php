@@ -21,7 +21,7 @@
                             </div>
                     </div>
                     <div class="box-footer">
-                        <a href="{{ route('admin-index-event') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>
+                        <a href="{{ route('admin-privacy-policy') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>
                         <input class="btn btn-primary" title="{{ trans('general.button_publish') }}" type="button" value="{{ trans('general.button_publish') }}" id="button_submit">
                     </div>
                 {!! Form::close() !!}

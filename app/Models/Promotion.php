@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
 use File;
 use Image;
 
 class Promotion extends Model
 {
+    use SoftDeletes;
     protected $table = 'promotions';
+    protected $dates = ['deleted_at'];
 
 
     public function user()
@@ -32,7 +35,7 @@ class Promotion extends Model
     function datatables()
     {
 
-    	return static::select('id', 'title', 'user_id', 'avaibility')->orderBy('created_at', 'desc');
+    	return static::select('id', 'title', 'user_id', 'avaibility')->orderBy('created_at', 'desc')/*->where('status', true)*/;
     
     }
 
@@ -43,6 +46,7 @@ class Promotion extends Model
             'promotions.end_date as end_date', 'event_promotions.event_id as event_id')
             ->join('event_promotions', 'event_promotions.promotion_id', '=', 'promotions.id')
             ->where('promotions.avaibility', true)
+            /*->where('status', true)*/
             ->where('event_id', '=', $event_id)
             //->orderBy('promotions.created_at', 'desc')
             ->get();
@@ -178,6 +182,18 @@ class Promotion extends Model
     {
         $data = $this->find($id);
         if(!empty($data)) {
+            // $data->status = false;
+            // if($data->save()) {
+            //     $pathDest = public_path().'/uploads/promotions';
+            //     $oldImage = $data->featured_image;
+            //     File::delete($pathDest.'/'.$oldImage);
+            //     $data->events()->detach();
+            //     return $data;
+            // } else {
+            //     return false;
+
+            // }
+
             $pathDest = public_path().'/uploads/promotions';
             $oldImage = $data->featured_image;
             File::delete($pathDest.'/'.$oldImage);

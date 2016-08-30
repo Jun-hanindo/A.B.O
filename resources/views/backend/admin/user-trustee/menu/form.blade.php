@@ -34,35 +34,35 @@
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('name') }}">
-                            {!! Form::label('name', 'Name', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('name', 'Name *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('name') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('display_name') }}">
-                            {!! Form::label('display_name', 'Display Name', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('display_name', 'Display Name *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('display_name', null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('display_name') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('icon') }}">
-                            {!! Form::label('icon', 'Icon', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('icon', 'Icon *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('icon', null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('icon') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('pattern') }}">
-                            {!! Form::label('pattern', 'Pattern', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('pattern', 'Pattern *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('pattern', null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('pattern') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('href') }}">
-                            {!! Form::label('href', 'Href', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('href', 'Href *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('href', null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('href') !!}
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        {!! link_to_action('Backend\Admin\UserTrustee\MenuController@index', 'Back', [], ['class' => 'btn btn-default']).' '.Form::submit('Save', ['class' => 'btn btn-primary pull-right', 'title' => 'Save']) !!}
+                        {!! link_to_action('Backend\Admin\UserTrustee\MenuController@index', trans('general.button_cancel'), [], ['class' => 'btn btn-default']).' '.Form::submit('Save', ['class' => 'btn btn-primary pull-right', 'title' => 'Save']) !!}
                     </div>
                 {!! Form::close() !!}
             </div>

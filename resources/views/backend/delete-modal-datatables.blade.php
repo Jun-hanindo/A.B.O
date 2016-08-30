@@ -10,7 +10,7 @@
             </div>
             <div class="modal-footer">
                 {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
-                    <a id="delete-modal-cancel" href="#" class="btn btn-default" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;{!! Form::submit('Continue', ['class' => 'btn btn-primary']) !!}
+                    <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;{!! Form::submit('Continue', ['class' => 'btn btn-default']) !!}
                 {!! Form::close() !!}
             </div>
         </div>

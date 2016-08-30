@@ -41,17 +41,17 @@
                             <input type="hidden" name="event_id" class="form-control" id="event_id" value={{ $data->id }}>
                             <input type="hidden" name="count_schedule" class="form-control" id="count_schedule">
                             <div class="form-group{{ Form::hasError('title') }} title">
-                                {!! Form::label('title', trans('general.title')) !!}
+                                {!! Form::label('title', trans('general.title').' *') !!}
                                 {!! Form::text('title', $data->title, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.title')]) !!}
                                 {!! Form::errorMsg('title') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('description') }} description">
-                                {!! Form::label('description', trans('general.description')) !!}
+                                {!! Form::label('description', trans('general.description').' *') !!}
                                 {!! Form::textarea('description', $data->description, ['class' => 'form-control tinymce', 'rows'=> '12', 'placeholder' => trans('general.description')]) !!}
                                 {!! Form::errorMsg('description') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('admission') }} admission">
-                                {!! Form::label('admission', trans('general.admission')) !!}
+                                {!! Form::label('admission', trans('general.admission').' *') !!}
                                 {!! Form::textarea('admission', $data->admission, ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.admission')]) !!}
                                 {!! Form::errorMsg('admission') !!}
                             </div>
@@ -61,7 +61,7 @@
                                 {!! Form::errorMsg('price_info') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('price_detail') }} price_detail">
-                                {!! Form::label('price_info', trans('general.schedule_and_price_detail')) !!}
+                                {!! Form::label('price_info', trans('general.schedule_and_price_detail').' *') !!}
                                 <table id="event-schedule-datatables" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                                     <thead>
                                         <tr>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group{{ Form::hasError('featured_image1') }} featured_image1">
-                                {!! Form::label('featured_image1', trans('general.featured_image1').' *') !!}
+                                {!! Form::label('featured_image1', trans('general.featured_image1').'(1440px x 400px) *') !!}
                                 <input id="featured_image1" name="featured_image1" class="form-control image" data-name="image1" type="file" value="{{$data->featured_image1}}">
                                 {!! Form::errorMsg('featured_image1') !!}
                             </div>
@@ -99,7 +99,7 @@
                                 <img src="{{$data->src_featured_image1}}" name="preview" id="preview_image1" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image2') }} featured_image2">
-                                {!! Form::label('featured_image2', trans('general.featured_image2').' *') !!}
+                                {!! Form::label('featured_image2', trans('general.featured_image2').'(370px x 250px) *') !!}
                                 <input id="featured_image2" name="featured_image2" class="form-control image" data-name="image2" type="file" value="{{$data->featured_image1}}">
                                 {!! Form::errorMsg('featured_image2') !!}
                                 
@@ -108,7 +108,7 @@
                                 <img src="{{$data->src_featured_image2}}" name="preview" id="preview_image2" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image3') }} featured_image3">
-                                {!! Form::label('featured_image3', trans('general.featured_image3').' *') !!}
+                                {!! Form::label('featured_image3', trans('general.featured_image3').'(150px x 101px) *') !!}
                                 <input id="featured_image3" name="featured_image3" class="form-control image" data-name="image3" type="file" value="{{$data->featured_image1}}">
                                 {!! Form::errorMsg('featured_image3') !!}
                             </div>
@@ -125,7 +125,7 @@
                                 {!! Form::errorMsg('venue_id') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('buylink') }} buylink">
-                                {!! Form::label('buylink', trans('general.buylink')) !!}
+                                {!! Form::label('buylink', trans('general.buylink').' *') !!}
                                 {!! Form::text('buylink', $data->buylink, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.buylink')]) !!}
                             </div>
                             <div class="form-group{{ Form::hasError('category') }} category">
@@ -291,7 +291,7 @@
                                 </div>
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image') }} featured_image">
-                                {!! Form::label('featured_image', trans('general.featured_image').' *') !!}
+                                {!! Form::label('featured_image', trans('general.featured_image').'(50px x 30px) *') !!}
                                 <input id="featured_image" name="featured_image" class="form-control image" data-name="image" type="file" value="">
                                 {!! Form::errorMsg('featured_image') !!}
                             </div>
@@ -532,8 +532,8 @@
                 </div>
                 <div class="modal-footer">
                     {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
-                        <a id="delete-modal-cancel" href="#" class="btn btn-default" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
-                        <a id="delete-modal-schedule" href="#" class="btn btn-primary" data-dismiss="modal">Continue</a>
+                        <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
+                        <a id="delete-modal-schedule" href="#" class="btn btn-default" data-dismiss="modal">Continue</a>
                     {!! Form::close() !!}
                 </div>
             </div>
@@ -551,8 +551,8 @@
                 </div>
                 <div class="modal-footer">
                     {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
-                        <a id="delete-modal-cancel" href="#" class="btn btn-default" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
-                        <a id="delete-modal-category" href="#" class="btn btn-primary" data-dismiss="modal">Continue</a>
+                        <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
+                        <a id="delete-modal-category" href="#" class="btn btn-default" data-dismiss="modal">Continue</a>
                     {!! Form::close() !!}
                 </div>
             </div>
@@ -570,8 +570,8 @@
                 </div>
                 <div class="modal-footer">
                     {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
-                        <a id="delete-modal-cancel" href="#" class="btn btn-default" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
-                        <a id="delete-modal-promotion" href="#" class="btn btn-primary" data-dismiss="modal">Continue</a>
+                        <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
+                        <a id="delete-modal-promotion" href="#" class="btn btn-default" data-dismiss="modal">Continue</a>
                     {!! Form::close() !!}
                 </div>
             </div>

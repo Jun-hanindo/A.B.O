@@ -15,13 +15,14 @@
                 {!! Form::open(array('url' => route('admin-post-update-contact-us'),'method'=>'POST','id'=>'form-contact-us')) !!}
                     <div class="box-body">
                         <div class="error"></div>
+                            <input type="hidden" name="slug" class="form-control" id="slug" value="contact-us">
                             <div class="form-group{{ Form::hasError('description') }} description">
                                 {!! Form::textarea('description', old('description'), ['class' => 'form-control tinymce','rows'=>'15']) !!}
                                 {!! Form::errorMsg('description') !!}
                             </div>
                     </div>
                     <div class="box-footer">
-                        <a href="{{ route('admin-index-event') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>
+                        <a href="{{ route('admin-contact-us') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>
                         <input class="btn btn-primary" title="{{ trans('general.button_publish') }}" type="button" value="{{ trans('general.button_publish') }}" id="button_submit">
                     </div>
                 {!! Form::close() !!}

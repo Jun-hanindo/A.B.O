@@ -91,7 +91,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group{{ Form::hasError('featured_image1') }} featured_image1">
-                                {!! Form::label('featured_image1', trans('general.featured_image1').' *') !!}
+                                {!! Form::label('featured_image1', trans('general.featured_image1').'(1440px x 400px) *') !!}
                                 <input id="featured_image1" name="featured_image1" class="form-control image" data-name="image1" type="file" value="">
                                 {!! Form::errorMsg('featured_image1') !!}
                             </div>
@@ -99,7 +99,7 @@
                                 <img src="" name="preview" id="preview_image1" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image2') }} featured_image2">
-                                {!! Form::label('featured_image2', trans('general.featured_image2').' *') !!}
+                                {!! Form::label('featured_image2', trans('general.featured_image2').'(370px x 250px) *') !!}
                                 <input id="featured_image2" name="featured_image2" class="form-control image" data-name="image2" type="file" value="">
                                 {!! Form::errorMsg('featured_image2') !!}
                             </div>
@@ -107,7 +107,7 @@
                                 <img src="" name="preview" id="preview_image2" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image3') }} featured_image3">
-                                {!! Form::label('featured_image3', trans('general.featured_image3').' *') !!}
+                                {!! Form::label('featured_image3', trans('general.featured_image3').'(150px x 101px) *') !!}
                                 <input id="featured_image3" name="featured_image3" class="form-control image" data-name="image3" type="file" value="">
                                 {!! Form::errorMsg('featured_image3') !!}
                             </div>
@@ -293,7 +293,7 @@
                                 </div>
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image') }} featured_image">
-                                {!! Form::label('featured_image', trans('general.featured_image').' *') !!}
+                                {!! Form::label('featured_image', trans('general.featured_image').'(50px x 30px) *') !!}
                                 <input id="featured_image" name="featured_image" class="form-control image" data-name="image" type="file" value="">
                                 {!! Form::errorMsg('featured_image') !!}
                             </div>
@@ -533,8 +533,8 @@
                 </div>
                 <div class="modal-footer">
                     {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
-                        <a id="delete-modal-cancel" href="#" class="btn btn-default" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
-                        <a id="delete-modal-schedule" href="#" class="btn btn-primary" data-dismiss="modal">Continue</a>
+                        <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
+                        <a id="delete-modal-schedule" href="#" class="btn btn-default" data-dismiss="modal">Continue</a>
                     {!! Form::close() !!}
                 </div>
             </div>
@@ -552,8 +552,8 @@
                 </div>
                 <div class="modal-footer">
                     {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
-                        <a id="delete-modal-cancel" href="#" class="btn btn-default" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
-                        <a id="delete-modal-category" href="#" class="btn btn-primary" data-dismiss="modal">Continue</a>
+                        <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
+                        <a id="delete-modal-category" href="#" class="btn btn-default" data-dismiss="modal">Continue</a>
                     {!! Form::close() !!}
                 </div>
             </div>
@@ -572,8 +572,8 @@
                 </div>
                 <div class="modal-footer">
                     {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
-                        <a id="delete-modal-cancel" href="#" class="btn btn-default" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
-                        <a id="delete-modal-promotion" href="#" class="btn btn-primary" data-dismiss="modal">Continue</a>
+                        <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
+                        <a id="delete-modal-promotion" href="#" class="btn btn-default" data-dismiss="modal">Continue</a>
                     {!! Form::close() !!}
                 </div>
             </div>
