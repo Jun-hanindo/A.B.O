@@ -31,7 +31,10 @@
                     $i = 0;
                 @endphp
                 @foreach($sliders as $key => $slider) 
-                    @if($slider->Event->avaibility) 
+                    @php
+                       $cat = $slider->Event->Categories()->where('status', true)->first();
+                    @endphp 
+                    @if($slider->Event->avaibility && !empty($cat)) 
                         <li data-target="#carousel-example-generic" data-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : ' '}}"></li>
                         @php 
                             $i++
@@ -50,7 +53,7 @@
                         @php
                            $cat = $slider->Event->Categories()->where('status', true)->first();
                         @endphp  
-                            @if($slider->Event->avaibility)        
+                            @if($slider->Event->avaibility && !empty($cat))        
                                 <div class="item {{ $i == 0 ? 'active' : ' '}}">
                                   <img src="{{ $src.$slider->Event->featured_image1 }}" alt="...">
                                   <div class="carousel-caption bg-{{ $slider->Event->background_color }}">

@@ -10,7 +10,10 @@
                         $i = 0;
                     @endphp 
                     @foreach($sliders as $key => $slider)
-                        @if($slider->Event->avaibility) 
+                        @php
+                            $cat = $slider->Event->Categories()->where('status', true)->first();
+                        @endphp 
+                        @if($slider->Event->avaibility && !empty($cat)) 
                             <li data-target="#carousel-example-generic" data-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : ' '}}"></li>
                             @php 
                                 $i++
@@ -26,14 +29,14 @@
                             $i = 0;
                         @endphp
                         @foreach($sliders as $key => $slider)
-                            @if($slider->Event->avaibility)
+                            @php
+                                $cat = $slider->Event->Categories()->where('status', true)->first();
+                            @endphp 
+                            @if($slider->Event->avaibility && !empty($cat))
                                 <div class="item {{ $i == 0 ? 'active' : ' '}}">
                                   <img src="{{ $src.$slider->Event->featured_image1 }}" alt="...">
                                   <div class="carousel-caption bg-{{ $slider->Event->background_color }}">
                                     <div class="container">
-                                        @php
-                                            $cat = $slider->Event->Categories()->where('status', true)->first();
-                                        @endphp 
                                         <h5>{{ (!empty($cat)) ? $cat->name : '&nbsp;' }}</h5>
                                         <h2>{{ $slider->Event->title }}</h2>
                                         <ul>
@@ -79,15 +82,15 @@
             <h2>New Release</h2>
             <div class="row">
                 @foreach($events as $key => $event) 
-                    @if($event->Event->avaibility)  
+                    @php
+                        $cat = $event->Event->Categories()->where('status', true)->first();
+                    @endphp
+                    @if($event->Event->avaibility && !empty($cat))  
                         <a href="{{ URL::route('event-detail', $event->Event->slug) }}">
                             <div class="col-md-4 box-release">
                                 <img src="{{ $src.$event->Event->featured_image2 }}">
                                 <div class="boxInfo box-info1 bg-{{ $event->Event->background_color }}">
-                                    <ul>
-                                        @php
-                                            $cat = $event->Event->Categories()->where('status', true)->first();
-                                        @endphp      
+                                    <ul>      
                                         <li class="eventType">
                                             @if(!empty($cat))
                                                 {{ $cat->name }}

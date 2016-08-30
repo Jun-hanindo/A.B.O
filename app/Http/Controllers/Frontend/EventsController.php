@@ -22,7 +22,7 @@ class EventsController extends Controller
     public function index($slug)
     {
         $result['event'] = $this->model->findEventBySlug($slug);
-        if(!empty($result['event']) && $result['event']->avaibility){
+        if(!empty($result['event']) && $result['event']->avaibility && !empty($result['event']->category)){
             $result['min'] = $this->model->minPrice($slug);
             $result['src'] = url('uploads/events').'/';
             $result['src2'] = url('uploads/promotions').'/';
