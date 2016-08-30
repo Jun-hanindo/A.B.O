@@ -130,10 +130,10 @@
                                 {!! Form::text('buylink', old('buylink'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.buylink')]) !!}
                                 {!! Form::errorMsg('buylink') !!}
                             </div>
-                            <div class="form-group{{ Form::hasError('category') }} category">
-                                {!! Form::label('category', trans('general.category')) !!} <a href="javascript:void(0)" class="btn btn-primary btn-xs addCategory" title="Add"><i class="fa fa-plus fa-fw"></i></a>
+                            <div class="form-group{{ Form::hasError('categories') }} category">
+                                {!! Form::label('category', trans('general.category').' *') !!} <a href="javascript:void(0)" class="btn btn-primary btn-xs addCategory" title="Add"><i class="fa fa-plus fa-fw"></i></a>
                                 {!! Form::select('categories[]', $data['categories'], null, ['class' => 'form-control categories', 'multiple' => 'multiple', 'id' => 'categories']) !!}
-                                {!! Form::errorMsg('category') !!}
+                                {!! Form::errorMsg('categories') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('category') }} background_color">
                                 {!! Form::label('background_color', trans('general.background_color')) !!} 

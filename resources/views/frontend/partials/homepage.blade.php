@@ -29,7 +29,7 @@
                             @if($slider->Event->avaibility)
                                 <div class="item {{ $i == 0 ? 'active' : ' '}}">
                                   <img src="{{ $src.$slider->Event->featured_image1 }}" alt="...">
-                                  <div class="carousel-caption">
+                                  <div class="carousel-caption bg-{{ $slider->Event->background_color }}">
                                     <div class="container">
                                         @php
                                             $cat = $slider->Event->Categories()->where('status', true)->first();

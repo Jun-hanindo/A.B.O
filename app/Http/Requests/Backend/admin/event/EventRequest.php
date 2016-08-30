@@ -38,6 +38,7 @@ class EventRequest extends Request
                 'buylink'           => 'required|url',
                 'venue_id'          => 'required',
                 'schedule_and_price_detail' => 'required',
+                'categories'        => 'required',
             ];
 
             if ($event->notHavingImage1($req)){
@@ -67,6 +68,7 @@ class EventRequest extends Request
                 'buylink'           => 'required|url',
                 'venue_id'          => 'required',
                 'schedule_and_price_detail' => 'required',
+                'categories'        => 'required',
             ];
                 
         }

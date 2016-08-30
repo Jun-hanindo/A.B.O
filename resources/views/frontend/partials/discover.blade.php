@@ -53,7 +53,7 @@
                             @if($slider->Event->avaibility)        
                                 <div class="item {{ $i == 0 ? 'active' : ' '}}">
                                   <img src="{{ $src.$slider->Event->featured_image1 }}" alt="...">
-                                  <div class="carousel-caption">
+                                  <div class="carousel-caption bg-{{ $slider->Event->background_color }}">
                                     <div class="container">
                                         <h5>{{ (!empty($cat)) ? $cat->name : '&nbsp;' }}</h5>
                                         <h2>{{ $slider->Event->title }}</h2>
