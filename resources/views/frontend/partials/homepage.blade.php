@@ -32,9 +32,9 @@
                                   <div class="carousel-caption">
                                     <div class="container">
                                         @php
-                                            $cat = $slider->Event->Categories()->where('avaibility', true)->where('status', true)->first();
+                                            $cat = $slider->Event->Categories()->where('status', true)->first();
                                         @endphp 
-                                        <h5>{{ $cat->name }}</h5>
+                                        <h5>{{ (!empty($cat)) ? $cat->name : '&nbsp;' }}</h5>
                                         <h2>{{ $slider->Event->title }}</h2>
                                         <ul>
                                             @php 
@@ -86,7 +86,7 @@
                                 <div class="boxInfo box-info1 bg-{{ $event->Event->background_color }}">
                                     <ul>
                                         @php
-                                            $cat = $event->Event->Categories()->where('avaibility', true)->where('status', true)->first();
+                                            $cat = $event->Event->Categories()->where('status', true)->first();
                                         @endphp      
                                         <li class="eventType">
                                             @if(!empty($cat))

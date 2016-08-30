@@ -167,7 +167,7 @@ class Category extends Model
 
     public static function dropdown()
     {
-        return static::where('avaibility' , true)->where('status', true)->orderBy('name')->lists('name', 'id');
+        return static::where('status', true)->orderBy('name')->lists('name', 'id');
     }
 
     public function findCategoryBySlug($slug)

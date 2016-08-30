@@ -55,13 +55,15 @@
                                 {!! Form::textarea('admission', old('admission'), ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.admission')]) !!}
                                 {!! Form::errorMsg('admission') !!}
                             </div>
-                            <div class="form-group{{ Form::hasError('price_info') }} price_info">
-                                {!! Form::label('price_info', trans('general.schedule_info').' *') !!}
-                                {!! Form::textarea('price_info', old('price_info'), ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.schedule_info')]) !!}
-                                {!! Form::errorMsg('price_info') !!}
+                            <div class="form-group{{ Form::hasError('schedule_info') }} schedule_info">
+                                {!! Form::label('schedule_info', trans('general.schedule_info').' *') !!}
+                                {!! Form::textarea('schedule_info', old('schedule_info'), ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.schedule_info')]) !!}
+                                {!! Form::errorMsg('schedule_info') !!}
                             </div>
-                            <div class="form-group{{ Form::hasError('price_detail') }} price_detail">
-                                {!! Form::label('price_info', trans('general.schedule_and_price_detail').' *') !!}
+                            <div class="form-group{{ Form::hasError('schedule_and_price_detail') }} schedule_and_price_detail">
+                                {!! Form::label('schedule_and_price_detail', trans('general.schedule_and_price_detail').' *') !!}
+                                {!! Form::hidden('schedule_and_price_detail', null, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.schedule_and_price_detail')]) !!}
+                                {!! Form::errorMsg('schedule_and_price_detail') !!}
                                 <table id="event-schedule-datatables" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                                     <thead>
                                         <tr>
@@ -116,7 +118,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('event_type') }} event_type">
                                 {!! Form::label('event_type', trans('general.event_type').' *', array('class' => 'full-width')) !!}
-                                {!! Form::checkbox('event_type', '1', true, ['class' => 'form-control event_type-check', 'data-animate' => 'false', 'data-on-text' => 'General', 'data-off-text' => 'Seated']) !!}
+                                {!! Form::checkbox('event_type', '1', true, ['class' => 'form-control event_type-check', 'data-animate' => 'false', 'data-on-text' => 'General',  'data-off-color' => 'success', 'data-off-text' => 'Seated']) !!}
                             </div>
                             <div class="form-group{{ Form::hasError('venue_id') }} venue_id">
                                 {!! Form::label('venue_id', trans('general.venue').' *') !!}
@@ -129,7 +131,7 @@
                                 {!! Form::errorMsg('buylink') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('category') }} category">
-                                {!! Form::label('category', trans('general.category')) !!} <a href="javascript:void(0)" class="btn btn-primary btn-xs addCategory" title="Add"><i class="fa fa-pencil-square-o fa-fw"></i></a>
+                                {!! Form::label('category', trans('general.category')) !!} <a href="javascript:void(0)" class="btn btn-primary btn-xs addCategory" title="Add"><i class="fa fa-plus fa-fw"></i></a>
                                 {!! Form::select('categories[]', $data['categories'], null, ['class' => 'form-control categories', 'multiple' => 'multiple', 'id' => 'categories']) !!}
                                 {!! Form::errorMsg('category') !!}
                             </div>
@@ -521,6 +523,8 @@
       </div>
     </div>
 
+
+
     <div id="delete-modal-schedule" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -534,12 +538,13 @@
                 <div class="modal-footer">
                     {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
                         <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
-                        <a id="delete-modal-schedule" href="#" class="btn btn-default" data-dismiss="modal">Continue</a>
+                        <a id="delete-modal-schedule" href="#" class="continue-delete btn btn-default" data-dismiss="modal">Continue</a>
                     {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
+
     <div id="delete-modal-category" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -553,7 +558,7 @@
                 <div class="modal-footer">
                     {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
                         <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
-                        <a id="delete-modal-category" href="#" class="btn btn-default" data-dismiss="modal">Continue</a>
+                        <a id="delete-modal-category" href="#" class="continue-delete btn btn-default" data-dismiss="modal">Continue</a>
                     {!! Form::close() !!}
                 </div>
             </div>
@@ -573,7 +578,7 @@
                 <div class="modal-footer">
                     {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
                         <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
-                        <a id="delete-modal-promotion" href="#" class="btn btn-default" data-dismiss="modal">Continue</a>
+                        <a id="delete-modal-promotion" href="#" class="continue-delete btn btn-default" data-dismiss="modal">Continue</a>
                     {!! Form::close() !!}
                 </div>
             </div>

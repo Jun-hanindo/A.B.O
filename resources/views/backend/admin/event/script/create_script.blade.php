@@ -67,11 +67,9 @@
                 }
             });
             if(count_s > 0 && bool == true){
-                $('#button_submit').show();
-                $('#button_draft').hide();
+                $('#schedule_and_price_detail').val('ok');
             }else{
-                $('#button_submit').hide();
-                $('#button_draft').show();
+                $('#schedule_and_price_detail').val('');
             }
         }
 
@@ -104,6 +102,9 @@
 
         function autoSaveUpdateEvent(cat)
         {
+            $(".tooltip-field").remove();
+            $(".form-group").removeClass('has-error');
+            $(".text-danger").remove();
             var fd = new FormData();
             var silde_i = $('#featured_image1').prop('files')[0];
             var thumb_i = $('#featured_image2').prop('files')[0];
@@ -742,8 +743,8 @@
             loadSwitchButton('event_type-check');
 
             $(".categories").select2();
-            $('#button_submit').hide();
-            $('#button_draft').show();
+            //$('#button_submit').hide();
+            //$('#button_draft').show();
 
             $('#button_draft').on('click',function(){
                 var cat = '';
@@ -893,7 +894,7 @@
                 $('#delete-modal-schedule').attr('data-id', id);
             });  
 
-            $('#delete-modal-schedule').on( 'click', function () {
+            $('#delete-modal-schedule').on('click', '.continue-delete', function () {
                 var id = $(this).attr('data-id');
                 var uri = "{{ URL::route('admin-delete-event-schedule', "::param") }}";
                 uri = uri.replace('::param', id);
@@ -915,7 +916,7 @@
                 }); 
             });
 
-            $('#delete-modal-category').on( 'click', function () {
+            $('#delete-modal-category').on( 'click', '.continue-delete', function () {
                 $(".form-group").removeClass('has-error');
                 $('.error-modal').removeClass('alert alert-danger');
                 $('.error-modal').html('');
@@ -946,7 +947,7 @@
                 $('#delete-modal-promotion').attr('data-id', id);
             });  
 
-            $('#delete-modal-promotion').on( 'click', function () {
+            $('#delete-modal-promotion').on('click', '.continue-delete', function () {
                 var id = $(this).attr('data-id');
                 var uri = "{{ URL::route('admin-delete-promotion', "::param") }}";
                 uri = uri.replace('::param', id);

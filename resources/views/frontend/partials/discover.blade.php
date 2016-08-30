@@ -48,14 +48,14 @@
                     @endphp 
                     @foreach($sliders as $key => $slider)  
                         @php
-                           $cat = $slider->Event->Categories()->where('avaibility', true)->where('status', true)->first();
+                           $cat = $slider->Event->Categories()->where('status', true)->first();
                         @endphp  
                             @if($slider->Event->avaibility)        
                                 <div class="item {{ $i == 0 ? 'active' : ' '}}">
                                   <img src="{{ $src.$slider->Event->featured_image1 }}" alt="...">
                                   <div class="carousel-caption">
                                     <div class="container">
-                                        <h5>{{ $cat->name }}</h5>
+                                        <h5>{{ (!empty($cat)) ? $cat->name : '&nbsp;' }}</h5>
                                         <h2>{{ $slider->Event->title }}</h2>
                                         <ul>
                                             @php 

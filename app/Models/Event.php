@@ -87,7 +87,7 @@ class Event extends Model
     	$this->title = $param['title'];
     	$this->description = $param['description'];
         $this->admission = $param['admission'];
-        $this->price_info = $param['price_info'];
+        $this->price_info = $param['schedule_info'];
         $this->buylink = $param['buylink'];
         $this->event_type = isset($param['event_type']);
         $this->venue_id = $param['venue_id'];
@@ -167,7 +167,7 @@ class Event extends Model
            	$data->title = $param['title'];
 	    	$data->description = $param['description'];
 	        $data->admission = $param['admission'];
-            $data->price_info = $param['price_info'];
+            $data->price_info = $param['schedule_info'];
 	        $data->buylink = $param['buylink'];
 	        $data->event_type = isset($param['event_type']);
 	        $data->venue_id = $param['venue_id'];
@@ -324,12 +324,36 @@ class Event extends Model
         }
     }
 
+    public function notHavingImage1($param){
+        if(empty($param['featured_image1']) && empty($this->featured_image1)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function notHavingImage2($param){
+        if(empty($param['featured_image2']) && empty($this->featured_image2)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function notHavingImage3($param){
+        if(empty($param['featured_image3']) && empty($this->featured_image3)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function findEventBySlug($slug)
     {
         $data = Event::where('slug' , '=', $slug)->first();
         if (!empty($data)) {
             $data->schedules = $data->EventSchedule()/*->where('status', true)*/->get();
-            $data->category = $data->Categories()->where('avaibility', true)->where('status', true)->first()->name;
+            $data->category = $data->Categories()->where('status', true)->first();
             $data->promotions = $data->promotions()->where('avaibility', true)/*->where('status', true)*/->orderBy('start_date')->get();
         
             return $data;
@@ -366,7 +390,7 @@ class Event extends Model
 
                 $event->title = string_limit($event->title);
 
-                $cat = $event->Categories->where('avaibility', true)->where('status', true)->first();
+                $cat = $event->Categories->where('status', true)->first();
                 if(!empty($cat)){
                     $event->cat_name = $cat['name'];
                 }else{
@@ -416,7 +440,7 @@ class Event extends Model
         if(count($events) > 0)
         {
             foreach ($events as $key => $event) {
-                $cat = Category::where('id', $category)->where('avaibility', true)->where('status', true)->first();
+                $cat = Category::where('id', $category)->where('status', true)->first();
                 $event->cat_name = $cat->name;
 
                 $event->title = string_limit($event->title);

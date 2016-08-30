@@ -24,8 +24,9 @@ class EventScheduleRequest extends Request
     public function rules()
     {
         return [
-            'date_at'   => 'required',
-            'start_time'             => 'required',
+            'date_at'       => 'required|date|after:today',
+            'start_time'    => 'required',
+            'end_time'      => 'required|after:start_time'
         ];
     }
 }

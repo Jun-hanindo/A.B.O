@@ -8,7 +8,7 @@
           <div class="infoBanner bg-{{ $event->background_color }}">
               <div class="container">
                   <div class="detail">
-                      <h5>{{ $event->category }}</h5>
+                      <h5>{{ (!empty($event->category)) ? $event->category->name : '&nbsp;' }}</h5>
                       <h2>{{ $event->title }}</h2>
                   </div>
                   <div class="moreDetail">

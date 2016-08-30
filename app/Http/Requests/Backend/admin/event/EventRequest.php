@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Backend\admin\event;
 
 use App\Http\Requests\Request;
+use App\Models\Event;
 
 class EventRequest extends Request
 {
@@ -25,16 +26,33 @@ class EventRequest extends Request
     {
         $req = Request::all();
         if(isset($req['event_id']) && !empty($req['event_id'])) {
-            return [
+        $event = Event::find($req['event_id']);
+            $rules =  [
                 'title'             => 'required',
                 'description'       => 'required',
                 'admission'         => 'required',
+                'schedule_info'        => 'required',
                 'featured_image1'   => 'mimes:jpg,jpeg,png,gif',
                 'featured_image2'   => 'mimes:jpg,jpeg,png,gif',
                 'featured_image3'   => 'mimes:jpg,jpeg,png,gif',
                 'buylink'           => 'required',
                 'venue_id'          => 'required',
+                'schedule_and_price_detail' => 'required',
             ];
+
+            if ($event->notHavingImage1($req)){
+                $rules['featured_image1'] = 'required';
+            }
+
+            if ($event->notHavingImage2($req)){
+                $rules['featured_image2'] = 'required';
+            }
+
+            if ($event->notHavingImage3($req)){
+                $rules['featured_image3'] = 'required';
+            }
+
+            return $rules;
 
         } else {
 
@@ -42,11 +60,13 @@ class EventRequest extends Request
                 'title'             => 'required',
                 'description'       => 'required',
                 'admission'         => 'required',
+                'schedule_info'        => 'required',
                 'featured_image1'   => 'required|mimes:jpg,jpeg,png,gif',
                 'featured_image2'   => 'required|mimes:jpg,jpeg,png,gif',
                 'featured_image3'   => 'required|mimes:jpg,jpeg,png,gif',
                 'buylink'           => 'required',
                 'venue_id'          => 'required',
+                'schedule_and_price_detail' => 'required',
             ];
                 
         }
