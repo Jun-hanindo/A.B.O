@@ -381,41 +381,44 @@ class Event extends Model
 
     public function getEvent($limit)
     {
-        $events = Event::where('avaibility', true)
-            // ->where('status', true)
-            ->orderBy('created_at', 'desc')
+        // $events = Event::where('avaibility', true)
+        //     ->orderBy('created_at', 'desc')
+        //     ->paginate($limit);
+         $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
+            'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color', 
+            DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',')  as category"))
+            ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
+            ->join('categories', 'event_categories.category_id', '=', 'categories.id')
+            ->where('categories.status', true)
+            ->where('events.avaibility','=',true)
+            ->groupBy('events.id')
+            ->orderBy('events.created_at', 'desc')
             ->paginate($limit);
+
         if(count($events) > 0){
             foreach ($events as $key => $event) {
 
                 $event->title = string_limit($event->title);
 
-                $cat = $event->Categories->where('status', true)->first();
-                if(!empty($cat)){
-                    $event->cat_name = $cat['name'];
-                }else{
-                    $event->cat_name = '';
-                }
+                // $cat = $event->Categories->where('status', true)->first();
+                // if(!empty($cat)){
+                //     $event->cat_name = $cat['name'];
+                // }else{
+                //     $event->cat_name = '';
+                // }
+                $cats = explode(',', $event->category);
+                $event->category = $cats[0];
 
                 $this->setImageUrl($event);
 
                 $event->venue = $event->Venue;
                 
-                $schedule = $event->EventSchedule()/*->where('status', true)*/->first();
+                $schedule = $event->EventSchedule()->orderBy('date_at', 'asc')->first();
                 if(!empty($schedule)){
                     $event->first_date = date('d F Y', strtotime($schedule->date_at));
                 }else{
                     $event->first_date = '';
                 }
-                // $first = true;
-                // if(!empty($schedule)){
-                //     foreach($schedule as $sch){
-                //         if($first){
-                //             $event->first_date = date('d F Y', strtotime($sch->date_at));
-                //             $first = false;
-                //         }
-                //     }
-                // }
             }
             return $events;
         }else{
@@ -449,22 +452,12 @@ class Event extends Model
 
                 $event->venue = $event->Venue;
 
-                $schedule = $event->EventSchedule()/*->where('status', true)*/->first();
-                //$schedule = EventSchedule::where('event_id', $event->id)->get();
+                $schedule = $event->EventSchedule()->orderBy('date_at', 'asc')->first();
                 if(!empty($schedule)){
                     $event->first_date = date('d F Y', strtotime($schedule->date_at));
                 }else{
                     $event->first_date = '';
                 }
-                // $first = true;
-                // if(!empty($schedule)){
-                //     foreach($schedule as $sch){
-                //         if($first){
-                //             $event->first_date = date('d F Y', strtotime($sch->date_at));
-                //             $first = false;
-                //         }
-                //     }
-                // }
                 
             }
             return $events;

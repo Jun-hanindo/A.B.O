@@ -62,7 +62,7 @@
                                         <h2>{{ $slider->Event->title }}</h2>
                                         <ul>
                                             @php 
-                                                $schedule = $slider->Event->EventSchedule()->first();
+                                                $schedule = $slider->Event->EventSchedule()->orderBy('date_at', 'asc')->first();
                                             @endphp
                                             <li><div class="eventDate"><i class="fa fa-calendar"></i>
                                                 @if(!empty($schedule))
@@ -108,7 +108,7 @@
                             <img src="{{ $event->featured_image2_url }}">
                             <div class="boxInfo bg-{{ $event->background_color }}">
                                 <ul>
-                                    <li class="eventType">{{ $event->cat_name }}&nbsp;</li>
+                                    <li class="eventType">{{ $event->category }}&nbsp;</li>
                                     <li class="eventName">{{ $event->title }}</li>
                                     <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ $event->first_date }}</li>
                                     <li class="eventPlace">{{ $event->venue->name }}</li>

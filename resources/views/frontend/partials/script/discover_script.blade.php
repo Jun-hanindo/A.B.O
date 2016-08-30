@@ -35,7 +35,7 @@
                                     +'<img src="'+val.featured_image2_url+'">'
                                     +'<div class="boxInfo info1">'
                                         +'<ul>'
-                                            +'<li class="eventType">'+val.cat_name+'</li>'
+                                            +'<li class="eventType">'+val.category+'</li>'
                                             +'<li class="eventName">'+val.title+'</li>'
                                             +'<li class="eventDate"><i class="fa fa-calendar-o"></i> '+val.first_date+'</li>'
                                             +'<li class="eventPlace">'+val.venue.name+'</li>'

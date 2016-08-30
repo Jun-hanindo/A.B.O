@@ -41,7 +41,7 @@
                                         <h2>{{ $slider->Event->title }}</h2>
                                         <ul>
                                             @php 
-                                                $schedule = $slider->Event->EventSchedule()->first();
+                                                $schedule = $slider->Event->EventSchedule()->orderBy('date_at', 'asc')->first();
                                             @endphp
                                             <li><div class="eventDate"><i class="fa fa-calendar"></i>
                                                 @if(!empty($schedule))
@@ -100,7 +100,7 @@
                                         </li>
                                         <li class="eventName">{{ string_limit($event->Event->title) }}</li>
                                         @php 
-                                            $schedule = $event->Event->EventSchedule()->first();
+                                            $schedule = $event->Event->EventSchedule()->orderBy('date_at', 'asc')->first();
                                         @endphp
                                         <li class="eventDate"><i class="fa fa-calendar-o"></i> 
                                             @if(!empty($schedule))
