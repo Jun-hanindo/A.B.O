@@ -26,7 +26,7 @@
                                                             @endif
                                                         @endforeach
                                                     @endif
-                                                    {{ $category->name }}</label></li>
+                                                    > {{ $category->name }}</label></li>
                                             @endforeach
                                         @endif
                                     </li>

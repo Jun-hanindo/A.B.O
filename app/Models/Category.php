@@ -187,4 +187,8 @@ class Category extends Model
     public function getCategory(){
         return Category::where('avaibility' , true)->where('status', true)->orderBy('name', 'asc')->get();
     }
+
+    public function getCategoryAvaibility(){
+        return Category::where('status', true)->orderBy('name', 'asc')->get();
+    }
 }

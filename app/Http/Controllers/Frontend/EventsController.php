@@ -57,7 +57,7 @@ class EventsController extends Controller
         $limit = 0;
         $results['events'] = $this->model->search($param, $limit);
         $modelCategory = new Category();
-        $results['categories'] = $modelCategory->getCategory();
+        $results['categories'] = $modelCategory->getCategoryAvaibility();
         $modelVenue = new Venue();
         $results['venues'] = $modelVenue->getVenue();
         $results['q'] = $param['q'];
