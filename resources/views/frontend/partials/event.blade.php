@@ -12,6 +12,7 @@
                       <h2>{{ $event->title }}</h2>
                   </div>
                   <div class="moreDetail">
+                    {{-- <a href="{{ $event->buylink }}">Buy Now</a> --}}
                       <form action="{{ $event->buylink }}" style="margin-bottom:0;">
                           <button class="btn btnDetail">Buy Now</button>
                       </form>

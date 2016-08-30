@@ -30,8 +30,8 @@ class VenueRequest extends Request
             'cardirection'      => 'required',
             'taxidirection'     => 'required',
             'capacity'          => 'required',
-            'link_map'          => 'required',
-            'gmap_link'         => 'required'
+            'link_map'          => 'required|url',
+            'gmap_link'         => 'required|url'
         ];
     }
 }

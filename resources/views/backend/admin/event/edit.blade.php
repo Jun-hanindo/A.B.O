@@ -63,6 +63,7 @@
                             <div class="form-group{{ Form::hasError('schedule_and_price_detail') }} schedule_and_price_detail">
                                 {!! Form::label('schedule_and_price_detail', trans('general.schedule_and_price_detail').' *') !!}
                                 {!! Form::hidden('schedule_and_price_detail', null, ['class' => 'form-control', 'id' => 'schedule_and_price_detail','maxlength'=>'255', 'placeholder' => trans('general.schedule_and_price_detail')]) !!}
+                                {!! Form::errorMsg('schedule_and_price_detail') !!}
                                 <table id="event-schedule-datatables" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                                     <thead>
                                         <tr>

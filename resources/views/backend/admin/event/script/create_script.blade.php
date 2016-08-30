@@ -22,6 +22,8 @@
                 },
                 error: function(response){
                     response.responseJSON.message;
+                    $("#count_schedule").val(response.responseJSON.data);
+                    handleScheduleCategory();
                 }
             });
         }  
@@ -66,6 +68,7 @@
                     bool = false;
                 }
             });
+            var event_id = $('#event_id').val();
             if(count_s > 0 && bool == true){
                 $('#schedule_and_price_detail').val('ok');
             }else{
@@ -418,6 +421,7 @@
                         $('#modal-form-schedule').modal('hide');
                         $('#delete-modal-category').modal('show');
                         $('#delete-modal-category').attr('data-id', id);
+                        $('#delete-modal-category .continue-delete').attr('data-id', id);
                     }); 
                 }
             });
@@ -774,6 +778,7 @@
                 $(".form-group").removeClass('has-error');
                 $('.error-modal').removeClass('alert alert-danger');
                 $('.error-modal').html('');
+                $(".text-danger").remove();
 
                 $("#button_save_schedule").unbind('click').bind('click', function () {
                     var event_id = $('#event_id').val();
@@ -892,6 +897,7 @@
                 var id = $(this).attr('data-id');
                 $('#delete-modal-schedule').modal('show');
                 $('#delete-modal-schedule').attr('data-id', id);
+                $('#delete-modal-schedule .continue-delete').attr('data-id', id);
             });  
 
             $('#delete-modal-schedule').on('click', '.continue-delete', function () {
@@ -912,6 +918,7 @@
                         var event_id = $('#event_id').val();
                         loadDataSchedule(event_id);
                         countSchedule(event_id);
+                        
                     }
                 }); 
             });
@@ -934,9 +941,11 @@
                         loadDataScheduleCategory(schedule_id);    
                         loadDataSchedule(event_id);  
                         countSchedule(event_id);
+                        
                     },
                     error: function(response){
                         $('.error-modal').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        
                     }
                 }); 
             });
@@ -945,6 +954,7 @@
                 var id = $(this).attr('data-id');
                 $('#delete-modal-promotion').modal('show');
                 $('#delete-modal-promotion').attr('data-id', id);
+                $('#delete-modal-promotion .continue-delete').attr('data-id', id);
             });  
 
             $('#delete-modal-promotion').on('click', '.continue-delete', function () {

@@ -35,7 +35,7 @@ class EventRequest extends Request
                 'featured_image1'   => 'mimes:jpg,jpeg,png,gif',
                 'featured_image2'   => 'mimes:jpg,jpeg,png,gif',
                 'featured_image3'   => 'mimes:jpg,jpeg,png,gif',
-                'buylink'           => 'required',
+                'buylink'           => 'required|url',
                 'venue_id'          => 'required',
                 'schedule_and_price_detail' => 'required',
             ];
@@ -64,7 +64,7 @@ class EventRequest extends Request
                 'featured_image1'   => 'required|mimes:jpg,jpeg,png,gif',
                 'featured_image2'   => 'required|mimes:jpg,jpeg,png,gif',
                 'featured_image3'   => 'required|mimes:jpg,jpeg,png,gif',
-                'buylink'           => 'required',
+                'buylink'           => 'required|url',
                 'venue_id'          => 'required',
                 'schedule_and_price_detail' => 'required',
             ];

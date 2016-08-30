@@ -536,7 +536,8 @@ class AuthController extends Controller
             $remember = (bool) $request->input('remember_me');
             // If password is incorrect...
             if (! Sentinel::authenticate($request->all(), $remember)) {
-                flash()->error('Password is incorrect!');
+                //flash()->error('Password is incorrect!');
+                flash()->error('Wrong email or username!');
 
                 return $backToLogin;
             }
