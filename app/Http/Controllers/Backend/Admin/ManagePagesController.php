@@ -63,7 +63,7 @@ class ManagePagesController extends BaseController
             flash()->success($updateData->title.' '.trans('general.update_success'));
             return redirect()->route('admin-manage-page', $slug);
 
-        } else 
+        } else {
             flash()->error(trans('general.update_error'));
             return redirect()->route('admin-manage-page', $slug)->withInput();
 
