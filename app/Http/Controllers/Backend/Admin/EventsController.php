@@ -11,6 +11,7 @@ use App\Models\Event;
 use App\Models\EventSchedule;
 use App\Models\Category;
 use App\Models\Promotion;
+use App\Models\LogActivity;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\event\EventRequest;
 
@@ -85,6 +86,12 @@ class EventsController extends BaseController
         $saveData = $this->model->insertNewEvent($param, $user_id);
         if(!empty($saveData))
         {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Event "'.$saveData->title.'" was created';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
         
             flash()->success($saveData->title.' '.trans('general.save_success'));
             return redirect()->route('admin-index-event');
@@ -186,6 +193,12 @@ class EventsController extends BaseController
         $updateData = $this->model->updateEvent($param,$id);
         if(!empty($updateData)) {
 
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Event "'.$updateData->title.'" was updated';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             flash()->success($updateData->title.' '.trans('general.update_success'));
             return redirect()->route('admin-index-event');
 
@@ -226,11 +239,17 @@ class EventsController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $req, $id)
     {
         //
         $data = $this->model->deleteByID($id);
         if(!empty($data)) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Event "'.$data->title.'" was deleted';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             flash()->success(trans('general.delete_success'));
             return redirect()->route('admin-index-event');
@@ -248,6 +267,12 @@ class EventsController extends BaseController
         $param = $req->all();
         $updateData = $this->model->changeAvaibility($param, $id);
         if(!empty($updateData)) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Event "'.$updateData->title.'" avaibility was updated';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -279,6 +304,13 @@ class EventsController extends BaseController
             $saveData = $this->model->insertNewEvent($param, $user_id);
             $this->model->updateAvaibilityFalse($saveData->id);
             if(!empty($saveData)) {
+
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Event "'.$saveData->title.'" draft was created';
+                $log['ip_address'] = $req->ip();
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
+
                 return response()->json([
                     'code' => 200,
                     'status' => 'success',
@@ -299,6 +331,13 @@ class EventsController extends BaseController
             $updateData = $this->model->updateEvent($param,$id);
             $this->model->updateAvaibilityFalse($id);
             if(!empty($updateData)) {
+
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Event "'.$updateData->title.'" draft was updated';
+                $log['ip_address'] = $req->ip();
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
+
                 return response()->json([
                     'code' => 200,
                     'status' => 'success',

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\User;
 use App\Models\Venue;
+use App\Models\LogActivity;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\venue\VenueRequest;
 
@@ -93,6 +94,12 @@ class VenuesController extends BaseController
         $saveData = $this->model->insertNewVenue($param, $user_id);
         if(!empty($saveData))
         {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Venue "'.$saveData->name.'" was created';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
         
             flash()->success($saveData->name.' '.trans('general.save_success'));
             return redirect()->route('admin-index-venue');
@@ -149,6 +156,12 @@ class VenuesController extends BaseController
         $updateData = $this->model->updateVenue($param,$id);
         if(!empty($updateData)) {
 
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Venue "'.$updateData->name.'" was updated';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             flash()->success($updateData->name.' '.trans('general.update_success'));
             return redirect()->route('admin-index-venue');
 
@@ -167,11 +180,17 @@ class VenuesController extends BaseController
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $req,  $id)
     {
         //
         $data = $this->model->deleteByID($id);
         if(!empty($data)) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Venue "'.$data->name.'" was deleted';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             flash()->success(trans('general.delete_success'));
             return redirect()->route('admin-index-venue');
@@ -189,6 +208,12 @@ class VenuesController extends BaseController
         $param = $req->all();
         $updateData = $this->model->changeAvaibility($param, $id);
         if(!empty($updateData)) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Venue "'.$updateData->name.'" avaibility was updated';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 200,

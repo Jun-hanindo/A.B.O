@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Models\ManagePage;
+use App\Models\LogActivity;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\manage_page\ManagePageRequest;
 
@@ -53,11 +54,16 @@ class ManagePagesController extends BaseController
         $updateData = $this->model->updateManagePage($param, $slug, $user_id);
         if(!empty($updateData)) {
 
-            flash()->success($updateData->name.' '.trans('general.update_success'));
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Page "'.$updateData->title.'" was updated';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            flash()->success($updateData->title.' '.trans('general.update_success'));
             return redirect()->route('admin-manage-page', $slug);
 
-        } else {
-
+        } else 
             flash()->error(trans('general.update_error'));
             return redirect()->route('admin-manage-page', $slug)->withInput();
 

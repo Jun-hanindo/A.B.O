@@ -31,7 +31,7 @@ class VenueRequest extends Request
             'taxidirection'     => 'required',
             'capacity'          => 'required',
             'link_map'          => 'required|url',
-            'gmap_link'         => 'required|url'
+            'gmap_link'         => 'required'
         ];
     }
 }

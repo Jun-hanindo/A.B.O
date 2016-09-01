@@ -7,6 +7,7 @@ use URL;
 use Sentinel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\LogActivity;
 
 class ProfileController extends Controller
 {
@@ -97,6 +98,12 @@ class ProfileController extends Controller
         flash()->success(trans('general.save_success'));
 
         Sentinel::update($user, $data);
+
+        $log['user_id'] = user_info()->id;
+        $log['description'] = 'Profile was updated';
+        $log['ip_address'] = $request->ip();
+        $insertLog = new LogActivity();
+        $insertLog->insertLogActivity($log);
     }
 
     /**
@@ -124,5 +131,11 @@ class ProfileController extends Controller
         Sentinel::update(user_info(), ['password' => $request->input('password')]);
 
         flash()->success(trans('general.save_success'));
+
+        $log['user_id'] = user_info()->id;
+        $log['description'] = 'Password was updated';
+        $log['ip_address'] = $request->ip();
+        $insertLog = new LogActivity();
+        $insertLog->insertLogActivity($log);
     }
 }

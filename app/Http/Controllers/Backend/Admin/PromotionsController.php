@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\User;
 use App\Models\Promotion;
+use App\Models\LogActivity;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\promotion\PromotionRequest;
 
@@ -112,6 +113,13 @@ class PromotionsController extends BaseController
 
             if(!empty($saveData))
             {
+
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Promotion "'.$saveData->title.'" was created';
+                $log['ip_address'] = $req->ip();
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
+
                 return response()->json([
                     'code' => 200,
                     'status' => 'success',
@@ -132,6 +140,12 @@ class PromotionsController extends BaseController
         }else{
             if(!empty($saveData))
             {
+
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Promotion "'.$saveData->title.'" was created';
+                $log['ip_address'] = $req->ip();
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
             
                 flash()->success($saveData->title.' '.trans('general.save_success'));
                 return redirect()->route('admin-index-promotion');
@@ -216,6 +230,12 @@ class PromotionsController extends BaseController
 
             if(!empty($updateData)) {
 
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Promotion "'.$updateData->title.'" was updated';
+                $log['ip_address'] = $req->ip();
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
+
                 return response()->json([
                     'code' => 200,
                     'status' => 'success',
@@ -234,6 +254,12 @@ class PromotionsController extends BaseController
 
         }else{
             if(!empty($updateData)) {
+
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Promotion "'.$updateData->title.'" was updated';
+                $log['ip_address'] = $req->ip();
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
 
                 flash()->success($updateData->title.' '.trans('general.update_success'));
                 return redirect()->route('admin-index-promotion');
@@ -262,6 +288,12 @@ class PromotionsController extends BaseController
         if($req->ajax()){
             if(!empty($data)) {
 
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Promotion "'.$data->title.'" was deleted';
+                $log['ip_address'] = $req->ip();
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
+
                 return response()->json([
                     'code' => 200,
                     'status' => 'success',
@@ -280,6 +312,12 @@ class PromotionsController extends BaseController
         }else{
             if(!empty($data)) {
 
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Promotion "'.$data->title.'" was deleted';
+                $log['ip_address'] = $req->ip();
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
+
                 flash()->success(trans('general.delete_success'));
                 return redirect()->route('admin-index-promotion');
 
@@ -297,6 +335,12 @@ class PromotionsController extends BaseController
         $param = $req->all();
         $updateData = $this->model->changeAvaibility($param, $id);
         if(!empty($updateData)) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Promotion "'.$data->title.'" avaibility was updated';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 200,

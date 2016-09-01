@@ -149,14 +149,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::post('update', array('as' => 'admin-update-setting', 'uses' => 'SettingsController@storeUpdate'));
     });
 
-    // Route::group(['prefix' => 'trail'], function () {
-    //     Route::get('', array('as' => 'admin-index-trail', 'uses' => 'TrailsController@index'));
-    //     Route::get('create', array('as' => 'admin-create-trail', 'uses' => 'TrailsController@create'));
-    //     Route::post('store', array('as' => 'admin-post-trail', 'uses' => 'TrailsController@store'));
-    //     Route::get('{id}/edit', array('as' => 'admin-edit-trail', 'uses' => 'TrailsController@edit'));
-    //     Route::post('{id}/update', array('as' => 'admin-update-trail', 'uses' => 'TrailsController@update'));
-    //     Route::delete('{id}/delete', array('as' => 'admin-delete-trail', 'uses' => 'TrailsController@destroy'));
-    // });
+    Route::group(['prefix' => 'trail'], function () {
+        Route::get('', array('as' => 'admin-activity-log-index', 'uses' => 'ActivityLogController@index'));
+    });
 
     // Route::group(['prefix' => 'system-log'], function () {
     //     Route::get('', array('as' => 'admin-index-system-log', 'uses' => 'SystemlogsController@index'));

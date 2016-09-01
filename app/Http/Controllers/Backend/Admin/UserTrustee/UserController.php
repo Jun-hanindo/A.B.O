@@ -6,6 +6,7 @@ use Sentinel;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\BranchLocation;
+use App\Models\LogActivity;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\UserTrustee\UserRequest as Request;
 use Mail;
@@ -97,6 +98,12 @@ class UserController extends BaseController
             $user = Sentinel::findById($id);
             $this->deleteAvatar($user->avatar);
             $user->delete();
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'User "'.$user->email.'" was deleted';
+            $log['ip_address'] = '';
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
         }, true);
     }
 
@@ -221,6 +228,12 @@ class UserController extends BaseController
                 $role->users()->detach($user);
 
                 $user = Sentinel::update($user, $data);
+
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'User "'.$data['email'].'" was updated';
+                $log['ip_address'] = $request->ip();
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
             } else {
 
                 //dd($data);
@@ -229,9 +242,15 @@ class UserController extends BaseController
                 $data['full_name'] = $data['first_name'].' '.$data['last_name'];
                 $data['role_slug'] = $roleSlug;
 
-                Mail::send('backend.emails.registration', $data, function ($message) use ($data) {
+                Mail::send('backend.emails.registration', $data, function ($message) use ($data, $request) {
                     //$message->from('no-reply@asiaboxoffice.com', 'No Reply Asia Box Office');
                     $message->to($data['email'], $data['full_name'])->subject('Your account has registered.');
+
+                    $log['user_id'] = $this->currentUser->id;
+                    $log['description'] = 'User "'.$data['email'].'" was created';
+                    $log['ip_address'] = $request->ip();
+                    $insertLog = new LogActivity();
+                    $insertLog->insertLogActivity($log);
                 });
             }
 

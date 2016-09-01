@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Event;
 use App\Models\EventSchedule;
 use App\Models\EventScheduleCategory;
+use App\Models\LogActivity;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\event\EventScheduleRequest;
 
@@ -48,6 +49,13 @@ class EventSchedulesController extends BaseController
         $saveData = $this->model->insertNewEventSchedule($param);
         if(!empty($saveData))
         {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Schedule "'.$saveData->date_at.'" of '.$saveData->Event->title.' was created';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
@@ -91,7 +99,14 @@ class EventSchedulesController extends BaseController
     {
         $param = $req->all();
         $updateData = $this->model->updateEventSchedule($param,$id);
-        if(!empty($updateData)) {
+        if(!empty($updateData)) 
+        {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Schedule "'.$updateData->date_at.'" of '.$updateData->Event->title.' was updated';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -110,11 +125,17 @@ class EventSchedulesController extends BaseController
         }
     }
 
-    public function destroy($id)
+    public function destroy(Request $req, $id)
     {
         //
         $data = $this->model->deleteByID($id);
         if(!empty($data)) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Schedule "'.$data->date_at.'" of '.$data->Event->title.' was deleted';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 200,

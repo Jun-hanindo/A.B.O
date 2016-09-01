@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Admin\UserTrustee;
 
 use App\Models\Menu;
 use App\Models\Role;
+use App\Models\LogActivity;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\UserTrustee\RoleRequest as Request;
 
@@ -117,9 +118,16 @@ class RoleController extends BaseController
      */
     public function delete($id)
     {
-        return $this->transaction(function ($model) use ($id) {
+        $data = $this->model->findOrFail($id);
+        return $this->transaction(function ($model) use ($id, $data) {
             $this->model->findOrFail($id)->delete();
-            //$this->model->deleteByID($id);
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Role "'.$data->name.'" was deleted';
+            $log['ip_address'] = '';
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+            
         }, true);
     }
 
@@ -179,11 +187,23 @@ class RoleController extends BaseController
         $data = $request->except('_token', '_method');
         $data['permissions'] = $this->preparePermissions($request->input('permissions'));
 
-        return $this->transaction(function ($model) use ($data, $id) {
+        return $this->transaction(function ($model) use ($data, $id, $request) {
             if ($id) {
                 $this->model->findOrFail($id)->update($data);
+
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Role "'.$data['name'].'" was updated';
+                $log['ip_address'] = $request->ip();
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
             } else {
                 $this->model->create($data);
+                
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Role "'.$data['name'].'" was created';
+                $log['ip_address'] = $request->ip();
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
             }
         });
     }

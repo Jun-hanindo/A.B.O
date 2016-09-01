@@ -14,7 +14,7 @@
                 </div>
                 {!! Form::open(array('url' => route('admin-post-update-manage-page', $slug),'method'=>'POST','id'=>'form-manage-page')) !!}
                     <div class="box-body">
-                        <div class="error"></div>
+                        @include('flash::message')
                         <input type="hidden" name="title" class="form-control" id="title" value="{{ $title }}">
                             <div class="form-group{{ Form::hasError('content') }} content">
                                 {!! Form::textarea('content', $content, ['class' => 'form-control tinymce','rows'=>'15']) !!}

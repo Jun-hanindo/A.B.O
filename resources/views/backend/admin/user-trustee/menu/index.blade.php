@@ -12,14 +12,14 @@
     </style>
 @endsection
 
-@section('page-header', 'Menu Management')
+{{-- @section('page-header', 'Menu Management')
 
 @section('breadcrumb')
     <ol class="breadcrumb">
         <li><a href="{!! action('Backend\Admin\DashboardController@index') !!}"><i class="fa fa-bars"></i> Home</a></li>
         <li class="active">Menu Management</li>
     </ol>
-@endsection
+@endsection --}}
 
 @section('content')
     <div class="box box-primary">

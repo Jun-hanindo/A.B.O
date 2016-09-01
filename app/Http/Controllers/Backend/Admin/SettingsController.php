@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\User;
 use App\Models\Setting;
+use App\Models\LogActivity;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\setting\SettingRequest;
 
@@ -40,7 +41,13 @@ class SettingsController extends BaseController
         $updateData = $this->model->updateSetting($param);
         if(!empty($updateData)) {
 
-            flash()->success($updateData->name.' '.trans('general.update_success'));
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Setting was updated';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            flash()->success(trans('general.update_success'));
             return redirect()->route('admin-index-setting');
 
         } else {

@@ -511,6 +511,13 @@ class AuthController extends Controller
     {
         Sentinel::logout();
 
+        $log['user_id'] = $this->currentUser->id;
+        $log['description'] = 'A user log out';
+        $log['ip_address'] = '';
+        $insertLog = new LogActivity();
+        $insertLog->insertLogActivity($log);
+
+
         return redirect()->route('admin-login');
     }
 
@@ -524,6 +531,7 @@ class AuthController extends Controller
     {
         $backToLogin = redirect()->route('admin-login')->withInput();
         $findUser = Sentinel::findByCredentials(['login' => $request->input('email')]);
+
 
         // If we can not find user based on email...
         if (! $findUser) {
@@ -547,6 +555,12 @@ class AuthController extends Controller
                 Sentinel::logout();
                 return $backToLogin;
             }
+
+            $log['user_id'] = $findUser->id;
+            $log['description'] = 'A user log in';
+            $log['ip_address'] = $request->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             flash()->success('Login success!');
             return redirect()->route('admin-dashboard');
@@ -665,6 +679,11 @@ class AuthController extends Controller
         Reminder::complete($user, $request->input('code'), $request->input('password'));
 
         flash()->success('Password successfully changed!');
+        $log['user_id'] = $user->id;
+        $log['description'] = 'A user have changed password';
+        $log['ip_address'] = $request->ip();
+        $insertLog = new LogActivity();
+        $insertLog->insertLogActivity($log);
 
         return redirect()->action('Auth\AuthController@getLogin');
     }

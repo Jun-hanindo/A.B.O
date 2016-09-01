@@ -648,4 +648,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->hasMany('App\Event', 'user_id');
     }
 
+    public function dropdown(){
+        return static::orderBy('first_name')->get();
+    }
+
 }

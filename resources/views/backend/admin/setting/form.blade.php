@@ -15,7 +15,7 @@
 
                 {!! Form::open(array('url' => route('admin-update-setting'),'method'=>'POST','id'=>'form-setting', 'class' => "form-horizontal")) !!}
                     <div class="box-body">
-                        <div class="error"></div>
+                        @include('flash::message')
                         <div class="form-group{{ Form::hasError('language') }} language">
                             {!! Form::label('language', trans('general.language').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">

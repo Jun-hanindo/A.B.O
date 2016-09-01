@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\EventSchedule;
 use App\Models\EventScheduleCategory;
+use App\Models\LogActivity;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\event\EventScheduleCategoryRequest;
 
@@ -42,6 +43,13 @@ class EventScheduleCategoriesController extends BaseController
         $saveData = $this->model->insertNewEventScheduleCategory($param);
         if(!empty($saveData))
         {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Schedule Category "'.$saveData->additional_info.'" was created';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
@@ -86,6 +94,12 @@ class EventScheduleCategoriesController extends BaseController
         $updateData = $this->model->updateEventScheduleCategory($param, $id);
         if(!empty($updateData)) {
 
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Schedule Category "'.$updateData->additional_info.'" was updated';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
@@ -103,11 +117,17 @@ class EventScheduleCategoriesController extends BaseController
         }
     }
 
-    public function destroy($id)
+    public function destroy(Request $req, $id)
     {
         //
         $data = $this->model->deleteByID($id);
         if(!empty($data)) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Schedule Category "'.$data->additional_info.'" was deleted';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 200,

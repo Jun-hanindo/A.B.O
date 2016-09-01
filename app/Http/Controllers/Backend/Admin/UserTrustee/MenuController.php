@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Admin\UserTrustee;
 
 use App\Models\Menu;
+use App\Models\LogActivity;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\UserTrustee\MenuRequest as Request;
 
@@ -95,11 +96,17 @@ class MenuController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $req, $id)
     {
-        return $this->transaction(function ($model) use ($id) {
+        $data = $this->model->findOrFail($id);
+        return $this->transaction(function ($model) use ($id, $data) {
             $this->model->findOrFail($id)->delete();
             //$this->model->deleteByID($id);
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Menu "'.$data->name.'" was deleted';
+            $log['ip_address'] = '';
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
         }, true);
     }
 
@@ -164,11 +171,23 @@ class MenuController extends BaseController
             $data['parent'] = null;
         }
 
-        return $this->transaction(function ($model) use ($data, $id) {
+        return $this->transaction(function ($model) use ($data, $id, $request) {
             if ($id) {
                 $this->model->findOrFail($id)->update($data);
+
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Menu "'.$data['name'].'" was updated';
+                $log['ip_address'] = $request->ip();
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
             } else {
                 $this->model->create($data);
+                
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Menu "'.$data['name'].'" was created';
+                $log['ip_address'] = $request->ip();
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
             }
         });
     }

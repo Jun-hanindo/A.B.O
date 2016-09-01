@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Models\Category;
+use App\Models\LogActivity;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\category\CategoryRequest;
 
@@ -67,6 +68,13 @@ class CategoriesController extends BaseController
         $saveData = $this->model->insertNewCategory($param);
         if(!empty($saveData))
         {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Category "'.$saveData->name.'" was created';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
@@ -124,7 +132,14 @@ class CategoriesController extends BaseController
     {
         $param = $req->all();
         $updateData = $this->model->updateCategory($param,$id);
-        if(!empty($updateData)) {
+        if(!empty($updateData)) 
+        {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Category "'.$updateData->name.'" was updated';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -149,13 +164,20 @@ class CategoriesController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $req,  $id)
     {
         //
         $data = $this->model->deleteByID($id);
         if(!empty($data)) {
 
             flash()->success(trans('general.delete_success'));
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Category "'.$data->name.'" was deleted';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             return redirect()->route('admin-index-event-category');
 
         } else {
@@ -192,6 +214,12 @@ class CategoriesController extends BaseController
             $updateData = $this->model->changeAvaibility($param, $id);
             if(!empty($updateData)) {
 
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Category "'.$updateData->name.'" avaibility was updated';
+                $log['ip_address'] = $req->ip();
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
+
                 return response()->json([
                     'code' => 200,
                     'status' => 'success',
@@ -222,6 +250,12 @@ class CategoriesController extends BaseController
         $count = count($this->model->getCategory());
         $updateData = $this->model->changeStatus($param, $id);
         if(!empty($updateData)) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Category "'.$updateData->name.'" status was updated';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 200,

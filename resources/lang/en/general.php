@@ -187,6 +187,8 @@ return [
     'google_play'   => 'Google Play',
     'apple_store'   => 'Apple Store',
     'status'    => 'Status',
+    'menu_management' => 'Menu Management',
+    'trail' => 'Trail',
     // 'january' => 'January',
     // 'february' => 'February',
     // 'march' => 'March',

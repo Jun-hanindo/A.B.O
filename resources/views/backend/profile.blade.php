@@ -2,14 +2,14 @@
 
 @section('title', 'Profile Settings')
 
-@section('page-header', 'Profile <small>Settings</small>')
+{{-- @section('page-header', 'Profile <small>Settings</small>')
 
 @section('breadcrumb')
     <ol class="breadcrumb">
         <li><a href="{!! action('Backend\Admin\DashboardController@index') !!}"><i class="fa fa-user"></i> Home</a></li>
         <li class="active">Profile Settings</li>
     </ol>
-@endsection
+@endsection --}}
 
 @section('content')
     <div class="row">

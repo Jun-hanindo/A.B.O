@@ -2,7 +2,7 @@
 
 @section('title', 'Menu Management - '.$title)
 
-@section('page-header', 'Menu Management <small>'.$title.'</small>')
+{{-- @section('page-header', 'Menu Management <small>'.$title.'</small>')
 
 @section('breadcrumb')
     <ol class="breadcrumb">
@@ -10,14 +10,14 @@
         <li><a href="">Menu Management</a></li>
         <li class="active">{{ $title }}</li>
     </ol>
-@endsection
+@endsection --}}
 
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">{{ $title }}</h3>
+                    <h3 class="box-title">{{ $title }} {{ trans('general.menu_management') }} </h3>
                 </div>
                 {!! Form::modelHorizontal($data, $form) !!}
                     <div class="box-body">

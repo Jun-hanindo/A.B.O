@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Models\Homepage;
-//use App\Models\Event;
+use App\Models\LogActivity;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\homepage\HomepageRequest;
 
@@ -52,6 +52,13 @@ class HomepagesController extends BaseController
         }
         if(!empty($saveData))
         {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Homepage "'.$saveData->event_title.' to '.$saveData->category.'" was created';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
@@ -106,6 +113,12 @@ class HomepagesController extends BaseController
         }
         if(!empty($updateData)) {
 
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Homepage "'.$updateData->event_title.' to '.$updateData->category.'" was updated';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
@@ -123,12 +136,19 @@ class HomepagesController extends BaseController
         }
     }
 
-    public function destroy($id)
+    public function destroy(Request $req,  $id)
     {
         $data = $this->model->deleteByID($id);
         if(!empty($data)) {
 
             flash()->success(trans('general.delete_success'));
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Homepage "'.$data->Event->title.' to '.$data->category.'" was deleted';
+            $log['ip_address'] = $req->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             return redirect()->route('admin-index-homepage');
 
         } else {

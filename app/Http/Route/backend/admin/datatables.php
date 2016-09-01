@@ -51,6 +51,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::get('event-category', array('as' => 'datatables-event-category', 'uses' => 'CategoriesController@datatables'));
         Route::get('promotion', array('as' => 'datatables-promotion', 'uses' => 'PromotionsController@datatables'));
         Route::get('event-promotion', array('as' => 'datatables-event-promotion', 'uses' => 'PromotionsController@datatablesByEvent'));
+        Route::get('activity-log', array('as' => 'datatables-activity-log', 'uses' => 'ActivityLogController@datatables'));
         
 
     });
