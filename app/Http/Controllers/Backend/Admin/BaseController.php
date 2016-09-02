@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\LogActivity;
 
 abstract class BaseController extends Controller
 {
@@ -110,6 +111,11 @@ abstract class BaseController extends Controller
             } else {
                 flash()->error(trans('papermark.save_fail'));
             }
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
         }
 
         return redirect()->action($this->getClassAndMethodRoute('index'));
