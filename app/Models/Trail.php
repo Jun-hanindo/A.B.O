@@ -22,7 +22,7 @@ class Trail extends Model
     {
         $user_id = \Sentinel::getUser()->id;
         $session_id = session()->getId();
-        $ip_address = ''/*Request::ip()*/;
+        $ip_address = Request::ip();
         //$data = [];
 
         $trail = Trail::where('user_id', $user_id)
