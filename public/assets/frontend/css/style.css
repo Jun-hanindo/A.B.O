@@ -1,20 +1,21 @@
-/*@font-face {
+@font-face {
     font-family: 'proxima_nova_alt_cn_rgregular';
     src: url('../fonts/mark_simonson_-_proxima_nova_alt_condensed_regular-webfont.woff2') format('woff2'),
          url('../fonts/mark_simonson_-_proxima_nova_alt_condensed_regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-}*/
+}
+
 @font-face {
-    font-family: 'proxima_nova_alt_cn_rgregular';
-    src: url('../fonts/Mark Simonson - Proxima Nova Light.woff2') format('woff2'),
-         url('../fonts/Mark Simonson - Proxima Nova Light.woff') format('woff');
+    font-family: 'Mark_Simonson_Proxima_Nova_Light';
+    src: url('../fonts/Mark_Simonson_Proxima_Nova_Light.woff2') format('woff2'),
+         url('../fonts/Mark_Simonson_Proxima_Nova_Light.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 body{
-  font-family: 'proxima_nova_alt_cn_rgregular';
+  font-family: 'Mark_Simonson_Proxima_Nova_Light';
 }
 
 .page-wrapper{
@@ -1065,6 +1066,22 @@ body{
   border-radius: 15px;
 }
 
+.carousel-control span{
+  margin-top: -85px !important;
+}
+
+.carousel-indicators li{
+  background-color: rgba(0,0,0,0.5);
+  border: none;
+}
+
+.carousel-indicators li.active{
+  background-color: #fff;
+  width: 10px;
+  height: 10px;
+  margin: 1px;
+}
+
 .slider-home .carousel-caption {
   background-color: #003272;
   position: static;
@@ -1075,7 +1092,11 @@ body{
   padding: 0 0 10px 25px;
   color: #fff;
   text-align: left;
-  padding: 30px;
+  padding: 20px;
+}
+
+.nav-search .input-group input{
+  color: #fff;
 }
 
 .slider-home .carousel-control.left,
@@ -1086,14 +1107,14 @@ body{
 .newRelease h2,
 .latestPromo h2 {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 35px;
   font-size: 26px;
 }
 
 .newRelease .box-release,
 .promotionList .box-release,
 .latestPromo .box-promo{
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 .box-release img,
@@ -1136,7 +1157,6 @@ body{
 
 .box-release .boxInfo{
   color: #fff;
-  height: 170px;
 }
 
 .box-release .boxInfo .eventType{
@@ -1161,7 +1181,8 @@ body{
 .loadMore .btnLoad{
   background-color: #000;
   color: #fff;
-  width: 250px;
+  width: 220px;
+  height: 40px;
 }
 
 .latestPromo{
@@ -1171,8 +1192,8 @@ body{
 #footer1,
 #footer2,
 #footer3{
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   background: #000000;
 }
 
@@ -1190,28 +1211,43 @@ body{
 #footer1 .centeredCap .linkFoot a{
   text-decoration: none;
   color: #fff;
-  font-size: 26px;
+  font-size: 22px;
+}
+
+#footer1 .centeredCap .linkFoot a::after{
+  content: "\f105";
+  font-family: 'FontAwesome';
+  margin-left: 10px;
+}
+
+#footer1 .linkFoot{
+  margin-top: 15px;
+}
+
+#footer1 .capFoot{
+  margin-top: 10px;
 }
 
 footer .information-title{
   color: #f3f3f3;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .list-unstyled {
     padding-left: 0;
     list-style: none;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 #footer2 li {
-    margin: 0 0 10px;
+    margin: 0 0 5px;
     font-size: 14px;
 }
 
 #footer2 li a {
     color: #fff;
     text-decoration: none;
+    font-size: 12px;
 }
 
 #footer2 .facebookLike,
@@ -1287,11 +1323,6 @@ footer .information-title{
   position: relative;
 }
 
-.carousel-caption .eventDate,
-.carousel-caption .eventPlace{
-  margin-top: 10px;
-}
-
 .carousel-caption .eventDate i,
 .carousel-caption .eventPlace i{
   margin-right: 10px;
@@ -1311,6 +1342,16 @@ footer .information-title{
   padding-right: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
+  width: 180px;
+}
+
+.item .categorySlide{
+  font-size: 11px;
+}
+
+.item .titleSlide{
+  font-size: 26px;
+  margin-top: 10px;
 }
 
 .discoverCategory{
@@ -2585,6 +2626,201 @@ footer .information-title{
   border-color: #000000;
 }
 
+.faq-menu-mobile{
+  text-align: center;
+  font-size: 14px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.faq-menu-mobile a{
+  color: #000;
+  text-decoration: none;
+}
+
+.back a{
+  text-decoration: none;
+}
+
+.back-faq{
+  color: #000;
+  text-decoration: none;
+  float: left;
+  font-size: 18px;
+}
+
+.list-ask-mobile ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+.list-ask-mobile ul li a{
+  text-decoration: none;
+  color: #000;
+}
+
+.list-ask-mobile .ask{
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.list-ask-mobile .ask a{
+  text-decoration: none;
+  color: #000;
+}
+
+.mobile-title-faq{
+  margin-right: 35px;
+}
+
+.helpful-box h5{
+  font-weight: bold;
+}
+
+.helpful-box .btnYes,
+.helpful-box .btnNo{
+  width: 100px;
+  background-color: #fff;
+  border: 1px solid #000;
+}
+
+.helpful-box .btnYes:hover,
+.helpful-box .btnNo:hover{
+  background-color: #000;
+  color: #fff;
+}
+
+#modalYes .modal-content{
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#modalYes .modal-content .modal-body p{
+  text-align: center;
+}
+
+#modalYes .modal-content .modal-footer,
+#modalNo .modal-content .modal-footer{
+  text-align: center;
+}
+
+#modalYes .modal-content .modal-footer button{
+  background-color: #000;
+  color: #fff;
+  width: 200px;
+}
+
+#modalNo .modal-content .modal-footer button{
+  background-color: #000;
+  color: #fff;
+  width: 100%;
+}
+
+#modalYes .modal-content .modal-footer button:hover,
+#modalNo .modal-content .modal-footer button:hover{
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+}
+
+#modalNo .modal-content{
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#modalNo .modal-body p{
+  margin-top: 0;
+  font-weight: bolder;
+}
+
+#modalNo .modal-body input,
+#modalNo .modal-body select{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#modalNo .modal-body textarea{
+  margin-top: 10px;
+}
+
+#modalNo .modal-body textarea{
+  min-height: 200px;
+}
+
+#modalNo .modal-body form{
+  margin-bottom: 0;
+}
+
+.iconWays i{
+  font-size: 30px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.headWays{
+  font-size: 22px;
+}
+
+.boxOffice h5 b{
+  font-weight: bolder;
+}
+
+.btnBlackDefault{
+  background-color: #000;
+  color: #fff;
+}
+.btnBlackDefault:hover{
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+}
+
+.boxOffice .btnBlackDefault{
+  margin-top: 20px;
+}
+
+.operating{
+  color: #999999;
+  margin-top: 20px;
+}
+
+.btnBlackDefault i{
+  margin-right: 10px;
+}
+
+.website .iconWays i,
+.eventTab li .fa-laptop{
+  padding: 8px;
+}
+
+.boxOffice .iconWays i{
+  padding: 9px;
+}
+
+.ways-content{
+  height: 300px;
+}
+
+.ways-content .sidebar{
+  height: 600px;
+}
+
+.eventTab .active .iconWays i{
+  background-color: #000;
+  color: #fff;
+}
+
+.contentTab .head-mobile-ways{
+  text-align: center;
+}
+
+.eventName .esplanade{
+  margin-top: -15px;
+}
+
 @media (max-width: 1210px){
   #mobile-header{
     display: block;
@@ -2603,11 +2839,19 @@ footer .information-title{
   .contact-content,
   .career-content,
   .aboutus-content,
-  .search-content{
+  .search-content,
+  .faq-content,
+  .ways-content{
     display: none;
   }
   .mobile-content{
     display: block;
+  }
+  .search-mobile .search-faq input{
+    max-width: 100%;
+  }
+  .faq-menu-mobile{
+    font-size: 20px;
   }
 }
 
@@ -2657,6 +2901,7 @@ footer .information-title{
     float: none;
     position: relative;
     top: 0;
+    right: 0;
   }
   .moreDetail button{
     width: 100%;

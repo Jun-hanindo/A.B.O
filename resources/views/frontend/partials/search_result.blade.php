@@ -67,26 +67,26 @@
                             </div>
                         </div>
                     </li>
-                        <li class="sidebar-menu sidebar-search">
-                                <a data-toggle="collapse" href="#venue" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Venues</a>
-                                <div class="collapse" id="venue">
-                                    <div class="collapse-search">
-                                        <ul>
-                                            <li>
-                                                @if(!empty($venues))
-                                                    <select id="filter-venue" name="venue" class="form-control">
-                                                        <option value="all" >All</option>
+                    <li class="sidebar-menu sidebar-search">
+                        <a data-toggle="collapse" href="#venue" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Venues</a>
+                        <div class="collapse" id="venue">
+                            <div class="collapse-search">
+                                <ul>
+                                    <li>
+                                        @if(!empty($venues))
+                                            <select id="filter-venue" name="venue" class="form-control">
+                                                <option value="all" >All</option>
 
-                                                        @foreach($venues as $key => $venue) 
-                                                            <option value="{{ $venue->slug }}" {{ $venue_sel == $venue->slug ? 'selected' : '' }} >{{ $venue->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                @endif 
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                        </li>
+                                                @foreach($venues as $key => $venue) 
+                                                    <option value="{{ $venue->slug }}" {{ $venue_sel == $venue->slug ? 'selected' : '' }} >{{ $venue->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        @endif 
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
                     </form>
                 </ul>
             </div>
@@ -134,50 +134,85 @@
                     <a class="menu" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Filters</a>
                     <div class="collapse" id="mobile-sidebar-collapse">
                         <ul class="search-mobile">
-                            <li class="sidebar-menu-top sidebar-search">
-                                    <a data-toggle="collapse" href="#categories-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Categories</a>
-                                    <div class="collapse" id="categories-mobile">
-                                        <div class="collapse-search">
-                                            <ul>
-                                                <li><a href="#">Categories 1</a></li>
-                                                <li><a href="#">Categories 2</a></li>
-                                            </ul>
+                            <form id="filter-form">
+                                <li class="sidebar-menu-top sidebar-search">
+                                        <a data-toggle="collapse" href="#categories-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Categories</a>
+                                        <div class="collapse" id="categories-mobile">
+                                            <div class="collapse-search">
+                                                <ul>
+                                                    <li>
+                                                        @if(!empty($categories))
+                                                            @foreach($categories as $key => $category) 
+                                                                 <li class="checkbox"><label><input type="checkbox" name="cat[]" class="cat-filter" value="{{$category->slug}}"
+                                                                    @if(!empty($cats_sel))
+                                                                        @foreach($cats_sel as $k => $cat_sel) 
+                                                                            @if($cat_sel == $category->slug)
+                                                                                checked
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
+                                                                    > {{ $category->name }}</label></li>
+                                                            @endforeach
+                                                        @endif
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
-                            </li>
-                            <li class="sidebar-menu-top sidebar-search">
-                                    <a data-toggle="collapse" href="#language-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Language</a>
-                                    <div class="collapse" id="language-mobile">
-                                        <div class="collapse-search">
-                                            <ul>
-                                                <li><a href="#">Language 1</a></li>
-                                                <li><a href="#">Language 2</a></li>
-                                            </ul>
+                                </li>
+                                <li class="sidebar-menu-top sidebar-search">
+                                        <a data-toggle="collapse" href="#language-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Language</a>
+                                        <div class="collapse" id="language-mobile">
+                                            <div class="collapse-search">
+                                                <ul>
+                                                    <li><a href="#">Language 1</a></li>
+                                                    <li><a href="#">Language 2</a></li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
-                            </li>
-                            <li class="sidebar-menu-top sidebar-search">
+                                </li>
+                                <li class="sidebar-menu-top sidebar-search">
                                     <a data-toggle="collapse" href="#time-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Time Period</a>
                                     <div class="collapse" id="time-mobile">
                                         <div class="collapse-search">
                                             <ul>
-                                                <li><a href="#">Time 1</a></li>
-                                                <li><a href="#">Time 2</a></li>
+                                                <li>
+                                                    <select id="filter-period" name="period" class="form-control">
+                                                        <option value="all" >All</option>
+
+                                                        @for($x = 3; $x < 4; $x+=2) 
+                                                            @if($x == 1)
+                                                                <option value="{{ $x }}" {{ $period_sel == $x ? 'selected' : '' }}>{{ $x }} month from now</option>
+                                                            @else
+                                                                <option value="{{ $x }}" {{ $period_sel == $x ? 'selected' : '' }}>{{ $x }} months from now</option>
+                                                            @endif
+                                                        @endfor
+                                                    </select>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
-                            </li>
-                            <li class="sidebar-menu-top sidebar-search">
+                                </li>
+                                <li class="sidebar-menu-top sidebar-search">
                                     <a data-toggle="collapse" href="#venue-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Venues</a>
                                     <div class="collapse" id="venue-mobile">
                                         <div class="collapse-search">
                                             <ul>
-                                                <li><a href="#">Venue 1</a></li>
-                                                <li><a href="#">Venue 2</a></li>
+                                                <li>
+                                                    @if(!empty($venues))
+                                                        <select id="filter-venue" name="venue" class="form-control">
+                                                            <option value="all" >All</option>
+
+                                                            @foreach($venues as $key => $venue) 
+                                                                <option value="{{ $venue->slug }}" {{ $venue_sel == $venue->slug ? 'selected' : '' }} >{{ $venue->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    @endif 
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
-                            </li>
+                                </li>
+                            </form>
                         </ul>
                     </div>
                 </div>
@@ -198,7 +233,7 @@
                     @foreach($events as $key => $event) 
                         <div class="row">
                             <div class="col-md-12">
-                                <a href="#" class="mobile-jobs-a">
+                                <a href="{{ URL::route('event-detail', $event->slug) }}" class="mobile-jobs-a">
                                     <div class="mobile-job-list">
                                         <div class="mobile-search-head bg-{{ $event->background_color }}">
                                             <div class="row">

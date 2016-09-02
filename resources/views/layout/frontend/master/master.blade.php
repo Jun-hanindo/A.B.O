@@ -52,6 +52,7 @@
                                                                     <img src="{{ asset('assets/frontend/images/asia.png') }}"><br>
                                                                     <span>Asia</span>
                                                                 </a>
+                                                                
                                                             </li>
                                                             <li class="lang-box">
                                                                 <a href="#" class="lang-link">
@@ -205,6 +206,9 @@
                         </div>
                     </div>
                 </div>
+                <!-- <div class="mobile-search-show">
+                    <input type="text" name="" placeholder="search...">
+                </div> -->
             </div>
           </header>
           

@@ -116,7 +116,7 @@
                 @endforeach
             </div>
             <div class="loadMore">
-                        <a href="{{ URL::route('discover')}}" class="btn btnLoad">Discover More Events</a>
+                <a href="{{ URL::route('discover')}}" class="btn btnLoad">Discover More Events</a>
             </div>
         </div>
     </section>
@@ -147,6 +147,7 @@
                                                 @endif
                                             </li>
                                             <li class="eventName">{{ string_limit($data->title) }} <img src="{{ $src2.$data->featured_image }}"></li>
+                                            <br>
                                             <li class="eventPlace">Valid From
                                                 @php
                                                     $m_start = date('m', strtotime($data->start_date));
@@ -184,7 +185,7 @@
                                                     <div class="promoBannerDesc">
                                                         <div class="row">
                                                             <div class="col-md-9">
-                                                                <p>{!! $data->description !!}</p>
+                                                                <{!! $data->description !!}
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <img src="{{ $src2.$data->featured_image }}" class="promoLogo">
