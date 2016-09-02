@@ -22,7 +22,7 @@ class LogActivity extends Model
     {
         $this->user_id = $data['user_id'];
         $this->description = $data['description'];
-        $this->ip_address = '';
+        $this->ip_address = Request::ip()/*$data['ip_address']*/;
         $this->save();
 
         return $this;
