@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend\Admin;
 
+use App\Models\Trail;
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
@@ -23,6 +24,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $trail = 'Dashboard';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
         return view('backend.admin.dashboard.dashboard');
     }
 }

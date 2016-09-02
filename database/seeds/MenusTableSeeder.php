@@ -70,7 +70,7 @@ class MenusTableSeeder extends Seeder
             ]],
             ['is_parent' => false, 'name' => str_slug('Settings'), 'display_name' => 'Settings', 'icon' => 'cogs', 'href' => 'admin/setting', 'pattern' => 'admin/setting'],
             ['is_parent' => false, 'name' => str_slug('Trail'), 'display_name' => 'Trail', 'icon' => 'road', 'href' => 'admin/trail', 'pattern' => 'admin/trail'],
-            ['is_parent' => false, 'name' => str_slug('System Log'), 'display_name' => 'System Log', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/system-log'],
+            ['is_parent' => false, 'name' => str_slug('System Log'), 'display_name' => 'System Log', 'icon' => 'archive', 'href' => 'admin/system-log', 'pattern' => 'admin/system-log'],
             ['is_parent' => false, 'name' => str_slug('Customer Report'), 'display_name' => 'Customer Report', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/customer-report'],
             ['is_parent' => false, 'name' => str_slug('Logout'), 'display_name' => 'Logout', 'icon' => 'sign-out', 'href' => 'admin/logout', 'pattern' => 'admin/logout'],
 

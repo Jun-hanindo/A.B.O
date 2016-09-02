@@ -64,6 +64,21 @@ function loadSwitchButton($class){
 
 }
 
+function saveTrailModal(desc){
+    $.ajax({
+        url: urlPostTrail,
+        type: "POST",
+        dataType: 'json',
+        data: {'desc': desc},
+        success: function (data) {
+            data.message
+        },
+        error: function(response){
+            response.responseJSON.message
+        }
+    });
+}
+
 function datatablesSelectAll(table)
 {
     var $table             = table.table().node();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Admin\UserTrustee;
 use App\Models\Menu;
 use App\Models\Role;
 use App\Models\LogActivity;
+use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\UserTrustee\RoleRequest as Request;
 
@@ -45,6 +46,9 @@ class RoleController extends BaseController
      */
     public function index()
     {
+        $trail = 'List Role';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
         return view('backend.admin.user-trustee.role.index');
     }
 
@@ -118,13 +122,14 @@ class RoleController extends BaseController
      */
     public function delete($id)
     {
-        $data = $this->model->findOrFail($id);
-        return $this->transaction(function ($model) use ($id, $data) {
-            $this->model->findOrFail($id)->delete();
+        //$data = $this->model->findOrFail($id);
+        return $this->transaction(function ($model) use ($id/*, $data*/) {
+            //$this->model->findOrFail($id)->delete();
+            $data = $this->model->deleteByID($id);
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Role "'.$data->name.'" was deleted';
-            $log['ip_address'] = '';
+            //$log['ip_address'] = '';
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
             
@@ -165,6 +170,10 @@ class RoleController extends BaseController
      */
     protected function createEdit($dataToBind, $id = 0)
     {
+        $trail = 'Role form';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
+
         $dataToBind['dropdown'] = $this->menu->dropdown();
         if ($id > 0) {
             $status = 'edit';
@@ -193,7 +202,7 @@ class RoleController extends BaseController
 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Role "'.$data['name'].'" was updated';
-                $log['ip_address'] = $request->ip();
+                //$log['ip_address'] = $request->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);
             } else {
@@ -201,7 +210,7 @@ class RoleController extends BaseController
                 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Role "'.$data['name'].'" was created';
-                $log['ip_address'] = $request->ip();
+                //$log['ip_address'] = $request->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);
             }

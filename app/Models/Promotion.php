@@ -63,12 +63,12 @@ class Promotion extends Model
     function insertNewPromotion($param, $user_id)
     {
         $this->user_id = $user_id;
-        $this->title = $param['title'];
-        $this->description = $param['description'];
+        $this->title = $param['title_promo'];
+        $this->description = $param['description_promo'];
         $this->discount = $param['discount'];
         $this->start_date = date('Y-m-d',strtotime($param['start_date']));
         $this->end_date = date('Y-m-d',strtotime($param['end_date']));
-        $this->code = $param['code'];
+        $this->code = $param['promotion_code'];
         $this->category = $param['category'];
 
         $pathDest = public_path().'/uploads/promotions';
@@ -130,12 +130,12 @@ class Promotion extends Model
     {
         $data = $this->find($id);
         if (!empty($data)) {
-            $data->title = $param['title'];
-            $data->description = $param['description'];
+            $data->title = $param['title_promo'];
+            $data->description = $param['description_promo'];
             $data->discount = $param['discount'];
             $data->start_date = date('Y-m-d',strtotime($param['start_date']));
             $data->end_date = date('Y-m-d',strtotime($param['end_date']));
-            $data->code = $param['code'];
+            $data->code = $param['promotion_code'];
             $data->category = $param['category'];
 
             $pathDest = public_path().'/uploads/promotions';

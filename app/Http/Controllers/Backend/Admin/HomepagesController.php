@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Homepage;
 use App\Models\LogActivity;
+use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\homepage\HomepageRequest;
 
@@ -25,7 +26,10 @@ class HomepagesController extends BaseController
      */
     public function index()
     {
-        //
+        
+        $trail = 'Homepage';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
         return view('backend.admin.homepage.index');
     }
 
@@ -55,7 +59,7 @@ class HomepagesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Homepage "'.$saveData->event_title.' to '.$saveData->category.'" was created';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -115,7 +119,7 @@ class HomepagesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Homepage "'.$updateData->event_title.' to '.$updateData->category.'" was updated';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -145,7 +149,7 @@ class HomepagesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Homepage "'.$data->Event->title.' to '.$data->category.'" was deleted';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 

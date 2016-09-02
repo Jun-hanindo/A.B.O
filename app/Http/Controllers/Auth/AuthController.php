@@ -513,7 +513,7 @@ class AuthController extends Controller
 
         $log['user_id'] = $this->currentUser->id;
         $log['description'] = 'A user log out';
-        $log['ip_address'] = '';
+        //$log['ip_address'] = '';
         $insertLog = new LogActivity();
         $insertLog->insertLogActivity($log);
 
@@ -558,13 +558,20 @@ class AuthController extends Controller
 
             $log['user_id'] = $findUser->id;
             $log['description'] = 'A user log in';
-            $log['ip_address'] = $request->ip();
+            //$log['ip_address'] = $request->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
             flash()->success('Login success!');
             return redirect()->route('admin-dashboard');
         } catch (ThrottlingException $e) {
+
+            $log['user_id'] = $findUser->id;
+            $log['description'] = 'A user login failed because too many attempts';
+            //$log['ip_address'] = $request->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             flash()->error('Too many attempts!');
         } catch (NotActivatedException $e) {
             flash()->error('Please activate your account before trying to log in.');
@@ -681,7 +688,7 @@ class AuthController extends Controller
         flash()->success('Password successfully changed!');
         $log['user_id'] = $user->id;
         $log['description'] = 'A user have changed password';
-        $log['ip_address'] = $request->ip();
+        //$log['ip_address'] = $request->ip();
         $insertLog = new LogActivity();
         $insertLog->insertLogActivity($log);
 

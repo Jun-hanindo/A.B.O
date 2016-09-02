@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\User;
 use App\Models\Setting;
 use App\Models\LogActivity;
+use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\setting\SettingRequest;
 
@@ -31,6 +32,11 @@ class SettingsController extends BaseController
             $data[$value->name] = $value->value;
         }
         $result['data'] = $data;
+
+        $trail = 'Setting';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
+        
         return view('backend.admin.setting.form', $result);
     }
 
@@ -43,7 +49,7 @@ class SettingsController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Setting was updated';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 

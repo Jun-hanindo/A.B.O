@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\User;
 use App\Models\Venue;
 use App\Models\LogActivity;
+use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\venue\VenueRequest;
 
@@ -25,7 +26,9 @@ class VenuesController extends BaseController
      */
     public function index()
     {
-        //
+        $trail = 'List Venue';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
         return view('backend.admin.venue.index');
     }
 
@@ -68,7 +71,9 @@ class VenuesController extends BaseController
      */
     public function create()
     {
-        //
+        $trail = 'Venue Form';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
         return view('backend.admin.venue.create');
     }
 
@@ -97,7 +102,7 @@ class VenuesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Venue "'.$saveData->name.'" was created';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
         
@@ -123,6 +128,10 @@ class VenuesController extends BaseController
     {
         $data = $this->model->findVenueByID($id);
         if(!empty($data)) {
+            
+            $trail = 'Venue Form';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
 
             return view('backend.admin.venue.edit')->withData($data);
 
@@ -158,7 +167,7 @@ class VenuesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Venue "'.$updateData->name.'" was updated';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -188,7 +197,7 @@ class VenuesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Venue "'.$data->name.'" was deleted';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -211,7 +220,7 @@ class VenuesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Venue "'.$updateData->name.'" avaibility was updated';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 

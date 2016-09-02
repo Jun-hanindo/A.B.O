@@ -23,7 +23,7 @@
     <div class="col-md-12">
       <div class="box box-primary">
         <div class="box-header">
-            <h3 class="box-title">{{ trans('general.system_log') }}</h3>
+            <h3 class="box-title">{{ trans('general.trail') }}</h3>
         </div>
         <div class="box-body">
           <div class="form-inline activity-log-filter-date">
@@ -39,6 +39,7 @@
                   <tr>
                       <th class="center-align">Date</th>
                       <th class="center-align">User</th>
+                      <th class="center-align">Session id</th>
                       <th class="center-align">Description</th>
                       <th width="12%">Ip Address</th>
                   </tr>
@@ -54,6 +55,6 @@
 
 @endsection
 @section('scripts')
-  @include('backend.admin.activity_log.script.index_script')
+  @include('backend.admin.trail.script.index_script')
 @endsection
 

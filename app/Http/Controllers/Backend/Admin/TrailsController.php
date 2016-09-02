@@ -5,13 +5,12 @@ namespace App\Http\Controllers\Backend\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\User;
-use App\Models\LogActivity;
 use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
 
-class ActivityLogController extends BaseController
+class TrailsController extends BaseController
 {
-    public function __construct(LogActivity $model)
+    public function __construct(Trail $model)
     {
         parent::__construct($model);
     }
@@ -27,12 +26,12 @@ class ActivityLogController extends BaseController
 
         $data['dropdown'] = $drop;
 
-        $trail = 'System Log';
+        $trail = 'Trail';
         $insertTrail = new Trail();
         $insertTrail->insertTrail($trail);
         
 
-        return view('backend.admin.activity_log.index', $data);
+        return view('backend.admin.trail.index', $data);
     }
 
     public function datatables(Request $req)
@@ -56,5 +55,30 @@ class ActivityLogController extends BaseController
                     return $date;
                 })
                 ->make(true);
+    }
+
+    public function saveTrailModal(Request $req){
+        $param = $req->all();
+        $desc = $param['desc'];
+        $saveData = $this->model->insertTrail($desc);
+
+        if(!empty($saveData))
+        {
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => trans('general.save_success')
+            ],200);
+        
+        } else {
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.save_error')
+            ],400);
+        
+        }
     }
 }

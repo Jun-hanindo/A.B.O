@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\User;
 use App\Models\LogActivity;
+use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\user\UserRequest;
 
@@ -276,6 +277,10 @@ class UsersController extends BaseController
 
     public function show($id)
     {
+
+        $trail = 'View User';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
 
         $user = $this->model->find($id);
         if(!empty($user)) {

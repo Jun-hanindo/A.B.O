@@ -3,13 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Menu extends Model
 {
+    use SoftDeletes;
     /**
      * {@inheritDoc}
      */
     protected $table = 'menus';
+    
+    protected $dates = ['deleted_at'];
 
     /**
      * {@inheritDoc}
@@ -55,20 +59,14 @@ class Menu extends Model
 
         return $return->lists('display_name', 'id');
     }
-
+    
     public function deleteByID($id)
     {
         $data = $this->find($id);
         if(!empty($data)) {
             $data->delete();
+            //$data->UserRoles()->detach();
             return $data;
-            // $data->status = false;
-            // if($data->save()) {
-            //     return $data;
-            // } else {
-            //     return false;
-
-            // }
         } else {
             return false;
         }

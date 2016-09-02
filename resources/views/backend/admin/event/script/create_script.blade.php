@@ -156,12 +156,14 @@
                         $('#title-update-schedule').hide();
                         $('#button_update_schedule').hide();
                         $('#button_save_schedule').show();
+                        saveTrailModal('Schedule Form');
                     }else if(cat == 'promotion'){
                         $('#modal-form-promotion').modal('show');
                         $('#title-create-promotion').show();
                         $('#title-update-promotion').hide();
                         $('#button_update_promotion').hide();
                         $('#button_save_promotion').show();
+                        saveTrailModal('Promotion Form');
                     }else{
                         window.location.href = "{{ route('admin-index-event') }}"
                     }
@@ -539,8 +541,8 @@
                 var content = tinyMCE.editors[i].save();
             }
 
-            var title = $('#title-promo').val();
-            var description = $().val('#description-promo').val();
+            var title = $('#title_promo').val();
+            var description = $().val('#description_promo').val();
 
             fd.append('event_id', event_id);
             fd.append('title', title);
@@ -571,6 +573,7 @@
                     if (response.status === 422) {
                         var data = response.responseJSON;
                         $.each(data,function(key,val){
+                            console.log(key);
                             $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
                             $('.'+key).addClass('has-error');
                         });
@@ -593,8 +596,8 @@
                 var content = tinyMCE.editors[i].save();
             }
 
-            var title = $('#title-promo').val();
-            var description = $().val('#description-promo').val();
+            var title = $('#title_promo').val();
+            var description = $().val('#description_promo').val();
 
             fd.append('event_id', event_id);
             fd.append('title', title);
@@ -652,12 +655,12 @@
                     }
                     var data = response.data;
                     $("#promotion_id").val(data.id);
-                    $("#title-promo").val(data.title);
-                    tinyMCE.get('description-promo').setContent(data.description);
+                    $("#title_promo").val(data.title);
+                    tinyMCE.get('description_promo').setContent(data.description);
                     $("#discount").val(data.discount);
                     $("#start_date").val(data.start_date);
                     $("#end_date").val(data.end_date);   
-                    $("#code").val(data.code);   
+                    $("#promotion_code").val(data.code);   
                     $("#category").val(data.category); 
                     $('#div-preview_image').show();
                     $('#preview_image').attr('src', data.src_featured_image);   
@@ -671,14 +674,14 @@
         }
 
         function clearInputPromotion(){
-            $("#title-promo").val('');
+            $("#title_promo").val('');
             $("#discount").val('');
-            $("#code").val('');
+            $("#promotion_code").val('');
             $("#featured_image").val('');
             $('#preview_image').attr('src', '');
             //$('#start_date').data('datepicker').setDate(null);
             //$('#end_date').data('datepicker').setDate(null);
-            tinyMCE.get('description-promo').setContent('');
+            tinyMCE.get('description_promo').setContent('');
         }
 
         function saveCat()
@@ -779,6 +782,7 @@
                 $('.error-modal').removeClass('alert alert-danger');
                 $('.error-modal').html('');
                 $(".text-danger").remove();
+                
 
                 $("#button_save_schedule").unbind('click').bind('click', function () {
                     var event_id = $('#event_id').val();
@@ -794,6 +798,7 @@
 
 
             $('#event-schedule-datatables tbody').on( 'click', '.actEdit', function () {
+                saveTrailModal('Schedule Form');
                 $('#modal-form-schedule').modal('show');
                 $('#title-create-schedule').hide();
                 $('#title-update-schedule').show();
@@ -824,6 +829,7 @@
                 $(".form-group").removeClass('has-error');
                 $('.error').removeClass('alert alert-danger');
                 $('.error').html('');
+                saveTrailModal('Price Info Form');
                 
 
                 $("#button_save_category").unbind('click').bind('click', function () {
@@ -844,6 +850,7 @@
             }); 
 
             $('#event-promotion-datatables tbody').on( 'click', '.actEdit', function () {
+                saveTrailModal('Promotion Form');
                 $('#modal-form-promotion').modal('show');
                 $('#title-create-promotion').hide();
                 $('#title-update-promotion').show();
@@ -882,6 +889,7 @@
 
 
             $('#modal-form-cat').on('show.bs.modal', function (e) {
+                saveTrailModal('Category Form');
                 $("#button_save-cat").unbind('click').bind('click', function () {
                     saveCat();                
                 });

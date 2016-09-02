@@ -46,7 +46,7 @@ class EventScheduleCategoriesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule Category "'.$saveData->additional_info.'" was created';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -96,7 +96,7 @@ class EventScheduleCategoriesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule Category "'.$updateData->additional_info.'" was updated';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -125,7 +125,7 @@ class EventScheduleCategoriesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule Category "'.$data->additional_info.'" was deleted';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 

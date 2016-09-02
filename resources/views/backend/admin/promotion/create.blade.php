@@ -28,32 +28,32 @@
                     <div class="box-body">
                         <div class="error"></div>
                         <div class="col-md-9">
-                            <div class="form-group{{ Form::hasError('title') }} title">
-                                {!! Form::label('title', trans('general.title').' *') !!}
-                                {!! Form::text('title', old('title'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.title')]) !!}
-                                {!! Form::errorMsg('title') !!}
+                            <div class="form-group{{ Form::hasError('title_promo') }} title_promo">
+                                {!! Form::label('title_promo', trans('general.title').' *') !!}
+                                {!! Form::text('title_promo', old('title_promo'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.title')]) !!}
+                                {!! Form::errorMsg('title_promo') !!}
                             </div>
-                            <div class="form-group{{ Form::hasError('description') }} description">
-                                {!! Form::label('description', trans('general.description').' *') !!}
-                                {!! Form::textarea('description', old('description'), ['class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.description')]) !!}
-                                {!! Form::errorMsg('description') !!}
+                            <div class="form-group{{ Form::hasError('description_promo') }} description_promo">
+                                {!! Form::label('description_promo', trans('general.description').' *') !!}
+                                {!! Form::textarea('description_promo', old('description_promo'), ['class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.description')]) !!}
+                                {!! Form::errorMsg('description_promo') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('discount') }} discount full-width">
                                 {!! Form::label('discount', trans('general.discount').' *', array('class' => 'full-width ')) !!}
                                 <div class="col-sm-3 input-group">
                                     {!! Form::text('discount', old('discount'), ['class' => 'form-control number-only','maxlength'=>'255', 'placeholder' => trans('general.discount')]) !!}
                                     <div class="input-group-addon">%</div>
-                                    {!! Form::errorMsg('discount') !!}
                                 </div>
+                                {!! Form::errorMsg('discount') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('discount_period') }} discount_period full-width">
                                 {!! Form::label('discount_period', trans('general.discount_period').' *', array('class' => 'full-width ')) !!}
-                                <div class="col-sm-3 row">
+                                <div class="col-sm-3 row form-group{{ Form::hasError('start_date') }}">
                                     {!! Form::text('start_date', old('start_date'), ['class' => 'form-control  datepicker', 'id' => 'start_date', 'maxlength'=>'255', 'placeholder' => trans('general.start_date')]) !!}
                                     {!! Form::errorMsg('start_date') !!}
                                 </div>
                                 {!! Form::label('to', trans('general.to'), array('class' => 'col-sm-1 control-label')) !!}
-                                <div class="col-sm-3 row">
+                                <div class="col-sm-3 row form-group{{ Form::hasError('end_date') }}">
                                     {!! Form::text('end_date', old('end_date'), ['class' => 'form-control  datepicker', 'id' => 'end_date','maxlength'=>'255', 'placeholder' => trans('general.end_date')]) !!}
                                     {!! Form::errorMsg('end_date') !!}
                                 </div>
@@ -61,7 +61,7 @@
                             <div class="form-group{{ Form::hasError('promotion_code') }} promotion_code full-width">
                                 {!! Form::label('promotion_code', trans('general.promotion_code').' *', array('class' => 'full-width ')) !!}
                                 <div class="col-sm-4 row">
-                                    {!! Form::text('code', old('code'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.promotion_code')]) !!}
+                                    {!! Form::text('promotion_code', old('promotion_code'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.promotion_code')]) !!}
                                     {!! Form::errorMsg('promotion_code') !!}
                                 </div>
                             </div>

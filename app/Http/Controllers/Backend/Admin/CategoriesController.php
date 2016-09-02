@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Category;
 use App\Models\LogActivity;
+use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\category\CategoryRequest;
 
@@ -25,7 +26,10 @@ class CategoriesController extends BaseController
      */
     public function index()
     {
-        //
+        
+        $trail = 'List Category';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
         return view('backend.admin.category.index');
     }
 
@@ -71,7 +75,7 @@ class CategoriesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Category "'.$saveData->name.'" was created';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -137,7 +141,7 @@ class CategoriesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Category "'.$updateData->name.'" was updated';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -174,7 +178,7 @@ class CategoriesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Category "'.$data->name.'" was deleted';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -216,7 +220,7 @@ class CategoriesController extends BaseController
 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Category "'.$updateData->name.'" avaibility was updated';
-                $log['ip_address'] = $req->ip();
+                //$log['ip_address'] = $req->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);
 
@@ -253,7 +257,7 @@ class CategoriesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Category "'.$updateData->name.'" status was updated';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 

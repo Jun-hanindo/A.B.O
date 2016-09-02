@@ -135,6 +135,9 @@
         
 
         <script>
+
+            var urlPostTrail = '{!! URL::route("admin-trail-post-modal") !!}';
+
             $(document).ajaxStart(function() {
                 Pace.restart();
             });

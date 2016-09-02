@@ -189,6 +189,7 @@ return [
     'status'    => 'Status',
     'menu_management' => 'Menu Management',
     'trail' => 'Trail',
+    'system_log' => 'System Log',
     // 'january' => 'January',
     // 'february' => 'February',
     // 'march' => 'March',

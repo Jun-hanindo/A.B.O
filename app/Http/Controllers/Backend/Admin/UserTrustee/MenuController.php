@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Admin\UserTrustee;
 
 use App\Models\Menu;
 use App\Models\LogActivity;
+use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\UserTrustee\MenuRequest as Request;
 
@@ -25,6 +26,9 @@ class MenuController extends BaseController
      */
     public function index()
     {
+        $trail = 'List Menu';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
         return view('backend.admin.user-trustee.menu.index');
     }
 
@@ -96,15 +100,14 @@ class MenuController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $req, $id)
+    public function destroy($id)
     {
-        $data = $this->model->findOrFail($id);
-        return $this->transaction(function ($model) use ($id, $data) {
-            $this->model->findOrFail($id)->delete();
-            //$this->model->deleteByID($id);
+        return $this->transaction(function ($model) use ($id) {
+            //$this->model->findOrFail($id)->delete();
+            $data = $this->model->deleteByID($id);
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Menu "'.$data->name.'" was deleted';
-            $log['ip_address'] = '';
+            //$log['ip_address'] = '';
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
         }, true);
@@ -142,6 +145,9 @@ class MenuController extends BaseController
      */
     protected function createEdit($dataToBind, $id = 0)
     {
+        $trail = 'Menu form';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
         $dropdown = $this->model->dropdownSelect(true)->toArray();
         if ($id > 0) {
             $dropdown = $this->model->dropdownSelect(true, $id)->toArray();
@@ -177,7 +183,7 @@ class MenuController extends BaseController
 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Menu "'.$data['name'].'" was updated';
-                $log['ip_address'] = $request->ip();
+                //$log['ip_address'] = $request->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);
             } else {
@@ -185,7 +191,7 @@ class MenuController extends BaseController
                 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Menu "'.$data['name'].'" was created';
-                $log['ip_address'] = $request->ip();
+                //$log['ip_address'] = $request->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);
             }

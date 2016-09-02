@@ -12,6 +12,7 @@ use App\Models\EventSchedule;
 use App\Models\Category;
 use App\Models\Promotion;
 use App\Models\LogActivity;
+use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\event\EventRequest;
 
@@ -30,7 +31,10 @@ class EventsController extends BaseController
      */
     public function index()
     {
-        //
+        
+        $trail = 'List Event';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
         return view('backend.admin.event.index');
     }
 
@@ -67,8 +71,14 @@ class EventsController extends BaseController
      */
     public function create()
     {
+
         $data['dropdown'] = Venue::dropdown();
         $data['categories'] = Category::dropdown();
+
+        $trail = 'Regiser Event';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
+
         return view('backend.admin.event.create')->withData($data);
     }
 
@@ -89,7 +99,7 @@ class EventsController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Event "'.$saveData->title.'" was created';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
         
@@ -167,7 +177,12 @@ class EventsController extends BaseController
         }else{
             $data['checked'] = '';
         }
+        
         if(!empty($data)) {
+        
+            $trail = 'Regiser Event';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
 
             return view('backend.admin.event.edit')->withData($data);
 
@@ -195,7 +210,7 @@ class EventsController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Event "'.$updateData->title.'" was updated';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -247,7 +262,7 @@ class EventsController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Event "'.$data->title.'" was deleted';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -270,7 +285,7 @@ class EventsController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Event "'.$updateData->title.'" avaibility was updated';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -307,7 +322,7 @@ class EventsController extends BaseController
 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Event "'.$saveData->title.'" draft was created';
-                $log['ip_address'] = $req->ip();
+                //$log['ip_address'] = $req->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);
 
@@ -334,7 +349,7 @@ class EventsController extends BaseController
 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Event "'.$updateData->title.'" draft was updated';
-                $log['ip_address'] = $req->ip();
+                //$log['ip_address'] = $req->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);
 

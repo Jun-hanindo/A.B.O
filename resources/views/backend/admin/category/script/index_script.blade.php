@@ -98,6 +98,7 @@
                 update();                
             });
             clearInput();
+            saveTrailModal('Category Form');
 
             function save()
             {

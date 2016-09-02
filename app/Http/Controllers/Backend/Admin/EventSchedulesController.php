@@ -52,7 +52,7 @@ class EventSchedulesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule "'.$saveData->date_at.'" of '.$saveData->Event->title.' was created';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -104,7 +104,7 @@ class EventSchedulesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule "'.$updateData->date_at.'" of '.$updateData->Event->title.' was updated';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -133,7 +133,7 @@ class EventSchedulesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule "'.$data->date_at.'" of '.$data->Event->title.' was deleted';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 

@@ -75,7 +75,8 @@
             $(".form-group").removeClass('has-error');
             $('.error').removeClass('alert alert-danger');
             $('.error').html('');
-            getEvent(category)
+            getEvent(category);
+            saveTrailModal('Homepage Form');
 
             $("#button_save").unbind('click').bind('click', function () {
                 saveHomepage(category);                

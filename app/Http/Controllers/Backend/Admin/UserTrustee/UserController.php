@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\BranchLocation;
 use App\Models\LogActivity;
+use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\UserTrustee\UserRequest as Request;
 use Mail;
@@ -39,6 +40,9 @@ class UserController extends BaseController
      */
     public function index()
     {
+        $trail = 'List User';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
         return view('backend.admin.user-trustee.user.index');
     }
 
@@ -101,7 +105,7 @@ class UserController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'User "'.$user->email.'" was deleted';
-            $log['ip_address'] = '';
+            //$log['ip_address'] = '';
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
         }, true);
@@ -189,6 +193,11 @@ class UserController extends BaseController
             $data['user']['role'] = $data['user']->roles[0]->id;
             //$data['user']['branch'] = $data['user']->branch_id;
         }
+
+        $trail = 'Form User';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
+
         return view('backend.admin.user-trustee.user.form', $data);
     }
 
@@ -231,7 +240,7 @@ class UserController extends BaseController
 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'User "'.$data['email'].'" was updated';
-                $log['ip_address'] = $request->ip();
+                //$log['ip_address'] = $request->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);
             } else {
@@ -248,7 +257,7 @@ class UserController extends BaseController
 
                     $log['user_id'] = $this->currentUser->id;
                     $log['description'] = 'User "'.$data['email'].'" was created';
-                    $log['ip_address'] = $request->ip();
+                    //$log['ip_address'] = $request->ip();
                     $insertLog = new LogActivity();
                     $insertLog->insertLogActivity($log);
                 });

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\ManagePage;
 use App\Models\LogActivity;
+use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\manage_page\ManagePageRequest;
 
@@ -45,6 +46,11 @@ class ManagePagesController extends BaseController
         }elseif($slug == 'faq'){
             $data['title'] = trans('general.faq');
         }
+        
+        $trail = $data['title'];
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
+
         return view('backend.admin.manage_page.form', $data);
     }
 
@@ -56,7 +62,7 @@ class ManagePagesController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Page "'.$updateData->title.'" was updated';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 

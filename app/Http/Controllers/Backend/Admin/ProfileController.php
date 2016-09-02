@@ -8,6 +8,7 @@ use Sentinel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\LogActivity;
+use App\Models\Trail;
 
 class ProfileController extends Controller
 {
@@ -40,6 +41,11 @@ class ProfileController extends Controller
             ],
             'skins' => config('ahloo.skins'),
         ];
+
+
+        $trail = 'Profile';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
 
         return view('backend.profile', $data);
     }
@@ -101,7 +107,7 @@ class ProfileController extends Controller
 
         $log['user_id'] = user_info()->id;
         $log['description'] = 'Profile was updated';
-        $log['ip_address'] = $request->ip();
+        //$log['ip_address'] = $request->ip();
         $insertLog = new LogActivity();
         $insertLog->insertLogActivity($log);
     }
@@ -134,7 +140,7 @@ class ProfileController extends Controller
 
         $log['user_id'] = user_info()->id;
         $log['description'] = 'Password was updated';
-        $log['ip_address'] = $request->ip();
+        //$log['ip_address'] = $request->ip();
         $insertLog = new LogActivity();
         $insertLog->insertLogActivity($log);
     }

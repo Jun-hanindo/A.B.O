@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Cartalyst\Sentinel\Roles\EloquentRole as Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Role extends Model
 {
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
     /**
      * {@inheritDoc}
      */
@@ -54,6 +57,18 @@ class Role extends Model
         }
 
         return $permissions;
+    }
+    
+    public function deleteByID($id)
+    {
+        $data = $this->find($id);
+        if(!empty($data)) {
+            $data->delete();
+            //$data->UserRoles()->detach();
+            return $data;
+        } else {
+            return false;
+        }
     }
 
     

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\User;
 use App\Models\Promotion;
 use App\Models\LogActivity;
+use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\promotion\PromotionRequest;
 
@@ -25,7 +26,9 @@ class PromotionsController extends BaseController
      */
     public function index()
     {
-        //
+        $trail = 'List Promotion';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
         return view('backend.admin.promotion.index');
     }
 
@@ -84,7 +87,9 @@ class PromotionsController extends BaseController
      */
     public function create()
     {
-        //
+        $trail = 'Promotion Form';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
         return view('backend.admin.promotion.create');
     }
 
@@ -116,7 +121,7 @@ class PromotionsController extends BaseController
 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Promotion "'.$saveData->title.'" was created';
-                $log['ip_address'] = $req->ip();
+                //$log['ip_address'] = $req->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);
 
@@ -143,7 +148,7 @@ class PromotionsController extends BaseController
 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Promotion "'.$saveData->title.'" was created';
-                $log['ip_address'] = $req->ip();
+                //$log['ip_address'] = $req->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);
             
@@ -173,6 +178,10 @@ class PromotionsController extends BaseController
         if(isset($data->featured_image)){
             $data->src_featured_image = $data->src.'/'.$data->featured_image; 
         }
+        
+        $trail = 'Promotion Form';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
 
         if($req->ajax()){
             if(!empty($data)) {
@@ -232,7 +241,7 @@ class PromotionsController extends BaseController
 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Promotion "'.$updateData->title.'" was updated';
-                $log['ip_address'] = $req->ip();
+                //$log['ip_address'] = $req->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);
 
@@ -257,7 +266,7 @@ class PromotionsController extends BaseController
 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Promotion "'.$updateData->title.'" was updated';
-                $log['ip_address'] = $req->ip();
+                //$log['ip_address'] = $req->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);
 
@@ -290,7 +299,7 @@ class PromotionsController extends BaseController
 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Promotion "'.$data->title.'" was deleted';
-                $log['ip_address'] = $req->ip();
+                //$log['ip_address'] = $req->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);
 
@@ -314,7 +323,7 @@ class PromotionsController extends BaseController
 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Promotion "'.$data->title.'" was deleted';
-                $log['ip_address'] = $req->ip();
+                //$log['ip_address'] = $req->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);
 
@@ -338,7 +347,7 @@ class PromotionsController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Promotion "'.$data->title.'" avaibility was updated';
-            $log['ip_address'] = $req->ip();
+            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 

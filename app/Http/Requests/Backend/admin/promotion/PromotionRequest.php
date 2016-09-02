@@ -26,26 +26,26 @@ class PromotionRequest extends Request
         $req = Request::all();
         if(isset($req['id']) && !empty($req['id'])) {
             return [
-                'title'             => 'required',
-                'description'       => 'required',
+                'title_promo'       => 'required',
+                'description_promo' => 'required',
                 'featured_image'    => 'mimes:jpg,jpeg,png,gif',
                 'discount'          => 'required',
                 'start_date'        => 'required',
                 'end_date'          => 'required',
                 'category'          => 'required',
-                'code'              => 'required'
+                'promotion_code'    => 'required'
             ];
 
         } else {
             return [
-                'title'             => 'required',
-                'description'       => 'required',
+                'title_promo'       => 'required',
+                'description_promo' => 'required',
                 'featured_image'    => 'required|mimes:jpg,jpeg,png,gif',
                 'discount'          => 'required',
                 'start_date'        => 'required',
                 'end_date'          => 'required',
                 'category'          => 'required',
-                'code'              => 'required'
+                'promotion_code'    => 'required'
             ];
                 
         }

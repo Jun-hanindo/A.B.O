@@ -150,17 +150,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     });
 
     Route::group(['prefix' => 'trail'], function () {
-        Route::get('', array('as' => 'admin-activity-log-index', 'uses' => 'ActivityLogController@index'));
+        Route::get('', array('as' => 'admin-trail-index', 'uses' => 'TrailsController@index'));
+        Route::post('save-trail-modal', array('as' => 'admin-trail-post-modal', 'uses' => 'TrailsController@saveTrailModal'));
     });
 
-    // Route::group(['prefix' => 'system-log'], function () {
-    //     Route::get('', array('as' => 'admin-index-system-log', 'uses' => 'SystemlogsController@index'));
-    //     Route::get('create', array('as' => 'admin-create-system-log', 'uses' => 'SystemlogsController@create'));
-    //     Route::post('store', array('as' => 'admin-post-system-log', 'uses' => 'SystemlogsController@store'));
-    //     Route::get('{id}/edit', array('as' => 'admin-edit-system-log', 'uses' => 'SystemlogsController@edit'));
-    //     Route::post('{id}/update', array('as' => 'admin-update-system-log', 'uses' => 'SystemlogsController@update'));
-    //     Route::delete('{id}/delete', array('as' => 'admin-delete-system-log', 'uses' => 'SystemlogsController@destroy'));
-    // });
+    Route::group(['prefix' => 'system-log'], function () {
+        Route::get('', array('as' => 'dmin-activity-log-index', 'uses' => 'ActivityLogController@index'));
+    });
 
     // Route::group(['prefix' => 'customer-report'], function () {
     //     Route::get('', array('as' => 'admin-index-customer-report', 'uses' => 'CustomerReportsController@index'));
