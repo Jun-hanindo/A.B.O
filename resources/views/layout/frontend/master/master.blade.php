@@ -91,7 +91,7 @@
                                         </nav> <!-- .cd-dropdown -->
                                     </div> <!-- .cd-dropdown-wrapper -->
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item nav-third">
                                     <div class="nav-search">
                                         <form action="{{route('event-search-get')}}" method="get">
                                             <div class="input-group">
@@ -108,13 +108,13 @@
                                         </form>
                                     </div>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item list-menu">
                                     <a href="{{ URL::route('discover')}}" class="hover-li">Discover</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item list-menu">
                                     <a href="{{ URL::route('promotion')}}" class="hover-li">Promotions</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item list-menu">
                                     <a href="#" class="hover-li">Support</a>
                                 </li>
                             </ul>
@@ -218,56 +218,58 @@
       <!-- End Main Content -->
 
     <footer>
-        <div id="footer1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 centeredCap">
-                        <div class="footIcon">
-                            <img src="{{ asset('assets/frontend/images/ico-support.png') }}">
+        @if(Request::is('/'))
+            <div id="footer1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 centeredCap">
+                            <div class="footIcon">
+                                <img src="{{ asset('assets/frontend/images/ico-support.png') }}">
+                            </div>
+                            <div class="linkFoot">
+                                <a href="#">Support ></a>
+                            </div>
+                            <div class="capFoot">
+                                <p>Need help with anything?</p>
+                            </div>
                         </div>
-                        <div class="linkFoot">
-                            <a href="#">Support ></a>
+                        <div class="col-md-3 centeredCap">
+                            <div class="footIcon">
+                                <img src="{{ asset('assets/frontend/images/ico-regis.png') }}">
+                            </div>
+                            <div class="linkFoot">
+                                <a href="https://asiaboxoffice.nliven.co/account/register">Register ></a>
+                            </div>
+                            <div class="capFoot">
+                                <p>Buy tickets from us and more.</p>
+                            </div>
                         </div>
-                        <div class="capFoot">
-                            <p>Need help with anything?</p>
+                        <div class="col-md-3 centeredCap">
+                            <div class="footIcon">
+                                <img src="{{ asset('assets/frontend/images/ico-subscribe.png') }}">
+                            </div>
+                            <div class="linkFoot">
+                                <a href="#">Subscribe to Us ></a>
+                            </div>
+                            <div class="capFoot">
+                                <p>Get events updates and tips.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 centeredCap">
-                        <div class="footIcon">
-                            <img src="{{ asset('assets/frontend/images/ico-regis.png') }}">
-                        </div>
-                        <div class="linkFoot">
-                            <a href="https://asiaboxoffice.nliven.co/account/register">Register ></a>
-                        </div>
-                        <div class="capFoot">
-                            <p>Buy tickets from us and more.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 centeredCap">
-                        <div class="footIcon">
-                            <img src="{{ asset('assets/frontend/images/ico-subscribe.png') }}">
-                        </div>
-                        <div class="linkFoot">
-                            <a href="#">Subscribe to Us ></a>
-                        </div>
-                        <div class="capFoot">
-                            <p>Get events updates and tips.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 centeredCap">
-                        <div class="footIcon">
-                            <img src="{{ asset('assets/frontend/images/ico-company.png') }}">
-                        </div>
-                        <div class="linkFoot">
-                            <a href="{{URL::route('our-company')}}">Our Company ></a>
-                        </div>
-                        <div class="capFoot">
-                            <p>About us, jobs and partnerships.</p>
+                        <div class="col-md-3 centeredCap">
+                            <div class="footIcon">
+                                <img src="{{ asset('assets/frontend/images/ico-company.png') }}">
+                            </div>
+                            <div class="linkFoot">
+                                <a href="{{URL::route('our-company')}}">Our Company ></a>
+                            </div>
+                            <div class="capFoot">
+                                <p>About us, jobs and partnerships.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
         <div id="footer2">
             <div class="container">
                 <div class="row">
