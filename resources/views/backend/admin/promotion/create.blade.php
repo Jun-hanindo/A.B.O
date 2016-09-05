@@ -26,6 +26,7 @@
                 </div>
                 {!! Form::open(array('url' => route('admin-post-promotion'),'files'=>'true','method'=>'POST','id'=>'form-promotion')) !!}
                     <div class="box-body">
+                        @include('flash::message')
                         <div class="error"></div>
                         <div class="col-md-9">
                             <div class="form-group{{ Form::hasError('title_promo') }} title_promo">

@@ -14,6 +14,7 @@
                 </div>
                 {!! Form::open(array('url' => route('admin-update-venue',$data->id),'method'=>'POST','id'=>'form-venue')) !!}
                     <div class="box-body">
+                        @include('flash::message')
                         <div class="error"></div>
                         <div class="col-md-9">
                             {!! Form::hidden('id', $data->id, array('id' => 'id', 'class' => 'form-control')) !!}

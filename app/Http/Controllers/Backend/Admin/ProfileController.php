@@ -76,40 +76,51 @@ class ProfileController extends Controller
      */
     private function updateProfile(Request $request)
     {
-        $this->validate($request, [
-            'avatar' => 'image',
-            'email' => 'required|email|unique:users,email,'.user_info('id'),
-            'first_name' => 'required',
-            'last_name' => 'required',
-        ]);
+        
+        try{
+            $this->validate($request, [
+                'avatar' => 'image',
+                'email' => 'required|email|unique:users,email,'.user_info('id'),
+                'first_name' => 'required',
+                'last_name' => 'required',
+            ]);
 
-        $data = $request->except('_token', '_method');
-        $user = user_info();
+            $data = $request->except('_token', '_method');
+            $user = user_info();
 
-        if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar');
+            if ($request->hasFile('avatar')) {
+                $avatar = $request->file('avatar');
 
-            if ($avatar->isValid()) {
-                $fileName = date('Y_m_d_His').'_'.$avatar->getClientOriginalName();
+                if ($avatar->isValid()) {
+                    $fileName = date('Y_m_d_His').'_'.$avatar->getClientOriginalName();
 
-                $avatar->move(avatar_path(), $fileName);
-                if ($user->avatar && file_exists(avatar_path($user->avatar))) {
-                    unlink(avatar_path($user->avatar));
+                    $avatar->move(avatar_path(), $fileName);
+                    if ($user->avatar && file_exists(avatar_path($user->avatar))) {
+                        unlink(avatar_path($user->avatar));
+                    }
+
+                    $data['avatar'] = $fileName;
                 }
-
-                $data['avatar'] = $fileName;
             }
+
+            flash()->success(trans('general.save_success'));
+
+            Sentinel::update($user, $data);
+
+            $log['user_id'] = user_info()->id;
+            $log['description'] = 'Profile was updated';
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+        } catch (\Exception $e) {
+
+            flash()->error(trans('general.update_error'));
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
         }
-
-        flash()->success(trans('general.save_success'));
-
-        Sentinel::update($user, $data);
-
-        $log['user_id'] = user_info()->id;
-        $log['description'] = 'Profile was updated';
-        //$log['ip_address'] = $request->ip();
-        $insertLog = new LogActivity();
-        $insertLog->insertLogActivity($log);
     }
 
     /**
@@ -120,28 +131,40 @@ class ProfileController extends Controller
      */
     private function updatePassword(Request $request)
     {
-        $this->validate($request, [
-            'old_password' => 'required',
-            'password' => 'required|confirmed',
-            'password_confirmation' => 'required',
-        ]);
+        try{
+            $this->validate($request, [
+                'old_password' => 'required',
+                'password' => 'required|confirmed',
+                'password_confirmation' => 'required',
+            ]);
 
-        $redirect = redirect()->action('Backend\Admin\ProfileController@index');
+            $redirect = redirect()->action('Backend\Admin\ProfileController@index');
 
-        if (! Hash::check($request->input('old_password'), user_info('password'))) {
-            flash()->error('Wrong old password!');
+            if (! Hash::check($request->input('old_password'), user_info('password'))) {
+                flash()->error('Wrong old password!');
 
-            return $redirect;
+                return $redirect;
+            }
+
+            Sentinel::update(user_info(), ['password' => $request->input('password')]);
+
+            flash()->success(trans('general.save_success'));
+
+            $log['user_id'] = user_info()->id;
+            $log['description'] = 'Password was updated';
+            //$log['ip_address'] = $request->ip();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+            
+        } catch (\Exception $e) {
+
+            flash()->error(trans('general.update_error'));
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
         }
-
-        Sentinel::update(user_info(), ['password' => $request->input('password')]);
-
-        flash()->success(trans('general.save_success'));
-
-        $log['user_id'] = user_info()->id;
-        $log['description'] = 'Password was updated';
-        //$log['ip_address'] = $request->ip();
-        $insertLog = new LogActivity();
-        $insertLog->insertLogActivity($log);
     }
 }

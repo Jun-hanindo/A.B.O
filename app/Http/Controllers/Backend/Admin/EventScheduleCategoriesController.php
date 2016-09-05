@@ -40,13 +40,13 @@ class EventScheduleCategoriesController extends BaseController
     public function store(EventScheduleCategoryRequest $req)
     {
         $param = $req->all();
-        $saveData = $this->model->insertNewEventScheduleCategory($param);
-        if(!empty($saveData))
-        {
+        try{
+            $saveData = $this->model->insertNewEventScheduleCategory($param);
+        // if(!empty($saveData))
+        // {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule Category "'.$saveData->additional_info.'" was created';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -56,7 +56,13 @@ class EventScheduleCategoriesController extends BaseController
                 'message' => '<strong>'.trans('general.price_info').'</strong> '.trans('general.save_success')
             ],200);
         
-        } else {
+        //} else {
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -69,8 +75,9 @@ class EventScheduleCategoriesController extends BaseController
 
     public function edit($id)
     {
-        $data = $this->model->findEventScheduleCategoryByID($id);
-        if(!empty($data)) {
+        try{
+            $data = $this->model->findEventScheduleCategoryByID($id);
+        //if(!empty($data)) {
 
             return response()->json([
                 'code' => 200,
@@ -78,8 +85,15 @@ class EventScheduleCategoriesController extends BaseController
                 'message' => 'Success',
                 'data' => $data
             ],200);
+        
+        //} else {
+        } catch (\Exception $e) {
 
-        } else {
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             return response()->json([
                 'code' => 400,
                 'status' => 'error',
@@ -88,15 +102,21 @@ class EventScheduleCategoriesController extends BaseController
         }
     }
 
+    /**
+     * [update description]
+     * @param  EventScheduleCategoryRequest $req [description]
+     * @param  [type]                       $id  [description]
+     * @return [type]                            [description]
+     */
     public function update(EventScheduleCategoryRequest $req, $id)
     {
         $param = $req->all();
-        $updateData = $this->model->updateEventScheduleCategory($param, $id);
-        if(!empty($updateData)) {
+        try{
+            $updateData = $this->model->updateEventScheduleCategory($param, $id);
+            //if(!empty($updateData)) {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule Category "'.$updateData->additional_info.'" was updated';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -105,8 +125,14 @@ class EventScheduleCategoriesController extends BaseController
                 'status' => 'success',
                 'message' => '<strong>'.trans('general.price_info').'</strong> '.trans('general.update_success')
             ],200);
+        
+        //} else {
+        } catch (\Exception $e) {
 
-        } else {
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -117,11 +143,18 @@ class EventScheduleCategoriesController extends BaseController
         }
     }
 
+    /**
+     * [destroy description]
+     * @param  Request $req [description]
+     * @param  [type]  $id  [description]
+     * @return DELETE
+     */
     public function destroy(Request $req, $id)
     {
-        //
-        $data = $this->model->deleteByID($id);
-        if(!empty($data)) {
+    
+        try{
+            $data = $this->model->deleteByID($id);
+            //if(!empty($data)) {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule Category "'.$data->additional_info.'" was deleted';
@@ -134,8 +167,14 @@ class EventScheduleCategoriesController extends BaseController
                 'status' => 'success',
                 'message' => '<strong>'.trans('general.price_info').'</strong> '.trans('general.delete_success')
             ],200);
+        
+        //} else {
+        } catch (\Exception $e) {
 
-        } else {
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 400,

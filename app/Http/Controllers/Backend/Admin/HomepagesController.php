@@ -48,18 +48,19 @@ class HomepagesController extends BaseController
     public function store(HomepageRequest $req)
     {
         $param = $req->all();
-        $saveData = $this->model->insertNewHomepage($param);
-        if(!empty($saveData->Event->title)) {
-            $saveData->event_title = $saveData->Event->title;
-        } else {
-            $saveData->event_title = '';
-        }
-        if(!empty($saveData))
-        {
+
+        try{
+            $saveData = $this->model->insertNewHomepage($param);
+            if(!empty($saveData->Event->title)) {
+                $saveData->event_title = $saveData->Event->title;
+            } else {
+                $saveData->event_title = '';
+            }
+        // if(!empty($saveData))
+        // {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Homepage "'.$saveData->event_title.' to '.$saveData->category.'" was created';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -69,7 +70,13 @@ class HomepagesController extends BaseController
                 'message' => '<strong>'.$saveData->event_title.'</strong> '.trans('general.save_success')
             ],200);
         
-        } else {
+        //} else {
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -82,13 +89,15 @@ class HomepagesController extends BaseController
 
     public function edit($id)
     {
-        $data = $this->model->find($id);
-        if(!empty($data->Event->title)) {
-            $data->event_title = $data->Event->title;
-        } else {
-            $data->event_title = '';
-        }
-        if(!empty($data)) {
+
+        try{
+            $data = $this->model->findHomepageByID($id);
+            if(!empty($data->Event->title)) {
+                $data->event_title = $data->Event->title;
+            } else {
+                $data->event_title = '';
+            }
+            //if(!empty($data)) {
 
             return response()->json([
                 'code' => 200,
@@ -97,7 +106,14 @@ class HomepagesController extends BaseController
                 'data' => $data
             ],200);
 
-        } else {
+        //} else {
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+            
             return response()->json([
                 'code' => 400,
                 'status' => 'error',
@@ -109,17 +125,19 @@ class HomepagesController extends BaseController
     public function update(HomepageRequest $req, $id)
     {
         $param = $req->all();
-        $updateData = $this->model->updateHomepage($param,$id);
-        if(!empty($updateData->Event->title)) {
-            $updateData->event_title = $updateData->Event->title;
-        } else {
-            $updateData->event_title = '';
-        }
-        if(!empty($updateData)) {
+
+        try{
+
+            $updateData = $this->model->updateHomepage($param,$id);
+            if(!empty($updateData->Event->title)) {
+                $updateData->event_title = $updateData->Event->title;
+            } else {
+                $updateData->event_title = '';
+            }
+            //if(!empty($updateData)) {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Homepage "'.$updateData->event_title.' to '.$updateData->category.'" was updated';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -129,7 +147,13 @@ class HomepagesController extends BaseController
                 'message' => '<strong>'.$updateData->event_title.'</strong> '.trans('general.update_success')
             ],200);
 
-        } else {
+        //} else {
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -140,47 +164,55 @@ class HomepagesController extends BaseController
         }
     }
 
-    public function destroy(Request $req,  $id)
+    public function destroy($id)
     {
-        $data = $this->model->deleteByID($id);
-        if(!empty($data)) {
+
+        try{
+            $data = $this->model->deleteByID($id);
+        //if(!empty($data)) {
 
             flash()->success(trans('general.delete_success'));
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Homepage "'.$data->Event->title.' to '.$data->category.'" was deleted';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
             return redirect()->route('admin-index-homepage');
 
-        } else {
+        //} else {
+        } catch (\Exception $e) {
 
             flash()->error(trans('general.data_not_found'));
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             return redirect()->route('admin-index-homepage');
 
         }
     }
 
-    public function countByCategory($category)
-    {
-        $data = $this->model->countEventByCategory($category);
-        if(!empty($data)) {
+    // public function countByCategory($category)
+    // {
+    //     $data = $this->model->countEventByCategory($category);
+    //     if(!empty($data)) {
 
-            return response()->json([
-                'code' => 200,
-                'status' => 'success',
-                'message' => trans('general.max_3_event'),
-                'data' => $data
-            ],200);
+    //         return response()->json([
+    //             'code' => 200,
+    //             'status' => 'success',
+    //             'message' => trans('general.max_3_event'),
+    //             'data' => $data
+    //         ],200);
 
-        } else {
-            return response()->json([
-                'code' => 400,
-                'status' => 'error',
-                'message' => trans('general.data_not_found')
-            ],400);
-        }
-    }
+    //     } else {
+    //         return response()->json([
+    //             'code' => 400,
+    //             'status' => 'error',
+    //             'message' => trans('general.data_not_found')
+    //         ],400);
+    //     }
+    // }
 }

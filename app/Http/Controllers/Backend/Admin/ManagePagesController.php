@@ -26,7 +26,19 @@ class ManagePagesController extends BaseController
      */
     public function index($slug)
     {
-        $page = $this->model->findPageBySlug($slug);
+        try
+        {
+            $page = $this->model->findPageBySlug($slug);
+
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+        }
+        
         if(!empty($page)){
             $data['content'] = $page->content;
         }else{
@@ -54,23 +66,33 @@ class ManagePagesController extends BaseController
         return view('backend.admin.manage_page.form', $data);
     }
 
-    public function storeUpdate(ManagePageRequest $req, $slug){
+    public function storeUpdate(ManagePageRequest $req, $slug)
+    {
         $param = $req->all();
-        $user_id = $this->currentUser->id;
-        $updateData = $this->model->updateManagePage($param, $slug, $user_id);
-        if(!empty($updateData)) {
+        
+        try{
+
+            $user_id = $this->currentUser->id;
+            $updateData = $this->model->updateManagePage($param, $slug, $user_id);
+        //if(!empty($updateData)) {
+            flash()->success($updateData->title.' '.trans('general.update_success'));
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Page "'.$updateData->title.'" was updated';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            flash()->success($updateData->title.' '.trans('general.update_success'));
             return redirect()->route('admin-manage-page', $slug);
 
-        } else {
+        //} else {
+        } catch (\Exception $e) {
             flash()->error(trans('general.update_error'));
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+            
             return redirect()->route('admin-manage-page', $slug)->withInput();
 
         }

@@ -207,7 +207,7 @@
                             $('.'+key).addClass('has-error');
                         });
                     } else {
-                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        $('.error-modal').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                     }
                 }
             });
@@ -239,7 +239,7 @@
                             $('.'+key).addClass('has-error');
                         });
                     } else {
-                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        $('.error-modal').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                     }
                 }
             });
@@ -282,7 +282,7 @@
                             $('.'+key).addClass('has-error');
                         });
                     } else {
-                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        $('.error-modal').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                     }
                 }
             });
@@ -322,7 +322,7 @@
                             $('.'+key).addClass('has-error');
                         });
                     } else {
-                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        $('.error-modal').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                     }
                 }
             });
@@ -353,6 +353,7 @@
                 },
                 error: function(response){
                     loadDataSchedule(event_id);
+                    console.log(response);
                     $('#modal-form-schedule').modal('hide');
                     $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                 }
@@ -546,7 +547,7 @@
 
             fd.append('event_id', event_id);
             fd.append('title', title);
-            fd.append('description', description);
+            fd.append('description_promo', description);
             var other_data = $('#form-event-promotion').serializeArray();
             $.each(other_data,function(key,input){
                 fd.append(input.name,input.value);
@@ -564,7 +565,6 @@
                     HoldOn.close();
                     loadDataPromotion(event_id); 
 
-                    clearInputPromotion();
                     $('#modal-form-promotion').modal('hide');
                     $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                 },
@@ -601,7 +601,7 @@
 
             fd.append('event_id', event_id);
             fd.append('title', title);
-            fd.append('description', description);
+            fd.append('description_promo', description);
             
             var other_data = $('#form-event-promotion').serializeArray();
             $.each(other_data,function(key,input){
@@ -622,7 +622,6 @@
                 success: function (data) {
                     HoldOn.close();
                     loadDataPromotion(event_id);
-                    clearInputPromotion();
                     $('#modal-form-promotion').modal('hide');
                     $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                 },
@@ -656,14 +655,14 @@
                     var data = response.data;
                     $("#promotion_id").val(data.id);
                     $("#title_promo").val(data.title);
-                    tinyMCE.get('description_promo').setContent(data.description);
                     $("#discount").val(data.discount);
                     $("#start_date").val(data.start_date);
                     $("#end_date").val(data.end_date);   
                     $("#promotion_code").val(data.code);   
                     $("#category").val(data.category); 
                     $('#div-preview_image').show();
-                    $('#preview_image').attr('src', data.src_featured_image);   
+                    $('#preview_image').attr('src', data.src_featured_image);  
+                    tinyMCE.get('description_promo').setContent(data.description); 
                 },
                 error: function(response){
                     loadDataSchedule(event_id);
@@ -867,6 +866,7 @@
                 $(".form-group").removeClass('has-error');
                 $('.error-modal').removeClass('alert alert-danger');
                 $('.error-modal').html('');
+                clearInputPromotion();
 
                 $("#button_save_promotion").unbind('click').bind('click', function () {
                     var event_id = $('#event_id').val();

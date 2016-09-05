@@ -74,6 +74,7 @@ class VenuesController extends BaseController
         $trail = 'Venue Form';
         $insertTrail = new Trail();
         $insertTrail->insertTrail($trail);
+
         return view('backend.admin.venue.create');
     }
 
@@ -93,25 +94,32 @@ class VenuesController extends BaseController
      */
     public function store(VenueRequest $req)
     {
-        //
         $param = $req->all();
-        $user_id = $this->currentUser->id;
-        $saveData = $this->model->insertNewVenue($param, $user_id);
-        if(!empty($saveData))
-        {
+        
+        try{
+            $user_id = $this->currentUser->id;
+            $saveData = $this->model->insertNewVenue($param, $user_id);
+        //if(!empty($saveData))
+        //{
+        
+            flash()->success($saveData->name.' '.trans('general.save_success'));
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Venue "'.$saveData->name.'" was created';
             //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
-        
-            flash()->success($saveData->name.' '.trans('general.save_success'));
-            return redirect()->route('admin-index-venue');
-        
-        } else {
 
+            return redirect()->route('admin-index-venue');
+        } catch (\Exception $e) {
+        //} else {
             flash()->error(trans('general.save_error'));
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             return redirect()->route('admin-create-venue')->withInput();
         
         }
@@ -126,8 +134,10 @@ class VenuesController extends BaseController
      */
     public function edit($id)
     {
-        $data = $this->model->findVenueByID($id);
-        if(!empty($data)) {
+        
+        try{
+            $data = $this->model->findVenueByID($id);
+        //if(!empty($data)) {
             
             $trail = 'Venue Form';
             $insertTrail = new Trail();
@@ -135,9 +145,16 @@ class VenuesController extends BaseController
 
             return view('backend.admin.venue.edit')->withData($data);
 
-        } else {
+        //} else {
+        } catch (\Exception $e) {
 
-            flash()->success(trans('general.data_not_found'));
+            flash()->error(trans('general.data_not_found'));
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+            
             return redirect()->route('admin-index-venue');
 
         }
@@ -162,22 +179,30 @@ class VenuesController extends BaseController
     {
         //
         $param = $req->all();
-        $updateData = $this->model->updateVenue($param,$id);
-        if(!empty($updateData)) {
+
+        try{
+            $updateData = $this->model->updateVenue($param,$id);
+        //if(!empty($updateData)) {
+
+            flash()->success($updateData->name.' '.trans('general.update_success'));
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Venue "'.$updateData->name.'" was updated';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            flash()->success($updateData->name.' '.trans('general.update_success'));
             return redirect()->route('admin-index-venue');
 
-        } else {
-
+        //} else {
+        } catch (\Exception $e) {
             flash()->error(trans('general.update_error'));
-            return redirect()->route('admin-edit-venue')->withInput();
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return redirect()->route('admin-edit-venue', $id)->withInput();
 
         }
     }
@@ -189,24 +214,30 @@ class VenuesController extends BaseController
      * @param  int  $id
      * @return Response
      */
-    public function destroy(Request $req,  $id)
+    public function destroy($id)
     {
-        //
-        $data = $this->model->deleteByID($id);
-        if(!empty($data)) {
+        try{
+            $data = $this->model->deleteByID($id);
+        //if(!empty($data)) {
+            flash()->success(trans('general.delete_success'));
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Venue "'.$data->name.'" was deleted';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            flash()->success(trans('general.delete_success'));
             return redirect()->route('admin-index-venue');
 
-        } else {
+        //} else {
+        } catch (\Exception $e) {
 
-            flash()->success(trans('general.data_not_found'));
+            flash()->error(trans('general.data_not_found'));
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             return redirect()->route('admin-index-venue');
 
         }
@@ -215,12 +246,13 @@ class VenuesController extends BaseController
     public function avaibilityUpdate(Request $req, $id)
     {
         $param = $req->all();
-        $updateData = $this->model->changeAvaibility($param, $id);
-        if(!empty($updateData)) {
+
+        try{
+            $updateData = $this->model->changeAvaibility($param, $id);
+        //if(!empty($updateData)) {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Venue "'.$updateData->name.'" avaibility was updated';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -230,7 +262,13 @@ class VenuesController extends BaseController
                 'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
             ],200);
 
-        } else {
+        //} else {
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 400,

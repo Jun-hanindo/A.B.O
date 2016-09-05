@@ -179,7 +179,7 @@
                             <div class="col-sm-3">
                                 <input type="text" name="start_time" class="form-control" id="start_time" maxlength="255" placeholder = {{trans('general.start_time')}}>
                             </div>
-                            {!! Form::label('end_time', trans('general.end_time'), array('class' => 'col-sm-3 control-label')) !!}
+                            {!! Form::label('end_time', '-', array('class' => 'col-sm-1 control-label')) !!}
                             <div class="col-sm-3">
                                 <input type="text" name="end_time" class="form-control" id="end_time" maxlength="255" placeholder = {{trans('general.end_time')}}>
                             </div>
@@ -264,7 +264,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('description_promo') }} description_promo">
                                 {!! Form::label('description_promo', trans('general.description').' *') !!}
-                                {!! Form::textarea('description_promo', old('description_promo'), ['id' => 'description-promo', 'class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.description')]) !!}
+                                {!! Form::textarea('description_promo', old('description_promo'), ['id' => 'description_promo', 'class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.description')]) !!}
                                 {!! Form::errorMsg('description_promo') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('discount') }} discount full-width">

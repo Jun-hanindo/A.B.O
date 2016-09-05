@@ -111,55 +111,42 @@ class PromotionsController extends BaseController
     {
         //
         $param = $req->all();
-        $user_id = $this->currentUser->id;
-        $saveData = $this->model->insertNewPromotion($param, $user_id);
+        try{
+            $user_id = $this->currentUser->id;
+            $saveData = $this->model->insertNewPromotion($param, $user_id);
 
-        if($req->ajax()){
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Promotion "'.$saveData->title.'" was created';
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
-            if(!empty($saveData))
-            {
-
-                $log['user_id'] = $this->currentUser->id;
-                $log['description'] = 'Promotion "'.$saveData->title.'" was created';
-                //$log['ip_address'] = $req->ip();
-                $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
-
+            if($req->ajax()){
                 return response()->json([
                     'code' => 200,
                     'status' => 'success',
                     'last_insert_id' => $saveData->id,
                     'message' => '<strong>'.$saveData->title.'</strong> '.trans('general.save_success')
                 ],200);
-            
-            } else {
+            }else{
+                flash()->success($saveData->title.' '.trans('general.save_success'));
+                return redirect()->route('admin-index-promotion');
+            }
+        } catch (\Exception $e) {
 
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+            
+            if($req->ajax()){
                 return response()->json([
                     'code' => 400,
                     'status' => 'success',
                     'message' => trans('general.save_error')
                 ],400);
-            
-            }
-
-        }else{
-            if(!empty($saveData))
-            {
-
-                $log['user_id'] = $this->currentUser->id;
-                $log['description'] = 'Promotion "'.$saveData->title.'" was created';
-                //$log['ip_address'] = $req->ip();
-                $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
-            
-                flash()->success($saveData->title.' '.trans('general.save_success'));
-                return redirect()->route('admin-index-promotion');
-            
-            } else {
-
+            }else{
                 flash()->error(trans('general.save_error'));
                 return redirect()->route('admin-create-promotion')->withInput();
-            
             }
         }
     }
@@ -173,43 +160,42 @@ class PromotionsController extends BaseController
      */
     public function edit(Request $req, $id)
     {
-        $data = $this->model->findPromotionByID($id);
-        $data->src = url('uploads/promotions');
-        if(isset($data->featured_image)){
-            $data->src_featured_image = $data->src.'/'.$data->featured_image; 
-        }
-        
-        $trail = 'Promotion Form';
-        $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
-
-        if($req->ajax()){
-            if(!empty($data)) {
-
+        try{
+            $data = $this->model->findPromotionByID($id);
+            $data->src = url('uploads/promotions');
+            if(isset($data->featured_image)){
+                $data->src_featured_image = $data->src.'/'.$data->featured_image; 
+            }
+            
+            $trail = 'Promotion Form';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+            if($req->ajax()){
                 return response()->json([
                     'code' => 200,
                     'status' => 'success',
                     'message' => 'Success',
                     'data' => $data
                 ],200);
+            }else{
+                return view('backend.admin.promotion.edit')->withData($data);
+            }
+        } catch (\Exception $e) {
 
-            } else {
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            if($req->ajax()){
                 return response()->json([
                     'code' => 400,
                     'status' => 'error',
                     'message' => trans('general.data_not_found')
                 ],400);
-            }
-        }else{
-            if(!empty($data)) {
-
-                return view('backend.admin.promotion.edit')->withData($data);
-
-            } else {
-
-                flash()->success(trans('general.data_not_found'));
+            }else{
+                flash()->error(trans('general.data_not_found'));
                 return redirect()->route('admin-index-promotion');
-
             }
         }
     }
@@ -233,25 +219,32 @@ class PromotionsController extends BaseController
     {
         //
         $param = $req->all();
-        $updateData = $this->model->updatePromotion($param,$id);
+        try{
+            $updateData = $this->model->updatePromotion($param,$id);
 
-        if($req->ajax()){
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Promotion "'.$updateData->title.'" was updated';
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
-            if(!empty($updateData)) {
-
-                $log['user_id'] = $this->currentUser->id;
-                $log['description'] = 'Promotion "'.$updateData->title.'" was updated';
-                //$log['ip_address'] = $req->ip();
-                $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
-
+            if($req->ajax()){
                 return response()->json([
                     'code' => 200,
                     'status' => 'success',
                     'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
                 ],200);
+            }else{
+                flash()->success($updateData->title.' '.trans('general.update_success'));
+                return redirect()->route('admin-index-promotion');
+            }
+        } catch (\Exception $e) {
 
-            } else {
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            if($req->ajax()){
 
                 return response()->json([
                     'code' => 400,
@@ -259,26 +252,13 @@ class PromotionsController extends BaseController
                     'message' => trans('general.update_error')
                 ],400);
 
-            }
-
-        }else{
-            if(!empty($updateData)) {
-
-                $log['user_id'] = $this->currentUser->id;
-                $log['description'] = 'Promotion "'.$updateData->title.'" was updated';
-                //$log['ip_address'] = $req->ip();
-                $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
-
-                flash()->success($updateData->title.' '.trans('general.update_success'));
-                return redirect()->route('admin-index-promotion');
-
             } else {
 
                 flash()->error(trans('general.update_error'));
-                return redirect()->route('admin-edit-promotion')->withInput();
+                return redirect()->route('admin-edit-promotion', $id)->withInput();
 
             }
+
         }
 
     }
@@ -292,16 +272,15 @@ class PromotionsController extends BaseController
      */
     public function destroy(Request $req, $id)
     {
-        //
-        $data = $this->model->deleteByID($id);
-        if($req->ajax()){
-            if(!empty($data)) {
+        try{
+            $data = $this->model->deleteByID($id);
 
-                $log['user_id'] = $this->currentUser->id;
-                $log['description'] = 'Promotion "'.$data->title.'" was deleted';
-                //$log['ip_address'] = $req->ip();
-                $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Promotion "'.$data->title.'" was deleted';
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            if($req->ajax()){
 
                 return response()->json([
                     'code' => 200,
@@ -311,43 +290,46 @@ class PromotionsController extends BaseController
 
             } else {
 
+                flash()->success(trans('general.delete_success'));
+                return redirect()->route('admin-index-promotion');
+
+            }
+
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            if($req->ajax()){
+
                 return response()->json([
                     'code' => 400,
                     'status' => 'success',
                     'message' => trans('general.data_not_found')
                 ],400);
 
-            }
-        }else{
-            if(!empty($data)) {
-
-                $log['user_id'] = $this->currentUser->id;
-                $log['description'] = 'Promotion "'.$data->title.'" was deleted';
-                //$log['ip_address'] = $req->ip();
-                $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
-
-                flash()->success(trans('general.delete_success'));
-                return redirect()->route('admin-index-promotion');
-
             } else {
 
-                flash()->success(trans('general.data_not_found'));
+                flash()->error(trans('general.data_not_found'));
                 return redirect()->route('admin-index-promotion');
 
             }
+
         }
     }
 
     public function avaibilityUpdate(Request $req, $id)
     {
         $param = $req->all();
-        $updateData = $this->model->changeAvaibility($param, $id);
-        if(!empty($updateData)) {
+
+        try{
+            $updateData = $this->model->changeAvaibility($param, $id);
+            //if(!empty($updateData)) {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Promotion "'.$data->title.'" avaibility was updated';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -357,7 +339,13 @@ class PromotionsController extends BaseController
                 'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
             ],200);
 
-        } else {
+        //} else {
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 400,

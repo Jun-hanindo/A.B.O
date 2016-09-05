@@ -26,6 +26,7 @@
                 </div>
                 {!! Form::open(array('url' => route('admin-update-promotion',$data->id),'method'=>'POST','files'=>'true','id'=>'form-promotion')) !!}
                     <div class="box-body">
+                        @include('flash::message')
                         <div class="error"></div>
                         <input type="hidden" name="id" class="form-control" id="id" value="{{ $data->id }}">
                         <div class="col-md-9">

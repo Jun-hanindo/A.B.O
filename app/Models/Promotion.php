@@ -182,17 +182,6 @@ class Promotion extends Model
     {
         $data = $this->find($id);
         if(!empty($data)) {
-            // $data->status = false;
-            // if($data->save()) {
-            //     $pathDest = public_path().'/uploads/promotions';
-            //     $oldImage = $data->featured_image;
-            //     File::delete($pathDest.'/'.$oldImage);
-            //     $data->events()->detach();
-            //     return $data;
-            // } else {
-            //     return false;
-
-            // }
 
             $pathDest = public_path().'/uploads/promotions';
             $oldImage = $data->featured_image;

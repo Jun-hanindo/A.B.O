@@ -44,8 +44,11 @@ class SettingsController extends BaseController
     {
         //
         $param = $req->all();
-        $updateData = $this->model->updateSetting($param);
-        if(!empty($updateData)) {
+        
+        try{
+            $updateData = $this->model->updateSetting($param);
+        //if(!empty($updateData)) {
+            flash()->success(trans('general.update_success'));
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Setting was updated';
@@ -53,12 +56,18 @@ class SettingsController extends BaseController
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            flash()->success(trans('general.update_success'));
             return redirect()->route('admin-index-setting');
 
-        } else {
+        //} else {
+        } catch (\Exception $e) {
 
             flash()->error(trans('general.update_error'));
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+            
             return redirect()->route('admin-index-setting')->withInput();
 
         }

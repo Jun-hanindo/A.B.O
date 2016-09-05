@@ -35,28 +35,28 @@ class CategoriesController extends BaseController
 
     public function datatables()
     {
-        return datatables($this->model->datatables())
-            ->addColumn('action', function ($category) {
-                return '<a href="javascript:void(0)" data-id="'.$category->id.'" data-name="'.$category->name.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
-                    &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$category->id.'" data-name="'.$category->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
-            })
-            ->editColumn('avaibility', function ($category) {
-                if($category->avaibility == TRUE){
-                    $checked = 'checked';
-                }else{
-                    $checked = '';
-                }
-                return '<input type="checkbox" name="avaibility['.$category->id.']" class="avaibility-check" data-id="'.$category->id.'" '.$checked.'>';
-            })
-            ->editColumn('status', function ($category) {
-                if($category->status == TRUE){
-                    $checked = 'checked';
-                }else{
-                    $checked = '';
-                }
-                return '<input type="checkbox" name="status['.$category->id.']" class="status-check" data-id="'.$category->id.'" '.$checked.'>';
-            })
-            ->make(true);
+            return datatables($this->model->datatables())
+                ->addColumn('action', function ($category) {
+                    return '<a href="javascript:void(0)" data-id="'.$category->id.'" data-name="'.$category->name.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
+                        &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$category->id.'" data-name="'.$category->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                })
+                ->editColumn('avaibility', function ($category) {
+                    if($category->avaibility == TRUE){
+                        $checked = 'checked';
+                    }else{
+                        $checked = '';
+                    }
+                    return '<input type="checkbox" name="avaibility['.$category->id.']" class="avaibility-check" data-id="'.$category->id.'" '.$checked.'>';
+                })
+                ->editColumn('status', function ($category) {
+                    if($category->status == TRUE){
+                        $checked = 'checked';
+                    }else{
+                        $checked = '';
+                    }
+                    return '<input type="checkbox" name="status['.$category->id.']" class="status-check" data-id="'.$category->id.'" '.$checked.'>';
+                })
+                ->make(true);
     }
 
     /**
@@ -69,13 +69,14 @@ class CategoriesController extends BaseController
     {
         //
         $param = $req->all();
-        $saveData = $this->model->insertNewCategory($param);
-        if(!empty($saveData))
-        {
+        
+        try{
+            $saveData = $this->model->insertNewCategory($param);
+        // if(!empty($saveData))
+        // {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Category "'.$saveData->name.'" was created';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -86,7 +87,13 @@ class CategoriesController extends BaseController
                 'message' => '<strong>'.$saveData->name.'</strong> '.trans('general.save_success')
             ],200);
         
-        } else {
+        //} else {
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -105,9 +112,8 @@ class CategoriesController extends BaseController
      */
     public function edit($id)
     {
-        //
-        $data = $this->model->findCategoryByID($id);
-        if(!empty($data)) {
+        try{
+            $data = $this->model->findCategoryByID($id);
 
             return response()->json([
                 'code' => 200,
@@ -115,8 +121,15 @@ class CategoriesController extends BaseController
                 'message' => 'Success',
                 'data' => $data
             ],200);
+        
+        //} else {
+        } catch (\Exception $e) {
 
-        } else {
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             return response()->json([
                 'code' => 400,
                 'status' => 'error',
@@ -135,9 +148,10 @@ class CategoriesController extends BaseController
     public function update(CategoryRequest $req, $id)
     {
         $param = $req->all();
-        $updateData = $this->model->updateCategory($param,$id);
-        if(!empty($updateData)) 
-        {
+        try{
+            $updateData = $this->model->updateCategory($param,$id);
+        // if(!empty($updateData)) 
+        // {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Category "'.$updateData->name.'" was updated';
@@ -150,8 +164,14 @@ class CategoriesController extends BaseController
                 'status' => 'success',
                 'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
             ],200);
+        
+        //} else {
+        } catch (\Exception $e) {
 
-        } else {
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -170,9 +190,9 @@ class CategoriesController extends BaseController
      */
     public function destroy(Request $req,  $id)
     {
-        //
-        $data = $this->model->deleteByID($id);
-        if(!empty($data)) {
+        try{
+            $data = $this->model->deleteByID($id);
+        //if(!empty($data)) {
 
             flash()->success(trans('general.delete_success'));
 
@@ -184,9 +204,16 @@ class CategoriesController extends BaseController
 
             return redirect()->route('admin-index-event-category');
 
-        } else {
+        //} else {
+        } catch (\Exception $e) {
 
-            flash()->success(trans('general.data_not_found'));
+            flash()->error(trans('general.data_not_found'));
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             return redirect()->route('admin-index-event-category');
 
         }
@@ -213,51 +240,69 @@ class CategoriesController extends BaseController
     public function avaibilityUpdate(Request $req, $id)
     {
         $param = $req->all();
-        $count = count($this->model->getCategory());
-        if($count <= 8 || $param['avaibility'] == 'false' ){
-            $updateData = $this->model->changeAvaibility($param, $id);
-            if(!empty($updateData)) {
 
-                $log['user_id'] = $this->currentUser->id;
-                $log['description'] = 'Category "'.$updateData->name.'" avaibility was updated';
-                //$log['ip_address'] = $req->ip();
-                $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
+        try{
 
-                return response()->json([
-                    'code' => 200,
-                    'status' => 'success',
-                    'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
-                ],200);
+            $count = count($this->model->getCategory());
+            if($count <= 8 || $param['avaibility'] == 'false' ){
+                $updateData = $this->model->changeAvaibility($param, $id);
+                if(!empty($updateData)) {
 
-            } else {
+                    $log['user_id'] = $this->currentUser->id;
+                    $log['description'] = 'Category "'.$updateData->name.'" avaibility was updated';
+                    //$log['ip_address'] = $req->ip();
+                    $insertLog = new LogActivity();
+                    $insertLog->insertLogActivity($log);
 
+                    return response()->json([
+                        'code' => 200,
+                        'status' => 'success',
+                        'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
+                    ],200);
+
+                } else {
+
+                    return response()->json([
+                        'code' => 400,
+                        'status' => 'success',
+                        'message' => trans('general.update_error')
+                    ],400);
+
+                }
+            }else if($param['avaibility'] == 'true'){
                 return response()->json([
                     'code' => 400,
                     'status' => 'success',
-                    'message' => trans('general.update_error')
+                    'message' => trans('general.update_error').', '.trans('general.limit_9')
                 ],400);
-
             }
-        }else if($param['avaibility'] == 'true'){
+            
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             return response()->json([
                 'code' => 400,
                 'status' => 'success',
-                'message' => trans('general.update_error').', '.trans('general.limit_9')
+                'message' => trans('general.update_error')
             ],400);
+
         }
     }
 
     public function statusUpdate(Request $req, $id)
     {
         $param = $req->all();
-        $count = count($this->model->getCategory());
-        $updateData = $this->model->changeStatus($param, $id);
-        if(!empty($updateData)) {
+        try{
+            //$count = count($this->model->getCategory());
+            $updateData = $this->model->changeStatus($param, $id);
+        //if(!empty($updateData)) {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Category "'.$updateData->name.'" status was updated';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -267,7 +312,13 @@ class CategoriesController extends BaseController
                 'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
             ],200);
 
-        } else {
+        //} else {
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 400,

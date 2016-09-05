@@ -10,10 +10,10 @@
                                   <h4>Support</h4>
                               </li>
                               <li class="sidebar-menu-top">
-                                  <a href="#">Way To Buy Tickets</a>
+                                  <a href="{{URL::route('support-way-to-buy-tickets')}}">Way To Buy Tickets</a>
                               </li>
                               <li class="sidebar-menu active">
-                                  <a href="#">Frequently Asked Questions</a>
+                                  <a href="{{URL::route('support-faq')}}">Frequently Asked Questions</a>
                               </li>
                               <li class="sidebar-menu">
                                   <a href="#">Terms and Conditions</a>

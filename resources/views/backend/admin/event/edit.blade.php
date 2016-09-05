@@ -262,7 +262,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('description_promo') }} description_promo">
                                 {!! Form::label('description_promo', trans('general.description').' *') !!}
-                                {!! Form::textarea('description_promo', old('description_promo'), ['id' => 'description-promo', 'class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.description')]) !!}
+                                {!! Form::textarea('description_promo', old('description_promo'), ['id' => 'description_promo', 'class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.description')]) !!}
                                 {!! Form::errorMsg('description_promo') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('discount') }} discount full-width">

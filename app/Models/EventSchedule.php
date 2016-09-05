@@ -59,19 +59,19 @@ class EventSchedule extends Model
         }
     }
 
-    function autoInsertNewEventSchedule($param)
-    {
-        $this->event_id = isset($param['event_id']);
-        $this->date_at = $param['date_at'];
-        $this->start_time = $param['start_time'];
-        $this->end_time = $param['end_time'];
+    // function autoInsertNewEventSchedule($param)
+    // {
+    //     $this->event_id = $param['event_id'];
+    //     $this->date_at = $param['date_at'];
+    //     $this->start_time = $param['start_time'];
+    //     $this->end_time = $param['end_time'];
 
-        if($this->save()){
-            return $this;
-        } else {
-            return false;
-        }
-    }
+    //     if($this->save()){
+    //         return $this;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     public function findEventScheduleByID($id)
     {

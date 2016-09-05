@@ -30,8 +30,8 @@ class PromotionRequest extends Request
                 'description_promo' => 'required',
                 'featured_image'    => 'mimes:jpg,jpeg,png,gif',
                 'discount'          => 'required',
-                'start_date'        => 'required',
-                'end_date'          => 'required',
+                'start_date'        => 'required|date|after:yesterday',
+                'end_date'          => 'required|date|after:start_date',
                 'category'          => 'required',
                 'promotion_code'    => 'required'
             ];
@@ -42,8 +42,8 @@ class PromotionRequest extends Request
                 'description_promo' => 'required',
                 'featured_image'    => 'required|mimes:jpg,jpeg,png,gif',
                 'discount'          => 'required',
-                'start_date'        => 'required',
-                'end_date'          => 'required',
+                'start_date'        => 'required|date|after:yesterday',
+                'end_date'          => 'required|date|after:start_date',
                 'category'          => 'required',
                 'promotion_code'    => 'required'
             ];

@@ -46,9 +46,11 @@ class EventSchedulesController extends BaseController
     public function store(EventScheduleRequest $req)
     {
         $param = $req->all();
-        $saveData = $this->model->insertNewEventSchedule($param);
-        if(!empty($saveData))
-        {
+    
+        try{
+            $saveData = $this->model->insertNewEventSchedule($param);
+            // if(!empty($saveData))
+            // {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule "'.$saveData->date_at.'" of '.$saveData->Event->title.' was created';
@@ -63,7 +65,13 @@ class EventSchedulesController extends BaseController
                 'message' => '<strong>'.trans('general.schedule').'</strong> '.trans('general.save_success')
             ],200);
         
-        } else {
+        //} else {
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -76,8 +84,10 @@ class EventSchedulesController extends BaseController
 
     public function edit($id)
     {
-        $data = $this->model->findEventScheduleByID($id);
-        if(!empty($data)) {
+    
+        try{
+            $data = $this->model->findEventScheduleByID($id);
+        //if(!empty($data)) {
 
             return response()->json([
                 'code' => 200,
@@ -85,8 +95,15 @@ class EventSchedulesController extends BaseController
                 'message' => 'Success',
                 'data' => $data
             ],200);
+        
+        //} else {
+        } catch (\Exception $e) {
 
-        } else {
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
             return response()->json([
                 'code' => 400,
                 'status' => 'error',
@@ -98,13 +115,14 @@ class EventSchedulesController extends BaseController
     public function update(EventScheduleRequest $req, $id)
     {
         $param = $req->all();
-        $updateData = $this->model->updateEventSchedule($param,$id);
-        if(!empty($updateData)) 
-        {
+
+        try{
+            $updateData = $this->model->updateEventSchedule($param,$id);
+            // if(!empty($updateData)) 
+            // {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule "'.$updateData->date_at.'" of '.$updateData->Event->title.' was updated';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -113,8 +131,14 @@ class EventSchedulesController extends BaseController
                 'status' => 'success',
                 'message' => '<strong>'.trans('general.schedule').'</strong> '.trans('general.update_success')
             ],200);
+        
+        //} else {
+        } catch (\Exception $e) {
 
-        } else {
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -125,15 +149,15 @@ class EventSchedulesController extends BaseController
         }
     }
 
-    public function destroy(Request $req, $id)
+    public function destroy($id)
     {
-        //
-        $data = $this->model->deleteByID($id);
-        if(!empty($data)) {
+
+        try{
+            $data = $this->model->deleteByID($id);
+            //if(!empty($data)) {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule "'.$data->date_at.'" of '.$data->Event->title.' was deleted';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -142,8 +166,14 @@ class EventSchedulesController extends BaseController
                 'status' => 'success',
                 'message' => '<strong>'.trans('general.schedule').'</strong> '.trans('general.delete_success')
             ],200);
+        
+        //} else {
+        } catch (\Exception $e) {
 
-        } else {
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 400,

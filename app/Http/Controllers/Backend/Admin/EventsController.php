@@ -90,12 +90,14 @@ class EventsController extends BaseController
      */
     public function store(EventRequest $req)
     {
-        //
         $param = $req->all();
-        $user_id = $this->currentUser->id;
-        $saveData = $this->model->insertNewEvent($param, $user_id);
-        if(!empty($saveData))
-        {
+    
+        try{
+
+            $user_id = $this->currentUser->id;
+            $saveData = $this->model->insertNewEvent($param, $user_id);
+            // if(!empty($saveData))
+            // {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Event "'.$saveData->title.'" was created';
@@ -106,7 +108,13 @@ class EventsController extends BaseController
             flash()->success($saveData->title.' '.trans('general.save_success'));
             return redirect()->route('admin-index-event');
         
-        } else {
+        //} else {
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             flash()->error(trans('general.save_error'));
             return redirect()->route('admin-create-event')->withInput();
@@ -147,46 +155,52 @@ class EventsController extends BaseController
      */
     public function edit($id)
     {
-        //
-        $data = $this->model->findEventByID($id);
-        $data->src = url('uploads/events');
-        if(isset($data->featured_image1)){
-            $data->src_featured_image1 = $data->src.'/'.$data->featured_image1; 
-        }
+        try{
+            $data = $this->model->findEventByID($id);
+            $data->src = url('uploads/events');
+            if(isset($data->featured_image1)){
+                $data->src_featured_image1 = $data->src.'/'.$data->featured_image1; 
+            }
 
-        if(isset($data->featured_image2)){
-            $data->src_featured_image2 = $data->src.'/'.$data->featured_image2; 
-        }
+            if(isset($data->featured_image2)){
+                $data->src_featured_image2 = $data->src.'/'.$data->featured_image2; 
+            }
 
-        if(isset($data->featured_image3)){
-            $data->src_featured_image3 = $data->src.'/'.$data->featured_image3; 
-        }
+            if(isset($data->featured_image3)){
+                $data->src_featured_image3 = $data->src.'/'.$data->featured_image3; 
+            }
 
-        $cat_selected = $data->categories()->get();
-        $selected = [];
-        foreach ($cat_selected as $key => $value) {
-            $selected[] = $value->id;
-        }
-        $data['selected'] = $selected;
+            $cat_selected = $data->categories()->get();
+            $selected = [];
+            foreach ($cat_selected as $key => $value) {
+                $selected[] = $value->id;
+            }
+            $data['selected'] = $selected;
 
 
-        $data['dropdown'] = Venue::dropdown();
-        $data['categories'] = Category::dropdown();
-        if($data['event_type'] == TRUE){
-            $data['checked'] = 'checked';
-        }else{
-            $data['checked'] = '';
-        }
+            $data['dropdown'] = Venue::dropdown();
+            $data['categories'] = Category::dropdown();
+            if($data['event_type'] == TRUE){
+                $data['checked'] = 'checked';
+            }else{
+                $data['checked'] = '';
+            }
         
-        if(!empty($data)) {
+            //if(!empty($data)) {
         
             $trail = 'Regiser Event';
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
 
             return view('backend.admin.event.edit')->withData($data);
+        
+        //} else {
+        } catch (\Exception $e) {
 
-        } else {
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             flash()->success(trans('general.data_not_found'));
             return redirect()->route('admin-index-event');
@@ -205,8 +219,9 @@ class EventsController extends BaseController
     {
         //
         $param = $req->all();
-        $updateData = $this->model->updateEvent($param,$id);
-        if(!empty($updateData)) {
+        try{
+            $updateData = $this->model->updateEvent($param,$id);
+            //if(!empty($updateData)) {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Event "'.$updateData->title.'" was updated';
@@ -216,8 +231,14 @@ class EventsController extends BaseController
 
             flash()->success($updateData->title.' '.trans('general.update_success'));
             return redirect()->route('admin-index-event');
+        
+        //} else {
+        } catch (\Exception $e) {
 
-        } else {
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             flash()->error(trans('general.update_error'));
             return redirect()->route('admin-edit-event')->withInput();
@@ -256,9 +277,9 @@ class EventsController extends BaseController
      */
     public function destroy(Request $req, $id)
     {
-        //
-        $data = $this->model->deleteByID($id);
-        if(!empty($data)) {
+        try{
+            $data = $this->model->deleteByID($id);
+        //if(!empty($data)) {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Event "'.$data->title.'" was deleted';
@@ -268,8 +289,14 @@ class EventsController extends BaseController
 
             flash()->success(trans('general.delete_success'));
             return redirect()->route('admin-index-event');
+        
+        //} else {
+        } catch (\Exception $e) {
 
-        } else {
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             flash()->success(trans('general.data_not_found'));
             return redirect()->route('admin-index-event');
@@ -280,8 +307,9 @@ class EventsController extends BaseController
     public function avaibilityUpdate(Request $req, $id)
     {
         $param = $req->all();
-        $updateData = $this->model->changeAvaibility($param, $id);
-        if(!empty($updateData)) {
+        try{
+            $updateData = $this->model->changeAvaibility($param, $id);
+        //if(!empty($updateData)) {
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Event "'.$updateData->title.'" avaibility was updated';
@@ -294,8 +322,14 @@ class EventsController extends BaseController
                 'status' => 'success',
                 'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
             ],200);
+        
+        //} else {
+        } catch (\Exception $e) {
 
-        } else {
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -308,21 +342,22 @@ class EventsController extends BaseController
 
     public function draft(Request $req)
     {
-        //
+        
         $this->validate($req, [
             'title' => 'required',
         ]);
         $param = $req->all();
         $id = $param['event_id'];
-        if($id == ''){
-            $user_id = $this->currentUser->id;
-            $saveData = $this->model->insertNewEvent($param, $user_id);
-            $this->model->updateAvaibilityFalse($saveData->id);
-            if(!empty($saveData)) {
+
+        try{
+
+            if($id == ''){
+                $user_id = $this->currentUser->id;
+                $saveData = $this->model->insertNewEvent($param, $user_id);
+                $this->model->updateAvaibilityFalse($saveData->id);
 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Event "'.$saveData->title.'" draft was created';
-                //$log['ip_address'] = $req->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);
 
@@ -332,24 +367,12 @@ class EventsController extends BaseController
                     'last_insert_id' => $saveData->id,
                     'message' => '<strong>'.$saveData->title.'</strong> '.trans('general.save_success')
                 ],200);
-
-            } else {
-
-                return response()->json([
-                    'code' => 400,
-                    'status' => 'success',
-                    'message' => trans('general.save_error')
-                ],400);
-
-            }
-        }else{
-            $updateData = $this->model->updateEvent($param,$id);
-            $this->model->updateAvaibilityFalse($id);
-            if(!empty($updateData)) {
+            }else{
+                $updateData = $this->model->updateEvent($param,$id);
+                $this->model->updateAvaibilityFalse($id);
 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Event "'.$updateData->title.'" draft was updated';
-                //$log['ip_address'] = $req->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);
 
@@ -358,16 +381,32 @@ class EventsController extends BaseController
                     'status' => 'success',
                     'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
                 ],200);
+            }
 
-            } else {
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            if($id == ''){
+
+                return response()->json([
+                    'code' => 400,
+                    'status' => 'success',
+                    'message' => trans('general.save_error')
+                ],400);
+
+            }else{
 
                 return response()->json([
                     'code' => 400,
                     'status' => 'success',
                     'message' => trans('general.update_error')
                 ],400);
-
             }
+
         }
     }
 

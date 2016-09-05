@@ -292,7 +292,7 @@
                                 Support
                             </div>
                             <ul class="list-unstyled mobile-collapse-body">
-                                <li><a href="#">Ways To Buy Tickets</a></li>
+                                <li><a href="{{URL::route('support-way-to-buy-tickets')}}">Ways To Buy Tickets</a></li>
                                 <li><a href="{{URL::route('support-faq')}}">Frequently Asked Questions</a></li>
                                 <li><a href="{{URL::route('contact-us')}}">Contact Us</a></li>
                                 <li><a href="#">Terms And Conditions</a></li>
