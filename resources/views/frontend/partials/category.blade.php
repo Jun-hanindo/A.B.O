@@ -3,8 +3,7 @@
 @section('content')
 <section class="discoverCategory">
     <div class="container">
-        <h2>{{ $category->name }}</h2>
-        @if(!empty($categories))
+        <h2>Discover</h2>
             <div class="tabCategory">
                 <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation">
@@ -12,14 +11,15 @@
                         <i class="fa fa-certificate" width="23px" height="23px"></i><br>What's New
                     </a>
                 </li>
-                @foreach($categories as $key => $cat) 
-                    <li role="presentation" class="{{ $category->slug == $cat->slug ? 'active' : '' }}"><a href="{{ URL::route('category-detail', $cat->slug) }}" aria-controls="{{$cat->slug}}" role="tab">
-                        <i class="fa fa-{{ $cat->icon }}" width="23px" height="23px"></i><br>{{ $cat->name }}</a>
-                    </li>
-                @endforeach
+                @if(!empty($categories))
+                    @foreach($categories as $key => $cat) 
+                        <li role="presentation" class="{{ $category->slug == $cat->slug ? 'active' : '' }}"><a href="{{ URL::route('category-detail', $cat->slug) }}" aria-controls="{{$cat->slug}}" role="tab">
+                            <i class="fa fa-{{ $cat->icon }}" width="23px" height="23px"></i><br>{{ $cat->name }}</a>
+                        </li>
+                    @endforeach
+                @endif
                 </ul>
             </div>
-        @endif
     </div>
 </section>
 @if(!empty($events))
@@ -45,7 +45,9 @@
             </div>
             @if($events->nextPageUrl() != null)
                 <div class="loadMore">
-                  <a href="javascript:void(0)" class="btn btnLoad" data-slug="{{ $category->slug }}">Load More Events</a>
+                    <a href="javascript:void(0)">
+                        <button class="btn btnLoad" data-slug="{{ $category->slug }}">Load More Events</button>
+                    </a>
                 </div>
             @endif
         </div>

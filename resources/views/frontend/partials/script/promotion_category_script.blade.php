@@ -38,6 +38,7 @@
                                         +'<ul>'
                                             +'<li class="eventType">'+val.category+'</li>'
                                             +'<li class="eventName">'+val.promo_title+'<img src="'+val.featured_image_url+'"></li>'
+                                            +'<br>'
                                             +'<li class="eventPlace">Valid from '+val.valid_date+'</li>'
                                         +'</ul>'
                                     +'</div>'

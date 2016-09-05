@@ -60,21 +60,19 @@
                                     <div class="container">
                                         <h5>{{ (!empty($cat)) ? $cat->name : '&nbsp;' }}</h5>
                                         <h2>{{ $slider->Event->title }}</h2>
-                                        <ul>
-                                            @php 
-                                                $schedule = $slider->Event->EventSchedule()->orderBy('date_at', 'asc')->first();
-                                            @endphp
-                                            <li><div class="eventDate"><i class="fa fa-calendar"></i>
-                                                @if(!empty($schedule))
+                                        @php 
+                                            $schedule = $slider->Event->EventSchedule()->orderBy('date_at', 'asc')->first();
+                                        @endphp
+                                        <div class="eventDate"><i class="fa fa-calendar"></i>
+                                            @if(!empty($schedule))
                                                     {{ date('d F Y', strtotime($schedule->date_at)) }}
                                                 @endif
-                                            </div></li>
-                                            <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->Event->Venue->name }}</div></li>
-                                        </ul>
+                                        </div>
+                                        <div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->Event->Venue->name }}</div>
                                         <div class="moreDetail">
-                                            <form action="{{ URL::route('event-detail', $slider->Event->slug) }}" style="margin-bottom:0;">
+                                            <a href="{{ URL::route('event-detail', $slider->Event->slug) }}">
                                                 <button class="btn btnDetail">More Details</button>
-                                            </form>
+                                            </a>
                                             
                                         </div>
                                     </div>
@@ -120,7 +118,9 @@
             </div>
             @if($events->nextPageUrl() != null)
                 <div class="loadMore">
-                  <a href="javascript:void(0)" class="btn btnLoad">Load More Events</a>
+                    <a href="javascript:void(0)">
+                        <button class="btn btnLoad">Load More Events</button>
+                    </a>
                 </div>
             @endif
         </div>

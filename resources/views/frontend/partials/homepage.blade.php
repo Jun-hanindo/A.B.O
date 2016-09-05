@@ -37,8 +37,8 @@
                                   <img src="{{ $src.$slider->Event->featured_image1 }}" alt="...">
                                   <div class="carousel-caption bg-{{ $slider->Event->background_color }}">
                                     <div class="container">
-                                        <h5>{{ (!empty($cat)) ? $cat->name : '&nbsp;' }}</h5>
-                                        <h2>{{ $slider->Event->title }}</h2>
+                                        <h5 class="categorySlide">{{ (!empty($cat)) ? $cat->name : '&nbsp;' }}</h5>
+                                        <h2 class="titleSlide">{{ $slider->Event->title }}</h2>
                                         <ul>
                                             @php 
                                                 $schedule = $slider->Event->EventSchedule()->orderBy('date_at', 'asc')->first();
@@ -51,9 +51,9 @@
                                             <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->Event->Venue->name }}</div></li>
                                         </ul>
                                         <div class="moreDetail">
-                                            <form action="{{ URL::route('event-detail', $slider->Event->slug) }}" style="margin-bottom:0;">
-                                                <button class="btn btnDetail">More Details</button>
-                                            </form>
+                                            <a href="{{ URL::route('event-detail', $slider->Event->slug) }}">
+                                              <button class="btn btnDetail">More Details</button>
+                                            </a>
                                         </div>
                                     </div>
                                   </div>
@@ -116,7 +116,9 @@
                 @endforeach
             </div>
             <div class="loadMore">
-                <a href="{{ URL::route('discover')}}" class="btn btnLoad">Discover More Events</a>
+                <a href="{{ URL::route('discover')}}">
+                  <button class="btn btnLoad">Discover More Events</button>
+                </a>
             </div>
         </div>
     </section>
@@ -206,9 +208,9 @@
                                                         <h4>Get Your Early Bird Tickets Now!</h4>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <form action="{{ $promotion->Event->buylink }}">
-                                                            <button type="button" class="btn btn-primary">Buy Now</button>
-                                                        </form>
+                                                        <a href="{{ $promotion->Event->buylink }}">
+                                                          <button type="button" class="btn btn-primary">Buy Now</button>
+                                                        </a>
                                                         
                                                     </div>
                                                 </div>
@@ -222,7 +224,9 @@
                 @endforeach
             </div>
             <div class="loadMore">
-                <a href="{{ URL::route('promotion')}}" class="btn btnLoad">More Promotions</a>
+                <a href="{{ URL::route('promotion')}}">
+                  <button class="btn btnLoad">More Promotions</button>
+                </a>
             </div>
         </div>
     </section>

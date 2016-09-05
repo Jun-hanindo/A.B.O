@@ -16,19 +16,20 @@
     </section>
 
     @if(!empty($events))
-    <section class="latestPromo">
+    <section class="promotionList">
         <div class="container">
             <div class="row append-events">
                 @foreach($events as $key => $event)
                     <div class="col-md-4 box-promo">
                         <a href="#promoModal{{ $event->ep_id }}" data-toggle="modal">
-                          <img src="{{ $event->featured_image2_url }}" class="image-promo">
-                          <div class="boxInfo promo1">
-                              <ul>
-                                  <li class="eventType">{{ $event->category }}</li>
-                                  <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}"></li>
-                                  <li class="eventPlace">Valid From {{ $event->valid_date }}</li>
-                              </ul>
+                            <img src="{{ $event->featured_image2_url }}" class="image-promo">
+                            <div class="boxInfo promo1">
+                                <ul>
+                                    <li class="eventType">{{ $event->category }}</li>
+                                    <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}"></li>
+                                    <br>
+                                    <li class="eventPlace">Valid From {{ $event->valid_date }}</li>
+                                </ul>
                           </div>
                         </a>
                         <div class="modal fade promoModal" id="promoModal{{ $event->ep_id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -68,9 +69,9 @@
                                                 <h4>Get Your Early Bird Tickets Now!</h4>
                                             </div>
                                             <div class="col-md-4">
-                                                <form action="{{ $event->buylink }}">
+                                                <a action="{{ $event->buylink }}">
                                                     <button type="button" class="btn btn-primary">Buy Now</button>
-                                                </form>
+                                                </a>
                                                 
                                             </div>
                                         </div>
@@ -83,7 +84,9 @@
             </div>
             @if($events->nextPageUrl() != null)
                 <div class="loadMore">
-                  <a href="javascript:void(0)" class="btn btnLoad">Load More Promotions</a>
+                    <a href="javascript:void(0)">
+                      <button class="btn btnLoad">Load More Promotions</button>
+                    </a>
                 </div>
             @endif
         </div>

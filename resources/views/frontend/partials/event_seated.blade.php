@@ -3,6 +3,7 @@
 @section('content')
         <section class="eventBanner">
           <div class="imageBanner">
+              <div class="btnPlayEvent"><a data-toggle="modal" data-target="#eventVideo"><i class="fa fa-play-circle-o"></i></a></div>
               <img src="{{ $src.$event->featured_image1 }}">
           </div>
           <div class="infoBanner bg-{{ $event->background_color }}">
@@ -12,9 +13,9 @@
                       <h2>{{ $event->title }}</h2>
                   </div>
                   <div class="moreDetail">
-                      <form action="{{ $event->buylink }}" style="margin-bottom:0;">
+                      <a action="{{ $event->buylink }}">
                           <button class="btn btnDetail">Buy Now</button>
-                      </form>
+                      </a>
                   </div>
               </div>
           </div>
@@ -73,7 +74,7 @@
                         <ul class="list-unstyled">
                             <li>{!! $event->Venue->address !!}</li>
                             <li>
-                              <a href="{{ $event->Venue->link_map }}" class="btn btnSeemap">See Map</a>
+                              <a href="{{ $event->Venue->link_map }}"><button class="btn btnSeemap">See Map</button></a>
                             </li>
                         </ul>
                     </div>
@@ -86,8 +87,8 @@
                                 {!! $event->price_info !!}
                             </li>
                             <li class="liParent">
-                              <a href="{{ $event->Venue->link_map }}" class="btn btnSeat bg-black">See Seat Map</a>
-                              <a href="{{ $event->buylink }}" class="btn btnticket bg-white">More Ticket Info</a>
+                              <a href="{{ $event->Venue->link_map }}"><button class="btn btnSeat bg-black">See Seat Map</button></a>
+                              <a href="{{ $event->buylink }}"><button class="btn btnticket bg-white">More Ticket Info</button></a>
                             </li>
                         </ul>
                     </div>
@@ -351,4 +352,17 @@
                 </div>
             </div>
         </section>
+      <div class="modal fade" id="eventVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Event Promotion Video</h4>
+            </div>
+            <div class="modal-body">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/NE7F0f2-rtA" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
 @stop

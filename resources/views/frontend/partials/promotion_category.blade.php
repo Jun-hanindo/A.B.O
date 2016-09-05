@@ -3,15 +3,7 @@
 @section('content')
     <section class="discoverCategory">
           <div class="container">
-                <h2>
-                    @if($slug == 'discounts')
-                        {{ 'DISCOUNTS' }}
-                    @elseif($slug == 'early-bird')
-                        {{ 'EARLY BIRD' }}
-                    @else
-                        {{ 'LUCKY DRAW' }}
-                    @endif
-                </h2>
+                <h2>Promotions</h2>
               <div class="tabCategory">
                   <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation"><a href="{{ URL::route('promotion') }}"><img src="{{ asset('assets/frontend/images/catNew.png') }}"><br>What's New</a></li>
@@ -24,7 +16,7 @@
     </section>
 
     @if(!empty($events))
-    <section class="latestPromo">
+    <section class="promotionList">
         <div class="container">
             <div class="row append-events">
                 @foreach($events as $key => $event)
@@ -35,6 +27,7 @@
                                 <ul>
                                     <li class="eventType">{{ $event->category }}</li>
                                     <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}"></li>
+                                    <br>
                                     <li class="eventPlace">Valid From {{ $event->valid_date }}</li>
                                 </ul>
                             </div>
@@ -76,9 +69,9 @@
                                                 <h4>Get Your Early Bird Tickets Now!</h4>
                                             </div>
                                             <div class="col-md-4">
-                                                <form action="{{ $event->buylink }}">
+                                                <a action="{{ $event->buylink }}">
                                                     <button type="button" class="btn btn-primary">Buy Now</button>
-                                                </form>
+                                                </a>
                                                 
                                             </div>
                                         </div>
@@ -91,7 +84,9 @@
             </div>
             @if($events->nextPageUrl() != null)
                 <div class="loadMore">
-                  <a href="javascript:void(0)" class="btn btnLoad" data-slug="{{ $slug }}">Load More Promotions</a>
+                    <a href="javascript:void(0)">
+                      <button class="btn btnLoad" data-slug="{{ $slug }}">Load More Promotions</button>
+                    </a>
                 </div>
             @endif
         </div>

@@ -1,41 +1,3 @@
-@font-face {
-    font-family: 'proxima_nova_alt_cn_rgregular';
-    src: url('../fonts/mark_simonson_-_proxima_nova_alt_condensed_regular-webfont.woff2') format('woff2'),
-         url('../fonts/mark_simonson_-_proxima_nova_alt_condensed_regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Mark_Simonson_Proxima_Nova_Light';
-    src: url('../fonts/Mark_Simonson_Proxima_Nova_Light.woff2') format('woff2'),
-         url('../fonts/Mark_Simonson_Proxima_Nova_Light.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'proxima_nova_rgbold';
-    src: url('../fonts/mark_simonson_-_proxima_nova_bold-webfont.woff2') format('woff2'),
-         url('../fonts/mark_simonson_-_proxima_nova_bold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-body{
-  font-family: 'Mark_Simonson_Proxima_Nova_Light';
-}
-
-.container{
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.font-bold{
-  font-family: 'proxima_nova_rgbold';
-}
-
 .page-wrapper{
   padding-top: 80px;
   overflow-x: hidden;
@@ -79,15 +41,7 @@ body{
     display: inline-block;
     padding: 0;
     margin: 0;
-    margin-right: 10px;
-}
-
-.nav-third{
-  margin-right: 30px;
-}
-
-.left-header .list-menu{
-  margin-right: 25px;
+    margin-right: 30px;
 }
 
 .nav-item > a {
@@ -1092,22 +1046,6 @@ body{
   border-radius: 15px;
 }
 
-.carousel-control span{
-  margin-top: -85px !important;
-}
-
-.carousel-indicators li{
-  background-color: rgba(0,0,0,0.5);
-  border: none;
-}
-
-.carousel-indicators li.active{
-  background-color: #fff;
-  width: 10px;
-  height: 10px;
-  margin: 1px;
-}
-
 .slider-home .carousel-caption {
   background-color: #003272;
   position: static;
@@ -1118,11 +1056,7 @@ body{
   padding: 0 0 10px 25px;
   color: #fff;
   text-align: left;
-  padding: 20px;
-}
-
-.nav-search .input-group input{
-  color: #fff;
+  padding: 30px;
 }
 
 .slider-home .carousel-control.left,
@@ -1133,14 +1067,14 @@ body{
 .newRelease h2,
 .latestPromo h2 {
   text-align: center;
-  margin-top: 35px;
+  margin-top: 50px;
   font-size: 26px;
 }
 
 .newRelease .box-release,
 .promotionList .box-release,
 .latestPromo .box-promo{
-  margin-top: 25px;
+  margin-top: 50px;
 }
 
 .box-release img,
@@ -1207,29 +1141,19 @@ body{
 .loadMore .btnLoad{
   background-color: #000;
   color: #fff;
-  width: 220px;
-  height: 40px;
+  width: 250px;
 }
 
 .latestPromo{
   background-color: #E7E7E7;
 }
 
-#footer1{
-  padding-top: 50px;
-  padding-bottom: 25px;
-  background: #000;
-}
-
+#footer1,
 #footer2,
 #footer3{
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding-top: 40px;
+  padding-bottom: 40px;
   background: #000000;
-}
-
-.carousel-indicators{
-  bottom: 0 !important;
 }
 
 #footer1 .footIcon{
@@ -1246,43 +1170,28 @@ body{
 #footer1 .centeredCap .linkFoot a{
   text-decoration: none;
   color: #fff;
-  font-size: 22px;
-}
-
-#footer1 .centeredCap .linkFoot a::after{
-  content: "\f105";
-  font-family: 'FontAwesome';
-  margin-left: 10px;
-}
-
-#footer1 .linkFoot{
-  margin-top: 15px;
-}
-
-#footer1 .capFoot{
-  margin-top: 10px;
+  font-size: 26px;
 }
 
 footer .information-title{
   color: #f3f3f3;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .list-unstyled {
     padding-left: 0;
     list-style: none;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 #footer2 li {
-    margin: 0 0 5px;
+    margin: 0 0 10px;
     font-size: 14px;
 }
 
 #footer2 li a {
     color: #fff;
     text-decoration: none;
-    font-size: 12px;
 }
 
 #footer2 .facebookLike,
@@ -1358,6 +1267,11 @@ footer .information-title{
   position: relative;
 }
 
+.carousel-caption .eventDate,
+.carousel-caption .eventPlace{
+  margin-top: 10px;
+}
+
 .carousel-caption .eventDate i,
 .carousel-caption .eventPlace i{
   margin-right: 10px;
@@ -1370,10 +1284,6 @@ footer .information-title{
   right: 100px;
 }
 
-.moreDetail a{
-  color: #fff;
-}
-
 .moreDetail button{
   background-color: #000000;
   border: none;
@@ -1381,16 +1291,6 @@ footer .information-title{
   padding-right: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
-  width: 180px;
-}
-
-.item .categorySlide{
-  font-size: 11px;
-}
-
-.item .titleSlide{
-  font-size: 26px;
-  margin-top: 10px;
 }
 
 .discoverCategory{
@@ -1407,8 +1307,8 @@ footer .information-title{
   margin: 0 auto;
 }
 
-.discoverCategory .tabCategory .active{
-  font-family: 'proxima_nova_rgbold';
+.discoverCategory .tabCategory ul{
+  margin-top: 30px;
 }
 
 .discoverCategory .tabCategory li img{
@@ -1416,8 +1316,8 @@ footer .information-title{
 }
 
 .discoverCategory .tabCategory li{
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .discoverCategory .tabCategory li a{
@@ -1812,23 +1712,22 @@ footer .information-title{
 }
 
 .about-content .sidebar ul .sidebar-head{
-  padding-left: 53px;
-  padding-top: 45px;
+  text-align: center;
+  padding-top: 40px;
 }
 
 .about-content .sidebar ul h4{
   margin: 0;
-  font-size: 22px;
 }
 
 .about-content .sidebar ul .sidebar-menu-top{
-  margin-top: 40px;
-  padding-left: 53px;
+  padding-top: 40px;
+  padding-left: 70px;
 }
 
 .about-content .sidebar ul .sidebar-menu{
-  padding-left: 53px;
-  margin-top: 30px;
+  padding-left: 70px;
+  padding-top: 25px;
 }
 
 .about-content .sidebar ul li a{
@@ -1838,7 +1737,7 @@ footer .information-title{
 
 .about-content .sidebar ul li .active{
   color: #000000;
-  font-family: 'proxima_nova_rgbold';
+  font-weight: bold;
   width: 100%;
 }
 
@@ -1935,7 +1834,6 @@ footer .information-title{
   padding-left: 15px;
   margin-bottom: 50px;
   font-size: 26px;
-  margin-top: 45px;
 }
 
 .main-content .contact-desc{
@@ -2332,7 +2230,6 @@ footer .information-title{
 
 .tabs-left > .nav-tabs > .active {
   border-right: 1px solid;
-  font-family: 'proxima_nova_rgbold';
 }
 
 .tabs-left > .nav-tabs > li > a {
@@ -2424,8 +2321,7 @@ footer .information-title{
 }
 
 .sidebar ul .active{
-  font-family: 'proxima_nova_rgbold';
-  border-right: 2px solid #000;
+  font-weight: bold;
 }
 
 .eventBanner .btnPlayEvent{
@@ -2669,215 +2565,6 @@ footer .information-title{
   border-color: #000000;
 }
 
-.faq-menu-mobile{
-  text-align: center;
-  font-size: 14px;
-  margin-top: 25px;
-  margin-bottom: 25px;
-}
-
-.faq-menu-mobile a{
-  color: #000;
-  text-decoration: none;
-}
-
-.back a{
-  text-decoration: none;
-}
-
-.back-faq{
-  color: #000;
-  text-decoration: none;
-  float: left;
-  font-size: 18px;
-}
-
-.list-ask-mobile ul{
-  list-style-type: none;
-  padding: 0;
-}
-
-.list-ask-mobile ul li a{
-  text-decoration: none;
-  color: #000;
-}
-
-.list-ask-mobile .ask{
-  text-align: center;
-  margin-bottom: 25px;
-}
-
-.list-ask-mobile .ask a{
-  text-decoration: none;
-  color: #000;
-}
-
-.mobile-title-faq{
-  margin-right: 35px;
-}
-
-.helpful-box h5{
-  font-weight: bold;
-}
-
-.helpful-box .btnYes,
-.helpful-box .btnNo{
-  width: 100px;
-  background-color: #fff;
-  border: 1px solid #000;
-}
-
-.helpful-box .btnYes:hover,
-.helpful-box .btnNo:hover{
-  background-color: #000;
-  color: #fff;
-}
-
-#modalYes .modal-content{
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-#modalYes .modal-content .modal-body p{
-  text-align: center;
-}
-
-#modalYes .modal-content .modal-footer,
-#modalNo .modal-content .modal-footer{
-  text-align: center;
-}
-
-#modalYes .modal-content .modal-footer button{
-  background-color: #000;
-  color: #fff;
-  width: 200px;
-}
-
-#modalNo .modal-content .modal-footer button{
-  background-color: #000;
-  color: #fff;
-  width: 100%;
-}
-
-#modalYes .modal-content .modal-footer button:hover,
-#modalNo .modal-content .modal-footer button:hover{
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #000;
-}
-
-#modalNo .modal-content{
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-#modalNo .modal-body p{
-  margin-top: 0;
-  font-weight: bolder;
-}
-
-#modalNo .modal-body input,
-#modalNo .modal-body select{
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-#modalNo .modal-body textarea{
-  margin-top: 10px;
-}
-
-#modalNo .modal-body textarea{
-  min-height: 200px;
-}
-
-#modalNo .modal-body form{
-  margin-bottom: 0;
-}
-
-.iconWays i{
-  font-size: 30px;
-  border: 1px solid #000;
-  border-radius: 50%;
-  padding: 10px;
-  width: 50px;
-  height: 50px;
-}
-
-.headWays{
-  font-size: 22px;
-}
-
-.boxOffice h5 b{
-  font-weight: bolder;
-}
-
-.btnBlackDefault{
-  background-color: #000;
-  color: #fff;
-}
-.btnBlackDefault:hover{
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #000;
-}
-
-.boxOffice .btnBlackDefault{
-  margin-top: 20px;
-}
-
-.operating{
-  color: #999999;
-  margin-top: 20px;
-}
-
-.btnBlackDefault i{
-  margin-right: 10px;
-}
-
-.website .iconWays i,
-.eventTab li .fa-laptop{
-  padding: 8px;
-}
-
-.boxOffice .iconWays i{
-  padding: 9px;
-}
-
-.ways-content{
-  height: 300px;
-}
-
-.ways-content .sidebar{
-  height: 600px;
-}
-
-.eventTab .active .iconWays i{
-  background-color: #000;
-  color: #fff;
-}
-
-.contentTab .head-mobile-ways{
-  text-align: center;
-}
-
-.eventName .esplanade{
-  margin-top: -15px;
-}
-
-.promoModal .modal-footer button:hover{
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #000;
-}
-
-.nav-search .input-group .form-control:focus{
-  box-shadow: none;
-}
-
-.promotionList .box-promo{
-  margin-top: 30px;
-}
-
 @media (max-width: 1210px){
   #mobile-header{
     display: block;
@@ -2896,19 +2583,11 @@ footer .information-title{
   .contact-content,
   .career-content,
   .aboutus-content,
-  .search-content,
-  .faq-content,
-  .ways-content{
+  .search-content{
     display: none;
   }
   .mobile-content{
     display: block;
-  }
-  .search-mobile .search-faq input{
-    max-width: 100%;
-  }
-  .faq-menu-mobile{
-    font-size: 20px;
   }
 }
 
@@ -2958,7 +2637,6 @@ footer .information-title{
     float: none;
     position: relative;
     top: 0;
-    right: 0;
   }
   .moreDetail button{
     width: 100%;
