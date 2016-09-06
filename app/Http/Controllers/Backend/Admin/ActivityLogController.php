@@ -57,4 +57,34 @@ class ActivityLogController extends BaseController
                 })
                 ->make(true);
     }
+
+    public function postAjaxLog(Request $req){
+        $param = $req->all();
+        
+        try{
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $param['message'];
+            $saveData = $this->model->insertLogActivity($log);
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => trans('general.save_success')
+            ],200);
+        
+        //} else {
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $saveData = $this->model->insertLogActivity($log);
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.save_error')
+            ],400);
+        
+        }
+    }
 }

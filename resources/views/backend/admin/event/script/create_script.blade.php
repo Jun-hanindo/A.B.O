@@ -33,6 +33,23 @@
             if(event_id == undefined){
                 event_id = 0;
             }
+
+            $.fn.dataTable.ext.errMode = 'none';
+            $('#event-schedule-datatables').on('error.dt', function(e, settings, techNote, message) {
+                $.ajax({
+                    url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
+                    type: "POST",
+                    dataType: 'json',
+                    data: "message="+message,
+                    success: function (data) {
+                        data.message;
+                    },
+                    error: function(response){
+                        response.responseJSON.message
+                    }
+                });
+            });
+            
             var table = $('#event-schedule-datatables').DataTable();
             table.destroy();
             $('#event-schedule-datatables').DataTable({
@@ -81,6 +98,23 @@
             if(event_id == undefined){
                 event_id = 0;
             }
+            
+            $.fn.dataTable.ext.errMode = 'none';
+            $('#event-promotion-datatables').on('error.dt', function(e, settings, techNote, message) {
+                $.ajax({
+                    url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
+                    type: "POST",
+                    dataType: 'json',
+                    data: "message="+message,
+                    success: function (data) {
+                        data.message;
+                    },
+                    error: function(response){
+                        response.responseJSON.message
+                    }
+                });
+            });
+
             var table = $('#event-promotion-datatables').DataTable();
             table.destroy();
             $('#event-promotion-datatables').DataTable({
@@ -379,6 +413,23 @@
             if(schedule_id == undefined){
                 schedule_id = 0;
             }
+            
+            $.fn.dataTable.ext.errMode = 'none';
+            $('#event-schedule-category-datatables').on('error.dt', function(e, settings, techNote, message) {
+                $.ajax({
+                    url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
+                    type: "POST",
+                    dataType: 'json',
+                    data: "message="+message,
+                    success: function (data) {
+                        data.message;
+                    },
+                    error: function(response){
+                        response.responseJSON.message
+                    }
+                });
+            });
+            
             var table = $('#event-schedule-category-datatables').DataTable();
             table.destroy();
             $('#event-schedule-category-datatables').DataTable({
@@ -818,7 +869,6 @@
                     autoUpdateSchedule(event_id);
                 }
                 
-                clearInputCategory();
                 
             });
                 
@@ -826,9 +876,10 @@
             $('#modal-form-category').on('show.bs.modal', function (e) {
                 $(".tooltip-field").remove();
                 $(".form-group").removeClass('has-error');
-                $('.error').removeClass('alert alert-danger');
-                $('.error').html('');
+                $('.error-modal').removeClass('alert alert-danger');
+                $('.error-modal').html('');
                 saveTrailModal('Price Info Form');
+                clearInputCategory();
                 
 
                 $("#button_save_category").unbind('click').bind('click', function () {
@@ -842,6 +893,7 @@
                 $("#button_update_category").unbind('click').bind('click', function () {
                     var schedule_id = $('#schedule_id').val();
                     var category_id = $('#category_id').val();
+                    var event_id = $('#event_id').val();
                     updateEventScheduleCategory(category_id);  
                     loadDataScheduleCategory(schedule_id);    
                     loadDataSchedule(event_id);                   
@@ -946,6 +998,7 @@
                         $('#modal-form-schedule').modal('show');
                         var schedule_id = $('#schedule_id').val();
                         var category_id = $('#category_id').val();  
+                        var event_id = $('#event_id').val();
                         loadDataScheduleCategory(schedule_id);    
                         loadDataSchedule(event_id);  
                         countSchedule(event_id);

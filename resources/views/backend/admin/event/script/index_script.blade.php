@@ -9,6 +9,22 @@
 
         function loadData()
         {
+            $.fn.dataTable.ext.errMode = 'none';
+            $('#event-datatables').on('error.dt', function(e, settings, techNote, message) {
+                $.ajax({
+                    url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
+                    type: "POST",
+                    dataType: 'json',
+                    data: "message="+message,
+                    success: function (data) {
+                        data.message;
+                    },
+                    error: function(response){
+                        response.responseJSON.message
+                    }
+                });
+            });
+            
             var table = $('#event-datatables').DataTable();
             table.destroy();
             $('#event-datatables').DataTable({
@@ -50,17 +66,17 @@
             uri = uri.replace('::param', id);
             var val = $(this).is(":checked") ? true : false;
             $.ajax({
-                    url: uri,
-                    type: "POST",
-                    dataType: 'json',
-                    data: "avaibility="+val,
-                    success: function (data) {
-                        $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
-                    },
-                    error: function(response){
-                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
-                    }
-                });
+                url: uri,
+                type: "POST",
+                dataType: 'json',
+                data: "avaibility="+val,
+                success: function (data) {
+                    $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                },
+                error: function(response){
+                    $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                }
+            });
         });
         
 

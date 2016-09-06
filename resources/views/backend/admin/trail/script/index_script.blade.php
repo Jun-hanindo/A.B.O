@@ -15,6 +15,22 @@ $(document).ready(function() {
 function loadData()
 {
     var user_id = $('select[name=user_id]').val();
+    
+    $.fn.dataTable.ext.errMode = 'none';
+    $('#datatable').on('error.dt', function(e, settings, techNote, message) {
+        $.ajax({
+            url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
+            type: "POST",
+            dataType: 'json',
+            data: "message="+message,
+            success: function (data) {
+                data.message;
+            },
+            error: function(response){
+                response.responseJSON.message
+            }
+        });
+    });
 
     var table = $('#datatable').DataTable();
     table.destroy();

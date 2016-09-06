@@ -180,14 +180,14 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="promoBanner">
-                                                    <img height="166px" src="{{ $src.$promotion->Event->featured_image1 }}">
+                                                    <img src="{{ $src.$promotion->Event->featured_image1 }}">
                                                 </div>
                                                 <div class="descPromoModal">
                                                     <h4>About This Promotion</h4>
                                                     <div class="promoBannerDesc">
                                                         <div class="row">
                                                             <div class="col-md-9">
-                                                                <{!! $data->description !!}
+                                                                {!! $data->description !!}
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <img src="{{ $src2.$data->featured_image }}" class="promoLogo">

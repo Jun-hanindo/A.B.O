@@ -92,6 +92,22 @@
 
     function loadDataSlider()
     {
+        $.fn.dataTable.ext.errMode = 'none';
+        $('#homepage-sliders-table').on('error.dt', function(e, settings, techNote, message) {
+            $.ajax({
+                url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
+                type: "POST",
+                dataType: 'json',
+                data: "message="+message,
+                success: function (data) {
+                    data.message;
+                },
+                error: function(response){
+                    response.responseJSON.message
+                }
+            });
+        });
+        
         var table = $('#homepage-sliders-table').DataTable();
         table.destroy();
         $('#homepage-sliders-table').DataTable({
@@ -113,6 +129,22 @@
 
     function loadDataEvent()
     {
+        $.fn.dataTable.ext.errMode = 'none';
+        $('#homepage-events-table').on('error.dt', function(e, settings, techNote, message) {
+            $.ajax({
+                url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
+                type: "POST",
+                dataType: 'json',
+                data: "message="+message,
+                success: function (data) {
+                    data.message;
+                },
+                error: function(response){
+                    response.responseJSON.message
+                }
+            });
+        });
+        
         var table = $('#homepage-events-table').DataTable();
         table.destroy();
         $('#homepage-events-table').DataTable({
@@ -134,6 +166,22 @@
 
     function loadDataPromotion()
     {
+        $.fn.dataTable.ext.errMode = 'none';
+        $('#homepage-promotions-table').on('error.dt', function(e, settings, techNote, message) {
+            $.ajax({
+                url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
+                type: "POST",
+                dataType: 'json',
+                data: "message="+message,
+                success: function (data) {
+                    data.message;
+                },
+                error: function(response){
+                    response.responseJSON.message
+                }
+            });
+        });
+        
         var table = $('#homepage-promotions-table').DataTable();
         table.destroy();
         $('#homepage-promotions-table').DataTable({

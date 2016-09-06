@@ -8,6 +8,22 @@
 
         function loadData()
         {
+            $.fn.dataTable.ext.errMode = 'none';
+            $('#venue-datatables').on('error.dt', function(e, settings, techNote, message) {
+                $.ajax({
+                    url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
+                    type: "POST",
+                    dataType: 'json',
+                    data: "message="+message,
+                    success: function (data) {
+                        data.message;
+                    },
+                    error: function(response){
+                        response.responseJSON.message
+                    }
+                });
+            });
+
             var table = $('#venue-datatables').DataTable();
             table.destroy();
             $('#venue-datatables').DataTable({

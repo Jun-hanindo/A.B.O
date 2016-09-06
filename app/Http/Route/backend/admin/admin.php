@@ -155,7 +155,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     });
 
     Route::group(['prefix' => 'system-log'], function () {
-        Route::get('', array('as' => 'dmin-activity-log-index', 'uses' => 'ActivityLogController@index'));
+        Route::get('', array('as' => 'admin-activity-log-index', 'uses' => 'ActivityLogController@index'));
+        Route::post('create', array('as' => 'admin-activity-log-post-ajax', 'uses' => 'ActivityLogController@postAjaxLog'));
     });
 
     // Route::group(['prefix' => 'customer-report'], function () {

@@ -5,7 +5,7 @@ $(document).ready(function(){
         var q = $(this).val();
 
         if(q.length >=3 ) {
-            autoSearch(q, sort);
+            //autoSearch(q, sort);
         } else {
             $("#ul-search").hide();
         }

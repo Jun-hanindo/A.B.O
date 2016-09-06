@@ -87,9 +87,21 @@ class PromotionsController extends BaseController
      */
     public function create()
     {
-        $trail = 'Promotion Form';
-        $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        try{
+
+            $trail = 'Promotion Form';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+        
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+        
+        }
+
         return view('backend.admin.promotion.create');
     }
 

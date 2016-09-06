@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="promoBanner">
-                                            <img height="166px" src="{{ $event->featured_image1_url }}">
+                                            <img src="{{ $event->featured_image1_url }}">
                                         </div>
                                         <div class="descPromoModal">
                                             <h4>About This Promotion</h4>

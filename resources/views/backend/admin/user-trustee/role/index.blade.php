@@ -47,6 +47,22 @@
 
     <script>
         $(document).ready(function() {
+            $.fn.dataTable.ext.errMode = 'none';
+            $('#roles-table').on('error.dt', function(e, settings, techNote, message) {
+                $.ajax({
+                    url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
+                    type: "POST",
+                    dataType: 'json',
+                    data: "message="+message,
+                    success: function (data) {
+                        data.message;
+                    },
+                    error: function(response){
+                        response.responseJSON.message
+                    }
+                });
+            });
+            
             $('#roles-table').DataTable({
                 processing: true,
                 serverSide: true,

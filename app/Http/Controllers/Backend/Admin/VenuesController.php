@@ -39,28 +39,28 @@ class VenuesController extends BaseController
      */
     public function datatables()
     {
-         return datatables($this->model->datatables())
-                ->editColumn('id', function ($venue) {
-                    return '<input type="checkbox" name="checkboxid['.$venue->id.']" class="item-checkbox">';
-                })
-                ->editColumn('name', function ($venue) {
-                    $url = route('admin-edit-venue',$venue->id);
-                    return $venue->name.'</br><a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit">Edit</a>&nbsp;
-                        <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$venue->id.'" data-button="delete">Delete</a>';
-                })
-                ->editColumn('user_id', function ($venue){
-                    $username = $venue->user->first_name.' '.$venue->user->last_name;
-                    return $username;
-                })
-                ->editColumn('avaibility', function ($venue) {
-                    if($venue->avaibility == TRUE){
-                        $checked = 'checked';
-                    }else{
-                        $checked = '';
-                    }
-                    return '<input type="checkbox" name="avaibility['.$venue->id.']" class="avaibility-check" data-id="'.$venue->id.'" '.$checked.'>';
-                })
-                ->make(true);
+        return datatables($this->model->datatables())
+            ->editColumn('id', function ($venue) {
+                return '<input type="checkbox" name="checkboxid['.$venue->id.']" class="item-checkbox">';
+            })
+            ->editColumn('name', function ($venue) {
+                $url = route('admin-edit-venue',$venue->id);
+                return $venue->name.'</br><a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit">Edit</a>&nbsp;
+                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$venue->id.'" data-button="delete">Delete</a>';
+            })
+            ->editColumn('user_id', function ($venue){
+                $username = $venue->user->first_name.' '.$venue->user->last_name;
+                return $username;
+            })
+            ->editColumn('avaibility', function ($venue) {
+                if($venue->avaibility == TRUE){
+                    $checked = 'checked';
+                }else{
+                    $checked = '';
+                }
+                return '<input type="checkbox" name="avaibility['.$venue->id.']" class="avaibility-check" data-id="'.$venue->id.'" '.$checked.'>';
+            })
+            ->make(true);
     }
 
     /**
@@ -71,9 +71,20 @@ class VenuesController extends BaseController
      */
     public function create()
     {
-        $trail = 'Venue Form';
-        $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        try{
+            
+            $trail = 'Venue Form';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+        
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+        
+        }
 
         return view('backend.admin.venue.create');
     }
