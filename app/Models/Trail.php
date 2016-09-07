@@ -52,7 +52,10 @@ class Trail extends Model
 
     public function datatables()
     {
-        return static::select('id','user_id','description', 'session_id', 'ip_address', 'created_at')->orderBy('created_at', 'desc');
+        return static::select('trails.id','trails.user_id','trails.description', 'trails.session_id', 
+            'trails.ip_address', 'trails.created_at', 'users.first_name', 'users.last_name')
+            ->Join('users', 'trails.user_id','=','users.id')
+            ->orderBy('trails.created_at', 'desc');
     }
 
     public function getDataByUser($user_id)

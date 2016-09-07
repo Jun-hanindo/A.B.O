@@ -40,7 +40,7 @@
                     url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
                     type: "POST",
                     dataType: 'json',
-                    data: "message="+message,
+                    data: "message= Event Schedule "+message,
                     success: function (data) {
                         data.message;
                     },
@@ -105,7 +105,7 @@
                     url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
                     type: "POST",
                     dataType: 'json',
-                    data: "message="+message,
+                    data: "message= Promotion "+message,
                     success: function (data) {
                         data.message;
                     },
@@ -387,7 +387,6 @@
                 },
                 error: function(response){
                     loadDataSchedule(event_id);
-                    console.log(response);
                     $('#modal-form-schedule').modal('hide');
                     $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                 }
@@ -420,7 +419,7 @@
                     url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
                     type: "POST",
                     dataType: 'json',
-                    data: "message="+message,
+                    data: "message= Schedule Category "+message,
                     success: function (data) {
                         data.message;
                     },
@@ -624,7 +623,6 @@
                     if (response.status === 422) {
                         var data = response.responseJSON;
                         $.each(data,function(key,val){
-                            console.log(key);
                             $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
                             $('.'+key).addClass('has-error');
                         });
@@ -712,6 +710,17 @@
                     $("#promotion_code").val(data.code);   
                     $("#category").val(data.category); 
                     $('#div-preview_image').show();
+                    $("#discount").val(data.discount); 
+                    $("#discount_nominal").val(data.discount_nominal);
+                    if(data.discount > 0){
+                        $(".discount_type-check").bootstrapSwitch('state', true); 
+                        $('#discount-percent').show();
+                        $('#discount-nominal').hide();
+                    }else{ 
+                        $(".discount_type-check").bootstrapSwitch('state', false); 
+                        $('#discount-percent').hide();
+                        $('#discount-nominal').show();
+                    }
                     $('#preview_image').attr('src', data.src_featured_image);  
                     tinyMCE.get('description_promo').setContent(data.description); 
                 },
@@ -729,9 +738,14 @@
             $("#promotion_code").val('');
             $("#featured_image").val('');
             $('#preview_image').attr('src', '');
-            //$('#start_date').data('datepicker').setDate(null);
-            //$('#end_date').data('datepicker').setDate(null);
+            $("#discount").val('');
+            $("#discount_nominal").val('');
+            $(".discount_type-check").bootstrapSwitch('state', true); 
             tinyMCE.get('description_promo').setContent('');
+            $('#start_date').data('datepicker').setDate(null);
+            $('#end_date').data('datepicker').setDate(null);
+            $('#discount-percent').show();
+            $('#discount-nominal').hide();
         }
 
         function saveCat()
@@ -798,6 +812,8 @@
             loadDataSchedule(event_id);
             loadDataPromotion(event_id);
             loadSwitchButton('event_type-check');
+            loadSwitchButton('discount_type-check');
+            discountSwitch();
 
             $(".categories").select2();
             //$('#button_submit').hide();
@@ -818,6 +834,7 @@
                 var cat = $(this).attr('data-name');
                 autoSaveUpdateEvent(cat);
                 clearInput();
+                clearInputPromotion();
                 var schedule_id = $('#schedule_id').val();
                 if(schedule_id == ''){
                     schedule_id = 0;
@@ -902,14 +919,13 @@
 
             $('#event-promotion-datatables tbody').on( 'click', '.actEdit', function () {
                 saveTrailModal('Promotion Form');
+                var id = $(this).data('id');
+                getDataEventPromotion(id);
                 $('#modal-form-promotion').modal('show');
                 $('#title-create-promotion').hide();
                 $('#title-update-promotion').show();
                 $('#button_update_promotion').show();
                 $('#button_save_promotion').hide();
-
-                var id = $(this).data('id');
-                getDataEventPromotion(id);
 
             });
 
@@ -918,7 +934,6 @@
                 $(".form-group").removeClass('has-error');
                 $('.error-modal').removeClass('alert alert-danger');
                 $('.error-modal').html('');
-                clearInputPromotion();
 
                 $("#button_save_promotion").unbind('click').bind('click', function () {
                     var event_id = $('#event_id').val();
@@ -929,6 +944,10 @@
                 $("#button_update_promotion").unbind('click').bind('click', function () {
                     var event_id = $('#event_id').val();
                     updateEventPromotion(event_id);                
+                });
+
+                $('#modal-form-promotion').on('switchChange.bootstrapSwitch', '.discount_type-check', function(event, state) {
+                    discountSwitch();
                 });
             });
 

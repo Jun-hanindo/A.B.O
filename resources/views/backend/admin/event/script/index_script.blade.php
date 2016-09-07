@@ -15,7 +15,7 @@
                     url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
                     type: "POST",
                     dataType: 'json',
-                    data: "message="+message,
+                    data: "message= Event "+message,
                     success: function (data) {
                         data.message;
                     },
@@ -24,7 +24,7 @@
                     }
                 });
             });
-            
+
             var table = $('#event-datatables').DataTable();
             table.destroy();
             $('#event-datatables').DataTable({

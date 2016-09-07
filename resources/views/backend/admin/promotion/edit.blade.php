@@ -10,6 +10,12 @@
         #start_date, #end_date{
             border-radius: 0;
         }
+        #discount-percent, #discount-nominal{
+            margin-left: 10px;
+        }
+        .bootstrap-switch{
+            float: left;
+        }
         img[src=""] {
             display: none;
         }
@@ -40,13 +46,23 @@
                                 {!! Form::textarea('description_promo', $data->description, ['class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.description')]) !!}
                                 {!! Form::errorMsg('description_promo') !!}
                             </div>
-                            <div class="form-group{{ Form::hasError('discount') }} discount full-width">
+                            <div class="form-group{{ Form::hasError('discount') }} discount {{ Form::hasError('discount_nominal') }} discount_nominal full-width">
                                 {!! Form::label('discount', trans('general.discount').' *', array('class' => 'full-width ')) !!}
-                                <div class="col-sm-3 input-group">
-                                    {!! Form::text('discount', $data->discount, ['class' => 'form-control number-only','maxlength'=>'255', 'placeholder' => trans('general.discount')]) !!}
-                                    <div class="input-group-addon">%</div>
+                                <input type="checkbox" name="discount_type" class="form-control pull-left discount_type-check" data-animate="false" data-on-text="Percent" data-off-color="success" data-off-text="Nominal" {!! ($data->discount > 0) ? 'checked' : '' !!}>
+                                <div id="discount-percent" class="pull-left col-sm-3">
+                                    <div class="input-group ">
+                                        {!! Form::text('discount', $data->discount, ['id' => 'discount', 'class' => 'form-control number-only','maxlength'=>'255', 'placeholder' => trans('general.discount')]) !!}
+                                        <div class="input-group-addon">%</div>
+                                    </div>
+                                    {!! Form::errorMsg('discount') !!}
                                 </div>
-                                {!! Form::errorMsg('discount') !!}
+                                <div id="discount-nominal" class="pull-left col-sm-3" style="display:none">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$</span>
+                                        {!! Form::text('discount_nominal', $data->discount_nominal, ['id' => 'discount_nominal', 'class' => 'form-control number-only','maxlength'=>'255', 'placeholder' => trans('general.discount')]) !!}
+                                    </div>
+                                    {!! Form::errorMsg('discount_nominal') !!}
+                                </div>
                             </div>
                             <div class="form-group{{ Form::hasError('discount_period') }} discount_period full-width">
                                 {!! Form::label('discount_period', trans('general.discount_period').' *', array('class' => 'full-width ')) !!}
@@ -61,7 +77,7 @@
                                 </div>
                             </div>
                             <div class="form-group{{ Form::hasError('promotion_code') }} promotion_code full-width">
-                                {!! Form::label('promotion_code', trans('general.promotion_code').' *', array('class' => 'full-width ')) !!}
+                                {!! Form::label('promotion_code', trans('general.promotion_code'), array('class' => 'full-width ')) !!}
                                 <div class="col-sm-4 row">
                                     {!! Form::text('promotion_code', $data->code, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.promotion_code')]) !!}
                                     {!! Form::errorMsg('promotion_code') !!}

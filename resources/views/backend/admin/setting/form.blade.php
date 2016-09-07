@@ -77,6 +77,48 @@
                                 {!! Form::errorMsg('apple_store') !!}
                             </div>
                         </div>
+                        <div class="form-group{{ Form::hasError('office_name') }} office_name">
+                            {!! Form::label('office_name', trans('general.office_name'), ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::text('setting[office_name]', isset($data['office_name']) ? $data['office_name'] : null, ['class' => 'form-control', 'placeholder' => trans('general.office_name')]) !!}
+                                {!! Form::errorMsg('office_name') !!}
+                            </div>
+                        </div>
+                        <div class="form-group{{ Form::hasError('office_address') }} office_address">
+                            {!! Form::label('office_address', trans('general.office_address'), ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::textarea('setting[office_address]', isset($data['office_address']) ? $data['office_address'] : null, ['class' => 'form-control tinymce', 'placeholder' => trans('general.office_address')]) !!}
+                                {!! Form::errorMsg('office_address') !!}
+                            </div>
+                        </div>
+                        <div class="form-group{{ Form::hasError('gmap_link') }} gmap_link">
+                            {!! Form::label('gmap_link', trans('general.gmap_link'), ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::text('setting[gmap_link]', isset($data['gmap_link']) ? $data['gmap_link'] : null, ['class' => 'form-control', 'placeholder' => trans('general.gmap_link')]) !!}
+                                {!! Form::errorMsg('gmap_link') !!}
+                            </div>
+                        </div>
+                        <div class="form-group{{ Form::hasError('office_operating_hours') }} office_operating_hours">
+                            {!! Form::label('office_operating_hours', trans('general.office_operating_hours'), ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::text('setting[office_operating_hours]', isset($data['office_operating_hours']) ? $data['office_operating_hours'] : null, ['class' => 'form-control', 'placeholder' => trans('general.office_operating_hours')]) !!}
+                                {!! Form::errorMsg('office_operating_hours') !!}
+                            </div>
+                        </div>
+                        <div class="form-group{{ Form::hasError('hotline') }} hotline">
+                            {!! Form::label('hotline', trans('general.hotline'), ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::text('setting[hotline]', isset($data['hotline']) ? $data['hotline'] : null, ['class' => 'form-control', 'placeholder' => trans('general.hotline')]) !!}
+                                {!! Form::errorMsg('hotline') !!}
+                            </div>
+                        </div>
+                        <div class="form-group{{ Form::hasError('hotline_operating_hours') }} hotline_operating_hours">
+                            {!! Form::label('hotline_operating_hours', trans('general.hotline_operating_hours'), ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::text('setting[hotline_operating_hours]', isset($data['hotline_operating_hours']) ? $data['hotline_operating_hours'] : null, ['class' => 'form-control', 'placeholder' => trans('general.hotline_operating_hours')]) !!}
+                                {!! Form::errorMsg('hotline_operating_hours') !!}
+                            </div>
+                        </div>
                     </div>
                     <div class="box-footer">
                         <a href="{{ route('admin-index-setting') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>

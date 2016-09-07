@@ -79,6 +79,17 @@ function saveTrailModal(desc){
     });
 }
 
+function discountSwitch(){
+    var val = $('.discount_type-check').is(":checked") ? true : false;
+    if(val){
+        $('#discount-percent').show();
+        $('#discount-nominal').hide();
+    }else{
+        $('#discount-percent').hide();
+        $('#discount-nominal').show();
+    }
+}
+
 function datatablesSelectAll(table)
 {
     var $table             = table.table().node();

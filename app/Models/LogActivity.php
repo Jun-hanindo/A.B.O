@@ -30,7 +30,10 @@ class LogActivity extends Model
 
     public function datatables()
     {
-        return static::select('id','user_id','description', 'ip_address', 'created_at')->orderBy('created_at', 'desc');
+        return static::select('log_activities.id','log_activities.user_id','log_activities.description', 
+            'log_activities.ip_address', 'log_activities.created_at', 'users.first_name', 'users.last_name')
+            ->Join('users', 'log_activities.user_id','=','users.id')
+            ->orderBy('log_activities.created_at', 'desc');
     }
 
     public function getDataByUser($user_id)

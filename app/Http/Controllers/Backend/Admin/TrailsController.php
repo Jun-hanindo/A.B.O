@@ -47,7 +47,7 @@ class TrailsController extends BaseController
         }
         return datatables($model)
                 ->editColumn('user_id', function($data){
-                    $name = $data->user->first_name.' '.$data->user->last_name;
+                    $name = $data->first_name.' '.$data->last_name;
                     return $name;
                 })
                 ->editColumn('created_at', function($data){

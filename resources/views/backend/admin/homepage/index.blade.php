@@ -30,9 +30,10 @@
             <table id="homepage-sliders-table" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                 <thead>
                     <tr>
-                        <th class="center-align">Event</th>
+                        <th width="12%">{{ trans('general.sort_order') }}</th>
+                        <th class="center-align">{{ trans('general.event') }}</th>
                         <!-- <th class="center-align">Category</th> -->
-                        <th width="12%">Action</th>
+                        <th width="12%">{{ trans('general.action') }}</th>
                     </tr>
                 </thead>
             </table>
@@ -54,9 +55,10 @@
             <table id="homepage-events-table" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                 <thead>
                     <tr>
-                        <th class="center-align">Event</th>
+                        <th width="12%">{{ trans('general.sort_order') }}</th>
+                        <th class="center-align">{{ trans('general.event') }}</th>
                         <!-- <th class="center-align">Category</th> -->
-                        <th width="12%">Action</th>
+                        <th width="12%">{{ trans('general.action') }}</th>
                     </tr>
                 </thead>
             </table>
@@ -78,9 +80,10 @@
             <table id="homepage-promotions-table" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                 <thead>
                     <tr>
-                        <th class="center-align">Event</th>
+                        <th width="12%">{{ trans('general.sort_order') }}</th>
+                        <th class="center-align">{{ trans('general.event') }}</th>
                         <!-- <th class="center-align">Category</th> -->
-                        <th width="12%">Action</th>
+                        <th width="12%">{{ trans('general.action') }}</th>
                     </tr>
                 </thead>
             </table>

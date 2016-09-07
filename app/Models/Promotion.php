@@ -65,7 +65,8 @@ class Promotion extends Model
         $this->user_id = $user_id;
         $this->title = $param['title_promo'];
         $this->description = $param['description_promo'];
-        $this->discount = $param['discount'];
+        $this->discount = (isset($param['discount_type'])) ? $param['discount'] : 0;
+        $this->discount_nominal = (!isset($param['discount_type'])) ? $param['discount_nominal'] : 0;
         $this->start_date = date('Y-m-d',strtotime($param['start_date']));
         $this->end_date = date('Y-m-d',strtotime($param['end_date']));
         $this->code = $param['promotion_code'];
@@ -132,7 +133,8 @@ class Promotion extends Model
         if (!empty($data)) {
             $data->title = $param['title_promo'];
             $data->description = $param['description_promo'];
-            $data->discount = $param['discount'];
+            $data->discount = (isset($param['discount_type'])) ? $param['discount'] : 0;
+            $data->discount_nominal = (!isset($param['discount_type'])) ? $param['discount_nominal'] : 0;
             $data->start_date = date('Y-m-d',strtotime($param['start_date']));
             $data->end_date = date('Y-m-d',strtotime($param['end_date']));
             $data->code = $param['promotion_code'];

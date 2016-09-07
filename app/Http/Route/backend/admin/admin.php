@@ -181,6 +181,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::post('{id}/update', array('as' => 'admin-update-homepage', 'uses' => 'HomepagesController@update'));
         Route::delete('{id}/delete', array('as' => 'admin-delete-homepage', 'uses' => 'HomepagesController@destroy'));
         Route::get('{category}/count-category', array('as' => 'admin-count-category-homepage', 'uses' => 'HomepagesController@countByCategory'));
+        Route::post('update-sort', array('as' => 'admin-update-sort-order', 'uses' => 'HomepagesController@updateSortOrder'));
 
         
     });

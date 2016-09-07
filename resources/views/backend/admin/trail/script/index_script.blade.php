@@ -22,7 +22,7 @@ function loadData()
             url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
             type: "POST",
             dataType: 'json',
-            data: "message="+message,
+            data: "message= Trail "+message,
             success: function (data) {
                 data.message;
             },

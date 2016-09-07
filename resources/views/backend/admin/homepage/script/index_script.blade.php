@@ -8,6 +8,62 @@
         loadDataSlider();
         loadDataEvent();
         loadDataPromotion();
+
+        $('#homepage-sliders-table tbody, #homepage-events-table tbody, #homepage-promotions-table tbody').on('click', '.sort_asc',function(){
+            $('.error').html('');
+            var category = $(this).attr('data-category');
+            var id_current = $(this).attr('data-id');
+            var current_sort = $(this).attr('data-sort');
+            var update_sort = +current_sort - 1;
+            var id_other = $('[data-sort="'+update_sort+'"]').attr('data-id');
+            $.ajax({
+                url: "{{ route('admin-update-sort-order') }}",
+                type: "POST",
+                dataType: 'json',
+                data: "current_sort=" + current_sort + "&update_sort=" + update_sort + "&id_current=" + id_current + "&id_other=" + id_other + "&category=" + category,
+                success: function (data) {
+                    loadDataSlider();
+                    loadDataEvent();
+                    loadDataPromotion();
+                    $('.error-'+category).html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                },
+                error: function(response){
+                    loadDataSlider();
+                    loadDataEvent();
+                    loadDataPromotion();
+                    $('.error-'+category).addClass('alert alert-danger').html(response.responseJSON.message);
+                }
+            });
+
+        });
+
+        $('#homepage-sliders-table tbody, #homepage-events-table tbody, #homepage-promotions-table tbody').on('click', '.sort_desc',function(){
+            $('.error').html('');
+            var category = $(this).attr('data-category');
+            var id_current = $(this).attr('data-id');
+            var current_sort = $(this).attr('data-sort');
+            var update_sort = +current_sort + 1;
+            var id_other = $('[data-sort="'+update_sort+'"]').attr('data-id');
+            $.ajax({
+                url: "{{ route('admin-update-sort-order') }}",
+                type: "POST",
+                dataType: 'json',
+                data: "current_sort=" + current_sort + "&update_sort=" + update_sort + "&id_current=" + id_current + "&id_other=" + id_other + "&category=" + category,
+                success: function (data) {
+                    loadDataSlider();
+                    loadDataEvent();
+                    loadDataPromotion();
+                    $('.error-'+category).html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                },
+                error: function(response){
+                    loadDataSlider();
+                    loadDataEvent();
+                    loadDataPromotion();
+                    $('.error-'+category).addClass('alert alert-danger').html(response.responseJSON.message);
+                }
+            });
+
+        });
         
         $('.actAdd').on('click',function(){
             var category = $(this).attr('data-category');
@@ -17,41 +73,6 @@
             $('#title-update').hide();
             $('#button_update').hide();
             $('#button_save').show();
-
-            // var uri = "{{ URL::route('admin-count-category-homepage', "::param") }}";
-            // uri = uri.replace('::param', category);
-            // $.ajax({
-            //     url: uri,
-            //     type: "get",
-            //     dataType: 'json',
-            //     success: function (response) {
-            //         if(response.data.active == false) {
-            //             response.data.active = 'false';
-            //         } else {
-            //             response.data.active = 'true';
-            //         }
-            //         var data = response.data;
-            //         if(data >= 3){
-            //             $('.error-add-'+category).addClass('text-danger').html(response.message);
-                        
-            //         }else{
-            //             $('#modal-form').modal('show');
-            //             $('#title-create').show();
-            //             $('#title-update').hide();
-            //             $('#button_update').hide();
-            //             $('#button_save').show();
-            //         }
-                    
-            //     },
-            //     error: function(response){
-            //         response.responseJSON.message;
-            //         $('#modal-form').modal('show');
-            //         $('#title-create').show();
-            //         $('#title-update').hide();
-            //         $('#button_update').hide();
-            //         $('#button_save').show();
-            //     }
-            // });
         });
 
         $('#homepage-events-table tbody, #homepage-sliders-table tbody').on( 'click', '.actEdit', function () {
@@ -98,7 +119,7 @@
                 url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
                 type: "POST",
                 dataType: 'json',
-                data: "message="+message,
+                data: "message= Homepage Slider"+message,
                 success: function (data) {
                     data.message;
                 },
@@ -120,6 +141,7 @@
                 },
             },
             columns: [
+                {data: 'sort_order', name: 'sort_order', class: 'center-align', searchable: false, orderable: false},
                 {data: 'event', name: 'event'},
                 // {data: 'category', name: 'category'},
                 {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false}
@@ -135,7 +157,7 @@
                 url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
                 type: "POST",
                 dataType: 'json',
-                data: "message="+message,
+                data: "message= Homepage Event"+message,
                 success: function (data) {
                     data.message;
                 },
@@ -157,6 +179,7 @@
                 },
             },
             columns: [
+                {data: 'sort_order', name: 'sort_order', class: 'center-align', searchable: false, orderable: false},
                 {data: 'event', name: 'event'},
                 // {data: 'category', name: 'category'},
                 {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false}
@@ -172,7 +195,7 @@
                 url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
                 type: "POST",
                 dataType: 'json',
-                data: "message="+message,
+                data: "message= Homepage Promotion"+message,
                 success: function (data) {
                     data.message;
                 },
@@ -194,6 +217,7 @@
                 },
             },
             columns: [
+                {data: 'sort_order', name: 'sort_order', class: 'center-align', searchable: false, orderable: false},
                 {data: 'event', name: 'event'},
                 // {data: 'category', name: 'category'},
                 {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false}

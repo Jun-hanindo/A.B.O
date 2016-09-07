@@ -190,6 +190,12 @@ return [
     'menu_management' => 'Menu Management',
     'trail' => 'Trail',
     'system_log' => 'System Log',
+    'office_name'   => 'Office Name',
+    'office_address'   => 'Office Address',
+    'office_operating_hours'   => 'Office Operating Hours',
+    'hotline'   => 'Hotline',
+    'hotline_operating_hours'   => 'Hotline Operating Hours',
+    'sort_order'    => 'Sort Order'
     // 'january' => 'January',
     // 'february' => 'February',
     // 'march' => 'March',

@@ -38,6 +38,21 @@ class HomepagesController extends BaseController
         $param = $req->all();
         $category = $param['category'];
         return datatables($this->model->datatables($category))
+            ->addColumn('sort_order', function ($homepage) {
+                $last = $this->model->getLastSort($homepage->category)->sort_order;
+                $asc = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" data-category="'.$homepage->category.'"  data-id="'.$homepage->id.'" data-sort="'.$homepage->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;';
+                $desc = '<a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" data-category="'.$homepage->category.'"  data-id="'.$homepage->id.'" data-sort="'.$homepage->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                if($homepage->sort_order > 0){
+                    if($homepage->sort_order == 1){
+                        $asc = '';
+                    }
+                    if($homepage->sort_order == $last){
+                        $desc = '';
+                    }
+                }
+                $sort = $asc.$desc;
+                return $sort;
+            })
             ->addColumn('action', function ($homepage) {
                 return '<a href="javascript:void(0)" data-id="'.$homepage->id.'" data-name="'.$homepage->event.'" data-category="'.$homepage->category.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
                     &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$homepage->id.'" data-name="'.$homepage->event.'" data-category="'.$homepage->category.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
@@ -192,6 +207,41 @@ class HomepagesController extends BaseController
 
             return redirect()->route('admin-index-homepage');
 
+        }
+    }
+
+    public function updateSortOrder(Request $req){
+        $param = $req->all();
+
+        try{
+            $updateData = $this->model->updateSortEmpty($param['category']);
+            //$updateData = $this->model->updateCurrentSortOrder($param);
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Homepage Sort Order was updated';
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'Sort Order '.trans('general.update_success')
+            ],200);
+        
+        //} else {
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.save_error')
+            ],400);
+        
         }
     }
 

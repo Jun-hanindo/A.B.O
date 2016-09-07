@@ -26,16 +26,69 @@ class Homepage extends Model
     public static function datatables($category)
     {
 
-        return static::select('homepages.id as id', 'events.title as event', 'homepages.category as category')
+        return static::select('homepages.id as id', 'events.title as event', 'homepages.category as category', 'homepages.sort_order')
                         ->leftJoin('events', 'homepages.event_id','=','events.id')
-                        ->where('homepages.category', '=', $category);
+                        ->where('homepages.category', '=', $category)
+                        ->orderBy('homepages.sort_order', 'asc');
         
+    }
+
+    public function getFirstSort($category){
+        return Homepage::where('category', $category)->orderBy('sort_order', 'asc')->first();
+    }
+
+    public function getLastSort($category){
+        return Homepage::where('category', $category)->orderBy('sort_order', 'desc')->first();
+    }
+
+    public function getSortById($id){
+        return Homepage::where('id', $id)->first();
+    }
+
+    public function getSort($category){
+        return Homepage::where('category', $category)->orderBy('sort_order', 'desc')->get();
+    }
+
+    public function updateSortEmpty($category){
+        $data = $this->getHomepage($category);
+        $i = 1;
+        foreach ($data as $k => $value) {
+            Homepage::where('id', $value->id)->update(['sort_order' => $i]);
+            $i++;
+        }
+    }
+
+    public function updateCurrentSortOrder($param){
+        $data = $this->getSortById($param['id_current']);
+        $data->sort_order = $param['update_sort'];
+        if($data->save()) {
+            $this->updateOtherSortOrder($param);
+            return $data;
+        } else {
+
+            return false;
+
+        }
+    }
+
+    public function updateOtherSortOrder($param){
+        $data = $this->getSortById($param['id_other']);
+        $data->sort_order = $param['current_sort'];
+        if($data->save()) {
+            return $data;
+        } else {
+
+            return false;
+
+        }
     }
 
     public function insertNewHomepage($data)
     {
         $this->event_id = $data['event_id'];
         $this->category = $data['category'];
+        $last = $this->getLastSort($data['category']);
+        $this->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
         if($this->save()) {
             return $this;
         } else {
@@ -86,13 +139,6 @@ class Homepage extends Model
         if(!empty($data)) {
             $data->delete();
             return $data;
-            // $data->status = false;
-            // if($data->save()) {
-            //     return $data;
-            // } else {
-            //     return false;
-
-            // }
         } else {
             return false;
         }
@@ -105,7 +151,7 @@ class Homepage extends Model
 
     public function getHomepage($category)
     {
-        return Homepage::where('category', $category)/*->where('status', true)*/->get();
+        return Homepage::where('category', $category)->orderBy('sort_order', 'asc')->get();
     }
 
     

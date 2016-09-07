@@ -24,29 +24,43 @@ class PromotionRequest extends Request
     public function rules()
     { 
         $req = Request::all();
+
+        
         if(isset($req['id']) && !empty($req['id'])) {
-            return [
+            $rules = [
                 'title_promo'       => 'required',
                 'description_promo' => 'required',
                 'featured_image'    => 'mimes:jpg,jpeg,png,gif',
-                'discount'          => 'required',
-                'start_date'        => 'required|date|after:yesterday',
+                'start_date'        => 'required',
                 'end_date'          => 'required|date|after:start_date',
-                'category'          => 'required',
-                'promotion_code'    => 'required'
+                'category'          => 'required'
             ];
 
+            if (isset($req['discount_type'])){
+                $rules['discount'] = 'required|numeric|max:100';
+            }else{
+                $rules['discount_nominal'] = 'required';
+            }
+
+            return $rules;
+
         } else {
-            return [
+            $rules = [
                 'title_promo'       => 'required',
                 'description_promo' => 'required',
                 'featured_image'    => 'required|mimes:jpg,jpeg,png,gif',
-                'discount'          => 'required',
-                'start_date'        => 'required|date|after:yesterday',
+                'start_date'        => 'required',
                 'end_date'          => 'required|date|after:start_date',
-                'category'          => 'required',
-                'promotion_code'    => 'required'
+                'category'          => 'required'
             ];
+
+            if (isset($req['discount_type'])){
+                $rules['discount'] = 'required|numeric|max:100';
+            }else{
+                $rules['discount_nominal'] = 'required';
+            }
+
+            return $rules;
                 
         }
 
