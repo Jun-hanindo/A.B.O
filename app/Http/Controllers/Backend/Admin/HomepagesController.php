@@ -214,8 +214,8 @@ class HomepagesController extends BaseController
         $param = $req->all();
 
         try{
-            $updateData = $this->model->updateSortEmpty($param['category']);
-            //$updateData = $this->model->updateCurrentSortOrder($param);
+            //$updateData = $this->model->updateSortEmpty($param['category']);
+            $updateData = $this->model->updateCurrentSortOrder($param);
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Homepage Sort Order was updated';
