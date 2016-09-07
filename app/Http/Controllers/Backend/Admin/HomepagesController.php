@@ -40,16 +40,21 @@ class HomepagesController extends BaseController
         return datatables($this->model->datatables($category))
             ->addColumn('sort_order', function ($homepage) {
                 $last = $this->model->getLastSort($homepage->category)->sort_order;
-                $asc = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" data-category="'.$homepage->category.'"  data-id="'.$homepage->id.'" data-sort="'.$homepage->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;';
-                $desc = '<a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" data-category="'.$homepage->category.'"  data-id="'.$homepage->id.'" data-sort="'.$homepage->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
-                if($homepage->sort_order > 0){
-                    if($homepage->sort_order == 1){
-                        $asc = '';
-                    }
-                    if($homepage->sort_order == $last){
-                        $desc = '';
-                    }
+                $style = 'style="display:inline-block"';
+                if($homepage->sort_order == 1){
+                    $style1 = 'style="display:none"';
+                }else{
+                    $style1 = $style;
                 }
+                $asc = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style1.' data-category="'.$homepage->category.'"  data-id="'.$homepage->id.'" data-sort="'.$homepage->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;';
+                
+                if($homepage->sort_order == $last){
+                    $style2 = 'style="display:none"';
+                }else{
+                    $style2 = $style;
+                }
+                $desc = '<a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style2.' data-category="'.$homepage->category.'"  data-id="'.$homepage->id.'" data-sort="'.$homepage->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                
                 $sort = $asc.$desc;
                 return $sort;
             })
@@ -214,8 +219,8 @@ class HomepagesController extends BaseController
         $param = $req->all();
 
         try{
-            //$updateData = $this->model->updateSortEmpty($param['category']);
-            $updateData = $this->model->updateCurrentSortOrder($param);
+            $updateData = $this->model->updateSortEmpty($param['category']);
+            //$updateData = $this->model->updateCurrentSortOrder($param);
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Homepage Sort Order was updated';

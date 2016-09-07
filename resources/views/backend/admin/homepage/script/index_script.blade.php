@@ -9,59 +9,68 @@
         loadDataEvent();
         loadDataPromotion();
 
-        $('#homepage-sliders-table tbody, #homepage-events-table tbody, #homepage-promotions-table tbody').on('click', '.sort_asc',function(){
-            $('.error').html('');
+        $('#homepage-sliders-table tbody').on('click', '.sort_asc',function(){
             var category = $(this).attr('data-category');
             var id_current = $(this).attr('data-id');
             var current_sort = $(this).attr('data-sort');
             var update_sort = +current_sort - 1;
-            var id_other = $('[data-sort="'+update_sort+'"]').attr('data-id');
-            $.ajax({
-                url: "{{ route('admin-update-sort-order') }}",
-                type: "POST",
-                dataType: 'json',
-                data: "current_sort=" + current_sort + "&update_sort=" + update_sort + "&id_current=" + id_current + "&id_other=" + id_other + "&category=" + category,
-                success: function (data) {
-                    loadDataSlider();
-                    loadDataEvent();
-                    loadDataPromotion();
-                    $('.error-'+category).html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
-                },
-                error: function(response){
-                    loadDataSlider();
-                    loadDataEvent();
-                    loadDataPromotion();
-                    $('.error-'+category).addClass('alert alert-danger').html(response.responseJSON.message);
-                }
-            });
+            var id_other = $('#homepage-sliders-table tbody .sort_asc[data-sort="'+update_sort+'"]').attr('data-id');
+            saveSortOrder(category, id_current, current_sort, update_sort, id_other);
+            loadDataSlider();
+        });
+
+        $('#homepage-events-table tbody').on('click', '.sort_asc',function(){
+            var category = $(this).attr('data-category');
+            var id_current = $(this).attr('data-id');
+            var current_sort = $(this).attr('data-sort');
+            var update_sort = +current_sort - 1;
+            var id_other = $('#homepage-events-table tbody .sort_asc[data-sort="'+update_sort+'"]').attr('data-id');
+            saveSortOrder(category, id_current, current_sort, update_sort, id_other);
+            loadDataEvent();
 
         });
 
-        $('#homepage-sliders-table tbody, #homepage-events-table tbody, #homepage-promotions-table tbody').on('click', '.sort_desc',function(){
-            $('.error').html('');
+        $('#homepage-promotions-table tbody').on('click', '.sort_asc',function(){
+            var category = $(this).attr('data-category');
+            var id_current = $(this).attr('data-id');
+            var current_sort = $(this).attr('data-sort');
+            var update_sort = +current_sort - 1;
+            var id_other = $('#homepage-promotions-table tbody .sort_asc[data-sort="'+update_sort+'"]').attr('data-id');
+            saveSortOrder(category, id_current, current_sort, update_sort, id_other);
+            loadDataPromotion();
+
+        });
+
+        $('#homepage-sliders-table tbody').on('click', '.sort_desc',function(){
             var category = $(this).attr('data-category');
             var id_current = $(this).attr('data-id');
             var current_sort = $(this).attr('data-sort');
             var update_sort = +current_sort + 1;
-            var id_other = $('[data-sort="'+update_sort+'"]').attr('data-id');
-            $.ajax({
-                url: "{{ route('admin-update-sort-order') }}",
-                type: "POST",
-                dataType: 'json',
-                data: "current_sort=" + current_sort + "&update_sort=" + update_sort + "&id_current=" + id_current + "&id_other=" + id_other + "&category=" + category,
-                success: function (data) {
-                    loadDataSlider();
-                    loadDataEvent();
-                    loadDataPromotion();
-                    $('.error-'+category).html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
-                },
-                error: function(response){
-                    loadDataSlider();
-                    loadDataEvent();
-                    loadDataPromotion();
-                    $('.error-'+category).addClass('alert alert-danger').html(response.responseJSON.message);
-                }
-            });
+            var id_other = $('#homepage-sliders-table tbody .sort_desc[data-sort="'+update_sort+'"]').attr('data-id');
+            saveSortOrder(category, id_current, current_sort, update_sort, id_other);
+            loadDataSlider();
+
+        });
+
+        $('#homepage-events-table tbody').on('click', '.sort_desc',function(){
+            var category = $(this).attr('data-category');
+            var id_current = $(this).attr('data-id');
+            var current_sort = $(this).attr('data-sort');
+            var update_sort = +current_sort + 1;
+            var id_other = $('#homepage-events-table tbody .sort_desc[data-sort="'+update_sort+'"]').attr('data-id');
+            saveSortOrder(category, id_current, current_sort, update_sort, id_other);
+            loadDataEvent();
+
+        });
+
+        $('#homepage-promotions-table tbody').on('click', '.sort_desc',function(){
+            var category = $(this).attr('data-category');
+            var id_current = $(this).attr('data-id');
+            var current_sort = $(this).attr('data-sort');
+            var update_sort = +current_sort + 1;
+            var id_other = $('#homepage-promotions-table tbody .sort_desc[data-sort="'+update_sort+'"]').attr('data-id');
+            saveSortOrder(category, id_current, current_sort, update_sort, id_other);
+            loadDataPromotion();
 
         });
         
@@ -110,6 +119,22 @@
         });
 
     });
+
+    function saveSortOrder(category, id_current, current_sort, update_sort, id_other){
+        $('.error-'+category).html('');
+        $.ajax({
+            url: "{{ route('admin-update-sort-order') }}",
+            type: "POST",
+            dataType: 'json',
+            data: "current_sort=" + current_sort + "&update_sort=" + update_sort + "&id_current=" + id_current + "&id_other=" + id_other + "&category=" + category,
+            success: function (data) {
+                $('.error-'+category).html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+            },
+            error: function(response){
+                $('.error-'+category).addClass('alert alert-danger').html(response.responseJSON.message);
+            }
+        });
+    }
 
     function loadDataSlider()
     {
