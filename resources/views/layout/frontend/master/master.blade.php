@@ -243,7 +243,7 @@
                                 </div>
                             </div>
                             <div class="linkFoot">
-                                <a href="https://asiaboxoffice.nliven.co/account/register">Register ></a>
+                                <a href="https://asiaboxoffice.nliven.co/account/register">Register</a>
                             </div>
                             <div class="capFoot">
                                 <p>Buy tickets from us and more.</p>
@@ -269,7 +269,7 @@
                                 </div>
                             </div>
                             <div class="linkFoot">
-                                <a href="{{URL::route('our-company')}}">Our Company ></a>
+                                <a href="{{URL::route('our-company')}}">Our Company</a>
                             </div>
                             <div class="capFoot">
                                 <p>About us, jobs and partnerships.</p>
