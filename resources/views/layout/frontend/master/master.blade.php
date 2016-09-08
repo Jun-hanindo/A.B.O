@@ -295,7 +295,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="information-box mobile-collapse">
                             <div class="information-title mobile-collapse-header">
                                 Support
@@ -320,7 +320,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="information-box mobile-collapse">
                             <div class="information-title mobile-collapse-header">
                                 Our Company
