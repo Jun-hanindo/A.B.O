@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\LogActivity;
+use App\Models\Setting;
 
 abstract class BaseController extends Controller
 {
@@ -19,6 +20,7 @@ abstract class BaseController extends Controller
      */
     protected $model;
     public $currentUser;
+    public $setting;
 
     /**
      * Create a new controller instance.
@@ -41,7 +43,15 @@ abstract class BaseController extends Controller
             $currentUserLogin ='';
         }
 
+        $modelSetting = new Setting();
+        $sets = $modelSetting->all();
+        $setting = [];
+        foreach ($sets as $key => $value) {
+            $setting[$value->name] = $value->value;
+        }
+        $this->setting = $setting;
         \View::share ('user_login',$currentUserLogin);
+        \View::share ('setting',$setting);
     }
 
     protected function getClassAndMethodRoute($method = null)

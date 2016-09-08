@@ -41,8 +41,10 @@ class ManagePagesController extends BaseController
         
         if(!empty($page)){
             $data['content'] = $page->content;
+            $data['status'] = $page->status;
         }else{
             $data['content'] = '';
+            $data['status'] = '';
         }
         $data['slug'] = $slug;
         if($slug == 'contact-us'){
@@ -57,6 +59,10 @@ class ManagePagesController extends BaseController
             $data['title'] = trans('general.career');
         }elseif($slug == 'faq'){
             $data['title'] = trans('general.faq');
+        }elseif($slug == 'way-to-buy-tickets'){
+            $data['title'] = trans('general.way_to_buy_tickets');
+        }else{
+            $data['title'] = trans('general.page_management');
         }
         
         $trail = $data['title'];
@@ -75,12 +81,23 @@ class ManagePagesController extends BaseController
             $user_id = $this->currentUser->id;
             $updateData = $this->model->updateManagePage($param, $slug, $user_id);
         //if(!empty($updateData)) {
-            flash()->success($updateData->title.' '.trans('general.update_success'));
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Page "'.$updateData->title.'" was updated';
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
+
+            flash()->success($updateData->title.' '.trans('general.update_success'));
+
+            if($req->ajax() && $param['status'] == 'draft'){
+                $this->model->updateStatusToDraft($param, $slug);
+
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
+                ],200);
+            }
 
             return redirect()->route('admin-manage-page', $slug);
 
@@ -92,6 +109,15 @@ class ManagePagesController extends BaseController
             $log['description'] = $e->getMessage();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
+
+            if($req->ajax()){
+                
+                return response()->json([
+                    'code' => 400,
+                    'status' => 'success',
+                    'message' => trans('general.update_error')
+                ],400);
+            }
             
             return redirect()->route('admin-manage-page', $slug)->withInput();
 

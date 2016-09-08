@@ -29,51 +29,7 @@
                           <div class="support-desc">
                               <div class="row">
                                   <h3 class="head-about">Ways To Buy Tickets</h3>
-                                  <div class="col-md-4">
-                                    <div class="boxOffice">
-                                      <div class="iconWays">
-                                        <i class="fa fa-ticket"></i>
-                                      </div>
-                                      <h4 class="headWays font-bold">Box Office</h4>
-                                      <h5>Purchase or collect your tickets here.</h5>
-                                      <br>
-                                      <h5><b class="font-bold">Asia Box Office Pte Ltd</b></h5>
-                                      <label>390 Orchard Road, Palais Renaissance #15-01, Singapore 238871</label>
-                                      <button class="btn btnBlackDefault">See Map & Directions</button>
-                                      <br>
-                                      <div class="operating">
-                                        <label>Box Office Operating Hours</label>
-                                        <label>Mon to Sat: 10am - 8pm, Sun and PH: 12pm - 8pm</label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-4">
-                                    <div class="hotline">
-                                      <div class="iconWays">
-                                        <i class="fa fa-phone"></i>
-                                      </div>
-                                      <h4 class="headWays font-bold">Hotline</h4>
-                                      <h5>Speak to our customer service officers.</h5>
-                                      <br>
-                                      <button class="btn btnBlackDefault"><i class="fa fa-phone"></i>Call +65 6733 0360</button>
-                                      <br>
-                                      <div class="operating">
-                                        <label>Box Office Operating Hours</label>
-                                        <label>Mon to Sat: 10am - 8pm, Sun and PH: 12pm - 8pm</label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-4">
-                                    <div class="website">
-                                      <div class="iconWays">
-                                        <i class="fa fa-laptop"></i>
-                                      </div>
-                                      <h4 class="headWays font-bold">Website</h4>
-                                      <h5>Browse and purchase tickets conveniently.</h5>
-                                      <br>
-                                      <button class="btn btnBlackDefault">See Our Events</button>
-                                    </div>
-                                  </div>
+                                  {!! $content !!}
                               </div>
                           </div>
                       </div>

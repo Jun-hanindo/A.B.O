@@ -8,9 +8,9 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('event-seated', array('as' => 'event-seated', 'uses' => 'HomeController@eventSeated'));
     Route::get('careers', array('as' => 'careers', 'uses' => 'HomeController@careers'));
     Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'HomeController@contactUs'));
-    Route::get('our-company', array('as' => 'our-company', 'uses' => 'HomeController@ourCompany'));
-    Route::get('support-faq', array('as' => 'support-faq', 'uses' => 'HomeController@supportFaq'));
-    Route::get('support-way-to-buy-tickets', array('as' => 'support-way-to-buy-tickets', 'uses' => 'HomeController@supportWayToBuyTickets'));
+    Route::get('about-us', array('as' => 'our-company', 'uses' => 'HomeController@ourCompany'));
+    Route::get('faq', array('as' => 'support-faq', 'uses' => 'HomeController@supportFaq'));
+    Route::get('way-to-buy-tickets', array('as' => 'support-way-to-buy-tickets', 'uses' => 'HomeController@supportWayToBuyTickets'));
     Route::get('search-result', array('as' => 'search-result', 'uses' => 'HomeController@searchResult'));
     // Route::get('application', array('as' => 'front-form-application', 'uses' => 'ApplicationController@applicationForm'));
     // 

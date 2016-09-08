@@ -13,6 +13,7 @@ use App\Models\Category;
 use App\Models\Promotion;
 use App\Models\LogActivity;
 use App\Models\Trail;
+use App\Models\Icon;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\event\EventRequest;
 
@@ -72,12 +73,24 @@ class EventsController extends BaseController
     public function create()
     {
 
-        $data['dropdown'] = Venue::dropdown();
-        $data['categories'] = Category::dropdown();
+        try{
+            $data['dropdown'] = Venue::dropdown();
+            $data['categories'] = Category::dropdown();
+            $iconModel = new Icon();
+            $data['icons'] = $iconModel->getIcon(); 
 
-        $trail = 'Regiser Event';
-        $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+            $trail = 'Regiser Event';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+        
+        }
 
         return view('backend.admin.event.create')->withData($data);
     }
@@ -180,6 +193,8 @@ class EventsController extends BaseController
 
             $data['dropdown'] = Venue::dropdown();
             $data['categories'] = Category::dropdown();
+            $iconModel = new Icon();
+            $data['icons'] = $iconModel->getIcon();
             if($data['event_type'] == TRUE){
                 $data['checked'] = 'checked';
             }else{

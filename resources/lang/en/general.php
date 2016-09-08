@@ -61,6 +61,7 @@ return [
     'button_publish' => 'Publish',
     'button_apply'  => 'Apply',
     'button_draft'  => 'Draft',
+    'button_preview'  => 'Preview',
 
     'management' => 'Management',
     'countries' => 'Countries',
@@ -154,6 +155,8 @@ return [
     'career' => 'Career',
     'page' => 'Page',
     'faq' => 'FAQ',
+    'way_to_buy_tickets' => 'Way to Buy Tickets',
+    'page_management'   => 'Page Management',
 
     'homepages' => 'Homepages',
     'homepage' => 'Homepage',

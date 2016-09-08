@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Category;
 use App\Models\LogActivity;
 use App\Models\Trail;
+use App\Models\Icon;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\category\CategoryRequest;
 
@@ -26,11 +27,20 @@ class CategoriesController extends BaseController
      */
     public function index()
     {
+        try{
+            $iconModel = new Icon();
+            $data['icons'] = $iconModel->getIcon(); 
+            $trail = 'List Category';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+        } catch (\Exception $e) {
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+        }
         
-        $trail = 'List Category';
-        $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
-        return view('backend.admin.category.index');
+        return view('backend.admin.category.index', $data);
     }
 
     public function datatables()

@@ -26,7 +26,7 @@
                           <div class="career-desc">
                               <div class="row">
                                   <h3 class="head-about">Careers</h3>
-                                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat laoreet eros, eget aliquet mi maximus eu. Donec nec blandit nisi. Aliquam volutpat eros id nibh congue elementum. Nam lectus quam, feugiat in faucibus orci luctus commodo ut, sollicitudin.</p>
+                                  {!! $content !!}
                                   <div class="job-head">
                                     <h4>We Have 4 Job Openings</h4>
                                     <select class="form-control">

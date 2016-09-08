@@ -105,40 +105,82 @@ class HomeController extends Controller
 
     function pageContent($slug){
         $modelPage = new ManagePage();
-        $page = $modelPage->findPageBySlug($slug);
+        $page = $modelPage->findPagePublish($slug);
         if(!empty($page)){
-            $data['content'] = $page->content;
+            $content = $page->content;
         }else{
-            $data['content'] = '';
+            $content = '<p>'.trans('general.data_not_found').'</p>';
         }
 
-        return $data;
+        return $content;
     }
 
-    public function careers()
+    function preview($slug){
+        $modelPage = new ManagePage();
+        $page = $modelPage->findPageBySlug($slug);
+        if(!empty($page)){
+            $content = $page->content;
+        }else{
+            $content = '<p>'.trans('general.data_not_found').'</p>';
+        }
+
+        return $content;
+    }
+
+    public function careers(Request $req)
     {
-        $data['content'] = $this->pageContent('careers');
+        $param = $req->all();
+        if(!empty($param)){
+            if(isset($param['preview'])){
+                $data['content'] = $this->preview('careers');
+            }else{
+                $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
+            }
+        }else{
+            $data['content'] = $this->pageContent('careers');
+        }
+        
         return view('frontend.partials.careers', $data);
     }
 
-    public function contactUs()
+    public function contactUs(Request $req)
     {
         return view('frontend.partials.contact_us');
     }
 
-    public function ourCompany()
-    {
-        return view('frontend.partials.our_company');
+    public function ourCompany(Request $req)
+    {   
+        $param = $req->all();
+        if(!empty($param)){
+            if(isset($param['preview'])){
+                $data['content'] = $this->preview('about-us');
+            }else{
+                $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
+            }
+        }else{
+            $data['content'] = $this->pageContent('about-us');
+        }
+        return view('frontend.partials.our_company', $data);
     }
 
-    public function supportFaq()
+    public function supportFaq(Request $req)
     {
         return view('frontend.partials.support_faq');
     }
 
-    public function supportWayToBuyTickets()
+    public function supportWayToBuyTickets(Request $req)
     {
-        return view('frontend.partials.support_way_to_buy_tickets');
+        $param = $req->all();
+        if(!empty($param)){
+            if(isset($param['preview'])){
+                $data['content'] = $this->preview('way-to-buy-tickets');
+            }else{
+                $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
+            }
+        }else{
+            $data['content'] = $this->pageContent('way-to-buy-tickets');
+        }
+        return view('frontend.partials.support_way_to_buy_tickets', $data);
     }
 
     public function searchResult()

@@ -52,6 +52,7 @@ class MenusTableSeeder extends Seeder
                 ['name' => str_slug('Career'), 'display_name' => 'Career', 'icon' => 'briefcase', 'href' => 'admin/manage-pages/careers', 'pattern' => 'admin/manage-pages'],
                 ['name' => str_slug('Privacy Policy'), 'display_name' => 'Privacy Policy', 'icon' => 'lock', 'href' => 'admin/manage-pages/privacy-policy', 'pattern' => 'admin/manage-pages'],
                 ['name' => str_slug('About Us'), 'display_name' => 'About Us', 'icon' => 'info-circle', 'href' => 'admin/manage-pages/about-us', 'pattern' => 'admin/manage-pages'],
+                ['name' => str_slug('Way to Buy Tickets'), 'display_name' => 'Way to Buy Tickets', 'icon' => 'ticket', 'href' => 'admin/manage-pages/way-to-buy-tickets', 'pattern' => 'admin/manage-pages'],
             ]],
             ['is_parent' => false, 'name' => str_slug('Homepage'), 'display_name' => 'Homepage', 'icon' => 'home', 'href' => 'admin/homepage', 'pattern' => 'admin/homepage'],
             ['is_parent' => true, 'name' => str_slug('Events'), 'display_name' => 'Events', 'icon' => 'calendar', 'href' => '#', 'pattern' => 'admin/event', 'child' => [

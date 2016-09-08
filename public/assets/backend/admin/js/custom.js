@@ -54,8 +54,10 @@ function loadTinyMce()
     tinymce.init({
         selector: "textarea.tinymce",
         menubar: false,
-        plugins: ["textcolor code"],
-        toolbar: "undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor | code"
+        plugins: ["textcolor code paste"],
+        paste_text_sticky: true,
+        paste_text_sticky_default: true,
+        toolbar: "undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor| code"
     });
 }
 

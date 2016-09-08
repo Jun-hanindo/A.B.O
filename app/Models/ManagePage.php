@@ -11,16 +11,12 @@ class ManagePage extends Model
 
     public function findPageBySlug($slug)
     {
-        $data = ManagePage::where('slug' , '=', $slug)->first();
-        if (!empty($data)) {
-        
-            return $data;
-        
-        } else {
-        
-            return false;
+        return  ManagePage::where('slug' , '=', $slug)->first();
+    }
 
-        }
+    public function findPagePublish($slug)
+    {
+        return  ManagePage::where('slug' , '=', $slug)->where('status' , '=', 'publish')->first();
     }
 
     /**
@@ -38,6 +34,7 @@ class ManagePage extends Model
             $data->title = $param['title'];
             $data->slug = $slug;
             $data->content = $param['content'];
+            $data->status = 'publish';
             if($data->save()) {
                 return $data;
             } else {
@@ -49,6 +46,7 @@ class ManagePage extends Model
             $this->title = $param['title'];
             $this->slug = $slug;
             $this->content = $param['content'];
+            $this->status = 'publish';
             if($this->save()) {
                 return $this;
             } else {
@@ -56,6 +54,26 @@ class ManagePage extends Model
 
             }
         }
+
+    }
+
+    function updateStatusToDraft($param, $slug){
+        $data = $this->findPageBySlug($slug);
+        if (!empty($data)) {
+            $data->status = 'draft';
+            if($data->save()) {
+                return $data;
+            } else {
+                return false;
+
+            }
+        } else {
+            return false;
+
+        }
+    }
+
+    function preview($param, $lug){
 
     }
 

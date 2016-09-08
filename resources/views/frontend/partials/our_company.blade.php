@@ -27,8 +27,7 @@
                               <div class="row">
                                   <h3 class="head-about">About Asia Box Office</h3>
                                   <div class="col-md-8">
-                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat laoreet eros, eget aliquet mi maximus eu. Donec nec blandit nisi. Aliquam volutpat eros id nibh congue elementum. Nam lectus quam, feugiat in faucibus orci luctus commodo ut.</p><br>
-                                      <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus sollicitudin condimentum ante, nec volutpat velit vehicula sit amet. Praesent at posuere ipsum. Etiam rutrum consequat risus sit amet dignissim. Nam lectus quam, feugiat in commodo ut, sollicitudin quis odio. Fusce vel tincidunt nisi, pharetra semper sem.</p>
+                                      {!! $content !!}
                                       <a href="#" class="client-btn">Our Clients</a>
                                       <a href="#" class="partner-btn">Our Partners</a>
                                   </div>
