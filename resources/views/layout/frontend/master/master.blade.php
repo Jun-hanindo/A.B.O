@@ -11,6 +11,7 @@
         {!! Html::style('assets/frontend/css/style.css') !!}
         {!! Html::style('assets/frontend/css/custom.css') !!}
         {!! Html::style('assets/frontend/css/color.css') !!}
+        {!! Html::style('assets/frontend/css/responsive.css') !!}
 
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,800,700,900' rel='stylesheet' type='text/css'>
@@ -224,10 +225,12 @@
                     <div class="row">
                         <div class="col-md-3 centeredCap">
                             <div class="footIcon">
-                                <img src="{{ asset('assets/frontend/images/ico-support.png') }}">
+                                <div class="icon">
+                                  <div class="iconself-logo-support"></div>
+                                </div>
                             </div>
                             <div class="linkFoot">
-                                <a href="#">Support ></a>
+                                <a href="#">Support</a>
                             </div>
                             <div class="capFoot">
                                 <p>Need help with anything?</p>
@@ -235,7 +238,9 @@
                         </div>
                         <div class="col-md-3 centeredCap">
                             <div class="footIcon">
-                                <img src="{{ asset('assets/frontend/images/ico-regis.png') }}">
+                                <div class="icon">
+                                  <div class="iconself-logo-user"></div>
+                                </div>
                             </div>
                             <div class="linkFoot">
                                 <a href="https://asiaboxoffice.nliven.co/account/register">Register ></a>
@@ -246,10 +251,12 @@
                         </div>
                         <div class="col-md-3 centeredCap">
                             <div class="footIcon">
-                                <img src="{{ asset('assets/frontend/images/ico-subscribe.png') }}">
+                                <div class="icon">
+                                  <div class="iconself-logo-mail"></div>
+                                </div>
                             </div>
                             <div class="linkFoot">
-                                <a href="#">Subscribe to Us ></a>
+                                <a href="#">Subscribe to Us</a>
                             </div>
                             <div class="capFoot">
                                 <p>Get events updates and tips.</p>
@@ -257,7 +264,9 @@
                         </div>
                         <div class="col-md-3 centeredCap">
                             <div class="footIcon">
-                                <img src="{{ asset('assets/frontend/images/ico-company.png') }}">
+                                <div class="icon">
+                                  <div class="iconself-logo-footer"></div>
+                                </div>
                             </div>
                             <div class="linkFoot">
                                 <a href="{{URL::route('our-company')}}">Our Company ></a>

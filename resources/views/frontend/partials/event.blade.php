@@ -31,7 +31,7 @@
                         @endphp
                         @if(!empty($schedules))
                             <div class="information-title">
-                                <i class="fa fa-calendar"></i> 
+                                <i class="fa fa-calendar-o"></i> 
                                 @foreach($schedules as $sch)
                                     @if ($i == 0 && $count > 1)
                                         {!! date('d', strtotime($sch->date_at)) !!}
@@ -146,7 +146,7 @@
                                                                     @foreach($promotions as $key => $promotion) 
                                                                         <section id="promotion" class="sectionEvent">
                                                                             <img src="{{ $src2.$promotion->featured_image }}">
-                                                                            <h3>{{ $promotion->title }}</h3>
+                                                                            <h3 class="font-bold">{{ $promotion->title }}</h3>
                                                                             {!! $promotion->description !!}
                                                                             <p>Discount: {{ $promotion->discount }}%</p>
                                                                             <p>Start Date: {{ date('d F Y', strtotime($promotion->start_date)) }}</p>
@@ -172,25 +172,25 @@
                                                       <div class="row">
                                                           <div class="">
                                                               <section id="venue" class="sectionEvent">
-                                                                  <h3>{{ $event->Venue->name }}</h3>
+                                                                  <h3 class="font-bold">{{ $event->Venue->name }}</h3>
                                                                   {!! $event->Venue->address !!}
 
                                                                   <div class="mapEvent">
                                                                       {!! $event->Venue->gmap_link !!}
                                                                   </div>
 
-                                                                  <h3>Getting to the Venue</h3>
+                                                                  <h3 class="font-bold">Getting to the Venue</h3>
                                                                   <ul>
                                                                       <li class="mrt">
-                                                                          <h3>By MRT</h3>
+                                                                          <h3 class="font-bold">By MRT</h3>
                                                                           {!! $event->Venue->mrtdirection !!}
                                                                       </li>
                                                                       <li class="taxi">
-                                                                          <h3>By Taxi / UBER Drop Off</h3>
+                                                                          <h3 class="font-bold">By Taxi / UBER Drop Off</h3>
                                                                           {!! $event->Venue->cardirection !!}
                                                                       </li>
                                                                       <li class="car">
-                                                                          <h3>By Car</h3>
+                                                                          <h3 class="font-bold">By Car</h3>
                                                                           {!! $event->Venue->taxidirection !!}
                                                                       </li>
                                                                   </ul>
@@ -267,7 +267,7 @@
                                                       <div class="col-md-5">
                                                           <img src="{{ asset('assets/frontend/images/event1.png') }}">
                                                       </div>
-                                                      <div class="col-md-6">
+                                                      <div class="col-md-6 box-cap">
                                                           <div class="caption">
                                                               <h5>Cameron Mackintosh's Les Misérables</h5>
                                                           </div>
@@ -281,7 +281,7 @@
                                                       <div class="col-md-5">
                                                           <img src="{{ asset('assets/frontend/images/event2.png') }}">
                                                       </div>
-                                                      <div class="col-md-6">
+                                                      <div class="col-md-6 box-cap">
                                                           <div class="caption">
                                                               <h5>Shakespeare in the Park - Romeo and Juliet</h5>
                                                           </div>
@@ -295,7 +295,7 @@
                                                       <div class="col-md-5">
                                                           <img src="{{ asset('assets/frontend/images/event3.png') }}">
                                                       </div>
-                                                      <div class="col-md-6">
+                                                      <div class="col-md-6 box-cap">
                                                           <div class="caption">
                                                               <h5>An Evening with Tom Jones</h5>
                                                           </div>
@@ -309,7 +309,7 @@
                                                       <div class="col-md-5">
                                                           <img src="{{ asset('assets/frontend/images/event4.png') }}">
                                                       </div>
-                                                      <div class="col-md-6">
+                                                      <div class="col-md-6 box-cap">
                                                           <div class="caption">
                                                               <h5>Madagascar Live!</h5>
                                                           </div>
@@ -323,7 +323,7 @@
                                                       <div class="col-md-5">
                                                           <img src="{{ asset('assets/frontend/images/event5.png') }}">
                                                       </div>
-                                                      <div class="col-md-6">
+                                                      <div class="col-md-6 box-cap">
                                                           <div class="caption">
                                                               <h5>Blue Man Group</h5>
                                                           </div>
@@ -345,7 +345,7 @@
                     </div>
                 </div>
             </div>
-</section>
+      </section>
 
 <div class="modal fade" id="eventVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">

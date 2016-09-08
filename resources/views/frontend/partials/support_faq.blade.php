@@ -26,7 +26,7 @@
                   </div>
                   <div class="col-md-9">
                       <div class="main-content">
-                          <div class="career-desc">
+                          <div class="support-desc">
                               <div class="row">
                                   <h3 class="head-about">Frequently Asked Questions</h3>
                                   <div class="col-md-12">
