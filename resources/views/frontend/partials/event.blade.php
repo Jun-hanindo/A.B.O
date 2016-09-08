@@ -187,11 +187,11 @@
                                                                       </li>
                                                                       <li class="taxi">
                                                                           <h3 class="font-bold">By Taxi / UBER Drop Off</h3>
-                                                                          {!! $event->Venue->cardirection !!}
+                                                                          {!! $event->Venue->taxidirection !!}
                                                                       </li>
                                                                       <li class="car">
                                                                           <h3 class="font-bold">By Car</h3>
-                                                                          {!! $event->Venue->taxidirection !!}
+                                                                          {!! $event->Venue->cardirection !!}
                                                                       </li>
                                                                   </ul>
                                                               </section>
