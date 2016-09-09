@@ -340,6 +340,20 @@
     padding: 18px;
     border-bottom: 1px solid #4A4949;
   }
+  .infoBanner{
+    height: auto;
+  }
+  .parentButton button{
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+  .ticket, .place{
+    margin-top: 30px;
+  }
+  .eventInfo .list-unstyled table{
+    width: 100%;
+  }
   .mobile-collapse-header:after { content: "\f055";
     display: block; 
     position: absolute; 
@@ -379,7 +393,7 @@
     position: relative;
     top: 0;
     right: 0;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   .item ul{
     display: block;
@@ -423,7 +437,56 @@
     margin-bottom: 30px;
   }
   .eventBanner .detail h5{
-    font-size: 10px;
+    font-size: 11px;
+  }
+  .eventBanner .btnPlayEvent{
+    top: 25%;
+    left: 45%;
+  }
+  .main-content section{
+    margin-top: 0;
+  }
+  .contentTab .side-left h4{
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 650px){
+  .eventBanner .btnPlayEvent{
+    top: 20%;
+    left: 44%;
+  }
+  .eventBanner .btnPlayEvent a{
+    font-size: 80px;
+  }
+}
+
+@media (max-width: 500px){
+  .eventBanner .btnPlayEvent{
+    top: 18%;
+    left: 43%;
+  }
+  .eventBanner .btnPlayEvent a{
+    font-size: 60px;
+  }
+  .eventTab .nav-tabs>li>a{
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 530px){
+  .eventTab .nav-tabs>li>a{
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 420px){
+  .eventBanner .btnPlayEvent{
+    top: 16%;
+    left: 43%;
+  }
+  .eventBanner .btnPlayEvent a{
+    font-size: 50px;
   }
 }
 

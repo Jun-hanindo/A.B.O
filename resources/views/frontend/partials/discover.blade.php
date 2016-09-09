@@ -58,17 +58,19 @@
                                   <img src="{{ $src.$slider->Event->featured_image1 }}" alt="...">
                                   <div class="carousel-caption bg-{{ $slider->Event->background_color }}">
                                     <div class="container">
-                                        <h5>{{ (!empty($cat)) ? $cat->name : '&nbsp;' }}</h5>
-                                        <h2>{{ $slider->Event->title }}</h2>
+                                        <h5 class="categorySlide font-light">{{ (!empty($cat)) ? $cat->name : '&nbsp;' }}</h5>
+                                        <h2 class="titleSlide font-light">{{ $slider->Event->title }}</h2>
                                         @php 
                                             $schedule = $slider->Event->EventSchedule()->orderBy('date_at', 'asc')->first();
                                         @endphp
-                                        <div class="eventDate"><i class="fa fa-calendar"></i>
-                                            @if(!empty($schedule))
-                                                    {{ date('d F Y', strtotime($schedule->date_at)) }}
-                                                @endif
-                                        </div>
-                                        <div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->Event->Venue->name }}</div>
+                                        <ul>
+                                            <li><div class="eventDate font-light">
+                                                @if(!empty($schedule))
+                                                    <i class="fa fa-calendar"></i>{{ date('d F Y', strtotime($schedule->date_at)) }}
+                                                @endif</div>
+                                            </li>
+                                            <li><div class="eventPlace font-light"><i class="fa fa-map-marker"></i>{{ $slider->Event->Venue->name }}</div></li>
+                                        </ul>
                                         <div class="moreDetail">
                                             <a href="{{ URL::route('event-detail', $slider->Event->slug) }}">
                                                 <button class="btn btnDetail">More Details</button>
@@ -109,7 +111,7 @@
                                     <li class="eventType">{{ $event->category }}&nbsp;</li>
                                     <li class="eventName">{{ $event->title }}</li>
                                     <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ $event->first_date }}</li>
-                                    <li class="eventPlace">{{ $event->venue->name }}</li>
+                                    <li class="eventPlace"><i class="fa fa-map-marker"></i> {{ $event->venue->name }}</li>
                                 </ul>
                             </div>
                         </div>

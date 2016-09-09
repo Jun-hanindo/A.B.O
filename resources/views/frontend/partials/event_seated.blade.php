@@ -9,8 +9,8 @@
           <div class="infoBanner bg-{{ $event->background_color }}">
               <div class="container">
                   <div class="detail">
-                      <h5>{{ (!empty($event->category)) ? $event->category->name : '&nbsp;' }}</h5>
-                      <h2>{{ $event->title }}</h2>
+                      <h5 class="font-light">{{ (!empty($event->category)) ? $event->category->name : '&nbsp;' }}</h5>
+                      <h2 class="font-light">{{ $event->title }}</h2>
                   </div>
                   <div class="moreDetail">
                       <a action="{{ $event->buylink }}">
@@ -31,7 +31,7 @@
                         @endphp
                         @if(!empty($schedules))
                             <div class="information-title">
-                                <i class="fa fa-calendar"></i> 
+                                <i class="fa fa-calendar-o"></i> 
                                 @foreach($schedules as $sch)
                                     @if ($i == 0 && $count > 1)
                                         {!! date('d', strtotime($sch->date_at)) !!}
@@ -45,26 +45,9 @@
                                     @endphp
                                 @endforeach
                             </div>
-                            <ul class="list-unstyled">
-                                @foreach($schedules as $sch)
-                                    <li class="liParent">
-                                        <table>
-                                            <tr>
-                                                <td>{{ date('d F, D', strtotime($sch->date_at)) }}</td>
-                                                <td>
-                                                    @php 
-                                                        $prices = $sch->EventScheduleCategory()->first();
-                                                    @endphp
-                                                    @if(!empty($prices))
-                                                        {{ $prices->additional_info }}
-                                                    @endif
-                                                </td>
-                                                <td>{{ $sch->start_time.'-'.$sch->end_time }}</td>
-                                            </tr>
-                                        </table>
-                                    </li>  
-                                @endforeach
-                            </ul>
+                            <div class="information-event">
+                              {!! $event->price_info !!}
+                            </div>
                         @endif
                     </div>
                     <div class="col-md-4 place">
@@ -83,10 +66,27 @@
                             <i class="fa fa-ticket"></i> {{ !empty($min) ? '$'.$min->price: '' }}
                         </div>
                         <ul class="list-unstyled">
-                            <li class="liParent">
-                                {!! $event->price_info !!}
-                            </li>
-                            <li class="liParent">
+                            
+                            <ul class="list-unstyled">
+                              @foreach($schedules as $sch)
+                                <li class="liParent">
+                                    <table>
+                                        <tr>
+                                            <td>{{ date('d F, D', strtotime($sch->date_at)) }}</td>
+                                            <td>
+                                                @php 
+                                                    $prices = $sch->EventScheduleCategory()->first();
+                                                @endphp
+                                                @if(!empty($prices))
+                                                    {{ $prices->additional_info }}
+                                                @endif
+                                            </td>
+                                            <td>{{ $sch->start_time.'-'.$sch->end_time }}</td>
+                                        </tr>
+                                    </table>
+                                </li>  
+                                @endforeach
+                            <li class="liParent parentButton">
                               <a href="{{ $event->Venue->link_map }}"><button class="btn btnSeat bg-black">See Seat Map</button></a>
                               <a href="{{ $event->buylink }}"><button class="btn btnticket bg-white">More Ticket Info</button></a>
                             </li>

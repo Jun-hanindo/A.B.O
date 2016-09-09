@@ -110,13 +110,13 @@
                                     </div>
                                 </li>
                                 <li class="nav-item list-menu">
-                                    <a href="{{ URL::route('discover')}}" class="hover-li">Discover</a>
+                                    <a href="{{ URL::route('discover')}}" class="hover-li font-light">Discover</a>
                                 </li>
                                 <li class="nav-item list-menu">
-                                    <a href="{{ URL::route('promotion')}}" class="hover-li">Promotions</a>
+                                    <a href="{{ URL::route('promotion')}}" class="hover-li font-light">Promotions</a>
                                 </li>
                                 <li class="nav-item list-menu">
-                                    <a href="#" class="hover-li">Support</a>
+                                    <a href="#" class="hover-li font-light">Support</a>
                                 </li>
                             </ul>
                         </nav>

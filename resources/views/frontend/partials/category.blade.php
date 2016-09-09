@@ -35,7 +35,7 @@
                                     <li class="eventType">{{ $event->cat_name }}</li>
                                     <li class="eventName">{{ $event->title }}</li>
                                     <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ $event->first_date }}</li>
-                                    <li class="eventPlace">{{ $event->Venue->name }}</li>
+                                    <li class="eventPlace"><i class="fa fa-map-marker">{{ $event->Venue->name }}</li>
                                     
                                 </ul>
                             </div>

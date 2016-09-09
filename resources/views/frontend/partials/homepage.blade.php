@@ -37,18 +37,18 @@
                                   <img src="{{ $src.$slider->Event->featured_image1 }}" alt="...">
                                   <div class="carousel-caption bg-{{ $slider->Event->background_color }}">
                                     <div class="container">
-                                        <h5 class="categorySlide">{{ (!empty($cat)) ? $cat->name : '&nbsp;' }}</h5>
-                                        <h2 class="titleSlide">{{ $slider->Event->title }}</h2>
+                                        <h5 class="categorySlide font-light">{{ (!empty($cat)) ? $cat->name : '&nbsp;' }}</h5>
+                                        <h2 class="titleSlide font-light">{{ $slider->Event->title }}</h2>
                                         <ul>
                                             @php 
                                                 $schedule = $slider->Event->EventSchedule()->orderBy('date_at', 'asc')->first();
                                             @endphp
-                                            <li><div class="eventDate"><i class="fa fa-calendar"></i>
+                                            <li><div class="eventDate font-light">
                                                 @if(!empty($schedule))
-                                                    {{ date('d F Y', strtotime($schedule->date_at)) }}
+                                                    <i class="fa fa-calendar"></i>{{ date('d F Y', strtotime($schedule->date_at)) }}
                                                 @endif
                                             </div></li>
-                                            <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->Event->Venue->name }}</div></li>
+                                            <li><div class="eventPlace font-light"><i class="fa fa-map-marker"></i>{{ $slider->Event->Venue->name }}</div></li>
                                         </ul>
                                         <div class="moreDetail">
                                             <a href="{{ URL::route('event-detail', $slider->Event->slug) }}">
