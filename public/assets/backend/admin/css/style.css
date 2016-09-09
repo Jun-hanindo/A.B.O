@@ -19,5 +19,8 @@
 	opacity: 1;
 }
 #button_draft{
-	margin-right: 13px;
+	margin-left: 10px;
+}
+.btn-preview{
+	margin-top: 10px;
 }

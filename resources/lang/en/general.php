@@ -198,7 +198,9 @@ return [
     'office_operating_hours'   => 'Office Operating Hours',
     'hotline'   => 'Hotline',
     'hotline_operating_hours'   => 'Hotline Operating Hours',
-    'sort_order'    => 'Sort Order'
+    'sort_order'    => 'Sort Order',
+    'video_link'    => 'Video Link',
+    'embed' => 'Embed',
     // 'january' => 'January',
     // 'february' => 'February',
     // 'march' => 'March',

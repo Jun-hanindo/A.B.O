@@ -19,10 +19,11 @@ class EventsController extends Controller
         parent::__construct($model);
     }
 
-    public function index($slug)
+    public function index(Request $req, $slug)
     {
+        $param = $req->all();
         $result['event'] = $this->model->findEventBySlug($slug);
-        if(!empty($result['event']) && $result['event']->avaibility && !empty($result['event']->category)){
+        if((!empty($result['event']) && $result['event']->avaibility && !empty($result['event']->category)) || isset($param['preview'])){
             $result['min'] = $this->model->minPrice($slug);
             $result['src'] = url('uploads/events').'/';
             $result['src2'] = url('uploads/promotions').'/';

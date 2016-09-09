@@ -3,9 +3,9 @@
     <script>
     $(document).ready(function() {
         
-        loadTinyMce();
+        loadTextEditor();
 
-        $("#button_draft2").unbind('click').bind('click', function () {
+        $("#button_draft2, #button_preview").unbind('click').bind('click', function () {
             update();                
         });
 
@@ -15,7 +15,8 @@
     {
         
         var title = $("#title").val();
-        var content = tinyMCE.get('content').getContent();
+        var content = $("#content").val();
+
         var slug = $("#slug").val();
         var uri = "{{ URL::route('admin-post-update-manage-page', "::param") }}";
         uri = uri.replace('::param', slug);

@@ -6,7 +6,7 @@
     $(document).ready(function() {
         
         loadData();
-        loadTinyMce();
+        loadTextEditor();
 
         function loadData()
         {
@@ -121,7 +121,7 @@
                 modal_loader();
                 var name = $("#name").val();
                 var icon = $("#icon").val();
-                var description = tinyMCE.get('description').getContent();
+                var description = $("#description").val();
                 $.ajax({
                     url: "{{ route('admin-post-event-category') }}",
                     type: "POST",
@@ -153,7 +153,7 @@
                 
                 var name = $("#name").val();
                 var icon = $("#icon").val();
-                var description = tinyMCE.get('description').getContent();
+                var description = $("#description").val();
                 var id = $("#id").val();
                 modal_loader();
                 var uri = "{{ URL::route('admin-update-event-category', "::param") }}";
@@ -206,7 +206,7 @@
                     $("#name").val(data.name);
                     $("#icon").val(data.icon);
                     $('#icon').selectpicker('val', data.icon);
-                    tinyMCE.get('description').setContent(data.description);
+                    $("#description").val(data.description);
                 },
                 error: function(response){
                     loadData();
@@ -220,7 +220,7 @@
             $("#name").val('');
             $("#icon").val('');
             $("#id").val('');
-            tinyMCE.get('description').setContent('');
+            $("#description").val('');
         }
 
     });

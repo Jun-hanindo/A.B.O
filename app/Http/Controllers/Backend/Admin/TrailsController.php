@@ -51,7 +51,7 @@ class TrailsController extends BaseController
                     return $name;
                 })
                 ->editColumn('created_at', function($data){
-                    $date = date('d M Y', strtotime($data->created_at));
+                    $date = date('d M Y h:i A', strtotime($data->created_at));
                     return $date;
                 })
                 ->make(true);

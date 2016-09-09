@@ -56,7 +56,7 @@
                                 {!! Form::errorMsg('link_map') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('gmap_link') }} gmap_link">
-                                {!! Form::label('gmap_link', trans('general.gmap_link').' *') !!}
+                                {!! Form::label('gmap_link', trans('general.gmap_link').' ('.trans('general.embed').')'.' *') !!}
                                 {!! Form::text('gmap_link', $data->gmap_link, ['class' => 'form-control','maxlength'=>'1000', 'placeholder' => trans('general.gmap_link')]) !!}
                                 {!! Form::errorMsg('gmap_link') !!}
                             </div>

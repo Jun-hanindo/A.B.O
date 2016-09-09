@@ -3,7 +3,9 @@
 @section('content')
         <section class="eventBanner">
           <div class="imageBanner">
-              <div class="btnPlayEvent"><a data-toggle="modal" data-target="#eventVideo"><i class="fa fa-play-circle-o"></i></a></div>
+              @if(!empty($event->video_link))
+                <div class="btnPlayEvent"><a data-toggle="modal" data-target="#eventVideo"><i class="fa fa-play-circle-o"></i></a></div>
+              @endif
               <img src="{{ $src.$event->featured_image1 }}">
           </div>
           <div class="infoBanner bg-{{ $event->background_color }}">
@@ -153,7 +155,7 @@
                                                                             <img src="{{ $src2.$promotion->featured_image }}">
                                                                             <h3>{{ $promotion->title }}</h3>
                                                                             {!! $promotion->description !!}
-                                                                            <p>Discount: {{ $promotion->discount }}%</p>
+                                                                            <p>Discount: {{ ($promotion->discount > 0) ? $promotion->discount.'%' : '$'.$promotion->discount_nominal }}</p>
                                                                             <p>Start Date: {{ date('d F Y', strtotime($promotion->start_date)) }}</p>
                                                                             <p>End Date: {{ date('d F Y', strtotime($promotion->end_date)) }}</p>
                                                                         </section>
@@ -361,7 +363,7 @@
               <h4 class="modal-title" id="myModalLabel">Event Promotion Video</h4>
             </div>
             <div class="modal-body">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/NE7F0f2-rtA" frameborder="0" allowfullscreen></iframe>
+              {!! $event->video_link !!}
             </div>
           </div>
         </div>

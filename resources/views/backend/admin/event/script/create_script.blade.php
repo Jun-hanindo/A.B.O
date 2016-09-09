@@ -156,9 +156,9 @@
                 fd.append('featured_image3',side_i);
             }
 
-            for (i=0; i < tinyMCE.editors.length; i++){
-                var content = tinyMCE.editors[i].save();
-            }
+            // for (i=0; i < tinyMCE.editors.length; i++){
+            //     var content = tinyMCE.editors[i].save();
+            // }
 
             var other_data = $('#form-event').serializeArray();
             $.each(other_data,function(key,input){
@@ -588,9 +588,9 @@
                 fd.append('featured_image',image);
             }
 
-            for (i=0; i < tinyMCE.editors.length; i++){
-                var content = tinyMCE.editors[i].save();
-            }
+            // for (i=0; i < tinyMCE.editors.length; i++){
+            //     var content = tinyMCE.editors[i].save();
+            // }
 
             var title = $('#title_promo').val();
             var description = $().val('#description_promo').val();
@@ -641,9 +641,9 @@
                 fd.append('featured_image',image);
             }
 
-            for (i=0; i < tinyMCE.editors.length; i++){
-                var content = tinyMCE.editors[i].save();
-            }
+            // for (i=0; i < tinyMCE.editors.length; i++){
+            //     var content = tinyMCE.editors[i].save();
+            // }
 
             var title = $('#title_promo').val();
             var description = $().val('#description_promo').val();
@@ -722,7 +722,7 @@
                         $('#discount-nominal').show();
                     }
                     $('#preview_image').attr('src', data.src_featured_image);  
-                    tinyMCE.get('description_promo').setContent(data.description); 
+                    $("#description_promo").val(data.description);
                 },
                 error: function(response){
                     loadDataSchedule(event_id);
@@ -741,7 +741,7 @@
             $("#discount").val('');
             $("#discount_nominal").val('');
             $(".discount_type-check").bootstrapSwitch('state', true); 
-            tinyMCE.get('description_promo').setContent('');
+            $('#description_promo').val('');
             $('#start_date').data('datepicker').setDate(null);
             $('#end_date').data('datepicker').setDate(null);
             $('#discount-percent').show();
@@ -753,7 +753,7 @@
             modal_loader();
             var name = $("#name-cat").val();
             var icon = $("#icon-cat").val();
-            var description = tinyMCE.get('description-cat').getContent();
+            var description = $("#description-cat").val();
             $.ajax({
                 url: "{{ route('admin-post-event-category') }}",
                 type: "POST",
@@ -788,13 +788,13 @@
         function clearInputCat(){
             $("#name-cat").val('');
             $("#icon-cat").val('');
-            tinyMCE.get('description-cat').setContent('');
+            $("#description-cat").val('');
         }
 
 
 
         $(document).ready(function(){
-            loadTinyMce(); 
+            loadTextEditor(); 
 
             var event_id = $('#event_id').val();
             if(event_id != ''){
@@ -819,7 +819,7 @@
             //$('#button_submit').hide();
             //$('#button_draft').show();
 
-            $('#button_draft').on('click',function(){
+            $('#button_draft, #button_preview').on('click',function(){
                 var cat = '';
                 autoSaveUpdateEvent(cat);
             });   

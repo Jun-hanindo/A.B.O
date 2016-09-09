@@ -68,6 +68,7 @@ class ManagePagesController extends BaseController
         $trail = $data['title'];
         $insertTrail = new Trail();
         $insertTrail->insertTrail($trail);
+        $data['setting'] = $this->setting;
 
         return view('backend.admin.manage_page.form', $data);
     }

@@ -92,6 +92,7 @@ class Event extends Model
         $this->event_type = isset($param['event_type']);
         $this->venue_id = $param['venue_id'];
         $this->background_color = $param['background_color'];
+        $this->video_link = $param['video_link'];
         $this->avaibility = true;
 
         $pathDest = public_path().'/uploads/events';
@@ -172,6 +173,7 @@ class Event extends Model
 	        $data->event_type = isset($param['event_type']);
 	        $data->venue_id = $param['venue_id'];
             $data->background_color = $param['background_color'];
+            $data->video_link = $param['video_link'];
             $data->avaibility = true;
 
             $pathDest = public_path().'/uploads/events';
@@ -474,7 +476,8 @@ class Event extends Model
             'promotions.id as promotion_id', 'promotions.featured_image as featured_image', 
             'promotions.description as promo_desc', 'promotions.start_date as start_date', 
             'promotions.end_date as end_date', 'promotions.category as category',
-            'promotions.title as promo_title')
+            'promotions.title as promo_title', 'promotions.discount as discount', 
+            'promotions.discount_nominal as discount_nominal')
             ->join('event_promotions', 'event_promotions.event_id', '=', 'events.id')
             ->join('promotions', 'promotions.id', '=', 'event_promotions.promotion_id')
             ->where('events.avaibility','=',true)
@@ -537,7 +540,8 @@ class Event extends Model
             'promotions.id as promotion_id', 'promotions.featured_image as featured_image',  
             'promotions.description as promo_desc', 'promotions.start_date as start_date', 
             'promotions.end_date as end_date', 'promotions.category as category',
-            'promotions.title as promo_title')
+            'promotions.title as promo_title', 'promotions.discount as discount', 
+            'promotions.discount_nominal as discount_nominal')
             ->join('event_promotions', 'event_promotions.event_id', '=', 'events.id')
             ->join('promotions', 'promotions.id', '=', 'event_promotions.promotion_id')
             ->where('events.avaibility','=', true)

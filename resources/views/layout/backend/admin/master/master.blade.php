@@ -127,7 +127,9 @@
         {!! Html::script('assets/plugins/pace/pace.min.js') !!}
         {!! Html::script('assets/plugins/sweetalert/sweetalert.min.js') !!}
         {!! Html::script('assets/backend/admin/js/custom.js') !!}
-        {!! Html::script('assets/plugins/tinymce/tinymce.min.js') !!}
+        {{-- {!! Html::script('assets/plugins/tinymce/tinymce.min.js') !!} --}}
+        {!! Html::script('assets/plugins/ckeditor/ckeditor.js') !!}
+        {!! Html::script('assets/plugins/ckeditor/adapters/jquery.js') !!}
         {!! Html::script('assets/plugins/datepicker/bootstrap-datepicker.js') !!}
         {!! Html::script('assets/plugins/bootstrap-switch/bootstrap-switch.min.js') !!}
         {!! Html::script('assets/plugins/bootstrap-select/bootstrap-select.min.js') !!}

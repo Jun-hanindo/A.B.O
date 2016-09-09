@@ -3,7 +3,7 @@
     <script>
     $(document).ready(function() {
         
-        loadTinyMce();
+        loadTextEditor();
         loadSwitchButton('discount_type-check');
         discountSwitch();
 

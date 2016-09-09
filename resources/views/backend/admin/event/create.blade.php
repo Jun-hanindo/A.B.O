@@ -136,6 +136,11 @@
                                 {!! Form::text('buylink', old('buylink'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.buylink')]) !!}
                                 {!! Form::errorMsg('buylink') !!}
                             </div>
+                            <div class="form-group{{ Form::hasError('video_link') }} video_link">
+                                {!! Form::label('video_link', trans('general.video_link').' ('.trans('general.embed').')') !!}
+                                {!! Form::text('video_link', old('video_link'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.video_link')]) !!}
+                                {!! Form::errorMsg('video_link') !!}
+                            </div>
                             <div class="form-group{{ Form::hasError('categories') }} category">
                                 {!! Form::label('category', trans('general.category').' *') !!} <a href="javascript:void(0)" class="btn btn-primary btn-xs addCategory" title="Add"><i class="fa fa-plus fa-fw"></i></a>
                                 {!! Form::select('categories[]', $data['categories'], null, ['class' => 'form-control categories', 'multiple' => 'multiple', 'id' => 'categories']) !!}
@@ -152,8 +157,9 @@
                             </div>
                             <div class="box-footer">
                                 <a href="{{ route('admin-index-event') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>
-                                <input class="btn btn-primary pull-right" title="{{ trans('general.button_save') }}" type="submit" value="{{ trans('general.button_publish') }}" id="button_submit">
-                                <button type="button" id="button_draft" class="btn btn-primary pull-right" title="{{ trans('general.button_draft') }}">{{ trans('general.button_draft') }}</button>
+                                <button type="button" id="button_draft" class="btn btn-primary " title="{{ trans('general.button_draft') }}">{{ trans('general.button_draft') }}</button>
+                                <input class="btn btn-primary" title="{{ trans('general.button_save') }}" type="submit" value="{{ trans('general.button_publish') }}" id="button_submit">
+                                <a href="" target="_blank" id="button_preview" class="btn btn-default btn-preview" title="{{ trans('general.button_preview') }}">{{ trans('general.button_preview') }}</a>
                             </div>
                         </div>
                         
@@ -355,7 +361,7 @@
                 </div>
                 <div class="form-group icon">
                     <label for="event" class="control-label">{{ trans('general.icon') }} :</label>
-                    <select name="icon" id="icon" class="form-control selectpicker" data-live-search="true">
+                    <select name="icon" id="icon-cat" class="form-control selectpicker" data-live-search="true">
                         @if(!empty($data['icons']))
                             @foreach ($data['icons'] as $icon)
                                 <optgroup label="{!! $icon['name'] !!}">
