@@ -1,10 +1,9 @@
+/*thumb height*/
 /*.box-release .boxInfo{
   height: 170px;
 }*/
-/*.career-desc .job-list table tr td a, 
-.career-desc .search-list table tr td a{
-  color: #fff;
-}*/
+
+/*Auto Search*/
 #ul-search{
   width: 450px;
   position: absolute;
@@ -55,6 +54,3 @@
   border-top: 1px solid #ddd;
   height: 80px;
 }
-/*.append-events{
-  margin-bottom: 30px;
-}*/
