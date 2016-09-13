@@ -33,6 +33,7 @@
                 success: function (response) {
                     $('#modalYes').modal('show');
                     $('#modalNo').modal('hide');
+                    clearInputMessage();
                 },
                 error: function(response){
                     // $('#modalYes').modal('show');
@@ -48,8 +49,13 @@
                         $('#modalNo').modal('hide');
                         $('.error-modal').html('<div class="alert alert-danger">' +response.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                     }
+                    clearInputMessage();
                 }
             });
+        }
+
+        function clearInputMessage(){
+            $('input, textarea').val('');
         }
 
 </script>
