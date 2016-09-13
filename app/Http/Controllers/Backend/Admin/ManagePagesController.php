@@ -88,8 +88,6 @@ class ManagePagesController extends BaseController
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            flash()->success($updateData->title.' '.trans('general.update_success'));
-
             if($req->ajax() && $param['status'] == 'draft'){
                 $this->model->updateStatusToDraft($param, $slug);
 
@@ -98,9 +96,13 @@ class ManagePagesController extends BaseController
                     'status' => 'success',
                     'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
                 ],200);
-            }
+            }else{
 
-            return redirect()->route('admin-manage-page', $slug);
+                flash()->success($updateData->title.' '.trans('general.update_success'));
+
+                return redirect()->route('admin-manage-page', $slug);
+
+            }
 
         //} else {
         } catch (\Exception $e) {

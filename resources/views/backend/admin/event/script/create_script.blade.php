@@ -198,6 +198,8 @@
                         $('#button_update_promotion').hide();
                         $('#button_save_promotion').show();
                         saveTrailModal('Promotion Form');
+                    }else if(cat == 'preview'){
+                        location.reload();
                     }else{
                         window.location.href = "{{ route('admin-index-event') }}"
                     }
@@ -819,8 +821,13 @@
             //$('#button_submit').hide();
             //$('#button_draft').show();
 
-            $('#button_draft, #button_preview').on('click',function(){
+            $('#button_draft').on('click',function(){
                 var cat = '';
+                autoSaveUpdateEvent(cat);
+            }); 
+
+            $('#button_preview').on('click',function(){
+                var cat = 'preview';
                 autoSaveUpdateEvent(cat);
             });   
 

@@ -52,6 +52,16 @@
             @endif
         </div>
     </section>
+@else
+    <section class="newRelease">
+        <div class="container">
+            <div class="row append-events">
+                <div class="box-release">
+                    <h3 class="text-center">There are no event.</h3>
+                </div>
+            </div>
+        </div>
+    </section>
 @endif
 @stop
 @include('frontend.partials.script.category_script')

@@ -1,14 +1,17 @@
 @extends('layout.frontend.master.master')
 @section('title', 'Asia Box Office')
 @section('content')
-        <section class="eventBanner">
+        @php
+            $promotions = $event->promotions;
+        @endphp
+        <section class="eventBanner" id="eventBanner">
           <div class="imageBanner">
               @if(!empty($event->video_link))
                 <div class="btnPlayEvent"><a data-toggle="modal" data-target="#eventVideo"><i class="fa fa-play-circle-o"></i></a></div>
               @endif
               <img src="{{ $src.$event->featured_image1 }}">
           </div>
-          <div class="infoBanner bg-{{ $event->background_color }}">
+          <div class="infoBanner bg-{{ $event->background_color }}" id="eventTabShow">
               <div class="container">
                   <div class="detail">
                       <h5 class="font-light">{{ (!empty($event->category)) ? $event->category->name : '&nbsp;' }}</h5>
@@ -22,6 +25,26 @@
               </div>
           </div>
         </section>
+        <div class="eventTabScroll bg-{{ $event->background_color }}">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="container">
+                <ul class="" role="">
+                    <li><a href="#eventBanner" class="smoothScroll backtop font-light">Back To Summary</a></li>
+                    <li><a href="#eventTabShow" class="smoothScroll active">About This Event</a></li>
+                    @if(!$promotions->isEmpty())
+                        <li><a href="#aboutBox" class="smoothScroll">Promotions</a></li>
+                    @endif
+                    <li><a href="#promoBox" class="smoothScroll">Venue Info</a></li>
+                    @if(!empty($event->admission))
+                        <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
+                    @endif
+                    <li><a href="#"><button class="btn btnBuy btnABO">Buy Now</button></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
         <section class="eventInfo">
             <div class="container">
                 <div class="row">
@@ -68,26 +91,24 @@
                             <i class="fa fa-ticket"></i> {{ !empty($min) ? '$'.$min->price: '' }}
                         </div>
                         <ul class="list-unstyled">
-                            
-                            <ul class="list-unstyled">
-                              @foreach($schedules as $sch)
-                                <li class="liParent">
-                                    <table>
-                                        <tr>
-                                            <td>{{ date('d F, D', strtotime($sch->date_at)) }}</td>
-                                            <td>
-                                                @php 
-                                                    $prices = $sch->EventScheduleCategory()->first();
-                                                @endphp
-                                                @if(!empty($prices))
-                                                    {{ $prices->additional_info }}
-                                                @endif
-                                            </td>
-                                            <td>{{ $sch->start_time.'-'.$sch->end_time }}</td>
-                                        </tr>
-                                    </table>
-                                </li>  
-                                @endforeach
+                            @foreach($schedules as $sch)
+                              <li class="liParent">
+                                  <table>
+                                      <tr>
+                                          <td>{{ date('d F, D', strtotime($sch->date_at)) }}</td>
+                                          <td>
+                                              @php 
+                                                  $prices = $sch->EventScheduleCategory()->first();
+                                              @endphp
+                                              @if(!empty($prices))
+                                                  {{ $prices->additional_info }}
+                                              @endif
+                                          </td>
+                                          <td>{{ $sch->start_time.'-'.$sch->end_time }}</td>
+                                      </tr>
+                                  </table>
+                              </li>  
+                              @endforeach
                             <li class="liParent parentButton">
                               <a href="{{ $event->Venue->link_map }}"><button class="btn btnSeat bg-black">See Seat Map</button></a>
                               <a href="{{ $event->buylink }}"><button class="btn btnticket bg-white">More Ticket Info</button></a>
@@ -98,10 +119,14 @@
                         <div class="container">
                             <div class="eventTab">
                                 <ul class="nav nav-tabs" role="tablist">
-                                  <li role="presentation" class="active"><a href="#aboutEvent" aria-controls="home" role="tab" data-toggle="tab">About This Event</a></li>
-                                  <li role="presentation"><a href="#promotions" aria-controls="profile" role="tab" data-toggle="tab">Promotions</a></li>
-                                  <li role="presentation"><a href="#venue" aria-controls="messages" role="tab" data-toggle="tab">Venue Info</a></li>
-                                  <li role="presentation"><a href="#admission" aria-controls="settings" role="tab" data-toggle="tab">Admission Rules</a></li>
+                                    <li><a href="#eventTabShow" class="smoothScroll">About This Event</a></li>
+                                    @if(!$promotions->isEmpty())
+                                        <li><a href="#aboutBox" class="smoothScroll">Promotions</a></li>
+                                    @endif
+                                    <li><a href="#promoBox" class="smoothScroll">Venue Info</a></li>
+                                    @if(!empty($event->admission))
+                                        <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -115,7 +140,7 @@
                           <div class="container">
                               <div class="row">
                                   <div class="col-md-8">
-                                      <div class="aboutBox boxBorder">
+                                      <div class="aboutBox boxBorder" id="aboutBox">
                                           <div class="row">
                                               <div class="side-left col-md-3">
                                                   <div class="aboutDesc">
@@ -135,40 +160,37 @@
                                               </div>
                                           </div>
                                       </div>
-                                      <div class="promoBox boxBorder">
-                                          <div class="row">
-                                              <div class="side-left col-md-3">
-                                                  <div class="aboutDesc">
-                                                      <h4>Promotions</h4>
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-9">
-                                                  <div class="main-content">
-                                                      <div class="row">
-                                                          <div class="">
-                                                              @php
-                                                                    $promotions = $event->promotions;
-                                                                @endphp
-                                                                @if(!empty($promotions))
-                                                                    @foreach($promotions as $key => $promotion) 
-                                                                        <section id="promotion" class="sectionEvent">
-                                                                            <img src="{{ $src2.$promotion->featured_image }}">
-                                                                            <h3>{{ $promotion->title }}</h3>
-                                                                            {!! $promotion->description !!}
-                                                                            <p>Discount: {{ ($promotion->discount > 0) ? $promotion->discount.'%' : '$'.$promotion->discount_nominal }}</p>
-                                                                            <p>Start Date: {{ date('d F Y', strtotime($promotion->start_date)) }}</p>
-                                                                            <p>End Date: {{ date('d F Y', strtotime($promotion->end_date)) }}</p>
-                                                                        </section>
-                                                                    @endforeach
-                                                                @endif
-                                                              
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="venueBox boxBorder">
+                                      @if(!$promotions->isEmpty())
+                                        <div class="promoBox boxBorder" id="promoBox">
+                                            <div class="row">
+                                                <div class="side-left col-md-3">
+                                                    <div class="aboutDesc">
+                                                        <h4>Promotions</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="main-content">
+                                                        <div class="row">
+                                                            <div class="">
+                                                                      @foreach($promotions as $key => $promotion) 
+                                                                          <section id="promotion" class="sectionEvent">
+                                                                              <img src="{{ $src2.$promotion->featured_image }}">
+                                                                              <h3>{{ $promotion->title }}</h3>
+                                                                              {!! $promotion->description !!}
+                                                                              <p>Discount: {{ ($promotion->discount > 0) ? $promotion->discount.'%' : '$'.$promotion->discount_nominal }}</p>
+                                                                              <p>Start Date: {{ date('d F Y', strtotime($promotion->start_date)) }}</p>
+                                                                              <p>End Date: {{ date('d F Y', strtotime($promotion->end_date)) }}</p>
+                                                                          </section>
+                                                                      @endforeach
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      @endif
+                                      <div class="venueBox boxBorder" id="venueBox">
                                           <div class="row">
                                               <div class="side-left col-md-3">
                                                   <div class="aboutDesc">
@@ -188,7 +210,7 @@
                                                                   </div>
 
                                                                   <h3 class="font-bold">Getting to the Venue</h3>
-                                                                  <ul>
+                                                                  <ul id="getvenue">
                                                                       <li class="mrt">
                                                                           <h3 class="font-bold">By MRT</h3>
                                                                           {!! $event->Venue->mrtdirection !!}
@@ -209,26 +231,28 @@
                                               </div>
                                           </div>
                                       </div>
-                                      <div class="admissionBox boxBorder">
-                                          <div class="row">
-                                              <div class="side-left col-md-3">
-                                                  <div class="aboutDesc">
-                                                      <h4>Admission Rules</h4>
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-9">
-                                                  <div class="main-content">
-                                                      <div class="row">
-                                                          <div class="">
-                                                              <section id="rules" class="sectionEvent">
-                                                                  {!! $event->admission !!}
-                                                              </section>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
+                                      @if(!empty($event->admission))
+                                        <div class="admissionBox boxBorder" id="admissionBox">
+                                            <div class="row">
+                                                <div class="side-left col-md-3">
+                                                    <div class="aboutDesc">
+                                                        <h4>Admission Rules</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="main-content">
+                                                        <div class="row">
+                                                            <div class="">
+                                                                <section id="rules" class="sectionEvent">
+                                                                    {!! $event->admission !!}
+                                                                </section>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      @endif
                                   </div>
                                   <div class="col-md-4">
                                       <div class="formPromo">

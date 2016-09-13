@@ -289,7 +289,7 @@
                             </div>
                             <ul class="list-unstyled mobile-collapse-body">
                                 <li><a href="{{URL::route('home')}}">Home</a></li>
-                                <li><a href="{{URL::route('search-result')}}">Search For Events</a></li>
+                                <li><a href="{{URL::route('event-search-get', 'q=all&sort=date')}}">Search For Events</a></li>
                                 <li><a href="{{URL::route('discover')}}">Discover Events</a></li>
                                 <li><a href="{{URL::route('promotion')}}">Promotions</a></li>
                             </ul>
@@ -374,6 +374,7 @@
     {!! Html::script('assets/frontend/js/main.js') !!}
     {!! Html::script('assets/frontend/js/bootstrap.min.js') !!}
     {!! Html::script('assets/frontend/js/custom.js') !!}
+    {!! Html::script('assets/frontend/js/smoothscroll.js') !!}
     
     @yield('script')
 
@@ -381,84 +382,94 @@
 
     var base_url = {!! json_encode(url('/')) !!};
 
-   $(document).ready(function(){
-    $('.mobile-collapse-header').click(function() {
+    $(document).ready(function(){
+        $('.mobile-collapse-header').click(function() {
      
-          $(this).next('ul').slideToggle();
-          $(this).next('.facebookLike').slideToggle();
-          $(this).next('.mobileApp').slideToggle();
-          return false;
-      });
+            $(this).next('ul').slideToggle();
+            $(this).next('.facebookLike').slideToggle();
+            $(this).next('.mobileApp').slideToggle();
+            return false;
+        });
+        
         $(window).resize(toggleFooter);
         toggleFooter();
-         })
+    })
 
-        toggleFooter = function (){
-          var current_width = $(window).width();
+    toggleFooter = function (){
+        var current_width = $(window).width();
         if (current_width < 960) {
               toggleFooter();
         }else{
            
-        $('.mobile-collapse-header').next('ul').slideDown();
-        $('.mobile-collapse-header').next('.facebookLike').slideDown();
-        $('.mobile-collapse-header').next('.mobileApp').slideDown();
+            $('.mobile-collapse-header').next('ul').slideDown();
+            $('.mobile-collapse-header').next('.facebookLike').slideDown();
+            $('.mobile-collapse-header').next('.mobileApp').slideDown();
         }
 
 
-        }
+    }
 
 
-        $('.mobile-collapse-header-top').click(function(){
+    $('.mobile-collapse-header-top').click(function(){
         $('.mobile-collapse-body-top').slideToggle();
-        })
+    })
 
-        $('.mobile-flag').click(function(){
-          $(this).toggleClass('shown');
+    $('.mobile-flag').click(function(){
+        $(this).toggleClass('shown');
         $('.mobile-flag-collapse').slideToggle();
-        })
+    })
 
-        $('.lang-box').click(function(){
-          $('.lang-box ul').slideUp();
-          $(this).find('.lang-link').removeClass('shown')
-          if ($(this).find('ul').is(':visible')){
+    $('.lang-box').click(function(){
+        $('.lang-box ul').slideUp();
+        $(this).find('.lang-link').removeClass('shown')
+        if ($(this).find('ul').is(':visible')){
             $('.lang-box ul').slideUp();
             $(this).find('.lang-link').removeClass('shown')
-          }else{
+        }else{
             $(this).find('ul').slideDown();
             $('.lang-link').removeClass('shown')
             $(this).find('.lang-link').addClass('shown')
-          }
-          
-        })
+        }
+      
+    })
 
-        $('.cd-dropdown-trigger').click(function(){
-          if ($(this).is(':not(.dropdown-is-active)')){
+    $('.cd-dropdown-trigger').click(function(){
+        if ($(this).is(':not(.dropdown-is-active)')){
             $('.lang-box ul').hide();
             $('.lang-link').removeClass('shown')
-          }
-        })
+        }
+    })
 
 
-         $('.li-flag').click(function(){
-          $('.li-flag ul').slideUp();
-          $(this).find('.flag-expand').removeClass('shown')
-          if ($(this).find('ul').is(':visible')){
+    $('.li-flag').click(function(){
+        $('.li-flag ul').slideUp();
+        $(this).find('.flag-expand').removeClass('shown')
+        if ($(this).find('ul').is(':visible')){
             $('.li-flag ul').slideUp();
-           $(this).find('.flag-expand').removeClass('shown')
-          }else{
+            $(this).find('.flag-expand').removeClass('shown')
+        }else{
             $(this).find('ul').slideDown();
             $('.flag-expand').removeClass('shown')
             $(this).find('.flag-expand').addClass('shown')
-          }
-          
-        })
+        }
+      
+    })
 
-         $('.mobile-flag').click(function(){
-          if ($(this).is(':not(.shown)')){
-             $('.li-flag ul').hide();
+    $('.mobile-flag').click(function(){
+        if ($(this).is(':not(.shown)')){
+            $('.li-flag ul').hide();
             $('.flag-expand').removeClass('shown')
-          }
-        })
+        }
+    })
+
+    $(document).scroll(function() {
+        var y = $(this).scrollTop();
+        if (y > 800) {
+          $('.eventTabScroll').fadeIn();
+        } else {
+          $('.eventTabScroll').fadeOut();
+        }
+    });
 
    </script>
 </html>

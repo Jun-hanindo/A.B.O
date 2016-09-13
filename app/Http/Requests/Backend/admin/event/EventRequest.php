@@ -30,7 +30,6 @@ class EventRequest extends Request
             $rules =  [
                 'title'             => 'required',
                 'description'       => 'required',
-                'admission'         => 'required',
                 'schedule_info'        => 'required',
                 'featured_image1'   => 'mimes:jpg,jpeg,png,gif',
                 'featured_image2'   => 'mimes:jpg,jpeg,png,gif',
@@ -60,7 +59,6 @@ class EventRequest extends Request
             return [
                 'title'             => 'required',
                 'description'       => 'required',
-                'admission'         => 'required',
                 'schedule_info'        => 'required',
                 'featured_image1'   => 'required|mimes:jpg,jpeg,png,gif',
                 'featured_image2'   => 'required|mimes:jpg,jpeg,png,gif',

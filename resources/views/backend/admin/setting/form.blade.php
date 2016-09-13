@@ -119,6 +119,48 @@
                                 {!! Form::errorMsg('hotline_operating_hours') !!}
                             </div>
                         </div>
+                        <div class="form-group{{ Form::hasError('mail_driver') }} mail_driver">
+                            {!! Form::label('mail_driver', trans('general.mail_driver'), ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::text('setting[mail_driver]', isset($data['mail_driver']) ? $data['mail_driver'] : null, ['class' => 'form-control', 'placeholder' => trans('general.mail_driver')]) !!}
+                                {!! Form::errorMsg('mail_driver') !!}
+                            </div>
+                        </div>
+                        <div class="form-group{{ Form::hasError('mail_host') }} mail_host">
+                            {!! Form::label('mail_host', trans('general.mail_host'), ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::text('setting[mail_host]', isset($data['mail_host']) ? $data['mail_host'] : null, ['class' => 'form-control', 'placeholder' => trans('general.mail_host')]) !!}
+                                {!! Form::errorMsg('mail_host') !!}
+                            </div>
+                        </div>
+                        <div class="form-group{{ Form::hasError('mail_port') }} mail_port">
+                            {!! Form::label('mail_port', trans('general.mail_port'), ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::text('setting[mail_port]', isset($data['mail_port']) ? $data['mail_port'] : null, ['class' => 'form-control', 'placeholder' => trans('general.mail_port')]) !!}
+                                {!! Form::errorMsg('mail_port') !!}
+                            </div>
+                        </div>
+                        <div class="form-group{{ Form::hasError('mail_username') }} mail_username">
+                            {!! Form::label('mail_username', trans('general.mail_username'), ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::text('setting[mail_username]', isset($data['mail_username']) ? $data['mail_username'] : null, ['class' => 'form-control', 'placeholder' => trans('general.mail_username')]) !!}
+                                {!! Form::errorMsg('mail_username') !!}
+                            </div>
+                        </div>
+                        <div class="form-group{{ Form::hasError('mail_password') }} mail_password">
+                            {!! Form::label('mail_password', trans('general.mail_password'), ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::text('setting[mail_password]', isset($data['mail_password']) ? $data['mail_password'] : null, ['class' => 'form-control', 'placeholder' => trans('general.mail_password')]) !!}
+                                {!! Form::errorMsg('mail_password') !!}
+                            </div>
+                        </div>
+                        <div class="form-group{{ Form::hasError('mail_name') }} mail_name">
+                            {!! Form::label('mail_name', trans('general.mail_name'), ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::text('setting[mail_name]', isset($data['mail_name']) ? $data['mail_name'] : null, ['class' => 'form-control', 'placeholder' => trans('general.mail_name')]) !!}
+                                {!! Form::errorMsg('mail_name') !!}
+                            </div>
+                        </div>
                     </div>
                     <div class="box-footer">
                         <a href="{{ route('admin-index-setting') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>
@@ -129,4 +171,4 @@
         </div>
     </div>
 @endsection
-@include('backend.admin.setting.script.create_script')
+@include('backend.admin.setting.script.form_script')

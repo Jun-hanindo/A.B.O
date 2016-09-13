@@ -10,6 +10,8 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'forms', groups: [ 'forms' ] },
 		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
 		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+		{ name: 'links', groups: [ 'links' ] },
+		{ name: 'insert', groups: [ 'insert' ] },
 		{ name: 'styles', groups: [ 'styles' ] },
 		{ name: 'colors', groups: [ 'colors' ] },
 		{ name: 'tools', groups: [ 'tools' ] },
@@ -20,6 +22,8 @@ CKEDITOR.editorConfig = function( config ) {
 
 	config.removeButtons = 'Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteText,PasteFromWord,Find,Replace,SelectAll,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Subscript,Superscript,RemoveFormat,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Unlink,Anchor,Flash,Smiley,SpecialChar,PageBreak,Iframe,Styles,Format,Font,Maximize,About,ShowBlocks,HorizontalRule';
 	config.allowedContent = true;
+	config.height = 250;
+	config.startupMode = 'source';
 	config.extraAllowedContent = 'p(*)[*]{*};div(*)[*]{*};li(*)[*]{*};ul(*)[*]{*};a(*)[*]{*}';
     CKEDITOR.dtd.$removeEmpty.i = 0;
     CKEDITOR.dtd.$removeEmpty.a = 0;

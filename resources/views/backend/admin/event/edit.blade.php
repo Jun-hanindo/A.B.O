@@ -57,7 +57,7 @@
                                 {!! Form::errorMsg('description') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('admission') }} admission">
-                                {!! Form::label('admission', trans('general.admission').' *') !!}
+                                {!! Form::label('admission', trans('general.admission')) !!}
                                 {!! Form::textarea('admission', $data->admission, ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.admission')]) !!}
                                 {!! Form::errorMsg('admission') !!}
                             </div>
@@ -156,9 +156,9 @@
                             </div>
                             <div class="box-footer">
                                 <a href="{{ route('admin-index-event') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>
-                                <button type="button" id="button_draft" class="btn btn-default" title="{{ trans('general.button_draft') }}">{{ trans('general.button_draft') }}</button>
+                                <button type="button" id="button_draft" class="btn btn-warning" title="{{ trans('general.button_draft') }}">{{ trans('general.button_draft') }}</button>
                                 <input class="btn btn-primary pull-right" title="{{ trans('general.button_save') }}" type="submit" value="{{ trans('general.button_publish') }}" id="button_submit">
-                                <a href="{{ URL::to('event/'.$data->slug.'?preview=true') }}" target="_blank" id="button_preview" class="btn btn-default btn-preview" title="{{ trans('general.button_preview') }}">{{ trans('general.button_preview') }}</a>
+                                <a href="{{ URL::to('event/'.$data->slug.'?preview=true') }}" target="_blank" id="button_preview" class="btn btn-success btn-preview" title="{{ trans('general.button_preview') }}">{{ trans('general.button_preview') }}</a>
                             </div>
                         </div>
                         

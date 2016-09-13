@@ -24,3 +24,17 @@
 .btn-preview{
 	margin-top: 10px;
 }
+.dropdown-menu>li>a>.glyphicon, .dropdown-menu>li>a>.fa, .dropdown-menu>li>a>.ion{
+	width: 20px;
+}
+.cke_top, .cke_bottom{
+	background-image: none !important;
+	box-shadow: none !important;
+	background: #eee !important;
+}
+/*.cke_chrome{
+	border-left: 1px solid #b6b6b6 !important;
+	border-right: 1px solid #b6b6b6 !important;
+	border-top: 0 !important;
+	border-bottom: 0 !important;
+}*/

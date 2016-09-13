@@ -54,6 +54,11 @@ class MenusTableSeeder extends Seeder
                 ['name' => str_slug('About Us'), 'display_name' => 'About Us', 'icon' => 'info-circle', 'href' => 'admin/manage-pages/about-us', 'pattern' => 'admin/manage-pages'],
                 ['name' => str_slug('Way to Buy Tickets'), 'display_name' => 'Way to Buy Tickets', 'icon' => 'ticket', 'href' => 'admin/manage-pages/way-to-buy-tickets', 'pattern' => 'admin/manage-pages'],
             ]],
+            ['is_parent' => true, 'name' => str_slug('Careers'), 'display_name' => 'Careers', 'icon' => 'briefcase', 'href' => '#', 'pattern' => 'admin/career', 'child' => [
+                ['name' => str_slug('Add Career'), 'display_name' => 'Add Career', 'icon' => 'plus-circle', 'href' => 'admin/career/create', 'pattern' => 'admin/career'],
+                ['name' => str_slug('List Career'), 'display_name' => 'List Career', 'icon' => 'bars', 'href' => 'admin/career', 'pattern' => 'admin/career'],
+                ['name' => str_slug('Department'), 'display_name' => 'Departments', 'icon' => 'building-o', 'href' => 'admin/career/department', 'pattern' => 'admin/career'],
+            ]],
             ['is_parent' => false, 'name' => str_slug('Homepage'), 'display_name' => 'Homepage', 'icon' => 'home', 'href' => 'admin/homepage', 'pattern' => 'admin/homepage'],
             ['is_parent' => true, 'name' => str_slug('Events'), 'display_name' => 'Events', 'icon' => 'calendar', 'href' => '#', 'pattern' => 'admin/event', 'child' => [
                 ['name' => str_slug('Regiter Event'), 'display_name' => 'Register Event', 'icon' => 'plus-circle', 'href' => 'admin/event/create', 'pattern' => 'admin/event'],

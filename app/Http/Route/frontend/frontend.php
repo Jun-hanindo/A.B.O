@@ -20,4 +20,5 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('promotion/{slug}', array('as' => 'promotion-detail', 'uses' => 'PromotionsController@index'));
     Route::get('search/result', array('as' => 'event-search-get', 'uses' => 'EventsController@searchResult'));
     Route::get('search', array('as' => 'event-search', 'uses' => 'EventsController@search'));
+    Route::post('send-message', array('as' => 'send-message', 'uses' => 'HomeController@sendMessage'));
 });

@@ -3,19 +3,20 @@
     <script>
     $(document).ready(function() {
         
-        loadTextEditor();
+        loadTextEditor2();
 
         $("#button_draft2, #button_preview").unbind('click').bind('click', function () {
-            update();                
+            var status = $(this).attr('data-status');
+            update(status);             
         });
 
     });
 
-    function update()
+    function update(status)
     {
         
         var title = $("#title").val();
-        var content = $("#content").val();
+        var content = CKEDITOR.instances['content'].getData();
 
         var slug = $("#slug").val();
         var uri = "{{ URL::route('admin-post-update-manage-page', "::param") }}";
@@ -24,7 +25,7 @@
             url: uri,
             type: "POST",
             dataType: 'json',
-            data: {'title':title,"content":content, "status":"draft"},
+            data: {'title':title,"content":content, "status":status},
             success: function (data) {
                 $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');  
             	location.reload();

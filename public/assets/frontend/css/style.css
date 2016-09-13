@@ -2781,6 +2781,57 @@ footer .information-title{
   margin-top: 5px !important;
 }
 
+.eventTabScroll{
+  display: none;
+  position: fixed;
+  top: 80px;
+  width: 100%;
+  height: 55px;
+  z-index: 1;
+  padding: 10px;
+  color: #fff;
+}
+
+.eventTabScroll ul{
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.eventTabScroll ul li{
+  display: inline;
+  margin: 15px;
+}
+
+.eventTabScroll ul li a{
+  color: #fff;
+  text-decoration: none;
+}
+
+.backtop:before{
+  content: "\f106";
+  font-family: 'FontAwesome';
+  padding-right: 10px;
+}
+
+.btnABO{
+  background-color: #000;
+  color: #fff;
+}
+
+.search-content .sidebar-head h4{
+  float: left;
+}
+
+.search-content .sidebar-head a{
+  float: right;
+  margin-right: 20px;
+  margin-top: 3px;
+}
+
+.tr-search td a {
+  color: #fff !important;
+}
+
 
 
 

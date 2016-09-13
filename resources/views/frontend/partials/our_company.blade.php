@@ -21,62 +21,16 @@
                           </ul>
                       </div>
                   </div>
+
                   <div class="col-md-9">
                       <div class="main-content">
-                          <div class="about-desc">
-                              <div class="row">
-                                  <h3 class="head-about">About Asia Box Office</h3>
-                                  <div class="col-md-8">
-                                      {!! $content !!}
-                                      <a href="#" class="client-btn">Our Clients</a>
-                                      <a href="#" class="partner-btn">Our Partners</a>
-                                  </div>
-                                  <div class="col-md-4">
-                                      <div class="logo-about">
-                                          <img src="{{ asset('assets/frontend/images/about-logo.png') }}">
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="client-desc">
-                              <h3>Our Clients</h3>
-                              <div class="row">
-                                  <div class="col-md-4">
-                                      <div class="client-logo">
-                                          <img src="{{ asset('assets/frontend/images/client-logo-1.png') }}" class="img-center">
-                                      </div>
-                                  </div>
-                                  <div class="col-md-4">
-                                      <div class="client-logo">
-                                          <img src="{{ asset('assets/frontend/images/client-logo-2.png') }}">
-                                      </div>
-                                  </div>
-                                  <div class="col-md-4">
-                                      <div class="client-logo">
-                                          <img src="{{ asset('assets/frontend/images/client-logo-3.png') }}">
-                                      </div>
-                                  </div>
-                              </div>
-                              <button class="btn btnAbout">Sell Events Through Us</button>
-                          </div>
-                          <div class="partner-desc">
-                              <h3>Our Partners</h3>
-                              <div class="row">
-                                  <div class="col-md-4">
-                                      <div class="client-logo">
-                                          <img src="{{ asset('assets/frontend/images/partner-logo-1.png') }}">
-                                      </div>
-                                  </div>
-                                  <div class="col-md-4">
-                                      <div class="client-logo">
-                                          <img src="{{ asset('assets/frontend/images/partner-logo-2.png') }}" class="img-center">
-                                      </div>
-                                  </div>
-                              </div>
-                              <button class="btn btnAbout">Work With Us</button>
+                          <div class="row">
+                            <h3 class="head-about">About Asia Box Office</h3>
                           </div>
                       </div>
                   </div>
+                  {!! $content !!}
+
               </div>
           </section>
           
@@ -185,3 +139,4 @@
             </div>
           </section>
 @stop
+@include('frontend.partials.script.message_script')

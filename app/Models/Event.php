@@ -517,7 +517,7 @@ class Event extends Model
                 }
 
 
-                if($event->category == 'discount'){
+                if($event->category == 'discounts'){
                     $event->category = 'DISCOUNTS';
                 }elseif($event->category == 'early-bird'){
                     $event->category = 'EARLY BIRD';
@@ -580,7 +580,7 @@ class Event extends Model
                     $event->valid_date = date('d F Y', strtotime($event->start_date)).' - '.date('d F Y', strtotime($event->end_date));
                 }
 
-                if($event->category == 'discount'){
+                if($event->category == 'discounts'){
                     $event->category = 'DISCOUNTS';
                 }elseif($event->category == 'early-bird'){
                     $event->category = 'EARLY BIRD';
@@ -663,10 +663,12 @@ class Event extends Model
         if(isset($param['cat'])){
             $cats = $param['cat'];
             foreach ($cats as $key => $cat) {
-                if($key == 0){
-                    $query->where('categories.slug', $cat);
-                }else{
-                    $query->orWhere('categories.slug', $cat);
+                if($cat != 'all'){
+                    if($key == 0){
+                        $query->where('categories.slug', $cat);
+                    }else{
+                        $query->orWhere('categories.slug', $cat);
+                    }
                 }
             }
         }
@@ -675,12 +677,17 @@ class Event extends Model
         //     ->orWhere('categories.name','ilike','%'.$q.'%')
         //     ->groupBy('events.id')
         //     ->orderBy($sort);
-        $events = $query->where(function ($a) use ($q) {
-            $a->where('events.title','ilike','%'.$q.'%')
-                  ->orWhere('categories.name','ilike','%'.$q.'%');
-        })
-        ->groupBy('events.id')
-            ->orderBy($sort);
+        if($q != 'all'){
+            $events = $query->where(function ($a) use ($q) {
+                $a->where('events.title','ilike','%'.$q.'%')
+                      ->orWhere('categories.name','ilike','%'.$q.'%');
+            })
+            ->groupBy('events.id')
+                ->orderBy($sort);
+        }else{
+            $query->groupBy('events.id')
+                ->orderBy($sort);
+        }
         
 
         if($limit > 0){

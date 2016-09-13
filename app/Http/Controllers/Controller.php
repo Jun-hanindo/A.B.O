@@ -44,8 +44,43 @@ class Controller extends BaseController
             $setting[$value->name] = $value->value;
         }
 
+        $this->setting = $setting;
+
         \View::share ('user_login',$currentUserLogin);
         \View::share ('setting',$setting);
 
+    }
+
+    public function string_replace($text){
+        $setting = $this->setting;
+        $values = [
+            '[office_name]',
+            '[office_address]',
+            '[gmap_link]',
+            '[office_operating_hours]',
+            '[hotline]',
+            '[hotline_operating_hours]',
+        ];
+
+        $datas = [
+            $setting['office_name'],
+            $setting['office_address'],
+            $setting['gmap_link'],
+            $setting['office_operating_hours'],
+            $setting['hotline'],
+            $setting['hotline_operating_hours'],
+        ];
+
+        $replace_text = str_replace($values, $datas, $text);
+
+        return $replace_text;
+    }
+
+    public function send_mail(){
+        $mail_driver = $setting['mail_driver'];
+        $mail_host = $setting['mail_host'];
+        $mail_port = $setting['mail_port'];
+        $mail_username = $setting['mail_username'];
+        $mail_password = $setting['mail_password'];
     }
 }

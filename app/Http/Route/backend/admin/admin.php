@@ -185,6 +185,25 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
 
         
     });
+
+    Route::group(['prefix' => 'career'], function () {
+        Route::get('', array('as' => 'admin-index-career', 'uses' => 'CareersController@index'));
+        Route::get('create', array('as' => 'admin-create-career', 'uses' => 'CareersController@create'));
+        Route::post('store', array('as' => 'admin-post-career', 'uses' => 'CareersController@store'));
+        Route::get('{id}/edit', array('as' => 'admin-edit-career', 'uses' => 'CareersController@edit'));
+        Route::post('{id}/update', array('as' => 'admin-update-career', 'uses' => 'CareersController@update'));
+        Route::delete('{id}/delete', array('as' => 'admin-delete-career', 'uses' => 'CareersController@destroy'));
+        Route::post('{id}/avaibility-edit', array('as' => 'admin-update-career-avaibility', 'uses' => 'CareersController@avaibilityUpdate'));
+        Route::get('department', array('as' => 'admin-index-department', 'uses' => 'DepartmentsController@index'));
+        Route::get('department/create', array('as' => 'admin-create-department', 'uses' => 'DepartmentsController@create'));
+        Route::post('department/store', array('as' => 'admin-post-department', 'uses' => 'DepartmentsController@store'));
+        Route::get('department/{id}/edit', array('as' => 'admin-edit-department', 'uses' => 'DepartmentsController@edit'));
+        Route::post('department/{id}/update', array('as' => 'admin-update-department', 'uses' => 'DepartmentsController@update'));
+        Route::delete('department/{id}/delete', array('as' => 'admin-delete-department', 'uses' => 'DepartmentsController@destroy'));
+        Route::post('department/{id}/avaibility-edit', array('as' => 'admin-update-department-avaibility', 'uses' => 'DepartmentsController@avaibilityUpdate'));
+
+        
+    });
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () {
