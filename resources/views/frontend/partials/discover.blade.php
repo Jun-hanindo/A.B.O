@@ -58,7 +58,7 @@
                                   <img src="{{ $src.$slider->Event->featured_image1 }}" alt="...">
                                   <div class="carousel-caption bg-{{ $slider->Event->background_color }}">
                                     <div class="container">
-                                        <h5 class="categorySlide font-light">{{ (!empty($cat)) ? $cat->name : '&nbsp;' }}</h5>
+                                        <h5 class="categorySlide font-light">{{ (!empty($cat)) ? strtoupper($cat->name) : '&nbsp;' }}</h5>
                                         <h2 class="titleSlide font-light">{{ $slider->Event->title }}</h2>
                                         @php 
                                             $schedule = $slider->Event->EventSchedule()->orderBy('date_at', 'asc')->first();
@@ -108,7 +108,7 @@
                             <img src="{{ $event->featured_image2_url }}">
                             <div class="boxInfo bg-{{ $event->background_color }}">
                                 <ul>
-                                    <li class="eventType">{{ $event->category }}&nbsp;</li>
+                                    <li class="eventType">{{ strtoupper($event->category) }}&nbsp;</li>
                                     <li class="eventName">{{ $event->title }}</li>
                                     <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ $event->first_date }}</li>
                                     <li class="eventPlace"><i class="fa fa-map-marker"></i> {{ $event->venue->name }}</li>

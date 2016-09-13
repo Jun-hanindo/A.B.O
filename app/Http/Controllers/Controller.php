@@ -75,12 +75,4 @@ class Controller extends BaseController
 
         return $replace_text;
     }
-
-    public function send_mail(){
-        $mail_driver = $setting['mail_driver'];
-        $mail_host = $setting['mail_host'];
-        $mail_port = $setting['mail_port'];
-        $mail_username = $setting['mail_username'];
-        $mail_password = $setting['mail_password'];
-    }
 }

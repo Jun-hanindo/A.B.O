@@ -14,7 +14,7 @@
           <div class="infoBanner bg-{{ $event->background_color }}" id="eventTabShow">
               <div class="container">
                   <div class="detail">
-                      <h5 class="font-light">{{ (!empty($event->category)) ? $event->category->name : '&nbsp;' }}</h5>
+                      <h5 class="font-light">{{ (!empty($event->category)) ? strtoupper($event->category->name) : '&nbsp;' }}</h5>
                       <h2 class="font-light">{{ $event->title }}</h2>
                   </div>
                   <div class="moreDetail">

@@ -23,6 +23,7 @@
 
         function sendMessage()
         {
+            //modal_loader();
             var data = $('#messageBox').serialize();
             $.ajax({
                 url: "{{ route('send-message') }}",
@@ -34,16 +35,21 @@
                     $('#modalNo').modal('hide');
                 },
                 error: function(response){
-                    $('#modalYes').modal('show');
-                    $('#modalNo').modal('hide');
+                    // $('#modalYes').modal('show');
+                    // $('#modalNo').modal('hide');
+                    if (response.status === 422) {
+                        var data = response.responseJSON;
+                        $.each(data,function(key,val){
+                            $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
+                            $('.'+key).addClass('has-error');
+                        });
+                    } else {
+                        $('#modalYes').modal('show');
+                        $('#modalNo').modal('hide');
+                        $('.error-modal').html('<div class="alert alert-danger">' +response.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    }
                 }
             });
-        }
-
-        function resetFilterSearch(){
-            $('.cat-filter').prop('checked', false);
-            $('#filter-venue').val('all');
-            $('#filter-period').val('all');
         }
 
 </script>

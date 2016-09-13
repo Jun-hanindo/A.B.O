@@ -139,7 +139,7 @@
                             var data = response.responseJSON;
                             $.each(data,function(key,val){
                                 $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
-                                $('.'+key).addClass('has-error');
+                                $('.form-group.'+key).addClass('has-error');
                             });
                         } else {
                             $('.error-modal').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');

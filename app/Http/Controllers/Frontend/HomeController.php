@@ -14,6 +14,7 @@ use App\Models\Category;
 use App\Models\ManagePage;
 use App\Models\LogActivity;
 use Mail;
+use App\Http\Requests\Frontend\SendMessageRequest;
 //use View;
 
 class HomeController extends Controller
@@ -131,15 +132,26 @@ class HomeController extends Controller
 
     public function careers(Request $req)
     {
-        $param = $req->all();
-        if(!empty($param)){
-            if(isset($param['preview'])){
-                $data['content'] = $this->preview('careers');
+        try{
+            
+            $param = $req->all();
+            if(!empty($param)){
+                if(isset($param['preview'])){
+                    $data['content'] = $this->string_replace($this->preview('careers'));
+                }else{
+                    $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
+                }
             }else{
-                $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
+                $data['content'] = $this->string_replace($this->pageContent('careers'));
             }
-        }else{
-            $data['content'] = $this->pageContent('careers');
+        
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+        
         }
         
         return view('frontend.partials.careers', $data);
@@ -147,30 +159,52 @@ class HomeController extends Controller
 
     public function contactUs(Request $req)
     {
-        $param = $req->all();
-        if(!empty($param)){
-            if(isset($param['preview'])){
-                $data['content'] = $this->string_replace($this->preview('contact-us'));
+        try{
+                
+            $param = $req->all();
+            if(!empty($param)){
+                if(isset($param['preview'])){
+                    $data['content'] = $this->string_replace($this->preview('contact-us'));
+                }else{
+                    $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
+                }
             }else{
-                $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
+                $data['content'] = $this->string_replace($this->pageContent('contact-us'));
             }
-        }else{
-            $data['content'] = $this->string_replace($this->pageContent('contact-us'));
+        
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+        
         }
         return view('frontend.partials.contact_us', $data);
     }
 
     public function ourCompany(Request $req)
     {   
-        $param = $req->all();
-        if(!empty($param)){
-            if(isset($param['preview'])){
-                $data['content'] = $this->preview('about-us');
+        try{
+             
+            $param = $req->all();
+            if(!empty($param)){
+                if(isset($param['preview'])){
+                    $data['content'] = $this->string_replace($this->preview('about-us'));
+                }else{
+                    $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
+                }
             }else{
-                $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
+                $data['content'] = $this->string_replace($this->pageContent('about-us'));
             }
-        }else{
-            $data['content'] = $this->pageContent('about-us');
+        
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+        
         }
         return view('frontend.partials.our_company', $data);
     }
@@ -185,12 +219,12 @@ class HomeController extends Controller
         $param = $req->all();
         if(!empty($param)){
             if(isset($param['preview'])){
-                $data['content'] = $this->preview('way-to-buy-tickets');
+                $data['content'] = $this->string_replace($this->preview('way-to-buy-tickets'));
             }else{
                 $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
             }
         }else{
-            $data['content'] = $this->pageContent('way-to-buy-tickets');
+            $data['content'] = $this->string_replace($this->pageContent('way-to-buy-tickets'));
         }
         return view('frontend.partials.support_way_to_buy_tickets', $data);
     }
@@ -200,7 +234,7 @@ class HomeController extends Controller
         return view('frontend.partials.search_result');
     }
 
-    public function sendMessage(Request $req){
+    public function sendMessage(SendMessageRequest $req){
         $param = $req->all();
 
         $data['mail_driver'] = $this->setting['mail_driver'];

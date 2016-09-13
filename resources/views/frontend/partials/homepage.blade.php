@@ -37,7 +37,7 @@
                                   <img src="{{ $src.$slider->Event->featured_image1 }}" alt="...">
                                   <div class="carousel-caption bg-{{ $slider->Event->background_color }}">
                                     <div class="container">
-                                        <h5 class="categorySlide font-light">{{ (!empty($cat)) ? $cat->name : '&nbsp;' }}</h5>
+                                        <h5 class="categorySlide font-light">{{ (!empty($cat)) ? strtoupper($cat->name) : '&nbsp;' }}</h5>
                                         <h2 class="titleSlide font-light">{{ $slider->Event->title }}</h2>
                                         <ul>
                                             @php 
@@ -93,7 +93,7 @@
                                     <ul>      
                                         <li class="eventType">
                                             @if(!empty($cat))
-                                                {{ $cat->name }}
+                                                {{ strtoupper($cat->name) }}
                                             @else
                                                 &nbsp;
                                             @endif

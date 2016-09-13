@@ -32,7 +32,7 @@
                             <img src="{{ $event->featured_image2_url }}">
                             <div class="boxInfo bg-{{ $event->background_color }}">
                                 <ul>
-                                    <li class="eventType">{{ $event->cat_name }}</li>
+                                    <li class="eventType">{{ strtoupper($event->cat_name) }}</li>
                                     <li class="eventName">{{ $event->title }}</li>
                                     <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ $event->first_date }}</li>
                                     <li class="eventPlace"><i class="fa fa-map-marker"></i>{{ $event->Venue->name }}</li>

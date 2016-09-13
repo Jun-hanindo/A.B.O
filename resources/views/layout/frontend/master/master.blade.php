@@ -375,6 +375,7 @@
     {!! Html::script('assets/frontend/js/bootstrap.min.js') !!}
     {!! Html::script('assets/frontend/js/custom.js') !!}
     {!! Html::script('assets/frontend/js/smoothscroll.js') !!}
+    {!! Html::script('assets/plugins/HoldOn/HoldOn.min.js') !!}
     
     @yield('script')
 

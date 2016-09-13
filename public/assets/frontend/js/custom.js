@@ -1,3 +1,9 @@
+modal_loader = function(){
+    HoldOn.open({
+        theme:"sk-circle",
+        message:"<h4>Proccessing....</h4>"
+    });
+};
 
 var sort = $('#sort-text').val();
 $(document).ready(function(){
