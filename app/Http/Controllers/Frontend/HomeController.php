@@ -13,6 +13,8 @@ use App\Models\Event;
 use App\Models\Category;
 use App\Models\ManagePage;
 use App\Models\LogActivity;
+use App\Models\Department;
+use App\Models\Career;
 use Mail;
 use App\Http\Requests\Frontend\SendMessageRequest;
 //use View;
@@ -144,6 +146,8 @@ class HomeController extends Controller
             }else{
                 $data['content'] = $this->string_replace($this->pageContent('careers'));
             }
+
+            //$data['department'] = Department::dropdown();
         
         } catch (\Exception $e) {
 
