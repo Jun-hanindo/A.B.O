@@ -25,19 +25,19 @@
         </div>
     </div>
 </section>
-<div class="eventTabScroll bg-green">
+<div class="eventTabScroll bg-{{ $event->background_color }}">
     <div class="row">
         <div class="col-md-12">
             <div class="container">
                 <ul class="" role="">
                     <li><a href="#eventBanner" class="smoothScroll backtop font-light">Back To Summary</a></li>
-                    <li><a href="#eventTabShow" class="smoothScroll active">About This Event</a></li>
+                    <li><a href="#aboutBox" class="smoothScroll active">About This Event</a></li>
                     @if(!$promotions->isEmpty())
-                        <li><a href="#aboutBox" class="smoothScroll">Promotions</a></li>
+                        <li><a href="#promoBox" class="smoothScroll">Promotions</a></li>
                     @endif
-                    <li><a href="#promoBox" class="smoothScroll">Venue Info</a></li>
+                    <li><a href="#venueBox" class="smoothScroll">Venue Info</a></li>
                     @if(!empty($event->admission))
-                        <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
+                        <li><a href="#admissionBox" class="smoothScroll">Admission Rules</a></li>
                     @endif
                     <li><a href="#"><button class="btn btnBuy btnABO">Buy Now</button></a></li>
                 </ul>
@@ -116,13 +116,13 @@
                 <div class="container">
                     <div class="eventTab">
                         <ul class="nav nav-tabs" role="tablist">
-                            <li><a href="#eventTabShow" class="smoothScroll">About This Event</a></li>
+                            <li><a href="#aboutBox" class="smoothScroll">About This Event</a></li>
                             @if(!$promotions->isEmpty())
-                                <li><a href="#aboutBox" class="smoothScroll">Promotions</a></li>
+                                <li><a href="#promoBox" class="smoothScroll">Promotions</a></li>
                             @endif
-                            <li><a href="#promoBox" class="smoothScroll">Venue Info</a></li>
+                            <li><a href="#venueBox" class="smoothScroll">Venue Info</a></li>
                             @if(!empty($event->admission))
-                                <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
+                                <li><a href="#admissionBox" class="smoothScroll">Admission Rules</a></li>
                             @endif
                         </ul>
                     </div>

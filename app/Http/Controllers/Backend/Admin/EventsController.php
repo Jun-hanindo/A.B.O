@@ -384,7 +384,7 @@ class EventsController extends BaseController
                 ],200);
             }else{
                 $updateData = $this->model->updateEvent($param,$id);
-                $this->model->updateAvaibilityFalse($id);
+                //$this->model->updateAvaibilityFalse($id);
 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Event "'.$updateData->title.'" draft was updated';

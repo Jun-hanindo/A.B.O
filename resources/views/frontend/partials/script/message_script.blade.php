@@ -45,9 +45,10 @@
                             $('.'+key).addClass('has-error');
                         });
                     } else {
-                        $('.error-modal').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                         $('#modalYes').modal('show');
                         $('#modalContact').modal('hide');
+                        $('.error-modal').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        
                     }
                 }
             });
@@ -56,6 +57,7 @@
         function clearInputMessage(){
             $('input, textarea').val('');
             $('.tooltip-field').remove();
+            $('.error-modal').html('');
         }
 
 </script>

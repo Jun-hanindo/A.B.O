@@ -68,6 +68,12 @@ $(".percent").keydown(function (e) {
 });
 
 
+$(".nominal").keydown(function (e) {
+    if (this.value.length == 0 && e.which == 48 ){
+      return false;
+    }
+});
+
 
 
 function loadTextEditor()
