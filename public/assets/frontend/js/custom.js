@@ -16,6 +16,7 @@ $(document).ready(function(){
             $("#ul-search").hide();
         }
     });
+
     $(document).click(function(){
         $("#ul-search").hide();
     });
@@ -40,7 +41,7 @@ function autoSearch(q, sort)
                         $("#ul-search").append('<div class="inbox-message drawer-item" id="header-search">'
                             +'<a href="'+base_url+'/search/result?q='+q+'&sort='+sort+'" class="btn-see-all">'
                                 +'<div class="img-search"><i class="fa fa-search"></i></div><div class="content">'
-                                    + '<h5>All Result for "'+q+'"</h5></div></a></div>');
+                                    + '<h5 class="all-result">All Result for "'+q+'"</h5></div></a></div>');
                         $.each(results.events,function(key,val){
                             var html = '<div class="inbox-message drawer-item">'
                                     +'<a href="'+base_url+'/event/'+val.slug+'" data-id="'+val.id+'" class="li-notif" data-id="'+val.id+'">'

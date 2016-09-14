@@ -2555,7 +2555,8 @@ footer .information-title{
   color: #fff;
 }
 
-#modalYes .modal-content{
+#modalYes .modal-content,
+#modalContact .modal-content{
   max-width: 400px;
   margin: 0 auto;
 }
@@ -2565,7 +2566,8 @@ footer .information-title{
 }
 
 #modalYes .modal-content .modal-footer,
-#modalNo .modal-content .modal-footer{
+#modalNo .modal-content .modal-footer,
+#modalContact .modal-content .modal-footer{
   text-align: center;
 }
 
@@ -2575,14 +2577,16 @@ footer .information-title{
   width: 200px;
 }
 
-#modalNo .modal-content .modal-footer button{
+#modalNo .modal-content .modal-footer button,
+#modalContact .modal-content .modal-footer button{
   background-color: #000;
   color: #fff;
   width: 100%;
 }
 
 #modalYes .modal-content .modal-footer button:hover,
-#modalNo .modal-content .modal-footer button:hover{
+#modalNo .modal-content .modal-footer button:hover,
+#modalContact .modal-content .modal-footer button:hover{
   background-color: #fff;
   color: #000;
   border: 1px solid #000;
@@ -2593,26 +2597,28 @@ footer .information-title{
   margin: 0 auto;
 }
 
-#modalNo .modal-body p{
+#modalNo .modal-body p,
+#modalContact .modal-body p{
   margin-top: 0;
   font-weight: bolder;
 }
 
 #modalNo .modal-body input,
-#modalNo .modal-body select{
+#modalNo .modal-body select,
+#modalContact .modal-body input,
+#modalContact .modal-body select{
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-#modalNo .modal-body textarea{
+#modalNo .modal-body textarea,
+#modalContact .modal-body textarea{
   margin-top: 10px;
-}
-
-#modalNo .modal-body textarea{
   min-height: 200px;
 }
 
-#modalNo .modal-body form{
+#modalNo .modal-body form,
+#modalContact .modal-body form{
   margin-bottom: 0;
 }
 
@@ -2832,8 +2838,80 @@ footer .information-title{
   color: #fff !important;
 }
 
+/*thumb height*/
+.box-release .boxInfo{
+  height: 170px;
+}
 
+/*Auto Search*/
+#ul-search{
+  min-width: 450px;
+  position: absolute;
+  top: 50px;
+  border-radius: 5px;
+  padding: 0px;
+  box-shadow: rgba(0, 0, 0, 0.498039) 0px 5px 15px;
+  background-color: rgb(255, 255, 255);
+}
+#ul-search #header-search{
+  height: 80px;
+  border-top: 0;
+}
+#ul-search a{
+  display: block;
+  padding: 10px;
+  height: 100%;
+}
+#header-search a .img-search{
+  width: 88px;
+  height: 100%;
+  display: block;
+  float: left;
+  background: #4a4949;
+  text-align: center;
+  padding-top: 13px;
+}
+#ul-search a img{
+  height:100%;
+  float:left;
+}
+#header-search a div i{
+  font-size: 30px;
+  color: #fff;
+}
+#ul-search .content{
+  float: left;
+    padding-left: 20px;
+}
+#ul-search h5{
+  color:#000;
+}
+#ul-search .footer{
+  color:#bdbdbd;
+  font-size: 13px;
+}
+#ul-search .drawer-item{
+  border-top: 1px solid #ddd;
+  height: 80px;
+}
 
+#ul-search .content .all-result{
+  margin: 0 auto;
+  position: absolute;
+  top: 30px;
+}
+
+.addon-faq i{
+  color: #000 !important;
+}
+
+.list-contact li a{
+  cursor: pointer;
+}
+
+#modalContact .col-2{
+  padding-left: 0;
+}
 
 
 

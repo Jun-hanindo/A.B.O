@@ -15,7 +15,7 @@
                               <li class="sidebar-menu">
                                   <a href="{{URL::route('careers')}}">Careers</a>
                               </li>
-                              <li class="sidebar-menu">
+                              <li class="sidebar-menu active">
                                   <a href="{{URL::route('contact-us')}}" class="active-contact">Contact Us</a>
                               </li>
                           </ul>

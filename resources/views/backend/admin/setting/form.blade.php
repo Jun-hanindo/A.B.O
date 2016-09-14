@@ -7,7 +7,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">{{ trans('general.setting') }}</h3>
@@ -16,18 +16,18 @@
                 {!! Form::open(array('url' => route('admin-update-setting'),'method'=>'POST','id'=>'form-setting', 'class' => "form-horizontal")) !!}
                     <div class="box-body">
                         @include('flash::message')
-                        <div class="form-group{{ Form::hasError('language') }} language">
-                            {!! Form::label('language', trans('general.language').' *', ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="form-group">
+                            {!! Form::label('language', trans('general.language'), ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::select('setting[language]', array('english' => 'English',
                                                                 'singapore' => 'Singapore', 
                                                                 'malaysia' => 'Malaysia', 
                                                                 'indonesia' => 'Indonesia'), isset($data['language']) ? $data['language'] : null, ['class' => 'form-control']) !!}
-                                {!! Form::errorMsg('language') !!}
+                                
                             </div>
                         </div>
-                        <div class="form-group{{ Form::hasError('currency') }} currency">
-                            {!! Form::label('currency', trans('general.currency').' *', ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="form-group">
+                            {!! Form::label('currency', trans('general.currency'), ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::select('setting[currency]', array('AUD' => 'Australian Dollar',
                                                                     'BRL' => 'Brazilian Real', 
@@ -77,88 +77,98 @@
                                 {!! Form::errorMsg('apple_store') !!}
                             </div>
                         </div>
-                        <div class="form-group{{ Form::hasError('office_name') }} office_name">
-                            {!! Form::label('office_name', trans('general.office_name'), ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="form-group{{ Form::hasError('setting.office_name') }} setting.office_name">
+                            {!! Form::label('office_name', trans('general.office_name').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('setting[office_name]', isset($data['office_name']) ? $data['office_name'] : null, ['class' => 'form-control', 'placeholder' => trans('general.office_name')]) !!}
-                                {!! Form::errorMsg('office_name') !!}
+                                {!! Form::errorMsg('setting.office_name') !!}
                             </div>
                         </div>
-                        <div class="form-group{{ Form::hasError('office_address') }} office_address">
-                            {!! Form::label('office_address', trans('general.office_address'), ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="form-group{{ Form::hasError('setting.office_address') }} setting.office_address">
+                            {!! Form::label('office_address', trans('general.office_address').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::textarea('setting[office_address]', isset($data['office_address']) ? $data['office_address'] : null, ['class' => 'form-control tinymce', 'placeholder' => trans('general.office_address')]) !!}
-                                {!! Form::errorMsg('office_address') !!}
+                                {!! Form::errorMsg('setting.office_address') !!}
                             </div>
                         </div>
-                        <div class="form-group{{ Form::hasError('gmap_link') }} gmap_link">
-                            {!! Form::label('gmap_link', trans('general.gmap_link'), ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="form-group{{ Form::hasError('setting.gmap_link') }} setting.gmap_link">
+                            {!! Form::label('gmap_link', trans('general.gmap_link').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('setting[gmap_link]', isset($data['gmap_link']) ? $data['gmap_link'] : null, ['class' => 'form-control', 'placeholder' => trans('general.gmap_link')]) !!}
-                                {!! Form::errorMsg('gmap_link') !!}
+                                {!! Form::errorMsg('setting.gmap_link') !!}
                             </div>
                         </div>
-                        <div class="form-group{{ Form::hasError('office_operating_hours') }} office_operating_hours">
-                            {!! Form::label('office_operating_hours', trans('general.office_operating_hours'), ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="form-group{{ Form::hasError('setting.office_operating_hours') }} setting.office_operating_hours">
+                            {!! Form::label('office_operating_hours', trans('general.office_operating_hours').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('setting[office_operating_hours]', isset($data['office_operating_hours']) ? $data['office_operating_hours'] : null, ['class' => 'form-control', 'placeholder' => trans('general.office_operating_hours')]) !!}
-                                {!! Form::errorMsg('office_operating_hours') !!}
+                                {!! Form::errorMsg('setting.office_operating_hours') !!}
                             </div>
                         </div>
-                        <div class="form-group{{ Form::hasError('hotline') }} hotline">
-                            {!! Form::label('hotline', trans('general.hotline'), ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="form-group{{ Form::hasError('setting.hotline') }} setting.hotline">
+                            {!! Form::label('hotline', trans('general.hotline').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('setting[hotline]', isset($data['hotline']) ? $data['hotline'] : null, ['class' => 'form-control', 'placeholder' => trans('general.hotline')]) !!}
-                                {!! Form::errorMsg('hotline') !!}
+                                {!! Form::errorMsg('setting.hotline') !!}
                             </div>
                         </div>
-                        <div class="form-group{{ Form::hasError('hotline_operating_hours') }} hotline_operating_hours">
-                            {!! Form::label('hotline_operating_hours', trans('general.hotline_operating_hours'), ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="form-group{{ Form::hasError('setting.hotline_operating_hours') }} setting.hotline_operating_hours">
+                            {!! Form::label('hotline_operating_hours', trans('general.hotline_operating_hours').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('setting[hotline_operating_hours]', isset($data['hotline_operating_hours']) ? $data['hotline_operating_hours'] : null, ['class' => 'form-control', 'placeholder' => trans('general.hotline_operating_hours')]) !!}
-                                {!! Form::errorMsg('hotline_operating_hours') !!}
+                                {!! Form::errorMsg('setting.hotline_operating_hours') !!}
                             </div>
                         </div>
-                        <div class="form-group{{ Form::hasError('mail_driver') }} mail_driver">
+                        <div class="form-group{{ Form::hasError('setting.mail_driver') }} setting.mail_driver">
                             {!! Form::label('mail_driver', trans('general.mail_driver'), ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::text('setting[mail_driver]', isset($data['mail_driver']) ? $data['mail_driver'] : null, ['class' => 'form-control', 'placeholder' => trans('general.mail_driver')]) !!}
-                                {!! Form::errorMsg('mail_driver') !!}
+                                {!! Form::select('setting[mail_driver]', array('smtp' => 'smtp',
+                                                                'mail' => 'mail', 
+                                                                'sendmail' => 'sendmail', 
+                                                                'mailgun' => 'mailgun', 
+                                                                'mandrill' => 'mandrill', 
+                                                                'ses' => 'ses', 
+                                                                'sparkpost' => 'sparkpost', 
+                                                                'log' => 'log'), isset($data['mail_driver']) ? $data['mail_driver'] : null, ['class' => 'form-control']) !!}
+                                {!! Form::errorMsg('setting.mail_driver') !!}
                             </div>
                         </div>
-                        <div class="form-group{{ Form::hasError('mail_host') }} mail_host">
-                            {!! Form::label('mail_host', trans('general.mail_host'), ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="form-group{{ Form::hasError('setting.mail_host') }} setting.mail_host">
+                            {!! Form::label('mail_host', trans('general.mail_host').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('setting[mail_host]', isset($data['mail_host']) ? $data['mail_host'] : null, ['class' => 'form-control', 'placeholder' => trans('general.mail_host')]) !!}
-                                {!! Form::errorMsg('mail_host') !!}
+                                {!! Form::errorMsg('setting.mail_host') !!}
                             </div>
                         </div>
-                        <div class="form-group{{ Form::hasError('mail_port') }} mail_port">
+                        <div class="form-group{{ Form::hasError('setting.mail_port') }} setting.mail_port">
                             {!! Form::label('mail_port', trans('general.mail_port'), ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::text('setting[mail_port]', isset($data['mail_port']) ? $data['mail_port'] : null, ['class' => 'form-control', 'placeholder' => trans('general.mail_port')]) !!}
-                                {!! Form::errorMsg('mail_port') !!}
+                                {!! Form::select('setting[mail_port]', array('25' => '25',
+                                                                '465' => '465', 
+                                                                '587' => '587', 
+                                                                '2525' => '2525'), isset($data['mail_port']) ? $data['mail_port'] : null, ['class' => 'form-control']) !!}
+                                {!! Form::errorMsg('setting.mail_port') !!}
                             </div>
                         </div>
-                        <div class="form-group{{ Form::hasError('mail_username') }} mail_username">
-                            {!! Form::label('mail_username', trans('general.mail_username'), ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="form-group{{ Form::hasError('setting.mail_username') }} setting.mail_username">
+                            {!! Form::label('mail_username', trans('general.mail_username').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('setting[mail_username]', isset($data['mail_username']) ? $data['mail_username'] : null, ['class' => 'form-control', 'placeholder' => trans('general.mail_username')]) !!}
-                                {!! Form::errorMsg('mail_username') !!}
+                                {!! Form::errorMsg('setting.mail_username') !!}
                             </div>
                         </div>
-                        <div class="form-group{{ Form::hasError('mail_password') }} mail_password">
-                            {!! Form::label('mail_password', trans('general.mail_password'), ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="form-group{{ Form::hasError('setting.mail_password') }} setting.mail_password">
+                            {!! Form::label('mail_password', trans('general.mail_password').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('setting[mail_password]', isset($data['mail_password']) ? $data['mail_password'] : null, ['class' => 'form-control', 'placeholder' => trans('general.mail_password')]) !!}
-                                {!! Form::errorMsg('mail_password') !!}
+                                {!! Form::errorMsg('setting.mail_password') !!}
                             </div>
                         </div>
-                        <div class="form-group{{ Form::hasError('mail_name') }} mail_name">
-                            {!! Form::label('mail_name', trans('general.mail_name'), ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="form-group{{ Form::hasError('setting.mail_name') }} setting.mail_name">
+                            {!! Form::label('mail_name', trans('general.mail_name').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('setting[mail_name]', isset($data['mail_name']) ? $data['mail_name'] : null, ['class' => 'form-control', 'placeholder' => trans('general.mail_name')]) !!}
-                                {!! Form::errorMsg('mail_name') !!}
+                                {!! Form::errorMsg('setting.mail_name') !!}
                             </div>
                         </div>
                     </div>

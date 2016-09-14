@@ -52,14 +52,14 @@
                                 {!! Form::checkbox('discount_type', '1', true, ['class' => 'form-control pull-left discount_type-check', 'data-animate' => 'false', 'data-on-text' => 'Percent',  'data-off-color' => 'success', 'data-off-text' => 'Nominal']) !!}
                                 <div id="discount-percent" class="pull-left col-sm-3">
                                     <div class="input-group ">
-                                        {!! Form::text('discount', old('discount'), ['id' => 'discount', 'class' => 'form-control number-only','maxlength'=>'255', 'placeholder' => trans('general.discount')]) !!}
+                                        {!! Form::text('discount', old('discount'), ['id' => 'discount', 'class' => 'form-control number-only percent','maxlength'=>'255', 'placeholder' => trans('general.discount')]) !!}
                                         <div class="input-group-addon">%</div>
                                     </div>
                                     {!! Form::errorMsg('discount') !!}
                                 </div>
                                 <div id="discount-nominal" class="pull-left col-sm-3" style="display:none">
                                     <div class="input-group">
-                                        <span class="input-group-addon">$</span>
+                                        <span class="input-group-addon">US$</span>
                                         {!! Form::text('discount_nominal', old('discount_nominal'), ['id' => 'discount_nominal', 'class' => 'form-control number-only','maxlength'=>'255', 'placeholder' => trans('general.discount')]) !!}
                                     </div>
                                     {!! Form::errorMsg('discount_nominal') !!}

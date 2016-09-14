@@ -4,11 +4,12 @@
 
         $(document).ready(function(){
 
-            $("#btn-message").on('click', function(){
+            $(".btnFeedback").on('click', function(){
                 sendMessage();
             });
 
             $(".contact a, .btnAbout").on('click', function(){
+                clearInputMessage();
                 var id = $(this).attr('id');
                 $('#subject #'+id).prop('selected', true);
             });
@@ -32,12 +33,11 @@
                 data: data,
                 success: function (response) {
                     $('#modalYes').modal('show');
-                    $('#modalNo').modal('hide');
-                    clearInputMessage();
+                    $('#modalContact').modal('hide');
                 },
                 error: function(response){
                     // $('#modalYes').modal('show');
-                    // $('#modalNo').modal('hide');
+                    // $('#modalContact').modal('hide');
                     if (response.status === 422) {
                         var data = response.responseJSON;
                         $.each(data,function(key,val){
@@ -45,17 +45,17 @@
                             $('.'+key).addClass('has-error');
                         });
                     } else {
+                        $('.error-modal').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                         $('#modalYes').modal('show');
-                        $('#modalNo').modal('hide');
-                        $('.error-modal').html('<div class="alert alert-danger">' +response.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        $('#modalContact').modal('hide');
                     }
-                    clearInputMessage();
                 }
             });
         }
 
         function clearInputMessage(){
             $('input, textarea').val('');
+            $('.tooltip-field').remove();
         }
 
 </script>

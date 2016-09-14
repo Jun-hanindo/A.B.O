@@ -12,8 +12,8 @@
                               <li class="sidebar-menu-top">
                                   <a href="{{URL::route('our-company')}}">About Asia Box Office</a>
                               </li>
-                              <li class="sidebar-menu">
-                                  <a href="#" class="active-career">Careers</a>
+                              <li class="sidebar-menu active">
+                                  <a href="{{URL::route('careers')}}" class="active-career">Careers</a>
                               </li>
                               <li class="sidebar-menu">
                                   <a href="{{URL::route('contact-us')}}">Contact Us</a>

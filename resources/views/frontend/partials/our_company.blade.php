@@ -9,8 +9,8 @@
                               <li class="sidebar-head">
                                   <h4>Our Company</h4>
                               </li>
-                              <li class="sidebar-menu-top">
-                                  <a href="{{URL::route('our-company')}}" class="active">About Asia Box Office</a>
+                              <li class="sidebar-menu-top active">
+                                  <a href="{{URL::route('our-company')}}">About Asia Box Office</a>
                               </li>
                               <li class="sidebar-menu">
                                   <a href="{{URL::route('careers')}}">Careers</a>

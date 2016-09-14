@@ -333,19 +333,27 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="information-title mobile-collapse-header">
-                            Follow Us On Facebook
-                        </div>
-                        <div class="facebookLike">
-                            {!! isset($setting['facebook']) ? $setting['facebook'] : '' !!}
-                        </div>
-                        <div class="information-title mobile-collapse-header">
-                            Download Our Mobile App
-                        </div>
-                        <div class="mobileApp">
-                            <a href="{{ isset($setting['apple_store']) ? $setting['apple_store'] : '#' }}"><img src="{{ asset('assets/frontend/images/appstore.png') }}"></a>
-                            <a href="{{ isset($setting['google_play']) ? $setting['google_play'] : '#' }}"><img src="{{ asset('assets/frontend/images/playstore.png') }}"></a>
-                        </div>
+                        @if(isset($setting['facebook']) && !empty($setting['facebook']))
+                            <div class="information-title mobile-collapse-header">
+                                Follow Us On Facebook
+                            </div>
+                            <div class="facebookLike">
+                                {!! $setting['facebook'] !!}
+                            </div>
+                        @endif
+                        @if((isset($setting['apple_store']) && !empty($setting['apple_store'])) || (isset($setting['google_play']) && !empty($setting['google_play'])))
+                            <div class="information-title mobile-collapse-header">
+                                Download Our Mobile App
+                            </div>
+                            <div class="mobileApp">
+                                @if(isset($setting['apple_store']) && !empty($setting['apple_store']))
+                                    <a href="{{ $setting['apple_store'] }}"><img src="{{ asset('assets/frontend/images/appstore.png') }}"></a>
+                                @endif
+                                @if(isset($setting['google_play']) && !empty($setting['google_play']))
+                                    <a href="{{ $setting['google_play'] }}"><img src="{{ asset('assets/frontend/images/playstore.png') }}"></a>
+                                @endif
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -584,6 +584,8 @@
 
         function saveEventPromotion(event_id)
         {
+            $(".tooltip-field").remove();
+            $(".form-group").removeClass('has-error');
             var fd = new FormData();
             var image = $('#featured_image').prop('files')[0];
             if(image != undefined){
@@ -637,6 +639,8 @@
 
         function updateEventPromotion(event_id)
         {
+            $(".tooltip-field").remove();
+            $(".form-group").removeClass('has-error');
             var fd = new FormData();
             var image = $('#featured_image').prop('files')[0];
             if(image != undefined){
@@ -682,7 +686,7 @@
                         var data = response.responseJSON;
                         $.each(data,function(key,val){
                             $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
-                            $('.'+key).addClass('has-error');
+                            $('.form-group.'+key).addClass('has-error');
                         });
                     } else {
                         $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');

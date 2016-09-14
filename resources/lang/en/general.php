@@ -42,6 +42,8 @@ return [
     'banned_failed' => 'Has been fail banned',
     'restore_success' => 'Has been successfully restored',
     'access_forbiden' => 'Access Forbiden',
+    'message_success' => 'Send a message has been successfully',
+    'message_error' => 'Send a message has been failed',
 
     'confirmation_delete' => 'Are you sure want to continue delete data ',
     'confirmation_restore' => 'Are you sure want to continue restore activated data ',

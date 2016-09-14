@@ -63,12 +63,12 @@ class Controller extends BaseController
         ];
 
         $datas = [
-            $setting['office_name'],
-            $setting['office_address'],
-            $setting['gmap_link'],
-            $setting['office_operating_hours'],
-            $setting['hotline'],
-            $setting['hotline_operating_hours'],
+            isset($setting['office_name']) ? $setting['office_name'] : '',
+            isset($setting['office_address']) ? $setting['office_address'] : '',
+            isset($setting['gmap_link']) ? $setting['gmap_link'] : '',
+            isset($setting['office_operating_hours']) ? $setting['office_operating_hours'] : '',
+            isset($setting['hotline']) ? $setting['hotline'] : '',
+            isset($setting['hotline_operating_hours']) ? $setting['hotline_operating_hours'] : '',
         ];
 
         $replace_text = str_replace($values, $datas, $text);

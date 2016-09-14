@@ -247,21 +247,31 @@ class HomeController extends Controller
         $data['mail_username'] = $this->setting['mail_username'];
         $data['mail_password'] = $this->setting['mail_password'];
         $data['mail_name'] = $this->setting['mail_name'];
-
+        $param['body'] = $param['message'];
 
         try{
-            Mail::raw('Send Message', function ($message) use ($data, $param) {
-                $body = '<h5>Contact Number : </h5>'.$param['contact_number'].
-                    '<h5>Message: </h5>'.$param['message'];
+            Mail::send('backend.emails.contact_us', $param, function ($message) use ($param, $data) {
                 $message->from($param['email'], $param['name'])
-                    ->to($data['mail_username'], $data['mail_name'])->subject($param['subject'])
-                    ->replyTo($param['email'], $param['name'])
-                    ->setBody($body, 'text/html');
+                    ->to($data['mail_username'], $data['mail_name'])
+                    ->subject($param['subject'])
+                    ->replyTo($param['email'], $param['name']);
 
                 return response()->json([
                     'code' => 200,
                     'status' => 'success',
-                    'message' => trans('general.save_success')
+                    'message' => trans('general.message_success')
+                ],200);
+            });
+
+            Mail::send('backend.emails.contact_us_reply', $param, function ($message) use ($data, $param) {
+                $message->from($data['mail_username'], $data['mail_name'])
+                    ->to($param['email'], $param['name'])->subject('Thank You')
+                    ->replyTo($data['mail_username'], $data['mail_name']);
+
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => trans('general.message_success')
                 ],200);
             });
         } catch (\Exception $e) {
@@ -274,7 +284,7 @@ class HomeController extends Controller
             return response()->json([
                 'code' => 400,
                 'status' => 'success',
-                'message' => trans('general.save_error')
+                'message' => trans('general.message_error')
             ],400);
         
         }
