@@ -9,6 +9,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Promotion;
 use App\Models\Event;
+use App\Models\LogActivity;
+use App\Models\Trail;
 //use View;
 
 class PromotionsController extends Controller
@@ -20,35 +22,53 @@ class PromotionsController extends Controller
 
     public function index(Request $req, $slug)
     {
-        $modelEvent = new Event();
-        $limit = 9;
-        $result['slug'] = $slug;
-        $result['events'] = $modelEvent->getEventByCategoryPromotion($slug, $limit);
-        if($req->ajax()){      
-            $events = $result['events'];
 
-            if($events) {
+        try{
 
-                return response()->json([
-                    'code' => 200,
-                    'status' => 'success',
-                    'message' => 'success',
-                    'data' => $events
-                ],200);
+            $modelEvent = new Event();
+            $limit = 9;
+            $result['slug'] = $slug;
+            $result['events'] = $modelEvent->getEventByCategoryPromotion($slug, $limit);
+            if($req->ajax()){      
+                $events = $result['events'];
 
-            } else {
+                if($events) {
 
-                return response()->json([
-                    'code' => 400,
-                    'status' => 'error',
-                    'data' => array(),
-                    'message' => trans('general.data_empty')
-                ],400);
-            
+                    return response()->json([
+                        'code' => 200,
+                        'status' => 'success',
+                        'message' => 'success',
+                        'data' => $events
+                    ],200);
+
+                } else {
+
+                    return response()->json([
+                        'code' => 400,
+                        'status' => 'error',
+                        'data' => array(),
+                        'message' => trans('general.data_empty')
+                    ],400);
+                
+                }
+                
+            }else{
+                $trail = 'Promotion category front end';
+                $insertTrail = new Trail();
+                $insertTrail->insertTrail($trail);
+
+                return view('frontend.partials.promotion_category', $result); 
             }
-            
-        }else{
-            return view('frontend.partials.promotion_category', $result); 
+        
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return view('errors.404');
+        
         }
     }
 }

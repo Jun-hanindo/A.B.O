@@ -25,8 +25,15 @@ class Controller extends BaseController
     public function __construct(Model $model = null)
     {
         $this->model = $model;
+        //$lang = env('APP_LANG');
+        \Session::forget('locale');
 
-        $lang = env('APP_LANG');
+        //\Session::set('locale', 'id');
+        if(!\Session::has('locale'))
+        {
+           \Session::put('locale', \Config::get('app.fallback_locale'));
+        }
+        $lang = \Session::get('locale');
         \App::setLocale($lang);
 
         $this->currentUser = '';

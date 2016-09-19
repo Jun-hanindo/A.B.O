@@ -291,82 +291,32 @@
                                               </div>
                                           </form>
                                       </div>
+                                      @if(!empty($category_events))
                                       <div class="featuredEvent">
                                           <label>Featured Events</label>
-                                          <a href="#">
-                                              <div class="eventList listRed">
-                                                  <div class="row">
-                                                      <div class="col-md-5">
-                                                          <img src="{{ asset('assets/frontend/images/event1.png') }}">
-                                                      </div>
-                                                      <div class="col-md-6 box-cap">
-                                                          <div class="caption">
-                                                              <h5>Cameron Mackintosh's Les Misérables</h5>
+                                          @foreach ($category_events as $key => $category_event)
+                                              <a href="{{ URL::route('event-detail', $category_event->slug) }}">
+                                                  <div class="eventList bg-{{ $category_event->background_color }}">
+                                                      <div class="row">
+                                                          <div class="col-md-5">
+                                                              <img src="{{ $category_event->featured_image3_url }}">
+                                                          </div>
+                                                          <div class="col-md-6 box-cap">
+                                                              <div class="caption">
+                                                                  <h5>{{ $category_event->title }}</h5>
+                                                              </div>
                                                           </div>
                                                       </div>
                                                   </div>
-                                              </div>
-                                          </a>
-                                          <a href="#">
-                                              <div class="eventList listGrey">
-                                                  <div class="row">
-                                                      <div class="col-md-5">
-                                                          <img src="{{ asset('assets/frontend/images/event2.png') }}">
-                                                      </div>
-                                                      <div class="col-md-6 box-cap">
-                                                          <div class="caption">
-                                                              <h5>Shakespeare in the Park - Romeo and Juliet</h5>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </a>
-                                          <a href="#">
-                                              <div class="eventList listPurple">
-                                                  <div class="row">
-                                                      <div class="col-md-5">
-                                                          <img src="{{ asset('assets/frontend/images/event3.png') }}">
-                                                      </div>
-                                                      <div class="col-md-6 box-cap">
-                                                          <div class="caption">
-                                                              <h5>An Evening with Tom Jones</h5>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </a>
-                                          <a href="#">
-                                              <div class="eventList listOrange">
-                                                  <div class="row">
-                                                      <div class="col-md-5">
-                                                          <img src="{{ asset('assets/frontend/images/event4.png') }}">
-                                                      </div>
-                                                      <div class="col-md-6 box-cap">
-                                                          <div class="caption">
-                                                              <h5>Madagascar Live!</h5>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </a>
-                                          <a href="#">
-                                              <div class="eventList listBlue">
-                                                  <div class="row">
-                                                      <div class="col-md-5">
-                                                          <img src="{{ asset('assets/frontend/images/event5.png') }}">
-                                                      </div>
-                                                      <div class="col-md-6 box-cap">
-                                                          <div class="caption">
-                                                              <h5>Blue Man Group</h5>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </a>
+                                              </a>
+                                          @endforeach
                                           <div class="buttonBrowse">
-                                              <button class="btn btnBrowse">Browse More Events</button>
+                                              <a href="{{ URL::route('category-detail', $event->category->slug) }}">
+                                                  <button class="btn btnBrowse">Browse More Events</button>
+                                              </a>
                                           </div>
                                       </div>
+                                      @endif
                                   </div>
                               </div>
                           </div>

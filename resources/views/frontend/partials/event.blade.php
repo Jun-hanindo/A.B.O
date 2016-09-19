@@ -31,13 +31,13 @@
             <div class="container">
                 <ul class="" role="">
                     <li><a href="#eventBanner" class="smoothScroll backtop font-light">Back To Summary</a></li>
-                    <li><a href="#aboutBox" class="smoothScroll active">About This Event</a></li>
+                    <li><a href="#eventTabShow" class="smoothScroll active">About This Event</a></li>
                     @if(!$promotions->isEmpty())
-                        <li><a href="#promoBox" class="smoothScroll">Promotions</a></li>
+                        <li><a href="#aboutBox" class="smoothScroll">Promotions</a></li>
                     @endif
-                    <li><a href="#venueBox" class="smoothScroll">Venue Info</a></li>
+                    <li><a href="#promoBox" class="smoothScroll">Venue Info</a></li>
                     @if(!empty($event->admission))
-                        <li><a href="#admissionBox" class="smoothScroll">Admission Rules</a></li>
+                        <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
                     @endif
                     <li><a href="#"><button class="btn btnBuy btnABO">Buy Now</button></a></li>
                 </ul>
@@ -116,13 +116,13 @@
                 <div class="container">
                     <div class="eventTab">
                         <ul class="nav nav-tabs" role="tablist">
-                            <li><a href="#aboutBox" class="smoothScroll">About This Event</a></li>
+                            <li><a href="#eventTabShow" class="smoothScroll">About This Event</a></li>
                             @if(!$promotions->isEmpty())
-                                <li><a href="#promoBox" class="smoothScroll">Promotions</a></li>
+                                <li><a href="#aboutBox" class="smoothScroll">Promotions</a></li>
                             @endif
-                            <li><a href="#venueBox" class="smoothScroll">Venue Info</a></li>
+                            <li><a href="#promoBox" class="smoothScroll">Venue Info</a></li>
                             @if(!empty($event->admission))
-                                <li><a href="#admissionBox" class="smoothScroll">Admission Rules</a></li>
+                                <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
                             @endif
                         </ul>
                     </div>
@@ -287,89 +287,39 @@
                                     </div>
                                 </form>
                             </div>
-                                <div class="featuredEvent">
-                                    <label>Featured Events</label>
-                                    <a href="#">
-                                        <div class="eventList listRed">
+                            @if(!empty($category_events))
+                            <div class="featuredEvent">
+                                <label>Featured Events</label>
+                                @foreach ($category_events as $key => $category_event)
+                                    <a href="{{ URL::route('event-detail', $category_event->slug) }}">
+                                        <div class="eventList bg-{{ $category_event->background_color }}">
                                             <div class="row">
                                                 <div class="col-md-5">
-                                                    <img src="{{ asset('assets/frontend/images/event1.png') }}">
+                                                    <img src="{{ $category_event->featured_image3_url }}">
                                                 </div>
                                                 <div class="col-md-6 box-cap">
                                                     <div class="caption">
-                                                        <h5>Cameron Mackintosh's Les Misérables</h5>
+                                                        <h5>{{ $category_event->title }}</h5>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
-                                    <a href="#">
-                                        <div class="eventList listGrey">
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <img src="{{ asset('assets/frontend/images/event2.png') }}">
-                                                </div>
-                                                <div class="col-md-6 box-cap">
-                                                    <div class="caption">
-                                                        <h5>Shakespeare in the Park - Romeo and Juliet</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="#">
-                                        <div class="eventList listPurple">
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <img src="{{ asset('assets/frontend/images/event3.png') }}">
-                                                </div>
-                                                <div class="col-md-6 box-cap">
-                                                    <div class="caption">
-                                                        <h5>An Evening with Tom Jones</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="#">
-                                        <div class="eventList listOrange">
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <img src="{{ asset('assets/frontend/images/event4.png') }}">
-                                                </div>
-                                                <div class="col-md-6 box-cap">
-                                                    <div class="caption">
-                                                        <h5>Madagascar Live!</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="#">
-                                    <div class="eventList listBlue">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <img src="{{ asset('assets/frontend/images/event5.png') }}">
-                                            </div>
-                                            <div class="col-md-6 box-cap">
-                                                <div class="caption">
-                                                    <h5>Blue Man Group</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </a>
-                                    <div class="buttonBrowse">
+                                @endforeach
+                                <div class="buttonBrowse">
+                                    <a href="{{ URL::route('category-detail', $event->category->slug) }}">
                                         <button class="btn btnBrowse">Browse More Events</button>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="promotions">aaaa</div>
-                <div role="tabpanel" class="tab-pane" id="venue">...</div>
-                <div role="tabpanel" class="tab-pane" id="admission">...</div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="promotions">aaaa</div>
+            <div role="tabpanel" class="tab-pane" id="venue">...</div>
+            <div role="tabpanel" class="tab-pane" id="admission">...</div>
             </div>
         </div>
     </div>

@@ -52,6 +52,14 @@ $(".percent").keydown(function (e) {
       return false;
     }
 
+    // if(this.value.length == 2 && this.value.charAt(1) == '.' && e.which != 190){
+    //     $(this).attr('maxlength','4');
+    // }else if(this.value.length == 2 && this.value.charAt(1) == '.' && e.which == 190){
+    //     return false;
+    // }else if(this.value.length == 2 && e.which != 190){
+    //     $(this).attr('maxlength','2');
+    // }
+
     /*if (this.value.length == 2 && e.which == 190){
         console.log(1);
         $(this).attr('maxlength','5');
@@ -174,4 +182,18 @@ function datatablesCheckbox(table){
         }
     }
 }
+
+$('#show-message').on('click',function(){
+    $.ajax({
+        url: urlCountMessageUnread,
+        type: "GET",
+        dataType: 'json',
+        success: function (data) {
+            $('#inbox-unread').html(data);
+        },
+        error: function(response){
+            response.responseJSON.message
+        }
+    });
+});
 

@@ -139,6 +139,7 @@
         <script>
 
             var urlPostTrail = '{!! URL::route("admin-trail-post-modal") !!}';
+            var urlCountMessageUnread = "{!! URL::route('admin-count-unread-message') !!}";
 
             $(document).ajaxStart(function() {
                 Pace.restart();

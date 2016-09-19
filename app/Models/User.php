@@ -648,6 +648,22 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->hasMany('App\Event', 'user_id');
     }
 
+    public function promotions() {
+        return $this->hasMany('App\Promotion', 'user_id');
+    }
+
+    public function careers() {
+        return $this->hasMany('App\Career', 'user_id');
+    }
+
+    public function departments() {
+        return $this->hasMany('App\Department', 'user_id');
+    }
+
+    public function messageReplies() {
+        return $this->hasMany('App\MessageReply', 'user_id');
+    }
+
     public function dropdown(){
         return static::orderBy('first_name')->get();
     }

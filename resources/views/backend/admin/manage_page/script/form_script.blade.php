@@ -7,6 +7,9 @@
 
         $("#button_draft2, #button_preview").unbind('click').bind('click', function () {
             var status = $(this).attr('data-status');
+            if(status == ''){
+                status = 'draft';
+            }
             update(status);             
         });
 
@@ -31,7 +34,6 @@
             	location.reload();
             },
             error: function(response){
-                HoldOn.close();
                 if (response.status === 422) {
                     var data = response.responseJSON;
                     $.each(data,function(key,val){

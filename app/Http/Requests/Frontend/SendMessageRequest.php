@@ -30,6 +30,8 @@ class SendMessageRequest extends Request
             'country_code'      => 'required',
             'contact_number'    => 'required',
             'message'           => 'required',
+            //'g-recaptcha-response' => 'required|recaptcha'
+            'g-recaptcha-response' => 'required'
         ];
     }
 }

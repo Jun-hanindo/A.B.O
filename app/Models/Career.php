@@ -148,4 +148,26 @@ class Career extends Model
         return Career::where('avaibility' , true)
         ->orderBy('job', 'asc')->get();
     }
+
+    public function getCareerByDepartment($param){
+        $query = Career::where('avaibility' , true);
+
+        if(isset($param['department']) && $param['department'] != 0){
+            $query->where('department_id' , $param['department']);
+        }
+        
+        $careers = $query->orderBy('created_at', 'desc')->get();
+
+        if(count($careers) > 0)
+        {
+            foreach ($careers as $key => $career) {
+                $career->dept = $career->department->name;
+            }
+            return $careers;
+        }else{
+            return false;
+        }
+
+        return $careers;
+    }
 }

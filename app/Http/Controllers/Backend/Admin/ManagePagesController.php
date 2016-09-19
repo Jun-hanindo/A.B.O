@@ -24,7 +24,7 @@ class ManagePagesController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($slug)
+    public function index(Request $req, $slug)
     {
         try
         {
@@ -48,19 +48,19 @@ class ManagePagesController extends BaseController
         }
         $data['slug'] = $slug;
         if($slug == 'contact-us'){
-            $data['title'] = trans('general.contact_us');
+            $data['title'] = trans('general.contact_us_page');
         }elseif($slug == 'terms-and-conditions'){
-            $data['title'] = trans('general.terms_and_conditions');
+            $data['title'] = trans('general.terms_and_conditions_page');
         }elseif($slug == 'privacy-policy'){
-            $data['title'] = trans('general.privacy_policy');
+            $data['title'] = trans('general.privacy_policy_page');
         }elseif($slug == 'about-us'){
-            $data['title'] = trans('general.about_us');
+            $data['title'] = trans('general.about_us_page');
         }elseif($slug == 'careers'){
-            $data['title'] = trans('general.career');
+            $data['title'] = trans('general.career_page');
         }elseif($slug == 'faq'){
-            $data['title'] = trans('general.faq');
-        }elseif($slug == 'way-to-buy-tickets'){
-            $data['title'] = trans('general.way_to_buy_tickets');
+            $data['title'] = trans('general.faq_page');
+        }elseif($slug == 'ways-to-buy-tickets'){
+            $data['title'] = trans('general.ways_to_buy_tickets_page');
         }else{
             $data['title'] = trans('general.page_management');
         }

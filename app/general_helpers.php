@@ -145,3 +145,12 @@ if (! function_exists('string_limit')) {
         return str_limit($string, 75);
     }
 }
+
+if (! function_exists('count_message_unread')) {
+
+    function count_message_unread()
+    {
+        $message = new \App\Models\Message();
+        return $message->getCountUnread();
+    }
+}

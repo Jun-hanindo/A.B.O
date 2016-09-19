@@ -27,6 +27,11 @@
             <li{!! (url($menu['href']) == Request::url() OR Request::is($menu['href'].'/*')) ? ' class="active"' : '' !!}>
                 <a href="{!! url($menu['href']) !!}" title="{!! $menu['display_name'] !!}">
                     <i class="fa fa-{{ $menu['icon'] }}"></i> <span>{{ $menu['display_name'] }}</span>
+                    @if($menu['name'] == 'inbox')
+                        <span class="pull-right-container">
+                          <span class="label label-primary pull-right" id="inbox-unread"></span>
+                        </span>
+                    @endif
                 </a>
             </li>
         @endhasaccess

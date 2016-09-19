@@ -26,7 +26,7 @@
                           <div class="contact-desc">
                               <div class="row">
                                   <h3 class="head-about">Contact Us</h3>
-                                  {!! $content !!}
+                                  {!! str_replace('[captcha]', Recaptcha::render(), $content); !!}
                               </div>
                           </div>
                       </div>

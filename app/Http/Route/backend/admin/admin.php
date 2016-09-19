@@ -204,6 +204,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
 
         
     });
+
+    Route::group(['prefix' => 'inbox'], function () {
+        //route Users
+        Route::get('', array('as' => 'admin-index-message', 'uses' => 'MessagesController@index'));
+        Route::get('{id}/show', array('as' => 'admin-show-message', 'uses' => 'MessagesController@show'));
+        Route::get('count-unread', array('as' => 'admin-count-unread-message', 'uses' => 'MessagesController@countUnread'));
+        Route::post('reply-store', array('as' => 'admin-post-reply-message', 'uses' => 'MessageRepliesController@store'));
+
+    });
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () {

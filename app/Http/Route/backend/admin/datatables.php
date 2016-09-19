@@ -55,6 +55,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::get('trail', array('as' => 'datatables-trail', 'uses' => 'TrailsController@datatables'));
         Route::get('department', array('as' => 'datatables-department', 'uses' => 'DepartmentsController@datatables'));
         Route::get('career', array('as' => 'datatables-career', 'uses' => 'CareersController@datatables'));
+        Route::get('message', array('as' => 'datatables-message', 'uses' => 'MessagesController@datatables'));
         
 
     });

@@ -716,5 +716,46 @@ class Event extends Model
         return $events;
     }
 
+    public function getFeaturedEventByCategory($id, $category, $limit)
+    {
+
+        $events = Event::select('events.id as id','events.title as title', 'events.featured_image3 as featured_image3',
+            'events.slug as slug', 'events.avaibility as avaibility', 
+            'events.background_color as background_color')
+            ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
+            ->where('event_categories.category_id','=',$category)
+            //->where('events.status', true)
+            ->where('events.avaibility','=',true)
+            ->where('events.id','<>',$id)
+            ->orderBy('events.created_at', 'desc')
+            ->take($limit)
+            ->get();
+
+        if(count($events) > 0)
+        {
+            foreach ($events as $key => $event) {
+                $cat = Category::where('id', $category)->where('status', true)->first();
+                $event->cat_name = $cat->name;
+
+                $event->title = string_limit($event->title);
+
+                $this->setImageUrl($event);
+
+                $event->venue = $event->Venue;
+
+                $schedule = $event->EventSchedule()->orderBy('date_at', 'asc')->first();
+                if(!empty($schedule)){
+                    $event->first_date = date('d F Y', strtotime($schedule->date_at));
+                }else{
+                    $event->first_date = '';
+                }
+                
+            }
+            return $events;
+        }else{
+            return false;
+        }
+    }
+
     
 }

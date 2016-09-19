@@ -112,6 +112,8 @@ body{
   top: 0;
 }
 
+
+
 #top-header{
   position: fixed;
   width: 100%;
@@ -149,7 +151,18 @@ body{
 }
 
 .left-header .list-menu{
-  margin-right: 25px;
+  margin-right: 26px;
+}
+
+.list-menu a:hover,
+.right-header a:hover,
+.linkFoot a:hover,
+.list-unstyled li a:hover{
+  color: #a0a0a0 !important;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
 }
 
 .nav-item > a {
@@ -166,12 +179,11 @@ body{
   display: inline-block;
   position: relative;
   height: 40px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .cd-dropdown-wrapper a{
   text-decoration: none;
+  font-family: 'proxima_nova_rgregular';
 }
 
 .cd-dropdown-wrapper .cd-dropdown ul{
@@ -193,44 +205,27 @@ body{
   border-radius: 3px;
 }
 
-.cd-dropdown-trigger::before, .cd-dropdown-trigger::after {
-  /* this is the arrow inside the dropdown trigger*/
-  content: '';
-  position: absolute;
-  top: 50%;
-  margin-top: -1px;
-  height: 2px;
-  width: 9px;
-  background: #ffffff;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transition: width 0.3s, -webkit-transform 0.3s;
-  -moz-transition: width 0.3s, -moz-transform 0.3s;
-  transition: width 0.3s, transform 0.3s;
+.cd-dropdown-trigger:after{
+  font-family: 'FontAwesome';
+  content: "\f107";
+  font-size: 15px;
+  padding-left: 7px;
 }
-.cd-dropdown-trigger::before {
-  right: 22px;
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
+
+a.dropdown-is-active:after{
+  font-family: 'FontAwesome';
+  content: "\f106";
+  font-size: 15px;
+  padding-left: 7px;
 }
-.cd-dropdown-trigger::after {
-  right: 17px;
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
+
 @media only screen and (min-width: 1024px) {
   .cd-dropdown-trigger {
     font-size: 1.5rem;
   }
   .cd-dropdown-trigger.dropdown-is-active::before, .cd-dropdown-trigger.dropdown-is-active::after {
     /* transform the arrow into a 'X' */
-    width: 14px;
+    width: 10px;
   }
   .cd-dropdown-trigger.dropdown-is-active::before {
     /* transform the arrow into a 'X' */
@@ -282,6 +277,10 @@ body{
 .cd-dropdown-content ul a,
 .cd-dropdown-content .cd-divider {
   padding: 0 20px;
+}
+
+.cd-dropdown-trigger img{
+  margin-right: 5px;
 }
 
 .cd-dropdown {
@@ -822,16 +821,25 @@ body{
   width: 220px;
   background-color: #292929;
   border: none;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
-.nav-item .hover-li {
+.nav-item .input-search:focus{
+  background-color: #fff;
+  color: #000;
+}
+
+.nav-item .input-search::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #fff;
+}
+
+.hover-li {
     display: inline-block;
     color: #fff;
     text-decoration: none;
 }
 
-.nav-item .hover-li::after {
+.hover-li::after {
     content: '';
     display: block;
     width: 0;
@@ -840,14 +848,14 @@ body{
     transition: width .3s;
 }
 
-.nav-item .hover-li:hover::after {
+.hover-li:hover::after {
     width: 100%;
 }
 
 .right-header a {
     position: relative;
     display: block;
-    line-height: 80px;
+    margin-top: 30px;
     color: #fff;
     font-size: 14px;
     text-align: center;
@@ -874,6 +882,12 @@ body{
   margin: 1px;
 }
 
+.carousel-indicators li,
+.carousel-indicators li.active{
+  width: 7px;
+  height: 7px;
+}
+
 .slider-home .carousel-caption {
   background-color: #003272;
   position: static;
@@ -884,7 +898,9 @@ body{
   padding: 0 0 10px 25px;
   color: #fff;
   text-align: left;
-  padding: 20px;
+  padding: 15px;
+  height: 140px;
+  text-shadow: none;
 }
 
 .nav-search .input-group input{
@@ -899,7 +915,7 @@ body{
 .newRelease h2,
 .latestPromo h2 {
   text-align: center;
-  margin-top: 35px;
+  margin-top: 50px;
   font-size: 26px;
 }
 
@@ -910,7 +926,7 @@ body{
 .newRelease .box-release,
 .promotionList .box-release,
 .latestPromo .box-promo{
-  margin-top: 25px;
+  margin-top: 10px;
 }
 
 .box-release img,
@@ -939,12 +955,12 @@ body{
 .box-release .boxInfo ul,
 .box-promo .boxInfo ul{
   list-style-type: none;
-  padding: 15px;
+  padding: 14px 12px 12px 15px;
 }
 
 .box-release .boxInfo ul li,
 .box-promo .boxInfo ul li{
-  padding: 5px;
+  padding: 3px;
 }
 
 .box-promo .boxInfo ul li img{
@@ -955,11 +971,14 @@ body{
   color: #fff;
 }
 
-.box-release .boxInfo .eventType{
+.box-release .boxInfo .eventType,
+.box-promo .boxInfo .eventType{
   font-size: 11px;
+  letter-spacing: 1px;
 }
 
-.box-release .boxInfo .eventName{
+.box-release .boxInfo .eventName,
+.box-promo .boxInfo .eventName{
   font-size: 16px;
 }
 
@@ -973,11 +992,12 @@ body{
 }
 
 .box-release .boxInfo .eventPlace i{
-  margin-right: 10px;
+  margin-right: 8px;
+  margin-left: 2px;
 }
 
 .loadMore{
-  margin-top: 25px;
+  margin-top: 20px;
   text-align: center;
   margin-bottom: 50px;
 }
@@ -985,8 +1005,13 @@ body{
 .loadMore .btnLoad{
   background-color: #000;
   color: #fff;
-  width: 220px;
+  width: 230px;
   height: 40px;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+  opacity: 1;
 }
 
 .latestPromo{
@@ -999,10 +1024,15 @@ body{
   background: #000;
 }
 
-#footer2,
-#footer3{
+#footer2{
   padding-top: 25px;
   padding-bottom: 25px;
+  background: #000000;
+}
+
+#footer3{
+  padding-top: 25px;
+  padding-bottom: 50px;
   background: #000000;
 }
 
@@ -1052,6 +1082,15 @@ footer .information-title{
     margin-top: 10px;
 }
 
+.eventInfo .list-unstyled{
+  padding-left: 30px;
+}
+
+.place .information-title,
+.ticket .information-title{
+  margin-left: 30px;
+}
+
 #footer2 li {
     margin: 0 0 5px;
     font-size: 14px;
@@ -1063,19 +1102,18 @@ footer .information-title{
     font-size: 12px;
 }
 
-#footer2 .facebookLike,
-#footer2 .mobileApp{
+#footer2 .facebookLike{
   margin-top: 10px;
 }
 
 #footer3 p{
-  font-size: 11px;
+  font-size: 9px;
   color: #fff;
 }
 
 #footer3 .footer-bottom{
   margin: 0 auto;
-  width: 80%;
+  width: 72.5%;
   padding: 10px;
 }
 
@@ -1112,6 +1150,8 @@ footer .information-title{
 .input-group-addon{
   background-color: #292929;
   border: none;
+  padding: 6px 5px 6px 10px;
+  border-radius: 3px;
 }
 
 .nav-search form {
@@ -1146,6 +1186,10 @@ footer .information-title{
   position: relative;
   top: -45px;
   right: 100px;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
 }
 
 .moreDetail a{
@@ -1159,11 +1203,16 @@ footer .information-title{
   padding-right: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
-  width: 180px;
+  width: 170px;
+  height: 40px;
 }
 
 .item .categorySlide{
   font-size: 11px;
+}
+
+.categorySlide{
+  letter-spacing: 1px;
 }
 
 .item .titleSlide{
@@ -1261,7 +1310,7 @@ footer .information-title{
 }
 
 .eventInfo{
-  padding-top: 40px;
+  padding-top: 25px;
 }
 
 .eventInfo .information-title{
@@ -1286,16 +1335,23 @@ footer .information-title{
   border-bottom: 1px solid #cacaca;
 }
 
+.eventInfo .list-unstyled table .tr-last{
+  border: none;
+}
+
 .eventInfo .list-unstyled table tr td{
   min-width: 120px;
-  text-align: center;
   padding-bottom: 10px;
   padding-top: 10px;
 }
 
-.eventInfo .place ul li,
-.eventInfo .ticket ul li{
+.eventInfo .place ul li{
   padding-left: 14px;
+  font-size: 14px;
+}
+
+.eventInfo .ticket ul li{
+  padding-left: 20px;
   font-size: 14px;
 }
 
@@ -1306,7 +1362,7 @@ footer .information-title{
 }
 
 .eventInfo .eventTab {
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 .eventTab .nav-tabs>li>a{
@@ -1319,12 +1375,11 @@ footer .information-title{
 
 .contentTab .side-left h4{
   font-size: 16px;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 15px;
+  margin-top: 7px;
 }
 
 .main-content #about p{
-  opacity: 0.6;
   line-height: 18px;
   font-size: 14px;
   color: #000;
@@ -1332,11 +1387,12 @@ footer .information-title{
 
 .main-content .sectionEvent h3{
   font-size: 14px;
+  margin-top: 10px;
 }
 
 .main-content section{
-  margin-bottom: 30px;
-  margin-top: 30px;
+  margin-bottom: 12px;
+  margin-top: 20px;
 }
 
 .main-content #promotion ul li,
@@ -1388,19 +1444,14 @@ footer .information-title{
 
 .formPromo{
   background-color: #fff;
-  padding: 15px;
-  margin-top: 20px;
-  -webkit-box-shadow: 3px 4px 5px -1px rgba(212,212,212,1);
-  -moz-box-shadow: 3px 4px 5px -1px rgba(212,212,212,1);
-  box-shadow: 3px 4px 5px -1px rgba(212,212,212,1);
+  padding: 20px;
+  margin-top: 30px;
+  height: 350px;
 }
 
 .featuredEvent{
   background-color: #fff;
-  margin-top: 15px;
-  -webkit-box-shadow: 3px 4px 5px -1px rgba(212,212,212,1);
-  -moz-box-shadow: 3px 4px 5px -1px rgba(212,212,212,1);
-  box-shadow: 3px 4px 5px -1px rgba(212,212,212,1);
+  margin-top: 30px;
 }
 
 .formPromo .labelHead{
@@ -1408,13 +1459,18 @@ footer .information-title{
   margin-bottom: 15px;
 }
 
+.formPromo .form-group{
+  margin-bottom: 0;
+}
+
 .featuredEvent label{
-  padding: 12px;
+  padding: 15px;
   font-size: 16px;
+  margin-bottom: 0;
 }
 
 .formPromo .col-1{
-  padding-right: 3;
+  padding-right: 20px;
 }
 
 .formPromo .col-2{
@@ -1423,10 +1479,16 @@ footer .information-title{
 
 .formPromo input{
   border-radius: 3px;
+  border-color: #e7e7e7;
+  box-shadow: none;
 }
 
 .formPromo .row{
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.formPromo .last-row{
+  margin-bottom: 0;
 }
 
 .formPromo .btnSend{
@@ -1441,6 +1503,7 @@ footer .information-title{
   font-size: 12px;
   color: #999999;
   font-weight: normal;
+  margin-bottom: 0;
 }
 
 .featuredEvent .caption{
@@ -1487,7 +1550,7 @@ footer .information-title{
 .featuredEvent .btnBrowse{
   background-color: #000;
   color: #fff;
-  margin: 15px;
+  margin: 20px;
 }
 
 .featuredEvent .btnBrowse:hover{
@@ -1500,6 +1563,14 @@ footer .information-title{
 
 #aboutEvent .side-left{
   margin-top: 10px;
+}
+
+#aboutEvent .side-first{
+  margin-top: 30px;
+}
+
+.main-content #about{
+  margin-top: 40px;
 }
 
 .btnSeat{
@@ -1529,12 +1600,19 @@ footer .information-title{
 
 .mobile-header .mobile-menu{
   float: right;
+  margin-top: 8px;
+  margin-right: 5px;
 }
 
-.mobile-header .mobile-search,
+.mobile-header .mobile-search{
+  margin-top: 8px;
+  margin-left: 5px;
+}
+
+/*.mobile-header .mobile-search,
 .mobile-header .mobile-menu{
   padding-top: 10px;
-}
+}*/
 
 .mobile-header {
   margin: 0 auto;
@@ -1555,7 +1633,7 @@ footer .information-title{
   position: fixed;
   width: 100%;
   left: 0;
-  top: 60px;
+  top: 43px;
   background: #000;
   margin: 0;
 }
@@ -1572,8 +1650,7 @@ footer .information-title{
 }
 
 .mobile-collapse-body-top li .mobile-flag::after{
-  content: "\f078";
-  color: #fff;
+  content: "\f107";
   font-family: 'FontAwesome';
   padding-left: 10px;
 }
@@ -2557,7 +2634,7 @@ footer .information-title{
 
 #modalYes .modal-content,
 #modalContact .modal-content{
-  max-width: 400px;
+  max-width: 430px;
   margin: 0 auto;
 }
 
@@ -2741,10 +2818,23 @@ footer .information-title{
   float: none;
 }
 
-.cd-dropdown-content .countryList ul li > a:before {content:"\f078";display: block;font: normal normal normal 14px/1 FontAwesome;font-size: inherit;text-rendering: auto;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;position: absolute;bottom: 5px;right: 0;left: 0;margin: 0 auto;}
+.cd-dropdown-content .countryList ul li > a:before {
+  content:"\f107";
+  display: block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+}
 
 .cd-dropdown-content .countryList ul li > a.shown:before {
-    content: "\f077";
+    content: "\f106";
 }
 
 .cd-dropdown-content .countryList ul li ul li a:before {
@@ -2764,10 +2854,22 @@ footer .information-title{
     padding: 5px;
 }
 
-.mobile-flag-collapse li > a:before {content:"\f078";display: block;font: normal normal normal 14px/1 FontAwesome;font-size: inherit;text-rendering: auto;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;position: absolute;bottom: -3px;right: 0;left: 0;margin: 0 auto;}
+.mobile-flag-collapse li > a:before {
+  content:"\f107";
+  display: block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: absolute;
+  bottom: 24px;
+  right: -3px;
+  margin: 0 auto;
+}
 
 .mobile-flag-collapse li > a.shown:before {
-    content: "\f077";
+    content: "\f106";
 }
 
 .mobile-flag-collapse li ul li a:before {
@@ -2780,6 +2882,8 @@ footer .information-title{
 
 .infoBanner .detail h5{
   font-size: 11px;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
 }
 
 .infoBanner .detail h2{
@@ -2839,9 +2943,6 @@ footer .information-title{
 }
 
 /*thumb height*/
-.box-release .boxInfo{
-  height: 170px;
-}
 
 /*Auto Search*/
 #ul-search{
@@ -2912,6 +3013,81 @@ footer .information-title{
 #modalContact .col-2{
   padding-left: 0;
 }
+
+#footer2 .mobileApp a img{
+  margin-top: 10px;
+}
+
+.carousel-inner .item img{
+  width: 100%;
+}
+
+.btnDetail:hover{
+  color: #a0a0a0;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+.btnLoad:hover{
+  color: #a0a0a0;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+
+}
+
+.clear-text{
+  display: none;
+  position: absolute;
+  color: #000;
+  right: 10px;
+  top: 13px;
+  z-index: 22;
+}
+
+.login-mobile{
+  padding-bottom: 15px !important;
+}
+
+.register-mobile{
+  padding-top: 0 !important;
+  padding-bottom: 40px !important;
+}
+
+.eventTab .nav-tabs{
+  border: none;
+}
+
+.formPromo input:focus {
+  border-color: #e7e7e7;
+  box-shadow: none;
+}
+
+.tabEvent{
+  padding-left: 0;
+}
+
+#aboutEvent .col-md-8{
+  padding-left: 0;
+}
+
+.eventTab .active{
+  border-bottom: 3px solid #000;
+  font-family: 'proxima_nova_rgbold';
+}
+
+.main-content #rules{
+  margin-bottom: 45px;
+}
+
+
+
+
+
+
 
 
 

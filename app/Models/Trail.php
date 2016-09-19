@@ -20,7 +20,8 @@ class Trail extends Model
 
     public function insertTrail($desc)
     {
-        $user_id = \Sentinel::getUser()->id;
+
+        $user_id = !empty(\Sentinel::getUser()) ? \Sentinel::getUser()->id : 0;
         $session_id = session()->getId();
         $ip_address = Request::ip();
         //$data = [];

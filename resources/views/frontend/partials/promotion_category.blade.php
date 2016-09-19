@@ -70,7 +70,7 @@
                                                 <h4>Get Your Early Bird Tickets Now!</h4>
                                             </div>
                                             <div class="col-md-4">
-                                                <a action="{{ $event->buylink }}">
+                                                <a href="{{ $event->buylink }}">
                                                     <button type="button" class="btn btn-primary">Buy Now</button>
                                                 </a>
                                                 
@@ -92,6 +92,16 @@
             @endif
         </div>
     </section>
-    @endif
+@else
+    <section class="promotionList">
+        <div class="container">
+            <div class="row append-events">
+                <div class="box-promo">
+                    <h3 class="text-center">There are no promotion.</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+@endif
 @stop
 @include('frontend.partials.script.promotion_category_script')

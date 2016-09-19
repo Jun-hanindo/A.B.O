@@ -13,10 +13,13 @@ use App\Models\Event;
 use App\Models\Category;
 use App\Models\ManagePage;
 use App\Models\LogActivity;
+use App\Models\Trail;
 use App\Models\Department;
 use App\Models\Career;
+use App\Models\Message;
 use Mail;
 use App\Http\Requests\Frontend\SendMessageRequest;
+use App\Http\Requests\Frontend\FeedbackRequest;
 //use View;
 
 class HomeController extends Controller
@@ -28,84 +31,136 @@ class HomeController extends Controller
 
     public function index()
     {
-        $result['sliders'] = $this->model->getHomepage('slider');
-        $result['events'] = $this->model->getHomepage('event');
-        $result['promotions'] = $this->model->getHomepage('promotion');
-        $result['src'] = url('uploads/events').'/';
-        $result['src2'] = url('uploads/promotions').'/';
-        return view('frontend.partials.homepage', $result); 
+
+        try{
+            $result['sliders'] = $this->model->getHomepage('slider');
+            $result['events'] = $this->model->getHomepage('event');
+            $result['promotions'] = $this->model->getHomepage('promotion');
+            $result['src'] = url('uploads/events').'/';
+            $result['src2'] = url('uploads/promotions').'/';
+
+            $trail = 'Homepage front end';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+
+            return view('frontend.partials.homepage', $result); 
+        
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            //return view('errors.404');
+        
+        }
     }
 
     public function discover(Request $req)
     {
-        $result['sliders'] = $this->model->getHomepage('slider');
-        $result['src'] = url('uploads/events').'/';
-        $modelCategory = new Category();
-        $result['categories'] = $modelCategory->getCategory();
-        $modelEvent = new Event();
-        $limit = 9;
-        $result['events'] = $modelEvent->getEvent($limit);
-        if($req->ajax()){      
-            $events = $result['events'];
 
-            if($events) {
+        try{
+            $result['sliders'] = $this->model->getHomepage('slider');
+            $result['src'] = url('uploads/events').'/';
+            $modelCategory = new Category();
+            $result['categories'] = $modelCategory->getCategory();
+            $modelEvent = new Event();
+            $limit = 9;
+            $result['events'] = $modelEvent->getEvent($limit);
+            if($req->ajax()){      
+                $events = $result['events'];
 
-                return response()->json([
-                    'code' => 200,
-                    'status' => 'success',
-                    'message' => 'success',
-                    'data' => $events
-                ],200);
+                if($events) {
 
-            } else {
+                    return response()->json([
+                        'code' => 200,
+                        'status' => 'success',
+                        'message' => 'success',
+                        'data' => $events
+                    ],200);
 
-                return response()->json([
-                    'code' => 400,
-                    'status' => 'error',
-                    'data' => array(),
-                    'message' => trans('general.data_empty')
-                ],400);
-            
+                } else {
+
+                    return response()->json([
+                        'code' => 400,
+                        'status' => 'error',
+                        'data' => array(),
+                        'message' => trans('general.data_empty')
+                    ],400);
+                
+                }
+                
+            }else{
+
+                $trail = 'Discover front end';
+                $insertTrail = new Trail();
+                $insertTrail->insertTrail($trail);
+
+                return view('frontend.partials.discover', $result);
             }
-            
-        }else{
-            return view('frontend.partials.discover', $result);
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return view('errors.404');
+        
         }
         
     }
 
     public function promotion(Request $req)
     {
-        $modelEvent = new Event();
-        $limit = 9;
-        $result['events'] = $modelEvent->getEventByPromotion($limit);
 
-        if($req->ajax()){      
-            $events = $result['events'];
+        try{
+            $modelEvent = new Event();
+            $limit = 9;
+            $result['events'] = $modelEvent->getEventByPromotion($limit);
 
-            if($events) {
+            if($req->ajax()){      
+                $events = $result['events'];
 
-                return response()->json([
-                    'code' => 200,
-                    'status' => 'success',
-                    'message' => 'success',
-                    'data' => $events
-                ],200);
+                if($events) {
 
-            } else {
+                    return response()->json([
+                        'code' => 200,
+                        'status' => 'success',
+                        'message' => 'success',
+                        'data' => $events
+                    ],200);
 
-                return response()->json([
-                    'code' => 400,
-                    'status' => 'error',
-                    'data' => array(),
-                    'message' => trans('general.data_empty')
-                ],400);
-            
-            }
-            
-        }else{
-            return view('frontend.partials.promotion', $result);
-        } 
+                } else {
+
+                    return response()->json([
+                        'code' => 400,
+                        'status' => 'error',
+                        'data' => array(),
+                        'message' => trans('general.data_empty')
+                    ],400);
+                
+                }
+                
+            }else{
+
+                $trail = 'Promotion front end';
+                $insertTrail = new Trail();
+                $insertTrail->insertTrail($trail);
+
+                return view('frontend.partials.promotion', $result);
+            } 
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return view('errors.404');
+        
+        }
     }
 
     function pageContent($slug){
@@ -147,18 +202,41 @@ class HomeController extends Controller
                 $data['content'] = $this->string_replace($this->pageContent('careers'));
             }
 
-            //$data['department'] = Department::dropdown();
+            $modelDepartment = new Department();
+            $data['departments'] = $modelDepartment->getDepartment();
+            $modelCareer = new Career();
+            $data['careers'] = $modelCareer->getCareerByDepartment($param);
+            if(!empty($data['careers'])){
+                $data['count_job'] = count($data['careers']);
+            }else{
+                $data['count_job'] = 'No';
+            }
+            if($req->ajax()) {
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => 'success',
+                    'data' => $data
+                ],200);
+
+            }else{
+                $trail = 'Careers front end';
+                $insertTrail = new Trail();
+                $insertTrail->insertTrail($trail);
+        
+                return view('frontend.partials.careers', $data);
+            }
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
+
+            return view('errors.404');
         
         }
-        
-        return view('frontend.partials.careers', $data);
     }
 
     public function contactUs(Request $req)
@@ -175,16 +253,23 @@ class HomeController extends Controller
             }else{
                 $data['content'] = $this->string_replace($this->pageContent('contact-us'));
             }
+
+            $trail = 'Contact Us front end';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+            
+            return view('frontend.partials.contact_us', $data);
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
+
+            return view('errors.404');
         
         }
-        return view('frontend.partials.contact_us', $data);
     }
 
     public function ourCompany(Request $req)
@@ -201,82 +286,178 @@ class HomeController extends Controller
             }else{
                 $data['content'] = $this->string_replace($this->pageContent('about-us'));
             }
+
+            $trail = 'Our company front end';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+
+            return view('frontend.partials.our_company', $data);
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
+
+            return view('errors.404');
         
         }
-        return view('frontend.partials.our_company', $data);
     }
 
     public function supportFaq(Request $req)
     {
-        return view('frontend.partials.support_faq');
-    }
-
-    public function supportWayToBuyTickets(Request $req)
-    {
-        $param = $req->all();
-        if(!empty($param)){
-            if(isset($param['preview'])){
-                $data['content'] = $this->string_replace($this->preview('way-to-buy-tickets'));
+        try{
+                
+            $param = $req->all();
+            if(!empty($param)){
+                if(isset($param['preview'])){
+                    $data['content'] = $this->string_replace($this->preview('faq'));
+                }else{
+                    $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
+                }
             }else{
-                $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
+                $data['content'] = $this->string_replace($this->pageContent('faq'));
             }
-        }else{
-            $data['content'] = $this->string_replace($this->pageContent('way-to-buy-tickets'));
+
+            $trail = 'Contact Us front end';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+            
+            return view('frontend.partials.support_faq', $data);
+        
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return view('errors.404');
+        
         }
-        return view('frontend.partials.support_way_to_buy_tickets', $data);
     }
 
-    public function searchResult()
+    public function supportWaysToBuyTickets(Request $req)
     {
-        return view('frontend.partials.search_result');
+
+        try{
+            $param = $req->all();
+            if(!empty($param)){
+                if(isset($param['preview'])){
+                    $data['content'] = $this->string_replace($this->preview('ways-to-buy-tickets'));
+                }else{
+                    $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
+                }
+            }else{
+                $data['content'] = $this->string_replace($this->pageContent('ways-to-buy-tickets'));
+            }
+
+            $trail = 'Way to buy tickets front end';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+
+            return view('frontend.partials.support_way_to_buy_tickets', $data);
+            
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return view('errors.404');
+        
+        }
     }
 
     public function sendMessage(SendMessageRequest $req){
-        $param = $req->all();
-
-        $data['mail_driver'] = $this->setting['mail_driver'];
-        $data['mail_host'] = $this->setting['mail_host'];
-        $data['mail_port'] = $this->setting['mail_port'];
-        $data['mail_username'] = $this->setting['mail_username'];
-        $data['mail_password'] = $this->setting['mail_password'];
-        $data['mail_name'] = $this->setting['mail_name'];
-        $param['body'] = $param['message'];
 
         try{
-            Mail::send('backend.emails.contact_us', $param, function ($message) use ($param, $data) {
+            $param = $req->all();
+
+            $data['mail_driver'] = $this->setting['mail_driver'];
+            $data['mail_host'] = $this->setting['mail_host'];
+            $data['mail_port'] = $this->setting['mail_port'];
+            $data['mail_username'] = $this->setting['mail_username'];
+            $data['mail_password'] = $this->setting['mail_password'];
+            $data['mail_name'] = $this->setting['mail_name'];
+            $param['body'] = $param['message'];
+
+            Mail::send('frontend.emails.contact_us', $param, function ($message) use ($param, $data) {
                 $message->from($param['email'], $param['name'])
                     ->to($data['mail_username'], $data['mail_name'])
                     ->subject($param['subject'])
                     ->replyTo($param['email'], $param['name']);
 
-                return response()->json([
-                    'code' => 200,
-                    'status' => 'success',
-                    'message' => trans('general.message_success')
-                ],200);
+                $modelMessage = new Message();
+                $inbox = $modelMessage->insertNewMessage($param);
             });
 
-            Mail::send('backend.emails.contact_us_reply', $param, function ($message) use ($data, $param) {
+            Mail::send('frontend.emails.contact_us_reply', $param, function ($message) use ($data, $param) {
                 $message->from($data['mail_username'], $data['mail_name'])
                     ->to($param['email'], $param['name'])->subject('Thank You')
                     ->replyTo($data['mail_username'], $data['mail_name']);
-
-                return response()->json([
-                    'code' => 200,
-                    'status' => 'success',
-                    'message' => trans('general.message_success')
-                ],200);
             });
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => trans('general.message_success')
+            ],200);
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.message_error')
+            ],400);
+        
+        }
+    }
+
+    public function feedBack(FeedbackRequest $req){
+
+        try{
+            $param = $req->all();
+
+            $data['mail_driver'] = $this->setting['mail_driver'];
+            $data['mail_host'] = $this->setting['mail_host'];
+            $data['mail_port'] = $this->setting['mail_port'];
+            $data['mail_username'] = $this->setting['mail_username'];
+            $data['mail_password'] = $this->setting['mail_password'];
+            $data['mail_name'] = $this->setting['mail_name'];
+            $param['body'] = $param['message'];
+
+            Mail::send('frontend.emails.feedback', $param, function ($message) use ($param, $data) {
+                $message->from($param['email'])
+                    ->to($data['mail_username'], $data['mail_name'])
+                    ->subject($param['subject'])
+                    ->replyTo($param['email']);
+
+                $modelMessage = new Message();
+                $inbox = $modelMessage->insertNewMessage($param);
+            });
+
+            Mail::send('frontend.emails.feedback_reply', $param, function ($message) use ($data, $param) {
+                $message->from($data['mail_username'], $data['mail_name'])
+                    ->to($param['email'])->subject('Thanks for Your Feedback')
+                    ->replyTo($data['mail_username'], $data['mail_name']);
+            });
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => trans('general.message_success')
+            ],200);
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);

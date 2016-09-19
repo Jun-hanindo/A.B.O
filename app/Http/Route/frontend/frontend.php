@@ -10,8 +10,8 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'HomeController@contactUs'));
     Route::get('about-us', array('as' => 'our-company', 'uses' => 'HomeController@ourCompany'));
     Route::get('faq', array('as' => 'support-faq', 'uses' => 'HomeController@supportFaq'));
-    Route::get('way-to-buy-tickets', array('as' => 'support-way-to-buy-tickets', 'uses' => 'HomeController@supportWayToBuyTickets'));
-    Route::get('search-result', array('as' => 'search-result', 'uses' => 'HomeController@searchResult'));
+    Route::get('ways-to-buy-tickets', array('as' => 'support-way-to-buy-tickets', 'uses' => 'HomeController@supportWaysToBuyTickets'));
+    //Route::get('search-result', array('as' => 'search-result', 'uses' => 'HomeController@searchResult'));
     // Route::get('application', array('as' => 'front-form-application', 'uses' => 'ApplicationController@applicationForm'));
     // 
     Route::get('event/{slug}', array('as' => 'event-detail', 'uses' => 'EventsController@index'));
@@ -21,4 +21,5 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('search/result', array('as' => 'event-search-get', 'uses' => 'EventsController@searchResult'));
     Route::get('search', array('as' => 'event-search', 'uses' => 'EventsController@search'));
     Route::post('send-message', array('as' => 'send-message', 'uses' => 'HomeController@sendMessage'));
+    Route::post('send-feedback', array('as' => 'send-feedback', 'uses' => 'HomeController@feedBack'));
 });

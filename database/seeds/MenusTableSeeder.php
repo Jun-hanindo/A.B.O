@@ -52,7 +52,7 @@ class MenusTableSeeder extends Seeder
                 ['name' => str_slug('Career'), 'display_name' => 'Career', 'icon' => 'briefcase', 'href' => 'admin/manage-pages/careers', 'pattern' => 'admin/manage-pages'],
                 ['name' => str_slug('Privacy Policy'), 'display_name' => 'Privacy Policy', 'icon' => 'lock', 'href' => 'admin/manage-pages/privacy-policy', 'pattern' => 'admin/manage-pages'],
                 ['name' => str_slug('About Us'), 'display_name' => 'About Us', 'icon' => 'info-circle', 'href' => 'admin/manage-pages/about-us', 'pattern' => 'admin/manage-pages'],
-                ['name' => str_slug('Way to Buy Tickets'), 'display_name' => 'Way to Buy Tickets', 'icon' => 'ticket', 'href' => 'admin/manage-pages/way-to-buy-tickets', 'pattern' => 'admin/manage-pages'],
+                ['name' => str_slug('Ways to Buy Tickets'), 'display_name' => 'Ways to Buy Tickets', 'icon' => 'ticket', 'href' => 'admin/manage-pages/ways-to-buy-tickets', 'pattern' => 'admin/manage-pages'],
             ]],
             ['is_parent' => true, 'name' => str_slug('Careers'), 'display_name' => 'Careers', 'icon' => 'briefcase', 'href' => '#', 'pattern' => 'admin/career', 'child' => [
                 ['name' => str_slug('Add Career'), 'display_name' => 'Add Career', 'icon' => 'plus-circle', 'href' => 'admin/career/create', 'pattern' => 'admin/career'],
@@ -77,6 +77,7 @@ class MenusTableSeeder extends Seeder
             ['is_parent' => false, 'name' => str_slug('Settings'), 'display_name' => 'Settings', 'icon' => 'cogs', 'href' => 'admin/setting', 'pattern' => 'admin/setting'],
             ['is_parent' => false, 'name' => str_slug('Trail'), 'display_name' => 'Trail', 'icon' => 'road', 'href' => 'admin/trail', 'pattern' => 'admin/trail'],
             ['is_parent' => false, 'name' => str_slug('System Log'), 'display_name' => 'System Log', 'icon' => 'archive', 'href' => 'admin/system-log', 'pattern' => 'admin/system-log'],
+            ['is_parent' => false, 'name' => str_slug('Inbox'), 'display_name' => 'Inbox', 'icon' => 'inbox', 'href' => 'admin/inbox', 'pattern' => 'admin/inbox'],
             ['is_parent' => false, 'name' => str_slug('Customer Report'), 'display_name' => 'Customer Report', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/customer-report'],
             ['is_parent' => false, 'name' => str_slug('Logout'), 'display_name' => 'Logout', 'icon' => 'sign-out', 'href' => 'admin/logout', 'pattern' => 'admin/logout'],
 

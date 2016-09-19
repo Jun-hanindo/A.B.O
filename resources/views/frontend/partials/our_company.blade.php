@@ -29,8 +29,7 @@
                           </div>
                       </div>
                   </div>
-                  {!! $content !!}
-
+                  {!! str_replace('[captcha]', Recaptcha::render(), $content); !!}
               </div>
           </section>
           

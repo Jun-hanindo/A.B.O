@@ -4,18 +4,17 @@
 
         $(document).ready(function(){
 
-            $(".btnFeedback").on('click', function(){
+            $("#modalContact .btnFeedback").on('click', function(){
                 sendMessage();
             });
-
-            $(".contact a, .btnAbout").on('click', function(){
-                clearInputMessage();
-                var id = $(this).attr('id');
-                $('#subject #'+id).prop('selected', true);
+            $("#modalNo .btnFeedback").on('click', function(){
+                feedback();
             });
 
-            $("#client, #partner").on('click', function(){
+            $(".contact a, .btnAbout, .ask a, #client, #partner").on('click', function(){
+                clearInputMessage();
                 var id = $(this).attr('id');
+                console.log(id);
                 $('#subject #'+id).prop('selected', true);
             });
 
@@ -25,7 +24,7 @@
         function sendMessage()
         {
             //modal_loader();
-            var data = $('#messageBox').serialize();
+            var data = $('#message-form').serialize();
             $.ajax({
                 url: "{{ route('send-message') }}",
                 type: "POST",
@@ -34,6 +33,7 @@
                 success: function (response) {
                     $('#modalYes').modal('show');
                     $('#modalContact').modal('hide');
+                    clearInputMessage();
                 },
                 error: function(response){
                     // $('#modalYes').modal('show');
@@ -45,8 +45,39 @@
                             $('.'+key).addClass('has-error');
                         });
                     } else {
-                        $('#modalYes').modal('show');
-                        $('#modalContact').modal('hide');
+                        // $('#modalYes').modal('show');
+                        // $('#modalContact').modal('hide');
+                        $('.error-modal').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        
+                    }
+                }
+            });
+        }
+
+        function feedback(){
+            var data = $('#feedback-form').serialize();
+            $.ajax({
+                url: "{{ route('send-feedback') }}",
+                type: "POST",
+                dataType: 'json',
+                data: data,
+                success: function (response) {
+                    $('#modalYes').modal('show');
+                    $('#modalNo').modal('hide');
+                    clearInputMessage();
+                },
+                error: function(response){
+                    // $('#modalYes').modal('show');
+                    // $('#modalContact').modal('hide');
+                    if (response.status === 422) {
+                        var data = response.responseJSON;
+                        $.each(data,function(key,val){
+                            $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
+                            $('.'+key).addClass('has-error');
+                        });
+                    } else {
+                        // $('#modalYes').modal('show');
+                        // $('#modalContact').modal('hide');
                         $('.error-modal').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                         
                     }
