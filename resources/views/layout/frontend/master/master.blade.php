@@ -154,7 +154,7 @@
                                             <ul class="list-unstyled mobile-collapse-body-top">
                                                 <li class="collapse-child clearfix">
                                                     <a href="#" class="mobile-flag">
-                                                        <img src="{{ asset('assets/frontend/images/mobile-singapore.svg') }}">
+                                                        <img src="{{ asset('assets/frontend/images/singapore-flag.svg') }}">
                                                         Singapore
                                                     </a>
                                                     <ul class="list-unstyled mobile-flag-collapse">

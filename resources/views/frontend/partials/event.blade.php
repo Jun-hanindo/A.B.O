@@ -36,7 +36,7 @@
                     @if(!$promotions->isEmpty())
                         <li><a href="#aboutBox" class="smoothScroll">Promotions</a></li>
                     @endif
-                    <li><a href="#promoBox" class="smoothScroll">Venue Info</a></li>
+                    <li><a href="{{ (!$promotions->isEmpty()) ? '#promoBox' : '#aboutBox' }}" class="smoothScroll">Venue Info</a></li>
                     @if(!empty($event->admission))
                         <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
                     @endif
@@ -56,7 +56,7 @@
             @if(!$promotions->isEmpty())
                 <li><a href="#aboutBox" class="smoothScroll">Promotions</a></li>
             @endif
-            <li><a href="#promoBox" class="smoothScroll">Venue Info</a></li>
+            <li><a href="{{ (!$promotions->isEmpty()) ? '#promoBox' : '#aboutBox' }}" class="smoothScroll">Venue Info</a></li>
             @if(!empty($event->admission))
                 <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
             @endif
@@ -170,7 +170,7 @@
                             <div class="col-md-8">
                                 <div class="aboutBox boxBorder" id="aboutBox">
                                     <div class="row">
-                                        <div class="side-leftt side-first col-md-3">
+                                        <div class="side-left side-first col-md-3">
                                             <div class="aboutDesc">
                                                     <h4>About This Event</h4>
                                             </div>
