@@ -35,7 +35,7 @@
                                 <li class="nav-item">
                                     <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/logo.png') }}" class="logo"></a>
                                 </li>
-                                {{--<li class="nav-item">
+                                <li class="nav-item">
                                     <div class="cd-dropdown-wrapper">
                                         <a class="cd-dropdown-trigger" href="#0"><img src="{{ asset('assets/frontend/images/singapore-flag.png') }}"> Singapore</a>
                                         <nav class="cd-dropdown">
@@ -91,8 +91,8 @@
                                             </ul> <!-- .cd-dropdown-content -->
                                         </nav> <!-- .cd-dropdown -->
                                     </div> <!-- .cd-dropdown-wrapper -->
-                                </li> --}}
-                                {{-- <li class="nav-item nav-third">
+                                </li>
+                                <li class="nav-item nav-third">
                                     <div class="nav-search">
                                         <form action="{{route('event-search-get')}}" method="get">
                                             <div class="input-group">
@@ -108,29 +108,26 @@
                                             </ul>
                                         </form>
                                     </div>
-                                </li> --}}
-                                {{-- <li class="nav-item list-menu">
+                                </li>
+                                <li class="nav-item list-menu">
                                     <a href="{{ URL::route('discover')}}">{{ trans('general.discover') }}</a>
                                 </li>
                                 <li class="nav-item list-menu">
                                     <a href="{{ URL::route('promotion')}}">{{ trans('general.promotions') }}</a>
-                                </li> --}}
-                                <li class="nav-item list-menu">
-                                    <a href="#">{{ trans('general.support') }}</a>
                                 </li>
                                 <li class="nav-item list-menu">
-                                    <a href="#">{{ trans('general.subscribe_us') }}</a>
+                                    <a href="#">{{ trans('general.support') }}</a>
                                 </li>
                             </ul>
                         </nav>
                     </div>
-                    {{-- <div class="pull-right right-header">
+                    <div class="pull-right right-header">
                         <ul>
                             <li><a href="https://asiaboxoffice.nliven.co/account/login">{{ trans('general.login') }}</a></li>
                             <li>/</li>
                             <li><a href="https://asiaboxoffice.nliven.co/account/register">{{ trans('general.register') }}</a></li>
                         </ul>
-                    </div> --}}
+                    </div> 
                 </div>
             </div>
             <div id="mobile-header">
@@ -155,7 +152,7 @@
                                                 <i class="fa fa-bars"></i>
                                             </div>
                                             <ul class="list-unstyled mobile-collapse-body-top">
-                                                {{-- <li class="collapse-child clearfix">
+                                                <li class="collapse-child clearfix">
                                                     <a href="#" class="mobile-flag">
                                                         <img src="{{ asset('assets/frontend/images/mobile-singapore.png') }}">
                                                         Singapore
@@ -203,10 +200,9 @@
                                                     </ul>
                                                 </li>
                                                 <li><a href="{{ URL::route('discover')}}">{{ trans('general.discover') }}</a></li>
-                                                <li><a href="{{ URL::route('promotion')}}">{{ trans('general.prmotions') }}</a></li> --}}
+                                                <li><a href="{{ URL::route('promotion')}}">{{ trans('general.prmotions') }}</a></li>
                                                 <li><a href="#">{{ trans('general.support') }}</a></li>
-                                                <li><a href="#">{{ trans('general.subscribe_us') }}</a></li>
-                                                {{-- <li><a href="https://asiaboxoffice.nliven.co/account/login" class="login-mobile">{{ trans('general.login') }}</a> / <a href="https://asiaboxoffice.nliven.co/account/register" class="register-mobile"> {{ trans('general.register') }}</a></li> --}}
+                                                <li><a href="https://asiaboxoffice.nliven.co/account/login" class="login-mobile">{{ trans('general.login') }}</a> / <a href="https://asiaboxoffice.nliven.co/account/register" class="register-mobile"> {{ trans('general.register') }}</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -214,7 +210,7 @@
                                 <div class="clearfix"></div>
                             </div>
                         </div>
-                        {{-- <div class="mobile-search-show">
+                        <div class="mobile-search-show">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-xs-1">
@@ -243,7 +239,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
                 <!-- <div class="mobile-search-show">
@@ -259,7 +255,7 @@
 
     <footer>
         @if(Request::is('/'))
-            {{-- <div id="footer1">
+            <div id="footer1">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3 centeredCap">
@@ -316,9 +312,9 @@
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
         @endif
-        {{-- <div id="footer2">
+        <div id="footer2">
             <div class="container">
                 <div class="row">
                     <div class="col-md-2">
@@ -402,7 +398,7 @@
                     @endif
                 </div>
             </div>
-        </div> --}}
+        </div>
         <div id="footer3">
             <div class="container">
                 <div class="row footer-bottom">
