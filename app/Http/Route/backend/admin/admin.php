@@ -1,9 +1,9 @@
 <?php
-\Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
-   \Log::info($query->sql);
-   \Log::info($query->bindings);
-   \Log::info($query->time);
-});
+// \Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
+//    \Log::info($query->sql);
+//    \Log::info($query->bindings);
+//    \Log::info($query->time);
+// });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () {
 
