@@ -213,7 +213,7 @@
                                         </div>
                                     </div>
                                 @endif
-                                <div class="venueBox boxBorder" id="venueBox">
+                                <div class="venueBox {{ (!empty($event->admission)) ? 'boxBorder': '' }}" id="venueBox">
                                     <div class="row">
                                         <div class="side-left col-md-3">
                                             <div class="aboutDesc">
@@ -253,7 +253,7 @@
                                     </div>
                                 </div>
                                 @if(!empty($event->admission))
-                                    <div class="admissionBox boxBorder" id="admissionBox">
+                                    <div class="admissionBox" id="admissionBox">
                                         <div class="row">
                                             <div class="side-left col-md-3">
                                                 <div class="aboutDesc">
@@ -278,32 +278,32 @@
                                 <form class="form-group">
                                     <label class="labelHead">Get the Latest News or Promotions for SAVOUR 2016</label>
                                     <div class="row">
-                                        <div class="col-md-6 col-1">
+                                        <div class="col-xs-6 col-1">
                                             <input type="text" class="form-control first" placeholder="First Name">
                                         </div>
-                                        <div class="col-md-6 col-2">
+                                        <div class="col-xs-6 col-2">
                                             <input type="text" class="form-control last" placeholder="Last Name">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-xs-12">
                                             <input type="email" placeholder="Email" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-3 col-1">
-                                            <input type="text" placeholder="+62" disabled="disabled" class="form-control">
+                                        <div class="col-xs-3 col-1">
+                                            <input type="text" class="form-control" value="+62">
                                         </div>
-                                        <div class="col-md-9 col-2">
+                                        <div class="col-xs-9 col-2">
                                             <input type="text" class="form-control" placeholder="Mobile Number (Optional)">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <button class="btn btn-primary btnSend" type="submit">Send Me Updates</button>
+                                        <div class="col-xs-12">
+                                            <button class="btn btn-primary btnSend font-bold" type="submit">Send Me Updates</button>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row last-row">
                                         <div class="col-md-12">
                                             <label class="labelFoot">We respect your privacy and will not share your contact information with third parties without your consent.</label>
                                         </div>
@@ -312,16 +312,18 @@
                             </div>
                             @if(!empty($category_events))
                             <div class="featuredEvent">
-                                <label>Featured Events</label>
+                                <div class="featuredLabel">
+                                    <label>Featured Events</label>
+                                </div>
                                 @foreach ($category_events as $key => $category_event)
                                     <a href="{{ URL::route('event-detail', $category_event->slug) }}">
                                         <div class="eventList bg-{{ $category_event->background_color }}">
                                             <div class="row">
-                                                <div class="col-md-5">
+                                                <div class="col-xs-3">
                                                     <img src="{{ $category_event->featured_image3_url }}">
                                                 </div>
-                                                <div class="col-md-6 box-cap">
-                                                    <div class="caption">
+                                                <div class="col-xs-8 box-cap">
+                                                    <div class="caption caption-first">
                                                         <h5>{{ $category_event->title }}</h5>
                                                     </div>
                                                 </div>
@@ -331,7 +333,7 @@
                                 @endforeach
                                 <div class="buttonBrowse">
                                     <a href="{{ URL::route('category-detail', $event->category->slug) }}">
-                                        <button class="btn btnBrowse">Browse More Events</button>
+                                        <button class="btn btnBrowse font-bold">Browse More Events</button>
                                     </a>
                                 </div>
                             </div>
@@ -340,9 +342,6 @@
                     </div>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="promotions">aaaa</div>
-            <div role="tabpanel" class="tab-pane" id="venue">...</div>
-            <div role="tabpanel" class="tab-pane" id="admission">...</div>
             </div>
         </div>
     </div>
