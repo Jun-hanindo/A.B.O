@@ -33,11 +33,11 @@
                         <nav class="main-menu" role="navigation">
                             <ul class="nav-menu">
                                 <li class="nav-item">
-                                    <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/logo.png') }}" class="logo"></a>
+                                    <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/ABO-logo.svg') }}" class="logo"></a>
                                 </li>
                                 <li class="nav-item">
                                     <div class="cd-dropdown-wrapper">
-                                        <a class="cd-dropdown-trigger" href="#0"><img src="{{ asset('assets/frontend/images/singapore-flag.png') }}"> Singapore</a>
+                                        <a class="cd-dropdown-trigger" href="#0"><img src="{{ asset('assets/frontend/images/singapore-flag.svg') }}"> Singapore</a>
                                         <nav class="cd-dropdown">
                                             <h2>Title</h2>
                                             <a href="#0" class="cd-close">Close</a>
@@ -50,14 +50,14 @@
                                                         <ul>
                                                             <li class="lang-box">
                                                                 <a href="#" class="no-arrow language" data-lang="">
-                                                                    <img src="{{ asset('assets/frontend/images/asia.png') }}"><br>
+                                                                    <img src="{{ asset('assets/frontend/images/asia.svg') }}"><br>
                                                                     <span>Asia</span>
                                                                 </a>
                                                                 
                                                             </li>
                                                             <li class="lang-box">
                                                                 <a href="#" class="lang-link language" data-lang="en">
-                                                                    <img src="{{ asset('assets/frontend/images/singaporebig-flag.png') }}"><br>
+                                                                    <img src="{{ asset('assets/frontend/images/singaporebig-flag.svg') }}"><br>
                                                                     <span>Singapore</span>
                                                                 </a>
                                                                 <ul>
@@ -67,7 +67,7 @@
                                                             </li>
                                                             <li class="lang-box">
                                                                 <a href="#" class="lang-link language" data-lang="ms">
-                                                                    <img src="{{ asset('assets/frontend/images/malaysiabig-flag.png') }}"><br>
+                                                                    <img src="{{ asset('assets/frontend/images/malaysiabig-flag.svg') }}"><br>
                                                                     <span>Malaysia</span>
                                                                 </a>
                                                                 <ul>
@@ -77,7 +77,7 @@
                                                             </li>
                                                             <li class="lang-box">
                                                                 <a href="#" class="lang-link language" data-lang="id">
-                                                                    <img src="{{ asset('assets/frontend/images/indonesiabig-flag.png') }}"><br>
+                                                                    <img src="{{ asset('assets/frontend/images/indonesiabig-flag.svg') }}"><br>
                                                                     <span>Indonesia</span>
                                                                 </a>
                                                                 <ul>
@@ -142,7 +142,7 @@
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="mobile-logo">
-                                        <img src="{{ asset('assets/frontend/images/logo.png') }}">
+                                        <img src="{{ asset('assets/frontend/images/footer-logo.svg') }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-3">
@@ -154,19 +154,19 @@
                                             <ul class="list-unstyled mobile-collapse-body-top">
                                                 <li class="collapse-child clearfix">
                                                     <a href="#" class="mobile-flag">
-                                                        <img src="{{ asset('assets/frontend/images/mobile-singapore.png') }}">
+                                                        <img src="{{ asset('assets/frontend/images/mobile-singapore.svg') }}">
                                                         Singapore
                                                     </a>
                                                     <ul class="list-unstyled mobile-flag-collapse">
                                                         <li class="li-flag">
                                                             <a href="#" class="no-arrow">
-                                                                <img src="{{ asset('assets/frontend/images/mobile-asia-expand.png') }}">
+                                                                <img src="{{ asset('assets/frontend/images/mobile-asia-expand.svg') }}">
                                                                 Asia
                                                             </a>
                                                         </li>
                                                         <li class="li-flag">
                                                             <a href="#" class="flag-expand">
-                                                                <img src="{{ asset('assets/frontend/images/mobile-singapore-expand.png') }}">
+                                                                <img src="{{ asset('assets/frontend/images/mobile-singapore-expand.svg') }}">
                                                                 Singapore
                                                                 <i class="fa fa-angle-down"></i>
                                                             </a>
@@ -177,7 +177,7 @@
                                                         </li>
                                                         <li class="li-flag">
                                                             <a href="#" class="flag-expand">
-                                                                <img src="{{ asset('assets/frontend/images/mobile-malay-expand.png') }}">
+                                                                <img src="{{ asset('assets/frontend/images/mobile-malay-expand.svg') }}">
                                                                 Malaysia
                                                                 <i class="fa fa-angle-down"></i>
                                                             </a>
@@ -188,7 +188,7 @@
                                                         </li>
                                                         <li class="li-flag">
                                                             <a href="#" class="flag-expand">
-                                                                <img src="{{ asset('assets/frontend/images/mobile-indo-expand.png') }}">
+                                                                <img src="{{ asset('assets/frontend/images/mobile-indo-expand.svg') }}">
                                                                 Indonesia
                                                                 <i class="fa fa-angle-down"></i>
                                                             </a>
