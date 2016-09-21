@@ -522,8 +522,10 @@
                 data: $('#form-event-category').serialize() + "&event_schedule_id=" + schedule_id,
                 success: function (data) {
                     HoldOn.close();
+
+                    loadDataScheduleCategory(schedule_id);
                     $('#modal-form-category').modal('hide');
-                    $('#modal-form-schedule').modal('show');
+                    $('#modal-form-schedule').modal('show'); 
                     $('#title-create-schedule').hide();
                     $('#title-update-schedule').show();
                     $('#button_update_schedule').show();
@@ -543,8 +545,6 @@
                     }
                 }
             });
-
-            loadDataScheduleCategory(schedule_id); 
         }
 
         function updateEventScheduleCategory(id)
@@ -563,6 +563,8 @@
                     HoldOn.close();
                     $('#modal-form-category').modal('hide');
                     $('#modal-form-schedule').modal('show');
+
+                    loadDataScheduleCategory(schedule_id);
                     $('#title-create-schedule').hide();
                     $('#title-update-schedule').show();
                     $('#button_update_schedule').show();
