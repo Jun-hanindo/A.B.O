@@ -51,17 +51,27 @@ class Trail extends Model
         return $this;
     }
 
-    public function datatables()
+    public function datatables($limit)
     {
-        return static::select('trails.id','trails.user_id','trails.description', 'trails.session_id', 
+        $data = Trail::select('trails.id','trails.user_id','trails.description', 'trails.session_id', 
             'trails.ip_address', 'trails.created_at', 'users.first_name', 'users.last_name')
             ->Join('users', 'trails.user_id','=','users.id')
             ->orderBy('trails.created_at', 'desc');
+        if($limit > 0){
+            $data->take($limit);
+        }
+        return $data;
+            
     }
 
-    public function getDataByUser($user_id)
+    public function getDataByUser($user_id, $limit)
     {
-        return static::select('id','user_id','description', 'session_id', 'ip_address', 'created_at')
+        $data = Trail::select('id','user_id','description', 'session_id', 'ip_address', 'created_at')
             ->where('user_id', $user_id)->orderBy('created_at', 'desc');
+
+        if($limit > 0){
+            $data->take($limit);
+        }
+        return $data;
     }
 }

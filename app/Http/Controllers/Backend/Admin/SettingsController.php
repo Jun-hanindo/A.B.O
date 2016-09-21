@@ -32,6 +32,7 @@ class SettingsController extends BaseController
             $data[$value->name] = $value->value;
         }
         $result['data'] = $data;
+        $result['language'] = \Config::get('app.locales');
 
         $trail = 'Setting';
         $insertTrail = new Trail();

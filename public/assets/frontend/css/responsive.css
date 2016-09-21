@@ -304,6 +304,12 @@
   }
 }*/
 
+@media (min-width: 1210px){
+  .eventTabScroll-mobile{
+    display: none !important;
+  }
+}
+
 @media (max-width: 1210px){
   #mobile-header{
     display: block;
@@ -365,6 +371,33 @@
   .slider-home .carousel-caption{
     min-height: 210px;
   } 
+  .eventTabScroll{
+    display: none !important;
+  }
+  .eventTab{
+    display: none;
+  }
+  .eventInfo .list-unstyled table tr td {
+    min-width: 95px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+  .featuredEvent .caption{
+    padding-left: 0;
+  }
+  .place .information-title, .ticket .information-title {
+    margin-left: 5px;
+  }
+  .place .list-unstyled,
+  .ticket .list-unstyled {
+    padding-left: 5px;
+  }
+  .tabEvent {
+    padding-left: 15px;
+  }
+  .eventTab-mobile{
+    display: block;
+  }
   #footer1{
     padding-top: 30px;
   }
@@ -445,7 +478,19 @@
     margin-top: 5px;
   }
   .ticket, .place{
-    margin-top: 30px;
+    margin-top: 20px;
+  }
+  .ticket{
+    margin-bottom: 15px;
+  }
+  #aboutEvent .side-first {
+    margin-top: 20px;
+  }
+  .main-content #about {
+    margin-top: 15px;
+  }
+  #aboutEvent .col-md-8 {
+    padding-left: 15px;
   }
   .eventInfo .list-unstyled table{
     width: 100%;
@@ -499,6 +544,7 @@
     top: 0;
     right: 0;
     margin-top: 15px;
+    margin-bottom: 5px;
   }
   .item ul{
     display: block;
@@ -520,10 +566,21 @@
   }
   .formPromo .col-1 {
     padding: 0 15px;
-    margin-bottom: 10px;
+    padding-right: 7px;
   }
   .formPromo .col-2 {
     padding: 0 15px;
+    padding-right: 7px;
+  }
+  .formPromo .col-xs-12{
+    padding-right: 8px;
+  }
+  .formPromo{
+    height: auto;
+  }
+  .formPromo .labelHead,
+  .featuredLabel{
+    text-align: center;
   }
   .featuredEvent {
     margin-bottom: 30px;
@@ -545,7 +602,7 @@
     font-size: 11px;
   }
   .eventBanner .btnPlayEvent{
-    top: 25%;
+    top: 40%;
     left: 45%;
   }
   .main-content section{
@@ -553,6 +610,32 @@
   }
   .contentTab .side-left h4{
     margin-bottom: 0;
+  }
+  .contentTab .side-left h4{
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 768px){
+  .nav-tabs.nav-justified>li {
+      display: table-cell;
+      width: 1%;
+  }
+  .nav-tabs.nav-justified>li>a{
+    border-radius: 0;
+  }
+  .nav-justified>li>a,
+  .nav-tabs.nav-justified>li>a{
+    margin-bottom: 0;
+  }
+  .featuredEvent .caption {
+    padding-left: 65px;
+  }
+  .eventTabScroll ul li, .eventTabScroll-mobile ul li{
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-left: 2px;
+    margin-right: 2px;
   }
 }
 
@@ -583,21 +666,44 @@
   .eventTab .nav-tabs>li>a{
     font-size: 12px !important;
   }
+  #aboutEvent .col-md-8,
+  #aboutEvent .col-md-4{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .main-content #promotion{
+    padding-left: 0;
+  }
+  .eventTabScroll-mobile .nav>li>a{
+    padding: 0;
+    padding-top: 10px;
+  }
 }
 
 @media (max-width: 530px){
   .eventTab .nav-tabs>li>a{
     font-size: 13px;
   }
+  .featuredEvent .caption {
+    padding-left: 85px;
+  }
 }
 
 @media (max-width: 420px){
   .eventBanner .btnPlayEvent{
-    top: 16%;
+    top: 25%;
     left: 43%;
   }
   .eventBanner .btnPlayEvent a{
     font-size: 50px;
+  }
+  .back-menu-search a:before{
+    content: "\f104";
+    font-family: 'FontAwesome';
+    font-size: 25px;
+    color: #fff;
+    position: absolute;
+    left: 10%;
   }
 }
 

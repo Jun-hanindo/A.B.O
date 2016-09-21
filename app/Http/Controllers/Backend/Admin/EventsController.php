@@ -256,7 +256,7 @@ class EventsController extends BaseController
             $insertLog->insertLogActivity($log);
 
             flash()->error(trans('general.update_error'));
-            return redirect()->route('admin-edit-event')->withInput();
+            return redirect()->route('admin-edit-event', $id)->withInput();
 
         }
     }

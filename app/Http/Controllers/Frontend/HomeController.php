@@ -371,6 +371,72 @@ class HomeController extends Controller
         }
     }
 
+    public function supportTermsAndConditions(Request $req)
+    {
+
+        try{
+            $param = $req->all();
+            if(!empty($param)){
+                if(isset($param['preview'])){
+                    $data['content'] = $this->string_replace($this->preview('terms-and-conditions'));
+                }else{
+                    $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
+                }
+            }else{
+                $data['content'] = $this->string_replace($this->pageContent('terms-and-conditions'));
+            }
+
+            $trail = 'Terms and conditions front end';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+
+            return view('frontend.partials.support_terms_and_conditions', $data);
+            
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return view('errors.404');
+        
+        }
+    }
+
+    public function supportPrivacyPolicy(Request $req)
+    {
+
+        try{
+            $param = $req->all();
+            if(!empty($param)){
+                if(isset($param['preview'])){
+                    $data['content'] = $this->string_replace($this->preview('privacy-policy'));
+                }else{
+                    $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
+                }
+            }else{
+                $data['content'] = $this->string_replace($this->pageContent('privacy-policy'));
+            }
+
+            $trail = 'Privacy Policy front end';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+
+            return view('frontend.partials.support_privacy_policy', $data);
+            
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return view('errors.404');
+        
+        }
+    }
+
     public function sendMessage(SendMessageRequest $req){
 
         try{

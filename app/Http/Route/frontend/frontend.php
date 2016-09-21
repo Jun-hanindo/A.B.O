@@ -11,6 +11,9 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('about-us', array('as' => 'our-company', 'uses' => 'HomeController@ourCompany'));
     Route::get('faq', array('as' => 'support-faq', 'uses' => 'HomeController@supportFaq'));
     Route::get('ways-to-buy-tickets', array('as' => 'support-way-to-buy-tickets', 'uses' => 'HomeController@supportWaysToBuyTickets'));
+    Route::get('terms-and-conditions', array('as' => 'support-terms-and-conditions', 'uses' => 'HomeController@supportTermsAndConditions'));
+    Route::get('privacy-policy', array('as' => 'support-privacy-policy', 'uses' => 'HomeController@supportPrivacyPolicy'));
+    Route::get('faq', array('as' => 'support-faq', 'uses' => 'HomeController@supportFaq'));
     //Route::get('search-result', array('as' => 'search-result', 'uses' => 'HomeController@searchResult'));
     // Route::get('application', array('as' => 'front-form-application', 'uses' => 'ApplicationController@applicationForm'));
     // 
@@ -22,4 +25,5 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('search', array('as' => 'event-search', 'uses' => 'EventsController@search'));
     Route::post('send-message', array('as' => 'send-message', 'uses' => 'HomeController@sendMessage'));
     Route::post('send-feedback', array('as' => 'send-feedback', 'uses' => 'HomeController@feedBack'));
+    Route::get('language', array('as' => 'language', 'uses' => 'LanguagesController@setLanguage'));
 });

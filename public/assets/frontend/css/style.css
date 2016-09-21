@@ -821,7 +821,8 @@ a.dropdown-is-active:after{
   width: 220px;
   background-color: #292929;
   border: none;
-  border-radius: 3px;
+  border-radius: 3px !important;
+  margin-left: -2px !important;
 }
 
 .nav-item .input-search:focus{
@@ -980,6 +981,10 @@ a.dropdown-is-active:after{
 .box-release .boxInfo .eventName,
 .box-promo .boxInfo .eventName{
   font-size: 16px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
 }
 
 .box-release .boxInfo .eventDate,
@@ -1365,8 +1370,11 @@ footer .information-title{
   margin-top: 20px;
 }
 
-.eventTab .nav-tabs>li>a{
+.eventTab .nav-tabs>li>a,
+.eventTab-mobile .nav-tabs>li>a{
   color: #000000;
+  border: none;
+  border-bottom: 3px solid transparent;
 }
 
 .contentTab{
@@ -1388,6 +1396,7 @@ footer .information-title{
 .main-content .sectionEvent h3{
   font-size: 14px;
   margin-top: 10px;
+  padding-top: 3px;
 }
 
 .main-content section{
@@ -1415,8 +1424,6 @@ footer .information-title{
   margin:0 5px 0 -15px;
   color: #000;
   position: absolute;
-  top: 0;
-  left: 0;
   margin-left: 10px;
 }
 
@@ -1426,8 +1433,6 @@ footer .information-title{
   margin:0 5px 0 -15px;
   color: #000;
   position: absolute;
-  top: 83px;
-  left: 0;
   margin-left: 10px;
 }
 
@@ -1437,8 +1442,6 @@ footer .information-title{
   margin:0 5px 0 -15px;
   color: #000;
   position: absolute;
-  top: 170px;
-  left: 0;
   margin-left: 10px;
 }
 
@@ -1508,6 +1511,8 @@ footer .information-title{
 
 .featuredEvent .caption{
   color: #fff;
+  padding-left: 70px;
+  position: absolute;
 }
 
 .featuredEvent .caption h5{
@@ -1517,6 +1522,7 @@ footer .information-title{
 .featuredEvent .box-cap{
   margin: 0 auto;
   top: 25px;
+  padding-left: 15px;
 }
 
 .featuredEvent .listRed{
@@ -1633,7 +1639,7 @@ footer .information-title{
   position: fixed;
   width: 100%;
   left: 0;
-  top: 43px;
+  top: 40px;
   background: #000;
   margin: 0;
 }
@@ -2854,7 +2860,7 @@ footer .information-title{
     padding: 5px;
 }
 
-.mobile-flag-collapse li > a:before {
+/*.mobile-flag-collapse li > a:before {
   content:"\f107";
   display: block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -2866,16 +2872,21 @@ footer .information-title{
   bottom: 24px;
   right: -3px;
   margin: 0 auto;
-}
+}*/
 
-.mobile-flag-collapse li > a.shown:before {
+/*.mobile-flag-collapse li > a.shown:before {
     content: "\f106";
-}
+}*/
 
 .mobile-flag-collapse li ul li a:before {
     display: none;
 }
-
+.shown .fa-angle-down:before{
+  content: "\f106";
+}
+.mobile-flag-collapse .flag-expand i{
+  margin-left: 5px;
+}
 .no-arrow:before{
   display: none !important
 }
@@ -2884,6 +2895,7 @@ footer .information-title{
   font-size: 11px;
   letter-spacing: 1px;
   margin-bottom: 5px;
+  margin-top: 13px;
 }
 
 .infoBanner .detail h2{
@@ -2902,17 +2914,34 @@ footer .information-title{
   color: #fff;
 }
 
-.eventTabScroll ul{
+.eventTabScroll-mobile{
+  display: none;
+  position: fixed;
+  top: 60px;
+  width: 100%;
+  height: 55px;
+  z-index: 1;
+  color: #fff;
+}
+
+.eventTabScroll ul,
+.eventTabScroll-mobile ul{
   list-style-type: none;
   padding-left: 0;
 }
 
-.eventTabScroll ul li{
+.eventTabScroll-mobile ul{
+  text-align: center;
+}
+
+.eventTabScroll ul li,
+.eventTabScroll-mobile ul li{
   display: inline;
   margin: 15px;
 }
 
-.eventTabScroll ul li a{
+.eventTabScroll ul li a,
+.eventTabScroll-mobile ul li a{
   color: #fff;
   text-decoration: none;
 }
@@ -3062,7 +3091,7 @@ footer .information-title{
 }
 
 .formPromo input:focus {
-  border-color: #e7e7e7;
+  border-color: #000;
   box-shadow: none;
 }
 
@@ -3074,7 +3103,8 @@ footer .information-title{
   padding-left: 0;
 }
 
-.eventTab .active{
+.eventTab .nav-tabs>li>a.active,
+.eventTab-mobile .nav-tabs>li>a.active{
   border-bottom: 3px solid #000;
   font-family: 'proxima_nova_rgbold';
 }
@@ -3083,9 +3113,100 @@ footer .information-title{
   margin-bottom: 45px;
 }
 
+.main-content #promotion{
+  padding-left: 15px;
+}
 
+.nav-tabs>li>a:hover{
+  border: none;
+  border-bottom: 3px solid #000;
+}
 
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: transparent;
+}
 
+ul#getvenue li {
+    position: relative;
+}
+
+ul#getvenue li:before {
+    left: -40px;
+}
+
+.mobile-search-show{
+  margin-top: -3px;
+}
+
+.nav-mobile .nav-search,
+.nav-mobile input{
+  width: 100%;
+}
+
+.nav-mobile input{
+  background-color: #292929;
+  border: none;
+  margin-left: -2px;
+  border-radius: 3px !important;
+}
+
+.nav-mobile input:focus{
+  background-color: #fff;
+  color: #000;
+}
+
+.back-menu-search a{
+  text-decoration: none;
+}
+
+.back-menu-search a:before{
+  content: "\f104";
+  font-family: 'FontAwesome';
+  font-size: 25px;
+  color: #fff;
+  position: absolute;
+  left: 30%;
+}
+
+.mobile-search-show .col-xs-11,
+.mobile-search-show .col-xs-1{
+  padding: 0;
+}
+
+.nav-mobile .nav-search form{
+  margin: 0;
+}
+
+.mobile-search-show {
+    position: fixed;
+    top: 0;
+    background: #000;
+    right: -100%;
+    padding: 0px 20px;
+    width: 100%;
+    transition: .5s all;
+}
+.mobile-search-show.open {
+    right: 0;
+}
+
+.eventTab-mobile{
+  display: none;
+}
+
+.eventTab-mobile .nav-tabs {
+    border-bottom: none;
+}
+
+.featuredEvent .caption-first,
+.featuredEvent .caption-two{
+  margin-top: -10px;
+}
+
+.eventTabScroll-mobile .nav-tabs>li>a:hover {
+    border: none;
+}
 
 
 

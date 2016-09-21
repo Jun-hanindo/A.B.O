@@ -39,11 +39,16 @@ class TrailsController extends BaseController
         $param = $req->all();
         $user = $param['user_id'];
 
+        if(isset($this->setting['limit_record'])){
+            $limit = $this->setting['limit_record'];
+        }else{
+            $limit = 0;
+        }
 
         if($user == 0){
-            $model = $this->model->datatables();
+            $model = $this->model->datatables($limit);
         }else{
-            $model = $this->model->getDataByUser($user);
+            $model = $this->model->getDataByUser($user, $limit);
         }
         return datatables($model)
                 ->editColumn('user_id', function($data){

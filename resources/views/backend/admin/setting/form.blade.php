@@ -19,10 +19,7 @@
                         <div class="form-group">
                             {!! Form::label('language', trans('general.language'), ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::select('setting[language]', array('english' => 'English',
-                                                                'singapore' => 'Singapore', 
-                                                                'malaysia' => 'Malaysia', 
-                                                                'indonesia' => 'Indonesia'), isset($data['language']) ? $data['language'] : null, ['class' => 'form-control']) !!}
+                                {!! Form::select('setting[language]', $language, isset($data['language']) ? $data['language'] : null, ['class' => 'form-control']) !!}
                                 
                             </div>
                         </div>
@@ -169,6 +166,18 @@
                             <div class="col-sm-9">
                                 {!! Form::text('setting[mail_name]', isset($data['mail_name']) ? $data['mail_name'] : null, ['class' => 'form-control', 'placeholder' => trans('general.mail_name')]) !!}
                                 {!! Form::errorMsg('setting.mail_name') !!}
+                            </div>
+                        </div>
+                        <div class="form-group{{ Form::hasError('setting.limit_record') }} setting.limit_record">
+                            {!! Form::label('limit_record', trans('general.limit_record').' ('.trans('general.trail').' & '.trans('general.system_log').') *', ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-4">
+                                {!! Form::select('setting[limit_record]', array('0' => 'All',
+                                                                '1000' => '1000', 
+                                                                '5000' => '5000', 
+                                                                '10000' => '10000', 
+                                                                '50000' => '50000', 
+                                                                '100000' => '100000'), isset($data['limit_record']) ? $data['limit_record'] : null, ['class' => 'form-control']) !!}
+                                {!! Form::errorMsg('setting.limit_record') !!}
                             </div>
                         </div>
                     </div>

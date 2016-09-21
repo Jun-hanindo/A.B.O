@@ -226,6 +226,7 @@ return [
     'reply_to' => 'Reply To',
     'message_detail' => 'Message Detail',
     'reply_by'  => 'Reply By',
+    'limit_record'  => 'Limit Record',
 
 
 

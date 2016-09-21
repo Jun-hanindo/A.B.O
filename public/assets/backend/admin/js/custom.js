@@ -52,27 +52,21 @@ $(".percent").keydown(function (e) {
       return false;
     }
 
-    // if(this.value.length == 2 && this.value.charAt(1) == '.' && e.which != 190){
-    //     $(this).attr('maxlength','4');
-    // }else if(this.value.length == 2 && this.value.charAt(1) == '.' && e.which == 190){
-    //     return false;
-    // }else if(this.value.length == 2 && e.which != 190){
-    //     $(this).attr('maxlength','2');
-    // }
-
-    /*if (this.value.length == 2 && e.which == 190){
-        console.log(1);
+    if(this.value.length == 2 && e.which == 190){
         $(this).attr('maxlength','5');
-    }else if (this.value.charAt(1) == '.'){
-        console.log(2);
+    }
+
+    if(this.value.length == 1 && e.which == 190){
         $(this).attr('maxlength','4');
-    }else if (this.value.charAt(1) == '.' || this.value.charAt(2) != '.'){
-        console.log(3);
-        $(this).attr('maxlength','2');
-    }else if (( this.value.charAt(1) == '.' || this.value.charAt(2) == '.' ) && e.which == 190){
-        console.log(4);
+    }
+
+    if((this.value.charAt(1) == '.' || this.value.charAt(2) == '.') && e.which == 190){
         return false;
-    }*/
+    }
+
+    if(this.value.length == 2 && this.value.charAt(1) != '.' && e.which != 190){
+        $(this).attr('maxlength','2');
+    }
 });
 
 
