@@ -17,10 +17,33 @@ $(document).ready(function(){
         }
     });
 
+    $('.language').on('click', function(){
+        var lang = $(this).attr('data-lang');
+        setLanguage(lang);
+
+    });
+
     $(document).click(function(){
         $("#ul-search").hide();
     });
 });
+
+function setLanguage(lang)
+{
+    $.ajax({
+        url: base_url+'/language',
+        type: "GET",
+        dataType: 'json',
+        data: {'language':lang},
+        success: function (response) {
+            //$(country).insertAfter('.cd-dropdown-trigger img');
+            location.reload();
+        },
+        error: function(response){
+            
+        }
+    });
+}
 
 
 

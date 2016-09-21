@@ -7,19 +7,19 @@
                       <div class="sidebar">
                           <ul>
                               <li class="sidebar-head">
-                                  <h4>Support</h4>
+                                  <h4>{{ trans('general.support') }}</h4>
                               </li>
                               <li class="sidebar-menu-top active">
-                                  <a href="{{URL::route('support-way-to-buy-tickets')}}">Way To Buy Tickets</a>
+                                  <a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a>
                               </li>
                               <li class="sidebar-menu">
-                                  <a href="{{URL::route('support-faq')}}">Frequently Asked Questions</a>
+                                  <a href="{{URL::route('support-faq')}}">{{ trans('general.frequently_asked_questions') }}</a>
                               </li>
                               <li class="sidebar-menu">
-                                  <a href="#">Terms and Conditions</a>
+                                  <a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a>
                               </li>
                               <li class="sidebar-menu">
-                                  <a href="#">Privacy Policy</a>
+                                  <a href="{{URL::route('support-privacy-policy')}}">{{ trans('general.privacy_policy') }}</a>
                               </li>
                           </ul>
                       </div>
@@ -28,8 +28,13 @@
                       <div class="main-content">
                           <div class="support-desc">
                               <div class="row">
-                                  <h3 class="head-about">Ways To Buy Tickets</h3>
-                                  {!! $content !!}
+                                  <h3 class="head-about">{{ trans('general.ways_to_buy_tickets') }}</h3>
+                                      
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            {!! $content !!}
+                                        </div>
+                                    </div>
                               </div>
                           </div>
                       </div>
@@ -44,10 +49,10 @@
                     <a class="menu" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Support</a>
                     <div class="collapse" id="mobile-sidebar-collapse">
                       <ul>
-                        <li><a href="#">Way To Buy Tickets</a></li>
-                        <li><a href="#">Frequently Asked Questions</a></li>
-                        <li><a href="#">Terms and Conditions</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a></li>
+                        <li><a href="{{URL::route('support-faq')}}">{{ trans('general.frequently_asked_questions') }}</a></li>
+                        <li><a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a></li>
+                        <li><a href="{{URL::route('support-privacy-policy')}}">{{ trans('general.privacy_policy') }}</a></li>
                       </ul>
                     </div>
                   </div>
@@ -58,49 +63,14 @@
               <div class="col-md-12">
                 <div class="container">
                   <div class="mobile-page-title">
-                    <h3>Ways To Buy Tickets</h3>
+                    <h3>{{ trans('general.ways_to_buy_tickets') }}</h3>
                   </div>
-                  <div class="eventTab">
-                    <ul class="nav nav-tabs tab-mobile tab-mobile-contact" role="tablist">
-                      <li role="presentation" class="active"><a href="#boxoffice" aria-controls="home" role="tab" data-toggle="tab"><div class="iconWays"><i class="fa fa-ticket"></i></div><br>Box Office</a></li>
-                      <li role="presentation"><a href="#hotline" aria-controls="profile" role="tab" data-toggle="tab"><div class="iconWays"><i class="fa fa-phone"></i></div><br>Hotline</a></li>
-                      <li role="presentation"><a href="#website" aria-controls="profile" role="tab" data-toggle="tab"><div class="iconWays"><i class="fa fa-laptop"></i></div><br>Website</a></li>
-                    </ul>
-                  </div>
-                  <div class="contentTab">
-                    <div class="tab-content">
-                      <div role="tabpanel" class="tab-pane active" id="boxoffice">
-                        <h4 class="head-mobile-ways">Purchase or collect your tickets here.</h4>
-                        <div class="office-address-mobile">
-                          <label class="label-head">Asia Box Office Pte Ltd</label>
-                          <p>390 Orchard Road, Palais Renaissance #15-01, Singapore 238871</p>
+                  
+                    <div class="col-md-12">
+                        <div class="row">
+                            {!! $content !!}
                         </div>
-                        <div class="office-button-mobile">
-                          <button class="btn btnSeeContact">See Map & Directions</button>
-                        </div>
-                        <div class="hotline-operating-mobile">
-                          <label class="label-head">Box Office Operating Hours</label><br>
-                          <label>Mon to Sat: 10am - 8pm, Sun and PH: 12pm - 8pm</label>
-                        </div>
-                      </div>
-                      <div role="tabpanel" class="tab-pane" id="hotline">
-                        <h4 class="head-mobile-ways">Speak to our customer service officers.</h4>
-                        <div class="office-button-mobile">
-                          <button class="btn btnSeeContact"><i class="fa fa-phone" style="margin-right: 10px;"></i>Call +65 6733 0360</button>
-                        </div>
-                        <div class="hotline-operating-mobile">
-                          <label class="label-head">Hotline Operating Hours</label><br>
-                          <label>Mon to Sat: 10am - 8pm, Sun and PH: 12pm - 8pm</label>
-                        </div>
-                      </div>
-                      <div role="tabpanel" class="tab-pane" id="website">
-                        <h4 class="head-mobile-ways">Browse and purchase tickets conveniently.</h4>
-                        <div class="office-button-mobile">
-                          <button class="btn btnSeeContact">See Our Events</button>
-                        </div>
-                      </div>
                     </div>
-                  </div>
                 </div>
               </div>
             </div>

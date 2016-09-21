@@ -25,16 +25,6 @@ class Controller extends BaseController
     public function __construct(Model $model = null)
     {
         $this->model = $model;
-        //$lang = env('APP_LANG');
-        \Session::forget('locale');
-
-        //\Session::set('locale', 'id');
-        if(!\Session::has('locale'))
-        {
-           \Session::put('locale', \Config::get('app.fallback_locale'));
-        }
-        $lang = \Session::get('locale');
-        \App::setLocale($lang);
 
         $this->currentUser = '';
         $currentUserLogin = \Sentinel::getUser();
@@ -52,6 +42,22 @@ class Controller extends BaseController
         }
 
         $this->setting = $setting;
+        //$lang = env('APP_LANG');
+        //\Session::forget('locale');
+        
+        //\Session::set('locale', 'en');
+        if(!\Session::has('locale'))
+        {
+            if(isset($this->setting['language']) && !empty($this->setting['language'])){
+                \Session::put('locale', $this->setting['language']);
+            }else{
+                \Session::put('locale', \Config::get('app.fallback_locale'));
+            }
+            \Session::save();
+        }
+
+        $lang = \Session::get('locale');
+        \App::setLocale($lang);
 
         \View::share ('user_login',$currentUserLogin);
         \View::share ('setting',$setting);

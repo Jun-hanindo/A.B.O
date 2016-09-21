@@ -273,7 +273,7 @@
                                     </div>
                                 @endif
                         </div>
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <div class="formPromo">
                                 <form class="form-group">
                                     <label class="labelHead">Get the Latest News or Promotions for SAVOUR 2016</label>
@@ -336,7 +336,7 @@
                                 </div>
                             </div>
                             @endif
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

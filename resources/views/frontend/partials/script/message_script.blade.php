@@ -17,9 +17,25 @@
                 console.log(id);
                 $('#subject #'+id).prop('selected', true);
             });
+            
+            $(".faq-search").on('keyup', function(){
+                var q = $(this).val();
+
+                if(q.length >=3 ) {
+                    faqSearch(q);
+                } else {
+                    $("#ul-search").hide();
+                }
+            });
 
 
         });
+
+        function faqSearch(q)
+        {
+            var text = $('.ul-faq-content').html();
+            console.log(text);
+        }
 
         function sendMessage()
         {

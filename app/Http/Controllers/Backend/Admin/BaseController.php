@@ -32,9 +32,6 @@ abstract class BaseController extends Controller
     {
         $this->model = $model;
 
-        $lang = env('APP_LANG');
-        \App::setLocale($lang);
-
         $this->currentUser = '';
         $currentUserLogin = \Sentinel::getUser();
         if($currentUserLogin){
@@ -50,6 +47,22 @@ abstract class BaseController extends Controller
             $setting[$value->name] = $value->value;
         }
         $this->setting = $setting;
+
+        //$lang = env('APP_LANG');
+        
+        if(!\Session::has('locale'))
+        {
+            if(isset($this->setting['language']) && !empty($this->setting['language'])){
+                \Session::put('locale', $this->setting['language']);
+            }else{
+                \Session::put('locale', \Config::get('app.fallback_locale'));
+            }
+            \Session::save();
+        }
+        
+        $lang = \Session::get('locale');
+        \App::setLocale($lang);
+        
         \View::share ('user_login',$currentUserLogin);
         \View::share ('setting',$setting);
     }
