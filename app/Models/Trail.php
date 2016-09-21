@@ -66,7 +66,9 @@ class Trail extends Model
 
     public function getDataByUser($user_id, $limit)
     {
-        $data = Trail::select('id','user_id','description', 'session_id', 'ip_address', 'created_at')
+        $data = Trail::select('trails.id','trails.user_id','trails.description', 'trails.session_id', 
+            'trails.ip_address', 'trails.created_at', 'users.first_name', 'users.last_name')
+            ->Join('users', 'trails.user_id','=','users.id')
             ->where('user_id', $user_id)->orderBy('created_at', 'desc');
 
         if($limit > 0){

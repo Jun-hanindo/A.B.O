@@ -3207,6 +3207,9 @@ ul#getvenue li:before {
 .eventTabScroll-mobile .nav-tabs>li>a:hover {
     border: none;
 }
+.mapEvent iframe {
+  width: 100%;
+}
 
 
 

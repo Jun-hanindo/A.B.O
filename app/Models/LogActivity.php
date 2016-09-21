@@ -42,7 +42,9 @@ class LogActivity extends Model
 
     public function getDataByUser($user_id, $limit)
     {
-        $data = LogActivity::select('id','user_id','description', 'ip_address', 'created_at')
+        $data = LogActivity::select('log_activities.id','log_activities.user_id','log_activities.description', 
+            'log_activities.ip_address', 'log_activities.created_at', 'users.first_name', 'users.last_name')
+            ->Join('users', 'log_activities.user_id','=','users.id')
             ->where('user_id', $user_id)->orderBy('created_at', 'desc');
         if($limit > 0){
             $data->take($limit);
