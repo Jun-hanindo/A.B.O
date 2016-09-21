@@ -233,7 +233,7 @@
                         <div class="form-group">
                             {!! Form::label('additional_info', trans('general.price_info'), array('class' => 'col-sm-3 control-label pull-left')) !!}
                             <div class="col-sm-9">
-                                {!! Form::textarea('additional_info', old('additional_info'), ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.price_info')]) !!}
+                                {!! Form::text('additional_info', old('additional_info'), ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.price_info')]) !!}
                             </div>
                         </div>
                         <div class="form-group">

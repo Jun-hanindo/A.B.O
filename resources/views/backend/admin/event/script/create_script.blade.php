@@ -543,6 +543,8 @@
                     }
                 }
             });
+
+            loadDataScheduleCategory(schedule_id); 
         }
 
         function updateEventScheduleCategory(id)
