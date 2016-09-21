@@ -88,6 +88,7 @@
 
 body{
   font-family: 'proxima_nova_rgregular';
+  background-color: #e7e7e7;
 }
 
 .font-bold{
@@ -1004,7 +1005,6 @@ a.dropdown-is-active:after{
 .loadMore{
   margin-top: 20px;
   text-align: center;
-  margin-bottom: 50px;
 }
 
 .loadMore .btnLoad{
@@ -1572,11 +1572,11 @@ footer .information-title{
 }
 
 #aboutEvent .side-first{
-  margin-top: 30px;
+  margin-top: 25px;
 }
 
 .main-content #about{
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .btnSeat{
@@ -3207,8 +3207,22 @@ ul#getvenue li:before {
 .eventTabScroll-mobile .nav-tabs>li>a:hover {
     border: none;
 }
-.mapEvent iframe {
-  width: 100%;
+
+.mobile-header .mobile-collapse-header-top.open i:before{
+  content: "\f00d";
+}
+
+.newRelease,
+.eventInfo{
+  background-color: #fff;
+}
+
+.newRelease{
+  padding-bottom: 50px
+}
+
+footer{
+  margin-top: 50px;
 }
 
 

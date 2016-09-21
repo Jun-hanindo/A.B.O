@@ -70,17 +70,15 @@
       $('.mobile-search').click(function(){$('.mobile-search-show').addClass('open')})
       $('.back-menu-search').click(function(){$('.mobile-search-show').removeClass('open')})
     })
-    
-    $(document).scroll(function() {
+   $(document).scroll(function() {
         var y = $(this).scrollTop();
         if (y > 800) {
           $('.eventTabScroll').fadeIn();
         } else {
           $('.eventTabScroll').fadeOut();
         }
-      
-    });
-    $('input[name=keyword]').keyup(function(){
+      });
+     $('input[name=keyword]').keyup(function(){
       if($(this).val().length)
         $('#ul-search').show();
       else
@@ -94,8 +92,7 @@
               $(".input-group-addon").css("background-color","#292929");
               $(".icon-search-header").css("color","white");
           });
-
-    
+          $('.mobile-collapse-header-top').click(function(){$(this).toggleClass('open')})
 
 // End Header
 
