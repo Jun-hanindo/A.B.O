@@ -18,7 +18,7 @@
                               <li class="sidebar-menu">
                                   <a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a>
                               </li>
-                              <li class="sidebar-menu active">
+                              <li class="sidebar-menu">
                                   <a href="{{URL::route('support-privacy-policy')}}">{{ trans('general.privacy_policy') }}</a>
                               </li>
                           </ul>
