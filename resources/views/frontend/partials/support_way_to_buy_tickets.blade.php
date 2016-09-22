@@ -1,6 +1,10 @@
 @extends('layout.frontend.master.master')
 @section('title', 'Event Asia Box Office')
 @section('content')
+@php
+  $tag = '<--mobile-->';
+@endphp
+
           <section class="about-content ways-content">
               <div class="row">
                   <div class="col-md-3">
@@ -32,7 +36,7 @@
                                       
                                     <div class="col-md-12">
                                         <div class="row">
-                                            {!! $content !!}
+                                            {!! strstr($content, $tag, true) !!}
                                         </div>
                                     </div>
                               </div>
@@ -65,12 +69,14 @@
                   <div class="mobile-page-title">
                     <h3>{{ trans('general.ways_to_buy_tickets') }}</h3>
                   </div>
-                  
-                    <div class="col-md-12">
-                        <div class="row">
-                            {!! $content !!}
-                        </div>
-                    </div>
+                  <div class="mobileTab">
+                    <ul class="nav nav-tabs tab-mobile tab-mobile-contact" role="tablist">
+                      <li role="presentation" class="active"><a href="#boxoffice" aria-controls="home" role="tab" data-toggle="tab"><div class="iconWays"><i class="fa fa-ticket"></i></div><br>Box Office</a></li>
+                      <li role="presentation"><a href="#hotline" aria-controls="profile" role="tab" data-toggle="tab"><div class="iconWays"><i class="fa fa-phone"></i></div><br>Hotline</a></li>
+                      <li role="presentation"><a href="#website" aria-controls="profile" role="tab" data-toggle="tab"><div class="iconWays"><i class="fa fa-laptop"></i></div><br>Website</a></li>
+                    </ul>
+                  </div>
+                      {!! str_replace($tag, '', strstr($content, $tag)) !!}
                 </div>
               </div>
             </div>
