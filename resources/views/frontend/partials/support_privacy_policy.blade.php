@@ -9,7 +9,7 @@
                               <li class="sidebar-head">
                                   <h4>{{ trans('general.support') }}</h4>
                               </li>
-                              <li class="sidebar-menu-top active">
+                              <li class="sidebar-menu-top">
                                   <a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a>
                               </li>
                               <li class="sidebar-menu">
@@ -18,7 +18,7 @@
                               <li class="sidebar-menu">
                                   <a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a>
                               </li>
-                              <li class="sidebar-menu">
+                              <li class="sidebar-menu active">
                                   <a href="{{URL::route('support-privacy-policy')}}">{{ trans('general.privacy_policy') }}</a>
                               </li>
                           </ul>
