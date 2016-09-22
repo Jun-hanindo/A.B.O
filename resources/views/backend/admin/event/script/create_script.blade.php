@@ -561,15 +561,14 @@
                 data: $('#form-event-category').serialize(),
                 success: function (data) {
                     HoldOn.close();
+                    //loadDataScheduleCategory(schedule_id);
                     $('#modal-form-category').modal('hide');
-                    $('#modal-form-schedule').modal('show');
-
-                    loadDataScheduleCategory(schedule_id);
-                    $('#title-create-schedule').hide();
-                    $('#title-update-schedule').show();
-                    $('#button_update_schedule').show();
-                    $('#button_save_schedule').hide();
-                    $('.error-modal').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    $('#modal-form-schedule').modal('show'); 
+                    // $('#title-create-schedule').hide();
+                    // $('#title-update-schedule').show();
+                    // $('#button_update_schedule').show();
+                    // $('#button_save_schedule').hide();
+                    //$('.error-modal').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                 },
                 error: function(response){
                     HoldOn.close();

@@ -1,5 +1,5 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Asia Box Office')
+@section('title', 'Event Asia Box Office')
 @section('content')
 @php
     $promotions = $event->promotions;
@@ -47,24 +47,24 @@
     </div>
 </div>
 <div class="eventTabScroll-mobile bg-{{ $event->background_color }}">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="nav nav-tabs nav-justified" role="tablist">
-                    <li><a href="#eventBanner" class="smoothScroll backtop"></a></li>
-                    <li><a href="#ticket" class="smoothScroll active">About</a></li>
-                    @if(!$promotions->isEmpty())
-                        <li><a href="#aboutBox" class="smoothScroll">Promotions</a></li>
-                    @endif
-                    <li><a href="{{ (!$promotions->isEmpty()) ? '#promoBox' : '#aboutBox' }}" class="smoothScroll">Venue Info</a></li>
-                    @if(!empty($event->admission))
-                        <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
-                    @endif
-                    <li><a href="#"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li>
-                </ul>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+          <ul class="nav nav-tabs nav-justified" role="tablist">
+            <li><a href="#eventBanner" class="smoothScroll backtop"></a></li>
+            <li><a href="#ticket" class="smoothScroll active">About</a></li>
+            @if(!$promotions->isEmpty())
+                <li><a href="#aboutBox" class="smoothScroll">Promotions</a></li>
+            @endif
+            <li><a href="{{ (!$promotions->isEmpty()) ? '#promoBox' : '#aboutBox' }}" class="smoothScroll">Venue Info</a></li>
+            @if(!empty($event->admission))
+                <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
+            @endif
+            <li><a href="#"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li>
+          </ul>
         </div>
-    </div>
+      </div>
+  </div>
 </div>
 <section class="eventInfo">
     <div class="container">
@@ -91,9 +91,26 @@
                             @endphp
                         @endforeach
                     </div>
-                    <div class="information-event">
-                      {!! $event->price_info !!}
-                    </div>
+                    <ul class="list-unstyled">
+                        @foreach($schedules as $sch)
+                            <li class="liParent">
+                                <table>
+                                    <tr>
+                                        <td>{{ date('d M, D', strtotime($sch->date_at)) }}</td>
+                                        <td>
+                                                @php 
+                                                        $prices = $sch->EventScheduleCategory()->first();
+                                                @endphp
+                                                @if(!empty($prices))
+                                                        {{ $prices->additional_info }}
+                                                @endif
+                                        </td>
+                                        <td>{{ $sch->start_time.'-'.$sch->end_time }}</td>
+                                    </tr>
+                                </table>
+                            </li>  
+                        @endforeach
+                    </ul>
                 @endif
             </div>
             <div class="col-md-4 place">
@@ -109,31 +126,11 @@
             </div>
             <div class="col-md-4 ticket" id="ticket">
                 <div class="information-title">
-                    <i class="fa fa-ticket"></i> {{ !empty($min) ? '$'.$min->price: '' }}
+                    <i class="fa fa-ticket"></i> 
+                    {{ !empty($min) ? '$'.$min->price: '' }}
                 </div>
                 <ul class="list-unstyled">
-                    @foreach($schedules as $sch)
-                      <li class="liParent">
-                          <table>
-                              <tr>
-                                  <td>{{ date('d M, D', strtotime($sch->date_at)) }}</td>
-                                  <td>
-                                      @php 
-                                          $prices = $sch->EventScheduleCategory()->first();
-                                      @endphp
-                                      @if(!empty($prices))
-                                          {{ $prices->additional_info }}
-                                      @endif
-                                  </td>
-                                  <td>{{ $sch->start_time.'-'.$sch->end_time }}</td>
-                              </tr>
-                          </table>
-                      </li>  
-                      @endforeach
-                    <li class="liParent parentButton">
-                      <a href="{{ $event->Venue->link_map }}"><button class="btn btnSeat bg-black font-bold">See Seat Map</button></a>
-                      <a href="{{ $event->buylink }}"><button class="btn btnticket bg-white font-bold">More Ticket Info</button></a>
-                    </li>
+                    <li>{!! $event->price_info !!}</li>
                 </ul>
             </div>
             <div class="col-md-12 tabEvent">
@@ -175,14 +172,14 @@
                                     <div class="row">
                                         <div class="side-left side-first col-md-3">
                                             <div class="aboutDesc">
-                                                <h4>About This Event</h4>
+                                                    <h4>About This Event</h4>
                                             </div>
                                         </div>
                                         <div class="col-md-9">
                                             <div class="main-content">
                                                 <div class="">
                                                     <section id="about" class="sectionEvent">
-                                                        {!! $event->description !!} 
+                                                            {!! $event->description !!}    
                                                     </section>
                                                 </div>
                                             </div>
@@ -227,7 +224,7 @@
                                             <div class="main-content">
                                                 <div class="">
                                                     <section id="venue" class="sectionEvent">
-                                                        <h3 class="font-bold">{!! $event->Venue->name !!}</h3>
+                                                        <h3 class="font-bold">{{ $event->Venue->name }}</h3>
                                                         {!! $event->Venue->address !!}
 
                                                         <div class="mapEvent">
@@ -256,102 +253,100 @@
                                     </div>
                                 </div>
                                 @if(!empty($event->admission))
-                                    <div class="admissionBox boxBorder" id="admissionBox">
+                                    <div class="admissionBox" id="admissionBox">
                                         <div class="row">
                                             <div class="side-left col-md-3">
                                                 <div class="aboutDesc">
-                                                    <h4>Admission Rules</h4>
+                                                        <h4>Admission Rules</h4>
                                                 </div>
                                             </div>
                                             <div class="col-md-9">
                                                 <div class="main-content">
-                                                    <div class="row">
-                                                        <div class="">
-                                                            <section id="rules" class="sectionEvent">
-                                                                {!! $event->admission !!}
-                                                            </section>
-                                                        </div>
+                                                    <div class="">
+                                                        <section id="rules" class="sectionEvent">
+                                                            {!! $event->admission !!}
+                                                        </section>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 @endif
-                            </div>
-                            <div class="col-md-4">
-                                <div class="formPromo">
-                                    <form class="form-group">
-                                        <label class="labelHead">Get the Latest News or Promotions for SAVOUR 2016</label>
-                                        <div class="row">
-                                            <div class="col-xs-6 col-1">
-                                                <input type="text" class="form-control first" placeholder="First Name">
-                                            </div>
-                                            <div class="col-xs-6 col-2">
-                                                <input type="text" class="form-control last" placeholder="Last Name">
-                                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="formPromo">
+                                <form class="form-group">
+                                    <label class="labelHead">Get the Latest News or Promotions for SAVOUR 2016</label>
+                                    <div class="row">
+                                        <div class="col-xs-6 col-1">
+                                            <input type="text" class="form-control first" placeholder="First Name">
                                         </div>
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                <input type="email" placeholder="Email" class="form-control">
-                                            </div>
+                                        <div class="col-xs-6 col-2">
+                                            <input type="text" class="form-control last" placeholder="Last Name">
                                         </div>
-                                        <div class="row">
-                                            <div class="col-xs-3 col-1">
-                                                <input type="text" class="form-control" value="+62">
-                                            </div>
-                                            <div class="col-xs-9 col-2">
-                                                <input type="text" class="form-control" placeholder="Mobile Number (Optional)">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                <button class="btn btn-primary btnSend font-bold" type="submit">Send Me Updates</button>
-                                            </div>
-                                        </div>
-                                        <div class="row last-row">
-                                            <div class="col-md-12">
-                                                <label class="labelFoot">We respect your privacy and will not share your contact information with third parties without your consent.</label>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                @if(!empty($category_events))
-                                <div class="featuredEvent">
-                                    <div class="featuredLabel">
-                                        <label>Featured Events</label>
                                     </div>
-                                    @foreach ($category_events as $key => $category_event)
-                                        <a href="{{ URL::route('event-detail', $category_event->slug) }}">
-                                            <div class="eventList bg-{{ $category_event->background_color }}">
-                                                <div class="row">
-                                                    <div class="col-xs-3">
-                                                        <img src="{{ $category_event->featured_image3_url }}">
-                                                    </div>
-                                                    <div class="col-xs-8 box-cap">
-                                                        <div class="caption caption-first">
-                                                            <h5>{{ $category_event->title }}</h5>
-                                                        </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <input type="email" placeholder="Email" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-3 col-1">
+                                            <input type="text" class="form-control" value="+62">
+                                        </div>
+                                        <div class="col-xs-9 col-2">
+                                            <input type="text" class="form-control" placeholder="Mobile Number (Optional)">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <button class="btn btn-primary btnSend font-bold" type="submit">Send Me Updates</button>
+                                        </div>
+                                    </div>
+                                    <div class="row last-row">
+                                        <div class="col-md-12">
+                                            <label class="labelFoot">We respect your privacy and will not share your contact information with third parties without your consent.</label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            @if(!empty($category_events))
+                            <div class="featuredEvent">
+                                <div class="featuredLabel">
+                                    <label>Featured Events</label>
+                                </div>
+                                @foreach ($category_events as $key => $category_event)
+                                    <a href="{{ URL::route('event-detail', $category_event->slug) }}">
+                                        <div class="eventList bg-{{ $category_event->background_color }}">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <img src="{{ $category_event->featured_image3_url }}">
+                                                </div>
+                                                <div class="col-xs-8 box-cap">
+                                                    <div class="caption caption-first">
+                                                        <h5>{{ $category_event->title }}</h5>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </a>
-                                    @endforeach
-                                    <div class="buttonBrowse">
-                                        <a href="{{ URL::route('category-detail', $event->category->slug) }}">
-                                            <button class="btn btnBrowse font-bold">Browse More Events</button>
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
+                                @endforeach
+                                <div class="buttonBrowse">
+                                    <a href="{{ URL::route('category-detail', $event->category->slug) }}">
+                                        <button class="btn btnBrowse font-bold">Browse More Events</button>
+                                    </a>
                                 </div>
-                                @endif
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     </div>
 </section>
-        
+
 <div class="modal fade" id="eventVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

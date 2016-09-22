@@ -339,8 +339,8 @@
                                 <li><a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a></li>
                                 <li><a href="{{URL::route('support-faq')}}">{{ trans('general.frequently_asked_questions') }}</a></li>
                                 <li><a href="{{URL::route('contact-us')}}">{{ trans('general.contact_us') }}</a></li>
-                                <li><a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a></li>
-                                <li><a href="{{URL::route('support-privacy-policy')}}">{{ trans('general.privacy_policy') }}</a></li>
+                                <li><a href="#">{{ trans('general.terms_and_conditions') }}</a></li>
+                                <li><a href="#">{{ trans('general.privacy_policy') }}</a></li>
                             </ul>
                         </div>
                     </div>

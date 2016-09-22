@@ -47,24 +47,24 @@
     </div>
 </div>
 <div class="eventTabScroll-mobile bg-{{ $event->background_color }}">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-          <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li><a href="#eventBanner" class="smoothScroll backtop"></a></li>
-            <li><a href="#ticket" class="smoothScroll active">About</a></li>
-            @if(!$promotions->isEmpty())
-                <li><a href="#aboutBox" class="smoothScroll">Promotions</a></li>
-            @endif
-            <li><a href="{{ (!$promotions->isEmpty()) ? '#promoBox' : '#aboutBox' }}" class="smoothScroll">Venue Info</a></li>
-            @if(!empty($event->admission))
-                <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
-            @endif
-            <li><a href="#"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li>
-          </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs nav-justified" role="tablist">
+                    <li><a href="#eventBanner" class="smoothScroll backtop"></a></li>
+                    <li><a href="#ticket" class="smoothScroll active">About</a></li>
+                    @if(!$promotions->isEmpty())
+                        <li><a href="#aboutBox" class="smoothScroll">Promotions</a></li>
+                    @endif
+                    <li><a href="{{ (!$promotions->isEmpty()) ? '#promoBox' : '#aboutBox' }}" class="smoothScroll">Venue Info</a></li>
+                    @if(!empty($event->admission))
+                        <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
+                    @endif
+                    <li><a href="#"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li>
+                </ul>
+            </div>
         </div>
-      </div>
-  </div>
+    </div>
 </div>
 <section class="eventInfo">
     <div class="container">
@@ -172,14 +172,14 @@
                                     <div class="row">
                                         <div class="side-left side-first col-md-3">
                                             <div class="aboutDesc">
-                                                    <h4>About This Event</h4>
+                                                <h4>About This Event</h4>
                                             </div>
                                         </div>
                                         <div class="col-md-9">
                                             <div class="main-content">
                                                 <div class="">
                                                     <section id="about" class="sectionEvent">
-                                                            {!! $event->description !!}    
+                                                        {!! $event->description !!}    
                                                     </section>
                                                 </div>
                                             </div>

@@ -1225,9 +1225,10 @@ footer .information-title{
   margin-top: 10px;
 }
 
-.discoverCategory{
+.discoverCategory {
   text-align: center;
-  margin-top: 25px;
+  padding-top: 25px;
+  background-color: #fff;
 }
 
 .discoverCategory h2{
@@ -1263,12 +1264,13 @@ footer .information-title{
 }
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
-  border-bottom: 5px solid #000000;
+  border-bottom: 3px solid #000000;
   cursor: default;
   border-top: none;
   border-left: none;
   border-right: none;
   font-weight: bold;
+  background-color: transparent;
 }
 
 .promotionList{
@@ -1372,6 +1374,13 @@ footer .information-title{
 
 .eventTab .nav-tabs>li>a,
 .eventTab-mobile .nav-tabs>li>a{
+  color: #000000;
+  border: none;
+  border-bottom: 3px solid transparent;
+}
+
+.mobileTab .nav-tabs>li>a,
+.mobileTab-mobile .nav-tabs>li>a{
   color: #000000;
   border: none;
   border-bottom: 3px solid transparent;
@@ -1699,6 +1708,7 @@ footer .information-title{
 
 .about-content{
   min-height: 600px;
+  background-color: #fff;
 }
 
 .about-content .sidebar{
@@ -1838,13 +1848,14 @@ footer .information-title{
 
 .head-about{
   padding-left: 15px;
-  margin-bottom: 50px;
+  margin-bottom: 45px;
   font-size: 26px;
   margin-top: 45px;
 }
 
 .main-content .contact-desc{
-  margin-right: 55px;
+  padding-right: 55px;
+  padding-left: 55px;
 }
 
 .main-content .contact-desc .list-contact,
@@ -2330,7 +2341,7 @@ footer .information-title{
 
 .sidebar ul .active{
   font-family: 'proxima_nova_rgbold';
-  border-right: 2px solid #000;
+  border-right: 3px solid #000;
 }
 
 .eventBanner .btnPlayEvent{
@@ -2394,24 +2405,22 @@ footer .information-title{
 }
 
 .office-address-mobile{
-  margin-top: 15px;
+  margin-top: 20px;
+}
+
+.office-address-mobile p{
+  margin-bottom: 25px;
 }
 
 .office-button-mobile{
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .office-button-mobile button{
   width: 100%;
   color: #fff;
   background-color: #000000;
-}
-
-.office-button-mobile button:hover {
-    color: #000000;
-    background-color: #fff;
-    border: 1px solid #000000;
 }
 
 .tab-mobile li{
@@ -2714,8 +2723,13 @@ footer .information-title{
   height: 50px;
 }
 
+.mobileTab .iconWays i{
+  padding: 9px;
+}
+
 .headWays{
   font-size: 22px;
+  margin-top: 15px;
 }
 
 .boxOffice h5 b{
@@ -2726,11 +2740,6 @@ footer .information-title{
   background-color: #000;
   color: #fff;
 }
-.btnBlackDefault:hover{
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #000;
-}
 
 .boxOffice .btnBlackDefault{
   margin-top: 20px;
@@ -2738,7 +2747,7 @@ footer .information-title{
 
 .operating{
   color: #999999;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .btnBlackDefault i{
@@ -2762,13 +2771,14 @@ footer .information-title{
   height: 600px;
 }
 
-.eventTab .active .iconWays i{
+.mobileTab .active .iconWays i{
   background-color: #000;
   color: #fff;
 }
 
 .contentTab .head-mobile-ways{
   text-align: center;
+  margin-top: 25px;
 }
 
 .eventName .esplanade{
@@ -3223,6 +3233,31 @@ ul#getvenue li:before {
 
 footer{
   margin-top: 50px;
+}
+
+.btnBlackDefault:hover {
+  color: #a0a0a0;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+.operating label{
+  font-size: 12px;
+}
+
+.footer-support{
+  margin-top: 0;
+}
+
+.contentTab #hotline .head-mobile-ways,
+.contentTab #website .head-mobile-ways{
+  margin-bottom: 25px;
+}
+
+.mobile-page-title h3 {
+  margin-top: 25px;
 }
 
 

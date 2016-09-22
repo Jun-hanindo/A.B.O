@@ -358,6 +358,8 @@
   }
   .mobile-content{
     display: block;
+    background-color: #fff;
+    padding-bottom: 75px;
   }
   .search-mobile .search-faq input{
     max-width: 100%;
