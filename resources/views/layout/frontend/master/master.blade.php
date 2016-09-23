@@ -200,7 +200,7 @@
                                                     </ul>
                                                 </li>
                                                 <li><a href="{{ URL::route('discover')}}">{{ trans('general.discover') }}</a></li>
-                                                <li><a href="{{ URL::route('promotion')}}">{{ trans('general.prmotions') }}</a></li>
+                                                <li><a href="{{ URL::route('promotion')}}">{{ trans('general.promotions') }}</a></li>
                                                 <li><a href="{{URL::route('support')}}">{{ trans('general.support') }}</a></li>
                                                 <li><a href="https://asiaboxoffice.nliven.co/account/login" class="login-mobile">{{ trans('general.login') }}</a> / <a href="https://asiaboxoffice.nliven.co/account/register" class="register-mobile"> {{ trans('general.register') }}</a></li>
                                             </ul>
@@ -253,171 +253,173 @@
         @yield('content')
       <!-- End Main Content -->
 
-    <footer>
-        @if(Request::is('/'))
-            <div id="footer1">
+    @if(!Request::is('subscribe'))
+        <footer>
+            @if(Request::is('/'))
+                <div id="footer1">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3 centeredCap">
+                                <div class="footIcon">
+                                    <div class="icon">
+                                      <div class="iconself-logo-support"></div>
+                                    </div>
+                                </div>
+                                <div class="linkFoot">
+                                    <a href="#" class="font-light">{{ trans('general.support') }}</a>
+                                </div>
+                                <div class="capFoot">
+                                    <p>{{ trans('general.need_help_with_anything') }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 centeredCap">
+                                <div class="footIcon">
+                                    <div class="icon">
+                                      <div class="iconself-logo-user"></div>
+                                    </div>
+                                </div>
+                                <div class="linkFoot">
+                                    <a href="https://asiaboxoffice.nliven.co/account/register" class="font-light">{{ trans('general.register') }}</a>
+                                </div>
+                                <div class="capFoot">
+                                    <p>{{ trans('general.buy_tickets_from_us_and_more') }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 centeredCap">
+                                <div class="footIcon">
+                                    <div class="icon">
+                                      <div class="iconself-logo-mail"></div>
+                                    </div>
+                                </div>
+                                <div class="linkFoot">
+                                    <a href="#" class="font-light">{{ trans('general.subscribe_to_us') }}</a>
+                                </div>
+                                <div class="capFoot">
+                                    <p>{{ trans('general.get_events_updates_and_tips') }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 centeredCap">
+                                <div class="footIcon">
+                                    <div class="icon">
+                                      <div class="iconself-logo-footer"></div>
+                                    </div>
+                                </div>
+                                <div class="linkFoot">
+                                    <a href="{{URL::route('our-company')}}" class="font-light">{{ trans('general.our_company') }}</a>
+                                </div>
+                                <div class="capFoot">
+                                    <p>{{ trans('general.about_us_jobs_and_partnerships') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+            <div id="footer2">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-3 centeredCap">
-                            <div class="footIcon">
-                                <div class="icon">
-                                  <div class="iconself-logo-support"></div>
-                                </div>
-                            </div>
-                            <div class="linkFoot">
-                                <a href="#" class="font-light">{{ trans('general.support') }}</a>
-                            </div>
-                            <div class="capFoot">
-                                <p>{{ trans('general.need_help_with_anything') }}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 centeredCap">
-                            <div class="footIcon">
-                                <div class="icon">
-                                  <div class="iconself-logo-user"></div>
-                                </div>
-                            </div>
-                            <div class="linkFoot">
-                                <a href="https://asiaboxoffice.nliven.co/account/register" class="font-light">{{ trans('general.register') }}</a>
-                            </div>
-                            <div class="capFoot">
-                                <p>{{ trans('general.buy_tickets_from_us_and_more') }}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 centeredCap">
-                            <div class="footIcon">
-                                <div class="icon">
-                                  <div class="iconself-logo-mail"></div>
-                                </div>
-                            </div>
-                            <div class="linkFoot">
-                                <a href="#" class="font-light">{{ trans('general.subscribe_to_us') }}</a>
-                            </div>
-                            <div class="capFoot">
-                                <p>{{ trans('general.get_events_updates_and_tips') }}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 centeredCap">
-                            <div class="footIcon">
-                                <div class="icon">
-                                  <div class="iconself-logo-footer"></div>
-                                </div>
-                            </div>
-                            <div class="linkFoot">
-                                <a href="{{URL::route('our-company')}}" class="font-light">{{ trans('general.our_company') }}</a>
-                            </div>
-                            <div class="capFoot">
-                                <p>{{ trans('general.about_us_jobs_and_partnerships') }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
-        <div id="footer2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="information-box mobile-collapse">
-                            <div class="information-title mobile-collapse-header">
-                                {{ trans('general.events') }}
-                            </div>
-                            <ul class="list-unstyled mobile-collapse-body">
-                                <li><a href="{{URL::route('home')}}">{{ trans('general.home') }}</a></li>
-                                <li><a href="{{URL::route('event-search-get', 'q=all&sort=date')}}">{{ trans('general.search_for_events') }}</a></li>
-                                <li><a href="{{URL::route('discover')}}">{{ trans('general.discover_events') }}</a></li>
-                                <li><a href="{{URL::route('promotion')}}">{{ trans('general.promotions') }}</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="information-box mobile-collapse">
-                            <div class="information-title mobile-collapse-header">
-                                {{ trans('general.support') }}
-                            </div>
-                            <ul class="list-unstyled mobile-collapse-body">
-                                <li><a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a></li>
-                                <li><a href="{{URL::route('support-faq')}}">{{ trans('general.frequently_asked_questions') }}</a></li>
-                                <li><a href="{{URL::route('contact-us')}}">{{ trans('general.contact_us') }}</a></li>
-                                <li><a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a></li>
-                                <li><a href="{{URL::route('support-privacy-policy')}}">{{ trans('general.privacy_policy') }}</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="information-box mobile-collapse">
-                            <div class="information-title mobile-collapse-header">
-                                {{ trans('general.my_account') }}
-                            </div>
-                            <ul class="list-unstyled mobile-collapse-body">
-                                <li><a href="https://asiaboxoffice.nliven.co/account/login">{{ trans('general.login') }} / {{ trans('general.register') }}</a></li>
-                                <li><a href="{{URL::route('subscribe')}}">{{ trans('general.subscribe_us') }}</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="information-box mobile-collapse">
-                            <div class="information-title mobile-collapse-header">
-                                {{ trans('general.our_company') }}
-                            </div>
-                            <ul class="list-unstyled mobile-collapse-body">
-                                <li><a href="{{URL::route('our-company')}}">{{ trans('general.about_asia_box_office') }}</a></li>
-                                <li><a href="{{URL::route('careers')}}">{{ trans('general.careers') }}</a></li>
-                                <li><a href="{{URL::route('contact-us')}}">{{ trans('general.contact_us') }}</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    @if(isset($setting['facebook']) && !empty($setting['facebook']))
                         <div class="col-md-2">
                             <div class="information-box mobile-collapse">
-                              <div class="information-title mobile-collapse-header">
-                                {{ trans('general.follow_us_on_facebook') }}
-                              </div>
-                              <div class="facebookLike">
-                                  {!! $setting['facebook'] !!}
-                              </div>
+                                <div class="information-title mobile-collapse-header">
+                                    {{ trans('general.events') }}
+                                </div>
+                                <ul class="list-unstyled mobile-collapse-body">
+                                    <li><a href="{{URL::route('home')}}">{{ trans('general.home') }}</a></li>
+                                    <li><a href="{{URL::route('event-search-get', 'q=all&sort=date')}}">{{ trans('general.search_for_events') }}</a></li>
+                                    <li><a href="{{URL::route('discover')}}">{{ trans('general.discover_events') }}</a></li>
+                                    <li><a href="{{URL::route('promotion')}}">{{ trans('general.promotions') }}</a></li>
+                                </ul>
                             </div>
                         </div>
-                    @endif
-                    @if((isset($setting['apple_store']) && !empty($setting['apple_store'])) || (isset($setting['google_play']) && !empty($setting['google_play'])))
-                    <div class="col-md-2">
-                        <div class="information-box box-last mobile-collapse">
-                            <div class="information-title mobile-collapse-header">
-                                {{ trans('general.download_our_mobile_app') }}
+                        <div class="col-md-2">
+                            <div class="information-box mobile-collapse">
+                                <div class="information-title mobile-collapse-header">
+                                    {{ trans('general.support') }}
+                                </div>
+                                <ul class="list-unstyled mobile-collapse-body">
+                                    <li><a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a></li>
+                                    <li><a href="{{URL::route('support-faq')}}">{{ trans('general.frequently_asked_questions') }}</a></li>
+                                    <li><a href="{{URL::route('contact-us')}}">{{ trans('general.contact_us') }}</a></li>
+                                    <li><a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a></li>
+                                    <li><a href="{{URL::route('support-privacy-policy')}}">{{ trans('general.privacy_policy') }}</a></li>
+                                </ul>
                             </div>
-                            <div class="mobileApp">
-                                @if(isset($setting['apple_store']) && !empty($setting['apple_store']))
-                                    <a href="{{ $setting['apple_store'] }}"><img src="{{ asset('assets/frontend/images/appstore.png') }}"></a>
-                                @endif
-                                @if(isset($setting['google_play']) && !empty($setting['google_play']))
-                                    <a href="{{ $setting['google_play'] }}"><img src="{{ asset('assets/frontend/images/playstore.png') }}"></a>
-                                @endif
+                        </div>
+                        <div class="col-md-2">
+                            <div class="information-box mobile-collapse">
+                                <div class="information-title mobile-collapse-header">
+                                    {{ trans('general.my_account') }}
+                                </div>
+                                <ul class="list-unstyled mobile-collapse-body">
+                                    <li><a href="https://asiaboxoffice.nliven.co/account/login">{{ trans('general.login') }} / {{ trans('general.register') }}</a></li>
+                                    <li><a href="{{URL::route('subscribe')}}">{{ trans('general.subscribe_us') }}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="information-box mobile-collapse">
+                                <div class="information-title mobile-collapse-header">
+                                    {{ trans('general.our_company') }}
+                                </div>
+                                <ul class="list-unstyled mobile-collapse-body">
+                                    <li><a href="{{URL::route('our-company')}}">{{ trans('general.about_asia_box_office') }}</a></li>
+                                    <li><a href="{{URL::route('careers')}}">{{ trans('general.careers') }}</a></li>
+                                    <li><a href="{{URL::route('contact-us')}}">{{ trans('general.contact_us') }}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        @if(isset($setting['facebook']) && !empty($setting['facebook']))
+                            <div class="col-md-2">
+                                <div class="information-box mobile-collapse">
+                                  <div class="information-title mobile-collapse-header">
+                                    {{ trans('general.follow_us_on_facebook') }}
+                                  </div>
+                                  <div class="facebookLike">
+                                      {!! $setting['facebook'] !!}
+                                  </div>
+                                </div>
+                            </div>
+                        @endif
+                        @if((isset($setting['apple_store']) && !empty($setting['apple_store'])) || (isset($setting['google_play']) && !empty($setting['google_play'])))
+                        <div class="col-md-2">
+                            <div class="information-box box-last mobile-collapse">
+                                <div class="information-title mobile-collapse-header">
+                                    {{ trans('general.download_our_mobile_app') }}
+                                </div>
+                                <div class="mobileApp">
+                                    @if(isset($setting['apple_store']) && !empty($setting['apple_store']))
+                                        <a href="{{ $setting['apple_store'] }}"><img src="{{ asset('assets/frontend/images/appstore.png') }}"></a>
+                                    @endif
+                                    @if(isset($setting['google_play']) && !empty($setting['google_play']))
+                                        <a href="{{ $setting['google_play'] }}"><img src="{{ asset('assets/frontend/images/playstore.png') }}"></a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div id="footer3">
+                <div class="container">
+                    <div class="row footer-bottom">
+                        <div class="col-md-12 foot-bottom">
+                            <div class="col-md-2 logo-footer">
+                                <img src="{{ asset('assets/frontend/images/footer-logo.svg') }}">
+                            </div>
+                            <div class="col-md-10">
+                                <p>Asia Box Office is the largest ticketing service and solution provider in Singapore. It sells tickets to events ranging from pop concerts, musicals, theatre, family entertainment to sports. Asia Box Office's Authorised Agents are now conveniently located in Singapore, Malaysia, Indonesia, India, Taiwan and Vietnam.<br>
+                                <br>
+        Copyright 2016. © Asia Box Office Pte Ltd. All rights reserved. All trademarks, pictures and brands are the property of their respective owners. Use of this Web site constitutes acceptance of the Asia Box Office’s Conditions of Access and Privacy Policy.</p>
                             </div>
                         </div>
                     </div>
-                    @endif
                 </div>
             </div>
-        </div>
-        <div id="footer3">
-            <div class="container">
-                <div class="row footer-bottom">
-                    <div class="col-md-12 foot-bottom">
-                        <div class="col-md-2 logo-footer">
-                            <img src="{{ asset('assets/frontend/images/footer-logo.svg') }}">
-                        </div>
-                        <div class="col-md-10">
-                            <p>Asia Box Office is the largest ticketing service and solution provider in Singapore. It sells tickets to events ranging from pop concerts, musicals, theatre, family entertainment to sports. Asia Box Office's Authorised Agents are now conveniently located in Singapore, Malaysia, Indonesia, India, Taiwan and Vietnam.<br>
-                            <br>
-    Copyright 2016. © Asia Box Office Pte Ltd. All rights reserved. All trademarks, pictures and brands are the property of their respective owners. Use of this Web site constitutes acceptance of the Asia Box Office’s Conditions of Access and Privacy Policy.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-      </div>
-   </body>
+        </footer>
+          </div>
+    @endif
+    </body>
     {!! Html::script('assets/frontend/js/jquery-2.1.1.js') !!}
     {!! Html::script('assets/frontend/js/jquery.menu-aim.js') !!}
     {!! Html::script('assets/frontend/js/main.js') !!}
