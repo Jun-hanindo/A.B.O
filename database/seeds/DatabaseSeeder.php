@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UpdateSequenceId::class);
         $this->call(HastagsTableSeeder::class);
         $this->call(IconsTableSeeder::class);
+        $this->call(CurrenciesTableSeeder::class);
+        $this->call(SettingsTableSeeder::class);
     }
 }

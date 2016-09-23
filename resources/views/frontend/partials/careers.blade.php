@@ -47,7 +47,7 @@
                                                 <td class="jobs">{{ $career->job }}</td>
                                                 <td class="divisions">{{ $career->dept }}</td>
                                                 <td class="job-type">{{ $career->type }}</td>
-                                                <td class="payroll">${{ $career->salary }}</td>
+                                                <td class="payroll">{{ $career->currency_symbol_left.$career->salary.$career->currency_symbol_right }}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -118,7 +118,7 @@
                                                 <ul>
                                                     <li class="divisions">{{ $career->dept }}</li>
                                                     <li class="job-type">{{ $career->type }}</li>
-                                                    <li class="payroll">${{ $career->salary }}</li>
+                                                    <li class="payroll">{{ $career->currency_symbol_left.$career->salary.$career->currency_symbol_right }}</li>
                                                 </ul>
                                             </div>
                                         </div>

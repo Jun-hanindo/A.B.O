@@ -56,9 +56,9 @@
                                     </div>
                                     {!! Form::errorMsg('discount') !!}
                                 </div>
-                                <div id="discount-nominal" class="pull-left col-sm-3" style="display:none">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">US$</span>
+                                <div id="discount-nominal" class="pull-left col-sm-4" style="display:none">
+                                    <div class="input-group currency-value">
+                                        {!! Form::select('currency_id', $data['currencies'], $data->currency_id, array('class' => 'form-control','data-option' => old('currency_id'))) !!}
                                         {!! Form::text('discount_nominal', $data->discount_nominal, ['id' => 'discount_nominal', 'class' => 'form-control number-only nominal','maxlength'=>'255', 'placeholder' => trans('general.discount')]) !!}
                                     </div>
                                     {!! Form::errorMsg('discount_nominal') !!}

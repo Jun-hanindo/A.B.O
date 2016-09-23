@@ -1,7 +1,7 @@
 <?php
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () {
-    
+
     // \Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
     //    \Log::info($query->sql);
     //    \Log::info($query->bindings);
@@ -151,8 +151,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     });
 
     Route::group(['prefix' => 'setting'], function () {
-        Route::get('', array('as' => 'admin-index-setting', 'uses' => 'SettingsController@index'));
+        //Route::get('', array('as' => 'admin-index-setting', 'uses' => 'SettingsController@index'));
+        Route::get('general', array('as' => 'admin-index-setting', 'uses' => 'SettingsController@general'));
         Route::post('update', array('as' => 'admin-update-setting', 'uses' => 'SettingsController@storeUpdate'));
+        Route::get('mail', array('as' => 'admin-mail-setting', 'uses' => 'SettingsController@mail'));
+        
+        Route::get('currency', array('as' => 'admin-index-currency', 'uses' => 'CurrenciesController@index'));
+        Route::get('currency/create', array('as' => 'admin-create-currency', 'uses' => 'CurrenciesController@create'));
+        Route::post('currency/store', array('as' => 'admin-post-currency', 'uses' => 'CurrenciesController@store'));
+        Route::get('currency/{id}/edit', array('as' => 'admin-edit-currency', 'uses' => 'CurrenciesController@edit'));
+        Route::post('currency/{id}/update', array('as' => 'admin-update-currency', 'uses' => 'CurrenciesController@update'));
+        Route::delete('currency/{id}/delete', array('as' => 'admin-delete-currency', 'uses' => 'CurrenciesController@destroy'));
     });
 
     Route::group(['prefix' => 'trail'], function () {

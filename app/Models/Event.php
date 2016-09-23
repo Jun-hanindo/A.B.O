@@ -600,7 +600,7 @@ class Event extends Model
     public function minPrice($slug)
     {
         $data = DB::table('events')
-        ->select('events.id as id', 'price')
+        ->select('events.id as id', 'price', 'currency_id')
         ->leftjoin('event_schedules', 'events.id', '=', 'event_schedules.event_id')
         ->leftjoin('event_schedule_categories', 'event_schedules.id', '=', 'event_schedule_categories.event_schedule_id')
         ->where('events.slug','=',$slug)

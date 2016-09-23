@@ -36,7 +36,7 @@
                                         +'<td class="jobs">'+val.job+'</td>'
                                         +'<td class="divisions">'+val.dept+'</td>'
                                         +'<td class="job-type">'+val.type+'</td>'
-                                        +'<td class="payroll">$'+val.salary+'</td>'
+                                        +'<td class="payroll">'+val.currency_symbol_left+val.salary+val.currency_symbol_right+'</td>'
                                     +'</tr>'
                                 +'</table>'
                             +'</div>';
@@ -53,7 +53,7 @@
                                             +'<ul>'
                                                 +'<li class="divisions">'+val.dept+'</li>'
                                                 +'<li class="job-type">'+val.type+'</li>'
-                                                +'<li class="payroll">$'+val.salary+'</li>'
+                                                +'<li class="payroll">'+val.currency_symbol_left+val.salary+val.currency_symbol_right+'</li>'
                                             +'</ul>'
                                         +'</div>'
                                     +'</div>'

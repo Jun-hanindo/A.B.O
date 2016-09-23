@@ -27,6 +27,12 @@ class Promotion extends Model
 
     }
 
+    public function currency()
+    {
+        return $this->belongsTo('App\Models\Currency', 'currency_id');
+
+    }
+
     /**
      * Return venue's query for Datatables.
      *
@@ -71,6 +77,7 @@ class Promotion extends Model
         $this->end_date = date('Y-m-d',strtotime($param['end_date']));
         $this->code = $param['promotion_code'];
         $this->category = $param['category'];
+        $this->currency_id = (!isset($param['discount_type'])) ? $param['currency_id'] : 0;
 
         $pathDest = public_path().'/uploads/promotions';
         if(!File::exists($pathDest)) {
@@ -141,6 +148,7 @@ class Promotion extends Model
             $data->end_date = date('Y-m-d',strtotime($param['end_date']));
             $data->code = $param['promotion_code'];
             $data->category = $param['category'];
+            $data->currency_id = (!isset($param['discount_type'])) ? $param['currency_id'] : 0;
 
             $pathDest = public_path().'/uploads/promotions';
             if(!File::exists($pathDest)) {

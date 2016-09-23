@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Setting;
 use App\Models\LogActivity;
 use App\Models\Trail;
+use App\Models\Currency;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\setting\SettingRequest;
 
@@ -24,8 +25,43 @@ class SettingsController extends BaseController
     /**
      * @return Response
      */
-    public function index()
+    // public function index()
+    // {
+    //     $settings = Setting::all();
+    //     $data = [];
+    //     foreach ($settings as $key => $value) {
+    //         $data[$value->name] = $value->value;
+    //     }
+    //     $result['data'] = $data;
+    //     $result['language'] = \Config::get('app.locales');
+
+    //     $modelCurrency = new Currency();
+    //     $result['currencies'] = $modelCurrency->dropdown();
+
+    //     $trail = 'Setting';
+    //     $insertTrail = new Trail();
+    //     $insertTrail->insertTrail($trail);
+        
+    //     return view('backend.admin.setting.form', $result);
+    // }
+
+    public function mail()
     {
+        $settings = Setting::all();
+        $data = [];
+        foreach ($settings as $key => $value) {
+            $data[$value->name] = $value->value;
+        }
+        $result['data'] = $data;
+
+        $trail = 'Setting Mail';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
+        
+        return view('backend.admin.setting.form_mail', $result);
+    }
+
+    public function general(){
         $settings = Setting::all();
         $data = [];
         foreach ($settings as $key => $value) {
@@ -34,11 +70,14 @@ class SettingsController extends BaseController
         $result['data'] = $data;
         $result['language'] = \Config::get('app.locales');
 
+        $modelCurrency = new Currency();
+        $result['currencies'] = $modelCurrency->dropdown();
+
         $trail = 'Setting';
         $insertTrail = new Trail();
         $insertTrail->insertTrail($trail);
         
-        return view('backend.admin.setting.form', $result);
+        return view('backend.admin.setting.form_general', $result);
     }
 
     public function storeUpdate(SettingRequest $req)

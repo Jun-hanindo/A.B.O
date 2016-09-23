@@ -19,7 +19,7 @@
                         <div class="col-md-9">
                             <div class="form-group{{ Form::hasError('department') }} department">
                                 {!! Form::label('department', trans('general.department').' *') !!}
-                                {!! Form::select('department', $data['department'], null, array('class' => 'form-control','data-option' => old('department'))) !!}
+                                {!! Form::select('department', $data['departments'], null, array('class' => 'form-control','data-option' => old('department'))) !!}
                                 {!! Form::errorMsg('department') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('position') }} position">
@@ -51,8 +51,8 @@
                             </div>
                             <div class="form-group{{ Form::hasError('salary') }} salary">
                                 {!! Form::label('salary', trans('general.salary').' *') !!}
-                                <div class="input-group">
-                                    <span class="input-group-addon">$</span>
+                                <div class="input-group currency-value">
+                                    {!! Form::select('currency_id', $data['currencies'], $data['currency_sel'], array('class' => 'form-control','data-option' => old('currency_id'))) !!}
                                     {!! Form::text('salary', old('salary'), ['class' => 'form-control number-only','maxlength'=>'255', 'placeholder' => trans('general.salary')]) !!}
                                     
                                 </div>

@@ -32,6 +32,13 @@
 	box-shadow: none !important;
 	background: #eee !important;
 }
+.currency-value select{
+	width: 35% !important;
+	border-right: 0;
+}
+.currency-value input{
+	width: 65% !important;
+}
 /*.cke_chrome{
 	border-left: 1px solid #b6b6b6 !important;
 	border-right: 1px solid #b6b6b6 !important;

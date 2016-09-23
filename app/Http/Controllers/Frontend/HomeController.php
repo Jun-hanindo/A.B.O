@@ -20,6 +20,7 @@ use App\Models\Message;
 use Mail;
 use App\Http\Requests\Frontend\SendMessageRequest;
 use App\Http\Requests\Frontend\FeedbackRequest;
+use App\Http\Requests\Frontend\SubscribeRequest;
 //use View;
 
 class HomeController extends Controller
@@ -38,6 +39,7 @@ class HomeController extends Controller
             $result['promotions'] = $this->model->getHomepage('promotion');
             $result['src'] = url('uploads/events').'/';
             $result['src2'] = url('uploads/promotions').'/';
+            $result['currency_default'] = $this->setting['currency'];
 
             $trail = 'Homepage front end';
             $insertTrail = new Trail();
@@ -117,8 +119,9 @@ class HomeController extends Controller
 
         try{
             $modelEvent = new Event();
-            $limit = 9;
+            $limit = 15;
             $result['events'] = $modelEvent->getEventByPromotion($limit);
+            $result['currency_default'] = $this->setting['currency'];
 
             if($req->ajax()){      
                 $events = $result['events'];
@@ -192,6 +195,7 @@ class HomeController extends Controller
         try{
             
             $param = $req->all();
+            $param['currency_default'] = $this->setting['currency'];
             if(!empty($param)){
                 if(isset($param['preview'])){
                     $data['content'] = $this->string_replace($this->preview('careers'));
@@ -301,6 +305,29 @@ class HomeController extends Controller
             $insertLog->insertLogActivity($log);
 
             return view('errors.404');
+        
+        }
+    }
+
+    public function support()
+    {
+
+        try{
+
+            $trail = 'Support front end';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+
+            return view('frontend.partials.support'); 
+        
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            //return view('errors.404');
         
         }
     }
@@ -433,6 +460,52 @@ class HomeController extends Controller
             $insertLog->insertLogActivity($log);
 
             return view('errors.404');
+        
+        }
+    }
+
+    public function subscribeUs()
+    {
+
+        try{
+
+            $trail = 'Subscribe front end';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+
+            return view('frontend.partials.subscribe'); 
+        
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            //return view('errors.404');
+        
+        }
+    }
+
+    public function subscribeUsStore(SubscribeRequest $req)
+    {
+
+        try{
+
+            $trail = 'Subscribe front end';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+
+            return view('frontend.partials.subscribe'); 
+        
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            //return view('errors.404');
         
         }
     }

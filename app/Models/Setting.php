@@ -10,7 +10,7 @@ class Setting extends Model
 {
     protected $table = 'settings';
 
-
+    protected $fillable = ['name', 'value'];
     // public function user()
     // {
     //     return $this->belongsTo('App\Models\User', 'user_id');
@@ -41,7 +41,8 @@ class Setting extends Model
                         if(!empty($data)){
                             Setting::where('name', $k)->update(['name' => $k, 'value' => $value]);
                         }else{
-                            Setting::insert( ['name' => $k, 'value' => $value]);
+                            $setting = ['name' => $k, 'value' => $value];
+                            Setting::create($setting);
                         }
                     }
                 }

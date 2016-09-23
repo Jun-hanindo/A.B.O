@@ -373,6 +373,61 @@
   .slider-home .carousel-caption{
     min-height: 210px;
   } 
+  .support-title h2{
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  .support-menu .waystobuy,
+  .support-menu .faq-support{
+    margin-bottom: 25px;
+  }
+  .terms{
+    margin-top: 25px;
+  }
+  .support-menu a{
+    font-size: 18px;
+  }
+  .support-page-main{
+    padding-bottom: 55px;
+  }
+  .support-menu .iconWays i{
+    padding: 9px;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+  }
+  .content .logo-mobile{
+    display: inline-block;
+  }
+  .form-subscribe{
+    width: auto;
+    height: 182px;
+  }
+  .form-subscribe .first-name{
+    padding-right: 10px;
+    margin-bottom: 20px;
+  }
+  .form-subscribe .last-name{
+    padding-left: 10px;
+    margin-bottom: 20px;
+  }
+  .form-subscribe .email{
+    padding-left: 10px;
+    margin-bottom: 20px;
+  }
+  .form-subscribe .button button{
+    width: 100%;
+  }
+  .content h2{
+    font-size: 20px;
+    /*width: 57%;*/
+  }
+  .form-subscribe input, .form-subscribe .btn {
+    height: auto;
+  }
+  .content .logo-web{
+    display: none;
+  }
   .eventTabScroll{
     display: none !important;
   }

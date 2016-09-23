@@ -407,6 +407,8 @@
             $('#category_id').val('');
             $("#additional_info").val('');
             $("#price").val('');
+            var currency = $("#form-event-category #currency_id").attr('data-default');
+            $("#form-event-category #currency_id").val(currency);
         }
 
         function loadDataScheduleCategory(schedule_id)
@@ -500,6 +502,7 @@
                     $("#additional_info").val(data.additional_info);
                     $("#price").val(data.price);
                     $("#price_cat").val(data.time_period);
+                    $("#form-event-category #currency_id").val(data.currency_id);
                 },
                 error: function(response){
                     $('#modal-form-schedule').modal('hide');
@@ -720,6 +723,7 @@
                     $("#category").val(data.category); 
                     $('#div-preview_image').show();
                     $("#discount").val(data.discount); 
+                    $("#form-event-promotion #currency_id").val(data.currency_id);
                     $("#discount_nominal").val(data.discount_nominal);
                     if(data.discount > 0){
                         $(".discount_type-check").bootstrapSwitch('state', true); 
@@ -751,6 +755,8 @@
             $("#discount_nominal").val('');
             $(".discount_type-check").bootstrapSwitch('state', true); 
             $('#description_promo').val('');
+            var currency = $("#form-event-promotion #currency_id").attr('data-default');
+            $("#form-event-promotion #currency_id").val(currency);
             $('#start_date').data('datepicker').setDate(null);
             $('#end_date').data('datepicker').setDate(null);
             $('#discount-percent').show();

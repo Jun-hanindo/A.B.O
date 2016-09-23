@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Promotion;
 use App\Models\LogActivity;
 use App\Models\Trail;
+use App\Models\Currency;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\promotion\PromotionRequest;
 
@@ -92,6 +93,8 @@ class PromotionsController extends BaseController
             $trail = 'Promotion Form';
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
+            $data['currencies'] = Currency::dropdownCode();
+            $data['currency_sel'] = $this->setting['currency'];
         
         } catch (\Exception $e) {
 
@@ -102,7 +105,7 @@ class PromotionsController extends BaseController
         
         }
 
-        return view('backend.admin.promotion.create');
+        return view('backend.admin.promotion.create')->withData($data);
     }
 
     /**
@@ -178,6 +181,7 @@ class PromotionsController extends BaseController
             if(isset($data->featured_image)){
                 $data->src_featured_image = $data->src.'/'.$data->featured_image; 
             }
+            $data['currencies'] = Currency::dropdownCode();
             
             $trail = 'Promotion Form';
             $insertTrail = new Trail();

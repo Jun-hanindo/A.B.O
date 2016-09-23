@@ -14,6 +14,7 @@ use App\Models\Promotion;
 use App\Models\LogActivity;
 use App\Models\Trail;
 use App\Models\Icon;
+use App\Models\Currency;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\event\EventRequest;
 
@@ -78,6 +79,8 @@ class EventsController extends BaseController
             $data['categories'] = Category::dropdown();
             $iconModel = new Icon();
             $data['icons'] = $iconModel->getIcon(); 
+            $data['currencies'] = Currency::dropdownCode();
+            $data['currency_sel'] = $this->setting['currency'];
 
             $trail = 'Regiser Event';
             $insertTrail = new Trail();
@@ -195,6 +198,8 @@ class EventsController extends BaseController
             $data['categories'] = Category::dropdown();
             $iconModel = new Icon();
             $data['icons'] = $iconModel->getIcon();
+            $data['currencies'] = Currency::dropdownCode();
+            $data['currency_sel'] = $this->setting['currency'];
             if($data['event_type'] == TRUE){
                 $data['checked'] = 'checked';
             }else{

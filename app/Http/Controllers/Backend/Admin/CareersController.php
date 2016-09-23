@@ -10,6 +10,7 @@ use App\Models\Career;
 use App\Models\Department;
 use App\Models\LogActivity;
 use App\Models\Trail;
+use App\Models\Currency;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\career\CareerRequest;
 
@@ -81,7 +82,9 @@ class CareersController extends BaseController
             $trail = 'Career Form';
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
-            $data['department'] = Department::dropdown();
+            $data['departments'] = Department::dropdown();
+            $data['currencies'] = Currency::dropdownCode();
+            $data['currency_sel'] = $this->setting['currency'];
         
         } catch (\Exception $e) {
 
@@ -154,7 +157,8 @@ class CareersController extends BaseController
         
         try{
             $data = $this->model->findCareerByID($id);
-            $data['department'] = Department::dropdown();
+            $data['departments'] = Department::dropdown();
+            $data['currencies'] = Currency::dropdownCode();
         //if(!empty($data)) {
             
             $trail = 'Career Form';

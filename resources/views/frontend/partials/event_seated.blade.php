@@ -205,7 +205,23 @@
                                                                 <img src="{{ $src2.$promotion->featured_image }}">
                                                                 <h3 class="font-bold">{{ $promotion->title }}</h3>
                                                                 {!! $promotion->description !!}
-                                                                <p>Discount: {{ ($promotion->discount > 0) ? $promotion->discount.'%' : '$'.$promotion->discount_nominal }}</p>
+                                                                
+                                                                <p>{{ trans('general.discount') }}: 
+                                                                    @if($promotion->discount > 0)
+                                                                        {{ $promotion->discount.'%' }}
+                                                                    @else
+                                                                        @if($promotion->currency_id == 0)
+                                                                            @php
+                                                                                $promotion->currency_id = $currency_default;
+                                                                            @endphp
+                                                                        @endif
+                                                                        @php
+                                                                            $currency_symbol_left = $promotion->currency->symbol_left;
+                                                                            $currency_symbol_right = $promotion->currency->symbol_right;
+                                                                        @endphp
+                                                                        {{ $currency_symbol_left.$promotion->discount_nominal.$currency_symbol_right }}
+                                                                    @endif
+                                                                </p>
                                                                 <p>Start Date: {{ date('d F Y', strtotime($promotion->start_date)) }}</p>
                                                                 <p>End Date: {{ date('d F Y', strtotime($promotion->end_date)) }}</p>
                                                             </section>

@@ -116,7 +116,7 @@
                                     <a href="{{ URL::route('promotion')}}">{{ trans('general.promotions') }}</a>
                                 </li>
                                 <li class="nav-item list-menu">
-                                    <a href="#">{{ trans('general.support') }}</a>
+                                    <a href="{{URL::route('support')}}">{{ trans('general.support') }}</a>
                                 </li>
                             </ul>
                         </nav>
@@ -201,7 +201,7 @@
                                                 </li>
                                                 <li><a href="{{ URL::route('discover')}}">{{ trans('general.discover') }}</a></li>
                                                 <li><a href="{{ URL::route('promotion')}}">{{ trans('general.prmotions') }}</a></li>
-                                                <li><a href="#">{{ trans('general.support') }}</a></li>
+                                                <li><a href="{{URL::route('support')}}">{{ trans('general.support') }}</a></li>
                                                 <li><a href="https://asiaboxoffice.nliven.co/account/login" class="login-mobile">{{ trans('general.login') }}</a> / <a href="https://asiaboxoffice.nliven.co/account/register" class="register-mobile"> {{ trans('general.register') }}</a></li>
                                             </ul>
                                         </div>
@@ -351,7 +351,7 @@
                             </div>
                             <ul class="list-unstyled mobile-collapse-body">
                                 <li><a href="https://asiaboxoffice.nliven.co/account/login">{{ trans('general.login') }} / {{ trans('general.register') }}</a></li>
-                                <li><a href="#">{{ trans('general.subscribe_us') }}</a></li>
+                                <li><a href="{{URL::route('subscribe')}}">{{ trans('general.subscribe_us') }}</a></li>
                             </ul>
                         </div>
                     </div>

@@ -197,7 +197,23 @@
                                                     </div>
                                                     <!-- <h4>How to Participate </h4>
                                                     <p>Show StarHub bill or subscription on any device such as mobile phone or tablet.</p> -->
-                                                    <p>{{ trans('general.discount') }}: {{ ($data->discount > 0) ? $data->discount.'%' : '$'.$data->discount_nominal }}</p>
+
+                                                    <p>{{ trans('general.discount') }}: 
+                                                        @if($data->discount > 0)
+                                                            {{ $data->discount.'%' }}
+                                                        @else
+                                                            @if($data->currency_id == 0)
+                                                                @php
+                                                                    $data->currency_id = $currency_default;
+                                                                @endphp
+                                                            @endif
+                                                            @php
+                                                                $currency_symbol_left = $data->currency->symbol_left;
+                                                                $currency_symbol_right = $data->currency->symbol_right;
+                                                            @endphp
+                                                            {{ $currency_symbol_left.$data->discount_nominal.$currency_symbol_right }}
+                                                        @endif
+                                                    </p>
                                                     <h4>Promotion Period</h4>
                                                     <p>{{ trans('general.start_date') }}: {{ date('d F Y', strtotime($data->start_date)) }}</p>
                                                     <br>

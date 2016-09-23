@@ -1,3 +1,10 @@
 .mapEvent iframe {
   width: 100%;
 }
+.subscription-page{
+  background: url(../images/bg-subscription.jpg) no-repeat;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position:center;
+}

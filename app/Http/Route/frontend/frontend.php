@@ -14,6 +14,9 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('terms-and-conditions', array('as' => 'support-terms-and-conditions', 'uses' => 'HomeController@supportTermsAndConditions'));
     Route::get('privacy-policy', array('as' => 'support-privacy-policy', 'uses' => 'HomeController@supportPrivacyPolicy'));
     Route::get('faq', array('as' => 'support-faq', 'uses' => 'HomeController@supportFaq'));
+    Route::get('support', array('as' => 'support', 'uses' => 'HomeController@support'));
+    Route::get('subscribe', array('as' => 'subscribe', 'uses' => 'HomeController@subscribeUs'));
+    Route::post('subscribe-store', array('as' => 'subscribe-store', 'uses' => 'HomeController@subscribeUsStore'));
     //Route::get('search-result', array('as' => 'search-result', 'uses' => 'HomeController@searchResult'));
     // Route::get('application', array('as' => 'front-form-application', 'uses' => 'ApplicationController@applicationForm'));
     // 

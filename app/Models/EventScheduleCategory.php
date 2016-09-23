@@ -21,6 +21,12 @@ class EventScheduleCategory extends Model
 
     }
 
+    public function currency()
+    {
+        return $this->belongsTo('App\Models\Currency', 'currency_id');
+
+    }
+
     /**
      * Return event's query for Datatables.
      *
@@ -45,6 +51,7 @@ class EventScheduleCategory extends Model
         $this->additional_info = $param['additional_info'];
     	$this->price = $param['price'];
         $this->price_cat = $param['price_cat'];
+        $this->currency_id = $param['currency_id'];
 
     	if($this->save()){
             return $this;
@@ -75,6 +82,7 @@ class EventScheduleCategory extends Model
             $data->additional_info = $param['additional_info'];
             $data->price = $param['price'];
             $data->price_cat = $param['price_cat'];
+            $data->currency_id = $param['currency_id'];
 
             if($data->save()){
 

@@ -31,6 +31,7 @@ class EventsController extends Controller
                 $result['min'] = $this->model->minPrice($slug);
                 $result['src'] = url('uploads/events').'/';
                 $result['src2'] = url('uploads/promotions').'/';
+                $result['currency_default'] = $this->setting['currency'];
                 $limit = 5;
                 $result['category_events'] = $this->model->getFeaturedEventByCategory($result['event']->id, $result['event']->category->id, $limit);
 

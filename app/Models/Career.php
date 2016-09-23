@@ -24,6 +24,12 @@ class Career extends Model
 
     }
 
+    public function currency()
+    {
+        return $this->belongsTo('App\Models\Currency', 'currency_id');
+
+    }
+
     /**
      * Return career's query for Datatables.
      *
@@ -51,6 +57,7 @@ class Career extends Model
         $this->description = $param['description'];
         $this->responsibilities = $param['responsibilities'];
         $this->pre_requisites = $param['pre_requisites'];
+        $this->currency_id = $param['currency_id'];
         if($this->save()){
             return $this;
         } else {
@@ -95,6 +102,7 @@ class Career extends Model
             $data->description = $param['description'];
             $data->responsibilities = $param['responsibilities'];
             $data->pre_requisites = $param['pre_requisites'];
+            $data->currency_id = $param['currency_id'];
             if($data->save()) {
                 return $data;
             } else {
@@ -162,6 +170,11 @@ class Career extends Model
         {
             foreach ($careers as $key => $career) {
                 $career->dept = $career->department->name;
+                if($career->currency_id == 0){
+                    $career->currency_id = $param['currency_default'];
+                }
+                $career->currency_symbol_left = $career->currency->symbol_left;
+                $career->currency_symbol_right = $career->currency->symbol_right;
             }
             return $careers;
         }else{

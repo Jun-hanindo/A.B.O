@@ -238,8 +238,8 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('price', trans('general.price'), array('class' => 'col-sm-3 control-label pull-left')) !!}
-                            <div class="col-sm-9 input-group">
-                                <span class="input-group-addon">US$</span>
+                            <div class="col-sm-9 input-group currency-value">
+                                {!! Form::select('currency_id', $data['currencies'], $data['currency_sel'], array('data-default' => $data['currency_sel'], 'id' => 'currency_id', 'class' => 'form-control','data-option' => old('currency_id'))) !!}
                                 {!! Form::text('price', old('price'), ['class' => 'form-control number-only','maxlength'=>'255']) !!}
                             </div>
                         </div>
@@ -291,9 +291,9 @@
                                     </div>
                                     {!! Form::errorMsg('discount') !!}
                                 </div>
-                                <div id="discount-nominal" class="pull-left col-sm-3" style="display:none">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">US$</span>
+                                <div id="discount-nominal" class="pull-left col-sm-4" style="display:none">
+                                    <div class="input-group currency-value">
+                                        {!! Form::select('currency_id', $data['currencies'], $data['currency_sel'], array('data-default' => $data['currency_sel'], 'id' => 'currency_id', 'class' => 'form-control','data-option' => old('currency_id'))) !!}
                                         {!! Form::text('discount_nominal', old('discount_nominal'), ['id' => 'discount_nominal', 'class' => 'form-control number-only nominal','maxlength'=>'255', 'placeholder' => trans('general.discount')]) !!}
                                     </div>
                                     {!! Form::errorMsg('discount_nominal') !!}

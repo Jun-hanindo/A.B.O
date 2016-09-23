@@ -1021,6 +1021,7 @@ a.dropdown-is-active:after{
 
 .latestPromo{
   background-color: #E7E7E7;
+  padding-bottom: 50px;
 }
 
 #footer1{
@@ -1388,6 +1389,7 @@ footer .information-title{
 
 .contentTab{
   background-color: #E7E7E7;
+  padding-bottom: 45px;
 }
 
 .contentTab .side-left h4{
@@ -1489,7 +1491,8 @@ footer .information-title{
   padding-left: 3;
 }
 
-.formPromo input{
+.formPromo input,
+.form-subscribe input{
   border-radius: 3px;
   border-color: #e7e7e7;
   box-shadow: none;
@@ -2410,6 +2413,7 @@ footer .information-title{
 
 .office-address-mobile p{
   margin-bottom: 25px;
+  font-size: 14px;
 }
 
 .office-button-mobile{
@@ -2648,22 +2652,26 @@ footer .information-title{
 }
 
 #modalYes .modal-content,
-#modalContact .modal-content{
+#modalContact .modal-content,
+#modalSubscribe .modal-content{
   max-width: 430px;
   margin: 0 auto;
 }
 
-#modalYes .modal-content .modal-body p{
+#modalYes .modal-content .modal-body p,
+#modalSubscribe .modal-content .modal-body p{
   text-align: center;
 }
 
 #modalYes .modal-content .modal-footer,
 #modalNo .modal-content .modal-footer,
-#modalContact .modal-content .modal-footer{
+#modalContact .modal-content .modal-footer,
+#modalSubscribe .modal-content .modal-footer{
   text-align: center;
 }
 
-#modalYes .modal-content .modal-footer button{
+#modalYes .modal-content .modal-footer button,
+#modalSubscribe .modal-content .modal-footer button{
   background-color: #000;
   color: #fff;
   width: 200px;
@@ -2718,7 +2726,7 @@ footer .information-title{
   font-size: 30px;
   border: 1px solid #000;
   border-radius: 50%;
-  padding: 10px;
+  padding: 11px;
   width: 50px;
   height: 50px;
 }
@@ -2779,6 +2787,7 @@ footer .information-title{
 .contentTab .head-mobile-ways{
   text-align: center;
   margin-top: 25px;
+  font-size: 14px;
 }
 
 .eventName .esplanade{
@@ -3100,7 +3109,8 @@ footer .information-title{
   border: none;
 }
 
-.formPromo input:focus {
+.formPromo input:focus,
+.form-subscribe input:focus {
   border-color: #000;
   box-shadow: none;
 }
@@ -3117,10 +3127,6 @@ footer .information-title{
 .eventTab-mobile .nav-tabs>li>a.active{
   border-bottom: 3px solid #000;
   font-family: 'proxima_nova_rgbold';
-}
-
-.main-content #rules{
-  margin-bottom: 45px;
 }
 
 .main-content #promotion{
@@ -3231,10 +3237,6 @@ ul#getvenue li:before {
   padding-bottom: 50px
 }
 
-footer{
-  margin-top: 50px;
-}
-
 .btnBlackDefault:hover {
   color: #a0a0a0;
   -moz-transition: all .2s ease-in;
@@ -3258,6 +3260,177 @@ footer{
 
 .mobile-page-title h3 {
   margin-top: 25px;
+}
+
+.mobileTab ul li a {
+  font-size: 18px;
+}
+
+.mobileTab ul .active a {
+  font-family: 'proxima_nova_rgbold';
+}
+
+.subscription-page{
+  background: url(../image/bg-subscription.jpg) no-repeat;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position:center;
+}
+
+.close-subscription{
+  padding-top: 30px;
+}
+
+.close-subscription a{
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  float: right;
+}
+
+.close-subscription a:hover{
+  color: #e7e7e7;
+}
+
+.subscription-main{
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+}
+
+.content .profit{
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 16px;
+  margin-bottom: 45px;
+  text-align: left;
+}
+
+.content{
+  display: inline-block;
+}
+
+.content img{
+  margin-bottom: 15px;
+}
+
+.content h2{
+  /*width: 50%;*/
+  margin: 0 auto;
+  font-size: 26px;
+}
+
+.profit li{
+  margin-bottom: 10px;
+}
+
+.form-subscribe{
+  width: 770px;
+  height: 80px;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 25px;
+}
+
+.form-subscribe input,
+.form-subscribe .btn{
+  height: 100%;
+}
+
+.content p{
+  font-size: 12px;
+  padding-top: 20px;
+}
+
+.profit-subscribe{
+  display: inline-block;
+}
+
+.form-subscribe button{
+  width: 120px;
+}
+
+.content .logo-mobile{
+  display: none;
+}
+
+.close{
+  opacity: 1;
+}
+
+.modal-header .close{
+  margin-top: 3px !important;
+}
+
+#modalSubscribe{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#modalSubscribe .modal-title{
+  font-size: 16px;
+}
+
+.support-page-main{
+  background-color: #fff;
+  padding-bottom: 95px;
+}
+
+.support-title,
+.waystobuy,
+.faq-support,
+.contact-support,
+.terms{
+  text-align: center;
+}
+
+.support-title h2{
+  font-size: 26px;
+  margin-top: 45px;
+  margin-bottom: 45px;
+}
+
+.support-menu a{
+  text-decoration: none;
+  font-size: 22px;
+  color: #000;
+}
+
+.support-menu a:after,
+.terms a:after{
+  content: "\f105";
+  font-family: 'FontAwesome';
+}
+
+.terms a:after{
+  padding-left: 7px;
+}
+
+.support-menu .iconWays i{
+  padding: 11px;
+  font-size: 26px;
+}
+
+.support-menu .iconWays{
+  margin-bottom: 15px;
+}
+
+.terms a{
+  text-decoration: none;
+  color: #000;
+  font-size: 12px;
+}
+
+.terms{
+  margin-top: 50px;
 }
 
 
