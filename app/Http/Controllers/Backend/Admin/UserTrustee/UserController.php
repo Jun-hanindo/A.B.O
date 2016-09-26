@@ -16,6 +16,7 @@ use App\Http\Requests\Backend\UserTrustee\UserRequest as Request;
 use App\Http\Requests\Backend\UserTrustee\UserReactivateRequest as RequestReactivate;
 
 use Mail;
+use Image;
 
 class UserController extends BaseController
 {
@@ -284,14 +285,14 @@ class UserController extends BaseController
     private function processAvatar(Request $request)
     {
         $file = $request->file('avatar');
-        $img = \Image::make($file);
-        $img_tmp = $img->stream();
 
         if (! $file->isValid()) {
             return false;
         }
 
         $fileName = date('Y_m_d_His').'_'.$file->getClientOriginalName();
+        $img = Image::make($file);
+        $img_tmp = $img->stream();
 
         // Move, move, move!!
         //$file->move(avatar_path(), $fileName);
