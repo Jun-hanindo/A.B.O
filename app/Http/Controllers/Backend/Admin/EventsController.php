@@ -126,7 +126,7 @@ class EventsController extends BaseController
         
         //} else {
         } catch (\Exception $e) {
-
+            \Log::info($e->getFile().' Line:'.$e->getLine());
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage();
             $insertLog = new LogActivity();
