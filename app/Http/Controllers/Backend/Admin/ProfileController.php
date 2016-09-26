@@ -93,14 +93,19 @@ class ProfileController extends Controller
             if ($request->hasFile('avatar')) {
                 //$avatar = $request->file('avatar');
                 $param = $request->all();
-                $avatar = $param['avatar'];
+                $avatar = $data['avatar'];
 
-                //if ($avatar->isValid()) {
-                    $fileName = date('Y_m_d_His').'_'.$avatar->getClientOriginalName();
+                if ($avatar->isValid()) {
+                    if ($user->avatar){
+                        file_delete('avatars/'.$user->avatar, env('FILESYSTEM_DEFAULT'));
+                    }
+
+                    $extension = $avatar->getClientOriginalExtension();
+                    $fileName = date('Y_m_d_His').'.'.$extension;
                     $img = Image::make($avatar);
                     $img->resize(128, 128);
                     $img_tmp = $img->stream();
-                    //dd($img);
+                    //dd($avatar);
 
                 //
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
@@ -111,13 +116,10 @@ class ProfileController extends Controller
                     // $avatar->move(avatar_path(), $fileName);
                     // if ($user->avatar && file_exists(avatar_path($user->avatar))) {
                     //     unlink(avatar_path($user->avatar));
-                    if ($user->avatar){
-                        file_delete('avatars/'.$user->avatar, env('FILESYSTEM_DEFAULT'));
-                    }
                     //}
 
                     $data['avatar'] = $fileName;
-                //}
+                }
             }
 
             flash()->success(trans('general.save_success'));
