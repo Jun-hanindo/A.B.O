@@ -103,7 +103,7 @@ class ProfileController extends Controller
                     $extension = $avatar->getClientOriginalExtension();
                     $fileName = date('Y_m_d_His').'.'.$extension;
                     $img = Image::make($avatar);
-                    $img->resize(128, 128);
+                    //$img->resize(128, 128);
                     $img_tmp = $img->stream();
                     //dd($avatar);
 
