@@ -284,6 +284,8 @@ class UserController extends BaseController
     private function processAvatar(Request $request)
     {
         $file = $request->file('avatar');
+        $img = Image::make($file);
+        $img_tmp = $img->stream();
 
         if (! $file->isValid()) {
             return false;
@@ -295,7 +297,7 @@ class UserController extends BaseController
         //$file->move(avatar_path(), $fileName);
         Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
             'avatars/'.$fileName,
-            $request->file('avatar')->__toString(), 'public'
+            $img_tmp->__toString(), 'public'
         );
 
         return $fileName;
