@@ -96,7 +96,8 @@ class ProfileController extends Controller
                 if ($avatar->isValid()) {
                     $fileName = date('Y_m_d_His').'_'.$avatar->getClientOriginalName();
                     $img = Image::make($avatar);
-                    $img_tmp = $img->stream();
+                    //$img_tmp = $img->stream();
+                    //dd($img);
 
                 //
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
