@@ -68,6 +68,8 @@ if (! function_exists('avatar_path')) {
         }
 
         return $link.'/'.trim($path, '/');
+
+        
     }
 }
 
@@ -217,6 +219,68 @@ if (! function_exists('promotion_path')) {
         return $link.'/'.trim($path, '/');
     }
 }
+
+if (! function_exists('file_url')) {
+    /**
+     * Returns the url of the given file.
+     *
+     * @param  string  $file
+     * @param  string|null  $disk
+     * @return string
+     */
+    function file_url($file, $disk = null)
+    {
+        $disk = $disk ?: config('filesystems.default');
+
+
+ 
+        $check = file_is_exists($file, $disk);
+ 
+        if ($check) {
+            if ('public' == $disk) {
+                return asset('storage/'.$file);
+            }
+ 
+            return Storage::disk($disk)->url($file);
+        }
+ 
+        return 'http://lorempixel.com/128/128/';
+    }
+}
+ 
+if (! function_exists('file_delete')) {
+    /**
+     * Delete the given file.
+     *
+     * @param  array|string  $file
+     * @param  string|null  $disk
+     * @return bool
+     */
+    function file_delete($file, $disk = null)
+    {
+        $disk = $disk ?: config('filesystems.default');
+ 
+        return Storage::disk($disk)->delete($file);
+    }
+}
+ 
+if (! function_exists('file_is_exists')) {
+    /**
+     * Checks whether a file exists.
+     *
+     * @param  string  $file
+     * @param  string|null  $disk
+     * @return bool
+     */
+    function file_is_exists($file, $disk = null)
+    {
+        $disk = $disk ?: config('filesystems.default');
+ 
+        return Storage::disk($disk)->exists($file);
+    }
+}
+
+
 
 // if (! function_exists('count_message_unread')) {
 

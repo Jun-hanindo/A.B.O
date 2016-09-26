@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 
 class Subscription extends Model
 {
@@ -25,21 +26,10 @@ class Subscription extends Model
     }
 
     function eventDatatables($id){
-        $data = Subscription::select('id', 'prefered_event')
+        $data = Subscription::select('id', 'prefered_event'))
         ->where('id', $id);
 
-        if(!empty($data)){
-            //dd($data);
-            if(!empty($data->prefered_event)){
-                $data->prefered_event = json_decode($data->prefered_event, true);
-            }else{
-                $data->prefered_event = array();
-            }
-            //dd($data->prefered_event);
-            return $data;
-        }else{
-            return false;
-        }
+        return $data;
         //return static::select('id', 'prefered_event');
     }
 

@@ -179,7 +179,7 @@ class PromotionsController extends BaseController
             $data = $this->model->findPromotionByID($id);
             $data->src = url('uploads/promotions');
             if(isset($data->featured_image)){
-                $data->src_featured_image = $data->src.'/'.$data->featured_image; 
+                $data->src_featured_image = file_url('promotions/'.$data->featured_image, env('FILESYSTEM_DEFAULT')); 
             }
             $data['currencies'] = Currency::dropdownCode();
             

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use DB;
 use File;
 use Image;
@@ -79,10 +80,10 @@ class Promotion extends Model
         $this->category = $param['category'];
         $this->currency_id = (!isset($param['discount_type'])) ? $param['currency_id'] : 0;
 
-        $pathDest = public_path().'/uploads/promotions';
-        if(!File::exists($pathDest)) {
-            File::makeDirectory($pathDest, $mode=0777,true,true);
-        }
+        // $pathDest = public_path().'/uploads/promotions';
+        // if(!File::exists($pathDest)) {
+        //     File::makeDirectory($pathDest, $mode=0777,true,true);
+        // }
 
         if (isset($param['featured_image'])) {
             $featured_image = $param['featured_image'];
@@ -97,7 +98,10 @@ class Promotion extends Model
                 $img->resize(50, null, function ($constraint) {
                     $constraint->aspectRatio();
                 });
-                $img->save($pathDest.'/'.$filename); 
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                    'promotions/'.$filename, $img->stream(), 'public'
+                );
+                //$img->save($pathDest.'/'.$filename); 
             }
 
             if(isset($param['event_id'])){
@@ -150,14 +154,16 @@ class Promotion extends Model
             $data->category = $param['category'];
             $data->currency_id = (!isset($param['discount_type'])) ? $param['currency_id'] : 0;
 
-            $pathDest = public_path().'/uploads/promotions';
-            if(!File::exists($pathDest)) {
-                File::makeDirectory($pathDest, $mode=0777,true,true);
-            }
+            // $pathDest = public_path().'/uploads/promotions';
+            // if(!File::exists($pathDest)) {
+            //     File::makeDirectory($pathDest, $mode=0777,true,true);
+            // }
             
             if(isset($param['featured_image'])){
                 $oldImage = $data->featured_image;
-                File::delete($pathDest.'/'.$oldImage);
+                //File::delete($pathDest.'/'.$oldImage);
+                //
+                file_delete('promotions/'.$oldImage, env('FILESYSTEM_DEFAULT'));
                 
                 $featured_image = $param['featured_image'];
                 $extension = $featured_image->getClientOriginalExtension();
@@ -172,7 +178,11 @@ class Promotion extends Model
                     $img->resize(50, null, function ($constraint) {
                         $constraint->aspectRatio();
                     });
-                    $img->save($pathDest.'/'.$filename);
+                    //$img->save($pathDest.'/'.$filename);
+                    
+                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                        'promotions/'.$filename, $img->stream(), 'public'
+                    );
                 }
                 return $data;
             } else {
@@ -199,7 +209,9 @@ class Promotion extends Model
 
             $pathDest = public_path().'/uploads/promotions';
             $oldImage = $data->featured_image;
-            File::delete($pathDest.'/'.$oldImage);
+            //File::delete($pathDest.'/'.$oldImage);
+            
+            file_delete('promotions/'.$oldImage, env('FILESYSTEM_DEFAULT'));
             $data->delete();
             $data->events()->detach();
             return $data;

@@ -91,7 +91,7 @@
                                 {!! Form::errorMsg('featured_image') !!}
                             </div>
                             <div class="form-group preview" id="div-preview_image" data-name="image">
-                                <img src="{{$data->src_featured_image}}" name="preview" id="preview_image" height="50%" width="50%">
+                                <img src="{{file_url('promotions/'.$data->featured_image, env('FILESYSTEM_DEFAULT'))}}" name="preview" id="preview_image" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('category') }} category">
                                 {!! Form::label('category', trans('general.category')) !!}

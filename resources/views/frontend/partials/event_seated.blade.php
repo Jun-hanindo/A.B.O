@@ -9,8 +9,8 @@
         {{-- @if(!empty($event->video_link))
             <div class="btnPlayEvent"><a data-toggle="modal" data-target="#eventVideo"><i class="fa fa-play-circle-o"></i></a></div>
         @endif --}}
-        <img src="{{ $src.$event->featured_image1 }}" class="hidden-xs">
-        <img src="{{ $src.$event->featured_image1 }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+        <img src="{{ file_url('events/'.$event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-xs">
+        <img src="{{ file_url('events/'.$event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-lg hidden-md hidden-sm" alt="...">
     </div>
     <div class="infoBanner bg-{{ $event->background_color }}" id="eventTabShow">
         <div class="container">
@@ -202,7 +202,7 @@
                                                     <div class="">
                                                         @foreach($promotions as $key => $promotion) 
                                                             <section id="promotion" class="sectionEvent">
-                                                                <img src="{{ $src2.$promotion->featured_image }}">
+                                                                <img src="{{ file_url('promotions/'.$promotion->featured_image, env('FILESYSTEM_DEFAULT')) }}">
                                                                 <h3 class="font-bold">{{ $promotion->title }}</h3>
                                                                 {!! $promotion->description !!}
                                                                 
@@ -346,7 +346,7 @@
                                             <div class="eventList bg-{{ $category_event->background_color }}">
                                                 <div class="row">
                                                     <div class="col-xs-3">
-                                                        <img src="{{ $category_event->featured_image3_url }}">
+                                                        <img src="{{ file_url('events/'.$category_event->featured_image3, env('FILESYSTEM_DEFAULT')) }}">
                                                     </div>
                                                     <div class="col-xs-8 box-cap">
                                                         <div class="caption caption-first">

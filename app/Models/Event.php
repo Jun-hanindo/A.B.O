@@ -5,6 +5,7 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use DB;
 use File;
 use Image;
@@ -95,10 +96,10 @@ class Event extends Model
         $this->video_link = $param['video_link'];
         $this->avaibility = true;
 
-        $pathDest = public_path().'/uploads/events';
-        if(!File::exists($pathDest)) {
-            File::makeDirectory($pathDest, $mode=0777,true,true);
-        }
+        //$pathDest = public_path().'/uploads/events';
+        // if(!File::exists($pathDest)) {
+        //     File::makeDirectory($pathDest, $mode=0777,true,true);
+        // }
 
         if (isset($param['featured_image1'])) {
         	$featured_image1 = $param['featured_image1'];
@@ -125,17 +126,26 @@ class Event extends Model
 	        if (isset($featured_image1)) {
 	    		$img1 = Image::make($featured_image1);
                 $img1->resize(1440, 400);
-	            $img1->save($pathDest.'/'.$filename1); 
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                    'events/'.$filename1, $img1->stream(), 'public'
+                );
+	            //$img1->save($pathDest.'/'.$filename1); 
 	        }
 	        if (isset($featured_image2)) {
 	    		$img2 = Image::make($featured_image2);
                 $img2->resize(370, 250);
-	            $img2->save($pathDest.'/'.$filename2); 
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                    'events/'.$filename2, $img2->stream(), 'public'
+                );
+	            //$img2->save($pathDest.'/'.$filename2); 
 	        }
 	        if (isset($featured_image3)) {
 	    		$img3 = Image::make($featured_image3);
                 $img3->resize(150, 101);
-	            $img3->save($pathDest.'/'.$filename3); 
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                    'events/'.$filename3, $img3->stream(), 'public'
+                );
+	            //$img3->save($pathDest.'/'.$filename3); 
 	        }
             if(isset($param['categories'])){
                 $this->categories()->attach($param['categories']);
@@ -176,14 +186,15 @@ class Event extends Model
             $data->video_link = $param['video_link'];
             $data->avaibility = true;
 
-            $pathDest = public_path().'/uploads/events';
-            if(!File::exists($pathDest)) {
-                File::makeDirectory($pathDest, $mode=0777,true,true);
-            }
+            // $pathDest = public_path().'/uploads/events';
+            // if(!File::exists($pathDest)) {
+            //     File::makeDirectory($pathDest, $mode=0777,true,true);
+            // }
             
             if(isset($param['featured_image1'])){
                 $oldImage = $data->featured_image1;
-                File::delete($pathDest.'/'.$oldImage);
+                file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+                //File::delete($pathDest.'/'.$oldImage);
                 
                 $featured_image1 = $param['featured_image1'];
                 $extension1 = $featured_image1->getClientOriginalExtension();
@@ -194,7 +205,8 @@ class Event extends Model
 
             if(isset($param['featured_image2'])){
                 $oldImage = $data->featured_image2;
-                File::delete($pathDest.'/'.$oldImage);
+                //File::delete($pathDest.'/'.$oldImage);
+                file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
                 
                 $featured_image2 = $param['featured_image2'];
                 $extension2 = $featured_image2->getClientOriginalExtension();
@@ -205,7 +217,8 @@ class Event extends Model
 
             if(isset($param['featured_image3'])){
                 $oldImage = $data->featured_image3;
-                File::delete($pathDest.'/'.$oldImage);
+                //File::delete($pathDest.'/'.$oldImage);
+                file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
                 
                 $featured_image3 = $param['featured_image3'];
                 $extension3 = $featured_image3->getClientOriginalExtension();
@@ -218,19 +231,29 @@ class Event extends Model
                 if(isset($param['featured_image1'])){
                     $img1 = Image::make($featured_image1);
                     $img1->resize(1440, 400);
-                    $img1->save($pathDest.'/'.$filename1);
+                    //$img1->save($pathDest.'/'.$filename1);
+                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                        'events/'.$filename1, $img1->stream(), 'public'
+                    );
                 }
 
                 if(isset($param['featured_image2'])){
                     $img2 = Image::make($featured_image2);
                     $img2->resize(370, 250);
-                    $img2->save($pathDest.'/'.$filename2);
+                    // $img2->save($pathDest.'/'.$filename2);
+                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                        'events/'.$filename2, $img2->stream(), 'public'
+                    );
                 }
 
                 if(isset($param['featured_image3'])){
                     $img3 = Image::make($featured_image3);
                     $img3->resize(150, 101);
-                    $img3->save($pathDest.'/'.$filename3);
+                    // $img3->save($pathDest.'/'.$filename3);
+                    
+                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                        'events/'.$filename3, $img3->stream(), 'public'
+                    );
                 }
                 if(isset($param['categories'])){
                     $data->categories()->sync($param['categories']);
@@ -271,13 +294,16 @@ class Event extends Model
 
             // }
 
-            $pathDest = public_path().'/uploads/events';
+            //$pathDest = public_path().'/uploads/events';
             $oldImage1 = $data->featured_image1;
             $oldImage2 = $data->featured_image2;
             $oldImage3 = $data->featured_image3;
-            File::delete($pathDest.'/'.$oldImage1);
-            File::delete($pathDest.'/'.$oldImage2);
-            File::delete($pathDest.'/'.$oldImage3);
+            // File::delete($pathDest.'/'.$oldImage1);
+            // File::delete($pathDest.'/'.$oldImage2);
+            // File::delete($pathDest.'/'.$oldImage3);
+            file_delete('events/'.$oldImage1, env('FILESYSTEM_DEFAULT'));
+            file_delete('events/'.$oldImage2, env('FILESYSTEM_DEFAULT'));
+            file_delete('events/'.$oldImage3, env('FILESYSTEM_DEFAULT'));
             $data->delete();
             $data->Homepage()->delete();
             return $data;
@@ -369,15 +395,15 @@ class Event extends Model
 
     public function setImageUrl($event){
         if($event->featured_image1 != ''){
-            $event->featured_image1_url = url('uploads/events').'/'.$event->featured_image1;
+            $event->featured_image1_url = file_url('events/'.$event->featured_image1, env('FILESYSTEM_DEFAULT'));
         }
 
         if($event->featured_image2 != ''){
-            $event->featured_image2_url = url('uploads/events').'/'.$event->featured_image2;
+            $event->featured_image2_url = file_url('events/'.$event->featured_image2, env('FILESYSTEM_DEFAULT'));
         }
 
         if($event->featured_image3 != ''){
-            $event->featured_image3_url = url('uploads/events').'/'.$event->featured_image3;
+            $event->featured_image3_url = file_url('events/'.$event->featured_image3, env('FILESYSTEM_DEFAULT'));
         }
     }
 
@@ -527,7 +553,7 @@ class Event extends Model
                 }else{
                     $event->category = 'LUCKY DRAW';
                 }
-                $event->featured_image_url = url('uploads/promotions').'/'.$event->featured_image;
+                $event->featured_image_url = file_url('promotions/'.$event->featured_image, env('FILESYSTEM_DEFAULT'));
             }
             return $events;
         }else{
@@ -592,7 +618,7 @@ class Event extends Model
                 }else{
                     $event->category = 'LUCKY DRAW';
                 }
-                $event->featured_image_url = url('uploads/promotions').'/'.$event->featured_image;
+                $event->featured_image_url = file_url('promotions/'.$event->featured_image, env('FILESYSTEM_DEFAULT'));
             }
             return $events;
         }else{

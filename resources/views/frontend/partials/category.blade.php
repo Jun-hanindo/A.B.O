@@ -29,7 +29,7 @@
                 @foreach($events as $key => $event) 
                     <a href="{{ URL::route('event-detail', $event->slug) }}">
                         <div class="col-md-4 box-release">
-                            <img src="{{ $event->featured_image2_url }}">
+                            <img src="{{ file_url('events/'.$event->featured_image2, env('FILESYSTEM_DEFAULT')) }}">
                             <div class="boxInfo bg-{{ $event->background_color }}">
                                 <ul>
                                     <li class="eventType">{{ strtoupper($event->cat_name) }}</li>

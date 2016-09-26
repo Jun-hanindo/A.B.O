@@ -2,12 +2,6 @@
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () {
 
-    // \Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
-    //    \Log::info($query->sql);
-    //    \Log::info($query->bindings);
-    //    \Log::info($query->time);
-    // });
-
     Route::get('dashboard', array('as' => 'admin-dashboard', 'uses' => 'DashboardController@index'));
     Route::get('profile', array('as' => 'admin-profile', 'uses' => 'ProfileController@index'));
     Route::put('profile/{type}', array('as' => 'admin-profile-update', 'uses' => 'ProfileController@update'));

@@ -9,6 +9,7 @@ use App\Models\BranchLocation;
 use App\Models\LogActivity;
 use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request as Req;
 use App\Http\Requests\Backend\UserTrustee\UserRequest as Request;
@@ -291,7 +292,11 @@ class UserController extends BaseController
         $fileName = date('Y_m_d_His').'_'.$file->getClientOriginalName();
 
         // Move, move, move!!
-        $file->move(avatar_path(), $fileName);
+        //$file->move(avatar_path(), $fileName);
+        Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+            'avatars/'.$fileName,
+            file_get_contents($request->file('avatar')->getRealPath()), 'public'
+        );
 
         return $fileName;
     }
@@ -308,15 +313,16 @@ class UserController extends BaseController
             return true;
         }
 
-        $path = avatar_path($path);
+        // $path = avatar_path($path);
 
         if (! file_exists($path)) {
             return true;
         }
 
-        if (! unlink($path)) {
-            return false;
-        }
+        // if (! unlink($path)) {
+        //     return false;
+        // }
+        file_delete($path, env('FILESYSTEM_DEFAULT'))
 
         return true;
     }

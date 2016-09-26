@@ -22,11 +22,11 @@
                 @foreach($events as $key => $event)
                     <div class="col-md-4 box-promo">
                         <a href="#promoModal{{ $event->ep_id }}" data-toggle="modal">
-                            <img src="{{ $event->featured_image2_url }}" class="image-promo">
+                            <img src="{{ file_url('events/'.$event->featured_image2, env('FILESYSTEM_DEFAULT')) }}" class="image-promo">
                             <div class="boxInfo promo1">
                                 <ul>
                                     <li class="eventType">{{ strtoupper($event->category) }}</li>
-                                    <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}"></li>
+                                    <li class="eventName">{{ $event->promo_title }} <img src="{{ file_url('promotions/'.$event->featured_image, env('FILESYSTEM_DEFAULT')) }}"></li>
                                     <br>
                                     <li class="eventPlace">Valid From {{ $event->valid_date }}</li>
                                 </ul>
@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="promoBanner">
-                                            <img src="{{ $event->featured_image1_url }}">
+                                            <img src="{{ file_url('events/'.$event->featured_image1 }}">
                                         </div>
                                         <div class="descPromoModal">
                                             <h4>About This Promotion</h4>
@@ -51,7 +51,7 @@
                                                         <p>{!! $event->promo_desc !!}</p>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <img src="{{ $event->featured_image_url }}" class="promoLogo">
+                                                        <img src="{{ file_url('promotions/'.$event->featured_image, env('FILESYSTEM_DEFAULT')) }}" class="promoLogo">
                                                     </div>
                                                 </div>
                                             </div>

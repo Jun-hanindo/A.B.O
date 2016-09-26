@@ -182,6 +182,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
+        App\Providers\LogServiceProvider::class,
+
 
     ],
 

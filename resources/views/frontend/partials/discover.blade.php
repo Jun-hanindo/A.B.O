@@ -55,7 +55,7 @@
                         @endphp  
                             @if($slider->Event->avaibility && !empty($cat))        
                                 <div class="item {{ $i == 0 ? 'active' : ' '}}">
-                                  <img src="{{ $src.$slider->Event->featured_image1 }}" alt="...">
+                                  <img src="{{ file_url('events/'.$slider->Event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" alt="...">
                                   <div class="carousel-caption bg-{{ $slider->Event->background_color }}">
                                     <div class="container">
                                         <h5 class="categorySlide font-light">{{ (!empty($cat)) ? strtoupper($cat->name) : '&nbsp;' }}</h5>
@@ -108,7 +108,7 @@
                 @foreach($events as $key => $event) 
                     <a href="{{ URL::route('event-detail', $event->slug) }}">
                         <div class="col-md-4 box-release">
-                            <img src="{{ $event->featured_image2_url }}">
+                            <img src="{{ file_url('events/'.$event->featured_image2, env('FILESYSTEM_DEFAULT')) }}">
                             <div class="boxInfo bg-{{ $event->background_color }}">
                                 <ul>
                                     <li class="eventType">{{ strtoupper($event->category) }}&nbsp;</li>

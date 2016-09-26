@@ -16,8 +16,8 @@
                     <div class="carousel-inner" role="listbox"> 
                         @foreach($sliders as $key => $slider)
                             <div class="item {{ $key == 0 ? 'active' : ' '}}">
-                                <img src="{{ link_to_event($slider->featured_image1) }}" class="hidden-xs" alt="...">
-                                <img src="{{ link_to_event($slider->featured_image1) }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                                <img src="{{ file_url('events/'.$slider->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-xs" alt="...">
+                                <img src="{{ file_url('events/'.$slider->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-lg hidden-md hidden-sm" alt="...">
                               <div class="carousel-caption bg-{{ $slider->background_color }}">
                                 <div class="container">
                                     <h5 class="categorySlide">{{ $slider->category_name }}</h5>
@@ -62,7 +62,7 @@
                 @foreach($events as $key => $event)  
                     <a href="{{ URL::route('event-detail', $event->slug) }}">
                         <div class="col-md-4 box-release">
-                            <img src="{{ link_to_event($event->featured_image2) }}">
+                            <img src="{{ file_url('events/'.$event->featured_image2, env('FILESYSTEM_DEFAULT')) }}">
                             <div class="boxInfo box-info1 bg-{{ $event->background_color }}">
                                 <ul>      
                                     <li class="eventType">{{ $event->category_name }}</li>
@@ -96,7 +96,7 @@
                     @if(!empty($promotion->promotions))
                         <div class="col-md-4 box-promo">
                             <a href="#promoModal{{ $promotion->id }}" data-toggle="modal">
-                                <img src="{{ link_to_event($promotion->featured_image2) }}" class="image-promo">
+                                <img src="{{ file_url('events/'.$promotion->featured_image2, env('FILESYSTEM_DEFAULT')) }}" class="image-promo">
                                 <div class="boxInfo promo1">
                                     <ul>
                                         <li class="eventType">
@@ -108,7 +108,7 @@
                                                 {{ $promotion->promotions->category = 'LUCKY DRAW' }}
                                             @endif
                                         </li>
-                                        <li class="eventName">{{ string_limit($promotion->promotions->title) }} <img src="{{ link_to_promotion($promotion->promotions->featured_image) }}"></li>
+                                        <li class="eventName">{{ string_limit($promotion->promotions->title) }} <img src="{{ file_url('promotions/'.$promotion->promotions->featured_image, env('FILESYSTEM_DEFAULT')) }}"></li>
                                         <br>
                                         <li class="eventPlace">{{ trans('general.valid_from') }}
                                             @php
@@ -140,7 +140,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="promoBanner">
-                                                <img src="{{ link_to_event($promotion->Event->featured_image1) }}">
+                                                <img src="{{ file_url('events/'.$promotion->Event->featured_image1, env('FILESYSTEM_DEFAULT')) }}">
                                             </div>
                                             <div class="descPromoModal">
                                                 <h4>{{ trans('general.about_this_promotion') }}</h4>
@@ -150,7 +150,7 @@
                                                             {!! $promotion->promotions->description !!}
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <img src="{{ link_to_promotion($promotion->promotions->featured_image) }}" class="promoLogo">
+                                                            <img src="{{ file_url('promotions/'.$promotion->promotions->featured_image, env('FILESYSTEM_DEFAULT')) }}" class="promoLogo">
                                                         </div>
                                                     </div>
                                                 </div>
