@@ -233,7 +233,7 @@ class Event extends Model
                     $img1->resize(1440, 400);
                     $img1_tmp = $img1->stream();
 
-                    dd($img1_tmp);
+                    //dd($img1_tmp);
                     //dd($img1->dirname.DIRECTORY_SEPARATOR.$img1->filename);
                     //$img1->save($pathDest.'/'.$filename1);
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
