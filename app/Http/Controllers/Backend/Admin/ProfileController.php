@@ -89,7 +89,6 @@ class ProfileController extends Controller
 
             $data = $request->except('_token', '_method');
             $user = user_info();
-            dd($user);
 
             if ($request->hasFile('avatar')) {
                 //$avatar = $request->file('avatar');
