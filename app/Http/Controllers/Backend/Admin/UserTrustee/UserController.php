@@ -328,7 +328,7 @@ class UserController extends BaseController
         // if (! unlink($path)) {
         //     return false;
         // }
-        //file_delete('avatars/'.$path, env('FILESYSTEM_DEFAULT'));
+        file_delete('avatars/'.$path, env('FILESYSTEM_DEFAULT'));
 
         return true;
     }

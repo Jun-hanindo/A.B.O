@@ -22,10 +22,10 @@
                 </div>
                 {!! Form::modelHorizontal($user, $form) !!}
                     <div class="box-body">
-                        @if (! empty($user['avatar']) && file_exists(avatar_path($user['avatar'])))
+                        @if (! empty($user['avatar']))
                             <div class="form-group">
                                 <div class="col-sm-12" align="center">
-                                    <img src="{{ link_to_avatar($user['avatar']) }}" width="120" class="img-circle img-responsive">
+                                    <img src="{!! file_url('avatars/'.$user['avatar'], env('FILESYSTEM_DEFAULT')) !!}" width="120" class="img-circle img-responsive">
                                 </div>
                             </div>
                         @endif
