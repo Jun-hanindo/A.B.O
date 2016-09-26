@@ -62,7 +62,7 @@
                         <ul class="nav navbar-nav">
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="{{ link_to_avatar(user_info('avatar')) }}" alt="{{ user_info('full_name') }}" class="user-image">
+                                    <img src="{{ file_url('avatars/'.user_info('avatar'), env('FILESYSTEM_DEFAULT')) }}" alt="{{ user_info('full_name') }}" class="user-image">
                                     <span class="hidden-xs" title="{{ user_info('full_name') }}">{{ user_info('full_name') }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -91,7 +91,7 @@
                 <section class="sidebar">
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="{{ link_to_avatar(user_info('avatar')) }}" alt="{{ user_info('full_name') }}" class="img-circle">
+                            <img src="{{ file_url('avatars/'.user_info('avatar'), env('FILESYSTEM_DEFAULT')) }}" alt="{{ user_info('full_name') }}" class="img-circle">
                         </div>
                         <div class="pull-left info">
                             <p>{{ user_info('full_name') }}</p>
