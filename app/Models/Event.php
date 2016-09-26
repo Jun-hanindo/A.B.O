@@ -127,7 +127,7 @@ class Event extends Model
 	    		$img1 = Image::make($featured_image1);
                 $img1->resize(1440, 400);
                 Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                    'events/'.$filename1, $img1->__toString(), 'public'
+                    'events/'.$filename1, (string) $img1, 'public'
                 );
 	            //$img1->save($pathDest.'/'.$filename1); 
 	        }
@@ -135,7 +135,7 @@ class Event extends Model
 	    		$img2 = Image::make($featured_image2);
                 $img2->resize(370, 250);
                 Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                    'events/'.$filename2, $img2->__toString(), 'public'
+                    'events/'.$filename2, (string) $img2, 'public'
                 );
 	            //$img2->save($pathDest.'/'.$filename2); 
 	        }
@@ -143,7 +143,7 @@ class Event extends Model
 	    		$img3 = Image::make($featured_image3);
                 $img3->resize(150, 101);
                 Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                    'events/'.$filename3, $img3->__toString(), 'public'
+                    'events/'.$filename3, (string) $img3, 'public'
                 );
 	            //$img3->save($pathDest.'/'.$filename3); 
 	        }
@@ -233,7 +233,7 @@ class Event extends Model
                     $img1->resize(1440, 400);
                     //$img1->save($pathDest.'/'.$filename1);
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'events/'.$filename1, $img1->__toString(), 'public'
+                        'events/'.$filename1, (string) $img1, 'public'
                     );
                 }
 
@@ -242,7 +242,7 @@ class Event extends Model
                     $img2->resize(370, 250);
                     // $img2->save($pathDest.'/'.$filename2);
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'events/'.$filename2, $img2->__toString(), 'public'
+                        'events/'.$filename2, (string) $img2, 'public'
                     );
                 }
 
@@ -252,7 +252,7 @@ class Event extends Model
                     // $img3->save($pathDest.'/'.$filename3);
                     
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'events/'.$filename3, $img3->__toString(), 'public'
+                        'events/'.$filename3, (string) $img3, 'public'
                     );
                 }
                 if(isset($param['categories'])){
