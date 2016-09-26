@@ -231,9 +231,13 @@ class Event extends Model
                 if(isset($param['featured_image1'])){
                     $img1 = Image::make($featured_image1);
                     $img1->resize(1440, 400);
+                    $img1_tmp = $img1->stream();
+
+                    dd($img1_tmp);
+                    //dd($img1->dirname.DIRECTORY_SEPARATOR.$img1->filename);
                     //$img1->save($pathDest.'/'.$filename1);
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'events/'.$filename1, file_get_contents($filename1), 'public'
+                        'events/'.$filename1, $img1, 'public'
                     );
                 }
 
@@ -242,7 +246,7 @@ class Event extends Model
                     $img2->resize(370, 250);
                     // $img2->save($pathDest.'/'.$filename2);
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'events/'.$filename2, file_get_contents($filename2), 'public'
+                        'events/'.$filename2, $img2, 'public'
                     );
                 }
 
@@ -252,7 +256,7 @@ class Event extends Model
                     // $img3->save($pathDest.'/'.$filename3);
                     
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'events/'.$filename3, file_get_contents($filename3), 'public'
+                        'events/'.$filename3, $img3, 'public'
                     );
                 }
                 if(isset($param['categories'])){
