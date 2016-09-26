@@ -293,6 +293,7 @@ class UserController extends BaseController
         $fileName = date('Y_m_d_His').'_'.$file->getClientOriginalName();
         $img = Image::make($file);
         $img_tmp = $img->stream();
+        //dd($img_tmp->__toString());
 
         // Move, move, move!!
         //$file->move(avatar_path(), $fileName);
@@ -327,7 +328,7 @@ class UserController extends BaseController
         // if (! unlink($path)) {
         //     return false;
         // }
-        file_delete('avatars/'.$path, env('FILESYSTEM_DEFAULT'));
+        //file_delete('avatars/'.$path, env('FILESYSTEM_DEFAULT'));
 
         return true;
     }
