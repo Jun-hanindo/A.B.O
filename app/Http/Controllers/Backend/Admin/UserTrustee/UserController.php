@@ -295,7 +295,7 @@ class UserController extends BaseController
         //$file->move(avatar_path(), $fileName);
         Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
             'avatars/'.$fileName,
-            file_get_contents($request->file('avatar')->getRealPath()), 'public'
+            $request->file('avatar')->__toString(), 'public'
         );
 
         return $fileName;
