@@ -92,6 +92,8 @@ class ProfileController extends Controller
 
             if ($request->hasFile('avatar')) {
                 $avatar = $request->file('avatar');
+                $param = $request->all();
+                $avatar = $param['avatar'];
 
                 if ($avatar->isValid()) {
                     $fileName = date('Y_m_d_His').'_'.$avatar->getClientOriginalName();
