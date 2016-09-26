@@ -9,7 +9,11 @@ use App\Models\BranchLocation;
 use App\Models\LogActivity;
 use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
+
+use Illuminate\Http\Request as Req;
 use App\Http\Requests\Backend\UserTrustee\UserRequest as Request;
+use App\Http\Requests\Backend\UserTrustee\UserReactivateRequest as RequestReactivate;
+
 use Mail;
 
 class UserController extends BaseController
@@ -101,7 +105,8 @@ class UserController extends BaseController
         return $this->transaction(function ($model) use ($id) {
             $user = Sentinel::findById($id);
             $this->deleteAvatar($user->avatar);
-            $user->delete();
+            $userModel = new User();
+            $userModel->deleteByID($id);
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'User "'.$user->email.'" was deleted';
@@ -170,6 +175,7 @@ class UserController extends BaseController
             'form' => [
                 'url' => action('Backend\Admin\UserTrustee\UserController@store'),
                 'files' => true,
+                'id' => 'create-form'
             ],
             'user' => [
                 'email' => null,
@@ -313,5 +319,95 @@ class UserController extends BaseController
         }
 
         return true;
+    }
+
+    public function checkEmailExist(Req $req)
+    {
+
+        try{
+            $param = $req->all();
+            $email = $param['email'];
+            $modelUser = new User();
+            $data = $modelUser->checkEmailExist($email);
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'Success',
+                'data' => $data
+            ],200);
+        
+        //} else {
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'error',
+                'message' => trans('general.data_not_found')
+            ],400);
+        }
+    }
+
+    public function reactivate(RequestReactivate $request){
+        //try{
+            $data = $request->except('_token', 'avatar', 'role');
+            if ($request->hasFile('avatar')) {
+                $file = $request->file('avatar');
+
+                $fileName = date('Y_m_d_His').'_'.$file->getClientOriginalName();
+
+                $file->move(avatar_path(), $fileName);
+                $data['avatar'] = $fileName;
+            }
+
+            $data['password'] = str_random(8);
+            $data['is_admin'] = true;
+
+            return $this->transaction(function ($model) use ($request, $data) {
+                $modelUser = new User();
+                $user = $modelUser->reactivate($data['email']);
+
+                $role = Sentinel::findRoleById($user->roles[0]->id);
+                $role->users()->detach($user);
+
+                $user = Sentinel::update($user, $data);
+                $roleSlug = strtolower(Role::find($request->input('role'))->slug);
+                $data['full_name'] = $data['first_name'].' '.$data['last_name'];
+                $data['role_slug'] = $roleSlug;
+
+                Mail::send('backend.emails.registration', $data, function ($message) use ($data, $request) {
+                    $message->to($data['email'], $data['full_name'])->subject('Your account has reactivated.');
+
+                    $log['user_id'] = $this->currentUser->id;
+                    $log['description'] = 'User "'.$data['email'].'" was reactivated';
+                    $insertLog = new LogActivity();
+                    $insertLog->insertLogActivity($log);
+                });
+
+                $role = Sentinel::findRoleById($request->input('role'));
+                $role->users()->attach($user);
+            });
+
+            
+            flash()->success($saveData->name.' '.trans('general.save_success'));
+        
+        //} else {
+        // } catch (\Exception $e) {
+
+        //     $log['user_id'] = $this->currentUser->id;
+        //     $log['description'] = $e->getMessage();
+        //     $insertLog = new LogActivity();
+        //     $insertLog->insertLogActivity($log);
+
+            
+        //     flash()->error(trans('general.save_error'));
+        // }
+            
+        //return redirect()->route('admin.user-trustees.users.index');
     }
 }

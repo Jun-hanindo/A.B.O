@@ -94,10 +94,12 @@
                         </div> --}}
                     </div>
                     <div class="box-footer">
-                        {!! link_to_action('Backend\Admin\UserTrustee\UserController@index', trans('general.button_cancel'), [], ['class' => 'btn btn-default']).' '.Form::submit('Save', ['class' => 'btn btn-primary pull-right', 'title' => 'Save']) !!}
+                        <button type="submit" id="button_reactivate" class="btn btn-primary pull-right" style="display:none" title="{{ trans('general.button_reactivate') }}">{{ trans('general.button_reactivate') }}</button>
+                        {!! link_to_action('Backend\Admin\UserTrustee\UserController@index', trans('general.button_cancel'), [], ['class' => 'btn btn-default']).' '.Form::submit('Save', ['id' => 'button_save', 'class' => 'btn btn-primary pull-right', 'title' => 'Save']) !!}
                     </div>
                 {!! Form::close() !!}
             </div>
         </div>
     </div>
 @endsection
+@include('backend.admin.user-trustee.user.script.form_script')

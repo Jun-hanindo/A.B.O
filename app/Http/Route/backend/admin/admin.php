@@ -26,6 +26,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         // User Trustee Management...
         Route::resource('users', 'UserController', ['except' => 'show']);
         Route::delete('users/{id}/delete', 'UserController@delete');
+        Route::post('users/email-exist', array('as' => 'admin-email-exist-user', 'uses' => 'UserController@checkEmailExist'));
+        Route::post('users/reactivate', array('as' => 'admin-reactivate-user', 'uses' => 'UserController@reactivate'));
 
     });
 
@@ -162,6 +164,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::get('currency/{id}/edit', array('as' => 'admin-edit-currency', 'uses' => 'CurrenciesController@edit'));
         Route::post('currency/{id}/update', array('as' => 'admin-update-currency', 'uses' => 'CurrenciesController@update'));
         Route::delete('currency/{id}/delete', array('as' => 'admin-delete-currency', 'uses' => 'CurrenciesController@destroy'));
+    });
+
+    Route::group(['prefix' => 'subscription'], function () {
+        Route::get('', array('as' => 'admin-index-subscription', 'uses' => 'SubscriptionsController@index'));
+        Route::get('{id}/show', array('as' => 'admin-show-subscription', 'uses' => 'SubscriptionsController@show'));
+        // Route::get('{id}/edit', array('as' => 'admin-edit-subscription', 'uses' => 'SubscriptionsController@edit'));
+        // Route::post('{id}/update', array('as' => 'admin-update-subscription', 'uses' => 'SubscriptionsController@update'));
+        // Route::delete('{id}/delete', array('as' => 'admin-delete-subscription', 'uses' => 'SubscriptionsController@destroy'));
     });
 
     Route::group(['prefix' => 'trail'], function () {

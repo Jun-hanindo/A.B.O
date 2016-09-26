@@ -4,7 +4,7 @@ namespace App\Http\Requests\Frontend;
 
 use App\Http\Requests\Request;
 
-class SubscribeRequest extends Request
+class SubscribeEventRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class SubscribeRequest extends Request
         return [
             'first_name'        => 'required',
             'last_name'         => 'required',
-            'email'             => 'required|email|unique:subscriptions,email',
+            'email'             => 'required|email',
         ];
     }
 }

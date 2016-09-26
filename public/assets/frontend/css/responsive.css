@@ -373,6 +373,9 @@
   .slider-home .carousel-caption{
     min-height: 210px;
   } 
+  .carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next, .carousel-control .icon-prev{
+    top: 42%;
+  }
   .support-title h2{
     margin-top: 25px;
     margin-bottom: 25px;
@@ -412,7 +415,6 @@
     margin-bottom: 20px;
   }
   .form-subscribe .email{
-    padding-left: 10px;
     margin-bottom: 20px;
   }
   .form-subscribe .button button{

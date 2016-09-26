@@ -17,6 +17,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('support', array('as' => 'support', 'uses' => 'HomeController@support'));
     Route::get('subscribe', array('as' => 'subscribe', 'uses' => 'HomeController@subscribeUs'));
     Route::post('subscribe-store', array('as' => 'subscribe-store', 'uses' => 'HomeController@subscribeUsStore'));
+    Route::post('subscribe-event-store', array('as' => 'subscribe-event-store', 'uses' => 'EventsController@subscribeEventStore'));
     //Route::get('search-result', array('as' => 'search-result', 'uses' => 'HomeController@searchResult'));
     // Route::get('application', array('as' => 'front-form-application', 'uses' => 'ApplicationController@applicationForm'));
     // 

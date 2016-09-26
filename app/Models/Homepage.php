@@ -151,7 +151,35 @@ class Homepage extends Model
 
     public function getHomepage($category)
     {
-        return Homepage::where('category', $category)->orderBy('sort_order', 'asc')->get();
+        $homepages = Homepage::select('homepages.id as id', 'homepages.category as category', 
+            DB::RAW("array_to_string(array_agg(DISTINCT events.id), ',') as event_id"),
+            DB::RAW("array_to_string(array_agg(DISTINCT events.title), ',') as title"), 
+            DB::RAW("array_to_string(array_agg(DISTINCT events.featured_image1), ',') as featured_image1"), 
+            DB::RAW("array_to_string(array_agg(DISTINCT events.featured_image2), ',') as featured_image2"),
+            DB::RAW("array_to_string(array_agg(DISTINCT events.buylink), ',') as buylink"), 
+            DB::RAW("array_to_string(array_agg(DISTINCT events.slug), ',') as slug"), 
+            DB::RAW("array_to_string(array_agg(DISTINCT events.background_color), ',') as background_color"),
+            DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',') as category_name"))
+            ->join('events', 'homepages.event_id', '=', 'events.id')
+            ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
+            ->join('categories', 'event_categories.category_id', '=', 'categories.id')
+            ->where('events.avaibility', true)
+            ->where('categories.status', true)
+            ->where('category', $category)
+            ->groupBy('homepages.id')
+            ->orderBy('sort_order', 'asc')->get();
+
+        if(!empty($homepages)) {
+            foreach ($homepages as $key => $homepage) {
+                $homepage->schedules = $homepage->Event->EventSchedule()->orderBy('date_at', 'asc')->first();
+                $homepage->venue = $homepage->Event->Venue;
+                $homepage->promotions = $homepage->Event->promotions()->where('avaibility', true)->orderBy('start_date')->first();
+                $homepage->category_name = strtoupper(explode(",", $homepage->category_name)[0]);
+            }
+            return $homepages;
+        } else {
+            return false;
+        }
     }
 
     

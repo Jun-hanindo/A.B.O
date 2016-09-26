@@ -291,7 +291,7 @@
                                 <div id="discount-nominal" class="pull-left col-sm-4" style="display:none">
                                     <div class="input-group currency-value">
                                         {!! Form::select('currency_id', $data['currencies'], $data['currency_sel'], array('data-default' => $data['currency_sel'], 'id' => 'currency_id', 'class' => 'form-control','data-option' => old('currency_id'))) !!}
-                                        {!! Form::text('discount_nominal', old('discount_nominal'), ['id' => 'discount_nominal', 'class' => 'form-control number-only nominal','maxlength'=>'255', 'placeholder' => trans('general.discount')]) !!}
+                                        {!! Form::text('discount_nominal', old('discount_nominal'), ['data-min' => '','id' => 'discount_nominal', 'class' => 'form-control number-only nominal','maxlength'=>'255', 'placeholder' => trans('general.discount')]) !!}
                                     </div>
                                     {!! Form::errorMsg('discount_nominal') !!}
                                 </div>

@@ -16,11 +16,14 @@ use Cartalyst\Sentinel\Users\EloquentUser as Model;
 use Mail;
 use Reminder;
 use App\Models\LogActivity;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
 
     use Authenticatable, Authorizable, CanResetPassword;
+    use SoftDeletes;
+    protected $table = 'users';
 
     /**
      * Default password.
@@ -42,6 +45,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+    
+    protected $dates = ['deleted_at'];
 
     /**
      * Return user's query for Datatables.
@@ -666,6 +671,42 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function dropdown(){
         return static::orderBy('first_name')->get();
+    }
+    
+    public function deleteByID($id)
+    {
+        $data = $this->find($id);
+        if(!empty($data)) {
+            $data->delete();
+            //$data->UserRoles()->detach();
+            return $data;
+        } else {
+            return false;
+        }
+    }
+
+    public function checkEmailExist($email){
+        $data = $this->where('email', $email)->onlyTrashed()->first();
+
+        if(!empty($data)) {
+            return $data;
+        } else {
+            return false;
+        }
+    }
+
+    public function reactivate($email){
+        $data = $this->checkEmailExist($email);
+        if(!empty($data)){
+            $this->withTrashed()
+            ->where('email', $email)
+            ->restore();
+            return $data;
+        }else{
+            return false;
+        }
+
+
     }
 
 }

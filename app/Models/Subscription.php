@@ -2,36 +2,14 @@
 
 namespace App\Models;
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\LogActivity;
 
-class Category extends Model
+class Subscription extends Model
 {
-    use Sluggable;
     use SoftDeletes;
-    protected $table = 'categories';
+    protected $table = 'subscriptions';
     protected $dates = ['deleted_at'];
-
-    public function sluggable()
-    {
-        return [
-            'slug' => [
-                'source' => 'name'
-            ]
-        ];
-    }
-
-    public function Events()
-    {
-        return $this->belongsToMany('App\Models\Event', 'event_categories', 'category_id', 'event_id');
-
-    }
-
-    /*protected $fillable = [
-        'user_id', 'name', 'address', 'mrtdirection', 'cardirection', 'taxidirection', 'capacity', 'link_map', 'gmap_link'
-    ];*/
 
     /**
      * Return event's query for Datatables.
@@ -42,8 +20,27 @@ class Category extends Model
     function datatables()
     {
 
-        return static::select('id', 'name', 'avaibility', 'status');
+        return static::select('id', 'email', 'first_name', 'last_name');
     
+    }
+
+    function eventDatatables($id){
+        $data = Subscription::select('id', 'prefered_event')
+        ->where('id', $id);
+
+        if(!empty($data)){
+            //dd($data);
+            if(!empty($data->prefered_event)){
+                $data->prefered_event = json_decode($data->prefered_event, true);
+            }else{
+                $data->prefered_event = array();
+            }
+            //dd($data->prefered_event);
+            return $data;
+        }else{
+            return false;
+        }
+        //return static::select('id', 'prefered_event');
     }
 
 
@@ -51,19 +48,15 @@ class Category extends Model
      * Insert new data venue
      * @return [type]
      */
-    function insertNewCategory($param)
+    function insertNewSubscription($param)
     {
-        $this->name = $param['name'];
-        $this->description = $param['description'];
-        $this->icon = $param['icon'];
-
-        $count_avaibility = $this->getCategory();
-
-        if(count($count_avaibility) <= 8){
-            $this->avaibility = true;
-        }else{
-            $this->avaibility = false;
-        }
+        $this->first_name = $param['first_name'];
+        $this->last_name = $param['last_name'];
+        $this->email = $param['email'];
+        $country_code = isset($param['country_code']) ? $param['country_code']: '';
+        $contact_number = isset($param['contact_number']) ? $param['contact_number']: '';
+        $this->contact_number = $country_code.$contact_number;
+        $this->prefered_event = isset($param['event']) ? json_encode($param['event']): '';
 
         if($this->save()){
             return $this;
@@ -72,7 +65,7 @@ class Category extends Model
         }
     }
 
-    public function findCategoryByID($id)
+    public function findSubscriptionByID($id)
     {
         $data = $this->find($id);
         if (!empty($data)) {
@@ -87,13 +80,31 @@ class Category extends Model
     }
 
 
-    public function updateCategory($param, $id)
+    public function updateSubscription($param, $email)
     {
-        $data = $this->find($id);
+        $data = $this->findByEmail($email);
         if (!empty($data)) {
-            $data->name = $param['name'];
-            $data->description = $param['description'];
-            $data->icon = $param['icon'];
+            $events = $data->prefered_event;
+            if(!empty($events)){
+                $events = json_decode($events, true);
+            }else{
+                $events = array();
+            }
+
+            if(isset($param['event'])){
+                $event = $param['event'];
+            }else{
+                $event = array();
+            }
+            $events = $events + $event;
+
+            $data->first_name = $param['first_name'];
+            $data->last_name = $param['last_name'];
+            $data->email = $param['email'];
+            $country_code = isset($param['country_code']) ? $param['country_code']: '';
+            $contact_number = isset($param['contact_number']) ? $param['contact_number']: '';
+            $data->contact_number = $country_code.$contact_number;
+            $data->prefered_event = json_encode($events);
 
             if($data->save()){
 
@@ -109,87 +120,27 @@ class Category extends Model
 
         }
     }
+
+    public function findByEmail($email){
+        $data = Subscription::where('email' , '=', $email)->first();
+        if (!empty($data)) {
+            return $data;
+        
+        } else {
+        
+            return false;
+
+        }
+    }
     
     public function deleteByID($id)
     {
         $data = $this->find($id);
         if(!empty($data)) {
             $data->delete();
-            $data->events()->detach();
             return $data;
-            // $data->status = false;
-            // if($data->save()) {
-            //     $data->events()->detach();
-            //     return $data;
-            // } else {
-            //     return false;
-
-            // }
         } else {
             return false;
         }
-    }
-
-    public function changeAvaibility($param, $id){
-        $data = $this->find($id);
-        if (!empty($data)) {
-            $data->avaibility = $param['avaibility'];
-            if($data->save()) {
-                return $data;
-            } else {
-                return false;
-
-            }
-        
-        } else {
-
-            return false;
-
-        }
-    }
-
-    public function changeStatus($param, $id){
-        $data = $this->find($id);
-        if (!empty($data)) {
-            $data->status = $param['status'];
-            if($data->save()) {
-                return $data;
-            } else {
-                return false;
-
-            }
-        
-        } else {
-
-            return false;
-
-        }
-    }
-
-    public static function dropdown()
-    {
-        return static::where('status', true)->orderBy('name')->lists('name', 'id');
-    }
-
-    public function findCategoryBySlug($slug)
-    {
-        $data = Category::where('slug' , '=', $slug)->first();
-        if (!empty($data)) {
-        
-            return $data;
-        
-        } else {
-        
-            return false;
-
-        }
-    }
-
-    public function getCategory(){
-        return Category::where('avaibility' , true)->where('status', true)->orderBy('name', 'asc')->get();
-    }
-
-    public function getCategoryAvaibility(){
-        return Category::where('status', true)->orderBy('name', 'asc')->get();
     }
 }

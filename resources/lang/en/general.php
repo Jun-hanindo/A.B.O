@@ -44,6 +44,8 @@ return [
     'access_forbiden' => 'Access Forbiden',
     'message_success' => 'Send a message has been successfully',
     'message_error' => 'Send a message has been failed',
+    'subscribe_success' => 'Subscribe has been successfully',
+    'subscribe_error' => 'Subscribe has been failed',
 
     'confirmation_delete' => 'Are you sure want to continue delete data ',
     'confirmation_restore' => 'Are you sure want to continue restore activated data ',
@@ -66,6 +68,7 @@ return [
     'button_preview'  => 'Preview',
     'button_reply'  => 'Reply',
     'button_send'  => 'Send',
+    'button_reactivate'  => 'Reactivate',
 
     'management' => 'Management',
     'countries' => 'Countries',
@@ -230,6 +233,11 @@ return [
     'message_detail' => 'Message Detail',
     'reply_by'  => 'Reply By',
     'limit_record'  => 'Limit Record',
+    'subscribers'   => 'Subscribers',
+    'subscriber'    => 'Subscriber',
+    'first_name'    => 'First Name',
+    'last_name'    => 'Last Name',
+    'subscription_detail'    => 'Subscription Detail',
 
 
 

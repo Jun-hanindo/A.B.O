@@ -17,6 +17,7 @@ use App\Models\Trail;
 use App\Models\Department;
 use App\Models\Career;
 use App\Models\Message;
+use App\Models\Subscription;
 use Mail;
 use App\Http\Requests\Frontend\SendMessageRequest;
 use App\Http\Requests\Frontend\FeedbackRequest;
@@ -37,8 +38,6 @@ class HomeController extends Controller
             $result['sliders'] = $this->model->getHomepage('slider');
             $result['events'] = $this->model->getHomepage('event');
             $result['promotions'] = $this->model->getHomepage('promotion');
-            $result['src'] = url('uploads/events').'/';
-            $result['src2'] = url('uploads/promotions').'/';
             $result['currency_default'] = $this->setting['currency'];
 
             $trail = 'Homepage front end';
@@ -117,9 +116,9 @@ class HomeController extends Controller
     public function promotion(Request $req)
     {
 
-        try{
+        //try{
             $modelEvent = new Event();
-            $limit = 15;
+            $limit = 9;
             $result['events'] = $modelEvent->getEventByPromotion($limit);
             $result['currency_default'] = $this->setting['currency'];
 
@@ -154,16 +153,16 @@ class HomeController extends Controller
 
                 return view('frontend.partials.promotion', $result);
             } 
-        } catch (\Exception $e) {
+        // } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
-            $log['description'] = $e->getMessage();
-            $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+        //     $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+        //     $log['description'] = $e->getMessage();
+        //     $insertLog = new LogActivity();
+        //     $insertLog->insertLogActivity($log);
 
-            return view('errors.404');
+        //     //return view('errors.404');
         
-        }
+        // }
     }
 
     function pageContent($slug){
@@ -489,14 +488,30 @@ class HomeController extends Controller
 
     public function subscribeUsStore(SubscribeRequest $req)
     {
-
         try{
+            $param = $req->all();
 
-            $trail = 'Subscribe front end';
-            $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $data['mail_driver'] = $this->setting['mail_driver'];
+            $data['mail_host'] = $this->setting['mail_host'];
+            $data['mail_port'] = $this->setting['mail_port'];
+            $data['mail_username'] = $this->setting['mail_username'];
+            $data['mail_password'] = $this->setting['mail_password'];
+            $data['mail_name'] = $this->setting['mail_name'];
 
-            return view('frontend.partials.subscribe'); 
+            Mail::send('frontend.emails.subscribe_reply', $param, function ($message) use ($data, $param) {
+                $message->from($data['mail_username'], $data['mail_name'])
+                    ->to($param['email'], $param['first_name'].' '.$param['last_name'])->subject('Thanks for Your Subscription')
+                    ->replyTo($data['mail_username'], $data['mail_name']);
+
+                $modelSubscription = new Subscription();
+                $subscribe = $modelSubscription->insertNewSubscription($param);
+            });
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => trans('general.subscribe_success')
+            ],200);
         
         } catch (\Exception $e) {
 
@@ -505,7 +520,11 @@ class HomeController extends Controller
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            //return view('errors.404');
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.subscribe_error')
+            ],400);
         
         }
     }

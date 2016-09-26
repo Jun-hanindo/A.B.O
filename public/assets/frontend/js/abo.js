@@ -93,6 +93,7 @@
               $(".icon-search-header").css("color","white");
           });
           $('.mobile-collapse-header-top').click(function(){$(this).toggleClass('open')})
+          $('#carouselHacked').carousel();
 
 // End Header
 

@@ -1,32 +1,6 @@
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ env('APP_WEB_ADMIN_NAME', 'Asia Box Office') }} - @yield('title')</title>
-
-          <!-- Bootstrap -->
-        {!! Html::style('assets/frontend/css/bootstrap.min.css') !!}
-        {!! Html::style('assets/frontend/font-awesome-4.6.3/css/font-awesome.css') !!}
-        {!! Html::style('assets/frontend/css/style.css') !!}
-        {!! Html::style('assets/frontend/css/custom.css') !!}
-        {!! Html::style('assets/frontend/css/color.css') !!}
-        {!! Html::style('assets/frontend/css/responsive.css') !!}
-
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,800,700,900' rel='stylesheet' type='text/css'>
-        <link rel="shortcut icon" href="{{ asset('assets/frontend/images/favico.ico') }}">
-        {!! Html::script('assets/frontend/js/modernizr.js') !!}
-      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-   </head>
-   
-
-    <body>
+@extends('layout.frontend.master.master')
+@section('title', 'Event Asia Box Office')
+@section('content')
         <div class="subscription-page">
             <div class="container">
                 <header>
@@ -51,25 +25,26 @@
                                             <li><i class="fa fa-check"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
                                         </ul>
                                     </div> -->
-                                    <form class="form-subscribe">
+                                    <form class="form-subscribe" id="form-subscribe">
+                                        <div class="error"></div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="row">
-                                                    <div class="col-xs-6 first-name">
-                                                        <input type="text" name="first" placeholder="First Name" class="input-subscribe form-control">
+                                                    <div class="col-xs-6 first-name first_name">
+                                                        <input type="text" name="first_name" id="first_name" placeholder="First Name" class="input-subscribe form-control">
                                                     </div>
-                                                    <div class="col-xs-6 last-name">
-                                                        <input type="text" name="last" placeholder="Last Name" class="input-subscribe form-control">
+                                                    <div class="col-xs-6 last-name last_name">
+                                                        <input type="text" name="last_name" id="last_name" placeholder="Last Name" class="input-subscribe form-control">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="row">
                                                     <div class="col-md-7 email">
-                                                        <input type="text" name="email" placeholder="Email" class="input-subscribe form-control">
+                                                        <input type="text" name="email" id="email" placeholder="Email" class="input-subscribe form-control">
                                                     </div>
                                                     <div class="col-md-5 button">
-                                                        <button type="button" class="btn btnBlackDefault font-bold" data-target="#modalSubscribe" data-toggle="modal">Subscribe</button>
+                                                        <button type="button" class="btn btnBlackDefault font-bold" id="btnSubscribe">Subscribe</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,21 +74,5 @@
                 </div>
             </div>
         </div>
-    </body>
-    {!! Html::script('assets/frontend/js/jquery-2.1.1.js') !!}
-    {!! Html::script('assets/frontend/js/jquery.menu-aim.js') !!}
-    {!! Html::script('assets/frontend/js/main.js') !!}
-    {!! Html::script('assets/frontend/js/bootstrap.min.js') !!}
-    {!! Html::script('assets/frontend/js/custom.js') !!}
-    {!! Html::script('assets/frontend/js/smoothscroll.js') !!}
-    {!! Html::script('assets/plugins/HoldOn/HoldOn.min.js') !!}
-    {!! Html::script('assets/frontend/js/abo.js') !!}
-    
-    @yield('script')
-
-    <script type="text/javascript">
-
-    var base_url = {!! json_encode(url('/')) !!};
-
-   </script>
-</html>
+@stop
+@include('frontend.partials.script.subscribe_script')

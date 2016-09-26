@@ -6,9 +6,9 @@
 @endphp
 <section class="eventBanner" id="eventBanner">
     <div class="imageBanner">
-        @if(!empty($event->video_link))
+        {{-- @if(!empty($event->video_link))
             <div class="btnPlayEvent"><a data-toggle="modal" data-target="#eventVideo"><i class="fa fa-play-circle-o"></i></a></div>
-        @endif
+        @endif --}}
         <img src="{{ $src.$event->featured_image1 }}" class="hidden-xs">
         <img src="{{ $src.$event->featured_image1 }}" class="hidden-lg hidden-md hidden-sm" alt="...">
     </div>
@@ -127,7 +127,7 @@
             <div class="col-md-4 ticket" id="ticket">
                 <div class="information-title">
                     <i class="fa fa-ticket"></i> 
-                    {{ !empty($min) ? '$'.$min->price: '' }}
+                    {{ !empty($min) ? $min->symbol_left.$min->price.$min->symbol_right: '' }}
                 </div>
                 <ul class="list-unstyled">
                     <li>{!! $event->price_info !!}</li>
@@ -208,13 +208,15 @@
                                                                     @else
                                                                         @if($promotion->currency_id == 0)
                                                                             @php
-                                                                                $promotion->currency_id = $currency_default;
+                                                                                $currency_symbol_left = '';
+                                                                                $currency_symbol_right = '';
+                                                                            @endphp
+                                                                        @else
+                                                                            @php
+                                                                                $currency_symbol_left = $promotion->currency->symbol_left;
+                                                                                $currency_symbol_right = $promotion->currency->symbol_right;
                                                                             @endphp
                                                                         @endif
-                                                                        @php
-                                                                            $currency_symbol_left = $promotion->currency->symbol_left;
-                                                                            $currency_symbol_right = $promotion->currency->symbol_right;
-                                                                        @endphp
                                                                         {{ $currency_symbol_left.$promotion->discount_nominal.$currency_symbol_right }}
                                                                     @endif
                                                                 </p>
@@ -290,27 +292,30 @@
                         </div>
                         <div class="col-md-4">
                             <div class="formPromo">
-                                <form class="form-group">
-                                    <label class="labelHead">Get the Latest News or Promotions for SAVOUR 2016</label>
+                                <form class="form-group" id="form-subscribe" action="{{URL::route('subscribe-event-store')}}" method="POST">
+                                    <label class="labelHead">Get the Latest News or Promotions for {{ $event->title }}</label>
+                                    <div class="error"></div>
+                                    @include('flash::message')
                                     <div class="row">
-                                        <div class="col-xs-6 col-1">
-                                            <input type="text" class="form-control first" placeholder="First Name">
+                                        <input type="hidden" class="form-control" name="event" id="event" value="{{ $event->id }}">
+                                        <div class="col-xs-6 col-1 first_name">
+                                            <input type="text" class="form-control first" name="first_name" id="first_name" placeholder="First Name">
                                         </div>
-                                        <div class="col-xs-6 col-2">
-                                            <input type="text" class="form-control last" placeholder="Last Name">
+                                        <div class="col-xs-6 col-2 last_name">
+                                            <input type="text" class="form-control last" name="last_name" id="last_name" placeholder="Last Name">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-12">
-                                            <input type="email" placeholder="Email" class="form-control">
+                                        <div class="col-xs-12 email">
+                                            <input type="email" placeholder="Email" name="email" id="email" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-3 col-1">
-                                            <input type="text" class="form-control" value="+62">
+                                            <input type="text" class="form-control" name="country_code" id="country_code" value="+62">
                                         </div>
                                         <div class="col-xs-9 col-2">
-                                            <input type="text" class="form-control" placeholder="Mobile Number (Optional)">
+                                            <input type="text" class="form-control" name="contact_number" id="contact_number" placeholder="Mobile Number (Optional)">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -376,3 +381,4 @@
     </div>
 </div>
 @stop
+@include('frontend.partials.script.subscribe_script')

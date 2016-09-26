@@ -57,7 +57,13 @@
                                             </div>
                                             <!-- <h4>How to Participate </h4>
                                             <p>Show StarHub bill or subscription on any device such as mobile phone or tablet.</p> -->
-                                            <p>Discount: {{ ($event->discount > 0) ? $event->discount.'%' : '$'.$event->discount_nominal }}</p>
+                                            <p>{{ trans('general.discount') }}: 
+                                                @if($event->discount > 0)
+                                                    {{ $event->discount.'%' }}
+                                                @else
+                                                    {{ $event->symbol_left.$event->discount_nominal.$event->symbol_right }}
+                                                @endif
+                                            </p>
                                             <h4>Promotion Period</h4>
                                             <p>Start Date: {{ $event->start_date }}</p>
                                             <br>

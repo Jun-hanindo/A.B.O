@@ -146,11 +146,83 @@ if (! function_exists('string_limit')) {
     }
 }
 
-if (! function_exists('count_message_unread')) {
-
-    function count_message_unread()
+if (! function_exists('link_to_event')) {
+    /**
+     * Generates link to event.
+     *
+     * @param  null|string $path
+     * @return string
+     */
+    function link_to_event($path = null)
     {
-        $message = new \App\Models\Message();
-        return $message->getCountUnread();
+        if (is_null($path) || ! file_exists(event_path($path))) {
+            return 'http://lorempixel.com/128/128/';
+        }
+
+        return url('uploads/events').'/'.trim($path, '/');
     }
 }
+
+if (! function_exists('event_path')) {
+    /**
+     * Generates events path.
+     *
+     * @param  null|string $path
+     * @return string
+     */
+    function event_path($path = null)
+    {
+        $link = public_path('uploads/events');
+
+        if (is_null($path)) {
+            return $link;
+        }
+
+        return $link.'/'.trim($path, '/');
+    }
+}
+
+if (! function_exists('link_to_promotion')) {
+    /**
+     * Generates link to promotion.
+     *
+     * @param  null|string $path
+     * @return string
+     */
+    function link_to_promotion($path = null)
+    {
+        if (is_null($path) || ! file_exists(promotion_path($path))) {
+            return 'http://lorempixel.com/128/128/';
+        }
+        
+        return url('uploads/promotions').'/'.trim($path, '/');
+    }
+}
+
+if (! function_exists('promotion_path')) {
+    /**
+     * Generates promotions path.
+     *
+     * @param  null|string $path
+     * @return string
+     */
+    function promotion_path($path = null)
+    {
+        $link = public_path('uploads/promotions');
+
+        if (is_null($path)) {
+            return $link;
+        }
+
+        return $link.'/'.trim($path, '/');
+    }
+}
+
+// if (! function_exists('count_message_unread')) {
+
+//     function count_message_unread()
+//     {
+//         $message = new \App\Models\Message();
+//         return $message->getCountUnread();
+//     }
+// }

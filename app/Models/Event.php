@@ -477,9 +477,11 @@ class Event extends Model
             'promotions.description as promo_desc', 'promotions.start_date as start_date', 
             'promotions.end_date as end_date', 'promotions.category as category',
             'promotions.title as promo_title', 'promotions.discount as discount', 
-            'promotions.discount_nominal as discount_nominal')
+            'promotions.discount_nominal as discount_nominal', 
+            'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right')
             ->join('event_promotions', 'event_promotions.event_id', '=', 'events.id')
             ->join('promotions', 'promotions.id', '=', 'event_promotions.promotion_id')
+            ->leftjoin('currencies', 'currencies.id', '=', 'promotions.currency_id')
             ->where('events.avaibility','=',true)
             ->where('promotions.avaibility','=',true)
             //->where('events.status','=',true)
@@ -489,6 +491,7 @@ class Event extends Model
             ->orderBy('promotions.start_date', 'asc')
             //->get();
             ->paginate($limit);
+        
 
         if(count($events) > 0)
         {
@@ -541,9 +544,11 @@ class Event extends Model
             'promotions.description as promo_desc', 'promotions.start_date as start_date', 
             'promotions.end_date as end_date', 'promotions.category as category',
             'promotions.title as promo_title', 'promotions.discount as discount', 
-            'promotions.discount_nominal as discount_nominal')
+            'promotions.discount_nominal as discount_nominal', 
+            'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right')
             ->join('event_promotions', 'event_promotions.event_id', '=', 'events.id')
             ->join('promotions', 'promotions.id', '=', 'event_promotions.promotion_id')
+            ->leftjoin('currencies', 'currencies.id', '=', 'promotions.currency_id')
             ->where('events.avaibility','=', true)
             ->where('promotions.avaibility','=', true)
             //->where('events.status','=',true)
@@ -600,14 +605,40 @@ class Event extends Model
     public function minPrice($slug)
     {
         $data = DB::table('events')
-        ->select('events.id as id', 'price', 'currency_id')
+        ->select('events.id as id', 'price', 'currency_id', 'symbol_left', 'symbol_right')
         ->leftjoin('event_schedules', 'events.id', '=', 'event_schedules.event_id')
         ->leftjoin('event_schedule_categories', 'event_schedules.id', '=', 'event_schedule_categories.event_schedule_id')
+        ->leftjoin('currencies', 'currencies.id', '=', 'event_schedule_categories.currency_id')
         ->where('events.slug','=',$slug)
         //->where('events.status', true)
         // ->where('event_schedules.status', true)
         // ->where('event_schedule_categories.status', true)
         ->orderBy('price', 'ASC')->first();
+        
+        if (!empty($data)) {
+        
+            return $data;
+        
+        } else {
+        
+            return false;
+
+        }
+    }
+
+    public function minPriceById($id)
+    {
+        $data = DB::table('events')
+        ->select('events.id as id', 'price', 'currency_id', 'symbol_left', 'symbol_right')
+        ->leftjoin('event_schedules', 'events.id', '=', 'event_schedules.event_id')
+        ->leftjoin('event_schedule_categories', 'event_schedules.id', '=', 'event_schedule_categories.event_schedule_id')
+        ->leftjoin('currencies', 'currencies.id', '=', 'event_schedule_categories.currency_id')
+        ->where('events.id','=',$id)
+        //->where('events.status', true)
+        // ->where('event_schedules.status', true)
+        // ->where('event_schedule_categories.status', true)
+        ->orderBy('price', 'ASC')->first();
+        
         if (!empty($data)) {
         
             return $data;

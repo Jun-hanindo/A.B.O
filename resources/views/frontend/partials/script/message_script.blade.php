@@ -52,8 +52,7 @@
                     clearInputMessage();
                 },
                 error: function(response){
-                    // $('#modalYes').modal('show');
-                    // $('#modalContact').modal('hide');
+                    $('.tooltip-field').remove();
                     if (response.status === 422) {
                         var data = response.responseJSON;
                         $.each(data,function(key,val){

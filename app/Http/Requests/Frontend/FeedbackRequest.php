@@ -25,7 +25,7 @@ class FeedbackRequest extends Request
     {
         return [
             'subject'           => 'required',
-            'email'             => 'required',
+            'email'             => 'required|email',
             'message'           => 'required',
             //'g-recaptcha-response' => 'required|recaptcha'
             //'g-recaptcha-response' => 'required'

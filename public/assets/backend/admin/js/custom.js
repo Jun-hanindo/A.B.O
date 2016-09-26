@@ -67,6 +67,10 @@ $(".percent").keydown(function (e) {
     if(this.value.length == 2 && this.value.charAt(1) != '.' && e.which != 190){
         $(this).attr('maxlength','2');
     }
+
+    if(this.value == 99){
+        $(this).attr('maxlength','2');
+    }
 });
 
 

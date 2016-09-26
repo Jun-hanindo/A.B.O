@@ -12,7 +12,9 @@ use App\Models\Category;
 use App\Models\Venue;
 use App\Models\LogActivity;
 use App\Models\Trail;
-//use View;
+use App\Models\Subscription;
+use App\Http\Requests\Frontend\SubscribeEventRequest;
+use Mail;
 
 class EventsController extends Controller
 {
@@ -159,5 +161,67 @@ class EventsController extends Controller
         
         }
 
+    }
+
+    public function subscribeEventStore(SubscribeEventRequest $req)
+    {
+
+        //try{
+            $param = $req->all();
+            $param['event'] = [$param['event'] => true];
+            //dd($param);
+
+
+            $data['mail_driver'] = $this->setting['mail_driver'];
+            $data['mail_host'] = $this->setting['mail_host'];
+            $data['mail_port'] = $this->setting['mail_port'];
+            $data['mail_username'] = $this->setting['mail_username'];
+            $data['mail_password'] = $this->setting['mail_password'];
+            $data['mail_name'] = $this->setting['mail_name'];
+
+            Mail::send('frontend.emails.subscribe_reply', $param, function ($message) use ($data, $param) {
+                $message->from($data['mail_username'], $data['mail_name'])
+                    ->to($param['email'], $param['first_name'].' '.$param['last_name'])->subject('Thanks for Your Subscription')
+                    ->replyTo($data['mail_username'], $data['mail_name']);
+
+                $modelSubscription = new Subscription();
+                $findSubscriber = $modelSubscription->findByEmail($param['email']);
+                if(!empty($findSubscriber)){
+                    $subscribe = $modelSubscription->updateSubscription($param, $param['email']);
+                }else{
+                    $subscribe = $modelSubscription->insertNewSubscription($param);
+                }
+            });
+
+            if($req->ajax()){
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => trans('general.subscribe_success')
+                ],200);
+            }else{
+                flash()->success(trans('general.subscribe_success'));
+                return \Redirect::back();
+            }
+        
+        // } catch (\Exception $e) {
+
+        //     $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+        //     $log['description'] = $e->getMessage();
+        //     $insertLog = new LogActivity();
+        //     $insertLog->insertLogActivity($log);
+
+        //     if($req->ajax()){
+        //         return response()->json([
+        //             'code' => 400,
+        //             'status' => 'success',
+        //             'message' => trans('general.subscribe_error')
+        //         ],400);
+        //     }else{
+        //         flash()->error(trans('general.subscribe_error'));
+        //         return \Redirect::back();
+        //     }
+        
+        // }
     }
 }

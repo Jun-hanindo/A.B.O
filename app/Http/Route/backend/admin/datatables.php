@@ -57,6 +57,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::get('career', array('as' => 'datatables-career', 'uses' => 'CareersController@datatables'));
         Route::get('message', array('as' => 'datatables-message', 'uses' => 'MessagesController@datatables'));
         Route::get('currency', array('as' => 'datatables-currency', 'uses' => 'CurrenciesController@datatables'));
+        Route::get('subscription', array('as' => 'datatables-subscription', 'uses' => 'SubscriptionsController@datatables'));
+        Route::get('subscription-event', array('as' => 'datatables-subscription-event', 'uses' => 'SubscriptionsController@eventDatatables'));
         
 
     });
