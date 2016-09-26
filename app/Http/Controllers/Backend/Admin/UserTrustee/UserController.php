@@ -284,7 +284,7 @@ class UserController extends BaseController
     private function processAvatar(Request $request)
     {
         $file = $request->file('avatar');
-        $img = Image::make($file);
+        $img = \Image::make($file);
         $img_tmp = $img->stream();
 
         if (! $file->isValid()) {
