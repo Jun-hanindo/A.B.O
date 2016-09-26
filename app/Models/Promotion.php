@@ -98,8 +98,9 @@ class Promotion extends Model
                 $img->resize(50, null, function ($constraint) {
                     $constraint->aspectRatio();
                 });
+                $img_tmp = $img->stream();
                 Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                    'promotions/'.$filename, $img->stream(), 'public'
+                    'promotions/'.$filename, $img_tmp->__toString(), 'public'
                 );
                 //$img->save($pathDest.'/'.$filename); 
             }
@@ -179,9 +180,10 @@ class Promotion extends Model
                         $constraint->aspectRatio();
                     });
                     //$img->save($pathDest.'/'.$filename);
+                    $img_tmp = $img->stream();
                     
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'promotions/'.$filename, $img->stream(), 'public'
+                        'promotions/'.$filename, $img_tmp->__toString(), 'public'
                     );
                 }
                 return $data;

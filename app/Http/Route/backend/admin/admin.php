@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' => 'Backend\Admin'], function () {
 
     Route::get('dashboard', array('as' => 'admin-dashboard', 'uses' => 'DashboardController@index'));
     Route::get('profile', array('as' => 'admin-profile', 'uses' => 'ProfileController@index'));

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\LogActivity;
 use App\Models\Trail;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -94,10 +95,19 @@ class ProfileController extends Controller
                 if ($avatar->isValid()) {
                     $fileName = date('Y_m_d_His').'_'.$avatar->getClientOriginalName();
 
-                    $avatar->move(avatar_path(), $fileName);
-                    if ($user->avatar && file_exists(avatar_path($user->avatar))) {
-                        unlink(avatar_path($user->avatar));
+                //
+                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                        'avatars/'.$fileName,
+                        file_get_contents($request->file('avatar')->getRealPath()), 'public'
+                    );
+
+                    // $avatar->move(avatar_path(), $fileName);
+                    // if ($user->avatar && file_exists(avatar_path($user->avatar))) {
+                    //     unlink(avatar_path($user->avatar));
+                    if ($user->avatar){
+                        file_delete('avatars/'.$user->avatar, env('FILESYSTEM_DEFAULT'));
                     }
+                    //}
 
                     $data['avatar'] = $fileName;
                 }

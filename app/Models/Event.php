@@ -126,24 +126,27 @@ class Event extends Model
 	        if (isset($featured_image1)) {
 	    		$img1 = Image::make($featured_image1);
                 $img1->resize(1440, 400);
+                $img1_tmp = $img1->stream();
                 Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                    'events/'.$filename1, file_get_contents($filename1), 'public'
+                    'events/'.$filename1, $img1_tmp->__toString(), 'public'
                 );
 	            //$img1->save($pathDest.'/'.$filename1); 
 	        }
 	        if (isset($featured_image2)) {
 	    		$img2 = Image::make($featured_image2);
                 $img2->resize(370, 250);
+                $img2_tmp = $img2->stream();
                 Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                    'events/'.$filename2, file_get_contents($filename2), 'public'
+                    'events/'.$filename2, $img2_tmp->__toString(), 'public'
                 );
 	            //$img2->save($pathDest.'/'.$filename2); 
 	        }
 	        if (isset($featured_image3)) {
 	    		$img3 = Image::make($featured_image3);
                 $img3->resize(150, 101);
+                $img3_tmp = $img3->stream();
                 Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                    'events/'.$filename3, file_get_contents($filename3), 'public'
+                    'events/'.$filename3, $img3_tmp->__toString(), 'public'
                 );
 	            //$img3->save($pathDest.'/'.$filename3); 
 	        }

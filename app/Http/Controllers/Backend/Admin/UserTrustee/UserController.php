@@ -309,20 +309,22 @@ class UserController extends BaseController
      */
     private function deleteAvatar($path)
     {
+
         if (! $path) {
             return true;
         }
 
-        // $path = avatar_path($path);
+        //dd($path);
 
-        if (! file_exists($path)) {
-            return true;
-        }
+        // $path = avatar_path($path);
+        // if (! file_exists($path)) {
+        //     return true;
+        // }
 
         // if (! unlink($path)) {
         //     return false;
         // }
-        file_delete($path, env('FILESYSTEM_DEFAULT'))
+        file_delete('avatars/'.$path, env('FILESYSTEM_DEFAULT'));
 
         return true;
     }
