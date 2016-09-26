@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\LogActivity;
 use App\Models\Trail;
 use Illuminate\Support\Facades\Storage;
+use Image;
 
 class ProfileController extends Controller
 {
