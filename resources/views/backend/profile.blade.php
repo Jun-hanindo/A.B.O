@@ -23,7 +23,7 @@
                     @include('flash::message')
                     <div class="tab-pane active" id="tab-profile">
                         {!! Form::modelHorizontal($user, $formProfile) !!}
-                            @if ($user['avatar'] && file_exists(avatar_path($user['avatar'])))
+                            @if ($user['avatar'])
                                 <div class="form-group">
                                     <div class="col-sm-12" align="center">
                                         <img src="{!! file_url('avatars/'.$user['avatar'], env('FILESYSTEM_DEFAULT')) !!}" width="120" class="img-circle img-responsive">
