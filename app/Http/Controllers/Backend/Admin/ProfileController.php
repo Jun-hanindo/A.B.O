@@ -98,7 +98,7 @@ class ProfileController extends Controller
                 //
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
                         'avatars/'.$fileName,
-                        $request->file('avatar'), 'public'
+                        $request->file('avatar')->__toString(), 'public'
                     );
 
                     // $avatar->move(avatar_path(), $fileName);
