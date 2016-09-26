@@ -233,30 +233,32 @@ class Event extends Model
                     $img1->resize(1440, 400);
                     $img1_tmp = $img1->stream();
 
-                    //dd($img1_tmp);
+                    //dd($img1_tmp->__toString());
                     //dd($img1->dirname.DIRECTORY_SEPARATOR.$img1->filename);
                     //$img1->save($pathDest.'/'.$filename1);
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'events/'.$filename1, $img1, 'public'
+                        'events/'.$filename1, $img1_tmp->__toString(), 'public'
                     );
                 }
 
                 if(isset($param['featured_image2'])){
                     $img2 = Image::make($featured_image2);
                     $img2->resize(370, 250);
+                    $img2_tmp = $img2->stream();
                     // $img2->save($pathDest.'/'.$filename2);
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'events/'.$filename2, $img2, 'public'
+                        'events/'.$filename2, $img2_tmp->__toString(), 'public'
                     );
                 }
 
                 if(isset($param['featured_image3'])){
                     $img3 = Image::make($featured_image3);
                     $img3->resize(150, 101);
+                    $img3_tmp = $img3->stream();
                     // $img3->save($pathDest.'/'.$filename3);
                     
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'events/'.$filename3, $img3, 'public'
+                        'events/'.$filename3, $img3_tmp->__toString(), 'public'
                     );
                 }
                 if(isset($param['categories'])){
