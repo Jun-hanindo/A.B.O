@@ -91,11 +91,11 @@ class ProfileController extends Controller
             $user = user_info();
 
             if ($request->hasFile('avatar')) {
-                $avatar = $request->file('avatar');
+                //$avatar = $request->file('avatar');
                 $param = $request->all();
                 $avatar = $param['avatar'];
 
-                if ($avatar->isValid()) {
+                //if ($avatar->isValid()) {
                     $fileName = date('Y_m_d_His').'_'.$avatar->getClientOriginalName();
                     $img = Image::make($avatar);
                     $img->resize(128, 128);
@@ -117,7 +117,7 @@ class ProfileController extends Controller
                     //}
 
                     $data['avatar'] = $fileName;
-                }
+                //}
             }
 
             flash()->success(trans('general.save_success'));
