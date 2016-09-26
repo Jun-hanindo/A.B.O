@@ -91,9 +91,9 @@ class ProfileController extends Controller
             $user = user_info();
 
             if ($request->hasFile('avatar')) {
-                //$avatar = $request->file('avatar');
+                $avatar = $request->file('avatar');
                 $param = $request->all();
-                $avatar = $data['avatar'];
+                //$avatar = $data['avatar'];
 
                 if ($avatar->isValid()) {
                     if ($user->avatar){
