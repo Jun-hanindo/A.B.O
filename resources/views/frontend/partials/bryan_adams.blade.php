@@ -84,7 +84,7 @@
                     <!-- 50% inherited from split-fifty -->
                     <div class="sqs-slide-layer-content content-copy copy-layer-background">
                         <div class="sqs-slice" data-slice-type="image" data-compound-type="logo" data-slice-id="570dd52f1d07c0cbf8f509f4">
-                            <img src="{{ asset('assets/frontend/images/ABO-logo.svg') }}"  />
+                            <img src="{{ asset('assets/frontend/images/ABOcom-logo.png') }}"  />
                         </div>
 
                         <div class="sqs-slice-group group-copy align-center-vert">
