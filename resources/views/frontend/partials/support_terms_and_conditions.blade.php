@@ -25,12 +25,14 @@
                       </div>
                   </div>
                   <div class="col-md-9">
-                      <div class="main-content">
+                      <div class="main-content main-terms">
                           <div class="support-desc">
                               <div class="row">
                                   <h3 class="head-about">{{ trans('general.terms_and_conditions') }}</h3>
-                                  <div class="col-md-12">
+                                    <div class="col-md-12">
+                                      <div class="terms-content">
                                         {!! $content !!}
+                                      </div>
                                   </div>
                               </div>
                           </div>
@@ -60,11 +62,15 @@
               <div class="col-md-12">
                 <div class="container">
                   <div class="mobile-page-title">
-                    <h3>{{ trans('general.terms_and_conditions') }}</h3>
+                    <h3 class="font-light">{{ trans('general.terms_and_conditions') }}</h3>
                   </div>
-                    <div class="col-md-12">
-                      {!! $content !!}
+                  <div class="row">
+                    <div class="terms-content">
+                      <div class="container">
+                        {!! $content !!}
+                      </div>
                     </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -359,7 +359,7 @@
   .mobile-content{
     display: block;
     background-color: #fff;
-    padding-bottom: 75px;
+    padding-bottom: 45px;
   }
   .search-mobile .search-faq input{
     max-width: 100%;
@@ -375,6 +375,23 @@
   } 
   .carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next, .carousel-control .icon-prev{
     top: 42%;
+  }
+  .privacy-content{
+    width: 100%;
+  }
+  .terms-content ol {
+    padding-left: 25px;
+    font-size: 12px;
+    padding-right: 15px;
+  }
+  .terms-content ol li{
+    width: 100%;
+  }
+  .terms-content h5{
+    padding-left: 15px;
+  }
+  .ul-faq-content {
+    margin-right: 0;
   }
   .support-title h2{
     margin-top: 25px;

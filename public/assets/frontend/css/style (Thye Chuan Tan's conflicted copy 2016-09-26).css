@@ -3575,10 +3575,6 @@ ul#getvenue li:before {
   font-size: 12px;
 }
 
-.privacy-content{
-  font-size: 12px;
-}
-
 .terms-content ol li{
   padding-left: 15px;
   width: 500px;
@@ -3612,22 +3608,7 @@ ul#getvenue li:before {
 
 .privacy-content h5{
   padding-left: 0;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.privacy-content li {
-  padding-bottom: 10px;
-  padding-top: 10px;
-}
-
-.sqs-slice h1,
-.sqs-slice p{
-  font-family: 'proxima_nova_rgregular' !important;
-}
-
-.privacy-content ol {
-    padding-left: 15px;
+  margin-top: 15px;
 }
 
 

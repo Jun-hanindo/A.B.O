@@ -87,7 +87,7 @@
         </div>
     </section>
     @endif
-    @if(!empty($promotions))
+    {{-- @if(!empty($promotions))
     <section class="latestPromo">
         <div class="container">
             <h2 class="font-light">{{ trans('general.latest_promotions') }}</h2>
@@ -208,5 +208,5 @@
             </div>
         </div>
     </section>
-    @endif
+    @endif --}}
 @stop

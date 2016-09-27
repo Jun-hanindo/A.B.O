@@ -12,7 +12,7 @@
     <div class="container">
         <div class="support-menu">
             <div class="row">
-                {{-- <div class="col-md-4">
+                <div class="col-md-4">
                     <div class="waystobuy">
                         <div class="iconWays">
                             <i class="fa fa-ticket"></i>
@@ -23,25 +23,25 @@
                         <br>
                         <span>How to buy tickets from us.</span>
                     </div>
-                </div>> --}}
-                <div class="col-md-12">
+                </div>
+                <div class="col-md-4">
                     <div class="faq-support">
                         <div class="iconWays">
                             <i class="fa fa-comments"></i>
                         </div>
-                        <a href="{{URL::route('support-faq')}}" class="font-light">
+                        <a href="{{URL::route('support-faq')}}">
                             Frequently Asked Questions
                         </a>
                         <br>
                         <span>Browse our topics or ask a question.</span>
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-4">
                     <div class="contact-support">
                         <div class="iconWays">
                             <i class="fa fa-phone"></i>
                         </div>
-                        <a href="{{URL::route('contact-us')}}" class="font-light">
+                        <a href="{{URL::route('contact-us')}}">
                             Contact Us
                         </a>
                         <br>

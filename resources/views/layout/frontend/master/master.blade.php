@@ -36,7 +36,7 @@
                                     <li class="nav-item">
                                         <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/ABO-logo.svg') }}" class="logo"></a>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <div class="cd-dropdown-wrapper">
                                             <a class="cd-dropdown-trigger" href="#0"><img src="{{ asset('assets/frontend/images/singapore-flag.svg') }}"> Singapore</a>
                                             <nav class="cd-dropdown">
@@ -118,130 +118,136 @@
                                     </li>
                                     <li class="nav-item list-menu">
                                         <a href="{{URL::route('support')}}">{{ trans('general.support') }}</a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </nav>
                         </div>
                         <div class="pull-right right-header">
-                            <ul>
+                            {{-- <ul>
                                 <li><a href="https://asiaboxoffice.nliven.co/account/login">{{ trans('general.login') }}</a></li>
                                 <li>/</li>
                                 <li><a href="https://asiaboxoffice.nliven.co/account/register">{{ trans('general.register') }}</a></li>
+                            </ul> --}}
+                            <ul>
+                                <li><a href="{{URL::route('support')}}">Support</a></li>
+                                <!-- <li>/</li> -->
+                                <li><a href="{{URL::route('subscribe')}}">Subscribe</a></li>
                             </ul>
                         </div> 
                     </div>
                 </div>
                 <div id="mobile-header">
-                    <div class="mobile-header">
-                        <div class="container">
-                            <div class="mobile-header-show">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <div class="mobile-search">
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <div class="mobile-logo">
-                                            <img src="{{ asset('assets/frontend/images/footer-logo.svg') }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <div class="mobile-menu">
-                                            <div class="mobile-collapse-top">
-                                                <div class="mobile-collapse-header-top">
-                                                    <i class="fa fa-bars"></i>
-                                                </div>
-                                                <ul class="list-unstyled mobile-collapse-body-top">
-                                                    <li class="collapse-child clearfix">
-                                                        <a href="#" class="mobile-flag">
-                                                            <img src="{{ asset('assets/frontend/images/singapore-flag.svg') }}">
-                                                            Singapore
-                                                        </a>
-                                                        <ul class="list-unstyled mobile-flag-collapse">
-                                                            <li class="li-flag">
-                                                                <a href="#" class="no-arrow">
-                                                                    <img src="{{ asset('assets/frontend/images/mobile-asia-expand.svg') }}">
-                                                                    Asia
-                                                                </a>
-                                                            </li>
-                                                            <li class="li-flag">
-                                                                <a href="#" class="flag-expand">
-                                                                    <img src="{{ asset('assets/frontend/images/mobile-singapore-expand.svg') }}">
-                                                                    Singapore
-                                                                    <i class="fa fa-angle-down"></i>
-                                                                </a>
-                                                                <ul class="list-unstyled collapse-flag">
-                                                                    <li><a href="#">English</a></li>
-                                                                    <li><a href="#">简体中文</a></li>
-                                                                </ul>
-                                                            </li>
-                                                            <li class="li-flag">
-                                                                <a href="#" class="flag-expand">
-                                                                    <img src="{{ asset('assets/frontend/images/mobile-malay-expand.svg') }}">
-                                                                    Malaysia
-                                                                    <i class="fa fa-angle-down"></i>
-                                                                </a>
-                                                                <ul class="list-unstyled collapse-flag">
-                                                                    <li><a href="#">English</a></li>
-                                                                    <li><a href="#">简体中文</a></li>
-                                                                </ul>
-                                                            </li>
-                                                            <li class="li-flag">
-                                                                <a href="#" class="flag-expand">
-                                                                    <img src="{{ asset('assets/frontend/images/mobile-indo-expand.svg') }}">
-                                                                    Indonesia
-                                                                    <i class="fa fa-angle-down"></i>
-                                                                </a>
-                                                                <ul class="list-unstyled collapse-flag">
-                                                                    <li><a href="#">English</a></li>
-                                                                    <li><a href="#">简体中文</a></li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="{{ URL::route('discover')}}">{{ trans('general.discover') }}</a></li>
-                                                    <li><a href="{{ URL::route('promotion')}}">{{ trans('general.promotions') }}</a></li>
-                                                    <li><a href="{{URL::route('support')}}">{{ trans('general.support') }}</a></li>
-                                                    <li><a href="https://asiaboxoffice.nliven.co/account/login" class="login-mobile">{{ trans('general.login') }}</a> / <a href="https://asiaboxoffice.nliven.co/account/register" class="register-mobile"> {{ trans('general.register') }}</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
+                    <div class="container">
+                        <div class="mobile-header-show">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    {{-- <div class="mobile-search">
+                                        <a href="#"><i class="fa fa-search"></i></a>
+                                    </div> --}}
                                 </div>
-                            </div>
-                            <div class="mobile-search-show">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-xs-1">
-                                            <div class="back-menu-search">
-                                                <a href="#"></a>
+                                <div class="col-xs-6">
+                                    <div class="mobile-logo">
+                                        <img src="{{ asset('assets/frontend/images/footer-logo.svg') }}">
+                                    </div>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="mobile-menu">
+                                        <div class="mobile-collapse-top">
+                                            <div class="mobile-collapse-header-top">
+                                                <i class="fa fa-bars"></i>
                                             </div>
-                                        </div>
-                                        <div class="col-xs-11">
-                                            <div class="nav-mobile">
-                                                <div class="nav-search">
-                                                    <form action="{{route('event-search-get')}}" method="get">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon" id="addon-search">
-                                                                <i class="fa fa-search icon-search-header"></i>
-                                                            </span>
-                                                            <input type="text" name="q" value="{{@$q}}" class="form-control input-search" placeholder="{{ trans('general.search') }}..." id="#input-search">
-                                                            <input type="hidden" id="sort-text" name="sort" value="date">
-                                                        </div>
-                
-                                                        <ul class="notification-drawer" data-type="inbox" id="ul-search" style="display:none">
-                                                            <span class="append-search"></span>
-                                                        </ul>
-                                                    </form>
-                                                </div>
-                                            </div>
+                                            <ul class="list-unstyled mobile-collapse-body-top">
+                                                {{-- <li class="collapse-child clearfix">
+                                                    <a href="#" class="mobile-flag">
+                                                        <img src="{{ asset('assets/frontend/images/singapore-flag.svg') }}">
+                                                        Singapore
+                                                    </a>
+                                                    <ul class="list-unstyled mobile-flag-collapse">
+                                                        <li class="li-flag">
+                                                            <a href="#" class="no-arrow">
+                                                                <img src="{{ asset('assets/frontend/images/mobile-asia-expand.svg') }}">
+                                                                Asia
+                                                            </a>
+                                                        </li>
+                                                        <li class="li-flag">
+                                                            <a href="#" class="flag-expand">
+                                                                <img src="{{ asset('assets/frontend/images/mobile-singapore-expand.svg') }}">
+                                                                Singapore
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </a>
+                                                            <ul class="list-unstyled collapse-flag">
+                                                                <li><a href="#">English</a></li>
+                                                                <li><a href="#">简体中文</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li class="li-flag">
+                                                            <a href="#" class="flag-expand">
+                                                                <img src="{{ asset('assets/frontend/images/mobile-malay-expand.svg') }}">
+                                                                Malaysia
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </a>
+                                                            <ul class="list-unstyled collapse-flag">
+                                                                <li><a href="#">English</a></li>
+                                                                <li><a href="#">简体中文</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li class="li-flag">
+                                                            <a href="#" class="flag-expand">
+                                                                <img src="{{ asset('assets/frontend/images/mobile-indo-expand.svg') }}">
+                                                                Indonesia
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </a>
+                                                            <ul class="list-unstyled collapse-flag">
+                                                                <li><a href="#">English</a></li>
+                                                                <li><a href="#">简体中文</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="{{ URL::route('discover')}}">{{ trans('general.discover') }}</a></li>
+                                                <li><a href="{{ URL::route('promotion')}}">{{ trans('general.promotions') }}</a></li>
+                                                <li><a href="{{URL::route('support')}}">{{ trans('general.support') }}</a></li>
+                                                <li><a href="https://asiaboxoffice.nliven.co/account/login" class="login-mobile">{{ trans('general.login') }}</a> / <a href="https://asiaboxoffice.nliven.co/account/register" class="register-mobile"> {{ trans('general.register') }}</a></li> --}}
+                                            
+                                                <li><a href="{{URL::route('support')}}">Support</a></li>
+                                                <li><a href="{{URL::route('subscribe')}}">Subscribe</a></li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="clearfix"></div>
                             </div>
                         </div>
+                        {{-- <div class="mobile-search-show">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-1">
+                                        <div class="back-menu-search">
+                                            <a href="#"></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-11">
+                                        <div class="nav-mobile">
+                                            <div class="nav-search">
+                                                <form action="{{route('event-search-get')}}" method="get">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon" id="addon-search">
+                                                            <i class="fa fa-search icon-search-header"></i>
+                                                        </span>
+                                                        <input type="text" name="q" value="{{@$q}}" class="form-control input-search" placeholder="{{ trans('general.search') }}..." id="#input-search">
+                                                        <input type="hidden" id="sort-text" name="sort" value="date">
+                                                    </div>
+            
+                                                    <ul class="notification-drawer" data-type="inbox" id="ul-search" style="display:none">
+                                                        <span class="append-search"></span>
+                                                    </ul>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
                     </div>
                     <!-- <div class="mobile-search-show">
                         <input type="text" name="" placeholder="search...">
@@ -257,7 +263,7 @@
 
     @if(!Request::is('subscribe'))
         <footer>
-            @if(Request::is('/'))
+            {{-- @if(Request::is('/'))
                 <div id="footer1">
                     <div class="container">
                         <div class="row">
@@ -401,7 +407,7 @@
                         @endif
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div id="footer3">
                 <div class="container">
                     <div class="row footer-bottom">
@@ -410,9 +416,9 @@
                                 <img src="{{ asset('assets/frontend/images/footer-logo.svg') }}">
                             </div>
                             <div class="col-md-10">
-                                <p>Asia Box Office is the largest ticketing service and solution provider in Singapore. It sells tickets to events ranging from pop concerts, musicals, theatre, family entertainment to sports. Asia Box Office's Authorised Agents are now conveniently located in Singapore, Malaysia, Indonesia, India, Taiwan and Vietnam.<br>
+                                <p>Asia Box Office serves to provide event-goers with an enjoyable one-stop platform in search of tickets to Live Entertainment ranging from Music, Theatre, Sports and other Event Genres.<br>
                                 <br>
-        Copyright 2016. © Asia Box Office Pte Ltd. All rights reserved. All trademarks, pictures and brands are the property of their respective owners. Use of this Web site constitutes acceptance of the Asia Box Office’s Conditions of Access and Privacy Policy.</p>
+                                Copyright 2016. © Asia Box Office Pte Ltd. All rights reserved. All trademarks, pictures and brands are the property of their respective owners. Use of this Web site constitutes acceptance of the Asia Box Office’s Conditions of Access and Privacy Policy.</p>
                             </div>
                         </div>
                     </div>

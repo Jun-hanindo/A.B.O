@@ -1,6 +1,10 @@
 @extends('layout.frontend.master.master')
 @section('title', 'Event Asia Box Office')
 @section('content')
+@php
+  $tag = '<--mobile-->';
+@endphp
+
           <section class="about-content ways-content">
               <div class="row">
                   <div class="col-md-3">
@@ -9,7 +13,7 @@
                               <li class="sidebar-head">
                                   <h4>{{ trans('general.support') }}</h4>
                               </li>
-                              <li class="sidebar-menu-top">
+                              <li class="sidebar-menu-top active">
                                   <a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a>
                               </li>
                               <li class="sidebar-menu">
@@ -18,20 +22,21 @@
                               <li class="sidebar-menu">
                                   <a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a>
                               </li>
-                              <li class="sidebar-menu active">
+                              <li class="sidebar-menu">
                                   <a href="{{URL::route('support-privacy-policy')}}">{{ trans('general.privacy_policy') }}</a>
                               </li>
                           </ul>
                       </div>
                   </div>
                   <div class="col-md-9">
-                      <div class="main-content main-terms">
+                      <div class="main-content">
                           <div class="support-desc">
                               <div class="row">
-                                  <h3 class="head-about">{{ trans('general.privacy_policy') }}</h3>
+                                  <h3 class="head-about">{{ trans('general.ways_to_buy_tickets') }}</h3>
+                                      
                                     <div class="col-md-12">
-                                        <div class="privacy-content">
-                                            {!! $content !!}
+                                        <div class="row">
+                                            {!! strstr($content, $tag, true) !!}
                                         </div>
                                     </div>
                               </div>
@@ -62,13 +67,20 @@
               <div class="col-md-12">
                 <div class="container">
                   <div class="mobile-page-title">
-                    <h3 class="font-light">{{ trans('general.privacy_policy') }}</h3>
+                    <h3>{{ trans('general.ways_to_buy_tickets') }}</h3>
                   </div>
-                    <div class="col-md-12">
-                        <div class="privacy-content">
-                            {!! $content !!}
-                        </div>
+                  <div class="mobileTab">
+                    <ul class="nav nav-tabs tab-mobile tab-mobile-contact" role="tablist">
+                      <li role="presentation" class="active"><a href="#boxoffice" aria-controls="home" role="tab" data-toggle="tab"><div class="iconWays"><i class="fa fa-ticket"></i></div><br>Box Office</a></li>
+                      <li role="presentation"><a href="#hotline" aria-controls="profile" role="tab" data-toggle="tab"><div class="iconWays"><i class="fa fa-phone"></i></div><br>Hotline</a></li>
+                      <li role="presentation"><a href="#website" aria-controls="profile" role="tab" data-toggle="tab"><div class="iconWays"><i class="fa fa-laptop"></i></div><br>Website</a></li>
+                    </ul>
+                  </div>
+                  <div class="contentTab">
+                    <div class="tab-content">
+                      {!! str_replace($tag, '', strstr($content, $tag)) !!}
                     </div>
+                  </div>
                 </div>
               </div>
             </div>
