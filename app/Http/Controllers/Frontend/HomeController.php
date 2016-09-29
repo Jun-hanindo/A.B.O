@@ -57,6 +57,12 @@ class HomeController extends Controller
         }
     }
 
+    public function bryanAdams()
+    {
+        //return view('frontend.partials.bryan_adams'); 
+        return view('frontend.partials.event_bryan_adams'); 
+    }
+
     public function discover(Request $req)
     {
 
@@ -106,7 +112,7 @@ class HomeController extends Controller
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            return view('errors.404');
+            //return view('errors.404');
         
         }
         
@@ -236,7 +242,7 @@ class HomeController extends Controller
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            return view('errors.404');
+            //return view('errors.404');
         
         }
     }
@@ -269,7 +275,7 @@ class HomeController extends Controller
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            return view('errors.404');
+            //return view('errors.404');
         
         }
     }
@@ -302,7 +308,7 @@ class HomeController extends Controller
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            return view('errors.404');
+            //return view('errors.404');
         
         }
     }
@@ -358,7 +364,7 @@ class HomeController extends Controller
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            return view('errors.404');
+            //return view('errors.404');
         
         }
     }
@@ -391,7 +397,7 @@ class HomeController extends Controller
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            return view('errors.404');
+            //return view('errors.404');
         
         }
     }
@@ -424,7 +430,7 @@ class HomeController extends Controller
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            return view('errors.404');
+            //return view('errors.404');
         
         }
     }
@@ -457,7 +463,7 @@ class HomeController extends Controller
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            return view('errors.404');
+            //return view('errors.404');
         
         }
     }
@@ -635,11 +641,5 @@ class HomeController extends Controller
             ],400);
         
         }
-    }
-
-    public function bryanAdams()
-    {
-        //return view('frontend.partials.bryan_adams'); 
-        return view('frontend.partials.event_bryan_adams'); 
     }
 }
