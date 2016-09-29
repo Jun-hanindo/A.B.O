@@ -709,4 +709,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     }
 
+    public function countUsers(){
+        return User::count();
+    }
+
 }

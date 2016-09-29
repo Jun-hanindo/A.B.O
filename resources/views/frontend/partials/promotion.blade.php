@@ -22,13 +22,13 @@
                 @foreach($events as $key => $event)
                     <div class="col-md-4 box-promo">
                         <a href="#promoModal{{ $event->ep_id }}" data-toggle="modal">
-                            <img src="{{ file_url('events/'.$event->featured_image2, env('FILESYSTEM_DEFAULT')) }}" class="image-promo">
+                            <img src="{{ $event->featured_image2_url }}" class="image-promo">
                             <div class="boxInfo promo1">
                                 <ul>
                                     <li class="eventType">{{ strtoupper($event->category) }}</li>
-                                    <li class="eventName">{{ $event->promo_title }} <img src="{{ file_url('promotions/'.$event->featured_image, env('FILESYSTEM_DEFAULT')) }}"></li>
+                                    <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}"></li>
                                     <br>
-                                    <li class="eventPlace">Valid From {{ $event->valid_date }}</li>
+                                    <li class="eventPlace">Valid From {{ $event->valid }}</li>
                                 </ul>
                           </div>
                         </a>
@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="promoBanner">
-                                            <img src="{{ file_url('events/'.$event->featured_image1 }}">
+                                            <img src="{{ $event->featured_image1_url }}">
                                         </div>
                                         <div class="descPromoModal">
                                             <h4>About This Promotion</h4>
@@ -51,20 +51,14 @@
                                                         <p>{!! $event->promo_desc !!}</p>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <img src="{{ file_url('promotions/'.$event->featured_image, env('FILESYSTEM_DEFAULT')) }}" class="promoLogo">
+                                                        <img src="{{ $event->featured_image_url }}" class="promoLogo">
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- <h4>How to Participate </h4>
                                             <p>Show StarHub bill or subscription on any device such as mobile phone or tablet.</p> -->
 
-                                            <p>{{ trans('general.discount') }}: 
-                                                @if($event->discount > 0)
-                                                    {{ $event->discount.'%' }}
-                                                @else
-                                                    {{ $event->symbol_left.$event->discount_nominal.$event->symbol_right }}
-                                                @endif
-                                            </p>
+                                            <p>{{ $event->disc }}</p>
                                             <h4>Promotion Period</h4>
                                             <p>Start Date: {{ $event->start_date }}</p>
                                             <br>

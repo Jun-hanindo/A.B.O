@@ -2203,7 +2203,7 @@ footer .information-title{
     margin: 0 5px 0 -15px;
     color: #000;
     position: absolute;
-    top: 10px;
+    top: 0;
     left: 0;
     margin-left: 10px;
 }
@@ -2214,7 +2214,7 @@ footer .information-title{
     margin: 0 5px 0 -15px;
     color: #000;
     position: absolute;
-    top: 10px;
+    top: 0;
     left: 0;
     margin-left: 10px;
 }
@@ -2225,7 +2225,7 @@ footer .information-title{
     margin: 0 5px 0 -15px;
     color: #000;
     position: absolute;
-    top: 10px;
+    top: 0;
     left: 0;
     margin-left: 10px;
 }
@@ -2236,7 +2236,7 @@ footer .information-title{
     margin: 0 5px 0 -15px;
     color: #000;
     position: absolute;
-    top: 10px;
+    top: 0;
     left: 0;
     margin-left: 10px;
 }
@@ -2247,7 +2247,7 @@ footer .information-title{
     margin: 0 5px 0 -15px;
     color: #000;
     position: absolute;
-    top: 10px;
+    top: 0;
     left: 0;
     margin-left: 10px;
 }
@@ -2258,7 +2258,7 @@ footer .information-title{
     margin: 0 5px 0 -15px;
     color: #000;
     position: absolute;
-    top: 10px;
+    top: 0;
     left: 0;
     margin-left: 10px;
 }
@@ -2276,7 +2276,6 @@ footer .information-title{
 }
 
 .tabs-left > .nav-tabs > .active {
-  border-right: 3px solid;
   font-family: 'proxima_nova_rgbold';
 }
 
@@ -2295,7 +2294,6 @@ footer .information-title{
 .tabs-left > .nav-tabs {
   float: left;
   padding-right: 0;
-  border-right: 1px solid #ddd;
 }
 
 .tabs-left > .nav-tabs > li > a {
@@ -2331,8 +2329,8 @@ footer .information-title{
 .ul-faq-content li{
   font-size: 16px;
   border-bottom: 1px solid #cacaca;
-  padding-bottom: 12px;
-  padding-top: 20px;
+  padding-bottom: 15px;
+  padding-top: 15px;
 }
 
 .ask a{
@@ -2350,10 +2348,16 @@ footer .information-title{
   margin-top: 15px;
 }
 
-.ul-faq-content li a::after{
+.ul-faq-content li .collapsed::after{
   font-family: 'FontAwesome';
   content: "\f107";
   padding-left: 10px;
+}
+
+.ul-faq-content li a::after {
+    content: "\f106";
+    font-family: 'FontAwesome';
+    padding-left: 10px;
 }
 
 .search-faq input{
@@ -2362,11 +2366,13 @@ footer .information-title{
 
 .support-desc .tabs-left .tab-content h3{
   margin: 0;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
 }
 
 .tabs-left .tab-content{
-  padding-left: 30px;
+  padding-left: 25px;
+  padding-bottom: 25px;
+  border-left: 1px solid #ddd;
 }
 
 .sidebar ul .active{
@@ -2404,7 +2410,7 @@ footer .information-title{
 }
 
 .mobile-sidebar-menu ul li{
-  margin-top: 10px;
+  margin-top: 25px;
 }
 
 .mobile-content .mobile-sidebar .mobile-sidebar-menu{
@@ -2416,8 +2422,14 @@ footer .information-title{
   color: #000;
 }
 
-.mobile-content .mobile-sidebar .mobile-sidebar-menu .menu::after{
-  content: "\f107";
+.mobile-content .mobile-sidebar .mobile-sidebar-menu .collapsed::after{
+  content: "\f107" !important;
+  font-family: 'FontAwesome';
+  padding-left: 10px;
+}
+
+.mobile-content .mobile-sidebar .mobile-sidebar-menu .menu::after {
+  content: "\f106";
   font-family: 'FontAwesome';
   padding-left: 10px;
 }
@@ -3150,11 +3162,11 @@ footer .information-title{
   padding-left: 0;
 }
 
-.eventTab .nav-tabs>li>a.active,
+/*.eventTab .nav-tabs>li>a.active,
 .eventTab-mobile .nav-tabs>li>a.active{
   border-bottom: 3px solid #000;
   font-family: 'proxima_nova_rgbold';
-}
+}*/
 
 .nav-tabs>li>a:hover{
   border: none;
@@ -3172,6 +3184,12 @@ ul#getvenue li {
 
 ul#getvenue li:before {
     left: -40px;
+}
+
+.car-route{
+  list-style-type: disc !important;
+  padding-left: 25px !important;
+  margin-bottom: 10px;
 }
 
 .mobile-search-show{
@@ -3364,7 +3382,8 @@ ul#getvenue li:before {
 
 .form-subscribe{
   width: 770px;
-  height: 80px;
+  min-height: 80px;
+  height: auto;
   background-color: #fff;
   margin: 0 auto;
   padding: 20px;
@@ -3654,28 +3673,28 @@ ul#getvenue li:before {
   float: right;
 }
 
+.dot-pink{
+  background-color: #f29ac2;
+}
+
 .dot-blue{
-  background-color: #3FDFED;
-}
-
-.dot-purple1{
-  background-color: #DD3496;
-}
-
-.dot-green1{
-  background-color: #54F063;
-}
-
-.dot-green{
-  background-color: #01D28A;
+  background-color: #a3ddeb;
 }
 
 .dot-purple{
-  background-color: #4553BA;
+  background-color: #c5b1cc;
+}
+
+.dot-green{
+  background-color: #a2d085;
+}
+
+.dot-green1{
+  background-color: #27b57b;
 }
 
 .dot-creme{
-  background-color: #A5CB71;
+  background-color: #f1e998;
 }
 
 .seat-map-price .box-line {
@@ -3700,6 +3719,64 @@ ul#getvenue li:before {
 .contact-content .hotline label{
   margin-bottom: 0;
 }
+
+.mobile-sidebar-menu ul li:first-child {
+  margin-top: 40px;
+}
+
+.mobile-sidebar-menu ul li:last-child {
+  margin-bottom: 50px;
+}
+
+.contact-mobile .mobileTab .nav-tabs {
+  border-bottom: none;
+}
+
+.contact-mobile .nav-tabs>li.active>a, .contact-mobile .nav-tabs>li.active>a:focus, .contact-mobile .nav-tabs>li.active>a:hover{
+  border-bottom: none;
+}
+
+.contact-mobile .contentTab .head-mobile-ways {
+    margin-top: 0;
+}
+
+.mobile-page-title a:before{
+  content: "\f104";
+  font-family: 'FontAwesome';
+  padding-right: 5px;
+}
+
+.ul-faq-content li:last-child {
+  border-bottom: none;
+}
+
+.tabs-left .nav>li>a {
+  padding: 15px 15px;
+  padding-top: 0;
+  padding-bottom: 35px;
+}
+
+.list-faq ul .active::after {
+  border-right: 1px solid #000;
+  width: 3px;
+  background-color: #000;
+  height: 20px;
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.additional-info{
+  padding-left: 20px;
+}
+
+.car-route li {
+  padding: 5px;
+}
+
+
 
 
 

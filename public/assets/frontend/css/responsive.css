@@ -380,6 +380,9 @@
   .privacy-content{
     width: 100%;
   }
+  .additional-info {
+    padding-left: 35px;
+  }
   .seat-map-price{
     margin-top: 15px;
   }
@@ -439,7 +442,7 @@
   }
   .form-subscribe{
     width: auto;
-    height: 182px;
+    min-height: 182px;
     height: auto;
   }
   .form-subscribe .first-name{

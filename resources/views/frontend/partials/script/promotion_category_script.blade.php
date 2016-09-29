@@ -2,21 +2,20 @@
 
 <script type="text/javascript">
         $(document).ready(function(){
+            var page_content = 1;
 
             $(".btnLoad").on('click', function(){
+                page_content += 1;
                 var slug = $(this).attr('data-slug');
-                loadPromotion(slug);
+                loadPromotion(page_content, slug);
             });
 
         });
-            
-        var page_content = 1;
 
-        function loadPromotion(slug)
+        function loadPromotion(page_content, slug)
         {
             var uri = "{{ URL::route('promotion-detail', "::param") }}";
-                uri = uri.replace('::param', slug);
-            page_content += 1;
+            uri = uri.replace('::param', slug);
             $.ajax({
                 url: uri,
                 type: "GET",
@@ -30,21 +29,6 @@
                     }
                     var events = response.data.data;
                     $.each(events,function(key,val){
-                        if(val.discount> 0){
-                            var discount = val.discount;
-                        }else{
-                            if(val.symbol_left === null){
-                                var symbol_left = '';
-                            }else{
-                                var symbol_left = val.symbol_left;
-                            }
-                            if(val.symbol_right === null){
-                                var symbol_right = '';
-                            }else{
-                                var symbol_right = val.symbol_right;
-                            }
-                            var discount = symbol_left+val.discount_nominal+symbol_right;
-                        }
                         var htmlTop = 
                             '<div class="col-md-4 box-promo">'
                                 +'<a href="#promoModal'+val.ep_id+'" data-toggle="modal">'
@@ -54,7 +38,7 @@
                                             +'<li class="eventType">'+val.category+'</li>'
                                             +'<li class="eventName">'+val.promo_title+'<img src="'+val.featured_image_url+'"></li>'
                                             +'<br>'
-                                            +'<li class="eventPlace">Valid from '+val.valid_date+'</li>'
+                                            +'<li class="eventPlace">Valid from '+val.valid+'</li>'
                                         +'</ul>'
                                     +'</div>'
                                 +'</a>'
@@ -67,7 +51,7 @@
                                             +'</div>'
                                             +'<div class="modal-body">'
                                                 +'<div class="promoBanner">'
-                                                    +'<img height="166px" src="'+val.featured_image1_url+'">'
+                                                    +'<img src="'+val.featured_image1_url+'">'
                                                 +'</div>'
                                                 +'<div class="descPromoModal">'
                                                     +'<h4>About This Promotion</h4>'
@@ -81,7 +65,7 @@
                                                             +'</div>'
                                                         +'</div>'
                                                     +'</div>'
-                                                    +'<p>Discount: '+discount+'</p>'
+                                                    +'<p>Discount: '+val.disc+'</p>'
                                                     +'<h4>Promotion Period</h4>'
                                                     +'<p>Start Date:'+val.start_date+'</p>'
                                                     +'<br>'

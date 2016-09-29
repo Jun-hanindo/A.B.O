@@ -566,38 +566,19 @@ class Event extends Model
         if(count($events) > 0)
         {
             foreach ($events as $key => $event) {
-                $this->setImageUrl($event);
-                //$event->start = date('d F Y', strtotime($event->start_date));
-                //$event->end = date('d F Y', strtotime($event->end_date));
                 $event->promo_title = string_limit($event->promo_title);
+                $this->setImageUrl($event);
+                $event->category = str_replace('-', ' ', strtoupper($event->category));
+                $event->valid = date_from_to($event->start_date, $event->end_date);
 
-                $event->start_date = date('d F Y', strtotime($event->start_date));
-                $event->end_date = date('d F Y', strtotime($event->end_date));
-
-                $m_start = date('m', strtotime($event->start_date));
-                $m_end = date('m', strtotime($event->end_date));
-
-                $y_start = date('Y', strtotime($event->start_date));
-                $y_end = date('Y', strtotime($event->end_date));
-
-                
-                if($m_start == $m_end && $y_start == $y_end){
-                    $event->valid_date = date('d', strtotime($event->start_date)).' - '.date('d F Y', strtotime($event->end_date));
-                }elseif($m_start != $m_end && $y_start == $y_end){
-                    $event->valid_date = date('d F', strtotime($event->start_date)).' - '.date('d F Y', strtotime($event->end_date));
-                }else{
-                    $event->valid_date = date('d F Y', strtotime($event->start_date)).' - '.date('d F Y', strtotime($event->end_date));
-                }
-
-
-                if($event->category == 'discounts'){
-                    $event->category = 'DISCOUNTS';
-                }elseif($event->category == 'early-bird'){
-                    $event->category = 'EARLY BIRD';
-                }else{
-                    $event->category = 'LUCKY DRAW';
-                }
+                $event->start_date = full_text_date($event->start_date);
+                $event->end_date = full_text_date($event->end_date);
                 $event->featured_image_url = file_url('promotions/'.$event->featured_image, env('FILESYSTEM_DEFAULT'));
+                if($event->discount > 0){
+                    $event->disc = $event->discount.'%';
+                }else{
+                    $event->disc = $event->symbol_left.$event->discount_nominal.$event->symbol_right;
+                }
             }
             return $events;
         }else{
@@ -633,36 +614,19 @@ class Event extends Model
         if(count($events) > 0)
         {
             foreach ($events as $key => $event) {
-                $this->setImageUrl($event);
-                //$event->start = date('d F Y', strtotime($event->start_date));
-                //$event->end = date('d F Y', strtotime($event->end_date));
                 $event->promo_title = string_limit($event->promo_title);
+                $this->setImageUrl($event);
+                $event->category = str_replace('-', ' ', strtoupper($event->category));
+                $event->valid = date_from_to($event->start_date, $event->end_date);
 
-                $event->start_date = date('d F Y', strtotime($event->start_date));
-                $event->end_date = date('d F Y', strtotime($event->end_date));
-
-                $m_start = date('m', strtotime($event->start_date));
-                $m_end = date('m', strtotime($event->end_date));
-
-                $y_start = date('Y', strtotime($event->start_date));
-                $y_end = date('Y', strtotime($event->end_date));
-
-                if($m_start == $m_end && $y_start == $y_end){
-                    $event->valid_date = date('d', strtotime($event->start_date)).' - '.date('d F Y', strtotime($event->end_date));
-                }elseif($m_start != $m_end && $y_start == $y_end){
-                    $event->valid_date = date('d F', strtotime($event->start_date)).' - '.date('d F Y', strtotime($event->end_date));
-                }else{
-                    $event->valid_date = date('d F Y', strtotime($event->start_date)).' - '.date('d F Y', strtotime($event->end_date));
-                }
-
-                if($event->category == 'discounts'){
-                    $event->category = 'DISCOUNTS';
-                }elseif($event->category == 'early-bird'){
-                    $event->category = 'EARLY BIRD';
-                }else{
-                    $event->category = 'LUCKY DRAW';
-                }
+                $event->start_date = full_text_date($event->start_date);
+                $event->end_date = full_text_date($event->end_date);
                 $event->featured_image_url = file_url('promotions/'.$event->featured_image, env('FILESYSTEM_DEFAULT'));
+                if($event->discount > 0){
+                    $event->disc = $event->discount.'%';
+                }else{
+                    $event->disc = $event->symbol_left.$event->discount_nominal.$event->symbol_right;
+                }
             }
             return $events;
         }else{
@@ -856,6 +820,10 @@ class Event extends Model
         }else{
             return false;
         }
+    }
+
+    public function countEvents(){
+        return Event::where('avaibility', true)->count();
     }
 
     

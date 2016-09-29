@@ -26,21 +26,6 @@
                     }
                     var events = response.data.data;
                     $.each(events,function(key,val){
-                        if(val.discount> 0){
-                            var discount = val.discount;
-                        }else{
-                            if(val.symbol_left === null){
-                                var symbol_left = '';
-                            }else{
-                                var symbol_left = val.symbol_left;
-                            }
-                            if(val.symbol_right === null){
-                                var symbol_right = '';
-                            }else{
-                                var symbol_right = val.symbol_right;
-                            }
-                            var discount = symbol_left+val.discount_nominal+symbol_right;
-                        }
                         var htmlTop = 
                             '<div class="col-md-4 box-promo">'
                                 +'<a href="#promoModal'+val.ep_id+'" data-toggle="modal">'
@@ -50,7 +35,7 @@
                                             +'<li class="eventType">'+val.category+'</li>'
                                             +'<li class="eventName">'+val.promo_title+'<img src="'+val.featured_image_url+'"></li>'
                                             +'<br>'
-                                            +'<li class="eventPlace">Valid from '+val.valid_date+'</li>'
+                                            +'<li class="eventPlace">Valid from '+val.valid+'</li>'
                                         +'</ul>'
                                     +'</div>'
                                 +'</a>'
@@ -77,7 +62,7 @@
                                                             +'</div>'
                                                         +'</div>'
                                                     +'</div>'
-                                                    +'<p>Discount: '+discount+'</p>'
+                                                    +'<p>Discount: '+val.disc+'</p>'
                                                     +'<h4>Promotion Period</h4>'
                                                     +'<p>Start Date:'+val.start_date+'</p>'
                                                     +'<br>'

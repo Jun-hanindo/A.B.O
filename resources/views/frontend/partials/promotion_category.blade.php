@@ -28,7 +28,7 @@
                                     <li class="eventType">{{ strtoupper($event->category) }}</li>
                                     <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}"></li>
                                     <br>
-                                    <li class="eventPlace">Valid From {{ $event->valid_date }}</li>
+                                    <li class="eventPlace">Valid From {{ $event->valid }}</li>
                                 </ul>
                             </div>
                         </a>
@@ -57,13 +57,8 @@
                                             </div>
                                             <!-- <h4>How to Participate </h4>
                                             <p>Show StarHub bill or subscription on any device such as mobile phone or tablet.</p> -->
-                                            <p>{{ trans('general.discount') }}: 
-                                                @if($event->discount > 0)
-                                                    {{ $event->discount.'%' }}
-                                                @else
-                                                    {{ $event->symbol_left.$event->discount_nominal.$event->symbol_right }}
-                                                @endif
-                                            </p>
+                                            
+                                            <p>{{ $event->disc }}</p>
                                             <h4>Promotion Period</h4>
                                             <p>Start Date: {{ $event->start_date }}</p>
                                             <br>
