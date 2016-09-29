@@ -1,8 +1,9 @@
 <?php
 
 Route::group(['namespace' => 'Frontend'], function () {
-    Route::get('/', array('as' => 'landing', 'uses' => 'HomeController@landing'));
-    Route::get('index', array('as' => 'home', 'uses' => 'HomeController@index'));
+    // Route::get('/', array('as' => 'landing', 'uses' => 'HomeController@landing'));
+    // Route::get('index', array('as' => 'home', 'uses' => 'HomeController@index'));
+    Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
     Route::get('bryan-adams', array('as' => 'bryan-adams', 'uses' => 'HomeController@bryanAdams'));
     Route::get('discover', array('as' => 'discover', 'uses' => 'HomeController@discover'));
     Route::get('event', array('as' => 'event', 'uses' => 'HomeController@event'));
