@@ -343,67 +343,67 @@
                 </div>
             </footer>
         </div>
-    </body>
-    <div class="modal fade" id="modalSeatMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Seat Map</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="seat-map-modal">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <img src="{{ asset('assets/frontend/images/seat-map.jpg') }}">
-                            </div>
-                            <div class="col-md-5">
-                                <div class="seat-map-price">
-                                    <ul>
-                                        <li>
-                                            <span class="seat-dot dot-pink"></span>
-                                            <span class="box-line">
-                                                <span class="category">Category 1</span>
-                                                <span class="price">S$231</span>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="seat-dot dot-blue"></span>
-                                            <span class="box-line">
-                                                <span class="category">Category 2</span>
-                                                <span class="price">S$191</span>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="seat-dot dot-purple"></span>
-                                            <span class="box-line">
-                                                <span class="category">Category 3</span>
-                                                <span class="price">S$161</span>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="seat-dot dot-green"></span>
-                                         <span class="box-line">
-                                                <span class="category">Category 4</span>
-                                                <span class="price">S$141</span>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="seat-dot dot-green1"></span>
-                                            <span class="box-line">
-                                                <span class="category">Category 5</span>
-                                                <span class="price">S$101</span>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="seat-dot dot-creme"></span>
-                                            <span class="box-line">
-                                                <span class="category">Category 6 *</span>
-                                                <span class="price">S$71</span>
-                                            </span>
-                                        </li>
-                                    </ul>
-                                    <p>* Restricted view</p>
+        <div class="modal fade" id="modalSeatMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Seat Map</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="seat-map-modal">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <img src="{{ asset('assets/frontend/images/seat-map.jpg') }}">
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="seat-map-price">
+                                        <ul>
+                                            <li>
+                                                <span class="seat-dot dot-pink"></span>
+                                                <span class="box-line">
+                                                    <span class="category">Category 1</span>
+                                                    <span class="price">S$231</span>
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="seat-dot dot-blue"></span>
+                                                <span class="box-line">
+                                                    <span class="category">Category 2</span>
+                                                    <span class="price">S$191</span>
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="seat-dot dot-purple"></span>
+                                                <span class="box-line">
+                                                    <span class="category">Category 3</span>
+                                                    <span class="price">S$161</span>
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="seat-dot dot-green"></span>
+                                             <span class="box-line">
+                                                    <span class="category">Category 4</span>
+                                                    <span class="price">S$141</span>
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="seat-dot dot-green1"></span>
+                                                <span class="box-line">
+                                                    <span class="category">Category 5</span>
+                                                    <span class="price">S$101</span>
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="seat-dot dot-creme"></span>
+                                                <span class="box-line">
+                                                    <span class="category">Category 6 *</span>
+                                                    <span class="price">S$71</span>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                        <p>* Restricted view</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -411,7 +411,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </body>
+    
     {!! Html::script('assets/frontend/js/jquery-2.1.1.js') !!}
     {!! Html::script('assets/frontend/js/jquery.menu-aim.js') !!}
     {!! Html::script('assets/frontend/js/main.js') !!}
