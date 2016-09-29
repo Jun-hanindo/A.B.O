@@ -637,7 +637,7 @@ class HomeController extends Controller
         }
     }
 
-    public function bryamAdams()
+    public function bryanAdams()
     {
         //return view('frontend.partials.bryan_adams'); 
         return view('frontend.partials.event_bryan_adams'); 

@@ -31,7 +31,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('send-feedback', array('as' => 'send-feedback', 'uses' => 'HomeController@feedBack'));
     Route::get('language', array('as' => 'language', 'uses' => 'LanguagesController@setLanguage'));
 
-    Route::get('bryan-adams', array('as' => 'bryan-adams', 'uses' => 'HomeController@bryamAdams'));
-    Route::get('/', array('as' => 'home', 'uses' => 'HomeController@bryamAdams'));
+    Route::get('bryan-adams', array('as' => 'bryan-adams', 'uses' => 'HomeController@bryanAdams'));
+    Route::get('/', array('as' => 'home-bryan-adams', 'uses' => 'HomeController@bryanAdams'));
     Route::get('index', array('as' => 'home', 'uses' => 'HomeController@index'));
 });
