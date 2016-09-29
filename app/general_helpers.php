@@ -280,6 +280,150 @@ if (! function_exists('file_is_exists')) {
     }
 }
 
+if (! function_exists('full_text_date')) {
+    /**
+     * Checks whether a file exists.
+     *
+     * @param  string  $file
+     * @param  string|null  $disk
+     * @return bool
+     */
+    function full_text_date($date)
+    {
+        if (is_null($date)) {
+            return date('d F Y');
+        }
+
+        return date('d F Y', strtotime($date));
+    }
+}
+
+if (! function_exists('short_text_date')) {
+    /**
+     * Checks whether a file exists.
+     *
+     * @param  string  $file
+     * @param  string|null  $disk
+     * @return bool
+     */
+    function short_text_date($date)
+    {
+        if (is_null($date)) {
+            return date('d M Y');
+        }
+
+        return date('d M Y', strtotime($date));
+    }
+}
+
+if (! function_exists('get_date')) {
+    /**
+     * Checks whether a file exists.
+     *
+     * @param  string  $file
+     * @param  string|null  $disk
+     * @return bool
+     */
+    function get_date($date)
+    {
+        if (is_null($date)) {
+            return date('d');
+        }
+
+        return date('d', strtotime($date));
+    }
+}
+
+if (! function_exists('get_year')) {
+    /**
+     * Checks whether a file exists.
+     *
+     * @param  string  $file
+     * @param  string|null  $disk
+     * @return bool
+     */
+    function get_year($date)
+    {
+        if (is_null($date)) {
+            return date('Y');
+        }
+
+        return date('Y', strtotime($date));
+    }
+}
+
+if (! function_exists('get_month')) {
+    /**
+     * Checks whether a file exists.
+     *
+     * @param  string  $file
+     * @param  string|null  $disk
+     * @return bool
+     */
+    function get_month($date)
+    {
+        if (is_null($date)) {
+            return date('m');
+        }
+
+        return date('m', strtotime($date));
+    }
+}
+
+if (! function_exists('get_date_full_month')) {
+    /**
+     * Checks whether a file exists.
+     *
+     * @param  string  $file
+     * @param  string|null  $disk
+     * @return bool
+     */
+    function get_date_full_month($date)
+    {
+        if (is_null($date)) {
+            return date('d F');
+        }
+
+        return date('d F', strtotime($date));
+    }
+}
+
+if (! function_exists('date_from_to')) {
+    /**
+     * Checks whether a file exists.
+     *
+     * @param  string  $file
+     * @param  string|null  $disk
+     * @return bool
+     */
+    function date_from_to($start_date, $end_date)
+    {
+        if (is_null($start_date)) {
+            $start_date = date('Y-m-d');
+        }
+
+        if (is_null($end_date)) {
+            $end_date = date('Y-m-d');
+        }
+
+        $m_start = get_month($start_date);
+        $m_end = get_month($end_date);
+
+        $y_start = get_year($start_date);
+        $y_end = get_year($end_date);
+
+        if($m_start == $m_end && $y_start == $y_end){
+            $date_from_to = get_date($start_date).' - '.full_text_date($end_date);
+        }else if($m_start != $m_end && $y_start == $y_end){
+            $date_from_to = get_date_full_month($start_date).' - '.full_text_date($end_date);
+        }else{
+            $date_from_to = full_text_date($start_date).' - '.full_text_date($end_date);
+        }
+
+        return $date_from_to;
+    }
+}
+
 
 
 // if (! function_exists('count_message_unread')) {

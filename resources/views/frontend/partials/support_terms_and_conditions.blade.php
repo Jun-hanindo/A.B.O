@@ -9,11 +9,14 @@
                               <li class="sidebar-head">
                                   <h4>{{ trans('general.support') }}</h4>
                               </li>
-                              <li class="sidebar-menu-top">
+                              {{-- <li class="sidebar-menu-top">
                                   <a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a>
+                              </li> --}}
+                              <li class="sidebar-menu-top">
+                                  <a href="{{URL::route('support-faq')}}">{{ trans('general.frequently_asked_questions') }}</a>
                               </li>
                               <li class="sidebar-menu">
-                                  <a href="{{URL::route('support-faq')}}">{{ trans('general.frequently_asked_questions') }}</a>
+                                  <a href="{{URL::route('contact-us')}}">{{ trans('general.contact_us') }}</a>
                               </li>
                               <li class="sidebar-menu active">
                                   <a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a>
@@ -48,8 +51,9 @@
                     <a class="menu" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Support</a>
                     <div class="collapse" id="mobile-sidebar-collapse">
                       <ul>
-                        <li><a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a></li>
+                        {{-- <li><a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a></li> --}}
                         <li><a href="{{URL::route('support-faq')}}">{{ trans('general.frequently_asked_questions') }}</a></li>
+                        <li><a href="{{URL::route('contact-us')}}">{{ trans('general.contact_us') }}</a></li>
                         <li><a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a></li>
                         <li><a href="{{URL::route('support-privacy-policy')}}">{{ trans('general.privacy_policy') }}</a></li>
                       </ul>

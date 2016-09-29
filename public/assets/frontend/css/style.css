@@ -1435,7 +1435,7 @@ footer .information-title{
 
 .main-content section{
   margin-bottom: 12px;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .main-content #promotion ul li,
@@ -3628,6 +3628,77 @@ ul#getvenue li:before {
 
 .privacy-content ol {
     padding-left: 15px;
+}
+
+.seat-map-modal{
+  padding: 30px;
+}
+
+.seat-map-modal img{
+  width: 100%;
+}
+
+.seat-map-modal ul{
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.seat-map-modal ul li .seat-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.seat-map-price .price{
+  float: right;
+}
+
+.dot-blue{
+  background-color: #3FDFED;
+}
+
+.dot-purple1{
+  background-color: #DD3496;
+}
+
+.dot-green1{
+  background-color: #54F063;
+}
+
+.dot-green{
+  background-color: #01D28A;
+}
+
+.dot-purple{
+  background-color: #4553BA;
+}
+
+.dot-creme{
+  background-color: #A5CB71;
+}
+
+.seat-map-price .box-line {
+  border-bottom: 1px solid #eee;
+  display: inline-block;
+  width: 93%;
+  padding: 5px 0;
+}
+
+.ticket ul li td span{
+  float: right;
+}
+
+.contact-content .hotline{
+  text-align: center;
+}
+
+.contact-content .support-desc h5{
+  padding-left: 0;
+}
+
+.contact-content .hotline label{
+  margin-bottom: 0;
 }
 
 

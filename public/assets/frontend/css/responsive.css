@@ -360,6 +360,7 @@
     display: block;
     background-color: #fff;
     padding-bottom: 45px;
+    min-height: 375px;
   }
   .search-mobile .search-faq input{
     max-width: 100%;
@@ -378,6 +379,23 @@
   }
   .privacy-content{
     width: 100%;
+  }
+  .seat-map-price{
+    margin-top: 15px;
+  }
+  .date .information-title i,
+  .place .information-title i{
+    margin-right: 15px;
+  }
+  .eventInfo .ticket ul .li-mobile {
+    padding-left: 35px;
+  }
+  .eventInfo .place ul li {
+    padding-left: 20px;
+  } 
+  .information-event ul,
+  .information-event p{
+    padding-left: 35px;
   }
   .terms-content ol {
     padding-left: 25px;
@@ -422,6 +440,7 @@
   .form-subscribe{
     width: auto;
     height: 182px;
+    height: auto;
   }
   .form-subscribe .first-name{
     padding-right: 10px;
@@ -549,7 +568,6 @@
     height: auto;
   }
   .parentButton button{
-    width: 100%;
     margin-bottom: 5px;
     margin-top: 5px;
   }
@@ -668,7 +686,14 @@
     top: -15px;
   }
   .eventBanner .detail {
-    padding-top: 15px;
+    padding-top: 5px;
+  }
+  .eventInfo .ticket ul .parentButton {
+    padding-left: 35px;
+  }
+  .ticket .list-unstyled{
+    margin-left: 0;
+    padding-left: 0;
   }
   .eventBanner .detail h2{
     font-size: 20px;
