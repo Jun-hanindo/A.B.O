@@ -2,6 +2,8 @@
 
 Route::group(['namespace' => 'Frontend'], function () {
     //Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
+    Route::get('/', array('as' => 'home-bryan-adams', 'uses' => 'HomeController@bryanAdams'));
+    Route::get('index', array('as' => 'home', 'uses' => 'HomeController@index'));
     Route::get('discover', array('as' => 'discover', 'uses' => 'HomeController@discover'));
     Route::get('event', array('as' => 'event', 'uses' => 'HomeController@event'));
     Route::get('promotion', array('as' => 'promotion', 'uses' => 'HomeController@promotion'));
@@ -32,6 +34,4 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('language', array('as' => 'language', 'uses' => 'LanguagesController@setLanguage'));
 
     Route::get('bryan-adams', array('as' => 'bryan-adams', 'uses' => 'HomeController@bryanAdams'));
-    Route::get('/', array('as' => 'home-bryan-adams', 'uses' => 'HomeController@bryanAdams'));
-    Route::get('index', array('as' => 'home', 'uses' => 'HomeController@index'));
 });
