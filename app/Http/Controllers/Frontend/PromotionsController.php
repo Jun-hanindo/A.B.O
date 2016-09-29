@@ -63,7 +63,7 @@ class PromotionsController extends Controller
         } catch (\Exception $e) {
 
             $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
-            $log['description'] = $e->getMessage();
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 

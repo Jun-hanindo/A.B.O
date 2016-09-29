@@ -25,12 +25,11 @@ class Homepage extends Model
     }
     public static function datatables($category)
     {
-
         return static::select('homepages.id as id', 'events.title as event', 'homepages.category as category', 'homepages.sort_order')
-                        ->leftJoin('events', 'homepages.event_id','=','events.id')
+                        ->join('events', 'homepages.event_id','=','events.id')
                         ->where('homepages.category', '=', $category)
+                        ->whereNull('events.deleted_at')
                         ->orderBy('homepages.sort_order', 'asc');
-        
     }
 
     public function getFirstSort($category){
@@ -49,14 +48,14 @@ class Homepage extends Model
         return Homepage::where('category', $category)->orderBy('sort_order', 'desc')->get();
     }
 
-    public function updateSortEmpty($category){
-        $data = $this->getHomepage($category);
-        $i = 1;
-        foreach ($data as $k => $value) {
-            Homepage::where('id', $value->id)->update(['sort_order' => $i]);
-            $i++;
-        }
-    }
+    // public function updateSortEmpty($category){
+    //     $data = $this->getHomepage($category);
+    //     $i = 1;
+    //     foreach ($data as $k => $value) {
+    //         Homepage::where('id', $value->id)->update(['sort_order' => $i]);
+    //         $i++;
+    //     }
+    // }
 
     public function updateCurrentSortOrder($param){
         $data = $this->getSortById($param['id_current']);
@@ -144,12 +143,12 @@ class Homepage extends Model
         }
     }  
 
-    public function countEventByCategory($category)
-    {
-        return Homepage::where('category', $category)/*->where('status', true)*/->count();
-    }
+    // public function countEventByCategory($category)
+    // {
+    //     return Homepage::where('category', $category)/*->where('status', true)*/->count();
+    // }
 
-    public function getHomepage($category)
+    /*public function getHomepage($category)
     {
         $homepages = Homepage::select('homepages.id as id', 'homepages.category as category', 
             DB::RAW("array_to_string(array_agg(DISTINCT events.id), ',') as event_id"),
@@ -171,11 +170,70 @@ class Homepage extends Model
 
         if(!empty($homepages)) {
             foreach ($homepages as $key => $homepage) {
-                $homepage->schedules = $homepage->Event->EventSchedule()->orderBy('date_at', 'asc')->first();
+                $homepage->schedule = $homepage->Event->EventSchedule()->orderBy('date_at', 'asc')->first();
                 $homepage->venue = $homepage->Event->Venue;
-                $homepage->promotions = $homepage->Event->promotions()->where('avaibility', true)->orderBy('start_date')->first();
-                $homepage->category_name = strtoupper(explode(",", $homepage->category_name)[0]);
+                $homepage->promo = $homepage->Event->promotions()->where('avaibility', true)->where(DB::raw('CURRENT_DATE-end_date'), '<', 0)->orderBy(DB::raw('CURRENT_DATE-end_date'), 'desc')->first();
+                $homepage->cat_name = strtoupper(explode(",", $homepage->category_name)[0]);
+                if(!empty($homepage->promo)){
+                    $homepage->promo->category = str_replace('-', ' ', strtoupper($homepage->promo->category));
+                    $homepage->promo->valid = date_from_to($homepage->promo->start_date, $homepage->promo->end_date);
+                    if($homepage->promo->discount > 0){
+                        $homepage->promo->disc = $homepage->promo->discount.'%';
+                    }else{
+                        if($homepage->promo->currency_id == 0){
+                            $currency_symbol_left = '';
+                            $currency_symbol_right = '';
+                        }else{
+                            $currency_symbol_left = $homepage->promo->currency->symbol_left;
+                            $currency_symbol_right = $homepage->promo->currency->symbol_right;
+                        }
+                        $homepage->promo->disc = $currency_symbol_left.$homepage->promo->discount_nominal.$currency_symbol_right;
+                    }
+                }
             }
+            return $homepages;
+        } else {
+            return false;
+        }
+    }*/
+
+    public function getHomepage($category)
+    {
+        $homepages = Homepage::where('category', $category)
+            ->orderBy('sort_order', 'asc')->get();
+        if(!empty($homepages)) {
+            $array = [];
+            foreach ($homepages as $key => $homepage) {
+                $homepage->event = $homepage->Event()->where('avaibility', true)->first();
+                if(!empty($homepage->event)){
+                    $homepage->title = string_limit($homepage->event->title);
+                    $homepage->cat = $homepage->Event->Categories()->where('status', true)->orderBy('name', 'asc')->first();
+                    if(!empty($homepage->cat)){
+                        $homepage->cat_name = strtoupper($homepage->cat->name);
+                        $homepage->schedule = $homepage->Event->EventSchedule()->orderBy('date_at', 'asc')->first();
+                        $homepage->venue = $homepage->Event->Venue;
+                        $homepage->promo = $homepage->Event->promotions()->where('avaibility', true)->where(DB::raw('CURRENT_DATE-end_date'), '<', 0)->orderBy(DB::raw('CURRENT_DATE-end_date'), 'desc')->first();
+                        if(!empty($homepage->promo)){
+                            $homepage->promo->category = str_replace('-', ' ', strtoupper($homepage->promo->category));
+                            $homepage->promo->valid = date_from_to($homepage->promo->start_date, $homepage->promo->end_date);
+                            if($homepage->promo->discount > 0){
+                                $homepage->promo->disc = $homepage->promo->discount.'%';
+                            }else{
+                                if($homepage->promo->currency_id == 0){
+                                    $currency_symbol_left = '';
+                                    $currency_symbol_right = '';
+                                }else{
+                                    $currency_symbol_left = $homepage->promo->currency->symbol_left;
+                                    $currency_symbol_right = $homepage->promo->currency->symbol_right;
+                                }
+                                $homepage->promo->disc = $currency_symbol_left.$homepage->promo->discount_nominal.$currency_symbol_right;
+                            }
+                        } 
+                        $array[] = $homepage;
+                    }
+                }
+            }
+            $homepages = $array;
             return $homepages;
         } else {
             return false;

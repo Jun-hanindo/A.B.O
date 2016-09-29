@@ -12,6 +12,12 @@ class Subscription extends Model
     protected $table = 'subscriptions';
     protected $dates = ['deleted_at'];
 
+    public function Events()
+    {
+        return $this->belongsToMany('App\Models\Event', 'subscription_events', 'subscription_id', 'event_id')->withTimestamps();
+
+    }
+
     /**
      * Return event's query for Datatables.
      *
@@ -26,8 +32,8 @@ class Subscription extends Model
     }
 
     function eventDatatables($id){
-        $data = Subscription::select('id', 'prefered_event'))
-        ->where('id', $id);
+        $subscription = $this->findSubscriptionByID($id);
+        $data = $subscription->Events();
 
         return $data;
         //return static::select('id', 'prefered_event');
@@ -46,9 +52,12 @@ class Subscription extends Model
         $country_code = isset($param['country_code']) ? $param['country_code']: '';
         $contact_number = isset($param['contact_number']) ? $param['contact_number']: '';
         $this->contact_number = $country_code.$contact_number;
-        $this->prefered_event = isset($param['event']) ? json_encode($param['event']): '';
+        //$this->prefered_event = isset($param['event']) ? json_encode($param['event']): '';
 
         if($this->save()){
+            if(isset($param['event'])){
+                $this->Events()->attach($param['event']);
+            }
             return $this;
         } else {
             return false;
@@ -74,19 +83,19 @@ class Subscription extends Model
     {
         $data = $this->findByEmail($email);
         if (!empty($data)) {
-            $events = $data->prefered_event;
-            if(!empty($events)){
-                $events = json_decode($events, true);
-            }else{
-                $events = array();
-            }
+            // $events = $data->prefered_event;
+            // if(!empty($events)){
+            //     $events = json_decode($events, true);
+            // }else{
+            //     $events = array();
+            // }
 
-            if(isset($param['event'])){
-                $event = $param['event'];
-            }else{
-                $event = array();
-            }
-            $events = $events + $event;
+            // if(isset($param['event'])){
+            //     $event = $param['event'];
+            // }else{
+            //     $event = array();
+            // }
+            // $events = $events + $event;
 
             $data->first_name = $param['first_name'];
             $data->last_name = $param['last_name'];
@@ -94,9 +103,12 @@ class Subscription extends Model
             $country_code = isset($param['country_code']) ? $param['country_code']: '';
             $contact_number = isset($param['contact_number']) ? $param['contact_number']: '';
             $data->contact_number = $country_code.$contact_number;
-            $data->prefered_event = json_encode($events);
+            //$data->prefered_event = json_encode($events);
 
             if($data->save()){
+                if(isset($param['event'])){
+                    $data->Events()->attach($param['event']);
+                }
 
                 return $data;
 

@@ -32,7 +32,7 @@ class CurrenciesController extends BaseController
             $insertTrail->insertTrail($trail);
         } catch (\Exception $e) {
             $log['user_id'] = $this->currentUser->id;
-            $log['description'] = $e->getMessage();
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
         }
@@ -88,7 +88,7 @@ class CurrenciesController extends BaseController
         } catch (\Exception $e) {
 
             $log['user_id'] = $this->currentUser->id;
-            $log['description'] = $e->getMessage();
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -123,7 +123,7 @@ class CurrenciesController extends BaseController
         } catch (\Exception $e) {
 
             $log['user_id'] = $this->currentUser->id;
-            $log['description'] = $e->getMessage();
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -165,7 +165,7 @@ class CurrenciesController extends BaseController
         } catch (\Exception $e) {
 
             $log['user_id'] = $this->currentUser->id;
-            $log['description'] = $e->getMessage();
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -205,7 +205,7 @@ class CurrenciesController extends BaseController
             flash()->error(trans('general.data_not_found'));
 
             $log['user_id'] = $this->currentUser->id;
-            $log['description'] = $e->getMessage();
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -235,7 +235,7 @@ class CurrenciesController extends BaseController
         } catch (\Exception $e) {
 
             $log['user_id'] = $this->currentUser->id;
-            $log['description'] = $e->getMessage();
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 

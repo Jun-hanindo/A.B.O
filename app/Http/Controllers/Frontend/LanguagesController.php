@@ -46,7 +46,7 @@ class LanguagesController extends Controller
         } catch (\Exception $e) {
 
             $log['user_id'] = $this->currentUser->id;
-            $log['description'] = $e->getMessage();
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 

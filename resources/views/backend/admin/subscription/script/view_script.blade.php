@@ -32,8 +32,6 @@
         $('#event-datatables').DataTable({
                 processing: true,
                 serverSide: true,
-                searching: false,
-                bLengthChange: false,
                 ajax: {
                     url: '{!! URL::route("datatables-subscription-event") !!}',
                     data: {
@@ -41,7 +39,7 @@
                     },
                 },
                 columns: [
-                    {data: 'prefered_event', name: 'prefered_event'},
+                    {data: 'title', name: 'title'},
                 ],
             });
 

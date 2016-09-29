@@ -13,7 +13,7 @@ use App\Models\Venue;
 use App\Models\LogActivity;
 use App\Models\Trail;
 use App\Models\Subscription;
-use App\Http\Requests\Frontend\SubscribeEventRequest;
+use App\Http\Requests\Frontend\SubscribeRequest;
 use Mail;
 
 class EventsController extends Controller
@@ -53,7 +53,7 @@ class EventsController extends Controller
         } catch (\Exception $e) {
 
             $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
-            $log['description'] = $e->getMessage();
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -83,7 +83,7 @@ class EventsController extends Controller
         } catch (\Exception $e) {
 
             $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
-            $log['description'] = $e->getMessage();
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -153,7 +153,7 @@ class EventsController extends Controller
         } catch (\Exception $e) {
 
             $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
-            $log['description'] = $e->getMessage();
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -163,12 +163,12 @@ class EventsController extends Controller
 
     }
 
-    public function subscribeEventStore(SubscribeEventRequest $req)
+    public function subscribeEventStore(SubscribeRequest $req)
     {
 
         //try{
             $param = $req->all();
-            $param['event'] = [$param['event'] => true];
+            //$param['event'] = [$param['event'] => true];
             //dd($param);
 
 
@@ -207,7 +207,7 @@ class EventsController extends Controller
         // } catch (\Exception $e) {
 
         //     $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
-        //     $log['description'] = $e->getMessage();
+        //     $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
         //     $insertLog = new LogActivity();
         //     $insertLog->insertLogActivity($log);
 

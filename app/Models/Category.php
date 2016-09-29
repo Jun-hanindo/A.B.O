@@ -117,14 +117,6 @@ class Category extends Model
             $data->delete();
             $data->events()->detach();
             return $data;
-            // $data->status = false;
-            // if($data->save()) {
-            //     $data->events()->detach();
-            //     return $data;
-            // } else {
-            //     return false;
-
-            // }
         } else {
             return false;
         }

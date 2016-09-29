@@ -22,7 +22,7 @@
             </div>
     </div>
 </section>
-@if(!empty($events))
+@if(!$events->isEmpty())
     <section class="newRelease">
         <div class="container">
             <div class="row append-events">
@@ -32,10 +32,10 @@
                             <img src="{{ file_url('events/'.$event->featured_image2, env('FILESYSTEM_DEFAULT')) }}">
                             <div class="boxInfo bg-{{ $event->background_color }}">
                                 <ul>
-                                    <li class="eventType">{{ strtoupper($event->cat_name) }}</li>
+                                    <li class="eventType">{{ $event->cat_name }}</li>
                                     <li class="eventName">{{ $event->title }}</li>
-                                    <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ $event->first_date }}</li>
-                                    <li class="eventPlace"><i class="fa fa-map-marker"></i>{{ $event->Venue->name }}</li>
+                                    <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ $event->date_at }}</li>
+                                    <li class="eventPlace"><i class="fa fa-map-marker"></i>{{ $event->venue->name }}</li>
                                     
                                 </ul>
                             </div>

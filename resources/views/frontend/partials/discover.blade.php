@@ -27,63 +27,38 @@
             <div id="carouselHacked" class="carousel slide carousel-fade" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
-                @php 
-                    $i = 0;
-                @endphp
                 @foreach($sliders as $key => $slider) 
-                    @php
-                       $cat = $slider->Event->Categories()->where('status', true)->first();
-                    @endphp 
-                    @if($slider->Event->avaibility && !empty($cat)) 
-                        <li data-target="#carousel-example-generic" data-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : ' '}}"></li>
-                        @php 
-                            $i++
-                        @endphp
-                    @endif
+                    <li data-target="#carousel-example-generic" data-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : ' '}}"></li>
                 @endforeach
             </ol>
 
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">  
-                    @php 
-                        $i = 0;
-                    @endphp 
-                    @foreach($sliders as $key => $slider)  
-                        @php
-                           $cat = $slider->Event->Categories()->where('status', true)->first();
-                        @endphp  
-                            @if($slider->Event->avaibility && !empty($cat))        
-                                <div class="item {{ $i == 0 ? 'active' : ' '}}">
-                                  <img src="{{ file_url('events/'.$slider->Event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" alt="...">
-                                  <div class="carousel-caption bg-{{ $slider->Event->background_color }}">
-                                    <div class="container">
-                                        <h5 class="categorySlide font-light">{{ (!empty($cat)) ? strtoupper($cat->name) : '&nbsp;' }}</h5>
-                                        <h2 class="titleSlide font-light">{{ $slider->Event->title }}</h2>
-                                        @php 
-                                            $schedule = $slider->Event->EventSchedule()->orderBy('date_at', 'asc')->first();
-                                        @endphp
-                                        <ul>
-                                            <li><div class="eventDate font-light">
-                                                @if(!empty($schedule))
-                                                    <i class="fa fa-calendar"></i>{{ date('d F Y', strtotime($schedule->date_at)) }}
-                                                @endif</div>
-                                            </li>
-                                            <li><div class="eventPlace font-light"><i class="fa fa-map-marker"></i>{{ $slider->Event->Venue->name }}</div></li>
-                                        </ul>
-                                        <div class="moreDetail">
-                                            <a href="{{ URL::route('event-detail', $slider->Event->slug) }}">
-                                                <button class="btn btnDetail">More Details</button>
-                                            </a>
-                                            
-                                        </div>
+                    @foreach($sliders as $key => $slider)
+                        <div class="item {{ $key == 0 ? 'active' : ' '}}">
+                            <img src="{{ file_url('events/'.$slider->event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-xs" alt="...">
+                            <img src="{{ file_url('events/'.$slider->event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                            <div class="carousel-caption bg-{{ $slider->event->background_color }}">
+                                <div class="container">
+                                    <h5 class="categorySlide">{{ strtoupper($slider->cat_name) }}</h5>
+                                    <h2 class="titleSlide font-light">{{ $slider->title }}</h2>
+                                    <ul>
+                                        <li><div class="eventDate">
+                                            @if(!empty($slider->schedule))
+                                                <i class="fa fa-calendar-o"></i>{{ full_text_date($slider->schedule->date_at) }}
+                                            @endif</div>
+                                        </li>
+                                        <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->venue->name }}</div></li>
+                                    </ul>
+                                    <div class="moreDetail">
+                                        <a href="{{ URL::route('event-detail', $slider->slug) }}">
+                                          <button class="btn btnDetail font-bold">{{ trans('general.more_details') }}</button>
+                                        </a>
                                     </div>
-                                  </div>
                                 </div>
-                            @php 
-                                $i++
-                            @endphp
-                        @endif
+                            </div>
+                        </div>
                     @endforeach
                 </div>
             
@@ -101,19 +76,19 @@
         </div>
     </section>
 @endif
-@if(!empty($events))
+@if(!$events->isEmpty())
     <section class="newRelease">
         <div class="container">
             <div class="row append-events">
                 @foreach($events as $key => $event) 
                     <a href="{{ URL::route('event-detail', $event->slug) }}">
                         <div class="col-md-4 box-release">
-                            <img src="{{ file_url('events/'.$event->featured_image2, env('FILESYSTEM_DEFAULT')) }}">
+                            <img src="{{ $event->featured_image2_url }}">
                             <div class="boxInfo bg-{{ $event->background_color }}">
                                 <ul>
-                                    <li class="eventType">{{ strtoupper($event->category) }}&nbsp;</li>
+                                    <li class="eventType">{{ $event->cat_name }}</li>
                                     <li class="eventName">{{ $event->title }}</li>
-                                    <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ $event->first_date }}</li>
+                                    <li class="eventDate"><i class="fa fa-calendar-o"></i> {{ $event->date_at }}</li>
                                     <li class="eventPlace"><i class="fa fa-map-marker"></i> {{ $event->venue->name }}</li>
                                 </ul>
                             </div>

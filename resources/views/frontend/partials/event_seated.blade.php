@@ -318,7 +318,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-3 col-1">
-                                                <input type="text" name="country_code" id="country_code" class="form-control" value="+62">
+                                                <input type="text" name="country_code" id="country_code" class="form-control" placeholder="+62">
                                             </div>
                                             <div class="col-xs-9 col-2">
                                                 <input type="text" class="form-control" name="contact_number" id="contact_number" placeholder="Mobile Number (Optional)">

@@ -82,7 +82,7 @@ class ActivityLogController extends BaseController
         } catch (\Exception $e) {
 
             $log['user_id'] = $this->currentUser->id;
-            $log['description'] = $e->getMessage();
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $saveData = $this->model->insertLogActivity($log);
 
             return response()->json([

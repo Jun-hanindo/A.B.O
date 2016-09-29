@@ -38,7 +38,6 @@ class HomeController extends Controller
             $result['sliders'] = $this->model->getHomepage('slider');
             $result['events'] = $this->model->getHomepage('event');
             $result['promotions'] = $this->model->getHomepage('promotion');
-            $result['currency_default'] = $this->setting['currency'];
 
             $trail = 'Homepage front end';
             $insertTrail = new Trail();
@@ -63,11 +62,11 @@ class HomeController extends Controller
 
         try{
             $result['sliders'] = $this->model->getHomepage('slider');
-            $result['src'] = url('uploads/events').'/';
+            //$result['src'] = url('uploads/events').'/';
             $modelCategory = new Category();
             $result['categories'] = $modelCategory->getCategory();
-            $modelEvent = new Event();
             $limit = 9;
+            $modelEvent = new Event();
             $result['events'] = $modelEvent->getEvent($limit);
             if($req->ajax()){      
                 $events = $result['events'];
@@ -498,19 +497,28 @@ class HomeController extends Controller
             $data['mail_password'] = $this->setting['mail_password'];
             $data['mail_name'] = $this->setting['mail_name'];
 
-            Mail::send('frontend.emails.subscribe_reply', $param, function ($message) use ($data, $param) {
-                $message->from($data['mail_username'], $data['mail_name'])
-                    ->to($param['email'], $param['first_name'].' '.$param['last_name'])->subject('Thanks for Your Subscription')
-                    ->replyTo($data['mail_username'], $data['mail_name']);
+            $modelSubscription = new Subscription();
+            $findSubscriber = $modelSubscription->findByEmail($param['email']);
+            if(!empty($findSubscriber)){
+                $subscribe = $modelSubscription->updateSubscription($param, $param['email']);
+                $text = 'update';
+            }else{
+                Mail::send('frontend.emails.subscribe_reply', $param, function ($message) use ($data, $param) {
+                    $message->from($data['mail_username'], $data['mail_name'])
+                        ->to($param['email'], $param['first_name'].' '.$param['last_name'])->subject('Thanks for Your Subscription')
+                        ->replyTo($data['mail_username'], $data['mail_name']);
 
-                $modelSubscription = new Subscription();
-                $subscribe = $modelSubscription->insertNewSubscription($param);
-            });
+                    $modelSubscription = new Subscription();
+                    $subscribe = $modelSubscription->insertNewSubscription($param);
+                });
+                $text = 'new';
+            }
 
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
-                'message' => trans('general.subscribe_success')
+                'message' => trans('general.subscribe_success'),
+                'data'  => $text,
             ],200);
         
         } catch (\Exception $e) {
@@ -631,6 +639,7 @@ class HomeController extends Controller
 
     public function bryamAdams()
     {
-        return view('frontend.partials.bryan_adams'); 
+        //return view('frontend.partials.bryan_adams'); 
+        return view('frontend.partials.event_bryan_adams'); 
     }
 }

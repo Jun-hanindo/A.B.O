@@ -6,6 +6,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\LengthAwarePaginator;
 use DB;
 use File;
 use Image;
@@ -56,6 +57,12 @@ class Event extends Model
     public function Categories()
     {
         return $this->belongsToMany('App\Models\Category', 'event_categories', 'event_id', 'category_id');
+
+    }
+
+    public function Subscriptions()
+    {
+        return $this->belongsToMany('App\Models\Subscription', 'subscription_events', 'event_id', 'subscription_id');
 
     }
 
@@ -416,52 +423,79 @@ class Event extends Model
         }
     }
 
+    // public function getEvent($limit)
+    // {
+    //     $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
+    //         'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color', 
+    //         DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',')  as category"))
+    //         ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
+    //         ->join('categories', 'event_categories.category_id', '=', 'categories.id')
+    //         ->where('categories.status', true)
+    //         ->where('events.avaibility','=',true)
+    //         ->groupBy('events.id')
+    //         ->orderBy('events.created_at', 'desc')
+    //         ->paginate($limit);
+
+    //     if(!empty($events)) {
+    //         foreach ($events as $key => $event) {
+
+    //             $event->title = string_limit($event->title);
+    //             $cats = explode(',', $event->category);
+    //             $event->cat_name = strtoupper($cats[0]);
+
+    //             $this->setImageUrl($event);
+
+    //             $event->venue = $event->Venue;
+                
+    //             $event->schedule = $event->EventSchedule()->orderBy('date_at', 'asc')->first();
+    //                 if(!empty($event->schedule)){
+    //                     $event->date_at = full_text_date($event->schedule->date_at);
+    //                 }
+    //         }
+    //         return $events;
+    //     }else{
+    //         return false;
+    //     }
+    // }
+
     public function getEvent($limit)
     {
-        // $events = Event::where('avaibility', true)
-        //     ->orderBy('created_at', 'desc')
-        //     ->paginate($limit);
-         $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
-            'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color', 
-            DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',')  as category"))
-            ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
-            ->join('categories', 'event_categories.category_id', '=', 'categories.id')
-            ->where('categories.status', true)
-            ->where('events.avaibility','=',true)
-            ->groupBy('events.id')
-            ->orderBy('events.created_at', 'desc')
-            ->paginate($limit);
-
-        if(count($events) > 0){
+        $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
+            'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color')
+            ->where('avaibility', true)
+            ->orderBy('created_at', 'desc')
+            //->paginate($limit);
+            ->get();
+        if(!empty($events)) {
+            $array = [];
             foreach ($events as $key => $event) {
-
                 $event->title = string_limit($event->title);
+                $event->cat = $event->Categories()->where('status', true)->orderBy('name', 'asc')->first();
+                if(!empty($event->cat)){
+                    $event->cat_name = strtoupper($event->cat->name);
+                    $this->setImageUrl($event);
+                    $event->schedule = $event->EventSchedule()->orderBy('date_at', 'asc')->first();
+                    if(!empty($event->schedule)){
+                        $event->date_at = full_text_date($event->schedule->date_at);
+                    }
 
-                // $cat = $event->Categories->where('status', true)->first();
-                // if(!empty($cat)){
-                //     $event->cat_name = $cat['name'];
-                // }else{
-                //     $event->cat_name = '';
-                // }
-                $cats = explode(',', $event->category);
-                $event->category = $cats[0];
-
-                $this->setImageUrl($event);
-
-                $event->venue = $event->Venue;
-                
-                $schedule = $event->EventSchedule()->orderBy('date_at', 'asc')->first();
-                if(!empty($schedule)){
-                    $event->first_date = date('d F Y', strtotime($schedule->date_at));
-                }else{
-                    $event->first_date = '';
-                }
+                    $event->venue = $event->Venue;
+                    
+                    $array[] = $event;
+                } 
             }
+            $col = collect($array);
+            $currentPage = LengthAwarePaginator::resolveCurrentPage();
+            $currentPageSearchResults = $col->slice(($currentPage - 1) * $limit, $limit)->all();
+            $events = new LengthAwarePaginator($currentPageSearchResults, count($col), $limit);
+            $events = $events->setPath(route('discover'));
+            //dd($events);
             return $events;
         }else{
             return false;
         }
     }
+
 
     public function getEventByCategory($category, $limit)
     {
@@ -477,24 +511,25 @@ class Event extends Model
             ->orderBy('events.created_at', 'desc')
             ->paginate($limit);
 
-        if(count($events) > 0)
+        //dd($events);
+
+        if(!empty($events))
         {
             foreach ($events as $key => $event) {
-                $cat = Category::where('id', $category)->where('status', true)->first();
-                $event->cat_name = $cat->name;
-
                 $event->title = string_limit($event->title);
-
+                $event->cat = Category::where('id', $category)->where('status', true)->first();
+                //if(!empty($event->cat)){
+                    $event->cat_name = strtoupper($event->cat->name);
+                //}
                 $this->setImageUrl($event);
+                $event->schedule = $event->EventSchedule()->orderBy('date_at', 'asc')->first();
+                if(!empty($event->schedule)){
+                    $event->date_at = full_text_date($event->schedule->date_at);
+                }
 
                 $event->venue = $event->Venue;
-
-                $schedule = $event->EventSchedule()->orderBy('date_at', 'asc')->first();
-                if(!empty($schedule)){
-                    $event->first_date = date('d F Y', strtotime($schedule->date_at));
-                }else{
-                    $event->first_date = '';
-                }
+                
+                //$array[] = $event;
                 
             }
             return $events;

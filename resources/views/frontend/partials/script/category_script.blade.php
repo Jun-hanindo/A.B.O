@@ -2,21 +2,20 @@
 
 <script type="text/javascript">
         $(document).ready(function(){
+            var page_content = 1;
 
             $(".btnLoad").on('click', function(){
+                page_content += 1;
                 var slug = $(this).attr('data-slug');
-                loadCategory(slug);
+                loadCategory(page_content, slug);
             });
 
         });
-        
-        var page_content = 1;
 
-        function loadCategory(slug)
+        function loadCategory(page_content, slug)
         {
             var uri = "{{ URL::route('category-detail', "::param") }}";
-                uri = uri.replace('::param', slug);
-            page_content += 1;
+            uri = uri.replace('::param', slug);
             $.ajax({
                 url: uri,
                 type: "GET",
@@ -37,12 +36,12 @@
                             '<a href="'+uri2+'">'
                                 +'<div class="col-md-4 box-release">'
                                     +'<img src="'+val.featured_image2_url+'">'
-                                    +'<div class="boxInfo info1">'
+                                    +'<div class="boxInfo info1 bg-'+val.background_color+' ">'
                                         +'<ul>'
                                             +'<li class="eventType">'+val.cat_name+'</li>'
                                             +'<li class="eventName">'+val.title+'</li>'
-                                            +'<li class="eventDate"><i class="fa fa-calendar-o"></i> '+val.first_date+'</li>'
-                                            +'<li class="eventPlace">'+val.venue.name+'</li>'
+                                            +'<li class="eventDate"><i class="fa fa-calendar-o"></i>'+val.date_at+'</li>'
+                                            +'<li class="eventPlace"><i class="fa fa-map-marker"></i>'+val.venue.name+'</li>'
                                         +'</ul>'
                                     +'</div>'
                                 +'</div>'

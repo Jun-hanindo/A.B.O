@@ -135,7 +135,7 @@ class ProfileController extends Controller
             flash()->error(trans('general.update_error'));
 
             $log['user_id'] = $this->currentUser->id;
-            $log['description'] = $e->getMessage();
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -180,7 +180,7 @@ class ProfileController extends Controller
             flash()->error(trans('general.update_error'));
 
             $log['user_id'] = $this->currentUser->id;
-            $log['description'] = $e->getMessage();
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
