@@ -2,7 +2,7 @@
 
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
-    Route::get('index', array('as' => 'index', 'uses' => 'HomeController@home'));
+    //Route::get('index', array('as' => 'index', 'uses' => 'HomeController@home'));
     Route::get('bryan-adams', array('as' => 'bryan-adams', 'uses' => 'HomeController@bryanAdams'));
     Route::get('discover', array('as' => 'discover', 'uses' => 'HomeController@discover'));
     Route::get('event', array('as' => 'event', 'uses' => 'HomeController@event'));

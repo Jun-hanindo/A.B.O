@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Backend\Admin;
 
 use App\Models\Trail;
+use App\Models\Event;
+use App\Models\Promotion;
+use App\Models\Career;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
@@ -27,6 +31,14 @@ class DashboardController extends Controller
         $trail = 'Dashboard';
         $insertTrail = new Trail();
         $insertTrail->insertTrail($trail);
-        return view('backend.admin.dashboard.dashboard');
+
+
+        $eventModel = new Event();
+        $data['events'] = $eventModel->countEvents();
+        $userModel = new User();
+        $data['users'] = $userModel->countUsers();
+        //dd($data['events']);
+
+        return view('backend.admin.dashboard.dashboard', $data);
     }
 }
