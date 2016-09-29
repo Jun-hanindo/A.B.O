@@ -31,7 +31,7 @@ class HomeController extends Controller
         parent::__construct($model);
     }
 
-    public function index()
+    public function landing()
     {
 
         return view('frontend.partials.event_bryan_adams'); 
@@ -43,7 +43,7 @@ class HomeController extends Controller
         return view('frontend.partials.event_bryan_adams'); 
     }
 
-    public function home()
+    public function index()
     {
 
         try{
