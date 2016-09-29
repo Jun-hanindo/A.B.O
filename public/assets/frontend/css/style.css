@@ -3775,6 +3775,11 @@ ul#getvenue li:before {
 .car-route li {
   padding: 5px;
 }
+.car-route{
+  list-style-type: disc !important;
+  padding-left: 25px !important;
+  margin-bottom: 10px;
+}
 
 
 
