@@ -55,7 +55,7 @@ class HomeController extends Controller
         //     //return view('errors.404');
         
         // }
-        return $this->bryanAdams();
+        return view('frontend.partials.event_bryan_adams'); 
     }
 
     public function home()
