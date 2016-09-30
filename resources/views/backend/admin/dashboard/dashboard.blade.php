@@ -13,6 +13,65 @@
 
 @section('content')
 <section class="content">
+    <!-- Info boxes -->
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-calendar-check-o"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">EVENTS</span>
+                    <span class="info-box-number">{{ $events }}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                    <span class="info-box-icon bg-red"><i class="fa fa-tags"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">PROMOTIONS</span>
+                    <span class="info-box-number">{{ $promotions }}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">USERS</span>
+                    <span class="info-box-number">{{ $users }}</span>
+                </div>
+            <!-- /.info-box-content -->
+            </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-envelope-o"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">SUBSCRIBERS</span>
+                    <span class="info-box-number">{{ $subscribers }}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+    </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="box">
@@ -211,7 +270,7 @@
                         <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Inventory</span>
+                            <span class="info-box-text">Events</span>
                             <span class="info-box-number">5,200</span>
 
                             <div class="progress">
@@ -228,7 +287,7 @@
                         <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Mentions</span>
+                            <span class="info-box-text">Promotions</span>
                             <span class="info-box-number">92,050</span>
 
                             <div class="progress">
@@ -245,7 +304,7 @@
                         <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Downloads</span>
+                            <span class="info-box-text">Users</span>
                             <span class="info-box-number">114,381</span>
 
                             <div class="progress">

@@ -145,4 +145,8 @@ class Subscription extends Model
             return false;
         }
     }
+
+    public function countSubscribers(){
+        return Subscription::count();
+    }
 }

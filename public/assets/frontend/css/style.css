@@ -3262,7 +3262,7 @@ ul#getvenue li:before {
 }
 
 .eventTabScroll-mobile .nav-tabs>li>a:hover {
-    border: none;
+    border: 1px solid transparent;
 }
 
 .mobile-header .mobile-collapse-header-top.open i:before{
@@ -3770,15 +3770,26 @@ ul#getvenue li:before {
 
 .additional-info{
   padding-left: 20px;
+  width: 85%;
 }
 
 .car-route li {
   padding: 5px;
 }
-.car-route{
-  list-style-type: disc !important;
-  padding-left: 25px !important;
-  margin-bottom: 10px;
+
+.box-mobile-faq{
+  width: 70%;
+  margin: 0 auto;
+  left: 15%;
+}
+
+.mapEvent iframe{
+   pointer-events: none;
+}
+
+#footer3 p a{
+  color: #fff;
+  text-decoration: underline;
 }
 
 

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use DB;
 use File;
 use Image;
+use App\Models\Event;
 
 class Promotion extends Model
 {
@@ -247,5 +248,14 @@ class Promotion extends Model
             return false;
 
         }
+    }
+
+    public function countPromotions(){
+        $data = Promotion::join('event_promotions', 'event_promotions.promotion_id', '=', 'promotions.id')
+        ->join('events', 'event_promotions.event_id', '=', 'events.id')
+        ->where('events.avaibility', true)
+        ->where('promotions.avaibility', true)
+        ->whereNull('events.deleted_at')->count();
+        return $data;
     }
 }

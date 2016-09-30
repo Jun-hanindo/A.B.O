@@ -8,17 +8,17 @@
         <img src="{{ asset('assets/frontend/images/bryan-adams-mobile.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
     </div>
     <div class="infoBanner bg-red" id="eventTabShow">
-            <div class="container">
-                    <div class="detail">
-                            <h5>CONCERTS</h5>
-                            <h2 class="font-light">Bryan Adams “Get Up Tour”</h2>
-                    </div>
-                    <div class="moreDetail">
-                            <a href="https://asiaboxoffice.nliven.co/tickets/series/BRYANADAMSGETUP/" target="_blank">
-                                <button class="btn btnDetail font-bold">Buy Now</button>
-                            </a>
-                    </div>
+        <div class="container">
+            <div class="detail">
+                <h5>CONCERTS</h5>
+                <h2 class="font-light">Bryan Adams “Get Up Tour”</h2>
             </div>
+            <div class="moreDetail">
+                {{-- <a href="https://asiaboxoffice.nliven.co/tickets/series/BRYANADAMSGETUP/" target="_blank">
+                    <button class="btn btnDetail font-bold">Buy Now</button>
+                </a> --}}
+            </div>
+         </div>
     </div>
 </section>
 <div class="eventTabScroll bg-red">
@@ -30,7 +30,7 @@
                     <li><a href="#ticket" class="smoothScroll active">About This Event</a></li>
                     <li><a href="#aboutBox" class="smoothScroll">Venue Info</a></li>
                     <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
-                    <li><a href="https://asiaboxoffice.nliven.co/tickets/series/BRYANADAMSGETUP/" target="_blank"><button class="btn btnBuy btnABO font-bold">Buy Now</button></a></li>
+                    {{-- <li><a href="https://asiaboxoffice.nliven.co/tickets/series/BRYANADAMSGETUP/" target="_blank"><button class="btn btnBuy btnABO font-bold">Buy Now</button></a></li> --}}
                 </ul>
             </div>
         </div>
@@ -40,15 +40,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                    <ul class="nav nav-tabs nav-justified" role="tablist">
-                        <li><a href="#eventBanner" class="smoothScroll backtop"></a></li>
-                        <li><a href="#ticket" class="smoothScroll active">About</a></li>
-                        <li><a href="#aboutBox" class="smoothScroll">Venue</a></li>
-                        <li><a href="#getvenue" class="smoothScroll">Admission</a></li>
-                        <li><a href="https://asiaboxoffice.nliven.co/tickets/series/BRYANADAMSGETUP/"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li>
-                    </ul>
-                </div>
+                <ul class="nav nav-tabs nav-justified" role="tablist">
+                    <li><a href="#eventBanner" class="smoothScroll backtop"></a></li>
+                    <li><a href="#ticket" class="smoothScroll active">About</a></li>
+                    <li><a href="#aboutBox" class="smoothScroll">Venue</a></li>
+                    <li><a href="#getvenue" class="smoothScroll">Admission</a></li>
+                    {{-- <li><a href="https://asiaboxoffice.nliven.co/tickets/series/BRYANADAMSGETUP/"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li> --}}
+                </ul>
             </div>
+        </div>
     </div>
 </div>
 <section class="eventInfo">
@@ -59,11 +59,11 @@
                     <i class="fa fa-calendar-o"></i> 20 January 2017
                 </div>
                 <div class="information-event">
-                    <p>Friday, 8.00PM</p>
-                    <ul>
-                        <li>Duration: Approx. 2 Hours</li>
-                        <li>Doors Open Time: 6.30PM</li>
-                    </ul>
+                  <p>Friday, 8.00PM</p>
+                  <ul>
+                    <li>Duration: Approx. 2 Hours</li>
+                    <li>Doors Open Time: 6.30PM</li>
+                  </ul>
                 </div>
             </div>
             <div class="col-md-4 place">
@@ -130,27 +130,27 @@
                             </tr>
                         </table>
                     </li>
-                    <p class="additional-info">* Restricted view</p>
+                    <p class="additional-info">* Restricted view (Price inclusive on S$3 booking fee per ticket)</p>
                     <li class="liParent parentButton">
-                        <button class="btn btnBlackDefault font-bold" data-target="#modalSeatMap" data-toggle="modal">See Seat Map</button>
-                        <!-- <button class="btn btnticket bg-white font-bold">More Ticket Info</button> -->
+                      <button class="btn btnBlackDefault font-bold" data-target="#modalSeatMap" data-toggle="modal">See Seat Map</button>
+                      <!-- <button class="btn btnticket bg-white font-bold">More Ticket Info</button> -->
                     </li>
                 </ul>
             </div>
             <div class="col-md-12 tabEvent">
                 <div class="eventTab">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li><a href="#eventTabShow" class="smoothScroll active">About This Event</a></li>
-                        <li><a href="#aboutBox" class="smoothScroll">Venue Info</a></li>
-                        <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
-                    </ul>
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li><a href="#eventTabShow" class="smoothScroll active">About This Event</a></li>
+                    <li><a href="#aboutBox" class="smoothScroll">Venue Info</a></li>
+                    <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
+                  </ul>
                 </div>
             </div>
             <div class="eventTab-mobile">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
-                    <li><a href="#ticket" class="smoothScroll active">About</a></li>
-                    <li><a href="#aboutBox" class="smoothScroll">Venue</a></li>
-                    <li><a href="#getvenue" class="smoothScroll">Admission</a></li>
+                  <li><a href="#ticket" class="smoothScroll active">About</a></li>
+                  <li><a href="#aboutBox" class="smoothScroll">Venue</a></li>
+                  <li><a href="#getvenue" class="smoothScroll">Admission</a></li>
                 </ul>
             </div>
         </div>
@@ -174,9 +174,14 @@
                                                 <div class="">
                                                     <section id="about" class="sectionEvent">
                                                         <h3 class="font-bold">Bryan Adams “Get Up Tour”</h3>
-                                                        <p>Selling over 100 million records and singles worldwide and armed with numerous awards and nominations under his belt, the rock prodigy is ready to bring his Get Up Tour to Singapore. Besides his repertoire of famous hits, the concert will also feature tunes from his thirteenth studio album Get Up, made up of up-tempo tracks such as Brand New Day, You Belong To Me and Thunderbolt, to the gentler songs such as Don’t Even Try and We Did It All.</p>
-                                                        <p>With his unique ability to fuse rock anthems and power ballads, audience can expect a pure night of entertainment and a good time.</p>
-                                                        <p>This one night only performance marks his return to Singapore in 23 years, this is a show you definitely do not want to miss. Get your tickets today!</p>
+                                                        <p>Renowned Canadian rock star Bryan Adams will be performing at the Suntec Convention Centre on Friday, 20th January 2017.
+                                                          The Grammy Award winner is one of the world's best-selling artists of all time, with almost 40 years in show business. The singer, songwriter and photographer has sold over 100 million records and singles worldwide with classic hits such as “Everything I Do, I Do It For You”,“Summer Of 69”,“Heaven”,“All For Love”,“Have You Really Loved A Woman”,“Cuts Like A Knife” and “Run To You”.
+                                                        </p>
+                                                        <p>The rock legend is ready to bring his Get Up Tour to Singapore. Besides his repertoire of famous hits, the concert will also feature tunes from his thirteenth studio album Get Up, made up of up-tempo tracks such as “Brand New Day”, “You Belong To Me”, “Thunderbolt”, to the gentler songs such as “Don’t Even Try” and “We Did It All”.
+                                                        </p>
+                                                        <p>With his unique ability to fuse rock anthems and power ballads, audience can expect a pure night of entertainment and a good time.
+                                                          This one night only performance marks his return to Singapore in 23 years, this is a show you definitely do not want to miss. Get your tickets today!
+                                                        </p>
                                                     </section>
                                                 </div>
                                             </div>
@@ -198,7 +203,7 @@
                                                         <p>1 Raffles Boulevard <br>Suntec City <br>Singapore 039593</p>
 
                                                         <div class="mapEvent">
-                                                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15955.205477837979!2d103.857193!3d1.2936604!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd63e8cb2dacf54c7!2sSuntec+Singapore+Convention+%26+Exhibition+Centre!5e0!3m2!1sen!2sid!4v1475148964605" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15955.205477837979!2d103.857193!3d1.2936604!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd63e8cb2dacf54c7!2sSuntec+Singapore+Convention+%26+Exhibition+Centre!5e0!3m2!1sen!2sid!4v1475148964605" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen ></iframe>
                                                         </div>
 
                                                         <h3 class="font-bold">Getting to the Venue</h3>
@@ -308,9 +313,9 @@
                                     </li>
                                     <li>
                                         <span class="seat-dot dot-green"></span>
-                                     <span class="box-line">
-                                            <span class="category">Category 4</span>
-                                            <span class="price">S$141</span>
+                                        <span class="box-line">
+                                              <span class="category">Category 4</span>
+                                              <span class="price">S$141</span>
                                         </span>
                                     </li>
                                     <li>
@@ -328,7 +333,7 @@
                                         </span>
                                     </li>
                                 </ul>
-                                <p>* Restricted view</p>
+                                <p>* Restricted view (Price inclusive on S$3 booking fee per ticket)</p>
                             </div>
                         </div>
                     </div>

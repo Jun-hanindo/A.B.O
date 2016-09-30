@@ -374,6 +374,10 @@
   .slider-home .carousel-caption{
     min-height: 210px;
   } 
+  .mobile-logo img,
+  .logo-footer img{
+    width: 87px;
+  }
   .carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next, .carousel-control .icon-prev{
     top: 42%;
   }
@@ -763,6 +767,11 @@
   .eventBanner .btnPlayEvent{
     top: 18%;
     left: 43%;
+  }
+  .box-mobile-faq{
+    width: 80%;
+    margin: 0 auto;
+    left: 10%;
   }
   .eventBanner .btnPlayEvent a{
     font-size: 60px;

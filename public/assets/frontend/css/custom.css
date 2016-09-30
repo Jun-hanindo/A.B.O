@@ -17,3 +17,7 @@
 .car-route li {
  	padding: 5px;
 }
+
+.mapEvent iframe{
+    pointer-events: none;
+}

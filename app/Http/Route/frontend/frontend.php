@@ -13,6 +13,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'HomeController@contactUs'));
     Route::get('about-us', array('as' => 'our-company', 'uses' => 'HomeController@ourCompany'));
     Route::get('faq', array('as' => 'support-faq', 'uses' => 'HomeController@supportFaq'));
+    Route::get('faq/{category}', array('as' => 'support-faq-category', 'uses' => 'HomeController@supportFaqCategory'));
     Route::get('ways-to-buy-tickets', array('as' => 'support-way-to-buy-tickets', 'uses' => 'HomeController@supportWaysToBuyTickets'));
     Route::get('terms-and-conditions', array('as' => 'support-terms-and-conditions', 'uses' => 'HomeController@supportTermsAndConditions'));
     Route::get('privacy-policy', array('as' => 'support-privacy-policy', 'uses' => 'HomeController@supportPrivacyPolicy'));

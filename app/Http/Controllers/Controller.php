@@ -41,6 +41,7 @@ class Controller extends BaseController
             $setting[$value->name] = $value->value;
         }
 
+
         $this->setting = $setting;
         //$lang = env('APP_LANG');
         //\Session::forget('locale');
@@ -58,6 +59,8 @@ class Controller extends BaseController
 
         $lang = \Session::get('locale');
         \App::setLocale($lang);
+        $setting['language_long'] = \Config::get('app.locales')[$lang];
+        //dd($setting['language_long']);
 
         \View::share ('user_login',$currentUserLogin);
         \View::share ('setting',$setting);

@@ -357,11 +357,41 @@ class HomeController extends Controller
                 $data['content'] = $this->string_replace($this->pageContent('faq'));
             }
 
-            $trail = 'Contact Us front end';
+            $trail = 'FAQ front end';
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
             
             return view('frontend.partials.support_faq', $data);
+        
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return view('errors.404');
+        
+        }
+    }
+
+    public function supportFaqCategory($category)
+    {
+        try{
+
+            $trail = 'FAQ front end';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+
+            if($category == 'top'){
+                return view('frontend.partials.support_faq_top');
+            }elseif ($category == 'general') {
+                return view('frontend.partials.support_faq_general');
+            }elseif ($category == 'payment') {
+                 return view('frontend.partials.support_faq_payment');
+            }elseif ($category == 'seat') {
+                 return view('frontend.partials.support_faq_seat');
+            }
         
         } catch (\Exception $e) {
 

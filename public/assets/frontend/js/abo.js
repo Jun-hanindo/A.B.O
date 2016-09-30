@@ -1,25 +1,33 @@
 // Header Responsive
    $(document).ready(function(){
-      $('.mobile-collapse-header').click(function() {
-        if ($(window).width() < 960){
-          $(this).next('ul').slideToggle();
-          $(this).next('.mobileApp').slideToggle();
-          $(this).next('.facebookLike').slideToggle();
-          return false;
-        }
-      });
+        $('.mapEvent').click(function () {
+            $('.mapEvent iframe').css("pointer-events", "auto");
+        });
+        
+        $( ".mapEvent" ).mouseleave(function() {
+          $('.mapEvent iframe').css("pointer-events", "none"); 
+        });
 
-      $(window).resize(function(){
-        if ($(this).width() < 960){
-          $('.mobile-collapse-header').next('ul').hide();
-        }else{
-          $('.mobile-collapse-header').next('ul').show();
-        }
-      })
+        $('.mobile-collapse-header').click(function() {
+            if ($(window).width() < 960){
+                $(this).next('ul').slideToggle();
+                $(this).next('.mobileApp').slideToggle();
+                $(this).next('.facebookLike').slideToggle();
+                return false;
+            }
+        });
 
-      $('.mobile-collapse-header-top').click(function(){
-        $('.mobile-collapse-body-top').slideToggle();
-      })
+        $(window).resize(function(){
+            if ($(this).width() < 960){
+                $('.mobile-collapse-header').next('ul').hide();
+            }else{
+                $('.mobile-collapse-header').next('ul').show();
+            }
+        })
+
+        $('.mobile-collapse-header-top').click(function(){
+            $('.mobile-collapse-body-top').slideToggle();
+        })
 
       $('.mobile-flag').click(function(){
       $(this).toggleClass('shown');
@@ -69,6 +77,7 @@
 
       $('.mobile-search').click(function(){$('.mobile-search-show').addClass('open')})
       $('.back-menu-search').click(function(){$('.mobile-search-show').removeClass('open')})
+
     })
    $(document).scroll(function() {
         var y = $(this).scrollTop();

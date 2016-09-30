@@ -138,9 +138,9 @@
                                 <img src="{{ asset('assets/frontend/images/footer-logo.svg') }}">
                             </div>
                             <div class="col-md-10">
-                                <p>Asia Box Office serves to provide event-goers with an enjoyable one-stop platform in search of tickets to Live Entertainment ranging from Music, Theatre, Sports and other Event Genres.<br>
-                                <br>
-                                Copyright 2016. © Asia Box Office Pte Ltd. All rights reserved. All trademarks, pictures and brands are the property of their respective owners. Use of this Web site constitutes acceptance of the Asia Box Office’s Conditions of Access and Privacy Policy.</p>
+                                <p>
+                                © 2016 Asia Box Office Pte Ltd. All rights reserved. All trademarks, pictures and brands are property of their respective owners. Use of this Website constitutes acceptance of our <a href="#">Conditions of Access</a> and <a href="#">Privacy Policy</a>. For more information or enquiries, please contact us at connect@asiaboxoffice.com. 
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -177,7 +177,7 @@
         });
         $(document).scroll(function() {
             var y = $(this).scrollTop();
-            if (y > 1200) {
+            if (y > 1100) {
                 $('.eventTabScroll-mobile').fadeIn();
             } else {
                 $('.eventTabScroll-mobile').fadeOut();
