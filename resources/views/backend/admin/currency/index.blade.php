@@ -33,8 +33,9 @@
                 <thead>
                     <tr>
                         <th class="center-align">{{ trans('general.title') }}</th>
-                        <th class="center-align">{{ trans('general.code') }}</th>
-                        <th class="center-align">{{ trans('general.symbol') }}</th>
+                        <th class="center-align" width="16%">{{ trans('general.code') }}</th>
+                        <th class="center-align" width="16%">{{ trans('general.symbol_left') }}</th>
+                        <th class="center-align" width="16%">{{ trans('general.symbol_right') }}</th>
                         <th width="12%">{{ trans('general.action') }}</th>
                     </tr>
                 </thead>

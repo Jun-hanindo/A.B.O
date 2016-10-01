@@ -14,7 +14,7 @@
                     url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
                     type: "POST",
                     dataType: 'json',
-                    data: "message= Venue "+message,
+                    data: "message= Career "+message,
                     success: function (data) {
                         data.message;
                     },
@@ -33,9 +33,8 @@
                 columns: [
                     // {data: 'id', name: 'id', searchable: false, orderable: false},
                     {data: 'job', name: 'job'},
-                    {data: 'department_id', name: 'department_id'},
+                    {data: 'name', name: 'name'},
                     {data: 'type', name: 'type'},
-                    {data: 'salary', name: 'salary'},
                     {data: 'avaibility', name: 'avaibility', searchable: false, orderable: false}
                 ],
                 "fnDrawCallback": function() {

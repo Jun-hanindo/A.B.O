@@ -47,14 +47,6 @@ class CurrenciesController extends BaseController
                     return '<a href="javascript:void(0)" data-id="'.$currency->id.'" data-name="'.$currency->title.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
                         &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$currency->id.'" data-name="'.$currency->title.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
                 })
-                ->addColumn('symbol', function ($currency) {
-                    if(!empty($currency->symbol_left)){
-                        $symbol = $currency->symbol_left;
-                    }else{
-                        $symbol = $currency->symbol_right;
-                    }
-                    return $symbol;
-                })
                 ->make(true);
     }
 

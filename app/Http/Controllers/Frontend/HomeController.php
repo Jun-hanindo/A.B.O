@@ -43,6 +43,24 @@ class HomeController extends Controller
         return view('frontend.partials.event_bryan_adams'); 
     }
 
+    public function jessicaJungSingapore()
+    {
+
+        return view('frontend.partials.event_jessica_jung_singapore'); 
+    }
+
+    public function jessicaJungHochiminh()
+    {
+
+        return view('frontend.partials.event_jessica_jung_hochiminh'); 
+    }
+
+    public function jessicaJungManila()
+    {
+
+        return view('frontend.partials.event_jessica_jung_manila'); 
+    }
+
     public function index()
     {
 

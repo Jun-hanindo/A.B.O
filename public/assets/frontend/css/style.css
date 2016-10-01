@@ -3792,6 +3792,10 @@ ul#getvenue li:before {
   text-decoration: underline;
 }
 
+.header-support li:first-child{
+  padding-right: 0;
+}
+
 
 
 

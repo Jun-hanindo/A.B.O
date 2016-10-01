@@ -39,6 +39,13 @@
                                     </ul>
                                 </nav>
                             </div>
+                            <div class="pull-right right-header header-support">
+                                <ul>
+                                    <li><a href="{{URL::route('support')}}">Support</a></li>
+                                    <li>/</li>
+                                    <li><a href="{{URL::route('subscribe')}}">Subscribe</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div id="mobile-header">
@@ -79,10 +86,10 @@
                                         </ul>
                                     </nav>
                                 </div>
-                                <div class="pull-right right-header">
+                                <div class="pull-right right-header header-support">
                                     <ul>
                                         <li><a href="{{URL::route('support')}}">Support</a></li>
-                                        <!-- <li>/</li> -->
+                                        <li>/</li>
                                         <li><a href="{{URL::route('subscribe')}}">Subscribe</a></li>
                                     </ul>
                                 </div> 
@@ -139,7 +146,7 @@
                             </div>
                             <div class="col-md-10">
                                 <p>
-                                © 2016 Asia Box Office Pte Ltd. All rights reserved. All trademarks, pictures and brands are property of their respective owners. Use of this Website constitutes acceptance of our <a href="#">Conditions of Access</a> and <a href="#">Privacy Policy</a>. For more information or enquiries, please contact us at connect@asiaboxoffice.com. 
+                                © 2016 Asia Box Office Pte Ltd. All rights reserved. All trademarks, pictures and brands are property of their respective owners. Use of this Website constitutes acceptance of our <a href="{{URL::route('support-terms-and-conditions')}}">Conditions of Access</a> and <a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a>. For more information or enquiries, please contact us at connect@asiaboxoffice.com. 
                                 </p>
                             </div>
                         </div>

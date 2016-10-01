@@ -167,7 +167,7 @@
             },
             columns: [
                 {data: 'sort_order', name: 'sort_order', class: 'center-align', searchable: false, orderable: false},
-                {data: 'event', name: 'event'},
+                {data: 'title', name: 'title'},
                 // {data: 'category', name: 'category'},
                 {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false}
             ]
@@ -205,7 +205,7 @@
             },
             columns: [
                 {data: 'sort_order', name: 'sort_order', class: 'center-align', searchable: false, orderable: false},
-                {data: 'event', name: 'event'},
+                {data: 'title', name: 'title'},
                 // {data: 'category', name: 'category'},
                 {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false}
             ]
@@ -243,7 +243,7 @@
             },
             columns: [
                 {data: 'sort_order', name: 'sort_order', class: 'center-align', searchable: false, orderable: false},
-                {data: 'event', name: 'event'},
+                {data: 'title', name: 'title'},
                 // {data: 'category', name: 'category'},
                 {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false}
             ]

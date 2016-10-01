@@ -50,14 +50,6 @@ class CareersController extends BaseController
                 return $career->job.'</br><a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit">Edit</a>&nbsp;
                     <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$career->id.'" data-button="delete">Delete</a>';
             })
-            ->editColumn('department_id', function ($career){
-                $department = $career->department->name;
-                return $department;
-            })
-            ->editColumn('salary', function ($career){
-                $salary = '$'.$career->salary;
-                return $salary;
-            })
             ->editColumn('avaibility', function ($career) {
                 if($career->avaibility == TRUE){
                     $checked = 'checked';

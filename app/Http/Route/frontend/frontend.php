@@ -3,8 +3,6 @@
 Route::group(['namespace' => 'Frontend'], function () {
     // Route::get('/', array('as' => 'landing', 'uses' => 'HomeController@landing'));
     // Route::get('index', array('as' => 'home', 'uses' => 'HomeController@index'));
-    Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
-    Route::get('bryan-adams', array('as' => 'bryan-adams', 'uses' => 'HomeController@bryanAdams'));
     Route::get('discover', array('as' => 'discover', 'uses' => 'HomeController@discover'));
     Route::get('event', array('as' => 'event', 'uses' => 'HomeController@event'));
     Route::get('promotion', array('as' => 'promotion', 'uses' => 'HomeController@promotion'));
@@ -34,4 +32,13 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('send-message', array('as' => 'send-message', 'uses' => 'HomeController@sendMessage'));
     Route::post('send-feedback', array('as' => 'send-feedback', 'uses' => 'HomeController@feedBack'));
     Route::get('language', array('as' => 'language', 'uses' => 'LanguagesController@setLanguage'));
+
+    Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
+    Route::get('bryan-adams', array('as' => 'bryan-adams', 'uses' => 'HomeController@bryanAdams'));
+    Route::get('jessica-jung-singapore', array('as' => 'jessica-jung-singapore', 'uses' => 'HomeController@jessicaJungSingapore'));
+    Route::get('jessica-jung-hochiminh', array('as' => 'jessica-jung-hochiminh', 'uses' => 'HomeController@jessicaJungHochiminh'));
+    Route::get('jessica-jung-manila', array('as' => 'jessica-jung-manila', 'uses' => 'HomeController@jessicaJungManila'));
+    // Route::get('bryan-adams', array('as' => 'bryan-adams', 'uses' => 'HomeController@bryamAdams'));
+    // Route::get('/', array('as' => 'home', 'uses' => 'HomeController@landing'));
+    // Route::get('index', array('as' => 'index', 'uses' => 'HomeController@index'));
 });

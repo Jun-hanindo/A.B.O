@@ -35,10 +35,27 @@
             <div class="main-content">
                 <div class="support-desc">
                     <div class="row">
-                        <h3 class="head-about">{{ trans('general.contact_us') }}</h3>
+                        <h3 class="head-about font-light">{{ trans('general.contact_us') }}</h3>
                         <div class="col-md-12">
                             <div class="row">
-                                {!! strstr($content, $tag, true) !!}
+                                <div class="col-md-4">
+                                    <div class="hotline">
+                                        <div class="iconWays">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <h4 class="headWays font-light">Hotline</h4>
+                                        <h5>Talk to a customer service officers.</h5>
+                                        <br>
+                                        <button class="btn btnBlackDefault font-bold"><i class="fa fa-phone"></i>Call +65 6733 0360</button>
+                                        <br>
+                                        <div class="operating">
+                                            <label class="font-bold">Hotline Operating Hours</label>
+                                            <br>
+                                            <label>Mon to Fri: 10am - 6pm</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- {!! strstr($content, $tag, true) !!} --}}
                             </div>
                         </div>
                     </div>
@@ -47,7 +64,7 @@
         </div>
     </div>
 </section>
-<section class="ways-mobile mobile-content">
+<section class="ways-mobile contact-mobile mobile-content">
     <div class="row">
         <div class="col-md-12 mobile-sidebar">
             <div class="container">
@@ -70,7 +87,7 @@
         <div class="col-md-12">
             <div class="container">
                 <div class="mobile-page-title">
-                    <h3>{{ trans('general.ways_to_buy_tickets') }}</h3>
+                    <h3 class="font-light">{{ trans('general.contact_us') }}</h3>
                 </div>
                 <div class="mobileTab">
                     <ul class="nav nav-tabs tab-mobile tab-mobile-contact" role="tablist">
@@ -81,7 +98,17 @@
                 </div>
                 <div class="contentTab">
                     <div class="tab-content">
-                        {!! str_replace($tag, '', strstr($content, $tag)) !!}
+                        <div role="tabpanel" class="tab-pane active" id="hotline">
+                            <h4 class="head-mobile-ways">Talk to a customer service officers.</h4>
+                            <div class="office-button-mobile">
+                                <button class="btn btnSeeContact btnBlackDefault font-bold"><i class="fa fa-phone" style="margin-right: 10px;"></i>Call +65 6733 0360</button>
+                            </div>
+                            <div class="hotline-operating-mobile">
+                                <label class="label-head font-bold">Hotline Operating Hours</label><br>
+                                <label>Mon to Fri: 10am - 6pm</label>
+                            </div>
+                        </div>
+                        {{-- {!! str_replace($tag, '', strstr($content, $tag)) !!} --}}
                     </div>
                 </div>
             </div>

@@ -36,7 +36,8 @@
                 columns: [
                     {data: 'title', name: 'title'},
                     {data: 'code', name: 'code'},
-                    {data: 'symbol', name: 'symbol'},
+                    {data: 'symbol_left', name: 'symbol_left'},
+                    {data: 'symbol_right', name: 'symbol_right'},
                     {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
                 ],
             });

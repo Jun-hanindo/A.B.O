@@ -9,7 +9,7 @@
       <div class="col-md-12 mobile-sidebar">
         <div class="container">
           <div class="mobile-sidebar-menu">
-            <a class="menu" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Support</a>
+            <a class="menu collapsed" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Support</a>
             <div class="collapse" id="mobile-sidebar-collapse">
               <ul>
                 {{-- <li><a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a></li> --}}
@@ -27,13 +27,13 @@
         <div class="col-md-12">
             <div class="container">
                 <div class="mobile-page-title mobile-title-faq">
-                    <a href="{{URL::route('support-faq')}}" class="back-faq"> < FAQ</a>
+                    <a href="{{URL::route('support-faq')}}" class="back-faq">FAQ</a>
                     <h3 class="font-light">Top Questions</h3>
                 </div>
                 <div class="list-ask-mobile top-ask">
                     <ul class="ul-faq-content">
                         <li>
-                            <a data-toggle="collapse" href="#collapseonemobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">What should I do if my tickets are lost?</a>
+                            <a data-toggle="collapse" href="#collapseonemobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">What should I do if my tickets are lost?</a>
                             <div class="collapse" id="collapseonemobile">
                                 <p>Please contact us at +65 6733 0360 and have ready the following to get a replacement ticket issued with a new barcode:</p>
                                 <ul class="ul-inside">
@@ -46,7 +46,7 @@
                             </div>
                         </li>
                         <li>
-                            <a data-toggle="collapse" href="#collapsetwomobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">What happens if an event is cancelled?</a>
+                            <a data-toggle="collapse" href="#collapsetwomobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">What happens if an event is cancelled?</a>
                             <div class="collapse" id="collapsetwomobile">
                                 <p>Cancellation policies are event specific and will be communicated by the show organiser. Given that refunds are offered, procedures will be provided on the event page and major media channels.</p>
 
@@ -54,19 +54,19 @@
                             </div>
                         </li>
                         <li>
-                            <a data-toggle="collapse" href="#collapsethreemobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">How long does it take for my tickets to be delivered?</a>
+                            <a data-toggle="collapse" href="#collapsethreemobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">How long does it take for my tickets to be delivered?</a>
                             <div class="collapse" id="collapsethreemobile">
-                                <p>Processed tickets are dispatched on the following business day. If your tickets did not reach you in the next 7 business days, please contact us at +65 6733 0360.</p>
+                                <p>Tickets will be dispatched 1 month before the date of event. If you did not receive your tickets, please contact us at +65 6733 0360.</p>
                             </div>
                         </li>
                         <li>
-                            <a data-toggle="collapse" href="#collapsefourmobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Does my child require a ticket?</a>
+                            <a data-toggle="collapse" href="#collapsefourmobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Does my child require a ticket?</a>
                             <div class="collapse" id="collapsefourmobile">
                                 <p>Admission rules vary between events. Please refer to the specific event page for information.</p>
                             </div>
                         </li>
                         <li>
-                            <a data-toggle="collapse" href="#collapsefivemobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">What is a Booking Fee?</a>
+                            <a data-toggle="collapse" href="#collapsefivemobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">What is a Booking Fee?</a>
                             <div class="collapse" id="collapsefivemobile">
                                 <p>It is a worldwide standard practice by ticketing services company to support investment in systems technology and to improve the online purchase experience.</p>
                             </div>

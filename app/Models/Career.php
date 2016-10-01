@@ -37,8 +37,16 @@ class Career extends Model
      */
     function datatables()
     {
+        $data = Career::select('careers.id as id', 'careers.job', 'departments.name as name', 
+            'careers.type', 'careers.avaibility')
+        ->join('departments', 'departments.id', '=', 'careers.department_id')
+        ->whereNull('departments.deleted_at');
 
-        return static::select('id', 'job', 'department_id', 'type', 'salary', 'avaibility');
+        //dd($data->toSql());
+
+        return $data;
+
+        //return static::select('id', 'job', 'department_id', 'type', 'salary', 'avaibility');
     
     }
 

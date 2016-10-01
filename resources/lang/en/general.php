@@ -194,6 +194,8 @@ return [
     'language'  => 'Language',
     'currency'  => 'Currency',
     'currencies'  => 'Currencies',
+    'symbol_left'   => 'Symbol Left',
+    'symbol_right' => 'Symbol Right',
     'code'  => 'Code',
     'symbol' => 'Symbol',
     'facebook'  => 'Facebook',

@@ -10,11 +10,11 @@
     <div class="infoBanner bg-red" id="eventTabShow">
         <div class="container">
             <div class="detail">
-                <h5>CONCERTS</h5>
-                <h2 class="font-light">Bryan Adams “Get Up Tour”</h2>
+                <h5>MEET & GREET</h5>
+                <h2 class="font-light">Jessica Jung Ho Chi Minh Fan Meeting</h2>
             </div>
             <div class="moreDetail">
-                <a href="https://asiaboxoffice.nliven.co/tickets/series/BRYANADAMSGETUP/" target="_blank">
+                <a href="https://asiaboxoffice.nliven.co/tickets/series/JESSICAJUNGSINGAPORE" target="_blank">
                     <button class="btn btnDetail font-bold">Buy Now</button>
                 </a>
             </div>
@@ -27,10 +27,10 @@
             <div class="container">
                 <ul class="" role="">
                     <li><a href="#eventBanner" class="smoothScroll backtop">Back To Summary</a></li>
-                    <li><a href="#aboutBox" class="smoothScroll active">About This Event</a></li>
-                    <li><a href="#venueBox" class="smoothScroll">Venue Info</a></li>
-                    <li><a href="#admissionBox" class="smoothScroll">Admission Rules</a></li>
-                    <li><a href="https://asiaboxoffice.nliven.co/tickets/series/BRYANADAMSGETUP/" target="_blank"><button class="btn btnBuy btnABO font-bold">Buy Now</button></a></li>
+                    <li><a href="#ticket" class="smoothScroll active">About This Event</a></li>
+                    <li><a href="#aboutBox" class="smoothScroll">Venue Info</a></li>
+                    <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
+                    <li><a href="https://asiaboxoffice.nliven.co/tickets/series/JESSICAJUNGSINGAPORE" target="_blank"><button class="btn btnBuy btnABO font-bold">Buy Now</button></a></li>
                 </ul>
             </div>
         </div>
@@ -42,10 +42,10 @@
             <div class="col-md-12">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
                     <li><a href="#eventBanner" class="smoothScroll backtop"></a></li>
-                    <li><a href="#aboutBox" class="smoothScroll active">About</a></li>
-                    <li><a href="#venueBox" class="smoothScroll">Venue</a></li>
-                    <li><a href="#admissionBox" class="smoothScroll">Admission</a></li>
-                    <li><a href="https://asiaboxoffice.nliven.co/tickets/series/BRYANADAMSGETUP/"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li>
+                    <li><a href="#ticket" class="smoothScroll active">About</a></li>
+                    <li><a href="#aboutBox" class="smoothScroll">Venue</a></li>
+                    <li><a href="#getvenue" class="smoothScroll">Admission</a></li>
+                    <li><a href="https://asiaboxoffice.nliven.co/tickets/series/JESSICAJUNGSINGAPORE"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li>
                 </ul>
             </div>
         </div>
@@ -56,37 +56,44 @@
         <div class="row">
             <div class="col-md-4 date">
                 <div class="information-title">
-                    <i class="fa fa-calendar-o"></i> 20 January 2017
+                    <i class="fa fa-calendar-o"></i> 25 November 2016
                 </div>
                 <div class="information-event">
-                  <p>Friday, 8.00PM</p>
+                  <p>Friday, 5.00PM</p>
                   <ul>
-                    <li>Duration: Approx. 2 Hours</li>
-                    <li>Doors Open Time: 6.30PM</li>
+                    <li>Duration: Approx. 1,5 Hours</li>
+                    <li>Doors Open Time: 3.30PM</li>
                   </ul>
                 </div>
             </div>
             <div class="col-md-4 place">
                 <div class="information-title">
-                    <i class="fa fa-map-marker"></i> Suntec Convention Centre Hall 601
+                    <i class="fa fa-map-marker"></i> Quan Khu 7 
                 </div>
                 <ul class="list-unstyled">
-                    <li>1 Raffles Boulevard</li>
-                    <li>Suntec City</li>
-                    <li>Singapore 039593</li><br>
+                    <li>202 Hoàng Văn Thụ, Phường 2</li>
+                    <li>Hồ Chí Minh, Vietnam</li><br>
                     <li><a href="https://www.google.com.sg/maps/place/Suntec+Singapore+Convention+%26+Exhibition+Centre/@1.2936604,103.8550043,17z/data=!3m1!4b1!4m5!3m4!1s0x31da19af38dd2bf3:0xd63e8cb2dacf54c7!8m2!3d1.2936604!4d103.857193" class="btn btnSeemap font-bold" target="_blank">See Map</a></li>
                 </ul>
             </div>
             <div class="col-md-4 ticket" id="ticket">
                 <div class="information-title">
-                    <i class="fa fa-ticket"></i> S$71-231/person
+                    <i class="fa fa-ticket"></i> S$40-100/person
                 </div>
                 <ul class="list-unstyled">
                     <li class="liParent li-mobile">
                         <table>
                             <tr>
                                 <td>Category 1</td>
-                                <td><span>S$231</span></td>
+                                <td><span>S$100</span></td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li class="liParent li-mobile">
+                        <table>
+                            <tr>
+                                <td>Category 1 (Standing)</td>
+                                <td><span>S$100</span></td>
                             </tr>
                         </table>
                     </li>
@@ -94,7 +101,15 @@
                         <table>
                             <tr>
                                 <td>Category 2</td>
-                                <td><span>S$191</span></td>
+                                <td><span>S$80</span></td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li class="liParent li-mobile">
+                        <table>
+                            <tr>
+                                <td>Category 2 (Standing)</td>
+                                <td><span>S$80</span></td>
                             </tr>
                         </table>
                     </li>
@@ -102,35 +117,27 @@
                         <table>
                             <tr>
                                 <td>Category 3</td>
-                                <td><span>S$161</span></td>
+                                <td><span>S$60</span></td>
                             </tr>
                         </table>
                     </li>
                     <li class="liParent li-mobile">
+                        <table>
+                            <tr>
+                                <td>Category 3 (Standing)</td>
+                                <td><span>S$60</span></td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li class="liParent li-mobile parentLast">
                         <table>
                             <tr>
                                 <td>Category 4</td>
-                                <td><span>S$141</span></td>
+                                <td><span>S$40</span></td>
                             </tr>
                         </table>
                     </li>
-                    <li class="liParent li-mobile">
-                        <table>
-                            <tr>
-                                <td>Category 5</td>
-                                <td><span>S$101</span></td>
-                            </tr>
-                        </table>
-                    </li>
-                    <li class="liParent parentLast li-mobile">
-                        <table>
-                            <tr>
-                                <td>Category 6*</td>
-                                <td><span>S$71</span></td>
-                            </tr>
-                        </table>
-                    </li>
-                    <p class="additional-info">* Restricted view (Price inclusive on S$3 booking fee per ticket)</p>
+                    <!-- <p class="additional-info">* Restricted view (Price inclusive on S$3 booking fee per ticket)</p> -->
                     <li class="liParent parentButton">
                       <button class="btn btnBlackDefault font-bold" data-target="#modalSeatMap" data-toggle="modal">See Seat Map</button>
                       <!-- <button class="btn btnticket bg-white font-bold">More Ticket Info</button> -->
@@ -140,17 +147,17 @@
             <div class="col-md-12 tabEvent">
                 <div class="eventTab">
                   <ul class="nav nav-tabs" role="tablist">
-                    <li><a href="#aboutBox" class="smoothScroll active">About This Event</a></li>
-                    <li><a href="#venueBox" class="smoothScroll">Venue Info</a></li>
-                    <li><a href="#admissionBox" class="smoothScroll">Admission Rules</a></li>
+                    <li><a href="#eventTabShow" class="smoothScroll active">About This Event</a></li>
+                    <li><a href="#aboutBox" class="smoothScroll">Venue Info</a></li>
+                    <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
                   </ul>
                 </div>
             </div>
             <div class="eventTab-mobile">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
-                  <li><a href="#aboutBox" class="smoothScroll active">About</a></li>
-                  <li><a href="#venueBox" class="smoothScroll">Venue</a></li>
-                  <li><a href="#admissionBox" class="smoothScroll">Admission</a></li>
+                  <li><a href="#ticket" class="smoothScroll active">About</a></li>
+                  <li><a href="#aboutBox" class="smoothScroll">Venue</a></li>
+                  <li><a href="#getvenue" class="smoothScroll">Admission</a></li>
                 </ul>
             </div>
         </div>
@@ -173,15 +180,9 @@
                                             <div class="main-content">
                                                 <div class="">
                                                     <section id="about" class="sectionEvent">
-                                                      <h3 class="font-bold">Bryan Adams “Get Up Tour”</h3>
-                                                      <p>Renowned Canadian rock star Bryan Adams will be performing at the Suntec Convention Centre on Friday, 20th January 2017.
-                                                      The Grammy Award winner is one of the world's best-selling artists of all time, with almost 40 years in show business. The singer, songwriter and photographer has sold over 100 million records and singles worldwide with classic hits such as “Everything I Do, I Do It For You”,“Summer Of 69”,“Heaven”,“All For Love”,“Have You Really Loved A Woman”,“Cuts Like A Knife” and “Run To You”.
-                                                      </p>
-                                                      <p>The rock legend is ready to bring his Get Up Tour to Singapore. Besides his repertoire of famous hits, the concert will also feature tunes from his thirteenth studio album Get Up, made up of up-tempo tracks such as “Brand New Day”, “You Belong To Me”, “Thunderbolt”, to the gentler songs such as “Don’t Even Try” and “We Did It All”.
-                                                      </p>
-                                                      <p>With his unique ability to fuse rock anthems and power ballads, audience can expect a pure night of entertainment and a good time.
-                                                      This one night only performance marks his return to Singapore in 23 years, this is a show you definitely do not want to miss. Get your tickets today!
-                                                      </p>
+                                                        <h3 class="font-bold">Jessica Jung Singapore Fan Meeting</h3>
+                                                        <p>Korean American K-Pop sensation Jessica Jung will be holding her first fan meeting in Singapore on 11 November 2016. Following the release of her first solo album ‘With Love J’, which topped charts in Korea and 9 other countries in Asia, Jessica is back and ready to entertain her fans with an Asia Fan meeting Tour with Singapore being her first stop. Fans can expect fun interaction, stage games and performances in this 90 minutes party.
+                                                        </p>
                                                     </section>
                                                 </div>
                                             </div>
@@ -203,7 +204,7 @@
                                                       <p>1 Raffles Boulevard <br>Suntec City <br>Singapore 039593</p>
 
                                                       <div class="mapEvent">
-                                                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15955.205477837979!2d103.857193!3d1.2936604!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd63e8cb2dacf54c7!2sSuntec+Singapore+Convention+%26+Exhibition+Centre!5e0!3m2!1sen!2sid!4v1475148964605" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen ></iframe>
+                                                        <div style="width: 100%"><iframe width="100%" height="300" src="http://www.maps.ie/create-google-map/map.php?width=100%&amp;height=300&amp;hl=en&amp;q=202%20Ho%C3%A0ng%20V%C4%83n%20Th%E1%BB%A5%2C%20Ph%C6%B0%E1%BB%9Dng%202%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh%2C%20Vietnam+(Quan%20Khu%207)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=A&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="http://www.mapsdirections.info/nl/maak-een-google-map/">Google Maps toevoegen op website</a> aan <a href="http://www.mapsdirections.info/nl/">Bereken route</a></iframe></div>
                                                       </div>
 
                                                       <h3 class="font-bold">Getting to the Venue</h3>
@@ -288,53 +289,53 @@
                             <img src="{{ asset('assets/frontend/images/seat-map.jpg') }}">
                         </div>
                         <div class="col-md-5">
-                            <div class="seat-map-price">
-                                <ul>
-                                    <li>
-                                        <span class="seat-dot dot-pink"></span>
-                                        <span class="box-line">
-                                            <span class="category">Category 1</span>
-                                            <span class="price">S$231</span>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="seat-dot dot-blue"></span>
-                                        <span class="box-line">
-                                            <span class="category">Category 2</span>
-                                            <span class="price">S$191</span>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="seat-dot dot-purple"></span>
-                                        <span class="box-line">
-                                            <span class="category">Category 3</span>
-                                            <span class="price">S$161</span>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="seat-dot dot-green"></span>
-                                        <span class="box-line">
-                                            <span class="category">Category 4</span>
-                                            <span class="price">S$141</span>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="seat-dot dot-green1"></span>
-                                        <span class="box-line">
-                                          <span class="category">Category 5</span>
-                                          <span class="price">S$101</span>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="seat-dot dot-creme"></span>
-                                        <span class="box-line">
-                                            <span class="category">Category 6 *</span>
-                                            <span class="price">S$71</span>
-                                        </span>
-                                    </li>
-                                </ul>
-                                <p>* Restricted view (Price inclusive on S$3 booking fee per ticket)</p>
-                            </div>
+                          <div class="seat-map-price">
+                            <ul>
+                              <li>
+                                <span class="seat-dot dot-pink"></span>
+                                <span class="box-line">
+                                  <span class="category">Category 1</span>
+                                  <span class="price">S$231</span>
+                                </span>
+                              </li>
+                              <li>
+                                <span class="seat-dot dot-blue"></span>
+                                <span class="box-line">
+                                  <span class="category">Category 2</span>
+                                  <span class="price">S$191</span>
+                                </span>
+                              </li>
+                              <li>
+                                <span class="seat-dot dot-purple"></span>
+                                <span class="box-line">
+                                  <span class="category">Category 3</span>
+                                  <span class="price">S$161</span>
+                                </span>
+                              </li>
+                              <li>
+                                <span class="seat-dot dot-green"></span>
+                               <span class="box-line">
+                                  <span class="category">Category 4</span>
+                                  <span class="price">S$141</span>
+                                </span>
+                              </li>
+                              <li>
+                                <span class="seat-dot dot-green1"></span>
+                                <span class="box-line">
+                                  <span class="category">Category 5</span>
+                                  <span class="price">S$101</span>
+                                </span>
+                              </li>
+                              <li>
+                                <span class="seat-dot dot-creme"></span>
+                                <span class="box-line">
+                                  <span class="category">Category 6 *</span>
+                                  <span class="price">S$71</span>
+                                </span>
+                              </li>
+                            </ul>
+                            <p>* Restricted view (Price inclusive on S$3 booking fee per ticket)</p>
+                          </div>
                         </div>
                     </div>
                 </div>
