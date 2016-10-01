@@ -951,7 +951,7 @@ a.dropdown-is-active:after{
 .newRelease .box-release,
 .promotionList .box-release,
 .latestPromo .box-promo{
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .box-release img,
@@ -966,15 +966,11 @@ a.dropdown-is-active:after{
 }
 
 .box-release .info1{
-  background-color: #A00077;
-}
-
-.box-release .info2{
-  background-color: #89C21F;
-}
-
-.box-release .info3{
   background-color: #B30000;
+}
+
+.box-release .info2 {
+  background-color: #E48F5D;
 }
 
 .box-release .boxInfo ul,
@@ -1014,6 +1010,11 @@ a.dropdown-is-active:after{
 .box-release .boxInfo .eventDate,
 .box-release .boxInfo .eventPlace{
   font-size: 14px;
+  /* truncate text with ellipsis if too long */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: none;
 }
 
 .box-release .boxInfo .eventDate i{
@@ -1115,9 +1116,21 @@ footer .information-title{
   padding-left: 30px;
 }
 
-.place .information-title,
-.ticket .information-title{
+.ticket .information-title,
+.place .information-title{
   margin-left: 30px;
+}
+
+.place i{
+  font-size: 16px;
+}
+
+.place p{
+  margin-left: 22px;
+}
+
+.place .i-long{
+  float: left;
 }
 
 #footer2 li {
@@ -1136,7 +1149,7 @@ footer .information-title{
 }
 
 #footer3 p{
-  font-size: 9px;
+  font-size: 10px;
   color: #fff;
 }
 
@@ -1359,6 +1372,7 @@ footer .information-title{
 
 .eventInfo .list-unstyled table{
   font-size: 14px;
+  width: 100%;
 }
 
 .eventInfo .list-unstyled table tr{
@@ -1452,7 +1466,7 @@ footer .information-title{
   position: relative;
 }
 
-.main-content #venue ul .mrt:before {    
+.main-content #venue ul .mrt:before {
   font-family: 'FontAwesome';
   content: '\f238';
   margin:0 5px 0 -15px;
@@ -1461,7 +1475,7 @@ footer .information-title{
   margin-left: 10px;
 }
 
-.main-content #venue ul .taxi:before {    
+.main-content #venue ul .taxi:before {
   font-family: 'FontAwesome';
   content: '\f1ba';
   margin:0 5px 0 -15px;
@@ -1470,7 +1484,7 @@ footer .information-title{
   margin-left: 10px;
 }
 
-.main-content #venue ul .car:before {    
+.main-content #venue ul .car:before {
   font-family: 'FontAwesome';
   content: '\f1b9';
   margin:0 5px 0 -15px;
@@ -1877,7 +1891,14 @@ footer .information-title{
 
 .head-about{
   padding-left: 15px;
-  margin-bottom: 45px;
+  margin-bottom: 40px;
+  font-size: 26px;
+  margin-top: 45px;
+}
+
+.head-support{
+  padding-left: 15px;
+  margin-bottom: 0;
   font-size: 26px;
   margin-top: 45px;
 }
@@ -3558,7 +3579,7 @@ ul#getvenue li:before {
 
 #carouselHacked .carousel-control .glyphicon{
   width: 40px;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(153, 153, 153, 0.4);
   height: 50px;
   border-radius: 3px;
   text-shadow: none;
@@ -3606,6 +3627,7 @@ ul#getvenue li:before {
 
 .main-terms{
   overflow-y: auto;
+  overflow-x: hidden;
   max-height: 580px;
 }
 
@@ -3629,10 +3651,15 @@ ul#getvenue li:before {
   width: 500px;
 }
 
-.privacy-content h5{
+.privacy-content h5,
+.terms-content h5{
   padding-left: 0;
-  margin-top: 20px;
+  margin-top: 40px;
   margin-bottom: 20px;
+}
+
+.terms-content{
+  margin-top: 40px;
 }
 
 .privacy-content li {
@@ -3770,7 +3797,7 @@ ul#getvenue li:before {
 
 .additional-info{
   padding-left: 20px;
-  width: 85%;
+  width: 100%;
 }
 
 .car-route li {
@@ -3796,10 +3823,69 @@ ul#getvenue li:before {
   padding-right: 0;
 }
 
+.privacy-content a,
+.terms-content a{
+  text-decoration: underline !important;
+  color: #000;
+}
 
+.dot-singapore1{
+  background-color: #E895B6 !important;
+}
 
+.dot-singapore2{
+  background-color: #A3D8E0 !important;
+}
 
+.dot-singapore3{
+  background-color: #BEACBF !important;
+}
 
+.dot-singapore4{
+  background-color: #9CCA80 !important;
+}
 
+.dot-hochi1{
+  background-color: #8DC641 !important;
+}
 
+.dot-hochi2{
+  background-color: #26AAE2 !important;
+}
+
+.dot-hochi3{
+  background-color: #FFF301 !important;
+}
+
+.dot-hochi4{
+  background-color: #EE227D !important;
+}
+
+.nav-level {
+    border-bottom: none;
+    margin-bottom: 20px;
+}
+
+.nav-level>li.active>a, .nav-level>li.active>a:focus, .nav-level>li.active>a:hover {
+    border: 1px solid #000;
+    border-radius: 3px;
+    background-color: #000;
+    color: #fff;
+}
+
+.nav-level>li>a {
+    border: 1px solid #000;
+    border-radius: 3px;
+    color: #000;
+}
+
+.nav-level>li>a:focus, .nav-level>li>a:hover {
+    border: 1px solid #000;
+    color: #fff;
+    background-color: #000;
+}
+
+.nav-level>li {
+    padding: 5px;
+}
 

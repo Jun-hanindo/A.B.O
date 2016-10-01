@@ -9,6 +9,33 @@
         }
       });
 
+      // Hide Header on on scroll down
+      $(window).scroll(function() {
+            var y = $(window).scrollTop();
+            var height = $('.contentTab').offset().top;
+            var isFixed = false;
+            var shouldBeFixed = y > height;
+            if (shouldBeFixed && !isFixed) {
+                $('.eventTabScroll').fadeIn();
+                isFixed = true;
+            }
+            else if (!shouldBeFixed && isFixed)
+            {
+                $('.eventTabScroll').fadeOut();
+                isFixed = false;
+            }
+        });
+
+      $('.smoothScroll').on('click', function(event) {
+          var target = $(this.getAttribute('href'));
+          if( target.length ) {
+              event.preventDefault();
+              $('html, body').stop().animate({
+                  scrollTop: target.offset().top -120
+              }, 1000);
+          }
+      });
+
       $('.mapEvent').click(function () {
            $('.mapEvent iframe').css("pointer-events", "auto");
        });
@@ -78,21 +105,14 @@
       $('.mobile-search').click(function(){$('.mobile-search-show').addClass('open')})
       $('.back-menu-search').click(function(){$('.mobile-search-show').removeClass('open')})
     })
-        $(window).scroll(function() {
-            var y = $(window).scrollTop();
-            var height = $('.contentTab').offset().top;
-            var isFixed = false;
-            var shouldBeFixed = y > height;
-            if (shouldBeFixed && !isFixed) {
-                $('.eventTabScroll').fadeIn();
-                isFixed = true;
-            }
-            else if (!shouldBeFixed && isFixed)
-            {
-                $('.eventTabScroll').fadeOut();
-                isFixed = false;
-            }
-        });
+   // $(document).scroll(function() {
+   //      var y = $(this).scrollTop();
+   //      if (y > 800) {
+   //        $('.eventTabScroll').fadeIn();
+   //      } else {
+   //        $('.eventTabScroll').fadeOut();
+   //      }
+   //    });
      $('input[name=keyword]').keyup(function(){
       if($(this).val().length)
         $('#ul-search').show();
@@ -111,5 +131,7 @@
           $('#carouselHacked').carousel();
 
 // End Header
+
+
 
 // Footer

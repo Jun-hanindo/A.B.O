@@ -23,9 +23,9 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
-   </head>
-   <body>
-        @if(Request::is('bryan-adams'))
+    </head>
+    <body>
+        @if(!Request::is('subscribe'))
             <div class="page-wrapper">
                 <header>
                     <div id="top-header">
@@ -39,13 +39,11 @@
                                     </ul>
                                 </nav>
                             </div>
-                            <div class="pull-right right-header header-support">
+                            <div class="pull-right right-header">
                                 <ul>
                                     <li><a href="{{URL::route('support')}}">Support</a></li>
-                                    <li>/</li>
-                                    <li><a href="{{URL::route('subscribe')}}">Subscribe</a></li>
                                 </ul>
-                            </div>
+                            </div> 
                         </div>
                     </div>
                     <div id="mobile-header">
@@ -61,7 +59,16 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-3">
-                                            
+                                            <div class="mobile-menu">
+                                                <div class="mobile-collapse-top">
+                                                    <div class="mobile-collapse-header-top">
+                                                        <i class="fa fa-bars"></i>
+                                                    </div>
+                                                    <ul class="list-unstyled mobile-collapse-body-top">
+                                                        <li><a href="{{URL::route('support')}}">Support</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -70,64 +77,6 @@
                         </div>
                     </div>
                 </header>
-        @else
-            @if(!Request::is('subscribe'))
-                <div class="page-wrapper">
-                    <header>
-                        <div id="top-header">
-                            <div class="container">
-                                <div class="pull-left left-header">
-                                    <nav class="main-menu" role="navigation">
-                                        <ul class="nav-menu">
-                                            <li class="nav-item">
-                                                <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/ABO-logo.svg') }}" class="logo"></a>
-                                            </li>
-                                            
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <div class="pull-right right-header header-support">
-                                    <ul>
-                                        <li><a href="{{URL::route('support')}}">Support</a></li>
-                                        <li>/</li>
-                                        <li><a href="{{URL::route('subscribe')}}">Subscribe</a></li>
-                                    </ul>
-                                </div> 
-                            </div>
-                        </div>
-                        <div id="mobile-header">
-                            <div class="mobile-header">
-                                <div class="container">
-                                    <div class="mobile-header-show">
-                                        <div class="row">
-                                            <div class="col-xs-3">
-                                            </div>
-                                            <div class="col-xs-6">
-                                                <div class="mobile-logo">
-                                                    <img src="{{ asset('assets/frontend/images/footer-logo.svg') }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-3">
-                                                <div class="mobile-menu">
-                                                    <div class="mobile-collapse-top">
-                                                        <div class="mobile-collapse-header-top">
-                                                            <i class="fa fa-bars"></i>
-                                                        </div>
-                                                        <ul class="list-unstyled mobile-collapse-body-top">
-                                                            <li><a href="{{URL::route('support')}}">Support</a></li>
-                                                            <li><a href="{{URL::route('subscribe')}}">Subscribe</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </header>
-            @endif
         @endif
           
 
@@ -145,9 +94,7 @@
                                 <img src="{{ asset('assets/frontend/images/footer-logo.svg') }}">
                             </div>
                             <div class="col-md-10">
-                                <p>
-                                © 2016 Asia Box Office Pte Ltd. All rights reserved. All trademarks, pictures and brands are property of their respective owners. Use of this Website constitutes acceptance of our <a href="{{URL::route('support-terms-and-conditions')}}">Conditions of Access</a> and <a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a>. For more information or enquiries, please contact us at connect@asiaboxoffice.com. 
-                                </p>
+                                <p>&copy; 2016 Asia Box Office Pte Ltd. All rights reserved. All trademarks, pictures and brands are property of their respective owners. Use of this Website constitutes acceptance of our <a href="{{URL::route('support-terms-website-use')}}">Terms of Website Use</a> and <a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a>. For more information or enquiries, please contact us at <a href="mailto:connect@asiaboxoffice.com">connect@asiaboxoffice.com</a></p>
                             </div>
                         </div>
                     </div>

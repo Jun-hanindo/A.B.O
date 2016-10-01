@@ -61,6 +61,18 @@ class HomeController extends Controller
         return view('frontend.partials.event_jessica_jung_manila'); 
     }
 
+    public function supportTermsTicketSales()
+    {
+
+        return view('frontend.partials.support_terms_ticket_sales_static'); 
+    }
+
+    public function supportTermsWebsiteUse()
+    {
+
+        return view('frontend.partials.support_terms_website_use_static'); 
+    }
+
     public function index()
     {
 

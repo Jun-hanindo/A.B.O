@@ -59,11 +59,11 @@
                     <i class="fa fa-calendar-o"></i> 20 January 2017
                 </div>
                 <div class="information-event">
-                  <p>Friday, 8.00PM</p>
-                  <ul>
-                    <li>Duration: Approx. 2 Hours</li>
-                    <li>Doors Open Time: 6.30PM</li>
-                  </ul>
+                    <p>Friday, 8.00PM</p>
+                    <ul>
+                        <li>Duration: Approx. 2 Hours</li>
+                        <li>Doors Open Time: 7.00PM</li>
+                    </ul>
                 </div>
             </div>
             <div class="col-md-4 place">
@@ -130,7 +130,7 @@
                             </tr>
                         </table>
                     </li>
-                    <p class="additional-info">* Restricted view (Price inclusive on S$3 booking fee per ticket)</p>
+                    <p class="additional-info">* Restricted view<br>(Price inclusive on S$3 booking fee per ticket)</p>
                     <li class="liParent parentButton">
                       <button class="btn btnBlackDefault font-bold" data-target="#modalSeatMap" data-toggle="modal">See Seat Map</button>
                       <!-- <button class="btn btnticket bg-white font-bold">More Ticket Info</button> -->
@@ -139,18 +139,18 @@
             </div>
             <div class="col-md-12 tabEvent">
                 <div class="eventTab">
-                  <ul class="nav nav-tabs" role="tablist">
-                    <li><a href="#aboutBox" class="smoothScroll active">About This Event</a></li>
-                    <li><a href="#venueBox" class="smoothScroll">Venue Info</a></li>
-                    <li><a href="#admissionBox" class="smoothScroll">Admission Rules</a></li>
-                  </ul>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li><a href="#aboutBox" class="smoothScroll" id="aboutTab">About This Event</a></li>
+                        <li><a href="#venueBox" class="smoothScroll" id="venueTab">Venue Info</a></li>
+                        <li><a href="#admissionBox" class="smoothScroll" id="admissionTab">Admission Rules</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="eventTab-mobile">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
-                  <li><a href="#aboutBox" class="smoothScroll active">About</a></li>
-                  <li><a href="#venueBox" class="smoothScroll">Venue</a></li>
-                  <li><a href="#admissionBox" class="smoothScroll">Admission</a></li>
+                    <li><a href="#aboutBox" class="smoothScroll active">About</a></li>
+                    <li><a href="#venueBox" class="smoothScroll">Venue</a></li>
+                    <li><a href="#admissionBox" class="smoothScroll">Admission</a></li>
                 </ul>
             </div>
         </div>
@@ -173,15 +173,18 @@
                                             <div class="main-content">
                                                 <div class="">
                                                     <section id="about" class="sectionEvent">
-                                                      <h3 class="font-bold">Bryan Adams “Get Up Tour”</h3>
-                                                      <p>Renowned Canadian rock star Bryan Adams will be performing at the Suntec Convention Centre on Friday, 20th January 2017.
-                                                      The Grammy Award winner is one of the world's best-selling artists of all time, with almost 40 years in show business. The singer, songwriter and photographer has sold over 100 million records and singles worldwide with classic hits such as “Everything I Do, I Do It For You”,“Summer Of 69”,“Heaven”,“All For Love”,“Have You Really Loved A Woman”,“Cuts Like A Knife” and “Run To You”.
-                                                      </p>
-                                                      <p>The rock legend is ready to bring his Get Up Tour to Singapore. Besides his repertoire of famous hits, the concert will also feature tunes from his thirteenth studio album Get Up, made up of up-tempo tracks such as “Brand New Day”, “You Belong To Me”, “Thunderbolt”, to the gentler songs such as “Don’t Even Try” and “We Did It All”.
-                                                      </p>
-                                                      <p>With his unique ability to fuse rock anthems and power ballads, audience can expect a pure night of entertainment and a good time.
-                                                      This one night only performance marks his return to Singapore in 23 years, this is a show you definitely do not want to miss. Get your tickets today!
-                                                      </p>
+                                                        <h3 class="font-bold">Bryan Adams “Get Up Tour”</h3>
+                                                        <p>Renowned Canadian rock star Bryan Adams will be performing at the Suntec Convention Centre on Friday, 20th January 2017.
+                                                        </p>
+                                                        <p>
+                                                        The Grammy Award winner is one of the world's best-selling artists of all time, with almost 40 years in show business. The singer, songwriter and photographer has sold over 100 million records and singles worldwide with classic hits such as “Everything I Do, I Do It For You”,“Summer Of 69”,“Heaven”,“All For Love”,“Have You Really Loved A Woman”,“Cuts Like A Knife” and “Run To You”.
+                                                        </p>
+                                                        <p>The rock legend is ready to bring his Get Up Tour to Singapore. Besides his repertoire of famous hits, the concert will also feature tunes from his thirteenth studio album Get Up, made up of up-tempo tracks such as “Brand New Day”, “You Belong To Me”, “Thunderbolt”, to the gentler songs such as “Don’t Even Try” and “We Did It All”.
+                                                        </p>
+                                                        <p>With his unique ability to fuse rock anthems and power ballads, audience can expect a pure night of entertainment and a good time.This one night only performance marks his return to Singapore in 23 years, this is a show you definitely do not want to miss.
+                                                        </p>
+                                                        <p>Get your tickets today!
+                                                        </p>
                                                     </section>
                                                 </div>
                                             </div>
@@ -189,83 +192,82 @@
                                     </div>
                                 </div>
                                 <div class="venueBox boxBorder" id="venueBox">
-                                  <div class="row">
-                                      <div class="side-left col-md-3">
-                                          <div class="aboutDesc">
-                                              <h4>Venue Info</h4>
-                                          </div>
-                                      </div>
-                                      <div class="col-md-9">
-                                          <div class="main-content">
-                                              <div class="">
-                                                  <section id="venue" class="sectionEvent">
-                                                      <h3 class="font-bold">Suntec Convention Centre Hall 601</h3>
-                                                      <p>1 Raffles Boulevard <br>Suntec City <br>Singapore 039593</p>
+                                    <div class="row">
+                                        <div class="side-left col-md-3">
+                                            <div class="aboutDesc">
+                                                <h4>Venue Info</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="main-content">
+                                                <div class="">
+                                                    <section id="venue" class="sectionEvent">
+                                                        <h3 class="font-bold">Suntec Convention Centre Hall 601</h3>
+                                                        <p>1 Raffles Boulevard <br>Suntec City <br>Singapore 039593</p>
 
-                                                      <div class="mapEvent">
-                                                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15955.205477837979!2d103.857193!3d1.2936604!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd63e8cb2dacf54c7!2sSuntec+Singapore+Convention+%26+Exhibition+Centre!5e0!3m2!1sen!2sid!4v1475148964605" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen ></iframe>
-                                                      </div>
+                                                        <div class="mapEvent">
+                                                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15955.205477837979!2d103.857193!3d1.2936604!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd63e8cb2dacf54c7!2sSuntec+Singapore+Convention+%26+Exhibition+Centre!5e0!3m2!1sen!2sid!4v1475148964605" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen ></iframe>
+                                                        </div>
 
-                                                      <h3 class="font-bold">Getting to the Venue</h3>
-                                                      <ul id="getvenue">
-                                                          <li class="mrt">
-                                                              <h3 class="font-bold">By MRT</h3>
-                                                              <p>Take the Circle Line to Esplanade MRT Station and take Exit A.</p>
-                                                          </li>
-                                                          <li class="taxi">
-                                                              <h3 class="font-bold">By Taxi / UBER Drop Off</h3>
-                                                              <p>If you are taking a taxi, you may alight directly at the venue.</p>
-                                                          </li>
-                                                          <li class="car">
-                                                              <h3 class="font-bold">By Car</h3>
-                                                              <p>Parking is available at the venue. There are 4 access routes to Suntec City:</p>
-                                                              <ul class="car-route">
-                                                                <li>Nicoll Highway</li>
-                                                                <li>Raffles Boulevard (from Bras Basah Road)</li>
-                                                                <li>Temasek Avenue (from Raffles Boulevard)</li>
-                                                                <li>Rochor Road Exit from East Coast Expressway (ECP)</li>
-                                                              </ul>
-                                                              <p>Suntec Convention Centre is located in the West Wing, the closest parking location will be in the Green Zone.</p>
-                                                          </li>
-                                                      </ul>
-                                                  </section>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
+                                                        <h3 class="font-bold">Getting to the Venue</h3>
+                                                        <ul id="getvenue">
+                                                            <li class="mrt">
+                                                                <h3 class="font-bold">By MRT</h3>
+                                                                <p>Take the Circle Line to Esplanade MRT Station and take Exit A.</p>
+                                                            </li>
+                                                            <li class="taxi">
+                                                                <h3 class="font-bold">By Taxi / UBER Drop Off</h3>
+                                                                <p>If you are taking a taxi, you may alight directly at the venue.</p>
+                                                            </li>
+                                                            <li class="car">
+                                                                <h3 class="font-bold">By Car</h3>
+                                                                <p>Parking is available at the venue. There are 4 access routes to Suntec City:</p>
+                                                                <ul class="car-route">
+                                                                    <li>Nicoll Highway</li>
+                                                                    <li>Raffles Boulevard (from Bras Basah Road)</li>
+                                                                    <li>Temasek Avenue (from Raffles Boulevard)</li>
+                                                                    <li>Rochor Road Exit from East Coast Expressway (ECP)</li>
+                                                                </ul>
+                                                                <p>Suntec Convention Centre is located in the West Wing, the closest parking location will be in the Green Zone.</p>
+                                                            </li>
+                                                        </ul>
+                                                    </section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="admissionBox" id="admissionBox">
-                                  <div class="row">
-                                      <div class="side-left col-md-3">
-                                          <div class="aboutDesc">
-                                              <h4>Admission Rules</h4>
-                                          </div>
-                                      </div>
-                                      <div class="col-md-9">
-                                          <div class="main-content">
-                                                  <div class="">
-                                                      <section id="rules" class="sectionEvent">
-                                                          <h3 class="font-bold">Rating / Age Limit</h3>
-                                                          <ul>
-                                                              <li>No admission for infant and children aged below 10 years old.</li>
-                                                              <li>Children aged 10 years and above must purchase a ticket for admission.</li>
-                                                              <li>All children below 12 years of age must be accompanied by a parent or guardian.</li>
-                                                          </ul>
-                                                          <h3 class="font-bold">Photography / Video Recording Rules</h3>
-                                                          <ul>
-                                                              <li>Photography, Video Recording and Audio Recording is strictly prohibited during the performance.</li>
-                                                              <li>All DSLR / Cameras with interchangeable lens is strictly prohibited inside the venue.</li>
-                                                          </ul>
-                                                          <p>All information is accurate at the time of publishing.</p>
-                                                      </section>
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </div>
+                                    <div class="row">
+                                        <div class="side-left col-md-3">
+                                            <div class="aboutDesc">
+                                                <h4>Admission Rules</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="main-content">
+                                                <div class="">
+                                                    <section id="rules" class="sectionEvent">
+                                                        <h3 class="font-bold">Rating / Age Limit</h3>
+                                                        <ul>
+                                                            <li>No admission for infant and children aged below 10 years old.</li>
+                                                            <li>Children aged 10 years and above must purchase a ticket for admission.</li>
+                                                            <li>All children below 12 years of age must be accompanied by a parent or guardian.</li>
+                                                        </ul>
+                                                        <h3 class="font-bold">Photography / Video Recording Rules</h3>
+                                                        <ul>
+                                                            <li>Photography, Video Recording and Audio Recording is strictly prohibited during the performance.</li>
+                                                            <li>All DSLR / Cameras with interchangeable lens is strictly prohibited inside the venue.</li>
+                                                        </ul>
+                                                        <p>All information is accurate at the time of publishing.</p>
+                                                    </section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                    
                             </div>
                         </div>
                     </div>
@@ -285,7 +287,7 @@
                 <div class="seat-map-modal">
                     <div class="row">
                         <div class="col-md-7">
-                            <img src="{{ asset('assets/frontend/images/seat-map.jpg') }}">
+                            <img src="{{ asset('assets/frontend/images/bryan-adams-seatmap.jpg') }}">
                         </div>
                         <div class="col-md-5">
                             <div class="seat-map-price">
@@ -321,8 +323,8 @@
                                     <li>
                                         <span class="seat-dot dot-green1"></span>
                                         <span class="box-line">
-                                          <span class="category">Category 5</span>
-                                          <span class="price">S$101</span>
+                                            <span class="category">Category 5</span>
+                                            <span class="price">S$101</span>
                                         </span>
                                     </li>
                                     <li>
@@ -333,7 +335,8 @@
                                         </span>
                                     </li>
                                 </ul>
-                                <p>* Restricted view (Price inclusive on S$3 booking fee per ticket)</p>
+                                <p>* Restricted view</p>
+                                <p>(Price inclusive on S$3 booking fee per ticket)</p>
                             </div>
                         </div>
                     </div>

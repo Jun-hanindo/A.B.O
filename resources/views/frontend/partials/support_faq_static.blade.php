@@ -2,7 +2,7 @@
 @section('title', 'Event Asia Box Office')
 @section('content')
 @php
-    $tag = '<--mobile-->';
+$tag = '<--mobile-->';
 @endphp
 <section class="about-content faq-content">
     <div class="row">
@@ -10,22 +10,22 @@
             <div class="sidebar">
                 <ul>
                     <li class="sidebar-head">
-                        <h4>{{ trans('general.support') }}</h4>
+                        <h4 class="font-light">Support</h4>
                     </li>
-                    {{-- <li class="sidebar-menu-top">
-                       <a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a>
-                    </li> --}}
                     <li class="sidebar-menu-top active">
-                        <a href="{{URL::route('support-faq')}}">{{ trans('general.frequently_asked_questions') }}</a>
+                        <a href="{{URL::route('support-faq')}}">Frequently Asked Questions</a>
                     </li>
                     <li class="sidebar-menu">
-                        <a href="{{URL::route('contact-us')}}">{{ trans('general.contact_us') }}</a>
+                        <a href="{{URL::route('contact-us')}}">Contact Us</a>
                     </li>
                     <li class="sidebar-menu">
-                        <a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a>
+                        <a href="{{URL::route('support-terms-ticket-sales')}}">Terms of Ticket Sales</a>
                     </li>
                     <li class="sidebar-menu">
-                        <a href="{{URL::route('support-privacy-policy')}}">{{ trans('general.privacy_policy') }}</a>
+                        <a href="{{URL::route('support-terms-website-use')}}">Terms of Website Use</a>
+                    </li>
+                    <li class="sidebar-menu">
+                        <a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a>
                     </li>
                 </ul>
             </div>
@@ -34,15 +34,17 @@
             <div class="main-content">
                 <div class="support-desc">
                     <div class="row">
-                        <h3 class="head-about font-light">{{ trans('general.frequently_asked_questions') }}</h3>
+                        <h3 class="head-about font-light">Frequently Asked Questions</h3>
                         <div class="col-md-12">
                             <div class="faq-categories">
                                 <div class="tabbable tabs-left list-faq">
                                     <ul class="nav nav-tabs col-md-4">
                                         <li class="top-faq active"><a href="#topquestion" data-toggle="tab">Top Questions</a></li>
                                         <li class="general-faq"><a href="#general" data-toggle="tab">General</a></li>
+                                        <!-- <li class="account-faq"><a href="#account" data-toggle="tab">My Account</a></li> -->
                                         <li class="seat-faq"><a href="#seatallocation" data-toggle="tab">Seat Allocation</a></li>
                                         <li class="payment-faq"><a href="#payment" data-toggle="tab">Payment</a></li>
+                                        <!-- <li class="collection-faq"><a href="#collection" data-toggle="tab">Collection</a></li> -->
                                     </ul>
                                     <div class="tab-content col-md-8">
                                         <div class="tab-pane active" id="topquestion">
@@ -52,13 +54,14 @@
                                                     <a data-toggle="collapse" href="#collapseone" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">What should I do if my tickets are lost?</a>
                                                     <div class="collapse" id="collapseone">
                                                         <p>Please contact us at +65 6733 0360 and have ready the following to get a replacement ticket issued with a new barcode:</p>
-                                                            <ul class="ul-inside">
-                                                                <li>Order Confirmation Number</li>
-                                                                <li>Name</li>
-                                                                <li>Contact Number</li>
-                                                            </ul>
+                                                        <ul class="ul-inside">
+                                                            <li>Order Confirmation Number</li>
+                                                            <li>Name</li>
+                                                            <li>Contact Number</li>
+                                                        </ul>
                                                         <p>A service fee of $5 per ticket reprint, in addition to the standard ticket delivery costs (if applicable), will be applicable for this change.</p>
-                                                        <p>General Admission tickets cannot be replaced.</p>
+                                                        <p>General Admission tickets cannot be replaced.
+                                                        </p>
                                                     </div>
                                                 </li>
                                                 <li>
@@ -169,97 +172,97 @@
     </div>
 </section>
 <section class="faq-mobile mobile-content">
-<div class="row">
-  <div class="col-md-12 mobile-sidebar">
-    <div class="container">
-      <div class="mobile-sidebar-menu">
-        <a class="menu collapsed" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Support</a>
-        <div class="collapse" id="mobile-sidebar-collapse">
-          <ul>
-            {{-- <li><a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a></li> --}}
-            <li><a href="{{URL::route('support-faq')}}">{{ trans('general.frequently_asked_questions') }}</a></li>
-            <li><a href="{{URL::route('contact-us')}}">{{ trans('general.contact_us') }}</a></li>
-            <li><a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a></li>
-            <li><a href="{{URL::route('support-privacy-policy')}}">{{ trans('general.privacy_policy') }}</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="container">
-            <div class="mobile-page-title">
-                <h3 class="font-light">{{ trans('general.frequently_asked_questions') }}</h3>
-            </div>
-            <div class="row">
-                <div class="box-mobile-faq col-xs-12">
-                    <div class="col-xs-6">
-                        <div class="top-faq-mobile faq-menu-mobile">
-                            <a href="{{ URL::route('support-faq-category', 'top') }}">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <p>Top Questions</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="general-faq-mobile faq-menu-mobile">
-                            <a href="{{ URL::route('support-faq-category', 'general') }}">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <i class="fa fa-question-circle"></i>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <p>General</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="box-mobile-faq col-xs-12">
-                    <div class="col-xs-6">
-                        <div class="seat-faq-mobile faq-menu-mobile">
-                            <a href="{{ URL::route('support-faq-category', 'seat') }}">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <i class="fa fa-th-large"></i>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <p>Seat Allocation</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="payment-faq-mobile faq-menu-mobile">
-                            <a href="{{ URL::route('support-faq-category', 'payment') }}">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <i class="fa fa-money"></i>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <p>Payment</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+    <div class="row">
+        <div class="col-md-12 mobile-sidebar">
+            <div class="container">
+                <div class="mobile-sidebar-menu">
+                    <a class="menu collapsed" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Support</a>
+                    <div class="collapse" id="mobile-sidebar-collapse">
+                        <ul>
+                            <li><a href="{{URL::route('support-faq')}}">Frequently Asked Questions</a></li>
+                            <li><a href="{{URL::route('contact-us')}}">Contact Us</a></li>
+                            <li><a href="{{URL::route('support-terms-ticket-sales')}}">Terms of Ticket Sales</a></li>
+                            <li><a href="{{URL::route('support-terms-website-use')}}">Terms of Website Use</a></li>
+                            <li><a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container">
+                <div class="mobile-page-title">
+                    <h3 class="font-light">Frequently Asked Questions</h3>
+                </div>
+                <div class="row">
+                    <div class="box-mobile-faq col-xs-12">
+                        <div class="col-xs-6">
+                            <div class="top-faq-mobile faq-menu-mobile">
+                                <a href="{{URL::route('support-faq-category', 'top')}}">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p>Top Questions</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="general-faq-mobile faq-menu-mobile">
+                                <a href="{{URL::route('support-faq-category', 'general')}}">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <i class="fa fa-question-circle"></i>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p>General</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="box-mobile-faq col-xs-12">
+                        <div class="col-xs-6">
+                            <div class="seat-faq-mobile faq-menu-mobile">
+                                <a href="{{URL::route('support-faq-category', 'seat')}}">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <i class="fa fa-th-large"></i>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p>Seat Allocation</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="payment-faq-mobile faq-menu-mobile">
+                                <a href="{{URL::route('support-faq-category', 'payment')}}">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <i class="fa fa-money"></i>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p>Payment</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 @stop
 @include('frontend.partials.script.message_script')

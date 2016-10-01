@@ -317,6 +317,10 @@
     width: 100%;
     height: 60px;
   }
+  .mobile-logo img,
+  .logo-footer img{
+    width: 87px;
+  }
   .item .categorySlide{
     margin-top: 0;
   }
@@ -341,9 +345,20 @@
   .newRelease h2, .latestPromo h2,
   .item .titleSlide{
     font-size: 20px;
+    /* truncate text with ellipsis if too long */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: none;
   }
   .carousel-caption .eventPlace i{
     margin-left: 2px;
+  }
+}
+
+@media (max-width: 1199px){
+  .information-title-mobile{
+    margin-left: -1px !important;
   }
 }
 
@@ -355,6 +370,13 @@
   .faq-content,
   .ways-content{
     display: none;
+  }
+  .mobile-logo img,
+  .logo-footer img{
+    width: 87px;
+  }
+  .information-title-mobile{
+    margin-left: -1px !important;
   }
   .mobile-content{
     display: block;
@@ -373,7 +395,13 @@
 @media (max-width: 991px) {
   .slider-home .carousel-caption{
     min-height: 210px;
-  } 
+  }
+  .information-title-mobile{
+    margin-left: -90px !important;
+  }
+  .place p{
+    margin-left: 30px;
+  }
   .mobile-logo img,
   .logo-footer img{
     width: 87px;
@@ -393,13 +421,14 @@
   .date .information-title i,
   .place .information-title i{
     margin-right: 15px;
+    margin-bottom: 10px;
   }
   .eventInfo .ticket ul .li-mobile {
     padding-left: 35px;
   }
   .eventInfo .place ul li {
     padding-left: 20px;
-  } 
+  }
   .information-event ul,
   .information-event p{
     padding-left: 35px;
@@ -411,9 +440,6 @@
   }
   .terms-content ol li{
     width: 100%;
-  }
-  .terms-content h5{
-    padding-left: 15px;
   }
   .ul-faq-content {
     margin-right: 0;
@@ -554,10 +580,10 @@
     font-size: 14px;
     cursor: pointer;
   }
-  .mobile-collapse-header { 
-    position: relative; 
-    margin-bottom: 0; 
-    cursor: pointer; 
+  .mobile-collapse-header {
+    position: relative;
+    margin-bottom: 0;
+    cursor: pointer;
     padding: 12px;
     text-align: center;
   }
@@ -596,16 +622,16 @@
   .eventInfo .list-unstyled table{
     width: 100%;
   }
-  .mobile-collapse-header:after { 
+  .mobile-collapse-header:after {
     content: "\f107";
-    margin-left: 5px; 
+    margin-left: 5px;
     font-family: 'FontAwesome';
-    top: 22px; 
-    right: 0; 
-    color: #fff; 
+    top: 22px;
+    right: 0;
+    color: #fff;
   }
-  .mobile-collapse-body, .mobile-collapse-body-top,.facebookLike, .mobileApp { 
-    display: none; 
+  .mobile-collapse-body, .mobile-collapse-body-top,.facebookLike, .mobileApp {
+    display: none;
   }
   .list-unstyled{
     margin-top: 0;
@@ -652,6 +678,11 @@
   }
   .item ul .eventPlace{
     padding-left: 0;
+    /* truncate text with ellipsis if too long */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: none;
   }
   .moreDetail button{
     width: 100%;
@@ -745,6 +776,9 @@
     margin-left: 2px;
     margin-right: 2px;
   }
+  .information-title-mobile{
+    margin-left: -90px !important;
+  }
 }
 
 @media (max-width: 650px){
@@ -760,6 +794,9 @@
     text-decoration: none;
     font-size: 14px;
     cursor: pointer;
+  }
+  .information-title-mobile{
+    margin-left: -73px !important;
   }
 }
 

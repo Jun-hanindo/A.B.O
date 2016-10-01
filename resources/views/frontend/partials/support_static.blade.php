@@ -12,24 +12,12 @@
     <div class="container">
         <div class="support-menu">
             <div class="row">
-                {{-- <div class="col-md-4">
-                    <div class="waystobuy">
-                        <div class="iconWays">
-                            <i class="fa fa-ticket"></i>
-                        </div>
-                        <a href="{{URL::route('support-way-to-buy-tickets')}}">
-                            Ways To Buy Tickets
-                        </a>
-                        <br>
-                        <span>How to buy tickets from us.</span>
-                    </div>
-                </div>> --}}
                 <div class="col-md-12">
                     <div class="faq-support">
-                        <div class="iconWays">
-                            <i class="fa fa-comments"></i>
-                        </div>
                         <a href="{{URL::route('support-faq')}}" class="font-light">
+                            <div class="iconWays">
+                                <i class="fa fa-comments"></i>
+                            </div>
                             Frequently Asked Questions
                         </a>
                         <br>
@@ -38,10 +26,10 @@
                 </div>
                 <div class="col-md-12">
                     <div class="contact-support">
-                        <div class="iconWays">
-                            <i class="fa fa-phone"></i>
-                        </div>
                         <a href="{{URL::route('contact-us')}}" class="font-light">
+                            <div class="iconWays">
+                                <i class="fa fa-phone"></i>
+                            </div>
                             Contact Us
                         </a>
                         <br>
@@ -54,7 +42,9 @@
     <div class="terms">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{URL::route('support-terms-and-conditions')}}">Terms and Conditions</a>
+                <a href="{{URL::route('support-terms-ticket-sales')}}">Terms of Ticket Sales</a>
+                <br>
+                <a href="{{URL::route('support-terms-website-use')}}">Terms of Website Use</a>
                 <br>
                 <a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a>
             </div>
