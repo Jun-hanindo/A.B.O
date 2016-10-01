@@ -1,118 +1,105 @@
 @extends('layout.frontend.master.master')
 @section('title', 'Event Asia Box Office')
 @section('content')
-@php
-    $tag = '<--mobile-->';
-@endphp
-
-<section class="about-content contact-content ways-content">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="sidebar">
-                <ul>
-                    <li class="sidebar-head">
-                            <h4>{{ trans('general.support') }}</h4>
-                    </li>
-                    {{-- <li class="sidebar-menu-top active">
-                            <a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a>
-                    </li> --}}
-                    <li class="sidebar-menu-top">
-                            <a href="{{URL::route('support-faq')}}">{{ trans('general.frequently_asked_questions') }}</a>
-                    </li>
-                    <li class="sidebar-menu active">
-                        <a href="{{URL::route('contact-us')}}">{{ trans('general.contact_us') }}</a>
-                    </li>
-                    <li class="sidebar-menu">
-                            <a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a>
-                    </li>
-                    <li class="sidebar-menu">
-                            <a href="{{URL::route('support-privacy-policy')}}">{{ trans('general.privacy_policy') }}</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-9">
-            <div class="main-content">
-                <div class="support-desc">
-                    <div class="row">
-                        <h3 class="head-about font-light">{{ trans('general.contact_us') }}</h3>
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="hotline">
-                                        <div class="iconWays">
-                                            <i class="fa fa-phone"></i>
-                                        </div>
-                                        <h4 class="headWays font-light">Hotline</h4>
-                                        <h5>Talk to a customer service officers.</h5>
-                                        <br>
-                                        <button class="btn btnBlackDefault font-bold"><i class="fa fa-phone"></i>Call +65 6733 0360</button>
-                                        <br>
-                                        <div class="operating">
-                                            <label class="font-bold">Hotline Operating Hours</label>
-                                            <br>
-                                            <label>Mon to Fri: 10am - 6pm</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                {{-- {!! strstr($content, $tag, true) !!} --}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="ways-mobile contact-mobile mobile-content">
-    <div class="row">
-        <div class="col-md-12 mobile-sidebar">
-            <div class="container">
-                <div class="mobile-sidebar-menu">
-                    <a class="menu" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Support</a>
+          <section class="about-content contact-content">
+              <div class="row">
+                  <div class="col-md-3">
+                      <div class="sidebar">
+                          <ul>
+                              <li class="sidebar-head">
+                                  <h4>Our Company</h4>
+                              </li>
+                              <li class="sidebar-menu-top">
+                                  <a href="{{URL::route('our-company')}}">About Asia Box Office</a>
+                              </li>
+                              <li class="sidebar-menu">
+                                  <a href="{{URL::route('careers')}}">Careers</a>
+                              </li>
+                              <li class="sidebar-menu active">
+                                  <a href="{{URL::route('contact-us')}}" class="active-contact">Contact Us</a>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="col-md-9">
+                      <div class="main-content">
+                          <div class="contact-desc">
+                              <div class="row">
+                                  <h3 class="head-about">Contact Us</h3>
+                                  {!! str_replace('[captcha]', Recaptcha::render(), $content); !!}
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+          
+          <section class="contact-mobile mobile-content">
+            <div class="row">
+              <div class="col-md-12 mobile-sidebar">
+                <div class="container">
+                  <div class="mobile-sidebar-menu">
+                    <a class="menu" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Our Company</a>
                     <div class="collapse" id="mobile-sidebar-collapse">
-                        <ul>
-                            {{-- <li><a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a></li> --}}
-                            <li><a href="{{URL::route('support-faq')}}">{{ trans('general.frequently_asked_questions') }}</a></li>
-                            <li><a href="{{URL::route('contact-us')}}">{{ trans('general.contact-us') }}</a></li>
-                            <li><a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a></li>
-                            <li><a href="{{URL::route('support-privacy-policy')}}">{{ trans('general.privacy_policy') }}</a></li>
-                        </ul>
+                      <ul>
+                        <li><a href="{{URL::route('our-company')}}">About Asia Box Office</a></li>
+                        <li><a href="{{URL::route('careers')}}">Careers</a></li>
+                        <li><a href="{{URL::route('contact-us')}}">Contact Us</a></li>
+                      </ul>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="container">
-                <div class="mobile-page-title">
-                    <h3 class="font-light">{{ trans('general.contact_us') }}</h3>
-                </div>
-                <div class="mobileTab">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="container">
+                  <div class="mobile-page-title">
+                    <h3>Contact Us</h3>
+                  </div>
+                  <div class="eventTab">
                     <ul class="nav nav-tabs tab-mobile tab-mobile-contact" role="tablist">
-                        {{-- <li role="presentation" class="active"><a href="#boxoffice" aria-controls="home" role="tab" data-toggle="tab"><div class="iconWays"><i class="fa fa-ticket"></i></div><br>Box Office</a></li> --}}
-                        <li role="presentation"><a href="#hotline" aria-controls="profile" role="tab" data-toggle="tab"><div class="iconWays"><i class="fa fa-phone"></i></div><br>Hotline</a></li>
-                        {{-- <li role="presentation"><a href="#website" aria-controls="profile" role="tab" data-toggle="tab"><div class="iconWays"><i class="fa fa-laptop"></i></div><br>Website</a></li> --}}
+                      <li role="presentation" class="active"><a href="#sendmessage" aria-controls="home" role="tab" data-toggle="tab">Send a Message</a></li>
+                      <li role="presentation"><a href="#callus" aria-controls="profile" role="tab" data-toggle="tab">Call or Locate Us</a></li>
                     </ul>
-                </div>
-                <div class="contentTab">
+                  </div>
+                  <div class="contentTab">
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="hotline">
-                            <h4 class="head-mobile-ways">Talk to a customer service officers.</h4>
-                            <div class="office-button-mobile">
-                                <button class="btn btnSeeContact btnBlackDefault font-bold"><i class="fa fa-phone" style="margin-right: 10px;"></i>Call +65 6733 0360</button>
-                            </div>
-                            <div class="hotline-operating-mobile">
-                                <label class="label-head font-bold">Hotline Operating Hours</label><br>
-                                <label>Mon to Fri: 10am - 6pm</label>
-                            </div>
+                      <div role="tabpanel" class="tab-pane active" id="sendmessage">
+                        <ul class="list-contact">
+                          <li class="general contact"><a href="#">General Enquiries ></a></li>
+                          <li class="customer contact"><a href="#">Customer Feedback ></a></li>
+                          <li class="corporate contact"><a href="#">Corporate / Group Bookings ></a></li>
+                          <li class="media contact"><a href="#">Media Enquiries ></a></li>
+                          <li class="ticket contact"><a href="#">Ticketing Solution for Your Event ></a></li>
+                          <li class="partner contact"><a href="#">Partnerships ></a></li>
+                          <li class="marketing contact"><a href="#">Marketing or Promotion Services ></a></li>
+                        </ul>
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="callus">
+                        <div class="hotline-mobile">
+                          <div class="box-inside">
+                            <label class="label-small"><div class="label-top">TICKETING HOTLINE</div><div class="label-bottom">Call +65 6733 0360</div></label>
+                          </div>
                         </div>
-                        {{-- {!! str_replace($tag, '', strstr($content, $tag)) !!} --}}
+                        <div class="hotline-operating-mobile">
+                          <label class="label-head">Hotline Operating Hours</label><br>
+                          <label>Mon to Sat: 10am - 8pm, Sun and PH: 12pm - 8pm</label>
+                        </div>
+                        <div class="office-address-mobile">
+                          <label class="label-head">Asia Box Office Pte Ltd</label>
+                          <p>390 Orchard Road, Palais Renaissance #15-01, Singapore 238871</p>
+                        </div>
+                        <div class="office-button-mobile">
+                          <button class="btn btnSeeContact">See Map & Directions</button>
+                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
-</section>
+          </section>
+
 @stop
+@include('frontend.partials.script.message_script')

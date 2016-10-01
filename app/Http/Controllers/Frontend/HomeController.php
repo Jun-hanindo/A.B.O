@@ -73,7 +73,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
 
-            return view('frontend.partials.homepage', $result); 
+            return view('frontend.partials.homepage_static', $result); 
         
         } catch (\Exception $e) {
 
@@ -290,7 +290,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
             
-            return view('frontend.partials.contact_us', $data);
+            return view('frontend.partials.contact_us_static', $data);
         
         } catch (\Exception $e) {
 
@@ -346,7 +346,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
 
-            return view('frontend.partials.support'); 
+            return view('frontend.partials.support_static'); 
         
         } catch (\Exception $e) {
 
@@ -379,7 +379,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
             
-            return view('frontend.partials.support_faq', $data);
+            return view('frontend.partials.support_faq_static', $data);
         
         } catch (\Exception $e) {
 
@@ -402,13 +402,13 @@ class HomeController extends Controller
             $insertTrail->insertTrail($trail);
 
             if($category == 'top'){
-                return view('frontend.partials.support_faq_top');
+                return view('frontend.partials.support_faq_top_static');
             }elseif ($category == 'general') {
-                return view('frontend.partials.support_faq_general');
+                return view('frontend.partials.support_faq_general_static');
             }elseif ($category == 'payment') {
-                 return view('frontend.partials.support_faq_payment');
+                 return view('frontend.partials.support_faq_payment_static');
             }elseif ($category == 'seat') {
-                 return view('frontend.partials.support_faq_seat');
+                 return view('frontend.partials.support_faq_seat_static');
             }
         
         } catch (\Exception $e) {
@@ -475,7 +475,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
 
-            return view('frontend.partials.support_terms_and_conditions', $data);
+            return view('frontend.partials.support_terms_and_conditions_static', $data);
             
         } catch (\Exception $e) {
 
@@ -508,7 +508,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
 
-            return view('frontend.partials.support_privacy_policy', $data);
+            return view('frontend.partials.support_privacy_policy_static', $data);
             
         } catch (\Exception $e) {
 
