@@ -4,7 +4,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@yield('title') {{ env('APP_WEB_ADMIN_NAME', 'AsiaBoxOffice') }}</title>
-        <meta property="og:image" content="@yield('meta_image')" />
+        <meta property="og:image" content="@yield('og_image')" />
 
           <!-- Bootstrap -->
         {!! Html::style('assets/frontend/css/bootstrap.min.css') !!}

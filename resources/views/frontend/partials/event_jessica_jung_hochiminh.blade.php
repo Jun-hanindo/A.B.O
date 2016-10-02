@@ -1,6 +1,6 @@
 @extends('layout.frontend.master.master')
 @section('title', 'Jessica Jung Ho Chi Minh Fan Meeting - ')
-@section('meta_image', asset('assets/frontend/images/jessica-jung-hochiminh-mobile.jpg')'))
+@section('og_image', asset('assets/frontend/images/jessica-jung-hochiminh-mobile.jpg'))
 @section('content')
 <section class="eventBanner" id="eventBanner">
     <div class="imageBanner">
