@@ -55,7 +55,7 @@
                                         </div>
                                         <div class="col-xs-6">
                                             <div class="mobile-logo">
-                                                <img src="{{ asset('assets/frontend/images/footer-logo.svg') }}">
+                                                <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/footer-logo.svg') }}"></a>
                                             </div>
                                         </div>
                                         <div class="col-xs-3">
