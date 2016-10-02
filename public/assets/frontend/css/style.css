@@ -3900,4 +3900,23 @@ ul#getvenue li:before {
   position: relative;
   left: 50%;
 }
+.eventTabScroll li a button:hover{
+  color: #a0a0a0;
+}
+
+.moreDetail button:focus,
+.eventTabScroll li a button:focus,
+.btnBlackDefault:focus {
+  color: #fff;
+}
+
+.eventTabScroll-mobile .nav-tabs.nav-justified>li>a{
+  border-radius: 0;
+  border-bottom: none;
+}
+
+ol.a,
+ul.a {
+  list-style-type: lower-alpha;
+}
 
