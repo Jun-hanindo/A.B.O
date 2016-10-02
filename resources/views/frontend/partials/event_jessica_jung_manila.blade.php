@@ -244,65 +244,67 @@
 </section>
 <div class="modal fade" id="modalSeatMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Seat Map</h4>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Seat Map</h4>
+      </div>
+      <div class="modal-body">
+        <div class="seat-map-modal">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="navigation-level">
+                <ul class="nav nav-tabs nav-level" role="tablist">
+                  <li role="presentation" class="active"><a href="#level1" aria-controls="home" role="tab" data-toggle="tab">Level 1</a></li>
+                  <li role="presentation"><a href="#level2" aria-controls="profile" role="tab" data-toggle="tab">Level 2</a></li>
+                  <li role="presentation"><a href="#level3" aria-controls="messages" role="tab" data-toggle="tab">Level 3</a></li>
+                </ul>
+              </div>
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="level1"><img src="{{ asset('assets/frontend/images/jessica-jung-manila-seatmap-level1.jpg') }}"></div>
+                <div role="tabpanel" class="tab-pane" id="level2"><img src="{{ asset('assets/frontend/images/jessica-jung-manila-seatmap-level2.jpg') }}"></div>
+                <div role="tabpanel" class="tab-pane" id="level3"><img src="{{ asset('assets/frontend/images/jessica-jung-manila-seatmap-level3.jpg') }}"></div>
+              </div>
             </div>
-            <div class="modal-body">
-                <div class="seat-map-modal">
-                    <div class="row">
-                        <div class="col-md-7">
-                            <ul class="nav nav-tabs nav-level" role="tablist">
-                                <li role="presentation" class="active"><a href="#level1" aria-controls="home" role="tab" data-toggle="tab">Level 1</a></li>
-                                <li role="presentation"><a href="#level2" aria-controls="profile" role="tab" data-toggle="tab">Level 2</a></li>
-                                <li role="presentation"><a href="#level3" aria-controls="messages" role="tab" data-toggle="tab">Level 3</a></li>
-                            </ul>
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="level1"><img src="{{ asset('assets/frontend/images//jessica-jung-manila-seatmap-level1.jpg') }}"></div>
-                                <div role="tabpanel" class="tab-pane" id="level2"><img src="{{ asset('assets/frontend/images/jessica-jung-manila-seatmap-level2.jpg') }}"></div>
-                                <div role="tabpanel" class="tab-pane" id="level3"><img src="{{ asset('assets/frontend/images/jessica-jung-manila-seatmap-level3.jpg') }}"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="seat-map-price">
-                                <ul>
-                                    <li>
-                                        <span class="seat-dot dot-pink"></span>
-                                        <span class="box-line">
-                                            <span class="category">Category 1</span>
-                                            <span class="price">PHP 7,450</span>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="seat-dot dot-blue"></span>
-                                        <span class="box-line">
-                                            <span class="category">Category 2</span>
-                                            <span class="price">PHP 5,950</span>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="seat-dot dot-purple"></span>
-                                        <span class="box-line">
-                                            <span class="category">Category 3</span>
-                                            <span class="price">PHP 4,050</span>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="seat-dot dot-green"></span>
-                                        <span class="box-line">
-                                            <span class="category">Category 4</span>
-                                            <span class="price">PHP 2,950</span>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-md-5">
+              <div class="seat-map-price">
+                <ul>
+                  <li>
+                    <span class="seat-dot dot-pink"></span>
+                    <span class="box-line">
+                      <span class="category">Category 1</span>
+                      <span class="price">PHP 7,450</span>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="seat-dot dot-blue"></span>
+                    <span class="box-line">
+                      <span class="category">Category 2</span>
+                      <span class="price">PHP 5,950</span>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="seat-dot dot-purple"></span>
+                    <span class="box-line">
+                      <span class="category">Category 3</span>
+                      <span class="price">PHP 4,050</span>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="seat-dot dot-green"></span>
+                   <span class="box-line">
+                      <span class="category">Category 4</span>
+                      <span class="price">PHP 2,950</span>
+                    </span>
+                  </li>
+                </ul>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 @stop
 @include('frontend.partials.script.subscribe_script')
