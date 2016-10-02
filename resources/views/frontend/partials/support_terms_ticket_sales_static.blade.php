@@ -179,23 +179,23 @@
                   </div>
                   <div class="terms-content">
                     <ol>
-                      <li>General
+                      <li><label class="font-bold">General</label>
                         <ol>
                           <li>This website www.AsiaBoxOffice.com (“our site”) and the ticket booking facility on our site is owned by Asia Box Office Pte Ltd.</li>
                           <li>These terms and conditions (together with the documents referred to herein) govern the sale and purchase of tickets from our site.</li>
                           <li>You represent that you are of legal age to use our site and booking facility in accordance with these terms and conditions, and to create binding legal obligations for any liability you may incur as a result thereof.</li>
                         </ol>
                       </li>
-                      <li>Changes to these terms
+                      <li><label class="font-bold">Changes to these terms</label>
                         <ol>
-                          <li>We may revise these terms and conditions at any time by amending this page
+                          <li>We may revise these terms and conditions at any time by amending this page.
                           </li>
-                          <li>Please check this page from time to time to take notice of any changes made, as they are binding on you. </li>
+                          <li>Please check this page from time to time to take notice of any changes made, as they are binding on you.</li>
                         </ol>
                       </li>
-                      <li>Purchasing tickets
+                      <li><label class="font-bold">Purchasing tickets</label>
                         <ol>
-                          <li>All tickets to events are sold by us as agent for the respective event’s venue management or owner (collectively, “Venue Owner”) and/or promoter (“Promoter”).  </li>
+                          <li>All tickets to events are sold by us as agent for the respective event’s venue management or owner (collectively, “Venue Owner”) and/or promoter (“Promoter”).</li>
                           <li>Tickets for any event may be subject to additional terms and conditions as the Venue Owner or Promoter may impose, provided that in the event of any inconsistency with these terms and conditions and those of the Venue Owner or Promoter, these terms and conditions shall prevail.</li>
                           <li>Please refer to our <a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a> for more details on how we use and protect your personal information.</li>
                           <li>You may need a username and password to access certain areas of our site, including the booking facility on our site. You are responsible for maintaining the security of your username and password and you are responsible for any action taken under your username or password.</li>
@@ -210,22 +210,22 @@
                           <li>The resale of tickets purchased from our site is strictly prohibited.  We reserve the right to cancel any ticket that has been so resold and to deny any such ticket holder entry to the event.</li>
                         </ol>
                       </li>
-                      <li>Collection of tickets
+                      <li><label class="font-bold">Collection of tickets</label>
                         <ol>
                           <li>Unless you have chosen to have your tickets delivered to you, you are required to collect your tickets within such time periods stipulated under the chosen collection method.</li>
-                          <li>In the event that you fail to collect any of your ticket(s) within the prescribed time frame, you will not be entitled to receive such ticket(s) or receive any refund for any such uncollected ticket(s)</li>
+                          <li>In the event that you fail to collect any of your ticket(s) within the prescribed time frame, you will not be entitled to receive such ticket(s) or receive any refund for any such uncollected ticket(s).</li>
                         </ol>
                       </li>
-                      <li>Changes/cancellation of events
+                      <li><label class="font-bold">Changes/cancellation of events</label>
                         <ol>
                           <li>Events are sometimes re-scheduled, postponed or cancelled completely.</li>
                         </ol>
                       </li>
-                      <li>Entry to events
+                      <li><label class="font-bold">Entry to events</label>
                         <ol>
                           <li>Entry to any event may be subject to, and regulated by such terms and conditions as may be specified by the event’s Venue Owner and/or the Promoter.  A ticket holder may be denied entry to an event if the ticket holder does not comply with any such terms and conditions.</li>
                           <li>Without limiting the above:
-                            <ul>
+                            <ul class="a">
                               <li>entry to an event may be denied if a ticket has not been purchased from us or other authorised points of sale;</li>
                               <li>infants in arms or children below the admission age stated in publicity materials who hold valid tickets to an event will be denied entry;</li>
                               <li>latecomers may be denied entry until a break or intermission during the event as we may deem appropriate;</li>
@@ -239,39 +239,39 @@
                           <li>Where any person has been refused entry to, or has been evicted from, an event under these terms and conditions, such person shall not be entitled to any refund for his or her ticket or any compensation whatsoever.</li>
                         </ol>
                       </li>
-                      <li>Other rights
+                      <li><label class="font-bold">Other rights</label>
                         <ol>
                           <li>The Promoter for an event may add, withdraw or substitute artistes and/or vary advertised programmes, event timing, event duration, seating arrangements and audience capacity without prior notice.</li>
                           <li>The Venue Owner and/or the Promoter for an event may postpone, cancel, interrupt or stop the event due to adverse weather, security reasons or any other causes beyond their control.</li>
                           <li>We shall be entitled to collect, use and disclose, and we shall be entitled to disclose to an event’s Promoter and/or Venue Owner for their use, any of your or a ticket holder’s personal data for the purpose of:
-                            <ul>
-                              <li>ticket processing</li>
-                              <li>event organisation</li>
-                              <li>event promotion and marketing</li>
-                              <li>carrying out any billing, cancellation, postponement and/or refund</li>
-                              <li>other purposes that may be relevant, or incidental to the foregoing, including contacting you to provide updates about the event. </li>
+                            <ul class="a">
+                              <li>ticket processing;</li>
+                              <li>event organisation;</li>
+                              <li>event promotion and marketing;</li>
+                              <li>carrying out any billing, cancellation, postponement and/or refund; and</li>
+                              <li>other purposes that may be relevant, or incidental to the foregoing, including contacting you to provide updates about the event.</li>
                             </ul>
                           </li>
                           <li>Together with the Venue Owner and the Promoter, we or any of us may use a ticket holder's image or likeness in any live or recorded video display, photograph, picture or publicity material or website.</li>
                         </ol>
                       </li>
-                      <li>Liability of liability
+                      <li><label class="font-bold">Liability of liability</label>
                         <ol>
                           <li>Nothing in these terms of use excludes or limits our liability for death or personal injury arising from our negligence, or our fraud or fraudulent misrepresentation, or any other liability that cannot be excluded or limited by Singapore law.</li>
                           <li>To the extent permitted by law, we exclude all conditions, warranties, representations or other terms which may apply to our booking facility or any content on it, whether express or implied.</li>
                           <li>We will not be liable to anyone for any loss or damage, whether in contract, tort (including negligence), breach of statutory duty, or otherwise, even if foreseeable, arising under or in connection with:
-                            <ul>
-                              <li>use of, or inability to use, our booking facility</li>
-                              <li>use of or reliance on any content displayed on our booking facility</li>
+                            <ul class="a">
+                              <li>use of, or inability to use, our booking facility; or</li>
+                              <li>use of or reliance on any content displayed on our booking facility.</li>
                             </ul>
                           </li>
                           <li>Without limiting the above, we will not be liable to anyone for:
-                            <ul>
-                              <li>loss of profits, sales, business, or revenue</li>
-                              <li>business interruption</li>
-                              <li>loss of anticipated savings</li>
-                              <li>loss of business opportunity, goodwill or reputation</li>
-                              <li>any indirect or consequential loss or damage</li>
+                            <ul class="a">
+                              <li>loss of profits, sales, business, or revenue;</li>
+                              <li>business interruption;</li>
+                              <li>loss of anticipated savings;</li>
+                              <li>loss of business opportunity, goodwill or reputation; or</li>
+                              <li>any indirect or consequential loss or damage.</li>
                             </ul>
                           </li>
                           <li>We will not be liable for any loss or damage caused by a virus, distributed denial-of-service attack, or other technologically harmful material that may infect your computer equipment, computer programs, data or other proprietary material due to your use of our booking facility or to your downloading of any content on it, or on any website linked to it.</li>
@@ -279,7 +279,7 @@
                           <li>We will take all reasonable measures to ensure that information you transmit to us using our booking facility will remain confidential and protected from unauthorised access but we do not warrant against unauthorised access and will not be liable for any unauthorised access by any means to that information.</li>
                         </ol>
                       </li>
-                      <li>Applicable law
+                      <li><label class="font-bold">Applicable law</label>
                         <ol>
                           <li>These terms and conditions are governed by Singapore law.</li>
                           <li>You agree that the courts of Singapore will have non-exclusive jurisdiction in the case of any dispute.</li>
@@ -287,7 +287,7 @@
                       </li>
                     </ol>
                     <br>
-                    <label class="update-terms">Updated by Asia Box Office Legal Team on May 15, 2016</label>
+                    <label class="update-terms">Updated by Asia Box Office Legal Team on May 15, 2016.</label>
                   </div>
                 </div>
               </div>

@@ -77,14 +77,14 @@
             </div>
             <div class="col-md-4 ticket" id="ticket">
                 <div class="information-title">
-                    <i class="fa fa-ticket"></i> PHP 2,950-7,450/person
+                    <i class="fa fa-ticket"></i> PHP 3,050-7,550/person
                 </div>
                 <ul class="list-unstyled">
                     <li class="liParent li-mobile">
                         <table>
                             <tr>
                                 <td>Category 1</td>
-                                <td><span>PHP 7,450</span></td>
+                                <td><span>PHP 7,550</span></td>
                             </tr>
                         </table>
                     </li>
@@ -92,7 +92,7 @@
                         <table>
                             <tr>
                                 <td>Category 2</td>
-                                <td><span>PHP 5,950</span></td>
+                                <td><span>PHP 6,050</span></td>
                             </tr>
                         </table>
                     </li>
@@ -100,7 +100,7 @@
                         <table>
                             <tr>
                                 <td>Category 3</td>
-                                <td><span>PHP 4,050</span></td>
+                                <td><span>PHP 4,150</span></td>
                             </tr>
                         </table>
                     </li>
@@ -108,7 +108,7 @@
                         <table>
                             <tr>
                                 <td>Category 4</td>
-                                <td><span>PHP 2,950</span></td>
+                                <td><span>PHP 3,050</span></td>
                             </tr>
                         </table>
                     </li>
@@ -273,28 +273,28 @@
                     <span class="seat-dot dot-pink"></span>
                     <span class="box-line">
                       <span class="category">Category 1</span>
-                      <span class="price">PHP 7,450</span>
+                      <span class="price">PHP 7,550</span>
                     </span>
                   </li>
                   <li>
                     <span class="seat-dot dot-blue"></span>
                     <span class="box-line">
                       <span class="category">Category 2</span>
-                      <span class="price">PHP 5,950</span>
+                      <span class="price">PHP 6,050</span>
                     </span>
                   </li>
                   <li>
                     <span class="seat-dot dot-purple"></span>
                     <span class="box-line">
                       <span class="category">Category 3</span>
-                      <span class="price">PHP 4,050</span>
+                      <span class="price">PHP 4,150</span>
                     </span>
                   </li>
                   <li>
                     <span class="seat-dot dot-green"></span>
                    <span class="box-line">
                       <span class="category">Category 4</span>
-                      <span class="price">PHP 2,950</span>
+                      <span class="price">PHP 3,050</span>
                     </span>
                   </li>
                 </ul>
