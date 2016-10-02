@@ -2792,7 +2792,8 @@ footer .information-title{
 }
 
 .mobileTab .iconWays i{
-  padding: 9px;
+    padding: 11px;
+    padding-left: 12px;
 }
 
 .headWays{
