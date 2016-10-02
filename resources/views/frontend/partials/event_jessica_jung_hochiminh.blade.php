@@ -76,14 +76,14 @@
             </div>
             <div class="col-md-4 ticket" id="ticket">
                 <div class="information-title">
-                    <i class="fa fa-ticket"></i> US$40-100/person
+                    <i class="fa fa-ticket"></i>VND 850,000-2,250,000/person
                 </div>
                 <ul class="list-unstyled">
                     <li class="liParent li-mobile">
                         <table>
                             <tr>
                                 <td>Category 1</td>
-                                <td><span>US$100</span></td>
+                                <td><span>VND 2,250,000</span></td>
                             </tr>
                         </table>
                     </li>
@@ -91,7 +91,7 @@
                         <table>
                             <tr>
                                 <td>Category 1 (Standing)</td>
-                                <td><span>US$100</span></td>
+                                <td><span>VND 2,250,000</span></td>
                             </tr>
                         </table>
                     </li>
@@ -99,7 +99,7 @@
                         <table>
                             <tr>
                                 <td>Category 2</td>
-                                <td><span>US$80</span></td>
+                                <td><span>VND 1,850,000</span></td>
                             </tr>
                         </table>
                     </li>
@@ -107,7 +107,7 @@
                         <table>
                             <tr>
                                 <td>Category 2 (Standing)</td>
-                                <td><span>US$80</span></td>
+                                <td><span>VND 1,850,000</span></td>
                             </tr>
                         </table>
                     </li>
@@ -115,7 +115,7 @@
                         <table>
                             <tr>
                                 <td>Category 3</td>
-                                <td><span>US$60</span></td>
+                                <td><span>VND 1,450,000</span></td>
                             </tr>
                         </table>
                     </li>
@@ -123,7 +123,7 @@
                         <table>
                             <tr>
                                 <td>Category 3 (Standing)</td>
-                                <td><span>US$60</span></td>
+                                <td><span>VND 1,450,000</span></td>
                             </tr>
                         </table>
                     </li>
@@ -131,11 +131,11 @@
                         <table>
                             <tr>
                                 <td>Category 4</td>
-                                <td><span>US$40</span></td>
+                                <td><span>VND 850,000</span></td>
                             </tr>
                         </table>
                     </li>
-                    <!-- <p class="additional-info">* Restricted view (Price inclusive on S$3 booking fee per ticket)</p> -->
+                    <p class="additional-info">(Price is inclusive of VND 50,000 booking fee per ticket)</p>
                     <li class="liParent parentButton">
                       <button class="btn btnBlackDefault font-bold" data-target="#modalSeatMap" data-toggle="modal">See Seat Map</button>
                       <!-- <button class="btn btnticket bg-white font-bold">More Ticket Info</button> -->
@@ -269,49 +269,49 @@
                                         <span class="seat-dot dot-hochi1"></span>
                                         <span class="box-line">
                                             <span class="category">Category 1</span>
-                                            <span class="price">US$100</span>
+                                            <span class="price">VND 2,250,000</span>
                                         </span>
                                     </li>
                                     <li>
                                         <span class="seat-dot dot-hochi1"></span>
                                         <span class="box-line">
                                             <span class="category">Category 1 (Standing)</span>
-                                            <span class="price">US$100</span>
+                                            <span class="price">VND 2,250,000</span>
                                         </span>
                                     </li>
                                     <li>
                                         <span class="seat-dot dot-hochi2"></span>
                                         <span class="box-line">
                                             <span class="category">Category 2</span>
-                                            <span class="price">US$80</span>
+                                            <span class="price">VND 1,850,000</span>
                                         </span>
                                     </li>
                                     <li>
                                         <span class="seat-dot dot-hochi2"></span>
                                         <span class="box-line">
                                             <span class="category">Category 2 (Standing)</span>
-                                            <span class="price">US$80</span>
+                                            <span class="price">VND 1,850,000</span>
                                         </span>
                                     </li>
                                     <li>
                                         <span class="seat-dot dot-hochi3"></span>
                                         <span class="box-line">
                                             <span class="category">Category 3</span>
-                                            <span class="price">US$60</span>
+                                            <span class="price">VND 1,450,000</span>
                                         </span>
                                     </li>
                                     <li>
                                         <span class="seat-dot dot-hochi3"></span>
                                         <span class="box-line">
                                             <span class="category">Category 3 (Standing)</span>
-                                            <span class="price">US$60</span>
+                                            <span class="price">VND 1,450,000</span>
                                         </span>
                                     </li>
                                     <li>
                                         <span class="seat-dot dot-hochi4"></span>
                                         <span class="box-line">
                                             <span class="category">Category 4</span>
-                                            <span class="price">US$40</span>
+                                            <span class="price">VND 850,000</span>
                                         </span>
                                     </li>
                                 </ul>
