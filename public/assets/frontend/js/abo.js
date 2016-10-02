@@ -10,21 +10,24 @@
       });
 
       // Hide Header on on scroll down
-      $(window).scroll(function() {
-            var y = $(window).scrollTop();
-            var height = $('.contentTab').offset().top;
-            var isFixed = false;
-            var shouldBeFixed = y > height;
-            if (shouldBeFixed && !isFixed) {
-                $('.eventTabScroll').fadeIn();
-                isFixed = true;
-            }
-            else if (!shouldBeFixed && isFixed)
-            {
-                $('.eventTabScroll').fadeOut();
-                isFixed = false;
-            }
-        });
+      var hasClass = $(window).hasClass( "contentTab" );
+      if(hasClass){
+        $(window).scroll(function() {
+              var y = $(window).scrollTop();
+              var height = $('.contentTab').offset().top;
+              var isFixed = false;
+              var shouldBeFixed = y > height;
+              if (shouldBeFixed && !isFixed) {
+                  $('.eventTabScroll').fadeIn();
+                  isFixed = true;
+              }
+              else if (!shouldBeFixed && isFixed)
+              {
+                  $('.eventTabScroll').fadeOut();
+                  isFixed = false;
+              }
+          });
+      }
 
       $('.smoothScroll').on('click', function(event) {
           var target = $(this.getAttribute('href'));
