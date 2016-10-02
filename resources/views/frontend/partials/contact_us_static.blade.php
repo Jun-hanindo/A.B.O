@@ -1,5 +1,5 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Event Asia Box Office')
+@section('title', 'Contact Us')
 @section('content')
 <section class="about-content contact-content ways-content">
     <div class="row">

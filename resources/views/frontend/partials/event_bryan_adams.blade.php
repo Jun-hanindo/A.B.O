@@ -1,5 +1,5 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Event Asia Box Office')
+@section('title', 'Bryan Adams “Get Up Tour”')
 @section('content')
           
 <section class="eventBanner" id="eventBanner">

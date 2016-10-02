@@ -1,5 +1,5 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Page Title')
+@section('title', 'Homepage')
 @section('content')
     @if(!empty($sliders))
         <section class="slider-home">
