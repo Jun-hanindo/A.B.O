@@ -21,19 +21,19 @@
                             Frequently Asked Questions
                         </a>
                         <br>
-                        <span>Browse our topics or ask a question.</span>
+                        <span>Browse our topics.</span>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="contact-support">
                         <a href="{{URL::route('contact-us')}}" class="font-light">
                             <div class="iconWays">
-                                <i class="fa fa-phone"></i>
+                                <i class="fa fa-envelope"></i>
                             </div>
                             Contact Us
                         </a>
                         <br>
-                        <span>Send a message, call or visit us.</span>
+                        <span>Send us an email or call us.</span>
                     </div>
                 </div>
             </div>

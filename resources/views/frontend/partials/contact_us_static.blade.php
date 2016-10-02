@@ -35,17 +35,16 @@
                         <div class="col-md-4">
                             <div class="hotline">
                                 <div class="iconWays">
-                                    <i class="fa fa-phone"></i>
+                                    <i class="fa fa-envelope"></i>
                                 </div>
-                                <h4 class="headWays font-light">Hotline</h4>
-                                <h5>Talk to a customer service officer.</h5>
+                                <h4 class="headWays font-light">Talk to Us</h4>
+                                <h5>Reach out to our customer service team.</h5>
                                 <br>
                                 <a href="mailto:connect@asiaboxoffice.com">
                                     <button class="btn btnBlackDefault font-bold button-email"><i class="fa fa-envelope"></i>connect@asiaboxoffice.com</button>
                                 </a>
-                                <a href="tel:+6567330360">
-                                    <button class="btn btnBlackDefault font-bold"><i class="fa fa-phone"></i>Call +65 6733 0360</button>
-                                </a>
+                                <button class="btn btnBlackDefault font-bold"><i class="fa fa-phone"></i>Call +65 6733 0360</button>
+                                
                                 <br>
                                 <div class="operating">
                                     <label class="font-bold">Hotline Operating Hours</label>
@@ -88,14 +87,14 @@
                 <div class="mobileTab">
                     <ul class="nav nav-tabs tab-mobile tab-mobile-contact" role="tablist">
                         <!-- <li role="presentation" class="active"><a href="#boxoffice" aria-controls="home" role="tab" data-toggle="tab"><div class="iconWays"><i class="fa fa-ticket"></i></div><br>Box Office</a></li> -->
-                        <li role="presentation"><a href="#hotline" aria-controls="profile" role="tab" data-toggle="tab"><div class="iconWays"><i class="fa fa-phone"></i></div><br>Hotline</a></li>
+                        <li role="presentation"><a href="#hotline" aria-controls="profile" role="tab" data-toggle="tab"><div class="iconWays"><i class="fa fa-phone"></i></div><br>Talk to Us</a></li>
                         <!-- <li role="presentation"><a href="#website" aria-controls="profile" role="tab" data-toggle="tab"><div class="iconWays"><i class="fa fa-laptop"></i></div><br>Website</a></li> -->
                     </ul>
                 </div>
                 <div class="contentTab">
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="hotline">
-                            <h4 class="head-mobile-ways">Talk to a customer service officer.</h4>
+                            <h4 class="head-mobile-ways">Reach out to our customer service team.</h4>
                             <div class="office-button-mobile">
                                 <a href="mailto:connect@asiaboxoffice.com">
                                     <button class="btn btnBlackDefault font-bold button-email"><i class="fa fa-envelope"></i>connect@asiaboxoffice.com</button>
