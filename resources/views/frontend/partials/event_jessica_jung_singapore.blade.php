@@ -1,5 +1,5 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Jessica Jung Singapore Fan Meeting')
+@section('title', 'Jessica Jung Singapore Fan Meeting - ')
 @section('content')
 <section class="eventBanner" id="eventBanner">
     <div class="imageBanner">

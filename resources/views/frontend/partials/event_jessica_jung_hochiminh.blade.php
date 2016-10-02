@@ -1,5 +1,5 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Jessica Jung Ho Chi Minh Fan Meeting')
+@section('title', 'Jessica Jung Ho Chi Minh Fan Meeting - ')
 @section('content')
 <section class="eventBanner" id="eventBanner">
     <div class="imageBanner">
@@ -249,7 +249,7 @@
         </div>
     </div>
 </section>
-<div class="modal fade" id="modalSeatMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade modal-hochi" id="modalSeatMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

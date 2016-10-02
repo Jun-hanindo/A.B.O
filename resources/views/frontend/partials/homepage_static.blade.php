@@ -1,5 +1,5 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Homepage')
+@section('title', '')
 @section('content')
 <section class="slider-home">
     <div id="carouselHacked" class="carousel slide carousel-fade" data-ride="carousel">

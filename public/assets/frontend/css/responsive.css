@@ -753,6 +753,9 @@
   .contentTab .side-left h4{
     margin-top: 15px;
   }
+  .modal-hochi .modal-dialog {
+    min-width: auto;
+  }
 }
 
 @media (max-width: 768px){

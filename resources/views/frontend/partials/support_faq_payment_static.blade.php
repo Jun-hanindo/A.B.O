@@ -1,5 +1,5 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Frequently Asked Questions Payment')
+@section('title', 'FAQ Payment - ')
 @section('content')
 @php
 $tag = '<--mobile-->';

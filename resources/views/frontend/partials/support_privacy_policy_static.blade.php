@@ -1,5 +1,5 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Privacy Policy')
+@section('title', 'Privacy Policy - ')
 @section('content')
 <section class="about-content ways-content">
     <div class="row">

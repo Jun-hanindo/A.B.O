@@ -3968,4 +3968,12 @@ li ol > li:before {
 .tab-mobile-contact>li>a:hover {
     border-bottom: 3px solid transparent;
 }
+.modal-hochi .modal-dialog {
+    min-width: 800px;
+}
+
+.modal-hochi .modal-dialog .modal-content {
+    width: 100%;
+    margin: 0 auto;
+}
 

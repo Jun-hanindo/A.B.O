@@ -1,5 +1,5 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Terms of Ticket Sales')
+@section('title', 'Terms of Ticket Sales - ')
 @section('content')
 <section class="about-content ways-content">
     <div class="row">
