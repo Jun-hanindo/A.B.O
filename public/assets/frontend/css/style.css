@@ -3946,7 +3946,13 @@ ol .a li:before{
   padding-left: 10px !important;
 }
 
-.terms-content ol li {
-    padding-left: 30px;
+.terms-content ol li,
+.privacy-content ol li {
+    padding-left: 20px;
     position: relative;
+}
+
+.terms-content ol li ol li,
+.privacy-content ol li ol li {
+    padding-left: 25px;
 }
