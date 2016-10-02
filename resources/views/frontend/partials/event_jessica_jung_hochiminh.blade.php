@@ -315,6 +315,7 @@
                                         </span>
                                     </li>
                                 </ul>
+                                <p>(Price is inclusive of VND 50,000 booking fee per ticket)</p>
                             </div>
                         </div>
                     </div>
