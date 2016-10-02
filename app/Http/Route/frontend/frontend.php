@@ -33,7 +33,8 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('send-feedback', array('as' => 'send-feedback', 'uses' => 'HomeController@feedBack'));
     Route::get('language', array('as' => 'language', 'uses' => 'LanguagesController@setLanguage'));
 
-    Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
+    Route::get('/', array('as' => 'home', 'uses' => 'HomeController@landing'));
+    Route::get('index', array('as' => 'home', 'uses' => 'HomeController@index'));
     Route::get('bryan-adams', array('as' => 'bryan-adams', 'uses' => 'HomeController@bryanAdams'));
     Route::get('jessica-jung-singapore', array('as' => 'jessica-jung-singapore', 'uses' => 'HomeController@jessicaJungSingapore'));
     Route::get('jessica-jung-hochiminh', array('as' => 'jessica-jung-hochiminh', 'uses' => 'HomeController@jessicaJungHochiminh'));
