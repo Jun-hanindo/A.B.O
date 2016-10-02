@@ -3956,3 +3956,12 @@ ol .a li:before{
 .privacy-content ol li ol li {
     padding-left: 25px;
 }
+
+ol > li:before {
+  content: counters(section, ".") ". ";   
+}
+
+li ol > li:before {
+  content: counters(section, ".") " ";
+}
+
