@@ -19,11 +19,13 @@
               var shouldBeFixed = y > height;
               if (shouldBeFixed && !isFixed) {
                   $('.eventTabScroll').fadeIn();
+                  $('.eventTabScroll-mobile').fadeIn();
                   isFixed = true;
               }
               else if (!shouldBeFixed && isFixed)
               {
                   $('.eventTabScroll').fadeOut();
+                  $('.eventTabScroll-mobile').fadeOut();
                   isFixed = false;
               }
           });
