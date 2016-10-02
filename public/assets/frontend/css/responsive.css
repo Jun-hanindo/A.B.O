@@ -862,3 +862,13 @@
     font-size: 13px;
   }
 }
+
+@media (max-width: 320px){
+  .seat-map-modal{
+    padding: 0;
+  }
+  .nav-level>li>a{
+    font-size: 10px;
+    text-align: center;
+  }
+}

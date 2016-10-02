@@ -120,22 +120,4 @@
     var base_url = {!! json_encode(url('/')) !!};
 
     </script>
-    <script type="text/javascript">
-        $(document).scroll(function() {
-            var y = $(this).scrollTop();
-            if (y > 800) {
-                $('.eventTabScroll').fadeIn();
-            } else {
-                $('.eventTabScroll').fadeOut();
-            }
-        });
-        $(document).scroll(function() {
-            var y = $(this).scrollTop();
-            if (y > 1100) {
-                $('.eventTabScroll-mobile').fadeIn();
-            } else {
-                $('.eventTabScroll-mobile').fadeOut();
-            }
-        });
-    </script>
 </html>
