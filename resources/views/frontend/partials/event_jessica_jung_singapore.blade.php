@@ -191,7 +191,7 @@
                                                                 <p>Take the Circle Line to Esplanade MRT Station and take Exit A.</p>
                                                             </li>
                                                             <li class="taxi">
-                                                                <h3 class="font-bold">By Taxi / UBER Drop Off</h3>
+                                                                <h3 class="font-bold">By Taxi</h3>
                                                                 <p>If you are taking a taxi, you may alight directly at the venue.</p>
                                                             </li>
                                                             <li class="car">

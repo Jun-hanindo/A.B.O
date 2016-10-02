@@ -189,7 +189,7 @@
                                                                 <p>Ride the MRT up to the Taft Avenue Station; then switch to the LRT Edsa Station up to the LRT Vito Cruz Station. Go down the stairs and look for Toree Lorenzo Plaza where orange colored shuttle jeeps (Jeepney) that would bring you to the PICC.</p>
                                                             </li>
                                                             <li class="taxi">
-                                                                <h3 class="font-bold">By Taxi / UBER Drop Off</h3>
+                                                                <h3 class="font-bold">By Taxi</h3>
                                                                 <p>If you are taking a taxi, you may alight directly at the venue. Taxi drivers in Manila are conversant in English and are familiar with the Cultural Center of the Philippines (PICC) complex where the PICC is situated.  A regular taxi from the Ninoy Aquino International Airport would cost around P150 to P200.</p>
                                                             </li>
                                                             <li class="car">
