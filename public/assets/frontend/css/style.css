@@ -3924,3 +3924,29 @@ ul.a {
   margin-bottom: 10px;
 }
 
+ol{
+  counter-reset: section;                
+  list-style-type: none;
+}
+
+ol li::before {
+  counter-increment: section;            
+  content: counters(section,".") " ";  
+  padding-right: 10px;
+  position: absolute;
+  left: 0; 
+}
+
+ol .a li:before{
+  content: '';
+  display: none;
+}
+
+.a li{
+  padding-left: 10px !important;
+}
+
+.terms-content ol li {
+    padding-left: 30px;
+    position: relative;
+}
