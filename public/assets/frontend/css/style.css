@@ -3965,4 +3965,7 @@ ol > li:before {
 li ol > li:before {
   content: counters(section, ".") " ";
 }
+.tab-mobile-contact>li>a:hover {
+    border-bottom: none;
+}
 
