@@ -14,7 +14,7 @@
                 <h2 class="font-light">Jessica Jung Manila Fan Meeting</h2>
             </div>
             <div class="moreDetail">
-                <a href="#" target="_blank">
+                <a href="https://asiaboxoffice.nliven.co/tickets/series/JESSICAJUNGMANILA" target="_blank">
                     <button class="btn btnDetail font-bold">Buy Now</button>
                 </a>
             </div>
@@ -30,7 +30,7 @@
                     <li><a href="#aboutBox" class="smoothScroll active">About This Event</a></li>
                     <li><a href="#venueBox" class="smoothScroll">Venue Info</a></li>
                     <li><a href="#admissionBox" class="smoothScroll">Admission Rules</a></li>
-                    <li><a href="#" target="_blank"><button class="btn btnBuy btnABO font-bold">Buy Now</button></a></li>
+                    <li><a href="https://asiaboxoffice.nliven.co/tickets/series/JESSICAJUNGMANILA" target="_blank"><button class="btn btnBuy btnABO font-bold">Buy Now</button></a></li>
                 </ul>
             </div>
         </div>
@@ -45,7 +45,7 @@
                     <li><a href="#aboutBox" class="smoothScroll active">About</a></li>
                     <li><a href="#venueBox" class="smoothScroll">Venue</a></li>
                     <li><a href="#admissionBox" class="smoothScroll">Admission</a></li>
-                    <li><a href="h#"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li>
+                    <li><a href="https://asiaboxoffice.nliven.co/tickets/series/JESSICAJUNGMANILA" target="_blank"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li>
                 </ul>
             </div>
         </div>

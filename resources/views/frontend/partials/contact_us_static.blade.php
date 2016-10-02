@@ -38,9 +38,11 @@
                                     <i class="fa fa-phone"></i>
                                 </div>
                                 <h4 class="headWays font-light">Hotline</h4>
-                                <h5>Talk to a customer service officers.</h5>
+                                <h5>Talk to a customer service officer.</h5>
                                 <br>
-                                <button class="btn btnBlackDefault font-bold"><i class="fa fa-phone"></i>Call +65 6733 0360</button>
+                                <a href="tel:+6567330360">
+                                    <button class="btn btnBlackDefault font-bold"><i class="fa fa-phone"></i>Call +65 6733 0360</button>
+                                </a>
                                 <br>
                                 <div class="operating">
                                     <label class="font-bold">Hotline Operating Hours</label>
@@ -90,9 +92,11 @@
                 <div class="contentTab">
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="hotline">
-                            <h4 class="head-mobile-ways">Talk to a customer service officers.</h4>
+                            <h4 class="head-mobile-ways">Talk to a customer service officer.</h4>
                             <div class="office-button-mobile">
-                                <button class="btn btnSeeContact btnBlackDefault font-bold"><i class="fa fa-phone" style="margin-right: 10px;"></i>Call +65 6733 0360</button>
+                                <a href="tel:+6567330360">
+                                    <button class="btn btnSeeContact btnBlackDefault font-bold"><i class="fa fa-phone" style="margin-right: 10px;"></i>Call +65 6733 0360</button>
+                                </a>
                             </div>
                             <div class="hotline-operating-mobile">
                                 <label class="label-head font-bold">Hotline Operating Hours</label><br>
