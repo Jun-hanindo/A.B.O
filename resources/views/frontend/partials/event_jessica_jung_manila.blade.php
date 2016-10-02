@@ -45,7 +45,7 @@
                     <li><a href="#aboutBox" class="smoothScroll active">About</a></li>
                     <li><a href="#venueBox" class="smoothScroll">Venue</a></li>
                     <li><a href="#admissionBox" class="smoothScroll">Admission</a></li>
-                    <li><a href="https://asiaboxoffice.nliven.co/tickets/series/JESSICAJUNGMANILA" target="_blank"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li>
+                    <li><a href="https://asiaboxoffice.nliven.co/tickets/series/JESSICAJUNGMANILA"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li>
                 </ul>
             </div>
         </div>
