@@ -1,5 +1,6 @@
 @extends('layout.frontend.master.master')
 @section('title', 'Contact Us - ')
+@section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
 <section class="about-content contact-content ways-content">
     <div class="row">

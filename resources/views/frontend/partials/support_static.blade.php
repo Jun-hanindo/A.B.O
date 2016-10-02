@@ -1,5 +1,6 @@
 @extends('layout.frontend.master.master')
 @section('title', 'Support - ')
+@section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
 <section class="support-page-main">
     <div class="row">

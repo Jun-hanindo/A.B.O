@@ -1,12 +1,12 @@
 @extends('layout.frontend.master.master')
 @section('title', 'Jessica Jung Manila Fan Meeting - ')
-@section('og_image', asset('assets/frontend/images/jessica-jung-manila-mobile.jpg'))
+@section('og_image', asset('assets/frontend/images/jessica-jung-manila-share.jpg'))
 @section('content')
 <section class="eventBanner" id="eventBanner">
     <div class="imageBanner">
         <!-- <div class="btnPlayEvent"><a data-toggle="modal" data-target="#eventVideo"><i class="fa fa-play-circle-o"></i></a></div> -->
         <img src="{{ asset('assets/frontend/images/jessica-jung-manila-fullweb.jpg') }}" class="hidden-xs">
-        <img src="{{ asset('assets/frontend/images/jessica-jung-manila-mobile.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+        <img src="{{ asset('assets/frontend/images/jessica-jung-manila-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
     </div>
     <div class="infoBanner bg-peach" id="eventTabShow">
         <div class="container">

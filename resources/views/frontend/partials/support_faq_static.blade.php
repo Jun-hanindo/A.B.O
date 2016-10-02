@@ -1,5 +1,6 @@
 @extends('layout.frontend.master.master')
 @section('title', 'FAQ - ')
+@section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
 @php
 $tag = '<--mobile-->';

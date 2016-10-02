@@ -1,5 +1,6 @@
 @extends('layout.frontend.master.master')
 @section('title', '')
+@section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
 <section class="slider-home">
     <div id="carouselHacked" class="carousel slide carousel-fade" data-ride="carousel">
@@ -15,7 +16,7 @@
         <div class="carousel-inner" role="listbox">
             <div class="item active">
                 <img src="{{ asset('assets/frontend/images/bryan-adams-fullweb.jpg') }}" class="hidden-xs" alt="...">
-                <img src="{{ asset('assets/frontend/images/bryan-adams-mobile.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                <img src="{{ asset('assets/frontend/images/bryan-adams-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
                 <div class="carousel-caption bg-red">
                     <div class="container">
                         <h5 class="categorySlide">CONCERT</h5>
@@ -34,7 +35,7 @@
             </div>
             <div class="item">
                 <img src="{{ asset('assets/frontend/images/jessica-jung-singapore-fullweb.jpg') }}" class="hidden-xs" alt="...">
-                <img src="{{ asset('assets/frontend/images/jessica-jung-singapore-mobile.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                <img src="{{ asset('assets/frontend/images/jessica-jung-singapore-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
                 <div class="carousel-caption bg-peach">
                     <div class="container">
                         <h5 class="categorySlide">MEET &amp; GREET</h5>
@@ -53,7 +54,7 @@
             </div>
             <div class="item">
                 <img src="{{ asset('assets/frontend/images/jessica-jung-manila-fullweb.jpg') }}" class="hidden-xs" alt="...">
-                <img src="{{ asset('assets/frontend/images/jessica-jung-manila-mobile.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                <img src="{{ asset('assets/frontend/images/jessica-jung-manila-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
                 <div class="carousel-caption bg-peach">
                     <div class="container">
                         <h5 class="categorySlide">MEET &amp; GREET</h5>
@@ -72,7 +73,7 @@
             </div>
             <div class="item">
                 <img src="{{ asset('assets/frontend/images/jessica-jung-hochiminh-fullweb.jpg') }}" class="hidden-xs" alt="...">
-                <img src="{{ asset('assets/frontend/images/jessica-jung-hochiminh-mobile.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                <img src="{{ asset('assets/frontend/images/jessica-jung-hochiminh-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
                 <div class="carousel-caption bg-peach">
                     <div class="container">
                         <h5 class="categorySlide">MEET &amp; GREET</h5>
@@ -109,7 +110,7 @@
         <div class="row">
             <a href="{{URL::route('bryan-adams')}}">
                 <div class="col-md-6 box-release">
-                    <img src="{{ asset('assets/frontend/images/bryan-adams-mobile.jpg') }}">
+                    <img src="{{ asset('assets/frontend/images/bryan-adams-share.jpg') }}">
                     <div class="boxInfo info1">
                         <ul>
                             <li class="eventType">CONCERTS</li>
@@ -122,7 +123,7 @@
             </a>
             <a href="{{URL::route('jessica-jung-singapore')}}">
                 <div class="col-md-6 box-release">
-                    <img src="{{ asset('assets/frontend/images/jessica-jung-singapore-mobile.jpg') }}">
+                    <img src="{{ asset('assets/frontend/images/jessica-jung-singapore-share.jpg') }}">
                     <div class="boxInfo info2">
                         <ul>
                             <li class="eventType">MEET &amp; GREET</li>
@@ -135,7 +136,7 @@
             </a>
             <a href="{{URL::route('jessica-jung-manila')}}">
                 <div class="col-md-6 box-release">
-                    <img src="{{ asset('assets/frontend/images/jessica-jung-manila-mobile.jpg') }}">
+                    <img src="{{ asset('assets/frontend/images/jessica-jung-manila-share.jpg') }}">
                     <div class="boxInfo info2">
                         <ul>
                             <li class="eventType">MEET &amp; GREET</li>
@@ -148,7 +149,7 @@
             </a>
             <a href="{{URL::route('jessica-jung-hochiminh')}}">
                 <div class="col-md-6 box-release">
-                    <img src="{{ asset('assets/frontend/images/jessica-jung-hochiminh-mobile.jpg') }}">
+                    <img src="{{ asset('assets/frontend/images/jessica-jung-hochiminh-share.jpg') }}">
                     <div class="boxInfo info2">
                         <ul>
                             <li class="eventType">MEET &amp; GREET</li>

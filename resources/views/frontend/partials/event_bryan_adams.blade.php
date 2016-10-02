@@ -1,12 +1,12 @@
 @extends('layout.frontend.master.master')
 @section('title', 'Bryan Adams “Get Up Tour” - ')
-@section('og_image', asset('assets/frontend/images/bryan-adams-mobile.jpg'))
+@section('og_image', asset('assets/frontend/images/bryan-adams-share.jpg'))
 @section('content')
           
 <section class="eventBanner" id="eventBanner">
     <div class="imageBanner">
         <img src="{{ asset('assets/frontend/images/bryan-adams-fullweb.jpg') }}" class="hidden-xs">
-        <img src="{{ asset('assets/frontend/images/bryan-adams-mobile.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+        <img src="{{ asset('assets/frontend/images/bryan-adams-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
     </div>
     <div class="infoBanner bg-red" id="eventTabShow">
         <div class="container">

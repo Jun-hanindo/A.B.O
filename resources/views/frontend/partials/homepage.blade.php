@@ -1,5 +1,6 @@
 @extends('layout.frontend.master.master')
 @section('title', '')
+@section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
     @if(!empty($sliders))
         <section class="slider-home">
