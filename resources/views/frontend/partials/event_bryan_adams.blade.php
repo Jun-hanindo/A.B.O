@@ -1,5 +1,6 @@
 @extends('layout.frontend.master.master')
 @section('title', 'Bryan Adams “Get Up Tour” - ')
+@section('meta_image', asset('assets/frontend/images/bryan-adams-mobile.jpg')'))
 @section('content')
           
 <section class="eventBanner" id="eventBanner">

@@ -1,5 +1,6 @@
 @extends('layout.frontend.master.master')
 @section('title', 'Jessica Jung Manila Fan Meeting - ')
+@section('meta_image', asset('assets/frontend/images/jessica-jung-manila-mobile.jpg')'))
 @section('content')
 <section class="eventBanner" id="eventBanner">
     <div class="imageBanner">
