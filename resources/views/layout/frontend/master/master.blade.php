@@ -5,6 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@yield('title') {{ env('APP_WEB_ADMIN_NAME', 'AsiaBoxOffice') }}</title>
         <meta property="og:image" content="@yield('og_image')" />
+        <meta property="og:image:type" content="image/jpeg">
+        <meta property="og:image:width" content="200">
+        <meta property="og:image:height" content="200">
 
           <!-- Bootstrap -->
         {!! Html::style('assets/frontend/css/bootstrap.min.css') !!}
