@@ -40,6 +40,9 @@
                                 <h4 class="headWays font-light">Hotline</h4>
                                 <h5>Talk to a customer service officer.</h5>
                                 <br>
+                                <a href="mailto:connect@asiaboxoffice.com">
+                                    <button class="btn btnBlackDefault font-bold button-email"><i class="fa fa-envelope"></i>connect@asiaboxoffice.com</button>
+                                </a>
                                 <a href="tel:+6567330360">
                                     <button class="btn btnBlackDefault font-bold"><i class="fa fa-phone"></i>Call +65 6733 0360</button>
                                 </a>
@@ -94,6 +97,9 @@
                         <div role="tabpanel" class="tab-pane active" id="hotline">
                             <h4 class="head-mobile-ways">Talk to a customer service officer.</h4>
                             <div class="office-button-mobile">
+                                <a href="mailto:connect@asiaboxoffice.com">
+                                    <button class="btn btnBlackDefault font-bold button-email"><i class="fa fa-envelope"></i>connect@asiaboxoffice.com</button>
+                                </a>
                                 <a href="tel:+6567330360">
                                     <button class="btn btnSeeContact btnBlackDefault font-bold"><i class="fa fa-phone" style="margin-right: 10px;"></i>Call +65 6733 0360</button>
                                 </a>

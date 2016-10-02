@@ -296,7 +296,7 @@
                                         </span>
                                     </li>
                                 </ul>
-                                <p>* Restricted view (Price inclusive on S$3 booking fee per ticket)</p>
+                                <p>* Restricted view<br>(Price inclusive on S$3 booking fee per ticket)</p>
                             </div>
                         </div>
                     </div>

@@ -112,7 +112,7 @@
                             </tr>
                         </table>
                     </li>
-                    <!-- <p class="additional-info">* Restricted view (Price inclusive on S$3 booking fee per ticket)</p> -->
+                    <p class="additional-info">* Restricted view<br>(Price inclusive of PHP 100 booking fee per ticket)</p>
                     <li class="liParent parentButton">
                         <button class="btn btnBlackDefault font-bold" data-target="#modalSeatMap" data-toggle="modal">See Seat Map</button>
                         <!-- <button class="btn btnticket bg-white font-bold">More Ticket Info</button> -->
@@ -190,7 +190,7 @@
                                                             </li>
                                                             <li class="taxi">
                                                                 <h3 class="font-bold">By Taxi / UBER Drop Off</h3>
-                                                                <p>1. If you are taking a taxi, you may alight directly at the venue. Taxi drivers in Manila are conversant in English and are familiar with the Cultural Center of the Philippines (PICC) complex where the PICC is situated.  A regular taxi from the Ninoy Aquino International Airport would cost around P150 to P200.</p>
+                                                                <p>If you are taking a taxi, you may alight directly at the venue. Taxi drivers in Manila are conversant in English and are familiar with the Cultural Center of the Philippines (PICC) complex where the PICC is situated.  A regular taxi from the Ninoy Aquino International Airport would cost around P150 to P200.</p>
                                                             </li>
                                                             <li class="car">
                                                                 <h3 class="font-bold">By Car</h3>
@@ -298,6 +298,7 @@
                     </span>
                   </li>
                 </ul>
+                <p class="additional-info">* Restricted view<br>(Price inclusive of PHP 100 booking fee per ticket)</p>
               </div>
             </div>
           </div>
