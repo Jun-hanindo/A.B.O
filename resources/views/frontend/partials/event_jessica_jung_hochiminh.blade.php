@@ -11,7 +11,7 @@
     <div class="infoBanner bg-peach" id="eventTabShow">
         <div class="container">
             <div class="detail">
-                <h5>MEET &amp; GREET</h5>
+                <h5>EVENT</h5>
                 <h2 class="font-light">Jessica Jung Ho Chi Minh Fan Meeting</h2>
             </div>
             <div class="moreDetail">

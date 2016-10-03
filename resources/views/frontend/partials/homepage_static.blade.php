@@ -38,7 +38,7 @@
                 <img src="{{ asset('assets/frontend/images/jessica-jung-singapore-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
                 <div class="carousel-caption bg-peach">
                     <div class="container">
-                        <h5 class="categorySlide">MEET &amp; GREET</h5>
+                        <h5 class="categorySlide">EVENT</h5>
                         <h2 class="titleSlide font-light">Jessica Jung Singapore Fan Meeting</h2>
                         <ul>
                             <li><div class="eventDate"><i class="fa fa-calendar-o"></i>11 November 2016</div></li>
@@ -57,7 +57,7 @@
                 <img src="{{ asset('assets/frontend/images/jessica-jung-manila-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
                 <div class="carousel-caption bg-peach">
                     <div class="container">
-                        <h5 class="categorySlide">MEET &amp; GREET</h5>
+                        <h5 class="categorySlide">EVENT</h5>
                         <h2 class="titleSlide font-light">Jessica Jung Manila Fan Meeting</h2>
                         <ul>
                             <li><div class="eventDate"><i class="fa fa-calendar-o"></i>25 November 2016</div></li>
@@ -76,7 +76,7 @@
                 <img src="{{ asset('assets/frontend/images/jessica-jung-hochiminh-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
                 <div class="carousel-caption bg-peach">
                     <div class="container">
-                        <h5 class="categorySlide">MEET &amp; GREET</h5>
+                        <h5 class="categorySlide">EVENT</h5>
                         <h2 class="titleSlide font-light">Jessica Jung Ho Chi Minh Fan Meeting</h2>
                         <ul>
                             <li><div class="eventDate"><i class="fa fa-calendar-o"></i>27 November 2016</div></li>
@@ -126,7 +126,7 @@
                     <img src="{{ asset('assets/frontend/images/jessica-jung-singapore-share.jpg') }}">
                     <div class="boxInfo info2">
                         <ul>
-                            <li class="eventType">MEET &amp; GREET</li>
+                            <li class="eventType">EVENT</li>
                             <li class="eventName">Jessica Jung Singapore Fan Meeting</li>
                             <li class="eventDate"><i class="fa fa-calendar-o"></i> 11 November 2016</li>
                             <li class="eventPlace"><i class="fa fa-map-marker"></i> Suntec Convention Centre Hall 601, Singapore</li>
@@ -139,7 +139,7 @@
                     <img src="{{ asset('assets/frontend/images/jessica-jung-manila-share.jpg') }}">
                     <div class="boxInfo info2">
                         <ul>
-                            <li class="eventType">MEET &amp; GREET</li>
+                            <li class="eventType">EVENT</li>
                             <li class="eventName">Jessica Jung Manila Fan Meeting</li>
                             <li class="eventDate"><i class="fa fa-calendar-o"></i> 25 November 2016</li>
                             <li class="eventPlace"><i class="fa fa-map-marker"></i> Philippine International Convention Center (PICC) The Plenary Hall, Manila</li>
@@ -152,7 +152,7 @@
                     <img src="{{ asset('assets/frontend/images/jessica-jung-hochiminh-share.jpg') }}">
                     <div class="boxInfo info2">
                         <ul>
-                            <li class="eventType">MEET &amp; GREET</li>
+                            <li class="eventType">EVENT</li>
                             <li class="eventName">Jessica Jung Ho Chi Minh Fan Meeting</li>
                             <li class="eventDate"><i class="fa fa-calendar-o"></i> 27 November 2016</li>
                             <li class="eventPlace"><i class="fa fa-map-marker"></i> Quan Khu 7, Ho Chi Minh</li>
