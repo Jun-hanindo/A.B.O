@@ -63,6 +63,7 @@
                     <p>Friday, 8.00PM</p>
                     <ul>
                         <li>Duration: Approx. 1.5 Hours</li>
+                        <li>Doors open at 6:30PM</li>
                     </ul>
                 </div>
             </div>

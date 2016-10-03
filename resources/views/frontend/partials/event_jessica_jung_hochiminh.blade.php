@@ -63,6 +63,7 @@
                     <p>Sunday, 5.00PM</p>
                     <ul>
                         <li>Duration: Approx. 1.5 Hours</li>
+                        <li>Doors open at 3:30PM</li>
                     </ul>
                 </div>
             </div>
