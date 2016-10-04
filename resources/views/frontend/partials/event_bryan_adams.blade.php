@@ -346,4 +346,40 @@
     </div>
 </div>
 @stop
-@include('frontend.partials.script.subscribe_script')
+@section('script')
+    <!-- Google Code for Remarketing Tag -->
+<!-- ------------------------------------------------
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+------------------------------------------------- -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 871730254;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/871730254/?value=1&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<!-- End Google Code for Remarketing Tag -->
+
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '980007092124862');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=980007092124862&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+@stop
