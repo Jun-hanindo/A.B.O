@@ -284,7 +284,7 @@
                     </span>
                   </li>
                   <li>
-                    <span class="seat-dot dot-blue"></span>
+                    <span class="seat-dot dot-blue dot-manila2"></span>
                     <span class="box-line">
                       <span class="category">Category 2</span>
                       <span class="price">PHP 6,050</span>
