@@ -277,7 +277,7 @@
               <div class="seat-map-price">
                 <ul>
                   <li>
-                    <span class="seat-dot dot-pink"></span>
+                    <span class="seat-dot dot-pink dot-manila1"></span>
                     <span class="box-line">
                       <span class="category">Category 1</span>
                       <span class="price">PHP 7,550</span>
@@ -291,14 +291,14 @@
                     </span>
                   </li>
                   <li>
-                    <span class="seat-dot dot-purple"></span>
+                    <span class="seat-dot dot-purple dot-manila3"></span>
                     <span class="box-line">
                       <span class="category">Category 3</span>
                       <span class="price">PHP 4,150</span>
                     </span>
                   </li>
                   <li>
-                    <span class="seat-dot dot-green"></span>
+                    <span class="seat-dot dot-green dot-manila4"></span>
                    <span class="box-line">
                       <span class="category">Category 4</span>
                       <span class="price">PHP 3,050</span>
