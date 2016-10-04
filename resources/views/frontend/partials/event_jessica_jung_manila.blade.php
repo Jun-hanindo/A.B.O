@@ -114,7 +114,12 @@
                             </tr>
                         </table>
                     </li>
-                    <p class="additional-info">(Price inclusive of PHP 100 booking fee per ticket)</p>
+                    <p class="additional-info">
+                        (Price inclusive of PHP 100 booking fee per ticket)
+                    </p>
+                    <p class="additional-info">
+                        This is a free seating by category event. Seats will be allocated on a first come first serve basis at the venue, on the event day.
+                    </p>
                     <li class="liParent parentButton">
                         <button class="btn btnBlackDefault font-bold" data-target="#modalSeatMap" data-toggle="modal">See Seat Map</button>
                         <!-- <button class="btn btnticket bg-white font-bold">More Ticket Info</button> -->
@@ -300,7 +305,12 @@
                     </span>
                   </li>
                 </ul>
-                <p>(Price inclusive of PHP 100 booking fee per ticket)</p>
+                <p>
+                    (Price inclusive of PHP 100 booking fee per ticket)
+                </p>
+                <p>
+                    This is a free seating by category event. Seats will be allocated on a first come first serve basis at the venue, on the event day.
+                </p>
               </div>
             </div>
           </div>
