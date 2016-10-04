@@ -3510,25 +3510,11 @@ ul#getvenue li:before {
 
 .carousel-fade .carousel-inner .item {
   opacity: 0.5;
-  /*transition-property: opacity ;*/
-  transition-delay: 0.5s !important;
-  -webkit-transition: opacity 2s ;
-  -moz-transition: opacity 2s ;
-  -ms-transition: opacity 2s ;
-  -o-transition: opacity 2s ;
-  transition: opacity 2s ;
+  transition-property: opacity ;
 }
 
 .carousel-fade .carousel-inner .active {
-  /*opacity: 1;*/
   opacity: 1;
-  transition-delay: 0.5s !important;
-  /*transition: opacity 0.2s 2s ease;*/
-  -webkit-transition: opacity 2s ;
-  -moz-transition: opacity 2s ;
-  -ms-transition: opacity 2s ;
-  -o-transition: opacity 2s ;
-  transition: opacity 2s ;
 }
 
 .carousel-fade .carousel-inner .active.left,
