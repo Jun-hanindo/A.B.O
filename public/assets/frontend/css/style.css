@@ -3511,6 +3511,7 @@ ul#getvenue li:before {
 .carousel-fade .carousel-inner .item {
   opacity: 0;
   transition-property: opacity;
+  transition-delay: 0.5s !important;
 }
 
 .carousel-fade .carousel-inner .active {
