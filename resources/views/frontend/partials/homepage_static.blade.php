@@ -15,8 +15,10 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="{{ asset('assets/frontend/images/bryan-adams-fullweb.jpg') }}" class="hidden-xs" alt="...">
-                <img src="{{ asset('assets/frontend/images/bryan-adams-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                <a href="{{URL::route('bryan-adams')}}">
+                    <img src="{{ asset('assets/frontend/images/bryan-adams-fullweb.jpg') }}" class="hidden-xs" alt="...">
+                    <img src="{{ asset('assets/frontend/images/bryan-adams-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                </a>  
                 <div class="carousel-caption bg-red">
                     <div class="container">
                         <h5 class="categorySlide">CONCERT</h5>
@@ -34,8 +36,10 @@
                 </div>
             </div>
             <div class="item">
-                <img src="{{ asset('assets/frontend/images/jessica-jung-singapore-fullweb.jpg') }}" class="hidden-xs" alt="...">
-                <img src="{{ asset('assets/frontend/images/jessica-jung-singapore-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                <a href="{{URL::route('jessica-jung-singapore')}}">
+                    <img src="{{ asset('assets/frontend/images/jessica-jung-singapore-fullweb.jpg') }}" class="hidden-xs" alt="...">
+                    <img src="{{ asset('assets/frontend/images/jessica-jung-singapore-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                </a>
                 <div class="carousel-caption bg-peach">
                     <div class="container">
                         <h5 class="categorySlide">EVENT</h5>
@@ -53,8 +57,10 @@
                 </div>
             </div>
             <div class="item">
-                <img src="{{ asset('assets/frontend/images/jessica-jung-manila-fullweb.jpg') }}" class="hidden-xs" alt="...">
-                <img src="{{ asset('assets/frontend/images/jessica-jung-manila-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                <a href="{{URL::route('jessica-jung-manila')}}">
+                    <img src="{{ asset('assets/frontend/images/jessica-jung-manila-fullweb.jpg') }}" class="hidden-xs" alt="...">
+                    <img src="{{ asset('assets/frontend/images/jessica-jung-manila-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                </a>
                 <div class="carousel-caption bg-peach">
                     <div class="container">
                         <h5 class="categorySlide">EVENT</h5>
@@ -72,8 +78,10 @@
                 </div>
             </div>
             <div class="item">
-                <img src="{{ asset('assets/frontend/images/jessica-jung-hochiminh-fullweb.jpg') }}" class="hidden-xs" alt="...">
-                <img src="{{ asset('assets/frontend/images/jessica-jung-hochiminh-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                <a href="{{URL::route('jessica-jung-hochiminh')}}">
+                    <img src="{{ asset('assets/frontend/images/jessica-jung-hochiminh-fullweb.jpg') }}" class="hidden-xs" alt="...">
+                    <img src="{{ asset('assets/frontend/images/jessica-jung-hochiminh-share.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                </a>
                 <div class="carousel-caption bg-peach">
                     <div class="container">
                         <h5 class="categorySlide">EVENT</h5>
