@@ -73,9 +73,9 @@ class HomeController extends Controller
         return view('frontend.partials.support_terms_website_use_static'); 
     }
 
-    public function thankYou()
+    public function frontEnd()
     {
-        return view('frontend.partials.thank_you_static');
+        return view('frontend.partials.homepage');
     }
 
     public function index()
