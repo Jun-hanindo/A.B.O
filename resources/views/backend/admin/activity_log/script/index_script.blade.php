@@ -16,8 +16,7 @@ $(document).ready(function() {
 
     $('#start_date').datepicker({
         format: "yyyy-mm-dd",
-        setStartDate: start_date,
-        setEndDate: end_date,
+        endDate: end_date,
     }).on('changeDate', function(){
         $('#end_date').datepicker('setStartDate', new Date($('#start_date').val()));
         var start_date = $('input[name=start_date]').val();
@@ -27,8 +26,8 @@ $(document).ready(function() {
 
     $('#end_date').datepicker({
         format: "yyyy-mm-dd",
-        setStartDate: start_date,
-        setEndDate: end_date,
+        startDate: start_date,
+        endDate: end_date,
     }).on('changeDate', function(){
         $('#start_date').datepicker('setEndDate', new Date($('#end_date').val()));
         var start_date = $('input[name=start_date]').val();
@@ -71,8 +70,8 @@ function loadData(start_date, end_date)
             }
         },
         columns: [
-            {data: 'created_at', name: 'created_at'},
-            {data: 'user_id', name: 'user_id'},
+            {data: 'created_at', name: 'created_at', searchable: false},
+            {data: 'user', name: 'user'},
             {data: 'description', name: 'description'},
             {data: 'ip_address', name: 'ip_address'}
         ]

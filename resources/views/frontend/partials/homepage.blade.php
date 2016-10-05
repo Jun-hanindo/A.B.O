@@ -1,6 +1,5 @@
 @extends('layout.frontend.master.master')
 @section('title', '')
-@section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
     @if(!empty($sliders))
         <section class="slider-home">
@@ -32,7 +31,7 @@
                                             <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->venue->name }}</div></li>
                                         </ul>
                                         <div class="moreDetail">
-                                            <a href="{{ URL::route('event-detail', $slider->slug) }}">
+                                            <a href="{{ URL::route('event-detail', $slider->event->slug) }}">
                                               <button class="btn btnDetail font-bold">{{ trans('general.more_details') }}</button>
                                             </a>
                                         </div>

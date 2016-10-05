@@ -316,6 +316,24 @@ if (! function_exists('short_text_date')) {
     }
 }
 
+if (! function_exists('short_text_date_time')) {
+    /**
+     * Checks whether a file exists.
+     *
+     * @param  string  $file
+     * @param  string|null  $disk
+     * @return bool
+     */
+    function short_text_date_time($date)
+    {
+        if (is_null($date)) {
+            return date('d M Y h:i A');
+        }
+
+        return date('d M Y h:i A', strtotime($date));
+    }
+}
+
 if (! function_exists('get_date')) {
     /**
      * Checks whether a file exists.

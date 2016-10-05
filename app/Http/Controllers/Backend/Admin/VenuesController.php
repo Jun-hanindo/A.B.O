@@ -57,10 +57,10 @@ class VenuesController extends BaseController
                 return '<input type="checkbox" name="avaibility['.$venue->id.']" class="avaibility-check" data-id="'.$venue->id.'" '.$checked.'>';
             })
             ->filterColumn('address', function($query, $keyword) {
-                $query->whereRaw("LOWER(CAST(venues.address as TEXT)) like ?", ["%{$keyword}%"]);
+                $query->whereRaw("LOWER(CAST(venues.address as TEXT)) ilike ?", ["%{$keyword}%"]);
             })
             ->filterColumn('post_by', function($query, $keyword) {
-                $query->whereRaw("LOWER(CAST(CONCAT(users.first_name, ' ', users.last_name) as TEXT)) like ?", ["%{$keyword}%"]);
+                $query->whereRaw("LOWER(CAST(CONCAT(users.first_name, ' ', users.last_name) as TEXT)) ilike ?", ["%{$keyword}%"]);
             })
             ->make(true);
     }

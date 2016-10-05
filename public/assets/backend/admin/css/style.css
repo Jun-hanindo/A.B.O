@@ -42,6 +42,12 @@
 .datepicker{
 	border-radius: 0 !important;
 }
+.datepicker table tr td.old.disabled{
+	color: #777;
+}
+.activity-log-filter-date {
+    padding-bottom:20px;
+}
 /*.cke_chrome{
 	border-left: 1px solid #b6b6b6 !important;
 	border-right: 1px solid #b6b6b6 !important;

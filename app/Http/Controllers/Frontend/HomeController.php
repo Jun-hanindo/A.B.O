@@ -34,43 +34,43 @@ class HomeController extends Controller
     public function landing()
     {
 
-        return view('frontend.partials.bryan_adams'); 
+        return view('frontend.partials.static.bryan_adams'); 
     }
 
     public function bryanAdams()
     {
 
-        return view('frontend.partials.event_bryan_adams'); 
+        return view('frontend.partials.static.event_bryan_adams'); 
     }
 
     public function jessicaJungSingapore()
     {
 
-        return view('frontend.partials.event_jessica_jung_singapore'); 
+        return view('frontend.partials.static.event_jessica_jung_singapore'); 
     }
 
     public function jessicaJungHochiminh()
     {
 
-        return view('frontend.partials.event_jessica_jung_hochiminh'); 
+        return view('frontend.partials.static.event_jessica_jung_hochiminh'); 
     }
 
     public function jessicaJungManila()
     {
 
-        return view('frontend.partials.event_jessica_jung_manila'); 
+        return view('frontend.partials.static.event_jessica_jung_manila'); 
     }
 
     public function supportTermsTicketSales()
     {
 
-        return view('frontend.partials.support_terms_ticket_sales_static'); 
+        return view('frontend.partials.static.support_terms_ticket_sales_static'); 
     }
 
     public function supportTermsWebsiteUse()
     {
 
-        return view('frontend.partials.support_terms_website_use_static'); 
+        return view('frontend.partials.static.support_terms_website_use_static'); 
     }
 
     public function frontEnd()
@@ -104,7 +104,7 @@ class HomeController extends Controller
         try{
             
 
-            return view('frontend.partials.homepage_static'); 
+            return view('frontend.partials.static.homepage_static'); 
         
         } catch (\Exception $e) {
 
@@ -321,7 +321,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
             
-            return view('frontend.partials.contact_us_static', $data);
+            return view('frontend.partials.static.contact_us_static', $data);
         
         } catch (\Exception $e) {
 
@@ -377,7 +377,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
 
-            return view('frontend.partials.support_static'); 
+            return view('frontend.partials.static.support_static'); 
         
         } catch (\Exception $e) {
 
@@ -410,7 +410,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
             
-            return view('frontend.partials.support_faq_static', $data);
+            return view('frontend.partials.static.support_faq_static', $data);
         
         } catch (\Exception $e) {
 
@@ -433,13 +433,13 @@ class HomeController extends Controller
             $insertTrail->insertTrail($trail);
 
             if($category == 'top'){
-                return view('frontend.partials.support_faq_top_static');
+                return view('frontend.partials.static.support_faq_top_static');
             }elseif ($category == 'general') {
-                return view('frontend.partials.support_faq_general_static');
+                return view('frontend.partials.static.support_faq_general_static');
             }elseif ($category == 'payment') {
-                 return view('frontend.partials.support_faq_payment_static');
+                 return view('frontend.partials.static.support_faq_payment_static');
             }elseif ($category == 'seat') {
-                 return view('frontend.partials.support_faq_seat_static');
+                 return view('frontend.partials.static.support_faq_seat_static');
             }
         
         } catch (\Exception $e) {
@@ -506,7 +506,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
 
-            return view('frontend.partials.support_terms_and_conditions_static', $data);
+            return view('frontend.partials.static.support_terms_and_conditions_static', $data);
             
         } catch (\Exception $e) {
 
@@ -539,7 +539,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
 
-            return view('frontend.partials.support_privacy_policy_static', $data);
+            return view('frontend.partials.static.support_privacy_policy_static', $data);
             
         } catch (\Exception $e) {
 

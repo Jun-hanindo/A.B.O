@@ -24,10 +24,12 @@ class Subscription extends Model
      * @return \Illuminate\Database\Eloquent\Builder
      */
 
-    function datatables()
+    function datatables($start, $end)
     {
 
-        return static::select('id', 'email', 'first_name', 'last_name');
+        return static::select('id', 'email', 'first_name', 'last_name', 'created_at')
+            ->where(DB::raw('DATE(subscriptions.created_at)'), '>=', $start)
+            ->where(DB::raw('DATE(subscriptions.created_at)'), '<=', $end);
     
     }
 

@@ -1,4 +1,4 @@
-@extends('layout.frontend.master.master')
+@extends('layout.frontend.master.master_static')
 @section('title', 'Terms of Ticket Sales - ')
 @section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')

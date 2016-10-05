@@ -3,16 +3,41 @@
 
 <script>
 $(document).ready(function() {
+    var start_date = $('input[name=start_date]').val();
+    var end_date = $('input[name=end_date]').val();
 
-    loadData();
+    loadData(start_date, end_date);
 
     $('#user_id').on('change', function () {
-        loadData();
+        var start_date = $('input[name=start_date]').val();
+        var end_date = $('input[name=end_date]').val();
+        loadData(start_date, end_date);
+    });
+
+    $('#start_date').datepicker({
+        format: "yyyy-mm-dd",
+        endDate: end_date,
+    }).on('changeDate', function(){
+        $('#end_date').datepicker('setStartDate', new Date($('#start_date').val()));
+        var start_date = $('input[name=start_date]').val();
+        var end_date = $('input[name=end_date]').val();
+        loadData(start_date, end_date);
+    });
+
+    $('#end_date').datepicker({
+        format: "yyyy-mm-dd",
+        startDate: start_date,
+        endDate: end_date,
+    }).on('changeDate', function(){
+        $('#start_date').datepicker('setEndDate', new Date($('#end_date').val()));
+        var start_date = $('input[name=start_date]').val();
+        var end_date = $('input[name=end_date]').val();
+        loadData(start_date, end_date);
     });
 
 });
 
-function loadData()
+function loadData(start_date, end_date)
 {
     var user_id = $('select[name=user_id]').val();
     
@@ -40,12 +65,14 @@ function loadData()
         ajax: {
             url: '{!! URL::route("datatables-trail") !!}',
             data: {
-                'user_id': user_id
+                'user_id': user_id,
+                'start_date': start_date,
+                'end_date': end_date,
             }
         },
         columns: [
-            {data: 'created_at', name: 'created_at'},
-            {data: 'user_id', name: 'user_id'},
+            {data: 'created_at', name: 'created_at', searchable: false},
+            {data: 'user', name: 'user'},
             {data: 'session_id', name: 'session_id'},
             {data: 'description', name: 'description'},
             {data: 'ip_address', name: 'ip_address'}

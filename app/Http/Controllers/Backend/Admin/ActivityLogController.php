@@ -56,15 +56,15 @@ class ActivityLogController extends BaseController
         }
         return datatables($model)
                 ->editColumn('created_at', function($data){
-                    $date = date('d M Y h:i A', strtotime($data->created_at));
+                    $date = short_text_date_time($data->created_at);
                     return $date;
                 })
-                ->filterColumn('user_id', function($query, $keyword) {
-                    $query->whereRaw("LOWER(CAST(CONCAT(users.first_name, ' ', users.last_name) as TEXT)) like ?", ["%{$keyword}%"]);
+                ->filterColumn('user', function($query, $keyword) {
+                    $query->whereRaw("LOWER(CAST(CONCAT(users.first_name, ' ', users.last_name) as TEXT)) ilike ?", ["%{$keyword}%"]);
                 })
-                ->filterColumn('created_at', function($query, $keyword) {
-                    $query->whereRaw("LOWER(CAST(log_activities.created_at as TEXT)) like ?", ["%{$keyword}%"]);
-                })
+                // ->filterColumn('created_at', function($query, $keyword) {
+                //     $query->whereRaw("LOWER(CAST(log_activities.created_at as TEXT)) ilike ?", ["%{$keyword}%"]);
+                // })
                 ->make(true);
     }
 

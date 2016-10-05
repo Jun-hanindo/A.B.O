@@ -35,9 +35,17 @@ class SubscriptionsController extends BaseController
      * 
      * @return Response
      */
-    public function datatables()
+    public function datatables(Request $req)
     {
-        return datatables($this->model->datatables())
+        $param = $req->all();
+        $start = $param['start_date'];
+        $end = $param['end_date'];
+
+        return datatables($this->model->datatables($start, $end))
+            ->editColumn('created_at', function($data){
+                $date = short_text_date_time($data->created_at);
+                return $date;
+            })
             ->editColumn('action', function ($subscription) {
                 $showUrl = route('admin-show-subscription',$subscription->id);
                 //$editUrl = route('admin-edit-subscription',$subscription->id);

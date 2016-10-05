@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Request;
+use DB;
 
 class Trail extends Model
 {
@@ -51,11 +52,14 @@ class Trail extends Model
         return $this;
     }
 
-    public function datatables($limit)
+    public function datatables($start, $end, $limit)
     {
-        $data = Trail::select('trails.id','trails.user_id','trails.description', 'trails.session_id', 
-            'trails.ip_address', 'trails.created_at', 'users.first_name', 'users.last_name')
-            ->Join('users', 'trails.user_id','=','users.id')
+        $data = Trail::select('trails.id', 'trails.description', 
+            'trails.session_id', 'trails.ip_address', 'trails.created_at', 
+            DB::RAW("CONCAT(users.first_name, ' ', users.last_name)  as user"))
+            ->leftJoin('users', 'trails.user_id','=','users.id')
+            ->where(DB::raw('DATE(trails.created_at)'), '>=', $start)
+            ->where(DB::raw('DATE(trails.created_at)'), '<=', $end)
             ->orderBy('trails.created_at', 'desc');
         if($limit > 0){
             $data->take($limit);
@@ -64,13 +68,16 @@ class Trail extends Model
             
     }
 
-    public function getDataByUser($user_id, $limit)
+    public function getDataByUser($user_id, $start, $end, $limit)
     {
-        $data = Trail::select('trails.id','trails.user_id','trails.description', 'trails.session_id', 
-            'trails.ip_address', 'trails.created_at', 'users.first_name', 'users.last_name')
-            ->Join('users', 'trails.user_id','=','users.id')
-            ->where('user_id', $user_id)->orderBy('created_at', 'desc');
-
+        $data = Trail::select('trails.id', 'trails.description', 
+            'trails.session_id', 'trails.ip_address', 'trails.created_at', 
+            DB::RAW("CONCAT(users.first_name, ' ', users.last_name)  as user"))
+            ->leftJoin('users', 'trails.user_id','=','users.id')
+            ->where('user_id', $user_id)
+            ->where(DB::raw('DATE(trails.created_at)'), '>=', $start)
+            ->where(DB::raw('DATE(trails.created_at)'), '<=', $end)
+            ->orderBy('trails.created_at', 'desc');
         if($limit > 0){
             $data->take($limit);
         }

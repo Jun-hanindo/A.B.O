@@ -26,10 +26,10 @@ class Homepage extends Model
     public static function datatables($category)
     {
         return static::select('homepages.id as id', 'events.title as title', 'homepages.category as category', 'homepages.sort_order')
-                        ->join('events', 'homepages.event_id','=','events.id')
-                        ->where('homepages.category', '=', $category)
-                        ->whereNull('events.deleted_at')
-                        ->orderBy('homepages.sort_order', 'asc');
+            ->join('events', 'homepages.event_id','=','events.id')
+            ->where('homepages.category', '=', $category)
+            ->whereNull('events.deleted_at')
+            ->orderBy('homepages.sort_order', 'asc');
     }
 
     public function getFirstSort($category){

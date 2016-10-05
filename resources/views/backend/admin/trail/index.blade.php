@@ -26,14 +26,21 @@
             <h3 class="box-title">{{ trans('general.trail') }}</h3>
         </div>
         <div class="box-body">
+          @include('flash::message')
+          <div class="error"></div>
           <div class="form-inline activity-log-filter-date">
             <div class="form-group">
                 <label for="filter" class="">{{ trans('general.user') }} </label>
                 {!! Form::select('user_id', $dropdown, null, ['class' => 'form-control', 'id' => 'user_id']) !!}
             </div>
+            <div style="margin-left:1.5cm;" id="date-picker" class="form-group">
+                <label for="start-date">{{ trans('general.from') }}</label>
+                <input name="start_date" class="form-control datepicker" id="start_date" data-date-end-date="0d" value={{ date('Y-m-d',strtotime('-7days')) }}>
+
+                <label for="end-date">{{ trans('general.to') }}</label>
+                <input name="end_date" class="form-control datepicker" id="end_date" data-date-end-date="0d" value={{ date('Y-m-d') }}>
+            </div>
           </div>
-          @include('flash::message')
-          <div class="error"></div>
           <table id="datatable" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
               <thead>
                   <tr>

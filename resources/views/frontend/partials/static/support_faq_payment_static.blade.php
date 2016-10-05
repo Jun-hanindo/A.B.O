@@ -1,5 +1,5 @@
-@extends('layout.frontend.master.master')
-@section('title', 'FAQ Seat Allocation - ')
+@extends('layout.frontend.master.master_static')
+@section('title', 'FAQ Payment - ')
 @section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
 @php
@@ -196,24 +196,24 @@ $tag = '<--mobile-->';
             <div class="container">
                 <div class="mobile-page-title mobile-title-faq">
                     <a href="{{URL::route('support-faq')}}" class="back-faq">FAQ</a>
-                    <h3 class="font-light">Seat Allocation</h3>
+                    <h3 class="font-light">Payment</h3>
                 </div>
                 <div class="list-ask-mobile top-ask">
                     <ul class="ul-faq-content">
                         <li>
-                            <a data-toggle="collapse" href="#collapseonemobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Why can’t I choose my own seat online?</a>
+                            <a data-toggle="collapse" href="#collapseonemobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">What are the modes of payment?</a>
                             <div class="collapse" id="collapseonemobile">
-                                <p>You may choose your preferred seat category and section. However, exact seat selection will only be available to events as granted by promoters.</p>
+                                <p>Visa, MasterCard, Amex are accepted via all booking channels.</p>
                             </div>
                         </li>
                         <li>
-                            <a data-toggle="collapse" href="#collapsetwomobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">What is an obstructed or restricted view?</a>
+                            <a data-toggle="collapse" href="#collapsetwomobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">What is the CVV code?</a>
                             <div class="collapse" id="collapsetwomobile">
-                                <p>Due to the different event configuration, stage setup and props arrangement for each event, some seats may not have a full view of the stage. These seats, with obstructed or restricted view, will be identified on the seat map diagram of the event webpage.</p>
+                                <p>It is a 3-digit number embossed or imprinted on the reverse side of your credit card. For Amex card, it is a 4-digit number on the front side of your card.</p>
                             </div>
                         </li>
-                    </ul>
-                </div>
+                   </ul>
+                  </div>
             </div>
         </div>
     </div>

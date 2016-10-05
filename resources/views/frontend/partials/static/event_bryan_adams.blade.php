@@ -1,4 +1,4 @@
-@extends('layout.frontend.master.master')
+@extends('layout.frontend.master.master_static')
 @section('title', 'Bryan Adams “Get Up Tour” - ')
 @section('og_image', asset('assets/frontend/images/bryan-adams-share.jpg'))
 @section('content')

@@ -1,4 +1,4 @@
-@extends('layout.frontend.master.master')
+@extends('layout.frontend.master.master_static')
 @section('title', 'Event Asia Box Office')
 @section('content')
 @php

@@ -1,5 +1,5 @@
-@extends('layout.frontend.master.master')
-@section('title', 'FAQ Payment - ')
+@extends('layout.frontend.master.master_static')
+@section('title', 'FAQ - ')
 @section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
 @php
@@ -194,26 +194,73 @@ $tag = '<--mobile-->';
     <div class="row">
         <div class="col-md-12">
             <div class="container">
-                <div class="mobile-page-title mobile-title-faq">
-                    <a href="{{URL::route('support-faq')}}" class="back-faq">FAQ</a>
-                    <h3 class="font-light">Payment</h3>
+                <div class="mobile-page-title">
+                    <h3 class="font-light">Frequently Asked Questions</h3>
                 </div>
-                <div class="list-ask-mobile top-ask">
-                    <ul class="ul-faq-content">
-                        <li>
-                            <a data-toggle="collapse" href="#collapseonemobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">What are the modes of payment?</a>
-                            <div class="collapse" id="collapseonemobile">
-                                <p>Visa, MasterCard, Amex are accepted via all booking channels.</p>
+                <div class="row">
+                    <div class="box-mobile-faq col-xs-12">
+                        <div class="col-xs-6">
+                            <div class="top-faq-mobile faq-menu-mobile">
+                                <a href="{{URL::route('support-faq-category', 'top')}}">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p>Top Questions</p>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </li>
-                        <li>
-                            <a data-toggle="collapse" href="#collapsetwomobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">What is the CVV code?</a>
-                            <div class="collapse" id="collapsetwomobile">
-                                <p>It is a 3-digit number embossed or imprinted on the reverse side of your credit card. For Amex card, it is a 4-digit number on the front side of your card.</p>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="general-faq-mobile faq-menu-mobile">
+                                <a href="{{URL::route('support-faq-category', 'general')}}">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <i class="fa fa-question-circle"></i>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p>General</p>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </li>
-                   </ul>
-                  </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="box-mobile-faq col-xs-12">
+                        <div class="col-xs-6">
+                            <div class="seat-faq-mobile faq-menu-mobile">
+                                <a href="{{URL::route('support-faq-category', 'seat')}}">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <i class="fa fa-th-large"></i>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p>Seat Allocation</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="payment-faq-mobile faq-menu-mobile">
+                                <a href="{{URL::route('support-faq-category', 'payment')}}">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <i class="fa fa-money"></i>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p>Payment</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

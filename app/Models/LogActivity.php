@@ -33,7 +33,7 @@ class LogActivity extends Model
     {
         $data = LogActivity::select('log_activities.id', 'log_activities.description', 
             'log_activities.ip_address', 'log_activities.created_at', 
-            DB::RAW("CONCAT(users.first_name, ' ', users.last_name)  as user_id"))
+            DB::RAW("CONCAT(users.first_name, ' ', users.last_name)  as user"))
             ->leftJoin('users', 'log_activities.user_id','=','users.id')
             ->where(DB::raw('DATE(log_activities.created_at)'), '>=', $start)
             ->where(DB::raw('DATE(log_activities.created_at)'), '<=', $end)
@@ -49,7 +49,7 @@ class LogActivity extends Model
     {
         $data = LogActivity::select('log_activities.id', 'log_activities.description', 
             'log_activities.ip_address', 'log_activities.created_at', 
-            DB::RAW("CONCAT(users.first_name, ' ', users.last_name)  as user_id"))
+            DB::RAW("CONCAT(users.first_name, ' ', users.last_name)  as user"))
             ->leftJoin('users', 'log_activities.user_id','=','users.id')
             ->where('user_id', $user_id)
             ->where(DB::raw('DATE(log_activities.created_at)'), '>=', $start)

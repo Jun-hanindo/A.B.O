@@ -1,21 +1,21 @@
-@extends('layout.frontend.master.master')
-@section('title', 'Jessica Jung Manila Fan Meeting - ')
-@section('og_image', asset('assets/frontend/images/jessica-jung-manila-share.jpg'))
+@extends('layout.frontend.master.master_static')
+@section('title', 'Jessica Jung Ho Chi Minh Fan Meeting - ')
+@section('og_image', asset('assets/frontend/images/jessica-jung-hochiminh-share.jpg'))
 @section('content')
 <section class="eventBanner" id="eventBanner">
     <div class="imageBanner">
         <!-- <div class="btnPlayEvent"><a data-toggle="modal" data-target="#eventVideo"><i class="fa fa-play-circle-o"></i></a></div> -->
-        <img src="{{ asset('assets/frontend/images/jessica-jung-manila-fullweb.jpg') }}" class="hidden-xs">
-        <img src="{{ asset('assets/frontend/images/jessica-jung-manila-mobile.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+        <img src="{{ asset('assets/frontend/images/jessica-jung-hochiminh-fullweb.jpg') }}" class="hidden-xs">
+        <img src="{{ asset('assets/frontend/images/jessica-jung-hochiminh-mobile.jpg') }}" class="hidden-lg hidden-md hidden-sm" alt="...">
     </div>
     <div class="infoBanner bg-peach" id="eventTabShow">
         <div class="container">
             <div class="detail">
                 <h5>EVENT</h5>
-                <h2 class="font-light">Jessica Jung Manila Fan Meeting</h2>
+                <h2 class="font-light">Jessica Jung Ho Chi Minh Fan Meeting</h2>
             </div>
             <div class="moreDetail">
-                <a href="https://asiaboxoffice.nliven.co/tickets/series/JESSICAJUNGMANILA" target="_blank">
+                <a href="https://asiaboxoffice.nliven.co/tickets/series/JESSICAJUNGHOCHIMINH" target="_blank">
                     <button class="btn btnDetail font-bold">Buy Now</button>
                 </a>
             </div>
@@ -31,7 +31,7 @@
                     <li><a href="#aboutBox" class="smoothScroll active">About This Event</a></li>
                     <li><a href="#venueBox" class="smoothScroll">Venue Info</a></li>
                     <li><a href="#admissionBox" class="smoothScroll">Admission Rules</a></li>
-                    <li><a href="https://asiaboxoffice.nliven.co/tickets/series/JESSICAJUNGMANILA" target="_blank"><button class="btn btnBuy btnABO font-bold">Buy Now</button></a></li>
+                    <li><a href="https://asiaboxoffice.nliven.co/tickets/series/JESSICAJUNGHOCHIMINH" target="_blank"><button class="btn btnBuy btnABO font-bold">Buy Now</button></a></li>
                 </ul>
             </div>
         </div>
@@ -46,7 +46,7 @@
                     <li><a href="#aboutBox" class="smoothScroll active">About</a></li>
                     <li><a href="#venueBox" class="smoothScroll">Venue</a></li>
                     <li><a href="#admissionBox" class="smoothScroll">Admission</a></li>
-                    <li><a href="https://asiaboxoffice.nliven.co/tickets/series/JESSICAJUNGMANILA"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li>
+                    <li><a href="https://asiaboxoffice.nliven.co/tickets/series/JESSICAJUNGHOCHIMINH"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li>
                 </ul>
             </div>
         </div>
@@ -57,36 +57,43 @@
         <div class="row">
             <div class="col-md-4 date">
                 <div class="information-title">
-                    <i class="fa fa-calendar-o"></i> 25 November 2016
+                    <i class="fa fa-calendar-o"></i> 27 November 2016
                 </div>
                 <div class="information-event">
-                    <p>Friday, 8.00PM</p>
+                    <p>Sunday, 5.00PM</p>
                     <ul>
                         <li>Duration: Approx. 1.5 Hours</li>
-                        <li>Doors open at 6:30PM</li>
+                        <li>Doors open at 3:30PM</li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-4 place">
                 <div class="information-title">
-                    <i class="fa fa-map-marker i-long"></i><p>Philippine International Convention Center (PICC) The Plenary Hall</p>
+                    <i class="fa fa-map-marker"></i> Quan Khu 7
                 </div>
                 <ul class="list-unstyled">
-                    <li>PICC Complex, Roxas Boulevard,</li>
-                    <li> Manila, Philippines 1307</li><br>
-                    <li><a href="https://www.google.com.sg/maps/place/PICC+Plenary+Hall/@14.5551892,120.9807594,17z/data=!4m8!1m2!2m1!1splenary+hall+picc+!3m4!1s0x3397cbd972b05569:0xa059aeeabf823472!8m2!3d14.5554064!4d120.9832962" class="btn btnSeemap font-bold" target="_blank">See Map</a></li>
+                    <li>202 Hoàng Văn Thụ, Phường 2, Tân Bình,<br>Hồ Chí Minh, Vietnam</li><br>
+                    <li><a href="https://www.google.com.sg/maps/place/Quan+Khu+7+Stadium/@10.8020398,106.6650767,17z/data=!3m1!4b1!4m5!3m4!1s0x317529257fe2e80d:0x45efd6c1787e881a!8m2!3d10.8020398!4d106.6672654" class="btn btnSeemap font-bold" target="_blank">See Map</a></li>
                 </ul>
             </div>
             <div class="col-md-4 ticket" id="ticket">
                 <div class="information-title">
-                    <i class="fa fa-ticket"></i> PHP 3,050-7,550/person
+                    <i class="fa fa-ticket"></i>VND 850,000-2,250,000/person
                 </div>
                 <ul class="list-unstyled">
                     <li class="liParent li-mobile">
                         <table>
                             <tr>
                                 <td>Category 1</td>
-                                <td><span>PHP 7,550</span></td>
+                                <td><span>VND 2,250,000</span></td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li class="liParent li-mobile">
+                        <table>
+                            <tr>
+                                <td>Category 1 (Standing)</td>
+                                <td><span>VND 2,250,000</span></td>
                             </tr>
                         </table>
                     </li>
@@ -94,7 +101,15 @@
                         <table>
                             <tr>
                                 <td>Category 2</td>
-                                <td><span>PHP 6,050</span></td>
+                                <td><span>VND 1,850,000</span></td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li class="liParent li-mobile">
+                        <table>
+                            <tr>
+                                <td>Category 2 (Standing)</td>
+                                <td><span>VND 1,850,000</span></td>
                             </tr>
                         </table>
                     </li>
@@ -102,7 +117,15 @@
                         <table>
                             <tr>
                                 <td>Category 3</td>
-                                <td><span>PHP 4,150</span></td>
+                                <td><span>VND 1,450,000</span></td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li class="liParent li-mobile">
+                        <table>
+                            <tr>
+                                <td>Category 3 (Standing)</td>
+                                <td><span>VND 1,450,000</span></td>
                             </tr>
                         </table>
                     </li>
@@ -110,19 +133,19 @@
                         <table>
                             <tr>
                                 <td>Category 4</td>
-                                <td><span>PHP 3,050</span></td>
+                                <td><span>VND 850,000</span></td>
                             </tr>
                         </table>
                     </li>
                     <p class="additional-info">
-                        (Price inclusive of PHP 100 booking fee per ticket)
+                        (Price is inclusive of VND 50,000 booking fee per ticket)
                     </p>
                     <p class="additional-info">
                         This is a free seating by category event. Seats will be allocated on a first come first serve basis at the venue, on the event day.
                     </p>
                     <li class="liParent parentButton">
-                        <button class="btn btnBlackDefault font-bold" data-target="#modalSeatMap" data-toggle="modal">See Seat Map</button>
-                        <!-- <button class="btn btnticket bg-white font-bold">More Ticket Info</button> -->
+                      <button class="btn btnBlackDefault font-bold" data-target="#modalSeatMap" data-toggle="modal">See Seat Map</button>
+                      <!-- <button class="btn btnticket bg-white font-bold">More Ticket Info</button> -->
                     </li>
                 </ul>
             </div>
@@ -162,8 +185,8 @@
                                             <div class="main-content">
                                                 <div class="">
                                                     <section id="about" class="sectionEvent">
-                                                        <h3 class="font-bold">Jessica Jung Manila Fan Meeting</h3>
-                                                        <p>Korean American K-Pop sensation Jessica Jung will be holding her first fan meeting in Manila on 25 November 2016. Following the release of her first solo album ‘With Love J’, which topped charts in Korea and 9 other countries in Asia, Jessica is back and ready to entertain her fans with an Asia Fan meeting Tour. Fans can expect fun interaction, stage games and performances in this 90 minutes party.
+                                                        <h3 class="font-bold">Jessica Jung Ho Chi Minh Fan Meeting</h3>
+                                                        <p>Korean American K-Pop sensation Jessica Jung will be holding her first fan meeting in Ho Chi Minh on 27 November 2016. Following the release of her first solo album ‘With Love J’, which topped charts in Korea and 9 other countries in Asia, Jessica is back and ready to entertain her fans with an Asia Fan meeting Tour. Fans can expect fun interaction, stage games and performances in this 90 minutes party.
                                                         </p>
                                                     </section>
                                                 </div>
@@ -182,28 +205,12 @@
                                             <div class="main-content">
                                                 <div class="">
                                                     <section id="venue" class="sectionEvent">
-                                                        <h3 class="font-bold"> Philippine International Convention Center (PICC) The Plenary Hall</h3>
-                                                        <p>PICC Complex, Roxas Boulevard,<br>Manila, Philippines 1307</p>
+                                                        <h3 class="font-bold">Quan Khu 7</h3>
+                                                        <p>202 Hoàng Văn Thụ, Phường 2, Tân Bình, Hồ Chí Minh, Vietnam</p>
 
                                                         <div class="mapEvent">
-                                                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15447.12858846247!2d120.982332!3d14.554447!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xae467bea012ddfd6!2sPhilippine+International+Convention+Center!5e0!3m2!1sen!2sid!4v1475326814139" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1209815478337!2d106.66507671427702!3d10.802045061675328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529257fe2e80d%3A0x45efd6c1787e881a!2sQuan+Khu+7+Stadium!5e0!3m2!1sen!2sid!4v1475327037862" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
                                                         </div>
-
-                                                        <h3 class="font-bold">Getting to the Venue</h3>
-                                                        <ul id="getvenue">
-                                                            <li class="mrt">
-                                                                <h3 class="font-bold">By MRT</h3>
-                                                                <p>Ride the MRT up to the Taft Avenue Station; then switch to the LRT Edsa Station up to the LRT Vito Cruz Station. Go down the stairs and look for Toree Lorenzo Plaza where orange colored shuttle jeeps (Jeepney) that would bring you to the PICC.</p>
-                                                            </li>
-                                                            <li class="taxi">
-                                                                <h3 class="font-bold">By Taxi</h3>
-                                                                <p>If you are taking a taxi, you may alight directly at the venue. Taxi drivers in Manila are conversant in English and are familiar with the Cultural Center of the Philippines (PICC) complex where the PICC is situated.  A regular taxi from the Ninoy Aquino International Airport would cost around P150 to P200.</p>
-                                                            </li>
-                                                            <li class="car">
-                                                                <h3 class="font-bold">By Car</h3>
-                                                                <p>If you are driving, you may alight directly at the venue. Parking is available at the venue. </p>
-                                                            </li>
-                                                        </ul>
                                                     </section>
                                                 </div>
                                             </div>
@@ -251,73 +258,83 @@
 </section>
 <div class="modal fade modal-hochi" id="modalSeatMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Seat Map</h4>
-      </div>
-      <div class="modal-body">
-        <div class="seat-map-modal">
-          <div class="row">
-            <div class="col-md-7">
-              <div class="navigation-level">
-                <ul class="nav nav-tabs nav-level" role="tablist">
-                  <li role="presentation" class="active"><a href="#level1" aria-controls="home" role="tab" data-toggle="tab">Level 1</a></li>
-                  <li role="presentation"><a href="#level2" aria-controls="profile" role="tab" data-toggle="tab">Level 2</a></li>
-                  <li role="presentation"><a href="#level3" aria-controls="messages" role="tab" data-toggle="tab">Level 3</a></li>
-                </ul>
-              </div>
-              <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="level1"><img src="{{ asset('assets/frontend/images/jessica-jung-manila-seatmap-level1.jpg') }}"></div>
-                <div role="tabpanel" class="tab-pane" id="level2"><img src="{{ asset('assets/frontend/images/jessica-jung-manila-seatmap-level2.jpg') }}"></div>
-                <div role="tabpanel" class="tab-pane" id="level3"><img src="{{ asset('assets/frontend/images/jessica-jung-manila-seatmap-level3.jpg') }}"></div>
-              </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Seat Map</h4>
             </div>
-            <div class="col-md-5">
-              <div class="seat-map-price">
-                <ul>
-                  <li>
-                    <span class="seat-dot dot-pink dot-manila1"></span>
-                    <span class="box-line">
-                      <span class="category">Category 1</span>
-                      <span class="price">PHP 7,550</span>
-                    </span>
-                  </li>
-                  <li>
-                    <span class="seat-dot dot-blue dot-manila2"></span>
-                    <span class="box-line">
-                      <span class="category">Category 2</span>
-                      <span class="price">PHP 6,050</span>
-                    </span>
-                  </li>
-                  <li>
-                    <span class="seat-dot dot-purple dot-manila3"></span>
-                    <span class="box-line">
-                      <span class="category">Category 3</span>
-                      <span class="price">PHP 4,150</span>
-                    </span>
-                  </li>
-                  <li>
-                    <span class="seat-dot dot-green dot-manila4"></span>
-                   <span class="box-line">
-                      <span class="category">Category 4</span>
-                      <span class="price">PHP 3,050</span>
-                    </span>
-                  </li>
-                </ul>
-                <p>
-                    (Price inclusive of PHP 100 booking fee per ticket)
-                </p>
-                <p>
-                    This is a free seating by category event. Seats will be allocated on a first come first serve basis at the venue, on the event day.
-                </p>
-              </div>
+            <div class="modal-body">
+                <div class="seat-map-modal">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <img src="{{ asset('assets/frontend/images/jessica-jung-hochiminh-seatmap.jpg') }}">
+                        </div>
+                        <div class="col-md-5">
+                            <div class="seat-map-price">
+                                <ul>
+                                    <li>
+                                        <span class="seat-dot dot-hochi1"></span>
+                                        <span class="box-line">
+                                            <span class="category">Category 1</span>
+                                            <span class="price">VND 2,250,000</span>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="seat-dot dot-hochi1"></span>
+                                        <span class="box-line">
+                                            <span class="category">Category 1 (Standing)</span>
+                                            <span class="price">VND 2,250,000</span>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="seat-dot dot-hochi2"></span>
+                                        <span class="box-line">
+                                            <span class="category">Category 2</span>
+                                            <span class="price">VND 1,850,000</span>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="seat-dot dot-hochi2"></span>
+                                        <span class="box-line">
+                                            <span class="category">Category 2 (Standing)</span>
+                                            <span class="price">VND 1,850,000</span>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="seat-dot dot-hochi3"></span>
+                                        <span class="box-line">
+                                            <span class="category">Category 3</span>
+                                            <span class="price">VND 1,450,000</span>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="seat-dot dot-hochi3"></span>
+                                        <span class="box-line">
+                                            <span class="category">Category 3 (Standing)</span>
+                                            <span class="price">VND 1,450,000</span>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="seat-dot dot-hochi4"></span>
+                                        <span class="box-line">
+                                            <span class="category">Category 4</span>
+                                            <span class="price">VND 850,000</span>
+                                        </span>
+                                    </li>
+                                </ul>
+                                <p>
+                                    (Price is inclusive of VND 50,000 booking fee per ticket)
+                                </p>
+                                <p>
+                                    This is a free seating by category event. Seats will be allocated on a first come first serve basis at the venue, on the event day.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 @stop
 @include('frontend.partials.script.subscribe_script')

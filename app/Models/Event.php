@@ -240,7 +240,10 @@ class Event extends Model
             if($data->save()){
                 if(isset($param['featured_image1'])){
                     $img1 = Image::make($featured_image1);
-                    $img1->resize(1440, 400);
+                    list($width1, $height1) = getimagesize($featured_image1);
+                    if($width1 != 1440 && $height1 != 400){
+                        $img1->resize(1440, 400);
+                    }
                     $img1_tmp = $img1->stream();
 
                     //dd($img1_tmp->__toString());
@@ -253,7 +256,10 @@ class Event extends Model
 
                 if(isset($param['featured_image2'])){
                     $img2 = Image::make($featured_image2);
-                    $img2->resize(370, 250);
+                    list($width2, $height2) = getimagesize($featured_image2);
+                    if($width2 != 370 && $height2 != 250){
+                        $img2->resize(370, 250);
+                    }
                     $img2_tmp = $img2->stream();
                     // $img2->save($pathDest.'/'.$filename2);
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
@@ -263,7 +269,10 @@ class Event extends Model
 
                 if(isset($param['featured_image3'])){
                     $img3 = Image::make($featured_image3);
-                    $img3->resize(150, 101);
+                    list($width3, $height3) = getimagesize($featured_image3);
+                    if($width3 != 150 && $height3 != 101){
+                        $img3->resize(150, 101);
+                    }
                     $img3_tmp = $img3->stream();
                     // $img3->save($pathDest.'/'.$filename3);
                     

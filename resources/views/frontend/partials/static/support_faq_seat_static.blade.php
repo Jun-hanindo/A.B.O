@@ -1,5 +1,5 @@
-@extends('layout.frontend.master.master')
-@section('title', 'FAQ Top Questions - ')
+@extends('layout.frontend.master.master_static')
+@section('title', 'FAQ Seat Allocation - ')
 @section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
 @php
@@ -196,48 +196,20 @@ $tag = '<--mobile-->';
             <div class="container">
                 <div class="mobile-page-title mobile-title-faq">
                     <a href="{{URL::route('support-faq')}}" class="back-faq">FAQ</a>
-                    <h3 class="font-light">Top Questions</h3>
+                    <h3 class="font-light">Seat Allocation</h3>
                 </div>
                 <div class="list-ask-mobile top-ask">
                     <ul class="ul-faq-content">
                         <li>
-                            <a data-toggle="collapse" href="#collapseonemobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">What should I do if my tickets are lost?</a>
+                            <a data-toggle="collapse" href="#collapseonemobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Why can’t I choose my own seat online?</a>
                             <div class="collapse" id="collapseonemobile">
-                                <p>Please contact us at +65 6733 0360 and have ready the following to get a replacement ticket issued with a new barcode:</p>
-                                <ul class="ul-inside">
-                                    <li>Order Confirmation Number</li>
-                                    <li>Name</li>
-                                    <li>Contact Number</li>
-                                </ul>
-                                <p>A service fee of $5 per ticket reprint, in addition to the standard ticket delivery costs (if applicable), will be applicable for this change.</p>
-                                <p>General Admission tickets cannot be replaced.
-                                </p>
+                                <p>You may choose your preferred seat category and section. However, exact seat selection will only be available to events as granted by promoters.</p>
                             </div>
                         </li>
                         <li>
-                            <a data-toggle="collapse" href="#collapsetwomobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">What happens if an event is cancelled?</a>
+                            <a data-toggle="collapse" href="#collapsetwomobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">What is an obstructed or restricted view?</a>
                             <div class="collapse" id="collapsetwomobile">
-                                <p>Cancellation policies are event specific and will be communicated by the show organiser. Given that refunds are offered, procedures will be provided on the event page and major media channels.</p>
-
-                                <p>Given that refunds are offered, funds will be automatically returned into the same credit card you used to make the purchase.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <a data-toggle="collapse" href="#collapsethreemobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">How long does it take for my tickets to be delivered?</a>
-                            <div class="collapse" id="collapsethreemobile">
-                                <p>Tickets will be dispatched 1 month before the date of event. If you did not receive your tickets, please contact us at +65 6733 0360.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <a data-toggle="collapse" href="#collapsefourmobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Does my child require a ticket?</a>
-                            <div class="collapse" id="collapsefourmobile">
-                                <p>Admission rules vary between events. Please refer to the specific event page for information.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <a data-toggle="collapse" href="#collapsefivemobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">What is a Booking Fee?</a>
-                            <div class="collapse" id="collapsefivemobile">
-                                <p>It is a worldwide standard practice by ticketing services company to support investment in systems technology and to improve the online purchase experience.</p>
+                                <p>Due to the different event configuration, stage setup and props arrangement for each event, some seats may not have a full view of the stage. These seats, with obstructed or restricted view, will be identified on the seat map diagram of the event webpage.</p>
                             </div>
                         </li>
                     </ul>

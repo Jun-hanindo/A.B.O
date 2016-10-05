@@ -1,4 +1,4 @@
-@extends('layout.frontend.master.master')
+@extends('layout.frontend.master.master_static')
 @section('title', 'Support - ')
 @section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')

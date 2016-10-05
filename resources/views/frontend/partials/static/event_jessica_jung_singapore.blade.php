@@ -1,4 +1,4 @@
-@extends('layout.frontend.master.master')
+@extends('layout.frontend.master.master_static')
 @section('title', 'Jessica Jung Singapore Fan Meeting - ')
 @section('og_image', asset('assets/frontend/images/jessica-jung-singapore-share.jpg'))
 @section('content')
