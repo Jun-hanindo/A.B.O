@@ -48,10 +48,6 @@ class VenuesController extends BaseController
                 return $venue->name.'</br><a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit">Edit</a>&nbsp;
                     <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$venue->id.'" data-button="delete">Delete</a>';
             })
-            ->editColumn('user_id', function ($venue){
-                $username = $venue->user->first_name.' '.$venue->user->last_name;
-                return $username;
-            })
             ->editColumn('avaibility', function ($venue) {
                 if($venue->avaibility == TRUE){
                     $checked = 'checked';
@@ -59,6 +55,12 @@ class VenuesController extends BaseController
                     $checked = '';
                 }
                 return '<input type="checkbox" name="avaibility['.$venue->id.']" class="avaibility-check" data-id="'.$venue->id.'" '.$checked.'>';
+            })
+            ->filterColumn('address', function($query, $keyword) {
+                $query->whereRaw("LOWER(CAST(venues.address as TEXT)) like ?", ["%{$keyword}%"]);
+            })
+            ->filterColumn('post_by', function($query, $keyword) {
+                $query->whereRaw("LOWER(CAST(CONCAT(users.first_name, ' ', users.last_name) as TEXT)) like ?", ["%{$keyword}%"]);
             })
             ->make(true);
     }

@@ -6,6 +6,7 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 
 class Venue extends Model
 {
@@ -43,8 +44,11 @@ class Venue extends Model
      */
     function datatables()
     {
-
-    	return static::select('id', 'name', 'address', 'user_id', 'avaibility')/*->where('status', true)*/;
+        $data = Venue::select('venues.id as id', 'venues.name as name', 'venues.address as address', 
+            'venues.avaibility as avaibility', 
+            DB::RAW("CONCAT(users.first_name, ' ', users.last_name)  as post_by"))
+        ->leftJoin('users', 'users.id', '=', 'venues.user_id');
+    	return $data;
     
     }
 

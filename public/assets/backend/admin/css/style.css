@@ -39,6 +39,9 @@
 .currency-value input{
 	width: 65% !important;
 }
+.datepicker{
+	border-radius: 0 !important;
+}
 /*.cke_chrome{
 	border-left: 1px solid #b6b6b6 !important;
 	border-right: 1px solid #b6b6b6 !important;

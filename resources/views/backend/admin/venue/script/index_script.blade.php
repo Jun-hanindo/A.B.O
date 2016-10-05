@@ -34,7 +34,7 @@
                     // {data: 'id', name: 'id', searchable: false, orderable: false},
                     {data: 'name', name: 'name'},
                     {data: 'address', name: 'address'},
-                    {data: 'user_id', name: 'user_id'},
+                    {data: 'post_by', name: 'post_by'},
                     {data: 'avaibility', name: 'avaibility', searchable: false, orderable: false}
                 ],
                 "fnDrawCallback": function() {

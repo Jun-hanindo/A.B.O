@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Request;
+use DB;
 
 class LogActivity extends Model
 {
@@ -28,24 +29,32 @@ class LogActivity extends Model
         return $this;
     }
 
-    public function datatables($limit)
+    public function datatables($start, $end, $limit)
     {
-        $data = LogActivity::select('log_activities.id','log_activities.user_id','log_activities.description', 
-            'log_activities.ip_address', 'log_activities.created_at', 'users.first_name', 'users.last_name')
-            ->Join('users', 'log_activities.user_id','=','users.id')
+        $data = LogActivity::select('log_activities.id', 'log_activities.description', 
+            'log_activities.ip_address', 'log_activities.created_at', 
+            DB::RAW("CONCAT(users.first_name, ' ', users.last_name)  as user_id"))
+            ->leftJoin('users', 'log_activities.user_id','=','users.id')
+            ->where(DB::raw('DATE(log_activities.created_at)'), '>=', $start)
+            ->where(DB::raw('DATE(log_activities.created_at)'), '<=', $end)
             ->orderBy('log_activities.created_at', 'desc');
         if($limit > 0){
             $data->take($limit);
         }
+        //dd($data->toSql());
         return $data;
     }
 
-    public function getDataByUser($user_id, $limit)
+    public function getDataByUser($user_id, $start, $end, $limit)
     {
-        $data = LogActivity::select('log_activities.id','log_activities.user_id','log_activities.description', 
-            'log_activities.ip_address', 'log_activities.created_at', 'users.first_name', 'users.last_name')
-            ->Join('users', 'log_activities.user_id','=','users.id')
-            ->where('user_id', $user_id)->orderBy('created_at', 'desc');
+        $data = LogActivity::select('log_activities.id', 'log_activities.description', 
+            'log_activities.ip_address', 'log_activities.created_at', 
+            DB::RAW("CONCAT(users.first_name, ' ', users.last_name)  as user_id"))
+            ->leftJoin('users', 'log_activities.user_id','=','users.id')
+            ->where('user_id', $user_id)
+            ->where(DB::raw('DATE(log_activities.created_at)'), '>=', $start)
+            ->where(DB::raw('DATE(log_activities.created_at)'), '<=', $end)
+            ->orderBy('created_at', 'desc');
         if($limit > 0){
             $data->take($limit);
         }

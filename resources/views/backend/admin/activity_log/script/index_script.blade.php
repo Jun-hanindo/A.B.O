@@ -3,16 +3,42 @@
 
 <script>
 $(document).ready(function() {
+    var start_date = $('input[name=start_date]').val();
+    var end_date = $('input[name=end_date]').val();
 
-    loadData();
+    loadData(start_date, end_date);
 
     $('#user_id').on('change', function () {
-        loadData();
+        var start_date = $('input[name=start_date]').val();
+        var end_date = $('input[name=end_date]').val();
+        loadData(start_date, end_date);
+    });
+
+    $('#start_date').datepicker({
+        format: "yyyy-mm-dd",
+        setStartDate: start_date,
+        setEndDate: end_date,
+    }).on('changeDate', function(){
+        $('#end_date').datepicker('setStartDate', new Date($('#start_date').val()));
+        var start_date = $('input[name=start_date]').val();
+        var end_date = $('input[name=end_date]').val();
+        loadData(start_date, end_date);
+    });
+
+    $('#end_date').datepicker({
+        format: "yyyy-mm-dd",
+        setStartDate: start_date,
+        setEndDate: end_date,
+    }).on('changeDate', function(){
+        $('#start_date').datepicker('setEndDate', new Date($('#end_date').val()));
+        var start_date = $('input[name=start_date]').val();
+        var end_date = $('input[name=end_date]').val();
+        loadData(start_date, end_date);
     });
 
 });
 
-function loadData()
+function loadData(start_date, end_date)
 {
     var user_id = $('select[name=user_id]').val();
     $.fn.dataTable.ext.errMode = 'none';
@@ -39,7 +65,9 @@ function loadData()
         ajax: {
             url: '{!! URL::route("datatables-activity-log") !!}',
             data: {
-                'user_id': user_id
+                'user_id': user_id,
+                'start_date': start_date,
+                'end_date': end_date,
             }
         },
         columns: [

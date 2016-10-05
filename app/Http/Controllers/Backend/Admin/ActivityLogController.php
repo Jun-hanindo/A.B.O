@@ -39,6 +39,8 @@ class ActivityLogController extends BaseController
     {
         $param = $req->all();
         $user = $param['user_id'];
+        $start = $param['start_date'];
+        $end = $param['end_date'];
 
         if(isset($this->setting['limit_record'])){
             $limit = $this->setting['limit_record'];
@@ -48,18 +50,20 @@ class ActivityLogController extends BaseController
 
 
         if($user == 0){
-            $model = $this->model->datatables($limit);
+            $model = $this->model->datatables($start, $end, $limit);
         }else{
-            $model = $this->model->getDataByUser($user, $limit);
+            $model = $this->model->getDataByUser($user, $start, $end, $limit);
         }
         return datatables($model)
-                ->editColumn('user_id', function($data){
-                    $name = $data->first_name.' '.$data->last_name;
-                    return $name;
-                })
                 ->editColumn('created_at', function($data){
                     $date = date('d M Y h:i A', strtotime($data->created_at));
                     return $date;
+                })
+                ->filterColumn('user_id', function($query, $keyword) {
+                    $query->whereRaw("LOWER(CAST(CONCAT(users.first_name, ' ', users.last_name) as TEXT)) like ?", ["%{$keyword}%"]);
+                })
+                ->filterColumn('created_at', function($query, $keyword) {
+                    $query->whereRaw("LOWER(CAST(log_activities.created_at as TEXT)) like ?", ["%{$keyword}%"]);
                 })
                 ->make(true);
     }
