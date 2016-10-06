@@ -1,5 +1,6 @@
 @extends('layout.frontend.master.master')
 @section('title', '')
+@section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
     @if(!empty($sliders))
         <section class="slider-home">
@@ -12,34 +13,36 @@
                 </ol>
 
 
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner" role="listbox"> 
-                        @foreach($sliders as $key => $slider)
-                            <div class="item {{ $key == 0 ? 'active' : ' '}}">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox"> 
+                    @foreach($sliders as $key => $slider)
+                        <div class="item {{ $key == 0 ? 'active' : ' '}}">
+                            <a href="{{ URL::route('event-detail', $slider->event->slug) }}">
                                 <img src="{{ file_url('events/'.$slider->event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-xs" alt="...">
                                 <img src="{{ file_url('events/'.$slider->event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-lg hidden-md hidden-sm" alt="...">
-                                <div class="carousel-caption bg-{{ $slider->event->background_color }}">
-                                    <div class="container">
-                                        <h5 class="categorySlide">{{ strtoupper($slider->cat_name) }}</h5>
-                                        <h2 class="titleSlide font-light">{{ $slider->event->title }}</h2>
-                                        <ul>
-                                            <li><div class="eventDate">
-                                                @if(!empty($slider->schedule))
-                                                    <i class="fa fa-calendar-o"></i>{{ full_text_date($slider->schedule->date_at) }}
-                                                @endif</div>
-                                            </li>
-                                            <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->venue->name }}</div></li>
-                                        </ul>
-                                        <div class="moreDetail">
-                                            <a href="{{ URL::route('event-detail', $slider->event->slug) }}">
-                                              <button class="btn btnDetail font-bold">{{ trans('general.more_details') }}</button>
-                                            </a>
-                                        </div>
+                            </a>
+                            <div class="carousel-caption bg-{{ $slider->event->background_color }}">
+                                <div class="container">
+                                    <h5 class="categorySlide">{{ strtoupper($slider->cat_name) }}</h5>
+                                    <h2 class="titleSlide font-light">{{ $slider->event->title }}</h2>
+                                    <ul>
+                                        <li><div class="eventDate">
+                                            @if(!empty($slider->schedule))
+                                                <i class="fa fa-calendar-o"></i>{{ full_text_date($slider->schedule->date_at) }}
+                                            @endif</div>
+                                        </li>
+                                        <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->venue->name }}</div></li>
+                                    </ul>
+                                    <div class="moreDetail">
+                                        <a href="{{ URL::route('event-detail', $slider->event->slug) }}">
+                                          <button class="btn btnDetail font-bold">{{ trans('frontend/general.more_details') }}</button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
-                    </div>
+                        </div>
+                    @endforeach
+                </div>
                 
 
                 <!-- Controls -->
@@ -57,7 +60,7 @@
     @if(!empty($events))
     <section class="newRelease">
         <div class="container">
-            <h2 class="font-light">{{ trans('general.new_release') }}</h2>
+            <h2 class="font-light">{{ trans('frontend/general.new_release') }}</h2>
             <div class="row">
                 @foreach($events as $key => $event)  
                     <a href="{{ URL::route('event-detail', $event->event->slug) }}">
@@ -81,7 +84,7 @@
             </div>
             <div class="loadMore">
                 <a href="{{ URL::route('discover')}}">
-                  <button class="btn btnLoad font-bold">{{ trans('general.discover_more_events') }}</button>
+                  <button class="btn btnLoad font-bold">{{ trans('frontend/general.discover_more_events') }}</button>
                 </a>
             </div>
         </div>
@@ -90,7 +93,7 @@
     @if(!empty($promotions))
     <section class="latestPromo">
         <div class="container">
-            <h2 class="font-light">{{ trans('general.latest_promotions') }}</h2>
+            <h2 class="font-light">{{ trans('frontend/general.latest_promotions') }}</h2>
             <div class="row">                
                 @foreach($promotions as $key => $promotion) 
                     @if(!empty($promotion->promo))
@@ -104,7 +107,7 @@
                                         </li>
                                         <li class="eventName">{{ string_limit($promotion->promo->title) }} <img src="{{ file_url('promotions/'.$promotion->promo->featured_image, env('FILESYSTEM_DEFAULT')) }}"></li>
                                         <br>
-                                        <li class="eventPlace">{{ trans('general.valid_from') }}
+                                        <li class="eventPlace">{{ trans('frontend/general.valid_from') }}
                                             {{ $promotion->promo->valid }}
                                         </li>
                                     </ul>
@@ -122,7 +125,7 @@
                                                 <img src="{{ file_url('events/'.$promotion->event->featured_image1, env('FILESYSTEM_DEFAULT')) }}">
                                             </div>
                                             <div class="descPromoModal">
-                                                <h4>{{ trans('general.about_this_promotion') }}</h4>
+                                                <h4>{{ trans('frontend/general.about_this_promotion') }}</h4>
                                                 <div class="promoBannerDesc">
                                                     <div class="row">
                                                         <div class="col-md-9">
@@ -136,22 +139,22 @@
                                                 <!-- <h4>How to Participate </h4>
                                                 <p>Show StarHub bill or subscription on any device such as mobile phone or tablet.</p> -->
 
-                                                <p>{{ trans('general.discount') }}: {{ $promotion->promo->disc }}
+                                                <p>{{ trans('frontend/general.discount') }}: {{ $promotion->promo->disc }}
                                                 </p>
-                                                <h4>Promotion Period</h4>
-                                                <p>{{ trans('general.start_date') }}: {{ full_text_date($promotion->promo->start_date) }}</p>
+                                                <h4>{{ trans('frontend/general.promotion_period') }}</h4>
+                                                <p>{{ trans('frontend/general.start_date') }}: {{ full_text_date($promotion->promo->start_date) }}</p>
                                                 <br>
-                                                <p>{{ trans('general.end_date') }}: {{ full_text_date($promotion->promo->end_date) }}</p>
+                                                <p>{{ trans('frontend/general.end_date') }}: {{ full_text_date($promotion->promo->end_date) }}</p>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <div class="row">
                                                 <div class="col-md-8">
-                                                    <h4>{{ trans('general.get_your_early_bird_tickets_now') }}</h4>
+                                                    <h4>{{ trans('frontend/general.get_your_early_bird_tickets_now') }}</h4>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <a href="{{ $promotion->Event->buylink }}">
-                                                      <button type="button" class="btn btn-primary">{{ trans('general.buy_now') }}</button>
+                                                      <button type="button" class="btn btn-primary">{{ trans('frontend/general.buy_now') }}</button>
                                                     </a>
                                                     
                                                 </div>
@@ -166,7 +169,7 @@
             </div>
             <div class="loadMore">
                 <a href="{{ URL::route('promotion')}}">
-                  <button class="btn btnLoad font-bold">{{ trans('general.more_promotions') }}</button>
+                  <button class="btn btnLoad font-bold">{{ trans('frontend/general.more_promotions') }}</button>
                 </a>
             </div>
         </div>

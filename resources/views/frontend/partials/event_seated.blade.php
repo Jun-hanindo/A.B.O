@@ -1,5 +1,6 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Asia Box Office')
+@section('title', $event->title.' - ')
+@section('og_image', file_url('events/'.$event->featured_image1, env('FILESYSTEM_DEFAULT')))
 @section('content')
 @php
     $promotions = $event->promotions;
@@ -20,7 +21,7 @@
             </div>
             <div class="moreDetail">
                 <a href="{{ $event->buylink }}">
-                    <button class="btn btnDetail font-bold">Buy Now</button>
+                    <button class="btn btnDetail font-bold">{{ trans('frontend/general.buy_now') }}</button>
                 </a>
             </div>
         </div>
@@ -31,16 +32,16 @@
         <div class="col-md-12">
             <div class="container">
                 <ul class="" role="">
-                    <li><a href="#eventBanner" class="smoothScroll backtop">Back To Summary</a></li>
-                    <li><a href="#ticket" class="smoothScroll active">About This Event</a></li>
+                    <li><a href="#eventBanner" class="smoothScroll backtop">{{ trans('frontend/general.back_to_summary') }}</a></li>
+                    <li><a href="#aboutBox" class="smoothScroll active">{{ trans('frontend/general.about_this_event') }}</a></li>
                     @if(!$promotions->isEmpty())
-                        <li><a href="#aboutBox" class="smoothScroll">Promotions</a></li>
+                        <li><a href="#promoBox" class="smoothScroll">{{ trans('frontend/general.promotions') }}</a></li>
                     @endif
-                    <li><a href="{{ (!$promotions->isEmpty()) ? '#promoBox' : '#aboutBox' }}" class="smoothScroll">Venue Info</a></li>
+                    <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue_info') }}</a></li>
                     @if(!empty($event->admission))
-                        <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
+                        <li><a href="#admissionBox" class="smoothScroll">{{ trans('frontend/general.admission_rules') }}</a></li>
                     @endif
-                    <li><a href="#"><button class="btn btnBuy btnABO font-bold">Buy Now</button></a></li>
+                    <li><a href="{{ $event->buylink }}" target="_blank"><button class="btn btnBuy btnABO font-bold">{{ trans('frontend/general.buy_now') }}</button></a></li>
                 </ul>
             </div>
         </div>
@@ -52,15 +53,15 @@
             <div class="col-md-12">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
                     <li><a href="#eventBanner" class="smoothScroll backtop"></a></li>
-                    <li><a href="#ticket" class="smoothScroll active">About</a></li>
+                    <li><a href="#aboutBox" class="smoothScroll active">About</a></li>
                     @if(!$promotions->isEmpty())
-                        <li><a href="#aboutBox" class="smoothScroll">Promotions</a></li>
+                        <li><a href="#promoBox" class="smoothScroll">{{ trans('frontend/general.promotions') }}</a></li>
                     @endif
-                    <li><a href="{{ (!$promotions->isEmpty()) ? '#promoBox' : '#aboutBox' }}" class="smoothScroll">Venue Info</a></li>
+                    <li><a href="#venueBox" class="smoothScroll">Venue</a></li>
                     @if(!empty($event->admission))
-                        <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
+                        <li><a href="#admissionBox" class="smoothScroll">Admission</a></li>
                     @endif
-                    <li><a href="#"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li>
+                    <li><a href="{{ $event->buylink }}"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li>
                 </ul>
             </div>
         </div>
@@ -69,7 +70,7 @@
 <section class="eventInfo">
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 date">
                 @php 
                     $schedules = $event->schedules;
                     $i = 0;
@@ -103,7 +104,7 @@
                 <ul class="list-unstyled">
                     <li>{!! $event->Venue->address !!}</li>
                     <li>
-                        <a href="{{ $event->Venue->link_map }}"><button class="btn btnSeemap font-bold">See Map</button></a>
+                        <a href="{{ $event->Venue->link_map }}" class="btn btnSeemap font-bold" target="_blank">See Map</a>
                     </li>
                 </ul>
             </div>
@@ -113,7 +114,7 @@
                 </div>
                 <ul class="list-unstyled">
                     @foreach($schedules as $sch)
-                      <li class="liParent">
+                      <li class="liParent li-mobile">
                           <table>
                               <tr>
                                   <td>{{ date('d M, D', strtotime($sch->date_at)) }}</td>
@@ -131,33 +132,33 @@
                       </li>  
                       @endforeach
                     <li class="liParent parentButton">
-                      <a href="{{ $event->Venue->link_map }}"><button class="btn btnSeat bg-black font-bold">See Seat Map</button></a>
-                      <a href="{{ $event->buylink }}"><button class="btn btnticket bg-white font-bold">More Ticket Info</button></a>
+                      <a href="{{ $event->buylink }}"><button class="btn btnBlackDefault font-bold">See Seat Map</button></a>
+                      {{-- <a href="{{ $event->buylink }}"><button class="btn btnticket bg-white font-bold">More Ticket Info</button></a> --}}
                     </li>
                 </ul>
             </div>
             <div class="col-md-12 tabEvent">
                 <div class="eventTab">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li><a href="#ticket" class="smoothScroll active">About This Event</a></li>
+                        <li><a href="#aboutBox" class="smoothScroll active">About This Event</a></li>
                         @if(!$promotions->isEmpty())
-                            <li><a href="#aboutBox" class="smoothScroll">Promotions</a></li>
+                            <li><a href="#promoBox" class="smoothScroll">Promotions</a></li>
                         @endif
-                        <li><a href="{{ (!$promotions->isEmpty()) ? '#promoBox' : '#aboutBox' }}" class="smoothScroll">Venue Info</a></li>
+                        <li><a href="#venueBox" class="smoothScroll">Venue Info</a></li>
                         @if(!empty($event->admission))
-                            <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
+                            <li><a href="#admissionBox" class="smoothScroll">Admission Rules</a></li>
                         @endif
                     </ul>
                 </div>
                 <div class="eventTab-mobile">
                     <ul class="nav nav-tabs nav-justified" role="tablist">
-                        <li><a href="#ticket" class="smoothScroll active">About</a></li>
+                        <li><a href="#aboutBox" class="smoothScroll active">About</a></li>
                         @if(!$promotions->isEmpty())
-                            <li><a href="{{ (!$promotions->isEmpty()) ? '#promoBox' : '#aboutBox' }}" class="smoothScroll">Promotions</a></li>
+                            <li><a href="#promoBox" class="smoothScroll">Promotions</a></li>
                         @endif
-                        <li><a href="#promoBox" class="smoothScroll">Venue Info</a></li>
+                        <li><a href="#venueBox" class="smoothScroll">Venue Info</a></li>
                         @if(!empty($event->admission))
-                            <li><a href="#getvenue" class="smoothScroll">Admission Rules</a></li>
+                            <li><a href="#admissionBox" class="smoothScroll">Admission Rules</a></li>
                         @endif
                     </ul>
                 </div>

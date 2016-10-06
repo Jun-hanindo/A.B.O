@@ -21,3 +21,7 @@
 .mapEvent iframe{
     pointer-events: none;
 }
+
+iframe[name="google_conversion_frame"]{
+    height: 0;
+}

@@ -1,9 +1,10 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Asia Box Office')
+@section('title', trans('frontend/general.discover').' - ')
+@section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
 <section class="discoverCategory">
     <div class="container">
-        <h2>Discover</h2>
+        <h2>{{ trans('frontend/general.discover') }}</h2>
             <div class="tabCategory">
                 <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation">
@@ -46,7 +47,7 @@
             @if($events->nextPageUrl() != null)
                 <div class="loadMore">
                     <a href="javascript:void(0)">
-                        <button class="btn btnLoad" data-slug="{{ $category->slug }}">Load More Events</button>
+                        <button class="btn btnLoad" data-slug="{{ $category->slug }}">{{ trans('frontend/general.load_more_events') }}</button>
                     </a>
                 </div>
             @endif
@@ -57,7 +58,7 @@
         <div class="container">
             <div class="row append-events">
                 <div class="box-release">
-                    <h3 class="text-center">There are no event.</h3>
+                    <h3 class="text-center">{{ trans('frontend/general.there_are_no_event') }}</h3>
                 </div>
             </div>
         </div>

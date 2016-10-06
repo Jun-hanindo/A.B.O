@@ -1,9 +1,10 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Event Asia Box Office')
+@section('title', trans('frontend/general.promotions').' - ')
+@section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
     <section class="discoverCategory">
           <div class="container">
-                <h2>Promotions</h2>
+                <h2>{{ trans('frontend/general.promotions') }}</h2>
               <div class="tabCategory">
                   <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation"><a href="{{ URL::route('promotion') }}"><img src="{{ asset('assets/frontend/images/catNew.png') }}"><br>What's New</a></li>
@@ -28,7 +29,7 @@
                                     <li class="eventType">{{ strtoupper($event->category) }}</li>
                                     <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}"></li>
                                     <br>
-                                    <li class="eventPlace">Valid From {{ $event->valid }}</li>
+                                    <li class="eventPlace">{{ trans('frontend/general.valid_from') }} {{ $event->valid }}</li>
                                 </ul>
                             </div>
                         </a>
@@ -44,7 +45,7 @@
                                             <img src="{{ $event->featured_image1_url }}">
                                         </div>
                                         <div class="descPromoModal">
-                                            <h4>About This Promotion</h4>
+                                            <h4>{{ trans('frontend/general.about_this_promotion') }}</h4>
                                             <div class="promoBannerDesc">
                                                 <div class="row">
                                                     <div class="col-md-9">
@@ -59,20 +60,20 @@
                                             <p>Show StarHub bill or subscription on any device such as mobile phone or tablet.</p> -->
                                             
                                             <p>{{ $event->disc }}</p>
-                                            <h4>Promotion Period</h4>
-                                            <p>Start Date: {{ $event->start_date }}</p>
+                                            <h4>{{ trans('frontend/general.promotion_period') }}</h4>
+                                            <p>{{ trans('frontend/general.start_date') }}: {{ $event->start_date }}</p>
                                             <br>
-                                            <p>End Date: {{ $event->end_date }}</p>
+                                            <p>{{ trans('frontend/general.end_date') }}: {{ $event->end_date }}</p>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <h4>Get Your Early Bird Tickets Now!</h4>
+                                                <h4>{{ trans('frontend/general.get_your_early_bird_tickets_now') }}</h4>
                                             </div>
                                             <div class="col-md-4">
                                                 <a href="{{ $event->buylink }}">
-                                                    <button type="button" class="btn btn-primary">Buy Now</button>
+                                                    <button type="button" class="btn btn-primary">{{ trans('frontend/general.buy_now') }}</button>
                                                 </a>
                                                 
                                             </div>
@@ -87,7 +88,7 @@
             @if($events->nextPageUrl() != null)
                 <div class="loadMore">
                     <a href="javascript:void(0)">
-                      <button class="btn btnLoad" data-slug="{{ $slug }}">Load More Promotions</button>
+                      <button class="btn btnLoad" data-slug="{{ $slug }}">{{ trans('frontend/general.load_more_promotions') }}</button>
                     </a>
                 </div>
             @endif
@@ -98,7 +99,7 @@
         <div class="container">
             <div class="row append-events">
                 <div class="box-promo">
-                    <h3 class="text-center">There are no promotion.</h3>
+                    <h3 class="text-center">{{ trans('frontend/general.there_are_no_promotion') }}</h3>
                 </div>
             </div>
         </div>

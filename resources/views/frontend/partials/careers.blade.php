@@ -1,5 +1,5 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Event Asia Box Office')
+@section('title', trans('frontend/general.careers').' - ')
 @section('content')
 <section class="about-content career-content">
     <div class="row">

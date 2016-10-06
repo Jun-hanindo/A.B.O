@@ -9,6 +9,7 @@
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
         <meta property="og:description" content="&nbsp;" />
+        @yield('google_tag_manager')
 
           <!-- Bootstrap -->
         {!! Html::style('assets/frontend/css/bootstrap.min.css') !!}
@@ -54,6 +55,7 @@
         <!-- End Google Analytic Production AWS -->
     </head>
     <body>
+        @yield('no_script_google_tag_manager')
         @if(!Request::is('subscribe'))
             <div class="page-wrapper">
                 <header>

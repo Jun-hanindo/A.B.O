@@ -1,9 +1,10 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Asia Box Office')
+@section('title', trans('frontend/general.discover').' - ')
+@section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
 <section class="discoverCategory">
     <div class="container">
-        <h2>Discover</h2>
+        <h2>{{ trans('frontend/general.discover') }}</h2>
             <div class="tabCategory">
                 <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active">
@@ -25,24 +26,26 @@
 @if(!empty($sliders))
     <section class="slider-home">
             <div id="carouselHacked" class="carousel slide carousel-fade" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                @foreach($sliders as $key => $slider) 
-                    <li data-target="#carousel-example-generic" data-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : ' '}}"></li>
-                @endforeach
-            </ol>
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    @foreach($sliders as $key => $slider) 
+                        <li data-target="#carousel-example-generic" data-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : ' '}}"></li>
+                    @endforeach
+                </ol>
 
 
                 <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">  
+                <div class="carousel-inner" role="listbox"> 
                     @foreach($sliders as $key => $slider)
                         <div class="item {{ $key == 0 ? 'active' : ' '}}">
-                            <img src="{{ file_url('events/'.$slider->event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-xs" alt="...">
-                            <img src="{{ file_url('events/'.$slider->event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                            <a href="{{ URL::route('event-detail', $slider->event->slug) }}">
+                                <img src="{{ file_url('events/'.$slider->event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-xs" alt="...">
+                                <img src="{{ file_url('events/'.$slider->event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                            </a>
                             <div class="carousel-caption bg-{{ $slider->event->background_color }}">
                                 <div class="container">
                                     <h5 class="categorySlide">{{ strtoupper($slider->cat_name) }}</h5>
-                                    <h2 class="titleSlide font-light">{{ $slider->title }}</h2>
+                                    <h2 class="titleSlide font-light">{{ $slider->event->title }}</h2>
                                     <ul>
                                         <li><div class="eventDate">
                                             @if(!empty($slider->schedule))
@@ -52,8 +55,8 @@
                                         <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->venue->name }}</div></li>
                                     </ul>
                                     <div class="moreDetail">
-                                        <a href="{{ URL::route('event-detail', $slider->slug) }}">
-                                          <button class="btn btnDetail font-bold">{{ trans('general.more_details') }}</button>
+                                        <a href="{{ URL::route('event-detail', $slider->event->slug) }}">
+                                          <button class="btn btnDetail font-bold">{{ trans('frontend/general.more_details') }}</button>
                                         </a>
                                     </div>
                                 </div>
@@ -63,19 +66,18 @@
                 </div>
             
 
-            <!-- Controls -->
-            <a class="left carousel-control" href="#carouselHacked" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#carouselHacked" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-            </a>
-        </div>
-    </section>
-@endif
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carouselHacked" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carouselHacked" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </section>
+    @endif
 @if(!$events->isEmpty())
     <section class="newRelease">
         <div class="container">
@@ -99,7 +101,7 @@
             @if($events->nextPageUrl() != null)
                 <div class="loadMore">
                     <a href="javascript:void(0)">
-                        <button class="btn btnLoad">Load More Events</button>
+                        <button class="btn btnLoad">{{ trans('frontend/general.load_more_events') }}</button>
                     </a>
                 </div>
             @endif
@@ -110,7 +112,7 @@
         <div class="container">
             <div class="row append-events">
                 <div class="box-release">
-                    <h3 class="text-center">There are no event.</h3>
+                    <h3 class="text-center">{{ trans('frontend/general.there_are_no_event') }}</h3>
                 </div>
             </div>
         </div>
