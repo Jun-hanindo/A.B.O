@@ -11,19 +11,19 @@
                         <h4 class="font-light">Support</h4>
                     </li>
                     <li class="sidebar-menu-top">
-                        <a href="{{URL::route('support-faq')}}">Frequently Asked Questions</a>
+                        <a href="{{URL::route('faq')}}">Frequently Asked Questions</a>
                     </li>
                     <li class="sidebar-menu">
                         <a href="{{URL::route('contact-us')}}">Contact Us</a>
                     </li>
                     <li class="sidebar-menu">
-                        <a href="{{URL::route('support-terms-ticket-sales')}}">Terms of Ticket Sales</a>
+                        <a href="{{URL::route('terms-ticket-sales')}}">Terms of Ticket Sales</a>
                     </li>
                     <li class="sidebar-menu">
-                        <a href="{{URL::route('support-terms-website-use')}}">Terms of Website Use</a>
+                        <a href="{{URL::route('terms-website-use')}}">Terms of Website Use</a>
                     </li>
                     <li class="sidebar-menu active">
-                        <a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a>
+                        <a href="{{URL::route('privacy-policy')}}">Privacy Policy</a>
                     </li>
                 </ul>
             </div>
@@ -37,7 +37,7 @@
                       <div class="privacy-content">
                         <h5>Overview</h5>
                         <p>We, Asia Box Office Pte Ltd, are committed to protecting and respecting your privacy.</p>
-                        <p>This policy (together with our <a href="{{URL::route('support-terms-website-use')}}">terms of use</a> and any other documents referred to on it) sets out the basis on which any personal data we collect from you, or that you provide to us, will be processed by us.  Please read the following carefully to understand our practices regarding your personal data and how we will treat it. By visiting www.asiaboxoffice.com (“our site”), you are accepting and consenting to the practices described in this policy. </p>
+                        <p>This policy (together with our <a href="{{URL::route('terms-website-use')}}">terms of use</a> and any other documents referred to on it) sets out the basis on which any personal data we collect from you, or that you provide to us, will be processed by us.  Please read the following carefully to understand our practices regarding your personal data and how we will treat it. By visiting www.asiaboxoffice.com (“our site”), you are accepting and consenting to the practices described in this policy. </p>
                         <h5>Privacy Policy</h5>
                         <ol>
                           <li><label class="font-bold">Information we may collect from you</label><br>
@@ -84,7 +84,7 @@
                                     <ul class="a">
                                       <li>In the event that we sell any business or assets, in which case we may disclose your personal data to the prospective buyer of such business or assets.</li>
                                       <li>If Asia Box Office Pte Ltd or substantially all of its assets are acquired by a third party, in which case personal data held by it about its customers will be one of the transferred assets.</li>
-                                      <li>If we are under a duty to disclose or share your personal data in order to comply with any legal obligation, or in order to enforce or apply our <a href="{{URL::route('support-terms-website-use')}}">terms of use</a> or Terms and Conditions of <a href="{{URL::route('support-terms-ticket-sales')}}">Ticket Sales</a> and other agreements; or to protect the rights, property, or safety of Asia Box Office Pte Ltd, our customers, or others. This includes exchanging information with other companies and organisations for the purposes of fraud protection.</li>
+                                      <li>If we are under a duty to disclose or share your personal data in order to comply with any legal obligation, or in order to enforce or apply our <a href="{{URL::route('terms-website-use')}}">terms of use</a> or Terms and Conditions of <a href="{{URL::route('terms-ticket-sales')}}">Ticket Sales</a> and other agreements; or to protect the rights, property, or safety of Asia Box Office Pte Ltd, our customers, or others. This includes exchanging information with other companies and organisations for the purposes of fraud protection.</li>
                                     </ul>
                                   </li>
                                 </ol>
@@ -141,11 +141,11 @@
                     <a class="menu collapsed" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Support</a>
                     <div class="collapse" id="mobile-sidebar-collapse">
                         <ul>
-                            <li><a href="{{URL::route('support-faq')}}">Frequently Asked Questions</a></li>
+                            <li><a href="{{URL::route('faq')}}">Frequently Asked Questions</a></li>
                             <li><a href="{{URL::route('contact-us')}}">Contact Us</a></li>
-                            <li><a href="{{URL::route('support-terms-ticket-sales')}}">Terms of Ticket Sales</a></li>
-                            <li><a href="{{URL::route('support-terms-website-use')}}">Terms of Website Use</a></li>
-                            <li><a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a></li>
+                            <li><a href="{{URL::route('terms-ticket-sales')}}">Terms of Ticket Sales</a></li>
+                            <li><a href="{{URL::route('terms-website-use')}}">Terms of Website Use</a></li>
+                            <li><a href="{{URL::route('privacy-policy')}}">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
           <div class="privacy-content">
                     <h5>Overview</h5>
                     <p>We, Asia Box Office Pte Ltd, are committed to protecting and respecting your privacy.</p>
-                    <p>This policy (together with our <a href="{{URL::route('support-terms-website-use')}}">terms of use</a> and any other documents referred to on it) sets out the basis on which any personal data we collect from you, or that you provide to us, will be processed by us.  Please read the following carefully to understand our practices regarding your personal data and how we will treat it. By visiting www.asiaboxoffice.com (“our site”), you are accepting and consenting to the practices described in this policy. </p>
+                    <p>This policy (together with our <a href="{{URL::route('terms-website-use')}}">terms of use</a> and any other documents referred to on it) sets out the basis on which any personal data we collect from you, or that you provide to us, will be processed by us.  Please read the following carefully to understand our practices regarding your personal data and how we will treat it. By visiting www.asiaboxoffice.com (“our site”), you are accepting and consenting to the practices described in this policy. </p>
                     <h5>Privacy Policy</h5>
                     <ol>
                       <li><label class="font-bold">Information we may collect from you</label><br>
@@ -208,7 +208,7 @@
                                 <ul class="a">
                                   <li>In the event that we sell any business or assets, in which case we may disclose your personal data to the prospective buyer of such business or assets.</li>
                                   <li>If Asia Box Office Pte Ltd or substantially all of its assets are acquired by a third party, in which case personal data held by it about its customers will be one of the transferred assets.</li>
-                                  <li>If we are under a duty to disclose or share your personal data in order to comply with any legal obligation, or in order to enforce or apply our <a href="{{URL::route('support-terms-website-use')}}">terms of use</a> or Terms and Conditions of <a href="{{URL::route('support-terms-ticket-sales')}}">Ticket Sales</a> and other agreements; or to protect the rights, property, or safety of Asia Box Office Pte Ltd, our customers, or others. This includes exchanging information with other companies and organisations for the purposes of fraud protection.</li>
+                                  <li>If we are under a duty to disclose or share your personal data in order to comply with any legal obligation, or in order to enforce or apply our <a href="{{URL::route('terms-website-use')}}">terms of use</a> or Terms and Conditions of <a href="{{URL::route('terms-ticket-sales')}}">Ticket Sales</a> and other agreements; or to protect the rights, property, or safety of Asia Box Office Pte Ltd, our customers, or others. This includes exchanging information with other companies and organisations for the purposes of fraud protection.</li>
                                 </ul>
                               </li>
                             </ol>

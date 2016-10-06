@@ -104,7 +104,7 @@
                 <ul class="list-unstyled">
                     <li>{!! $event->Venue->address !!}</li>
                     <li>
-                        <a href="{{ $event->Venue->link_map }}" class="btn btnSeemap font-bold" target="_blank">See Map</a>
+                        <a href="{{ $event->Venue->link_map }}" class="btn btnSeemap font-bold" target="_blank">{{ trans('frontend/general.see_map') }}</a>
                     </li>
                 </ul>
             </div>
@@ -140,25 +140,25 @@
             <div class="col-md-12 tabEvent">
                 <div class="eventTab">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li><a href="#aboutBox" class="smoothScroll active">About This Event</a></li>
+                        <li><a href="#aboutBox" class="smoothScroll active">{{ trans('frontend/general.about_this_event') }}</a></li>
                         @if(!$promotions->isEmpty())
-                            <li><a href="#promoBox" class="smoothScroll">Promotions</a></li>
+                            <li><a href="#promoBox" class="smoothScroll">{{ trans('frontend/general.promotions') }}</a></li>
                         @endif
-                        <li><a href="#venueBox" class="smoothScroll">Venue Info</a></li>
+                        <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue_info') }}</a></li>
                         @if(!empty($event->admission))
-                            <li><a href="#admissionBox" class="smoothScroll">Admission Rules</a></li>
+                            <li><a href="#admissionBox" class="smoothScroll">{{ trans('frontend/general.admission_rules') }}</a></li>
                         @endif
                     </ul>
                 </div>
                 <div class="eventTab-mobile">
                     <ul class="nav nav-tabs nav-justified" role="tablist">
-                        <li><a href="#aboutBox" class="smoothScroll active">About</a></li>
+                        <li><a href="#aboutBox" class="smoothScroll active">{{ trans('frontend/general.about') }}</a></li>
                         @if(!$promotions->isEmpty())
-                            <li><a href="#promoBox" class="smoothScroll">Promotions</a></li>
+                            <li><a href="#promoBox" class="smoothScroll">{{ trans('frontend/general.promotions') }}</a></li>
                         @endif
-                        <li><a href="#venueBox" class="smoothScroll">Venue Info</a></li>
+                        <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue') }}</a></li>
                         @if(!empty($event->admission))
-                            <li><a href="#admissionBox" class="smoothScroll">Admission Rules</a></li>
+                            <li><a href="#admissionBox" class="smoothScroll">{{ trans('frontend/general.admission') }}</a></li>
                         @endif
                     </ul>
                 </div>
@@ -176,7 +176,7 @@
                                     <div class="row">
                                         <div class="side-left side-first col-md-3">
                                             <div class="aboutDesc">
-                                                <h4>About This Event</h4>
+                                                <h4>{{ trans('frontend/general.about_this_event') }}</h4>
                                             </div>
                                         </div>
                                         <div class="col-md-9">
@@ -195,7 +195,7 @@
                                         <div class="row">
                                             <div class="side-left col-md-3">
                                                 <div class="aboutDesc">
-                                                    <h4>Promotions</h4>
+                                                    <h4>{{ trans('frontend/general.promotions') }}</h4>
                                                 </div>
                                             </div>
                                             <div class="col-md-9">
@@ -225,8 +225,8 @@
                                                                         {{ $currency_symbol_left.$promotion->discount_nominal.$currency_symbol_right }}
                                                                     @endif
                                                                 </p>
-                                                                <p>Start Date: {{ date('d F Y', strtotime($promotion->start_date)) }}</p>
-                                                                <p>End Date: {{ date('d F Y', strtotime($promotion->end_date)) }}</p>
+                                                                <p>{{ trans('frontend/general.start_date') }}: {{ date('d F Y', strtotime($promotion->start_date)) }}</p>
+                                                                <p>{{ trans('frontend/general.end_date') }}: {{ date('d F Y', strtotime($promotion->end_date)) }}</p>
                                                             </section>
                                                         @endforeach
                                                     </div>
@@ -239,7 +239,7 @@
                                     <div class="row">
                                         <div class="side-left col-md-3">
                                             <div class="aboutDesc">
-                                                <h4>Venue Info</h4>
+                                                <h4>{{ trans('frontend/general.venue_info') }}</h4>
                                             </div>
                                         </div>
                                         <div class="col-md-9">
@@ -253,18 +253,18 @@
                                                             {!! $event->Venue->gmap_link !!}
                                                         </div>
 
-                                                        <h3 class="font-bold">Getting to the Venue</h3>
+                                                        <h3 class="font-bold">{{ trans('frontend/general.getting_to_the_venue') }}</h3>
                                                         <ul id="getvenue">
                                                             <li class="mrt">
-                                                                <h3 class="font-bold">By MRT</h3>
+                                                                <h3 class="font-bold">{{ trans('frontend/general.by_mrt') }}</h3>
                                                                 {!! $event->Venue->mrtdirection !!}
                                                             </li>
                                                             <li class="taxi">
-                                                                <h3 class="font-bold">By Taxi / UBER Drop Off</h3>
+                                                                <h3 class="font-bold">{{ trans('frontend/general.by_taxi_uber') }}</h3>
                                                                 {!! $event->Venue->taxidirection !!}
                                                             </li>
                                                             <li class="car">
-                                                                <h3 class="font-bold">By Car</h3>
+                                                                <h3 class="font-bold">{{ trans('frontend/general.by_car') }}</h3>
                                                                 {!! $event->Venue->cardirection !!}
                                                             </li>
                                                         </ul>
@@ -279,7 +279,7 @@
                                         <div class="row">
                                             <div class="side-left col-md-3">
                                                 <div class="aboutDesc">
-                                                    <h4>Admission Rules</h4>
+                                                    <h4>{{ trans('frontend/general.admission_rules') }}</h4>
                                                 </div>
                                             </div>
                                             <div class="col-md-9">
@@ -300,21 +300,21 @@
                             <div class="col-md-4">
                                 <div class="formPromo">
                                     <form class="form-group" id="form-subscribe" action="{{URL::route('subscribe-event-store')}}" method="POST">
-                                        <label class="labelHead">Get the Latest News or Promotions for {{ $event->title }}</label>
+                                        <label class="labelHead">{{ trans('frontend/general.get_the_latest_news_promotions') }} {{ $event->title }}</label>
                                         <div class="error"></div>
                                         @include('flash::message')
                                         <div class="row">
                                             <input type="hidden" class="form-control" name="event" id="event" value="{{ $event->id }}">
                                             <div class="col-xs-6 col-1 first_name">
-                                                <input type="text" class="form-control first" name="first_name" id="first_name" placeholder="First Name">
+                                                <input type="text" class="form-control first" name="first_name" id="first_name" placeholder="{{ trans('frontend/general.first_name') }}">
                                             </div>
                                             <div class="col-xs-6 col-2 last_name">
-                                                <input type="text" class="form-control last" name="last_name" id="last_name" placeholder="Last Name">
+                                                <input type="text" class="form-control last" name="last_name" id="last_name" placeholder="{{ trans('frontend/general.last_name') }}">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 email">
-                                                <input type="email" placeholder="Email" name="email" id="email" class="form-control">
+                                                <input type="email" placeholder="{{ trans('frontend/general.email') }}" name="email" id="email" class="form-control">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -322,17 +322,17 @@
                                                 <input type="text" name="country_code" id="country_code" class="form-control" placeholder="+62">
                                             </div>
                                             <div class="col-xs-9 col-2">
-                                                <input type="text" class="form-control" name="contact_number" id="contact_number" placeholder="Mobile Number (Optional)">
+                                                <input type="text" class="form-control" name="contact_number" id="contact_number" placeholder="{{ trans('frontend/general.mobile_number_optional') }}">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                <button class="btn btn-primary btnSend font-bold" type="submit">Send Me Updates</button>
+                                                <button class="btn btn-primary btnSend font-bold" type="submit">{{ trans('frontend/general.send_me_updates') }}</button>
                                             </div>
                                         </div>
                                         <div class="row last-row">
                                             <div class="col-md-12">
-                                                <label class="labelFoot">We respect your privacy and will not share your contact information with third parties without your consent.</label>
+                                                <label class="labelFoot">{{ trans('frontend/general.respect_privacy_subscription') }}</label>
                                             </div>
                                         </div>
                                     </form>
@@ -340,7 +340,7 @@
                                 @if(!empty($category_events))
                                 <div class="featuredEvent">
                                     <div class="featuredLabel">
-                                        <label>Featured Events</label>
+                                        <label>{{ trans('frontend/general.featured_events') }}</label>
                                     </div>
                                     @foreach ($category_events as $key => $category_event)
                                         <a href="{{ URL::route('event-detail', $category_event->slug) }}">
@@ -360,7 +360,7 @@
                                     @endforeach
                                     <div class="buttonBrowse">
                                         <a href="{{ URL::route('category-detail', $event->category->slug) }}">
-                                            <button class="btn btnBrowse font-bold">Browse More Events</button>
+                                            <button class="btn btnBrowse font-bold">{{ trans('frontend/general.browse_more_events') }}</button>
                                         </a>
                                     </div>
                                 </div>
@@ -379,7 +379,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Event Promotion Video</h4>
+                <h4 class="modal-title" id="myModalLabel">{{ trans('frontend/general.event_promotion_video') }}</h4>
             </div>
             <div class="modal-body">
                 {!! $event->video_link !!}

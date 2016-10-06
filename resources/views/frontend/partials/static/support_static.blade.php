@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="faq-support">
-                        <a href="{{URL::route('support-faq')}}" class="font-light">
+                        <a href="{{URL::route('faq')}}" class="font-light">
                             <div class="iconWays">
                                 <i class="fa fa-comments"></i>
                             </div>
@@ -43,11 +43,11 @@
     <div class="terms">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{URL::route('support-terms-ticket-sales')}}">Terms of Ticket Sales</a>
+                <a href="{{URL::route('terms-ticket-sales')}}">Terms of Ticket Sales</a>
                 <br>
-                <a href="{{URL::route('support-terms-website-use')}}">Terms of Website Use</a>
+                <a href="{{URL::route('terms-website-use')}}">Terms of Website Use</a>
                 <br>
-                <a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a>
+                <a href="{{URL::route('privacy-policy')}}">Privacy Policy</a>
             </div>
         </div>
     </div>

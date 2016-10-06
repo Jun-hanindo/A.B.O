@@ -41,7 +41,7 @@
                         <div class="iconWays">
                             <i class="fa fa-phone"></i>
                         </div>
-                        <a href="{{URL::route('contact-us')}}">
+                        <a href="{{URL::route('support-contact-us')}}">
                             Contact Us
                         </a>
                         <br>

@@ -11,19 +11,22 @@
                       <div class="sidebar">
                           <ul>
                               <li class="sidebar-head">
-                                  <h4>{{ trans('general.support') }}</h4>
+                                  <h4>{{ trans('frontend/general.support') }}</h4>
                               </li>
                               <li class="sidebar-menu-top active">
-                                  <a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a>
+                                  <a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('frontend/general.ways_to_buy_tickets') }}</a>
                               </li>
                               <li class="sidebar-menu">
-                                  <a href="{{URL::route('support-faq')}}">{{ trans('general.frequently_asked_questions') }}</a>
+                                  <a href="{{URL::route('support-faq')}}">{{ trans('frontend/general.frequently_asked_questions') }}</a>
                               </li>
                               <li class="sidebar-menu">
-                                  <a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a>
+                                  <a href="{{URL::route('support-contact-us')}}">{{ trans('frontend/general.contact_us') }}</a>
                               </li>
                               <li class="sidebar-menu">
-                                  <a href="{{URL::route('support-privacy-policy')}}">{{ trans('general.privacy_policy') }}</a>
+                                  <a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('frontend/general.terms_and_conditions') }}</a>
+                              </li>
+                              <li class="sidebar-menu">
+                                  <a href="{{URL::route('support-privacy-policy')}}">{{ trans('frontend/general.privacy_policy') }}</a>
                               </li>
                           </ul>
                       </div>
@@ -32,7 +35,7 @@
                       <div class="main-content">
                           <div class="support-desc">
                               <div class="row">
-                                  <h3 class="head-about">{{ trans('general.ways_to_buy_tickets') }}</h3>
+                                  <h3 class="head-about">{{ trans('frontend/general.ways_to_buy_tickets') }}</h3>
                                       
                                     <div class="col-md-12">
                                         <div class="row">
@@ -53,10 +56,11 @@
                     <a class="menu" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Support</a>
                     <div class="collapse" id="mobile-sidebar-collapse">
                       <ul>
-                        <li><a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a></li>
-                        <li><a href="{{URL::route('support-faq')}}">{{ trans('general.frequently_asked_questions') }}</a></li>
-                        <li><a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a></li>
-                        <li><a href="{{URL::route('support-privacy-policy')}}">{{ trans('general.privacy_policy') }}</a></li>
+                        <li><a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('frontend/general.ways_to_buy_tickets') }}</a></li>
+                        <li><a href="{{URL::route('support-faq')}}">{{ trans('frontend/general.frequently_asked_questions') }}</a></li>
+                        <li><a href="{{URL::route('support-contact-us')}}">{{ trans('frontend/general.contact_us') }}</a></li>
+                        <li><a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('frontend/general.terms_and_conditions') }}</a></li>
+                        <li><a href="{{URL::route('support-privacy-policy')}}">{{ trans('frontend/general.privacy_policy') }}</a></li>
                       </ul>
                     </div>
                   </div>
@@ -67,7 +71,7 @@
               <div class="col-md-12">
                 <div class="container">
                   <div class="mobile-page-title">
-                    <h3>{{ trans('general.ways_to_buy_tickets') }}</h3>
+                    <h3>{{ trans('frontend/general.ways_to_buy_tickets') }}</h3>
                   </div>
                   <div class="mobileTab">
                     <ul class="nav nav-tabs tab-mobile tab-mobile-contact" role="tablist">

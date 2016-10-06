@@ -37,43 +37,124 @@ class HomeController extends Controller
         return view('frontend.partials.static.bryan_adams'); 
     }
 
+    public function indexStatic()
+    {
+        $trail = 'Homepage Static front end';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
+        return view('frontend.partials.static.homepage_static'); 
+    }
+
     public function bryanAdams()
     {
+        $trail = 'Event Bryan Adams Static front end';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
 
         return view('frontend.partials.static.event_bryan_adams'); 
     }
 
     public function jessicaJungSingapore()
     {
+        $trail = 'Event Jessica Jung Singapore Static front end';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
 
         return view('frontend.partials.static.event_jessica_jung_singapore'); 
     }
 
     public function jessicaJungHochiminh()
     {
+        $trail = 'Event Jessica Jung Hochiminh Static front end';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
 
         return view('frontend.partials.static.event_jessica_jung_hochiminh'); 
     }
 
     public function jessicaJungManila()
     {
+        $trail = 'Event Jessica Jung Manila Static front end';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
 
         return view('frontend.partials.static.event_jessica_jung_manila'); 
     }
 
-    public function supportTermsTicketSales()
+    public function supportStatic()
     {
+
+        $trail = 'Support Static front end';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
+
+        return view('frontend.partials.static.support_static'); 
+    }
+
+    public function supportFaqStatic(Request $req)
+    {
+        $trail = 'FAQ Static front end';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
+            
+        return view('frontend.partials.static.support_faq_static');
+    }
+
+    public function supportFaqCategoryStatic($category)
+    {
+        $trail = 'FAQ Static front end';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
+
+        if($category == 'top'){
+            return view('frontend.partials.static.support_faq_top_static');
+        }elseif ($category == 'general') {
+            return view('frontend.partials.static.support_faq_general_static');
+        }elseif ($category == 'payment') {
+             return view('frontend.partials.static.support_faq_payment_static');
+        }elseif ($category == 'seat') {
+             return view('frontend.partials.static.support_faq_seat_static');
+        }
+    }
+
+    public function contactUsStatic()
+    {
+        $trail = 'Contact Us Static front end';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
+            
+        return view('frontend.partials.static.contact_us_static');
+    }
+
+    public function supportTermsTicketSalesStatic()
+    {
+        $trail = 'Terms Tickets Sales Static front end';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
 
         return view('frontend.partials.static.support_terms_ticket_sales_static'); 
     }
 
-    public function supportTermsWebsiteUse()
+    public function supportTermsWebsiteUseStatic()
     {
+        $trail = 'Terms Website Use Static front end';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
 
         return view('frontend.partials.static.support_terms_website_use_static'); 
     }
 
-    public function frontEnd()
+    public function supportPrivacyPolicyStatic(Request $req)
+    {
+
+        $trail = 'Privacy Policy Static front end';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
+
+        return view('frontend.partials.static.support_privacy_policy_static');
+    }
+
+    public function index()
     {
         try{
             $result['sliders'] = $this->model->getHomepage('slider');
@@ -85,26 +166,6 @@ class HomeController extends Controller
             $insertTrail->insertTrail($trail);
 
             return view('frontend.partials.homepage', $result); 
-        
-        } catch (\Exception $e) {
-
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
-            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-            $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
-
-            //return view('errors.404');
-        
-        }
-    }
-
-    public function index()
-    {
-
-        try{
-            
-
-            return view('frontend.partials.static.homepage_static'); 
         
         } catch (\Exception $e) {
 
@@ -225,6 +286,29 @@ class HomeController extends Controller
         // }
     }
 
+    public function supports()
+    {
+
+        try{
+
+            $trail = 'Support front end';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+
+            return view('frontend.partials.support'); 
+        
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            //return view('errors.404');
+        
+        }
+    }
+
     function pageContent($slug){
         $modelPage = new ManagePage();
         $page = $modelPage->findPagePublish($slug);
@@ -249,7 +333,7 @@ class HomeController extends Controller
         return $content;
     }
 
-    public function careers(Request $req)
+    public function ourCompanyCareers(Request $req)
     {
         try{
             
@@ -302,7 +386,7 @@ class HomeController extends Controller
         }
     }
 
-    public function contactUs(Request $req)
+    public function ourCompanyContactUs(Request $req)
     {
         try{
                 
@@ -321,7 +405,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
             
-            return view('frontend.partials.static.contact_us_static', $data);
+            return view('frontend.partials.contact_us', $data);
         
         } catch (\Exception $e) {
 
@@ -335,7 +419,7 @@ class HomeController extends Controller
         }
     }
 
-    public function ourCompany(Request $req)
+    public function ourCompanyAboutUs(Request $req)
     {   
         try{
              
@@ -368,29 +452,6 @@ class HomeController extends Controller
         }
     }
 
-    public function support()
-    {
-
-        try{
-
-            $trail = 'Support front end';
-            $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
-
-            return view('frontend.partials.static.support_static'); 
-        
-        } catch (\Exception $e) {
-
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
-            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-            $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
-
-            //return view('errors.404');
-        
-        }
-    }
-
     public function supportFaq(Request $req)
     {
         try{
@@ -410,7 +471,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
             
-            return view('frontend.partials.static.support_faq_static', $data);
+            return view('frontend.partials.support_faq', $data);
         
         } catch (\Exception $e) {
 
@@ -506,7 +567,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
 
-            return view('frontend.partials.static.support_terms_and_conditions_static', $data);
+            return view('frontend.partials.support_terms_and_conditions', $data);
             
         } catch (\Exception $e) {
 
@@ -539,7 +600,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
 
-            return view('frontend.partials.static.support_privacy_policy_static', $data);
+            return view('frontend.partials.support_privacy_policy', $data);
             
         } catch (\Exception $e) {
 

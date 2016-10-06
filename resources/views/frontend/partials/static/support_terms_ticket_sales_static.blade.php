@@ -11,19 +11,19 @@
                         <h4 class="font-light">Support</h4>
                     </li>
                     <li class="sidebar-menu-top">
-                        <a href="{{URL::route('support-faq')}}">Frequently Asked Questions</a>
+                        <a href="{{URL::route('faq')}}">Frequently Asked Questions</a>
                     </li>
                     <li class="sidebar-menu">
                         <a href="{{URL::route('contact-us')}}">Contact Us</a>
                     </li>
                     <li class="sidebar-menu active">
-                        <a href="{{URL::route('support-terms-ticket-sales')}}">Terms of Ticket Sales</a>
+                        <a href="{{URL::route('terms-ticket-sales')}}">Terms of Ticket Sales</a>
                     </li>
                     <li class="sidebar-menu">
-                        <a href="{{URL::route('support-terms-website-use')}}">Terms of Website Use</a>
+                        <a href="{{URL::route('terms-website-use')}}">Terms of Website Use</a>
                     </li>
                     <li class="sidebar-menu">
-                        <a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a>
+                        <a href="{{URL::route('privacy-policy')}}">Privacy Policy</a>
                     </li>
                 </ul>
             </div>
@@ -54,7 +54,7 @@
                                         <ol>
                                           <li>All tickets to events are sold by us as agent for the respective event’s venue management or owner (collectively, “Venue Owner”) and/or promoter (“Promoter”).</li>
                                           <li>Tickets for any event may be subject to additional terms and conditions as the Venue Owner or Promoter may impose, provided that in the event of any inconsistency with these terms and conditions and those of the Venue Owner or Promoter, these terms and conditions shall prevail.</li>
-                                          <li>Please refer to our <a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a> for more details on how we use and protect your personal information.</li>
+                                          <li>Please refer to our <a href="{{URL::route('privacy-policy')}}">Privacy Policy</a> for more details on how we use and protect your personal information.</li>
                                           <li>You may need a username and password to access certain areas of our site, including the booking facility on our site. You are responsible for maintaining the security of your username and password and you are responsible for any action taken under your username or password.</li>
                                           <li>All ticket bookings are subject to availability and our acceptance.  We reserve the right to accept or reject any booking in whole or in part and we shall not be required to provide any reason for doing so.</li>
                                           <li>Ticket prices listed on our site are may be subject to good and services tax (“GST”).  You may be charged processing and other fees which will be displayed on screen, together with applicable GST, prior to your binding commitment to purchase being made.</li>
@@ -161,11 +161,11 @@
                     <a class="menu collapsed" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Support</a>
                     <div class="collapse" id="mobile-sidebar-collapse">
                         <ul>
-                            <li><a href="{{URL::route('support-faq')}}">Frequently Asked Questions</a></li>
+                            <li><a href="{{URL::route('faq')}}">Frequently Asked Questions</a></li>
                             <li><a href="{{URL::route('contact-us')}}">Contact Us</a></li>
-                            <li><a href="{{URL::route('support-terms-ticket-sales')}}">Terms of Ticket Sales</a></li>
-                            <li><a href="{{URL::route('support-terms-website-use')}}">Terms of Website Use</a></li>
-                            <li><a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a></li>
+                            <li><a href="{{URL::route('terms-ticket-sales')}}">Terms of Ticket Sales</a></li>
+                            <li><a href="{{URL::route('terms-website-use')}}">Terms of Website Use</a></li>
+                            <li><a href="{{URL::route('privacy-policy')}}">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>
@@ -198,7 +198,7 @@
                         <ol>
                           <li>All tickets to events are sold by us as agent for the respective event’s venue management or owner (collectively, “Venue Owner”) and/or promoter (“Promoter”).</li>
                           <li>Tickets for any event may be subject to additional terms and conditions as the Venue Owner or Promoter may impose, provided that in the event of any inconsistency with these terms and conditions and those of the Venue Owner or Promoter, these terms and conditions shall prevail.</li>
-                          <li>Please refer to our <a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a> for more details on how we use and protect your personal information.</li>
+                          <li>Please refer to our <a href="{{URL::route('privacy-policy')}}">Privacy Policy</a> for more details on how we use and protect your personal information.</li>
                           <li>You may need a username and password to access certain areas of our site, including the booking facility on our site. You are responsible for maintaining the security of your username and password and you are responsible for any action taken under your username or password.</li>
                           <li>All ticket bookings are subject to availability and our acceptance.  We reserve the right to accept or reject any booking in whole or in part and we shall not be required to provide any reason for doing so.</li>
                           <li>Ticket prices listed on our site are may be subject to good and services tax (“GST”).  You may be charged processing and other fees which will be displayed on screen, together with applicable GST, prior to your binding commitment to purchase being made.</li>

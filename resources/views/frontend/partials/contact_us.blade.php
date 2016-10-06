@@ -1,6 +1,9 @@
 @extends('layout.frontend.master.master')
 @section('title', 'Event Asia Box Office')
 @section('content')
+@php
+  $tag = '<--mobile-->';
+@endphp
           <section class="about-content contact-content">
               <div class="row">
                   <div class="col-md-3">
@@ -10,13 +13,13 @@
                                   <h4>Our Company</h4>
                               </li>
                               <li class="sidebar-menu-top">
-                                  <a href="{{URL::route('our-company')}}">About Asia Box Office</a>
+                                  <a href="{{URL::route('our-company-about-us')}}">About Asia Box Office</a>
                               </li>
                               <li class="sidebar-menu">
-                                  <a href="{{URL::route('careers')}}">Careers</a>
+                                  <a href="{{URL::route('our-company-careers')}}">Careers</a>
                               </li>
                               <li class="sidebar-menu active">
-                                  <a href="{{URL::route('contact-us')}}" class="active-contact">Contact Us</a>
+                                  <a href="{{URL::route('our-company-contact-us')}}" class="active-contact">Contact Us</a>
                               </li>
                           </ul>
                       </div>
@@ -26,7 +29,7 @@
                           <div class="contact-desc">
                               <div class="row">
                                   <h3 class="head-about">Contact Us</h3>
-                                  {!! str_replace('[captcha]', Recaptcha::render(), $content); !!}
+                                  {!! str_replace('[captcha]', Recaptcha::render(), strstr($content, $tag, true)); !!}
                               </div>
                           </div>
                       </div>
@@ -42,9 +45,9 @@
                     <a class="menu" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Our Company</a>
                     <div class="collapse" id="mobile-sidebar-collapse">
                       <ul>
-                        <li><a href="{{URL::route('our-company')}}">About Asia Box Office</a></li>
-                        <li><a href="{{URL::route('careers')}}">Careers</a></li>
-                        <li><a href="{{URL::route('contact-us')}}">Contact Us</a></li>
+                        <li><a href="{{URL::route('our-company-about-us')}}">About Asia Box Office</a></li>
+                        <li><a href="{{URL::route('our-company-careers')}}">Careers</a></li>
+                        <li><a href="{{URL::route('our-company-contact-us')}}">Contact Us</a></li>
                       </ul>
                     </div>
                   </div>

@@ -125,7 +125,7 @@
                                 <img src="{{ asset('assets/frontend/images/footer-logo.svg') }}">
                             </div>
                             <div class="col-md-10">
-                                <p>&copy; 2016 Asia Box Office Pte Ltd. All rights reserved. All trademarks, pictures and brands are property of their respective owners. Use of this Website constitutes acceptance of our <a href="{{URL::route('support-terms-website-use')}}">Terms of Website Use</a> and <a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a>. For more information or enquiries, please contact us at <a href="mailto:connect@asiaboxoffice.com">connect@asiaboxoffice.com</a></p>
+                                <p>&copy; 2016 Asia Box Office Pte Ltd. All rights reserved. All trademarks, pictures and brands are property of their respective owners. Use of this Website constitutes acceptance of our <a href="{{URL::route('terms-website-use')}}">Terms of Website Use</a> and <a href="{{URL::route('privacy-policy')}}">Privacy Policy</a>. For more information or enquiries, please contact us at <a href="mailto:connect@asiaboxoffice.com">connect@asiaboxoffice.com</a></p>
                             </div>
                         </div>
                     </div>

@@ -11,19 +11,19 @@
                         <h4 class="font-light">Support</h4>
                     </li>
                     <li class="sidebar-menu-top">
-                        <a href="{{URL::route('support-faq')}}">Frequently Asked Questions</a>
+                        <a href="{{URL::route('faq')}}">Frequently Asked Questions</a>
                     </li>
                     <li class="sidebar-menu active">
                         <a href="{{URL::route('contact-us')}}">Contact Us</a>
                     </li>
                     <li class="sidebar-menu">
-                        <a href="{{URL::route('support-terms-ticket-sales')}}">Terms of Ticket Sales</a>
+                        <a href="{{URL::route('terms-ticket-sales')}}">Terms of Ticket Sales</a>
                     </li>
                     <li class="sidebar-menu">
-                        <a href="{{URL::route('support-terms-website-use')}}">Terms of Website Use</a>
+                        <a href="{{URL::route('terms-website-use')}}">Terms of Website Use</a>
                     </li>
                     <li class="sidebar-menu">
-                        <a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a>
+                        <a href="{{URL::route('privacy-policy')}}">Privacy Policy</a>
                     </li>
                 </ul>
             </div>
@@ -68,11 +68,11 @@
                     <a class="menu collapsed" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Support</a>
                     <div class="collapse" id="mobile-sidebar-collapse">
                         <ul>
-                            <li><a href="{{URL::route('support-faq')}}">Frequently Asked Questions</a></li>
+                            <li><a href="{{URL::route('faq')}}">Frequently Asked Questions</a></li>
                             <li><a href="{{URL::route('contact-us')}}">Contact Us</a></li>
-                            <li><a href="{{URL::route('support-terms-ticket-sales')}}">Terms of Ticket Sales</a></li>
-                            <li><a href="{{URL::route('support-terms-website-use')}}">Terms of Website Use</a></li>
-                            <li><a href="{{URL::route('support-privacy-policy')}}">Privacy Policy</a></li>
+                            <li><a href="{{URL::route('terms-ticket-sales')}}">Terms of Ticket Sales</a></li>
+                            <li><a href="{{URL::route('terms-website-use')}}">Terms of Website Use</a></li>
+                            <li><a href="{{URL::route('privacy-policy')}}">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>

@@ -149,7 +149,7 @@
                                         <a href="{{ URL::route('promotion')}}">{{ trans('frontend/general.promotions') }}</a>
                                     </li>
                                     <li class="nav-item list-menu">
-                                        <a href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a>
+                                        <a href="{{URL::route('supports')}}">{{ trans('frontend/general.support') }}</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -289,7 +289,7 @@
 
     @if(!Request::is('subscribe'))
         <footer>
-            @if(Request::is('/'))
+            @if(Request::is('/') || Request::is('front-end'))
                 <div id="footer1">
                     <div class="container">
                         <div class="row">
@@ -300,7 +300,7 @@
                                     </div>
                                 </div>
                                 <div class="linkFoot">
-                                    <a href="#" class="font-light">{{ trans('frontend/general.support') }}</a>
+                                    <a href="{{URL::route('supports')}}" class="font-light">{{ trans('frontend/general.support') }}</a>
                                 </div>
                                 <div class="capFoot">
                                     <p>{{ trans('frontend/general.need_help_with_anything') }}</p>
@@ -326,7 +326,7 @@
                                     </div>
                                 </div>
                                 <div class="linkFoot">
-                                    <a href="#" class="font-light">{{ trans('frontend/general.subscribe_to_us') }}</a>
+                                    <a href="{{URL::route('subscribe')}}" class="font-light">{{ trans('frontend/general.subscribe_to_us') }}</a>
                                 </div>
                                 <div class="capFoot">
                                     <p>{{ trans('frontend/general.get_events_updates_and_tips') }}</p>
@@ -339,7 +339,7 @@
                                     </div>
                                 </div>
                                 <div class="linkFoot">
-                                    <a href="{{URL::route('our-company')}}" class="font-light">{{ trans('frontend/general.our_company') }}</a>
+                                    <a href="{{URL::route('our-company-about-us')}}" class="font-light">{{ trans('frontend/general.our_company') }}</a>
                                 </div>
                                 <div class="capFoot">
                                     <p>{{ trans('frontend/general.about_us_jobs_and_partnerships') }}</p>
@@ -373,7 +373,7 @@
                                 <ul class="list-unstyled mobile-collapse-body">
                                     <li><a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('frontend/general.ways_to_buy_tickets') }}</a></li>
                                     <li><a href="{{URL::route('support-faq')}}">{{ trans('frontend/general.frequently_asked_questions') }}</a></li>
-                                    <li><a href="{{URL::route('contact-us')}}">{{ trans('frontend/general.contact_us') }}</a></li>
+                                    <li><a href="{{URL::route('support-contact-us')}}">{{ trans('frontend/general.contact_us') }}</a></li>
                                     <li><a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('frontend/general.terms_and_conditions') }}</a></li>
                                     <li><a href="{{URL::route('support-privacy-policy')}}">{{ trans('frontend/general.privacy_policy') }}</a></li>
                                 </ul>
@@ -396,9 +396,9 @@
                                     {{ trans('frontend/general.our_company') }}
                                 </div>
                                 <ul class="list-unstyled mobile-collapse-body">
-                                    <li><a href="{{URL::route('our-company')}}">{{ trans('frontend/general.about_asia_box_office') }}</a></li>
-                                    <li><a href="{{URL::route('careers')}}">{{ trans('frontend/general.careers') }}</a></li>
-                                    <li><a href="{{URL::route('contact-us')}}">{{ trans('frontend/general.contact_us') }}</a></li>
+                                    <li><a href="{{URL::route('our-company-about-us')}}">{{ trans('frontend/general.about_asia_box_office') }}</a></li>
+                                    <li><a href="{{URL::route('our-company-careers')}}">{{ trans('frontend/general.careers') }}</a></li>
+                                    <li><a href="{{URL::route('our-company-contact-us')}}">{{ trans('frontend/general.contact_us') }}</a></li>
                                 </ul>
                             </div>
                         </div>
