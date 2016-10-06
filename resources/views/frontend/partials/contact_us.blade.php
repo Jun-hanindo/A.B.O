@@ -1,65 +1,51 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Event Asia Box Office')
+@section('title', trans('frontend/general.contact_us').' - ')
+@section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
-@php
-  $tag = '<--mobile-->';
-@endphp
-          <section class="about-content contact-content">
-              <div class="row">
-                  <div class="col-md-3">
-                      <div class="sidebar">
-                          <ul>
-                              <li class="sidebar-head">
-                                  <h4>Our Company</h4>
-                              </li>
-                              <li class="sidebar-menu-top">
-                                  <a href="{{URL::route('our-company-about-us')}}">About Asia Box Office</a>
-                              </li>
-                              <li class="sidebar-menu">
-                                  <a href="{{URL::route('our-company-careers')}}">Careers</a>
-                              </li>
-                              <li class="sidebar-menu active">
-                                  <a href="{{URL::route('our-company-contact-us')}}" class="active-contact">Contact Us</a>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="col-md-9">
-                      <div class="main-content">
-                          <div class="contact-desc">
-                              <div class="row">
-                                  <h3 class="head-about">Contact Us</h3>
-                                  {!! str_replace('[captcha]', Recaptcha::render(), strstr($content, $tag, true)); !!}
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </section>
-          
-          <section class="contact-mobile mobile-content">
-            <div class="row">
-              <div class="col-md-12 mobile-sidebar">
-                <div class="container">
-                  <div class="mobile-sidebar-menu">
-                    <a class="menu" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Our Company</a>
-                    <div class="collapse" id="mobile-sidebar-collapse">
-                      <ul>
-                        <li><a href="{{URL::route('our-company-about-us')}}">About Asia Box Office</a></li>
-                        <li><a href="{{URL::route('our-company-careers')}}">Careers</a></li>
-                        <li><a href="{{URL::route('our-company-contact-us')}}">Contact Us</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+<section class="about-content faq-content">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="sidebar">
+                @if(Request::segment(1) == 'support')
+                    @include('layout.frontend.partial.support_left_side')
+                @else
+                    @include('layout.frontend.partial.our_company_left_side')
+                @endif
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="container">
-                  <div class="mobile-page-title">
-                    <h3>Contact Us</h3>
-                  </div>
+        </div>
+        <div class="col-md-9">
+            <div class="main-content">
+                <div class="contact-desc">
+                    <div class="row">
+                        <h3 class="head-about font-light">{{ trans('frontend/general.contact_us') }}</h3>
+                        {!! str_replace('[captcha]', Recaptcha::render(), $content); !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        
+<section class="contact-mobile mobile-content">
+    <div class="row">
+        <div class="col-md-12 mobile-sidebar">
+            <div class="container">
+                <div class="mobile-sidebar-menu">
+                    @if(Request::segment(1) == 'support')
+                        @include('layout.frontend.partial.support_top_mobile')
+                    @else
+                        @include('layout.frontend.partial.our_company_top_mobile')
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container">
+                <div class="mobile-page-title">
+                    <h3>{{ trans('frontend/general.contact_us') }}</h3>
+                </div>
                   <div class="eventTab">
                     <ul class="nav nav-tabs tab-mobile tab-mobile-contact" role="tablist">
                       <li role="presentation" class="active"><a href="#sendmessage" aria-controls="home" role="tab" data-toggle="tab">Send a Message</a></li>

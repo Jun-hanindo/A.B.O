@@ -1,24 +1,12 @@
 @extends('layout.frontend.master.master')
 @section('title', trans('frontend/general.careers').' - ')
+@section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
 <section class="about-content career-content">
     <div class="row">
         <div class="col-md-3">
             <div class="sidebar">
-                <ul>
-                    <li class="sidebar-head">
-                        <h4>Our Company</h4>
-                    </li>
-                    <li class="sidebar-menu-top">
-                        <a href="{{URL::route('our-company')}}">About Asia Box Office</a>
-                    </li>
-                    <li class="sidebar-menu active">
-                        <a href="{{URL::route('careers')}}" class="active-career">Careers</a>
-                    </li>
-                    <li class="sidebar-menu">
-                        <a href="{{URL::route('contact-us')}}">Contact Us</a>
-                    </li>
-                </ul>
+                @include('layout.frontend.partial.our_company_left_side')
             </div>
         </div>
         <div class="col-md-9">
@@ -66,14 +54,7 @@
         <div class="col-md-12 mobile-sidebar">
             <div class="container">
                 <div class="mobile-sidebar-menu">
-                    <a class="menu" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Our Company</a>
-                    <div class="collapse" id="mobile-sidebar-collapse">
-                        <ul>
-                            <li><a href="{{URL::route('our-company')}}">About Asia Box Office</a></li>
-                            <li><a href="{{URL::route('careers')}}">Careers</a></li>
-                            <li><a href="{{URL::route('contact-us')}}">Contact Us</a></li>
-                        </ul>
-                    </div>
+                    @include('layout.frontend.partial.our_company_top_mobile')
                 </div>
             </div>
         </div>
@@ -118,7 +99,7 @@
                                                 <ul>
                                                     <li class="divisions">{{ $career->dept }}</li>
                                                     <li class="job-type">{{ $career->type }}</li>
-                                                    <li class="payroll">{{ $career->currency_symbol_left.$career->salary.$career->currency_symbol_right }}</li>
+                                                    <li class="payroll">{{ $career->salary }}</li>
                                                 </ul>
                                             </div>
                                         </div>

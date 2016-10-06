@@ -584,9 +584,9 @@ class Event extends Model
                 $event->end_date = full_text_date($event->end_date);
                 $event->featured_image_url = file_url('promotions/'.$event->featured_image, env('FILESYSTEM_DEFAULT'));
                 if($event->discount > 0){
-                    $event->disc = $event->discount.'%';
+                    $event->disc = number_format_drop_zero_decimals($event->discount).'%';
                 }else{
-                    $event->disc = $event->symbol_left.$event->discount_nominal.$event->symbol_right;
+                    $event->disc = $event->symbol_left.number_format_drop_zero_decimals($event->discount_nominal).$event->symbol_right;
                 }
             }
             return $events;
@@ -632,9 +632,9 @@ class Event extends Model
                 $event->end_date = full_text_date($event->end_date);
                 $event->featured_image_url = file_url('promotions/'.$event->featured_image, env('FILESYSTEM_DEFAULT'));
                 if($event->discount > 0){
-                    $event->disc = $event->discount.'%';
+                    $event->disc = number_format_drop_zero_decimals($event->discount).'%';
                 }else{
-                    $event->disc = $event->symbol_left.$event->discount_nominal.$event->symbol_right;
+                    $event->disc = $event->symbol_left.number_format_drop_zero_decimals($event->discount_nominal).$event->symbol_right;
                 }
             }
             return $events;

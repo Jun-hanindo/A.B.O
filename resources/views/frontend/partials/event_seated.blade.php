@@ -110,7 +110,7 @@
             </div>
             <div class="col-md-4 ticket" id="ticket">
                 <div class="information-title">
-                    <i class="fa fa-ticket"></i> {{ !empty($min) ? $min->symbol_left.$min->price.$min->symbol_right: '' }}
+                    <i class="fa fa-ticket"></i> {{ !empty($min) ? $min->symbol_left.number_format_drop_zero_decimals($min->price).$min->symbol_right: '' }}
                 </div>
                 <ul class="list-unstyled">
                     @foreach($schedules as $sch)
@@ -209,7 +209,7 @@
                                                                 
                                                                 <p>{{ trans('general.discount') }}: 
                                                                     @if($promotion->discount > 0)
-                                                                        {{ $promotion->discount.'%' }}
+                                                                        {{ number_format_drop_zero_decimals($promotion->discount).'%' }}
                                                                     @else
                                                                         @if($promotion->currency_id == 0)
                                                                             @php
@@ -222,7 +222,7 @@
                                                                                 $currency_symbol_right = $promotion->currency->symbol_right;
                                                                             @endphp
                                                                         @endif
-                                                                        {{ $currency_symbol_left.$promotion->discount_nominal.$currency_symbol_right }}
+                                                                        {{ $currency_symbol_left.number_format_drop_zero_decimals($promotion->discount_nominal).$currency_symbol_right }}
                                                                     @endif
                                                                 </p>
                                                                 <p>{{ trans('frontend/general.start_date') }}: {{ date('d F Y', strtotime($promotion->start_date)) }}</p>

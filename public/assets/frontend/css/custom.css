@@ -25,3 +25,31 @@
 iframe[name="google_conversion_frame"]{
     height: 0;
 }
+.contact-content .boxOffice,
+.contact-content .website {
+    text-align: center;
+}
+#modalAlready{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#modalAlready .modal-title{
+  font-size: 16px;
+}
+#modalAlready .modal-content {
+    max-width: 430px;
+    margin: 0 auto;
+}
+#modalAlready .modal-content .modal-body p {
+    text-align: center;
+}
+#modalAlready .modal-content .modal-footer {
+    text-align: center;
+}
+#modalAlready .modal-content .modal-footer button {
+    background-color: #000;
+    color: #fff;
+    width: 200px;
+}

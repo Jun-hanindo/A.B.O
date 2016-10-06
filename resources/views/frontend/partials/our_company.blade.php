@@ -1,51 +1,34 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Event Asia Box Office')
+@section('title', trans('frontend/general.about_asiaboxoffice').' - ')
+@section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
-          <section class="about-content aboutus-content">
-              <div class="row">
-                  <div class="col-md-3">
-                      <div class="sidebar">
-                          <ul>
-                              <li class="sidebar-head">
-                                  <h4>Our Company</h4>
-                              </li>
-                              <li class="sidebar-menu-top active">
-                                  <a href="{{URL::route('our-company-about-us')}}">About Asia Box Office</a>
-                              </li>
-                              <li class="sidebar-menu">
-                                  <a href="{{URL::route('our-company-careers')}}">Careers</a>
-                              </li>
-                              <li class="sidebar-menu">
-                                  <a href="{{URL::route('our-company-contact-us')}}">Contact Us</a>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
+<section class="about-content faq-content">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="sidebar">
+                @include('layout.frontend.partial.our_company_left_side')
+            </div>
+        </div>
 
-                  <div class="col-md-9">
-                      <div class="main-content">
-                          <div class="row">
-                            <h3 class="head-about">About Asia Box Office</h3>
-                          </div>
-                      </div>
-                  </div>
-                  {!! str_replace('[captcha]', Recaptcha::render(), $content); !!}
-              </div>
-          </section>
+        <div class="col-md-9">
+            <div class="main-content">
+                <div class="support-desc">
+                    <div class="row">
+                        <h3 class="head-about font-light">{{ trans('frontend/general.about_asiaboxoffice') }}</h3>
+                        {!! str_replace('[captcha]', Recaptcha::render(), $content); !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
           
-          <section class="about-mobile mobile-content">
+<section class="about-mobile mobile-content">
             <div class="row">
               <div class="col-md-12 mobile-sidebar">
                 <div class="container">
                   <div class="mobile-sidebar-menu">
-                    <a class="menu" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Our Company</a>
-                    <div class="collapse" id="mobile-sidebar-collapse">
-                      <ul>
-                        <li><a href="{{URL::route('our-company-about-us')}}">About Asia Box Office</a></li>
-                        <li><a href="{{URL::route('our-company-careers')}}">Careers</a></li>
-                        <li><a href="{{URL::route('our-company-contact-us')}}">Contact Us</a></li>
-                      </ul>
-                    </div>
+                    @include('layout.frontend.partial.our_company_top_mobile')
                   </div>
                 </div>
               </div>
@@ -54,7 +37,7 @@
               <div class="col-md-12">
                 <div class="container">
                   <div class="mobile-page-title">
-                    <h3>About Asia Box Office</h3>
+                    <h3>{{ trans('frontend/general.about_asiaboxoffice') }}</h3>
                   </div>
                   <div class="mobile-logo">
                     <img src="image/about-logo.png">
@@ -136,6 +119,6 @@
                 </div>
               </div>
             </div>
-          </section>
+</section>
 @stop
 @include('frontend.partials.script.message_script')

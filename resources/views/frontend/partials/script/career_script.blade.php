@@ -16,7 +16,7 @@
         {
 
             $.ajax({
-                url: "{{ route('careers') }}",
+                url: "{{ route('our-company-careers') }}",
                 type: "GET",
                 dataType: 'json',
                 data: {'department': val},
@@ -36,7 +36,7 @@
                                         +'<td class="jobs">'+val.job+'</td>'
                                         +'<td class="divisions">'+val.dept+'</td>'
                                         +'<td class="job-type">'+val.type+'</td>'
-                                        +'<td class="payroll">'+val.currency_symbol_left+val.salary+val.currency_symbol_right+'</td>'
+                                        +'<td class="payroll">'+val.salary+'</td>'
                                     +'</tr>'
                                 +'</table>'
                             +'</div>';
@@ -53,7 +53,7 @@
                                             +'<ul>'
                                                 +'<li class="divisions">'+val.dept+'</li>'
                                                 +'<li class="job-type">'+val.type+'</li>'
-                                                +'<li class="payroll">'+val.currency_symbol_left+val.salary+val.currency_symbol_right+'</li>'
+                                                +'<li class="payroll">'+val.salary+'</li>'
                                             +'</ul>'
                                         +'</div>'
                                     +'</div>'

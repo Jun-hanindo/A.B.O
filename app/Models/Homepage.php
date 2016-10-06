@@ -217,7 +217,7 @@ class Homepage extends Model
                             $homepage->promo->category = str_replace('-', ' ', strtoupper($homepage->promo->category));
                             $homepage->promo->valid = date_from_to($homepage->promo->start_date, $homepage->promo->end_date);
                             if($homepage->promo->discount > 0){
-                                $homepage->promo->disc = $homepage->promo->discount.'%';
+                                $homepage->promo->disc = number_format_drop_zero_decimals($homepage->promo->discount).'%';
                             }else{
                                 if($homepage->promo->currency_id == 0){
                                     $currency_symbol_left = '';
@@ -226,7 +226,7 @@ class Homepage extends Model
                                     $currency_symbol_left = $homepage->promo->currency->symbol_left;
                                     $currency_symbol_right = $homepage->promo->currency->symbol_right;
                                 }
-                                $homepage->promo->disc = $currency_symbol_left.$homepage->promo->discount_nominal.$currency_symbol_right;
+                                $homepage->promo->disc = $currency_symbol_left.number_format_drop_zero_decimals($homepage->promo->discount_nominal).$currency_symbol_right;
                             }
                         } 
                         $array[] = $homepage;

@@ -406,6 +406,13 @@ if (! function_exists('get_date_full_month')) {
     }
 }
 
+if (! function_exists('number_format_drop_zero_decimals')) {
+/*Format number*/
+    function number_format_drop_zero_decimals($number){
+        return ((floor($number) == round($number, 2)) ? number_format($number, 0, '.', '') : number_format($number, 2, '.', ''));
+    }
+}
+
 if (! function_exists('date_from_to')) {
     /**
      * Checks whether a file exists.

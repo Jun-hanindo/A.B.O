@@ -1,5 +1,6 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Event Asia Box Office')
+@section('title', trans('frontend/general.search_result').' - ')
+@section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
 <section class="about-content search-content">
     <div class="row">
@@ -8,11 +9,11 @@
                 <ul>
                     <form id="filter-form">
                     <li class="sidebar-head">
-                        <h4>Filters</h4>
-                        <a href="javascript:void(0)"><i class="fa fa-undo"></i> Reset</a>
+                        <h4>{{ trans('frontend/general.filters') }}</h4>
+                        <a href="javascript:void(0)"><i class="fa fa-undo"></i> {{ trans('frontend/general.reset') }} </a>
                     </li>
                     <li class="sidebar-menu-top sidebar-search">
-                        <a data-toggle="collapse" href="#categories" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Categories</a>
+                        <a data-toggle="collapse" href="#categories" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">{{ trans('frontend/general.categories') }}</a>
                         <div class="collapse" id="categories">
                             <div class="collapse-search">
                                 <ul>
@@ -45,7 +46,7 @@
                         </div>
                     </li>
                     <li class="sidebar-menu sidebar-search">
-                        <a data-toggle="collapse" href="#languages" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Languages</a>
+                        <a data-toggle="collapse" href="#languages" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">{{ trans('frontend/general.languages') }}</a>
                         <div class="collapse" id="languages">
                             <div class="collapse-search">
                                 <ul>
@@ -56,7 +57,7 @@
                         </div>
                     </li>
                     <li class="sidebar-menu sidebar-search">
-                        <a data-toggle="collapse" href="#time" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Time Period</a>
+                        <a data-toggle="collapse" href="#time" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">{{ trans('frontend/general.time_period') }}</a>
                         <div class="collapse" id="time">
                             <div class="collapse-search">
                                 <ul>
@@ -78,7 +79,7 @@
                         </div>
                     </li>
                     <li class="sidebar-menu sidebar-search">
-                        <a data-toggle="collapse" href="#venue" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Venues</a>
+                        <a data-toggle="collapse" href="#venue" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">{{ trans('frontend/general.venues') }}</a>
                         <div class="collapse" id="venue">
                             <div class="collapse-search">
                                 <ul>
@@ -106,7 +107,7 @@
                 <div class="career-desc">
                     <div class="row">
                         <div class="job-head search-head">
-                            <h4 class="head-about">Search result for <span>"{{$q}}"</span></h4>
+                            <h4 class="head-about">{{ trans('frontend/general.search_result_for') }} <span>"{{$q}}"</span></h4>
                             <select id="sort-search" name="sort" class="form-control">
                                 <option value="date" {{ $sort == 'date' ? 'selected' : '' }}>Sort By Date</option>
                                 <option value="price" {{ $sort == 'price' ? 'selected' : '' }}>Sort By Price</option>
@@ -141,12 +142,12 @@
         <div class="col-md-12 mobile-sidebar">
             <div class="container">
                 <div class="mobile-sidebar-menu">
-                    <a class="menu" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Filters</a>
+                    <a class="menu" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">{{ trans('frontend/general.filters') }}</a>
                     <div class="collapse" id="mobile-sidebar-collapse">
                         <ul class="search-mobile">
                             <form id="filter-form">
                                 <li class="sidebar-menu-top sidebar-search">
-                                    <a data-toggle="collapse" href="#categories-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Categories</a>
+                                    <a data-toggle="collapse" href="#categories-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">{{ trans('frontend/general.categories') }}</a>
                                     <div class="collapse" id="categories-mobile">
                                         <div class="collapse-search">
                                             <ul>
@@ -170,7 +171,7 @@
                                     </div>
                                 </li>
                                 <li class="sidebar-menu-top sidebar-search">
-                                    <a data-toggle="collapse" href="#language-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Language</a>
+                                    <a data-toggle="collapse" href="#language-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">{{ trans('frontend/general.languages') }}</a>
                                     <div class="collapse" id="language-mobile">
                                         <div class="collapse-search">
                                             <ul>
@@ -181,7 +182,7 @@
                                     </div>
                                 </li>
                                 <li class="sidebar-menu-top sidebar-search">
-                                    <a data-toggle="collapse" href="#time-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Time Period</a>
+                                    <a data-toggle="collapse" href="#time-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">{{ trans('frontend/general.time_period') }}</a>
                                     <div class="collapse" id="time-mobile">
                                         <div class="collapse-search">
                                             <ul>
@@ -203,7 +204,7 @@
                                     </div>
                                 </li>
                                 <li class="sidebar-menu-top sidebar-search">
-                                    <a data-toggle="collapse" href="#venue-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">Venues</a>
+                                    <a data-toggle="collapse" href="#venue-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter">{{ trans('frontend/general.venues') }}</a>
                                     <div class="collapse" id="venue-mobile">
                                         <div class="collapse-search">
                                             <ul>

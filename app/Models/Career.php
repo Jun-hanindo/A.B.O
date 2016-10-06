@@ -166,26 +166,27 @@ class Career extends Model
     }
 
     public function getCareerByDepartment($param){
-        $query = Career::where('avaibility' , true);
+        $query = Career::select('careers.*', 'departments.name as dept', 
+            'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right')
+            ->join('departments', 'departments.id', '=', 'careers.department_id')
+            ->leftJoin('currencies', 'currencies.id', '=', 'careers.currency_id')
+            ->where('careers.avaibility' , true)
+            ->where('departments.avaibility' , true)
+            ->whereNull('departments.deleted_at');
 
         if(isset($param['department']) && $param['department'] != 0){
             $query->where('department_id' , $param['department']);
         }
         
-        $careers = $query->orderBy('created_at', 'desc')->get();
-        //dd($careers);
+        $careers = $query->orderBy('careers.created_at', 'desc')->get();
+        
 
         if(count($careers) > 0)
         {
             foreach ($careers as $key => $career) {
-                //dd($career->department()->first());
-                $career->dept = $career->department->name;
-                if($career->currency_id == 0){
-                    $career->currency_id = $param['currency_default'];
-                }
-                $career->currency_symbol_left = $career->currency->symbol_left;
-                $career->currency_symbol_right = $career->currency->symbol_right;
+                $career->salary = $career->symbol_left.number_format_drop_zero_decimals($career->salary).$career->symbol_right;
             }
+            //dd($careers);
             return $careers;
         }else{
             return false;

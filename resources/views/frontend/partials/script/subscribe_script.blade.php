@@ -42,13 +42,11 @@
                 success: function (response) {
                     //console.log(response.data);
                     if(response.data == 'new'){
-                        $('#modalSubscribe .modal-title').html('Thanks for Your Subscription');
-                        $('#modalSubscribe .modal-body p').html('You are now part of our mailing list!');
+                        $('#modalSubscribe').modal('show');
                     }else{
-                        $('#modalSubscribe .modal-title').html('Thanks');
-                        $('#modalSubscribe .modal-body p').html('You are already subscribed us!');
+                        $('#modalAlready').modal('show');
                     }
-                    $('#modalSubscribe').modal('show');
+                    
                         clearInput();
 
                 },

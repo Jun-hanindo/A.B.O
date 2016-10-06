@@ -9,7 +9,7 @@
                 <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active">
                     <a href="#new" aria-controls="home" role="tab" data-toggle="tab">
-                        <i class="fa fa-certificate" width="23px" height="23px"></i><br>What's New
+                        <i class="fa fa-certificate" width="23px" height="23px"></i><br>{{ trans('frontend/general.whats_new') }}
                     </a>
                 </li>
                 @if(!empty($categories))
