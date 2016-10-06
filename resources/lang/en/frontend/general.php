@@ -64,5 +64,6 @@ return [
     'about' => 'About',
     'venue' => 'Venue',
     'admission' => 'Admission',
+    'buy' => 'Buy',
 
 ];

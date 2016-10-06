@@ -122,6 +122,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::post('{id}/update', array('as' => 'admin-update-event-schedule-category', 'uses' => 'EventScheduleCategoriesController@update'));
         Route::delete('{id}/delete', array('as' => 'admin-delete-event-schedule-category', 'uses' => 'EventScheduleCategoriesController@destroy'));
         Route::get('{id}/count', array('as' => 'admin-count-event-schedule-category', 'uses' => 'EventScheduleCategoriesController@countScheduleCategory'));
+        Route::get('{id}/min-price', array('as' => 'admin-min-price-event', 'uses' => 'EventScheduleCategoriesController@getMinPriceByEvent'));
 
         
     });

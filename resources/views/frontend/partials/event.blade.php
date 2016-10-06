@@ -39,7 +39,7 @@
                     @endif
                     <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue_info') }}</a></li>
                     @if(!empty($event->admission))
-                        <li><a href="#admissionBox" class="smoothScroll">Admission Rules</a></li>
+                        <li><a href="#admissionBox" class="smoothScroll">{{ trans('frontend/general.admission_rules') }}</a></li>
                     @endif
                     <li><a href="{{ $event->buylink }}"><button class="btn btnBuy btnABO font-bold">{{ trans('frontend/general.buy_now') }}</button></a></li>
                 </ul>
@@ -53,15 +53,15 @@
             <div class="col-md-12">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
                     <li><a href="#eventBanner" class="smoothScroll backtop"></a></li>
-                    <li><a href="#aboutBox" class="smoothScroll active">About</a></li>
+                    <li><a href="#aboutBox" class="smoothScroll active">{{ trans('frontend/general.about') }}</a></li>
                     @if(!$promotions->isEmpty())
                         <li><a href="#promoBox" class="smoothScroll">{{ trans('frontend/general.promotions') }}</a></li>
                     @endif
-                    <li><a href="#venueBox" class="smoothScroll">Venue</a></li>
+                    <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue') }}</a></li>
                     @if(!empty($event->admission))
-                        <li><a href="#admissionBox" class="smoothScroll">Admission</a></li>
+                        <li><a href="#admissionBox" class="smoothScroll">{{ trans('frontend/general.admission') }}</a></li>
                     @endif
-                    <li><a href="{{ $event->buylink }}"><button class="btn btnBuy btnABO font-bold">Buy</button></a></li>
+                    <li><a href="{{ $event->buylink }}"><button class="btn btnBuy btnABO font-bold">{{ trans('frontend/general.buy') }}</button></a></li>
                 </ul>
             </div>
         </div>

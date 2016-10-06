@@ -806,6 +806,28 @@
             $("#description-cat").val('');
         }
 
+        function minPrice(event_id, val){
+            var uri = "{{ URL::route('admin-min-price-event', "::param") }}";
+            uri = uri.replace('::param', event_id);
+            $.ajax({
+                url: uri,
+                type: "GET",
+                dataType: 'json',
+                success: function (response) {
+                    var min = parseFloat(response.data.price);
+                    $('#discount_nominal').attr('max', min);
+                    if(min > 0){
+                        
+                    }
+                    console.log(val);
+
+                },
+                error: function(response){
+                    return false;
+                }
+            });
+        }
+
 
 
         $(document).ready(function(){
@@ -954,6 +976,12 @@
                 $(".form-group").removeClass('has-error');
                 $('.error-modal').removeClass('alert alert-danger');
                 $('.error-modal').html('');
+
+                $('#discount_nominal').keydown(function (e) {
+                    var event_id = $('#event_id').val();
+                    var val = $(this).val();
+                    minPrice(event_id, val);
+                });
 
                 $("#button_save_promotion").unbind('click').bind('click', function () {
                     var event_id = $('#event_id').val();

@@ -173,10 +173,12 @@ class Career extends Model
         }
         
         $careers = $query->orderBy('created_at', 'desc')->get();
+        dd($careers);
 
         if(count($careers) > 0)
         {
             foreach ($careers as $key => $career) {
+                dd($career->department()->first());
                 $career->dept = $career->department->name;
                 if($career->currency_id == 0){
                     $career->currency_id = $param['currency_default'];

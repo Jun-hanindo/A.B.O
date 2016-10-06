@@ -207,6 +207,24 @@ class EventScheduleCategoriesController extends BaseController
         }
     }
 
+    public function getMinPriceByEvent($event_id){
+        $data = $this->model->getMinPriceByEvent($event_id);
+        if(!empty($data)) {
 
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'Success',
+                'data' => $data
+            ],200);
+
+        } else {
+            return response()->json([
+                'code' => 400,
+                'status' => 'error',
+                'message' => trans('general.data_not_found')
+            ],400);
+        }
+    }
 
 }

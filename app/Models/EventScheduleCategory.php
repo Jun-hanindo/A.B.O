@@ -121,4 +121,19 @@ class EventScheduleCategory extends Model
     {
         return EventScheduleCategory::where('event_schedule_id', $schedule_id)/*->where('status', true)*/->count();
     }
+
+    public function getMinPriceByEvent($event_id){
+        $data = EventScheduleCategory::select('price')
+        ->join('event_schedules', 'event_schedules.id', '=', 'event_schedule_categories.event_schedule_id')
+        ->join('events', 'events.id', '=', 'event_schedules.event_id')
+        ->where('events.id', '=', $event_id)
+        ->orderBy('event_schedule_categories.price', 'asc')
+        ->first();
+
+        if(!empty($data)){
+            return $data;
+        }else{
+            return 0;
+        }
+    }
 }
