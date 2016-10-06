@@ -806,7 +806,7 @@
             $("#description-cat").val('');
         }
 
-        function minPrice(event_id, val){
+        function minPrice(event_id){
             var uri = "{{ URL::route('admin-min-price-event', "::param") }}";
             uri = uri.replace('::param', event_id);
             $.ajax({
@@ -814,16 +814,12 @@
                 type: "GET",
                 dataType: 'json',
                 success: function (response) {
-                    var min = parseFloat(response.data.price);
-                    $('#discount_nominal').attr('max', min);
-                    if(min > 0){
-                        
-                    }
-                    console.log(val);
-
+                    var max = parseFloat(response.data.price);
+                    $('#discount_nominal').attr('data-max', max);
                 },
                 error: function(response){
-                    return false;
+                    var max = parseFloat(response.responseJSON.data);
+                    $('#discount_nominal').attr('data-max', max);
                 }
             });
         }
@@ -976,11 +972,23 @@
                 $(".form-group").removeClass('has-error');
                 $('.error-modal').removeClass('alert alert-danger');
                 $('.error-modal').html('');
+                var event_id = $('#event_id').val();
+                minPrice(event_id);
 
-                $('#discount_nominal').keydown(function (e) {
-                    var event_id = $('#event_id').val();
+                $('#discount_nominal').keyup(function (e) {
                     var val = $(this).val();
-                    minPrice(event_id, val);
+                    var max = $(this).attr('data-max');
+
+                    if (this.value.length == 0 && e.which == 48 ){
+                      return false;
+                    }
+
+                    if(parseFloat(max) > 0){
+                        if(parseFloat(val) > parseFloat(max)){
+                            //return false;
+                            $('#discount_nominal').val(max);
+                        }
+                    }
                 });
 
                 $("#button_save_promotion").unbind('click').bind('click', function () {
