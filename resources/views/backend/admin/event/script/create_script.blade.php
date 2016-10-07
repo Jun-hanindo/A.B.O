@@ -9,7 +9,7 @@
             uri = uri.replace('::param', event_id);
             $.ajax({
                 url: uri,
-                type: "get",
+                type: "GET",
                 dataType: 'json',
                 success: function (response) {
                     if(response.data.active == false) {
