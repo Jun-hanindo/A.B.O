@@ -64,6 +64,7 @@ class EventsController extends Controller
     }
 
     public function getPost(Request $req){
+        \Session::forget('preview_event');
         $param = $req->all();
         if (isset($param['featured_image1'])) {
             $featured_image1 = $param['featured_image1'];
