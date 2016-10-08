@@ -168,8 +168,10 @@ class EventsController extends Controller
             //dd($event['promotions']);
         }
 
-        $modelVenue = new Venue();
-        $event->venue = $modelVenue->findVenueByID($event->venue_id);
+        if(!empty($event->venue_id)){
+            $modelVenue = new Venue();
+            $event->venue = $modelVenue->findVenueByID($event->venue_id);
+        }
 
         if(isset($event->categories)){
             $cat_id = $event->categories[0];
