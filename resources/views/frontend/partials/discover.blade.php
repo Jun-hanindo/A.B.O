@@ -42,7 +42,7 @@
                                 <img src="{{ file_url('events/'.$slider->event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-xs" alt="...">
                                 <img src="{{ file_url('events/'.$slider->event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-lg hidden-md hidden-sm" alt="...">
                             </a>
-                            <div class="carousel-caption bg-{{ $slider->event->background_color }}">
+                            <div class="carousel-caption bg-green" style="background-color:{{ $slider->event->background_color }} !important">
                                 <div class="container">
                                     <h5 class="categorySlide">{{ strtoupper($slider->cat_name) }}</h5>
                                     <h2 class="titleSlide font-light">{{ $slider->event->title }}</h2>
@@ -86,7 +86,7 @@
                     <a href="{{ URL::route('event-detail', $event->slug) }}">
                         <div class="col-md-4 box-release">
                             <img src="{{ $event->featured_image2_url }}">
-                            <div class="boxInfo bg-{{ $event->background_color }}">
+                            <div class="boxInfo bg-green" style="background-color:{{ $event->background_color }} !important">
                                 <ul>
                                     <li class="eventType">{{ $event->cat_name }}</li>
                                     <li class="eventName">{{ $event->title }}</li>

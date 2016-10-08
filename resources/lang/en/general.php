@@ -242,5 +242,8 @@ return [
     'subscription_detail'    => 'Subscription Detail',
     'from' => 'From',
     'to'    => 'To',
+    'price_name' => 'Price Name',
+    'seat_color' => 'Seat Color',
+    'seat_image' => 'Seat Image',
 
 ];

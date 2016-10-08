@@ -185,6 +185,12 @@ class EventsController extends BaseController
                 $data->src_featured_image3 = $data->src.'/'.$data->featured_image3; 
             }
 
+            if($data->event_type == true){
+                $data->event_type = 1;
+            }else{
+                $data->event_type = 0;
+            }
+
             $cat_selected = $data->categories()->get();
             $selected = [];
             foreach ($cat_selected as $key => $value) {

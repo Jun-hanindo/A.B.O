@@ -107,5 +107,7 @@ return [
     'search_result_for' => 'Search result for',
     'about_asiaboxoffice' => 'About Asia Box Office',
     'discount' => 'Discount',
+    'per_person' => '/person',
+    'seat_map' => 'Seat Map'
 
 ];

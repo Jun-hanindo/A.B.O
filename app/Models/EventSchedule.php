@@ -51,6 +51,7 @@ class EventSchedule extends Model
         $this->date_at = date('Y-m-d',strtotime($param['date_at']));
     	$this->start_time = $param['start_time'];
         $this->end_time = $param['end_time'];
+        $this->description = $param['description_schedule'];
 
     	if($this->save()){
             return $this;
@@ -95,6 +96,7 @@ class EventSchedule extends Model
            	$data->date_at = $param['date_at'];
 	    	$data->start_time = $param['start_time'];
             $data->end_time = $param['end_time'];
+            $data->description = $param['description_schedule'];
 
             if($data->save()){
 

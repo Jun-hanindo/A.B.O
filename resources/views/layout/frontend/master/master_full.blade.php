@@ -3,7 +3,12 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ env('APP_WEB_ADMIN_NAME', 'Asia Box Office') }} - @yield('title')</title>
+        <title>@yield('title') {{ env('APP_WEB_ADMIN_NAME', 'AsiaBoxOffice') }}</title>
+        <meta property="og:image" content="@yield('og_image')" />
+        <meta property="og:image:type" content="image/jpeg">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:description" content="&nbsp;" />
 
           <!-- Bootstrap -->
         {!! Html::style('assets/frontend/css/bootstrap.min.css') !!}
@@ -23,6 +28,30 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
+        <!-- Google Analytic Staging AWS -->
+        <script>
+            // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            // m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            // })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            // ga('create', 'UA-85164631-1', 'auto');
+            // ga('send', 'pageview');
+
+        </script>
+        <!-- End Google Analytic Staging AWS -->
+        <!-- Google Analytic Production AWS -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-85168114-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+        <!-- End Google Analytic Production AWS -->
    </head>
    <body>
         @if(!Request::is('subscribe'))
@@ -44,7 +73,7 @@
                                                 <a href="#0" class="cd-close">Close</a>
                                                 <ul class="cd-dropdown-content">
                                                     <li class="has-childern">
-                                                        <a href="#">{{ trans('general.select_country_language') }}</a>
+                                                        <a href="#">{{ trans('frontend/general.select_country_language') }}</a>
                                                     </li>
                                                     <li class="has-childern">
                                                         <div class="countryList">
@@ -60,6 +89,7 @@
                                                                     <a href="#" class="lang-link language" data-lang="en">
                                                                         <img src="{{ asset('assets/frontend/images/singaporebig-flag.svg') }}"><br>
                                                                         <span>Singapore</span>
+                                                                        <i class="fa fa-angle-down"></i>
                                                                     </a>
                                                                     <ul>
                                                                         <li><a href="#"></a>English</li>
@@ -70,6 +100,7 @@
                                                                     <a href="#" class="lang-link language" data-lang="ms">
                                                                         <img src="{{ asset('assets/frontend/images/malaysiabig-flag.svg') }}"><br>
                                                                         <span>Malaysia</span>
+                                                                        <i class="fa fa-angle-down"></i>
                                                                     </a>
                                                                     <ul>
                                                                         <li><a href="#"></a>English</li>
@@ -80,6 +111,7 @@
                                                                     <a href="#" class="lang-link language" data-lang="id">
                                                                         <img src="{{ asset('assets/frontend/images/indonesiabig-flag.svg') }}"><br>
                                                                         <span>Indonesia</span>
+                                                                        <i class="fa fa-angle-down"></i>
                                                                     </a>
                                                                     <ul>
                                                                         <li><a href="#"></a>English</li>
@@ -100,7 +132,7 @@
                                                     <span class="input-group-addon" id="addon-search">
                                                         <i class="fa fa-search icon-search-header"></i>
                                                     </span>
-                                                    <input type="text" name="q" value="{{@$q}}" class="form-control input-search" placeholder="{{ trans('general.search') }}...">
+                                                    <input type="text" name="q" value="{{@$q}}" class="form-control input-search" placeholder="{{ trans('frontend/general.search') }}...">
                                                     <input type="hidden" id="sort-text" name="sort" value="date">
                                                 </div>
         
@@ -111,22 +143,22 @@
                                         </div>
                                     </li>
                                     <li class="nav-item list-menu">
-                                        <a href="{{ URL::route('discover')}}">{{ trans('general.discover') }}</a>
+                                        <a href="{{ URL::route('discover')}}">{{ trans('frontend/general.discover') }}</a>
                                     </li>
                                     <li class="nav-item list-menu">
-                                        <a href="{{ URL::route('promotion')}}">{{ trans('general.promotions') }}</a>
+                                        <a href="{{ URL::route('promotion')}}">{{ trans('frontend/general.promotions') }}</a>
                                     </li>
                                     <li class="nav-item list-menu">
-                                        <a href="{{URL::route('support')}}">{{ trans('general.support') }}</a>
+                                        <a href="{{URL::route('supports')}}">{{ trans('frontend/general.support') }}</a>
                                     </li>
                                 </ul>
                             </nav>
                         </div>
                         <div class="pull-right right-header">
                             <ul>
-                                <li><a href="https://asiaboxoffice.nliven.co/account/login">{{ trans('general.login') }}</a></li>
+                                <li><a href="https://asiaboxoffice.nliven.co/account/login">{{ trans('frontend/general.login') }}</a></li>
                                 <li>/</li>
-                                <li><a href="https://asiaboxoffice.nliven.co/account/register">{{ trans('general.register') }}</a></li>
+                                <li><a href="https://asiaboxoffice.nliven.co/account/register">{{ trans('frontend/general.register') }}</a></li>
                             </ul>
                         </div> 
                     </div>
@@ -200,10 +232,10 @@
                                                             </li>
                                                         </ul>
                                                     </li>
-                                                    <li><a href="{{ URL::route('discover')}}">{{ trans('general.discover') }}</a></li>
-                                                    <li><a href="{{ URL::route('promotion')}}">{{ trans('general.promotions') }}</a></li>
-                                                    <li><a href="{{URL::route('support')}}">{{ trans('general.support') }}</a></li>
-                                                    <li><a href="https://asiaboxoffice.nliven.co/account/login" class="login-mobile">{{ trans('general.login') }}</a> / <a href="https://asiaboxoffice.nliven.co/account/register" class="register-mobile"> {{ trans('general.register') }}</a></li>
+                                                    <li><a href="{{ URL::route('discover')}}">{{ trans('frontend/general.discover') }}</a></li>
+                                                    <li><a href="{{ URL::route('promotion')}}">{{ trans('frontend/general.promotions') }}</a></li>
+                                                    <li><a href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a></li>
+                                                    <li><a href="https://asiaboxoffice.nliven.co/account/login" class="login-mobile">{{ trans('frontend/general.login') }}</a> / <a href="https://asiaboxoffice.nliven.co/account/register" class="register-mobile"> {{ trans('frontend/general.register') }}</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -227,7 +259,7 @@
                                                             <span class="input-group-addon" id="addon-search">
                                                                 <i class="fa fa-search icon-search-header"></i>
                                                             </span>
-                                                            <input type="text" name="q" value="{{@$q}}" class="form-control input-search" placeholder="{{ trans('general.search') }}..." id="#input-search">
+                                                            <input type="text" name="q" value="{{@$q}}" class="form-control input-search" placeholder="{{ trans('frontend/general.search') }}..." id="#input-search">
                                                             <input type="hidden" id="sort-text" name="sort" value="date">
                                                         </div>
                 
@@ -257,7 +289,7 @@
 
     @if(!Request::is('subscribe'))
         <footer>
-            @if(Request::is('/'))
+            @if(Request::is('/') || Request::is('front-end'))
                 <div id="footer1">
                     <div class="container">
                         <div class="row">
@@ -268,10 +300,10 @@
                                     </div>
                                 </div>
                                 <div class="linkFoot">
-                                    <a href="#" class="font-light">{{ trans('general.support') }}</a>
+                                    <a href="{{URL::route('supports')}}" class="font-light">{{ trans('frontend/general.support') }}</a>
                                 </div>
                                 <div class="capFoot">
-                                    <p>{{ trans('general.need_help_with_anything') }}</p>
+                                    <p>{{ trans('frontend/general.need_help_with_anything') }}</p>
                                 </div>
                             </div>
                             <div class="col-md-3 centeredCap">
@@ -281,10 +313,10 @@
                                     </div>
                                 </div>
                                 <div class="linkFoot">
-                                    <a href="https://asiaboxoffice.nliven.co/account/register" class="font-light">{{ trans('general.register') }}</a>
+                                    <a href="https://asiaboxoffice.nliven.co/account/register" class="font-light">{{ trans('frontend/general.register') }}</a>
                                 </div>
                                 <div class="capFoot">
-                                    <p>{{ trans('general.buy_tickets_from_us_and_more') }}</p>
+                                    <p>{{ trans('frontend/general.buy_tickets_from_us_and_more') }}</p>
                                 </div>
                             </div>
                             <div class="col-md-3 centeredCap">
@@ -294,10 +326,10 @@
                                     </div>
                                 </div>
                                 <div class="linkFoot">
-                                    <a href="#" class="font-light">{{ trans('general.subscribe_to_us') }}</a>
+                                    <a href="{{URL::route('subscribe')}}" class="font-light">{{ trans('frontend/general.subscribe_to_us') }}</a>
                                 </div>
                                 <div class="capFoot">
-                                    <p>{{ trans('general.get_events_updates_and_tips') }}</p>
+                                    <p>{{ trans('frontend/general.get_events_updates_and_tips') }}</p>
                                 </div>
                             </div>
                             <div class="col-md-3 centeredCap">
@@ -307,10 +339,10 @@
                                     </div>
                                 </div>
                                 <div class="linkFoot">
-                                    <a href="{{URL::route('our-company')}}" class="font-light">{{ trans('general.our_company') }}</a>
+                                    <a href="{{URL::route('our-company-about-us')}}" class="font-light">{{ trans('frontend/general.our_company') }}</a>
                                 </div>
                                 <div class="capFoot">
-                                    <p>{{ trans('general.about_us_jobs_and_partnerships') }}</p>
+                                    <p>{{ trans('frontend/general.about_us_jobs_and_partnerships') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -323,50 +355,50 @@
                         <div class="col-md-2">
                             <div class="information-box mobile-collapse">
                                 <div class="information-title mobile-collapse-header">
-                                    {{ trans('general.events') }}
+                                    {{ trans('frontend/general.events') }}
                                 </div>
                                 <ul class="list-unstyled mobile-collapse-body">
-                                    <li><a href="{{URL::route('home')}}">{{ trans('general.home') }}</a></li>
-                                    <li><a href="{{URL::route('event-search-get', 'q=all&sort=date')}}">{{ trans('general.search_for_events') }}</a></li>
-                                    <li><a href="{{URL::route('discover')}}">{{ trans('general.discover_events') }}</a></li>
-                                    <li><a href="{{URL::route('promotion')}}">{{ trans('general.promotions') }}</a></li>
+                                    <li><a href="{{URL::route('home')}}">{{ trans('frontend/general.home') }}</a></li>
+                                    <li><a href="{{URL::route('event-search-get', 'q=all&sort=date')}}">{{ trans('frontend/general.search_for_events') }}</a></li>
+                                    <li><a href="{{URL::route('discover')}}">{{ trans('frontend/general.discover_events') }}</a></li>
+                                    <li><a href="{{URL::route('promotion')}}">{{ trans('frontend/general.promotions') }}</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="information-box mobile-collapse">
                                 <div class="information-title mobile-collapse-header">
-                                    {{ trans('general.support') }}
+                                    {{ trans('frontend/general.support') }}
                                 </div>
                                 <ul class="list-unstyled mobile-collapse-body">
-                                    <li><a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('general.ways_to_buy_tickets') }}</a></li>
-                                    <li><a href="{{URL::route('support-faq')}}">{{ trans('general.frequently_asked_questions') }}</a></li>
-                                    <li><a href="{{URL::route('contact-us')}}">{{ trans('general.contact_us') }}</a></li>
-                                    <li><a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('general.terms_and_conditions') }}</a></li>
-                                    <li><a href="{{URL::route('support-privacy-policy')}}">{{ trans('general.privacy_policy') }}</a></li>
+                                    <li><a href="{{URL::route('support-way-to-buy-tickets')}}">{{ trans('frontend/general.ways_to_buy_tickets') }}</a></li>
+                                    <li><a href="{{URL::route('support-faq')}}">{{ trans('frontend/general.frequently_asked_questions') }}</a></li>
+                                    <li><a href="{{URL::route('support-contact-us')}}">{{ trans('frontend/general.contact_us') }}</a></li>
+                                    <li><a href="{{URL::route('support-terms-and-conditions')}}">{{ trans('frontend/general.terms_and_conditions') }}</a></li>
+                                    <li><a href="{{URL::route('support-privacy-policy')}}">{{ trans('frontend/general.privacy_policy') }}</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="information-box mobile-collapse">
                                 <div class="information-title mobile-collapse-header">
-                                    {{ trans('general.my_account') }}
+                                    {{ trans('frontend/general.my_account') }}
                                 </div>
                                 <ul class="list-unstyled mobile-collapse-body">
-                                    <li><a href="https://asiaboxoffice.nliven.co/account/login">{{ trans('general.login') }} / {{ trans('general.register') }}</a></li>
-                                    <li><a href="{{URL::route('subscribe')}}">{{ trans('general.subscribe_us') }}</a></li>
+                                    <li><a href="https://asiaboxoffice.nliven.co/account/login">{{ trans('frontend/general.login') }} / {{ trans('frontend/general.register') }}</a></li>
+                                    <li><a href="{{URL::route('subscribe')}}">{{ trans('frontend/general.subscribe_us') }}</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="information-box mobile-collapse">
                                 <div class="information-title mobile-collapse-header">
-                                    {{ trans('general.our_company') }}
+                                    {{ trans('frontend/general.our_company') }}
                                 </div>
                                 <ul class="list-unstyled mobile-collapse-body">
-                                    <li><a href="{{URL::route('our-company')}}">{{ trans('general.about_asia_box_office') }}</a></li>
-                                    <li><a href="{{URL::route('careers')}}">{{ trans('general.careers') }}</a></li>
-                                    <li><a href="{{URL::route('contact-us')}}">{{ trans('general.contact_us') }}</a></li>
+                                    <li><a href="{{URL::route('our-company-about-us')}}">{{ trans('frontend/general.about_asia_box_office') }}</a></li>
+                                    <li><a href="{{URL::route('our-company-careers')}}">{{ trans('frontend/general.careers') }}</a></li>
+                                    <li><a href="{{URL::route('our-company-contact-us')}}">{{ trans('frontend/general.contact_us') }}</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -374,7 +406,7 @@
                             <div class="col-md-2">
                                 <div class="information-box mobile-collapse">
                                   <div class="information-title mobile-collapse-header">
-                                    {{ trans('general.follow_us_on_facebook') }}
+                                    {{ trans('frontend/general.follow_us_on_facebook') }}
                                   </div>
                                   <div class="facebookLike">
                                       {!! $setting['facebook'] !!}
@@ -386,7 +418,7 @@
                         <div class="col-md-2">
                             <div class="information-box box-last mobile-collapse">
                                 <div class="information-title mobile-collapse-header">
-                                    {{ trans('general.download_our_mobile_app') }}
+                                    {{ trans('frontend/general.download_our_mobile_app') }}
                                 </div>
                                 <div class="mobileApp">
                                     @if(isset($setting['apple_store']) && !empty($setting['apple_store']))

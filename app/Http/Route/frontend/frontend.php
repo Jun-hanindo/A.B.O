@@ -10,7 +10,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     //Route::get('event-discover', array('as' => 'event-discover', 'uses' => 'EventsController@eventDiscover'));
     
     /*Dynamic*/
-    // Route::get('front-end', array('as' => 'front-end', 'uses' => 'HomeController@index'));
+    Route::get('front-end', array('as' => 'front-end', 'uses' => 'HomeController@index'));
     Route::get('discover', array('as' => 'discover', 'uses' => 'HomeController@discover'));
     Route::get('promotion', array('as' => 'promotion', 'uses' => 'HomeController@promotion'));
     Route::get('our-company/careers', array('as' => 'our-company-careers', 'uses' => 'HomeController@ourCompanyCareers'));
@@ -33,6 +33,8 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('send-message', array('as' => 'send-message', 'uses' => 'HomeController@sendMessage'));
     Route::post('send-feedback', array('as' => 'send-feedback', 'uses' => 'HomeController@feedBack'));
     Route::get('language', array('as' => 'language', 'uses' => 'LanguagesController@setLanguage'));
+    Route::get('preview', array('as' => 'preview-event', 'uses' => 'EventsController@preview'));
+    Route::post('getpost', array('as' => 'getpost-event', 'uses' => 'EventsController@getPost'));
 
 
     /*Static*/    

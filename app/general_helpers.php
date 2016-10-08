@@ -449,6 +449,42 @@ if (! function_exists('date_from_to')) {
     }
 }
 
+if (! function_exists('get_day_name')) {
+    /**
+     * Checks whether a file exists.
+     *
+     * @param  string  $file
+     * @param  string|null  $disk
+     * @return bool
+     */
+    function get_day_name($date)
+    {
+        if (is_null($date)) {
+            return date('l');
+        }
+
+        return date('l', strtotime($date));
+    }
+}
+
+if (! function_exists('get_day_date')) {
+    /**
+     * Checks whether a file exists.
+     *
+     * @param  string  $file
+     * @param  string|null  $disk
+     * @return bool
+     */
+    function get_day_date($date)
+    {
+        if (is_null($date)) {
+            return date('d M, D');
+        }
+
+        return date('d M, D', strtotime($date));
+    }
+}
+
 
 
 // if (! function_exists('count_message_unread')) {

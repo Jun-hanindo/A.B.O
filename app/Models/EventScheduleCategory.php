@@ -36,7 +36,10 @@ class EventScheduleCategory extends Model
     function datatables($event_schedule_id)
     {
 
-    	return static::select('id', 'additional_info', 'price', 'price_cat', 'event_schedule_id')->where('event_schedule_id', $event_schedule_id)/*->where('status', true)*/;
+    	return static::select('event_schedule_categories.id as id', 'additional_info', 'price', 'seat_color', 'event_schedule_id', 
+            'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right')
+        ->leftJoin('currencies', 'currencies.id', '=', 'event_schedule_categories.currency_id')
+        ->where('event_schedule_id', $event_schedule_id);
     
     }
 
@@ -50,7 +53,8 @@ class EventScheduleCategory extends Model
         $this->event_schedule_id = $param['event_schedule_id'];
         $this->additional_info = $param['additional_info'];
     	$this->price = $param['price'];
-        $this->price_cat = $param['price_cat'];
+        // $this->price_cat = $param['price_cat'];
+        $this->seat_color = $param['seat_color'];
         $this->currency_id = $param['currency_id'];
 
     	if($this->save()){
@@ -81,7 +85,8 @@ class EventScheduleCategory extends Model
         if (!empty($data)) {
             $data->additional_info = $param['additional_info'];
             $data->price = $param['price'];
-            $data->price_cat = $param['price_cat'];
+            // $data->price_cat = $param['price_cat'];
+            $data->seat_color = $param['seat_color'];
             $data->currency_id = $param['currency_id'];
 
             if($data->save()){

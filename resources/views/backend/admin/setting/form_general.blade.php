@@ -92,6 +92,27 @@
                                 {!! Form::errorMsg('setting.hotline_operating_hours') !!}
                             </div>
                         </div>
+                        {{-- <div class="form-group{{ Form::hasError('setting.purpleclick_head') }} setting.purpleclick_head">
+                            {!! Form::label('purpleclick_head', trans('general.purpleclick_head').' *', ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::textarea('setting[purpleclick_head]', isset($data['purpleclick_head']) ? $data['purpleclick_head'] : null, ['class' => 'form-control tinymce', 'placeholder' => trans('general.purpleclick_head')]) !!}
+                                {!! Form::errorMsg('setting.purpleclick_head') !!}
+                            </div>
+                        </div>
+                        <div class="form-group{{ Form::hasError('setting.purpleclick_body') }} setting.purpleclick_body">
+                            {!! Form::label('purpleclick_body', trans('general.purpleclick_body').' *', ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::textarea('setting[purpleclick_body]', isset($data['purpleclick_body']) ? $data['purpleclick_body'] : null, ['class' => 'form-control tinymce', 'placeholder' => trans('general.purpleclick_body')]) !!}
+                                {!! Form::errorMsg('setting.purpleclick_body') !!}
+                            </div>
+                        </div>
+                        <div class="form-group{{ Form::hasError('setting.google_analytics') }} setting.google_analytics">
+                            {!! Form::label('google_analytics', trans('general.google_analytics').' *', ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::textarea('setting[google_analytics]', isset($data['google_analytics']) ? $data['google_analytics'] : null, ['class' => 'form-control tinymce', 'placeholder' => trans('general.google_analytics')]) !!}
+                                {!! Form::errorMsg('setting.google_analytics') !!}
+                            </div>
+                        </div> --}}
                         <div class="form-group{{ Form::hasError('setting.limit_record') }} setting.limit_record">
                             {!! Form::label('limit_record', trans('general.limit_record').' ('.trans('general.trail').' & '.trans('general.system_log').') *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-4">

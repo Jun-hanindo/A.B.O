@@ -53,3 +53,14 @@ iframe[name="google_conversion_frame"]{
     color: #fff;
     width: 200px;
 }
+.careerModal .job-list{
+  background: none;
+  margin: 0;
+  color: #000;
+  padding: 0;
+}
+.careerModal .job-list ul li{
+  width:33.33333333%;
+  margin: 0;
+  float: left;
+}

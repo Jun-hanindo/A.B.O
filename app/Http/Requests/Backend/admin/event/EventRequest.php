@@ -38,6 +38,7 @@ class EventRequest extends Request
                 'venue_id'          => 'required',
                 'schedule_and_price_detail' => 'required',
                 'categories'        => 'required',
+                'background_color'  => 'required',
             ];
 
             if ($event->notHavingImage1($req)){
@@ -52,11 +53,15 @@ class EventRequest extends Request
                 $rules['featured_image3'] = 'required';
             }
 
+            if ($event->$req['event_type'] == 0){
+                $rules['seat_image'] = 'required';
+            }
+
             return $rules;
 
         } else {
 
-            return [
+            $rules =  [
                 'title'             => 'required',
                 'description'       => 'required',
                 'schedule_info'        => 'required',
@@ -67,7 +72,14 @@ class EventRequest extends Request
                 'venue_id'          => 'required',
                 'schedule_and_price_detail' => 'required',
                 'categories'        => 'required',
+                'background_color'  => 'required',
             ];
+
+            if ($req['event_type'] == 0){
+                $rules['seat_image'] = 'required';
+            }
+
+            return $rules;
                 
         }
     }

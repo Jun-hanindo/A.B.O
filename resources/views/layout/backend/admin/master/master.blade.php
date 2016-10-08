@@ -27,6 +27,7 @@
         {!! Html::style('assets/plugins/bootstrap-switch/bootstrap-switch.min.css') !!}
         {!! Html::style('assets/plugins/timepicker/bootstrap-timepicker.min.css') !!}
         {!! Html::style('assets/plugins/bootstrap-select/bootstrap-select.min.css') !!}
+        {!! Html::style('assets/plugins/colorpicker/bootstrap-colorpicker.min.css') !!}
         
         <link rel="shortcut icon" href="{{ asset('assets/frontend/images/favico.ico') }}">
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
@@ -134,6 +135,7 @@
         {!! Html::script('assets/plugins/bootstrap-switch/bootstrap-switch.min.js') !!}
         {!! Html::script('assets/plugins/bootstrap-select/bootstrap-select.min.js') !!}
         {!! Html::script('assets/plugins/timepicker/bootstrap-timepicker.min.js') !!}
+        {!! Html::script('assets/plugins/colorpicker/bootstrap-colorpicker.min.js') !!}
         
 
         <script>

@@ -36,7 +36,7 @@
                             '<a href="'+uri2+'">'
                                 +'<div class="col-md-4 box-release">'
                                     +'<img src="'+val.featured_image2_url+'">'
-                                    +'<div class="boxInfo info1 bg-'+val.background_color+' ">'
+                                    +'<div class="boxInfo info1 bg-green" style="background-color:'+val.background_color+' !important">'
                                         +'<ul>'
                                             +'<li class="eventType">'+val.cat_name+'</li>'
                                             +'<li class="eventName">'+val.title+'</li>'

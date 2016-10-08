@@ -26,7 +26,7 @@ class EventScheduleCategoryRequest extends Request
         return [
             'additional_info'   => 'required',
             'price'             => 'required',
-            'price_cat'             => 'required',
+            // 'price_cat'             => 'required',
         ];
     }
 }

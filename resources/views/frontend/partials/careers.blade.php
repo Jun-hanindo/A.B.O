@@ -30,14 +30,37 @@
                             @if(!empty($careers))
                                 @foreach($careers as $key => $career)
                                     <div class="job-list {{ ($key == 0) ? 'job-list-head' : '' }}">
-                                        <table>
-                                            <tr>
-                                                <td class="jobs">{{ $career->job }}</td>
-                                                <td class="divisions">{{ $career->dept }}</td>
-                                                <td class="job-type">{{ $career->type }}</td>
-                                                <td class="payroll">{{ $career->currency_symbol_left.$career->salary.$career->currency_symbol_right }}</td>
-                                            </tr>
-                                        </table>
+                                        <a href="#careerModal{{ $career->id }}" data-toggle="modal">
+                                            <table>
+                                                <tr>
+                                                    <td class="jobs">{{ $career->job }}</td>
+                                                    <td class="divisions">{{ $career->dept }}</td>
+                                                    <td class="job-type">{{ $career->type }}</td>
+                                                    <td class="payroll">{{ $career->currency_symbol_left.$career->salary.$career->currency_symbol_right }}</td>
+                                                </tr>
+                                            </table>
+                                        </a>
+                                    </div>
+                                    <div class="modal fade careerModal" id="careerModal{{ $career->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">{{ $career->job }}</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="job-list">
+                                                        <ul>
+                                                            <li class="divisions">{{ $career->dept }}</li>
+                                                            <li class="job-type">{{ $career->type }}</li>
+                                                            <li class="payroll">{{ $career->salary }}</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 @endforeach
                             @endif

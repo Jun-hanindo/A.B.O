@@ -31,8 +31,12 @@ class EventScheduleCategoriesController extends BaseController
                     </i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDeleteCategory" title="Delete" data-id="'.$category->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
                 })
                 ->editColumn('price', function ($category){
-                    $price = $category->price.$category->price_cat;
+                    $price = $category->symbol_left.number_format_drop_zero_decimals($category->price).$category->symbol_right;
                     return $price;
+                })
+                ->editColumn('seat_color', function ($category){
+                    $color = '<span class="seat-dot dot-pink" style="background-color:'.$category->seat_color.'"></span>';
+                    return $color;
                 })
                 ->make(true);
     }

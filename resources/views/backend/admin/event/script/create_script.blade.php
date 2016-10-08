@@ -146,6 +146,7 @@
             var silde_i = $('#featured_image1').prop('files')[0];
             var thumb_i = $('#featured_image2').prop('files')[0];
             var side_i = $('#featured_image3').prop('files')[0];
+            var seat_i = $('#seat_image').prop('files')[0];
             if(silde_i != undefined){
                 fd.append('featured_image1',silde_i);
             }
@@ -154,6 +155,9 @@
             }
             if(side_i != undefined){
                 fd.append('featured_image3',side_i);
+            }
+            if(seat_i != undefined){
+                fd.append('seat_image',seat_i);
             }
 
             // for (i=0; i < tinyMCE.editors.length; i++){
@@ -381,6 +385,7 @@
                     $("#date_at").val(data.date_at);
                     $("#start_time").val(data.start_time);
                     $("#end_time").val(data.end_time);
+                    $("#description_schedule").val(data.description);
                     var schedule_id = data.id;
                     if(schedule_id == ''){
                         schedule_id = 0;
@@ -398,6 +403,7 @@
         function clearInput(){
             $('#date_at').data('datepicker').setDate(null);
             $('#schedule_id').val('');
+            $('#description_schedule').val('');
             var dt = new Date();
             var time = dt.getHours() + ":" + dt.getMinutes()
             $("#start_time, #end_time").timepicker('setTime', time);
@@ -407,6 +413,7 @@
             $('#category_id').val('');
             $("#additional_info").val('');
             $("#price").val('');
+            $("#seat_color").val('');
             var currency = $("#form-event-category #currency_id").attr('data-default');
             $("#form-event-category #currency_id").val(currency);
         }
@@ -454,7 +461,8 @@
                 columns: [
                     {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
                     {data: 'additional_info', name: 'additional_info'},
-                    {data: 'price', name: 'price'}
+                    {data: 'price', name: 'price'},
+                    {data: 'seat_color', name: 'seat_color'}
                 ],
                 "fnDrawCallback": function() {
                     //Initialize checkbos for enable/disable user
@@ -502,7 +510,12 @@
                     $("#additional_info").val(data.additional_info);
                     $("#price").val(data.price);
                     $("#price_cat").val(data.time_period);
-                    $("#form-event-category #currency_id").val(data.currency_id);
+                    var def = $("#form-event-category #currency_id").attr('data-default');
+                    if(!data.currency_id){
+                        $("#form-event-category #currency_id").val(def);
+                    }else{
+                        $("#form-event-category #currency_id").val(data.currency_id);
+                    }
                 },
                 error: function(response){
                     $('#modal-form-schedule').modal('hide');
@@ -723,7 +736,12 @@
                     $("#category").val(data.category); 
                     $('#div-preview_image').show();
                     $("#discount").val(data.discount); 
-                    $("#form-event-promotion #currency_id").val(data.currency_id);
+                    if(!data.currency_id){
+                        var def = $("#form-event-promotion #currency_id").attr('data-default');
+                        $("#form-event-promotion #currency_id").val(def);
+                    }else{
+                        $("#form-event-promotion #currency_id").val(data.currency_id);
+                    }
                     $("#discount_nominal").val(data.discount_nominal);
                     if(data.discount > 0){
                         $(".discount_type-check").bootstrapSwitch('state', true); 
@@ -828,6 +846,7 @@
 
         $(document).ready(function(){
             loadTextEditor(); 
+            $('.colorpicker').colorpicker();
 
             var event_id = $('#event_id').val();
             if(event_id != ''){
@@ -844,7 +863,21 @@
 
             loadDataSchedule(event_id);
             loadDataPromotion(event_id);
-            loadSwitchButton('event_type-check');
+            //loadSwitchButton('event_type-check');
+            var val = $('#event_type').val();
+            if(val == 0){
+                $('#seat_image-div').show();
+            }else{
+                $('#seat_image-div').hide();
+            }
+            $('#event_type').change(function(){
+                var val = $(this).val();
+                if(val == 0){
+                    $('#seat_image-div').show();
+                }else{
+                    $('#seat_image-div').hide();
+                }
+            });
             loadSwitchButton('discount_type-check');
             discountSwitch();
 
@@ -858,8 +891,49 @@
             }); 
 
             $('#button_preview').on('click',function(){
-                var cat = 'preview';
-                autoSaveUpdateEvent(cat);
+                // var cat = 'preview';
+                // autoSaveUpdateEvent(cat);
+
+                $(".tooltip-field").remove();
+                $(".form-group").removeClass('has-error');
+                $(".text-danger").remove();
+                var fd = new FormData();
+                var silde_i = $('#featured_image1').prop('files')[0];
+                var thumb_i = $('#featured_image2').prop('files')[0];
+                var side_i = $('#featured_image3').prop('files')[0];
+                var seat_i = $('#seat_image').prop('files')[0];
+                if(silde_i != undefined){
+                    fd.append('featured_image1',silde_i);
+                }
+                if(thumb_i != undefined){
+                    fd.append('featured_image2',thumb_i);
+                }
+                if(side_i != undefined){
+                    fd.append('featured_image3',side_i);
+                }
+                if(seat_i != undefined){
+                    fd.append('seat_image',seat_i);
+                }
+
+                var other_data = $('#form-event').serializeArray();
+                $.each(other_data,function(key,input){
+                    fd.append(input.name,input.value);
+                });
+
+                $.ajax({
+                    url: "{{ route('getpost-event') }}",
+                    type: "POST",
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    data: fd,
+                    success: function (data) {
+                        
+                    },
+                    error: function(response){
+                        
+                    }
+                });
             });   
 
             $(".datepicker").datepicker( {

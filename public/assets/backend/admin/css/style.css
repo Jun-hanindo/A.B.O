@@ -39,7 +39,7 @@
 .currency-value input{
 	width: 65% !important;
 }
-.datepicker{
+.datepicker, .colorpicker{
 	border-radius: 0 !important;
 }
 .datepicker table tr td.old.disabled{
@@ -48,6 +48,17 @@
 .activity-log-filter-date {
     padding-bottom:20px;
 }
+.datepicker.dropdown-menu,
+.bootstrap-timepicker-widget.dropdown-menu {
+    z-index: 1100 !important;
+}
+.seat-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
 /*.cke_chrome{
 	border-left: 1px solid #b6b6b6 !important;
 	border-right: 1px solid #b6b6b6 !important;

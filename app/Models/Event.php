@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\EventSchedule;
+use App\Models\EventScheduleCategory;
 use DB;
 use File;
 use Image;
@@ -84,6 +86,38 @@ class Event extends Model
     
     }
 
+    // public function preview($param, $user_id)
+    // {
+    //     $id = $param['event_id'];
+    //     if($id == ''){
+    //         $this->user_id = $user_id;
+    //         $this->title = $param['title'];
+    //         $this->avaibility = false;
+    //         if($this->save()){
+    //             return $this;
+    //         }else{
+    //             return false;
+    //         }
+    //     }else{
+    //         $data = $this->find($id);
+    //         if (!empty($data)) {
+    //             $data->title = $param['title'];
+    //             $data->avaibility = false;
+    //             if($data->save()){
+    //                 return $data;
+    //             } else {
+    //                 return false;    
+    //             }
+            
+    //         } else {
+
+    //             return false;
+
+    //         }
+    //     }
+
+    // }
+
 
     /**
      * Insert new data venue
@@ -91,22 +125,23 @@ class Event extends Model
      */
     function insertNewEvent($param, $user_id)
     {
+        if($param['event_type'] == 1){
+            $param['event_type'] = true;
+        }else{
+            $param['event_type'] = false;
+        }
         $this->user_id = $user_id;
     	$this->title = $param['title'];
     	$this->description = $param['description'];
         $this->admission = $param['admission'];
-        $this->price_info = $param['schedule_info'];
+        $this->schedule_info = $param['schedule_info'];
+        $this->price_info = $param['price_info'];
         $this->buylink = $param['buylink'];
-        $this->event_type = isset($param['event_type']);
+        $this->event_type = $param['event_type'];
         $this->venue_id = $param['venue_id'];
         $this->background_color = $param['background_color'];
         $this->video_link = $param['video_link'];
         $this->avaibility = true;
-
-        //$pathDest = public_path().'/uploads/events';
-        // if(!File::exists($pathDest)) {
-        //     File::makeDirectory($pathDest, $mode=0777,true,true);
-        // }
 
         if (isset($param['featured_image1'])) {
         	$featured_image1 = $param['featured_image1'];
@@ -129,10 +164,17 @@ class Event extends Model
 	        $this->featured_image3 = $filename3;
         }
 
+        if (isset($param['seat_image'])) {
+            $seat_image = $param['seat_image'];
+            $extensionseat = $seat_image->getClientOriginalExtension();
+            $filenameseat = "imageseat".time().'.'.$extensionseat;
+            $this->seat_image = $filenameseat;
+        }
+
     	if($this->save()){
 	        if (isset($featured_image1)) {
 	    		$img1 = Image::make($featured_image1);
-                $img1->resize(1440, 400);
+                $img1->resize(1440, 444);
                 $img1_tmp = $img1->stream();
                 Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
                     'events/'.$filename1, $img1_tmp->__toString(), 'public'
@@ -157,6 +199,14 @@ class Event extends Model
                 );
 	            //$img3->save($pathDest.'/'.$filename3); 
 	        }
+            if (isset($seat_image)) {
+                $simg = Image::make($seat_image);
+                $simg_tmp = $simg->stream();
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                    'events/'.$filenameseat, $simg_tmp->__toString(), 'public'
+                );
+                //$img3->save($pathDest.'/'.$filename3); 
+            }
             if(isset($param['categories'])){
                 $this->categories()->attach($param['categories']);
             }
@@ -170,7 +220,7 @@ class Event extends Model
     {
         $data = $this->find($id);
         if (!empty($data)) {
-        
+            $this->setImageUrl($data);
             return $data;
         
         } else {
@@ -185,12 +235,18 @@ class Event extends Model
     {
         $data = $this->find($id);
         if (!empty($data)) {
+            if($param['event_type'] == 1){
+                $param['event_type'] = true;
+            }else{
+                $param['event_type'] = false;
+            }
            	$data->title = $param['title'];
 	    	$data->description = $param['description'];
 	        $data->admission = $param['admission'];
-            $data->price_info = $param['schedule_info'];
+            $data->schedule_info = $param['schedule_info'];
+            $data->price_info = $param['price_info'];
 	        $data->buylink = $param['buylink'];
-	        $data->event_type = isset($param['event_type']);
+	        $data->event_type = $param['event_type'];
 	        $data->venue_id = $param['venue_id'];
             $data->background_color = $param['background_color'];
             $data->video_link = $param['video_link'];
@@ -203,8 +259,9 @@ class Event extends Model
             
             if(isset($param['featured_image1'])){
                 $oldImage = $data->featured_image1;
-                file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
-                //File::delete($pathDest.'/'.$oldImage);
+                if(!empty($oldImage)){
+                    file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+                }
                 
                 $featured_image1 = $param['featured_image1'];
                 $extension1 = $featured_image1->getClientOriginalExtension();
@@ -215,8 +272,9 @@ class Event extends Model
 
             if(isset($param['featured_image2'])){
                 $oldImage = $data->featured_image2;
-                //File::delete($pathDest.'/'.$oldImage);
-                file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+                if(!empty($oldImage)){
+                    file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+                }
                 
                 $featured_image2 = $param['featured_image2'];
                 $extension2 = $featured_image2->getClientOriginalExtension();
@@ -227,8 +285,9 @@ class Event extends Model
 
             if(isset($param['featured_image3'])){
                 $oldImage = $data->featured_image3;
-                //File::delete($pathDest.'/'.$oldImage);
-                file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+                if(!empty($oldImage)){
+                    file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+                }
                 
                 $featured_image3 = $param['featured_image3'];
                 $extension3 = $featured_image3->getClientOriginalExtension();
@@ -237,12 +296,25 @@ class Event extends Model
                 $data->featured_image3 = $filename3;
             }
 
+            if(isset($param['seat_image'])){
+                $oldImage = $data->seat_image;
+                if(!empty($data->seat_image)){
+                    file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+                }
+                
+                $seat_image = $param['seat_image'];
+                $extensionseat = $seat_image->getClientOriginalExtension();
+
+                $filenameseat = "imageseat".time().'.'.$extensionseat;
+                $data->seat_image = $filenameseat;
+            }
+
             if($data->save()){
                 if(isset($param['featured_image1'])){
                     $img1 = Image::make($featured_image1);
                     // list($width1, $height1) = getimagesize($featured_image1);
-                    // if($width1 != 1440 && $height1 != 400){
-                        $img1->resize(1440, 400);
+                    // if($width1 != 1440 && $height1 != 444){
+                        $img1->resize(1440, 444);
                     // }
                     $img1_tmp = $img1->stream();
 
@@ -278,6 +350,14 @@ class Event extends Model
                     
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
                         'events/'.$filename3, $img3_tmp->__toString(), 'public'
+                    );
+                }
+
+                if(isset($param['seat_image'])){
+                    $simg = Image::make($seat_image);
+                    $simg_tmp = $simg->stream();
+                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                        'events/'.$filenameseat, $simg_tmp->__toString(), 'public'
                     );
                 }
                 if(isset($param['categories'])){
@@ -403,13 +483,59 @@ class Event extends Model
 
     public function findEventBySlug($slug)
     {
-        $data = Event::where('slug' , '=', $slug)->first();
-        if (!empty($data)) {
-            $data->schedules = $data->EventSchedule()/*->where('status', true)*/->get();
-            $data->category = $data->Categories()->where('status', true)->first();
-            $data->promotions = $data->promotions()->where('avaibility', true)/*->where('status', true)*/->orderBy('start_date')->get();
-        
-            return $data;
+        $event = Event::where('slug' , '=', $slug)->first();
+        if (!empty($event)) {
+            $event->cat = $event->Categories()->where('status', true)->orderBy('name', 'asc')->first();
+            $this->setImageUrl($event);
+            $event->schedules = $event->EventSchedule()->orderBy('date_at', 'asc')->get();
+            $count = count($event->schedules);
+            if(!empty($event->schedules)){
+                $i = 1;
+                foreach ($event->schedules as $key => $value) {
+                    if($count == 1){
+                        $event->schedule_range = full_text_date($value->date_at);
+                    }else{
+                        if($i == 1){
+                            $event->start_range = $value->date_at;
+                        }elseif ($i == $count) {
+                            $event->end_range = $value->date_at;
+                        }
+                        $event->schedule_range = date_from_to($event->start_range, $event->end_range);
+                    }
+                    $i++;
+                }
+            }
+            $near_schedule = EventSchedule::where('event_id', $event->id)
+                ->orderBy(DB::raw('abs(CURRENT_DATE-date_at)'), 'asc')
+                ->orderBy('date_at', 'desc')->first();
+
+            if(!empty($near_schedule)){
+                $event->prices = EventScheduleCategory::select('event_schedule_categories.*', 
+                    'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right')
+                    ->where('event_schedule_id', $near_schedule->id)
+                    ->leftJoin('currencies', 'currencies.id', '=', 'event_schedule_categories.currency_id')
+                    ->orderBy('price', 'desc')->get();
+                $count = count($event->prices);
+                if(!empty($event->prices)){
+                    $i = 1;
+                    foreach ($event->prices as $k => $val) {
+                        if($count == 1){
+                            $event->price_range = $val->symbol_left.number_format_drop_zero_decimals($val->price).$val->symbol_right;
+                        }else{
+                            if($i == 1){
+                                $event->max_range = number_format_drop_zero_decimals($val->price);
+                            }elseif ($i == $count) {
+                                $event->min_range = number_format_drop_zero_decimals($val->price);
+                            }
+                            $event->price_range = $val->symbol_left.$event->max_range.'-'.$event->min_range.$val->symbol_right;
+                        }
+                        $i++;
+                    }
+                }
+            } 
+            $event->venue = $event->Venue;
+            $event->promotions = $event->promotions()->where('avaibility', true)->orderBy('start_date')->get();
+            return $event;
         
         } else {
         
@@ -429,6 +555,10 @@ class Event extends Model
 
         if($event->featured_image3 != ''){
             $event->featured_image3_url = file_url('events/'.$event->featured_image3, env('FILESYSTEM_DEFAULT'));
+        }
+
+        if($event->seat_image != ''){
+            $event->seat_image_url = file_url('events/'.$event->seat_image, env('FILESYSTEM_DEFAULT'));
         }
     }
 

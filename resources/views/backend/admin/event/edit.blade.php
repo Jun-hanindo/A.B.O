@@ -14,9 +14,6 @@
         .input-group[class*=col-]{
             padding: 0 15px;
         }
-        .datepicker.dropdown-menu{
-            z-index: 1100 !important;
-        }
         #date_at, #start_date, #end_date{
             border-radius: 0;
         }
@@ -63,8 +60,13 @@
                             </div>
                             <div class="form-group{{ Form::hasError('schedule_info') }} schedule_info">
                                 {!! Form::label('schedule_info', trans('general.schedule_info').' *') !!}
-                                {!! Form::textarea('schedule_info', $data->price_info, ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.schedule_info')]) !!}
+                                {!! Form::textarea('schedule_info', $data->schedule_info, ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.schedule_info')]) !!}
                                 {!! Form::errorMsg('schedule_info') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('price_info') }} price_info">
+                                {!! Form::label('price_info', trans('general.price_info')) !!}
+                                {!! Form::textarea('price_info', $data->price_info, ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.price_info')]) !!}
+                                {!! Form::errorMsg('price_info') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('schedule_and_price_detail') }} schedule_and_price_detail">
                                 {!! Form::label('schedule_and_price_detail', trans('general.schedule_and_price_detail').' *') !!}
@@ -108,7 +110,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image2') }} featured_image2">
                                 {!! Form::label('featured_image2', trans('general.featured_image2').'(370px x 250px) *') !!}
-                                <input id="featured_image2" name="featured_image2" class="form-control image" data-name="image2" type="file" value="{{$data->featured_image1}}">
+                                <input id="featured_image2" name="featured_image2" class="form-control image" data-name="image2" type="file" value="{{$data->featured_image2}}">
                                 {!! Form::errorMsg('featured_image2') !!}
                                 
                             </div>
@@ -117,7 +119,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image3') }} featured_image3">
                                 {!! Form::label('featured_image3', trans('general.featured_image3').'(150px x 101px) *') !!}
-                                <input id="featured_image3" name="featured_image3" class="form-control image" data-name="image3" type="file" value="{{$data->featured_image1}}">
+                                <input id="featured_image3" name="featured_image3" class="form-control image" data-name="image3" type="file" value="{{$data->featured_image3}}">
                                 {!! Form::errorMsg('featured_image3') !!}
                             </div>
                             <div class="form-group preview" id="div-preview_image3" data-name="image3">
@@ -125,7 +127,19 @@
                             </div>
                             <div class="form-group{{ Form::hasError('event_type') }} event_type">
                                 {!! Form::label('event_type', trans('general.event_type').' *', array('class' => 'full-width')) !!}
-                                <input type="checkbox" name="event_type" class="form-control event_type-check" data-animate="false" data-on-text="General" data-off-color="success" data-off-text="Seated" {{$data['checked']}}>
+                                {!! Form::select('event_type', array('1' => 'General',
+                                        '0' => 'Seated'), $data->event_type, ['class' => 'form-control event_type', 'id' => 'event_type']) !!}
+                                
+                            </div>
+                            <div id="seat_image-div" style="display:{{ ($data->event_type == false) ? 'block' : 'none' }}">
+                                <div class="form-group{{ Form::hasError('seat_image') }} seat_image">
+                                    {!! Form::label('seat_image', trans('general.seat_image').' *') !!}
+                                    <input id="seat_image" name="seat_image" class="form-control image" data-name="seat_image" type="file" value="{{$data->seat_image}}">
+                                    {!! Form::errorMsg('seat_image') !!}
+                                </div>
+                                <div class="form-group preview" id="div-preview_seat_image" data-name="seat_image">
+                                    <img src="{{ (!empty($data->seat_image)) ? file_url('events/'.$data->seat_image, env('FILESYSTEM_DEFAULT')) : '' }}" name="preview" id="preview_seat_image" height="50%" width="50%">
+                                </div>
                             </div>
                             <div class="form-group{{ Form::hasError('venue') }} venue">
                                 {!! Form::label('venue_id', trans('general.venue').' *') !!}
@@ -135,6 +149,7 @@
                             <div class="form-group{{ Form::hasError('buylink') }} buylink">
                                 {!! Form::label('buylink', trans('general.buylink').' *') !!}
                                 {!! Form::text('buylink', $data->buylink, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.buylink')]) !!}
+                                {!! Form::errorMsg('buylink') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('video_link') }} video_link">
                                 {!! Form::label('video_link', trans('general.video_link').' ('.trans('general.embed').')') !!}
@@ -145,20 +160,16 @@
                                 {!! Form::select('categories[]', $data['categories'], $data['selected'], ['class' => 'form-control categories', 'multiple' => 'multiple', 'id' => 'categories']) !!}
                                 {!! Form::errorMsg('categories') !!}
                             </div>
-                            <div class="form-group{{ Form::hasError('category') }} background_color">
-                                {!! Form::label('background_color', trans('general.background_color')) !!}
-                                {!! Form::select('background_color', array('green' => 'Green',
-                                                                'purple' => 'Purple', 
-                                                                'grey' => 'Grey', 
-                                                                'purple2' => 'Dark Purple', 
-                                                                'red' => 'Red'), $data->background_color, ['class' => 'form-control background_color', 'id' => 'background_color']) !!}
+                            <div class="form-group{{ Form::hasError('background_color') }} background_color">
+                                {!! Form::label('background_color', trans('general.background_color').' *') !!}
+                                {!! Form::text('background_color', $data->background_color, ['id' => 'background_color', 'class' => 'form-control colorpicker','maxlength'=>'255', 'placeholder' => trans('general.background_color')]) !!}
                                 {!! Form::errorMsg('background_color') !!}
                             </div>
                             <div class="box-footer">
-                                <a href="{{ route('admin-index-event') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>
+                                <a href="{{ route('admin-index-event') }}" class="btn btn-default">{{ trans('general.button_back') }}</a>
                                 <button type="button" id="button_draft" class="btn btn-warning" title="{{ trans('general.button_draft') }}">{{ trans('general.button_draft') }}</button>
                                 <input class="btn btn-primary pull-right" title="{{ trans('general.button_save') }}" type="submit" value="{{ trans('general.button_publish') }}" id="button_submit">
-                                <a href="{{ URL::to('event/'.$data->slug.'?preview=true') }}" target="_blank" id="button_preview" class="btn btn-success btn-preview" title="{{ trans('general.button_preview') }}">{{ trans('general.button_preview') }}</a>
+                                <a href="{{ route('preview-event') }}" target="_blank" id="button_preview" class="btn btn-success btn-preview" title="{{ trans('general.button_preview') }}">{{ trans('general.button_preview') }}</a>
                             </div>
                         </div>
                         
@@ -179,30 +190,37 @@
                     <form class="form-horizontal" id="form-event-schedule">
                         <input type="hidden" name="id" class="form-control" id="schedule_id">
                         <div class="form-group date_at">
-                            {!! Form::label('date_at', trans('general.date'), array('class' => 'col-sm-3 control-label pull-left')) !!}
+                            {!! Form::label('date_at', trans('general.date').' *', array('class' => 'col-sm-3 control-label pull-left')) !!}
                             <div class="col-sm-4">
                                 <input type="text" name="date_at" class="form-control datepicker" id="date_at" maxlength="255">
                             </div>
                         </div>
                         <div class="form-group time">
-                            {!! Form::label('time', trans('general.time'), array('class' => 'col-sm-3 control-label')) !!}
+                            {!! Form::label('time', trans('general.time').' *', array('class' => 'col-sm-3 control-label')) !!}
                             <div class="col-sm-3">
-                                <input type="text" name="start_time" class="form-control" id="start_time" maxlength="255" placeholder = {{trans('general.start_time')}}>
+                                <input type="text" name="start_time" class="form-control timepicker" id="start_time" maxlength="255" placeholder = {{trans('general.start_time')}}>
                             </div>
                             {!! Form::label('end_time', '-', array('class' => 'col-sm-1 control-label')) !!}
                             <div class="col-sm-3">
-                                <input type="text" name="end_time" class="form-control" id="end_time" maxlength="255" placeholder = {{trans('general.end_time')}}>
+                                <input type="text" name="end_time" class="form-control timepicker" id="end_time" maxlength="255" placeholder = {{trans('general.end_time')}}>
+                            </div>
+                        </div>
+                        <div class="form-group description_schedule">
+                            {!! Form::label('description_schedule', trans('general.description'), array('class' => 'col-sm-3 control-label pull-left')) !!}
+                            <div class="col-sm-9">
+                                <input type="text" name="description_schedule" class="form-control" id="description_schedule" maxlength="255">
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('price_detail') }} price_detail">
-                            {!! Form::label('price_info', trans('general.price_detail'), array('class' => 'col-sm-3 control-label pull-left')) !!}
+                            {!! Form::label('schedule_info', trans('general.price_detail'), array('class' => 'col-sm-3 control-label pull-left')) !!}
                         </div>
                         <table id="event-schedule-category-datatables" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                             <thead>
                                 <tr>
-                                    <th class="center-align"></th>
-                                    <th class="center-align">{{ trans('general.info') }}</th>
-                                    <th>{{ trans('general.price') }}</th>
+                                    <th width="20%" class="center-align"></th>
+                                    <th width="40%" class="center-align">{{ trans('general.price_name') }}</th>
+                                    <th width="20%">{{ trans('general.price') }}</th>
+                                    <th width="15%">{{ trans('general.seat_color') }}</th>
                                 </tr>
                             </thead>
                         </table>
@@ -228,9 +246,9 @@
                     <form class="form-horizontal" id="form-event-category">
                         <input type="hidden" name="id" class="form-control" id="category_id">
                         <div class="form-group">
-                            {!! Form::label('additional_info', trans('general.price_info'), array('class' => 'col-sm-3 control-label pull-left')) !!}
+                            {!! Form::label('additional_info', trans('general.price_name'), array('class' => 'col-sm-3 control-label pull-left')) !!}
                             <div class="col-sm-9">
-                                {!! Form::text('additional_info', old('additional_info'), ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.price_info')]) !!}
+                                {!! Form::text('additional_info', old('additional_info'), ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.price_name')]) !!}
                             </div>
                         </div>
                         <div class="form-group">
@@ -241,10 +259,16 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            {!! Form::label('seat_color', trans('general.seat_color'), array('class' => 'col-sm-3 control-label pull-left')) !!}
+                            <div class="col-sm-4">
+                                {!! Form::text('seat_color', old('seat_color'), ['class' => 'form-control colorpicker', 'rows'=> '5', 'placeholder' => trans('general.seat_color')]) !!}
+                            </div>
+                        </div>
+                        {{-- <div class="form-group">
                             <div class="col-sm-4  col-sm-offset-3">
                                 {!! Form::select('price_cat', array('/person' => '/person'), old('role'), array('class' => 'form-control','data-option' => old('price_cat'))) !!}
                             </div>
-                        </div>
+                        </div> --}}
                     </form>
                 </div>
             <div class="modal-footer">

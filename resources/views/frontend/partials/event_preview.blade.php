@@ -1,11 +1,11 @@
 @extends('layout.frontend.master.master')
 @section('title', $event->title.' - ')
-@section('og_image', $event->featured_image2_url)
+@section('og_image', $event->featured_image2)
 @section('content')
 <section class="eventBanner" id="eventBanner">
     <div class="imageBanner">
-        <img src="{{ $event->featured_image1_url }}" class="hidden-xs">
-        <img src="{{ $event->featured_image2_url }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+        <img src="{{ $event->featured_image1 }}" class="hidden-xs">
+        <img src="{{ $event->featured_image2 }}" class="hidden-lg hidden-md hidden-sm" alt="...">
     </div>
     <div class="infoBanner bg-green" style="background-color:{{ $event->background_color }} !important" id="eventTabShow">
         <div class="container">
@@ -28,7 +28,7 @@
                 <ul class="" role="">
                     <li><a href="#eventBanner" class="smoothScroll backtop">{{ trans('frontend/general.back_to_summary') }}</a></li>
                     <li><a href="#aboutBox" class="smoothScroll active">{{ trans('frontend/general.about_this_event') }}</a></li>
-                    @if(!$event->promotions->isEmpty())
+                    @if(!empty($event->promotions) && !$event->promotions->isEmpty())
                         <li><a href="#promoBox" class="smoothScroll">{{ trans('frontend/general.promotions') }}</a></li>
                     @endif
                     <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue_info') }}</a></li>
@@ -48,7 +48,7 @@
                 <ul class="nav nav-tabs nav-justified" role="tablist">
                     <li><a href="#eventBanner" class="smoothScroll backtop"></a></li>
                     <li><a href="#aboutBox" class="smoothScroll active">{{ trans('frontend/general.about') }}</a></li>
-                    @if(!$event->promotions->isEmpty())
+                    @if(!empty($event->promotions) && !$event->promotions->isEmpty())
                         <li><a href="#promoBox" class="smoothScroll">{{ trans('frontend/general.promotions') }}</a></li>
                     @endif
                     <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue') }}</a></li>
@@ -65,15 +65,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 date">
-                    <div class="information-title">
-                        <i class="fa fa-calendar-o"></i> 
-                        {{ $event->schedule_range }}
-                    </div>
                 @if(!empty($event->schedules))
                     @php 
                         $count = count($event->schedules)
                     @endphp
                     @if($count > 1)
+                        <div class="information-title">
+                            <i class="fa fa-calendar-o"></i> 
+                            {{ date_from_to($event->start_range, $event->end_range) }}
+                        </div>
                         <ul class="list-unstyled">
                             @php 
                                 $i = 1; 
@@ -98,6 +98,10 @@
                             {!! $event->schedule_info !!}
                         </div>
                     @else
+                        <div class="information-title">
+                            <i class="fa fa-calendar-o"></i> 
+                            {{ $event->schedule_range }}
+                        </div>
                         <div class="information-event">
                             @foreach($event->schedules as $sch)
                                 <p>{{ get_day_name($sch->date_at) }}, {{ $sch->start_time }}</p>
@@ -107,6 +111,7 @@
                     @endif
                 @endif
             </div>
+            @if(!empty($event->venue))
             <div class="col-md-4 place">
                 <div class="information-title">
                     <i class="fa fa-map-marker"></i> {{ $event->venue->name }}
@@ -118,10 +123,20 @@
                     </li>
                 </ul>
             </div>
+            @endif
             <div class="col-md-4 ticket" id="ticket">
                 <div class="information-title">
                     <i class="fa fa-ticket"></i> 
-                    {{ !empty($event->prices) ? $event->price_range.trans('frontend/general.per_person'): '' }}
+                    @if(!empty($event->prices))
+                        @php 
+                            $count = count($event->prices)
+                        @endphp
+                        @if($count > 1)
+                            {{ $event->symbol_left.$event->max_range.'-'.$event->min_range.$event->symbol_right.trans('frontend/general.per_person') }}
+                        @else
+                            {{ $event->price_range.trans('frontend/general.per_person') }}
+                        @endif
+                    @endif
                 </div>
                 <ul class="list-unstyled">
                     @if(!empty($event->prices))
@@ -158,7 +173,7 @@
                 <div class="eventTab">
                     <ul class="nav nav-tabs" role="tablist">
                         <li><a href="#aboutBox" class="smoothScroll active">{{ trans('frontend/general.about_this_event') }}</a></li>
-                        @if(!$event->promotions->isEmpty())
+                        @if(!empty($event->promotions) && !$event->promotions->isEmpty())
                             <li><a href="#promoBox" class="smoothScroll">{{ trans('frontend/general.promotions') }}</a></li>
                         @endif
                         <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue_info') }}</a></li>
@@ -170,7 +185,7 @@
                 <div class="eventTab-mobile">
                     <ul class="nav nav-tabs nav-justified" role="tablist">
                         <li><a href="#aboutBox" class="smoothScroll active">{{ trans('frontend/general.about') }}</a></li>
-                        @if(!$event->promotions->isEmpty())
+                        @if(!empty($event->promotions) && !$event->promotions->isEmpty())
                             <li><a href="#promoBox" class="smoothScroll">{{ trans('frontend/general.promotions') }}</a></li>
                         @endif
                         <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue') }}</a></li>
@@ -207,7 +222,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if(!$event->promotions->isEmpty())
+                                @if(!empty($event->promotions) && !$event->promotions->isEmpty())
                                     <div class="promoBox boxBorder" id="promoBox">
                                         <div class="row">
                                             <div class="side-left col-md-3">
@@ -251,6 +266,8 @@
                                         </div>
                                     </div>
                                 @endif
+
+                                @if(!empty($event->venue))
                                 <div class="venueBox {{ (!empty($event->admission)) ? 'boxBorder': '' }}" id="venueBox">
                                     <div class="row">
                                         <div class="side-left col-md-3">
@@ -290,6 +307,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                                 @if(!empty($event->admission))
                                     <div class="admissionBox" id="admissionBox">
                                         <div class="row">
@@ -399,7 +417,7 @@
                     <div class="seat-map-modal">
                         <div class="row">
                             <div class="col-md-7">
-                                <img src="{{ (!empty($event->seat_image)) ? file_url('events/'.$event->seat_image, env('FILESYSTEM_DEFAULT')) : '' }}">
+                                <img src="{{ (!empty($event->seat_image)) ? $event->seat_image : '' }}">
                             </div>
                             <div class="col-md-5">
                                 <div class="seat-map-price">

@@ -13,7 +13,7 @@
         <img src="{{ file_url('events/'.$event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-xs">
         <img src="{{ file_url('events/'.$event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-lg hidden-md hidden-sm" alt="...">
     </div>
-    <div class="infoBanner bg-{{ $event->background_color }}" id="eventTabShow">
+    <div class="infoBanner bg-green" style="background-color:{{ $event->background_color }} !important" id="eventTabShow">
         <div class="container">
             <div class="detail">
                 <h5>{{ (!empty($event->category)) ? strtoupper($event->category->name) : '&nbsp;' }}</h5>
@@ -27,7 +27,7 @@
         </div>
     </div>
 </section>
-<div class="eventTabScroll bg-{{ $event->background_color }}">
+<div class="eventTabScroll bg-green" style="background-color:{{ $event->background_color }} !important">
     <div class="row">
         <div class="col-md-12">
             <div class="container">
@@ -47,7 +47,7 @@
         </div>
     </div>
 </div>
-<div class="eventTabScroll-mobile bg-{{ $event->background_color }}">
+<div class="eventTabScroll-mobile bg-green" style="background-color:{{ $event->background_color }} !important">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -297,7 +297,7 @@
                                     </div>
                                 @endif
                             </div>
-                            <div class="col-md-4">
+                            {{-- <div class="col-md-4">
                                 <div class="formPromo">
                                     <form class="form-group" id="form-subscribe" action="{{URL::route('subscribe-event-store')}}" method="POST">
                                         <label class="labelHead">{{ trans('frontend/general.get_the_latest_news_promotions') }} {{ $event->title }}</label>
@@ -344,7 +344,7 @@
                                     </div>
                                     @foreach ($category_events as $key => $category_event)
                                         <a href="{{ URL::route('event-detail', $category_event->slug) }}">
-                                            <div class="eventList bg-{{ $category_event->background_color }}">
+                                            <div class="eventList bg-green" style="background-color:{{ $category_event->background_color }} !important">
                                                 <div class="row">
                                                     <div class="col-xs-3">
                                                         <img src="{{ file_url('events/'.$category_event->featured_image3, env('FILESYSTEM_DEFAULT')) }}">
@@ -365,7 +365,7 @@
                                     </div>
                                 </div>
                                 @endif
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

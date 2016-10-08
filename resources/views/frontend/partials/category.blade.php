@@ -31,7 +31,7 @@
                     <a href="{{ URL::route('event-detail', $event->slug) }}">
                         <div class="col-md-4 box-release">
                             <img src="{{ file_url('events/'.$event->featured_image2, env('FILESYSTEM_DEFAULT')) }}">
-                            <div class="boxInfo bg-{{ $event->background_color }}">
+                            <div class="boxInfo bg-green" style="background-color:{{ $event->background_color }} !important">
                                 <ul>
                                     <li class="eventType">{{ $event->cat_name }}</li>
                                     <li class="eventName">{{ $event->title }}</li>

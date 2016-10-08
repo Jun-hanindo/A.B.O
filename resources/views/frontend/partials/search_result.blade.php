@@ -118,7 +118,7 @@
                             <table>
                                 @if(!empty($events))
                                     @foreach($events as $key => $event) 
-                                        <tr class="bg-{{ $event->background_color }} tr-search">
+                                        <tr class="tr-search bg-green" style="background-color:{{ $event->background_color }} !important">
                                             <td class="searchpic"><a href="{{ URL::route('event-detail', $event->slug) }}"><img src="{{ file_url('events/'.$event->featured_image3, env('FILESYSTEM_DEFAULT')) }}"></a></td>
                                             <td class="jobs"><a href="{{ URL::route('event-detail', $event->slug) }}">{{ $event->title }}</a></td>
                                             <td class="date"><a href="{{ URL::route('event-detail', $event->slug) }}">{{ $event->date_set }}</a></td>
@@ -246,7 +246,7 @@
                             <div class="col-md-12">
                                 <a href="{{ URL::route('event-detail', $event->slug) }}" class="mobile-jobs-a">
                                     <div class="mobile-job-list">
-                                        <div class="mobile-search-head bg-{{ $event->background_color }}">
+                                        <div class="mobile-search-head bg-green" style="background-color:{{ $event->background_color }} !important">
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <img src="{{ file_url('events/'.$event->featured_image3, env('FILESYSTEM_DEFAULT')) }}">
