@@ -1,4 +1,4 @@
-@extends('layout.frontend.master.master')
+@extends('layout.frontend.master.master_static')
 @section('title', '')
 @section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
@@ -27,9 +27,8 @@
                                     <h2 class="titleSlide font-light">{{ $slider->event->title }}</h2>
                                     <ul>
                                         <li><div class="eventDate">
-                                            @if(!empty($slider->schedule))
-                                                <i class="fa fa-calendar-o"></i>{{ full_text_date($slider->schedule->date_at) }}
-                                            @endif</div>
+                                                <i class="fa fa-calendar-o"></i>{{ $slider->schedule_range }}
+                                            </div>
                                         </li>
                                         <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->venue->name }}</div></li>
                                     </ul>
@@ -71,9 +70,7 @@
                                     <li class="eventType">{{ strtoupper($event->cat_name) }}</li>
                                     <li class="eventName">{{ string_limit($event->event->title) }}</li>
                                     <li class="eventDate"><i class="fa fa-calendar-o"></i> 
-                                        @if(!empty($event->schedule))
-                                            {{ full_text_date($event->schedule->date_at) }}
-                                        @endif
+                                        {{ $event->schedule_range }}
                                     </li>
                                     <li class="eventPlace"><i class="fa fa-map-marker"></i>{{ $event->venue->name }}</li>
                                 </ul>

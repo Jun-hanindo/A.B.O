@@ -1,4 +1,4 @@
-@extends('layout.frontend.master.master')
+@extends('layout.frontend.master.master_static')
 @section('title', $event->title.' - ')
 @section('og_image', $event->featured_image2_url)
 @section('content')

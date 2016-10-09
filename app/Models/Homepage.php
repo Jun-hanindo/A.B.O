@@ -210,7 +210,25 @@ class Homepage extends Model
                     $homepage->cat = $homepage->Event->Categories()->where('status', true)->orderBy('name', 'asc')->first();
                     if(!empty($homepage->cat)){
                         $homepage->cat_name = strtoupper($homepage->cat->name);
-                        $homepage->schedule = $homepage->Event->EventSchedule()->orderBy('date_at', 'asc')->first();
+                        //$homepage->schedule = $homepage->Event->EventSchedule()->orderBy('date_at', 'asc')->first();
+                        $homepage->schedules = $homepage->Event->EventSchedule()->orderBy('date_at', 'asc')->get();
+                        $count = count($homepage->schedules);
+                        if(!empty($homepage->schedules)){
+                            $i = 1;
+                            foreach ($homepage->schedules as $key => $value) {
+                                if($count == 1){
+                                    $homepage->schedule_range = full_text_date($value->date_at);
+                                }else{
+                                    if($i == 1){
+                                        $homepage->start_range = $value->date_at;
+                                    }elseif ($i == $count) {
+                                        $homepage->end_range = $value->date_at;
+                                    }
+                                    $homepage->schedule_range = date_from_to($homepage->start_range, $homepage->end_range);
+                                }
+                                $i++;
+                            }
+                        }
                         $homepage->venue = $homepage->Event->Venue;
                         $homepage->promo = $homepage->Event->promotions()->where('avaibility', true)->where(DB::raw('CURRENT_DATE-end_date'), '<', 0)->orderBy(DB::raw('CURRENT_DATE-end_date'), 'desc')->first();
                         if(!empty($homepage->promo)){

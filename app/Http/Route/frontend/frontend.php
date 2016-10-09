@@ -48,6 +48,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('jessica-jung-singapore', array('as' => 'jessica-jung-singapore', 'uses' => 'HomeController@jessicaJungSingapore'));
     Route::get('jessica-jung-hochiminh', array('as' => 'jessica-jung-hochiminh', 'uses' => 'HomeController@jessicaJungHochiminh'));
     Route::get('jessica-jung-manila', array('as' => 'jessica-jung-manila', 'uses' => 'HomeController@jessicaJungManila'));
+    
     Route::get('support', array('as' => 'support', 'uses' => 'HomeController@supportStatic'));
     Route::get('faq', array('as' => 'faq', 'uses' => 'HomeController@supportFaqStatic'));
     Route::get('faq/{category}', array('as' => 'faq-category', 'uses' => 'HomeController@supportFaqCategoryStatic'));

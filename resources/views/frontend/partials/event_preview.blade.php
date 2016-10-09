@@ -100,7 +100,7 @@
                     @else
                         <div class="information-title">
                             <i class="fa fa-calendar-o"></i> 
-                            {{ $event->schedule_range }}
+                            {{ !empty($event->schedule_range) ? $event->schedule_range : '' }}
                         </div>
                         <div class="information-event">
                             @foreach($event->schedules as $sch)

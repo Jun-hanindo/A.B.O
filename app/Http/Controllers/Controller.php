@@ -61,9 +61,15 @@ class Controller extends BaseController
         \App::setLocale($lang);
         $setting['language_long'] = \Config::get('app.locales')[$lang];
         //dd($setting['language_long']);
+        
+        if(!\Request::is('preview') && !\Request::is('getpost')){
+            \Session::forget('preview_event');
+        }
 
         \View::share ('user_login',$currentUserLogin);
         \View::share ('setting',$setting);
+
+
 
     }
 
