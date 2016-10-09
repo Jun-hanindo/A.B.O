@@ -67,10 +67,8 @@ class EventsController extends Controller
     {
 
         try{
-            \Session::forget('preview_event');
+            //\Session::forget('preview_event');
             $param = $req->all();
-            \Session::put('preview_event', $param);
-            \Session::save();
             if (isset($param['featured_image1'])) {
                 $featured_image1 = $param['featured_image1'];
                 $extension1 = $featured_image1->getClientOriginalExtension();
@@ -110,7 +108,9 @@ class EventsController extends Controller
                 $simg_tmp =  (string) $simg->encode('data-url');
                 $param['seat_image'] = $simg_tmp;
             }
-            return $this->preview();
+            \Session::put('preview_event', $param);
+            \Session::save();
+            /*return */$this->preview();
         
         } catch (\Exception $e) {
 
