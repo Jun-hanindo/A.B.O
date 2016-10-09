@@ -920,21 +920,20 @@
                     fd.append(input.name,input.value);
                 });
                 modal_loader();
+                var newwindow = window.open('', '_blank');
                 $.ajax({
                     url: "{{ route('getpost-event') }}",
                     type: "POST",
                     dataType: 'json',
                     processData: false,
                     contentType: false,
-                    async: false,
                     data: fd,
                     success: function (data) {
                         HoldOn.close();
                         $("#button_preview").attr('target', '_blank');
                         var url = "{{ route('preview-event') }}";
-                        //window.location= url
-                        window.open(url);
-                        return false;
+                        newwindow.location= url;
+                        //return false;
                     },
                     error: function(response){
                         $('.error').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
