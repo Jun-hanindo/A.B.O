@@ -1,7 +1,7 @@
 @extends('layout.frontend.master.master_static')
 @section('title', 'Jessica Jung Manila Fan Meeting - ')
 @section('og_image', asset('assets/frontend/images/jessica-jung-manila-share.jpg'))
-@section('google_tag_manager')
+{{-- @section('google_tag_manager')
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -15,7 +15,7 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQKFR7"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-@stop
+@stop --}}
 @section('content')
 <section class="eventBanner" id="eventBanner">
     <div class="imageBanner">

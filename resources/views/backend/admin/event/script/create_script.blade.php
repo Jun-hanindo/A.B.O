@@ -900,7 +900,7 @@
                 var fd = new FormData();
                 var silde_i = $('#featured_image1').prop('files')[0];
                 var thumb_i = $('#featured_image2').prop('files')[0];
-                var side_i = $('#featured_image3').prop('files')[0];
+                //var side_i = $('#featured_image3').prop('files')[0];
                 var seat_i = $('#seat_image').prop('files')[0];
                 if(silde_i != undefined){
                     fd.append('featured_image1',silde_i);
@@ -908,9 +908,9 @@
                 if(thumb_i != undefined){
                     fd.append('featured_image2',thumb_i);
                 }
-                if(side_i != undefined){
-                    fd.append('featured_image3',side_i);
-                }
+                // if(side_i != undefined){
+                //     fd.append('featured_image3',side_i);
+                // }
                 if(seat_i != undefined){
                     fd.append('seat_image',seat_i);
                 }
@@ -919,19 +919,25 @@
                 $.each(other_data,function(key,input){
                     fd.append(input.name,input.value);
                 });
-
+                modal_loader();
                 $.ajax({
                     url: "{{ route('getpost-event') }}",
                     type: "POST",
                     dataType: 'json',
                     processData: false,
                     contentType: false,
+                    async: false,
                     data: fd,
                     success: function (data) {
-                        
+                        HoldOn.close();
+                        $("#button_preview").attr('target', '_blank');
+                        var url = "{{ route('preview-event') }}";
+                        //window.location= url
+                        window.open(url);
+                        return false;
                     },
                     error: function(response){
-                        
+                        $('.error').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                     }
                 });
             });   

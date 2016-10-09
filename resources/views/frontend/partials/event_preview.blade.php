@@ -1,6 +1,5 @@
 @extends('layout.frontend.master.master')
 @section('title', $event->title.' - ')
-@section('og_image', $event->featured_image2)
 @section('content')
 <section class="eventBanner" id="eventBanner">
     <div class="imageBanner">

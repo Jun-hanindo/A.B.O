@@ -71,8 +71,8 @@ class EventsController extends Controller
             $param = $req->all();
             if (isset($param['featured_image1'])) {
                 $featured_image1 = $param['featured_image1'];
-                $extension1 = $featured_image1->getClientOriginalExtension();
-                $filename1 = "image1".time().'.'.$extension1;
+                //$extension1 = $featured_image1->getClientOriginalExtension();
+                //$filename1 = "image1".time().'.'.$extension1;
                 $img1 = \Image::make($featured_image1);
                 $img1->resize(1440, 444);
                 $img1_type = $img1->mime();
@@ -81,28 +81,28 @@ class EventsController extends Controller
             }
             if (isset($param['featured_image2'])) {
                 $featured_image2 = $param['featured_image2'];
-                $extension2 = $featured_image2->getClientOriginalExtension();
-                $filename2 = "image2".time().'.'.$extension2;
+                //$extension2 = $featured_image2->getClientOriginalExtension();
+                //$filename2 = "image2".time().'.'.$extension2;
                 $img2 = \Image::make($featured_image2);
                 $img2->resize(370, 250);
                 $img2_type = $img2->mime();
                 $img2_tmp =  (string) $img2->encode('data-url');
                 $param['featured_image2'] =  $img2_tmp;
             }
-            if (isset($param['featured_image3'])) {
-                $featured_image3 = $param['featured_image3'];
-                $extension3 = $featured_image3->getClientOriginalExtension();
-                $filename3 = "image3".time().'.'.$extension3;
-                $img3 = \Image::make($featured_image3);
-                $img3->resize(150, 101);
-                $img3_type = $img3->mime();
-                $img3_tmp =  (string) $img3->encode('data-url');
-                $param['featured_image3'] = $img3_tmp;
-            }
+            // if (isset($param['featured_image3'])) {
+            //     $featured_image3 = $param['featured_image3'];
+            //     //$extension3 = $featured_image3->getClientOriginalExtension();
+            //     //$filename3 = "image3".time().'.'.$extension3;
+            //     $img3 = \Image::make($featured_image3);
+            //     $img3->resize(150, 101);
+            //     $img3_type = $img3->mime();
+            //     $img3_tmp =  (string) $img3->encode('data-url');
+            //     $param['featured_image3'] = $img3_tmp;
+            // }
             if (isset($param['seat_image'])) {
                 $seat_image = $param['seat_image'];
-                $extensionseat = $seat_image->getClientOriginalExtension();
-                $filenameseat = "imageseat".time().'.'.$extensionseat;
+                //$extensionseat = $seat_image->getClientOriginalExtension();
+                //$filenameseat = "imageseat".time().'.'.$extensionseat;
                 $simg = \Image::make($seat_image);
                 $simg_type = $simg->mime();
                 $simg_tmp =  (string) $simg->encode('data-url');
@@ -110,7 +110,12 @@ class EventsController extends Controller
             }
             \Session::put('preview_event', $param);
             \Session::save();
-            /*return */$this->preview();
+            // $this->preview();
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'success',
+            ],200);
         
         } catch (\Exception $e) {
 
@@ -119,7 +124,11 @@ class EventsController extends Controller
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            return view('errors.404');
+            return response()->json([
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'error',
+            ],200);
         
         }
     }
@@ -205,12 +214,12 @@ class EventsController extends Controller
                     $event->featured_image2 = $ev->featured_image2_url;
                 }
             }
-            if(!isset($event->featured_image3)){
-                if(!empty($event->event_id)){
-                    $ev = $this->model->findEventByID($event->event_id);
-                    $event->featured_image3 = $ev->featured_image3_url;
-                }
-            }
+            // if(!isset($event->featured_image3)){
+            //     if(!empty($event->event_id)){
+            //         $ev = $this->model->findEventByID($event->event_id);
+            //         $event->featured_image3 = $ev->featured_image3_url;
+            //     }
+            // }
             if(!isset($event->seat_image)){
                 if(!empty($event->event_id)){
                     $ev = $this->model->findEventByID($event->event_id);
