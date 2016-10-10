@@ -131,7 +131,7 @@
                             $count = count($event->prices)
                         @endphp
                         @if($count > 1)
-                            {{ $event->symbol_left.$event->max_range.'-'.$event->min_range.$event->symbol_right.trans('frontend/general.per_person') }}
+                            {{ $event->symbol_left.$event->min_range.'-'.$event->max_range.$event->symbol_right.trans('frontend/general.per_person') }}
                         @else
                             {{ $event->price_range.trans('frontend/general.per_person') }}
                         @endif

@@ -527,7 +527,7 @@ class Event extends Model
                             }elseif ($i == $count) {
                                 $event->min_range = number_format_drop_zero_decimals($val->price);
                             }
-                            $event->price_range = $val->symbol_left.$event->max_range.'-'.$event->min_range.$val->symbol_right;
+                            $event->price_range = $val->symbol_left.$event->min_range.'-'.$event->max_range.$val->symbol_right;
                         }
                         $i++;
                     }
