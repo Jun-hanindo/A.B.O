@@ -30,4 +30,6 @@ CKEDITOR.editorConfig = function( config ) {
     CKEDITOR.dtd.$removeEmpty.label = 0;
     CKEDITOR.config.forcePasteAsPlainText = false; // default so content won't be manipulated on load
     CKEDITOR.config.basicEntities = true;
+    config.pasteFromWordRemoveFontStyles = true;
+    config.pasteFromWordRemoveStyles = true;
 };

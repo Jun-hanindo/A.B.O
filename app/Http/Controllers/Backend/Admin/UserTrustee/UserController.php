@@ -198,7 +198,7 @@ class UserController extends BaseController
             $data['form']['url'] = action('Backend\Admin\UserTrustee\UserController@update', $id);
             $data['form']['method'] = 'PUT';
             $data['user'] = User::findOrFail($id);
-            $data['user']['role'] = $data['user']->roles[0]->id;
+            $data['user']['role'] = (!$data['user']->roles->isEmpty()) ? $data['user']->roles[0]->id : '';
             //$data['user']['branch'] = $data['user']->branch_id;
         }
 

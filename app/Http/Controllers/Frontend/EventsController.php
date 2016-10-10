@@ -59,7 +59,7 @@ class EventsController extends Controller
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            return view('errors.404');
+            //return view('errors.404');
         
         }
     }

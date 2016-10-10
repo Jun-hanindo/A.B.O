@@ -11,7 +11,7 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('role_users')->truncate();
+        //DB::table('role_users')->truncate();
         DB::table('roles')->truncate();
 
         Sentinel::getRoleRepository()->createModel()->create([
@@ -38,8 +38,8 @@ class RolesTableSeeder extends Seeder
         ]);
 
         Sentinel::getRoleRepository()->createModel()->create([
-            'slug' => 'sales-admin',
-            'name' => 'Sales Administrator',
+            'slug' => 'promotor',
+            'name' => 'Promotor',
             'permissions' => [],
         ]);
 
