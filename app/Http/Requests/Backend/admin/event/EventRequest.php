@@ -30,10 +30,10 @@ class EventRequest extends Request
             $rules =  [
                 'title'             => 'required',
                 'description'       => 'required',
-                'schedule_info'        => 'required',
-                'featured_image1'   => 'mimes:jpg,jpeg,png,gif',
-                'featured_image2'   => 'mimes:jpg,jpeg,png,gif',
-                'featured_image3'   => 'mimes:jpg,jpeg,png,gif',
+                'schedule_info'     => 'required',
+                'featured_image1'   => 'mimes:jpg,jpeg|dimensions:width=2880,height=1000',
+                'featured_image2'   => 'mimes:jpg,jpeg|dimensions:width=1125,height=762',
+                'featured_image3'   => 'mimes:jpg,jpeg|dimensions:width=300,height=200',
                 'buylink'           => 'required|url',
                 'venue_id'          => 'required',
                 'schedule_and_price_detail' => 'required',
@@ -53,7 +53,7 @@ class EventRequest extends Request
                 $rules['featured_image3'] = 'required';
             }
 
-            if ($event->$req['event_type'] == 0){
+            if ($req['event_type'] == 0){
                 $rules['seat_image'] = 'required';
             }
 
@@ -65,15 +65,17 @@ class EventRequest extends Request
                 'title'             => 'required',
                 'description'       => 'required',
                 'schedule_info'        => 'required',
-                'featured_image1'   => 'required|mimes:jpg,jpeg,png,gif',
-                'featured_image2'   => 'required|mimes:jpg,jpeg,png,gif',
-                'featured_image3'   => 'required|mimes:jpg,jpeg,png,gif',
+                'featured_image1'   => 'required|mimes:jpg|dimensions:width=2880,height=1000',
+                'featured_image2'   => 'required|mimes:jpg|dimensions:width=1125,height=762',
+                'featured_image3'   => 'required|mimes:jpg|dimensions:width=300,height=200',
                 'buylink'           => 'required|url',
                 'venue_id'          => 'required',
                 'schedule_and_price_detail' => 'required',
                 'categories'        => 'required',
                 'background_color'  => 'required',
             ];
+
+            dd($req['event_type']);
 
             if ($req['event_type'] == 0){
                 $rules['seat_image'] = 'required';

@@ -74,3 +74,6 @@ iframe[name="google_conversion_frame"]{
   padding-bottom: 50px;
   text-align: center;
 }
+.place p span {
+line-height: 160% !important;
+}

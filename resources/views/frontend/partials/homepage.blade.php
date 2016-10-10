@@ -79,6 +79,11 @@
                     </a>
                 @endforeach
             </div>
+            <div class="loadMore">
+                <a href="{{ URL::route('discover')}}">
+                  <button class="btn btnLoad font-bold">{{ trans('frontend/general.discover_more_events') }}</button>
+                </a>
+            </div>
         </div>
     </section>
     @endif
