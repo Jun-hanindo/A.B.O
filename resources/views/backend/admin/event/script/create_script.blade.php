@@ -921,7 +921,7 @@
                     fd.append(input.name,input.value);
                 });
                 modal_loader();
-                var newwindow = window.open('', '_blank');
+                //var newwindow = window.open('', '_blank');
                 $.ajax({
                     url: "{{ route('getpost-event') }}",
                     type: "POST",
@@ -929,11 +929,12 @@
                     processData: false,
                     contentType: false,
                     data: fd,
+                    async: false,
                     success: function (data) {
                         HoldOn.close();
+                        var url = '{{ route('preview-event') }}';
                         //$("#button_preview").attr('target', '_blank');
-                        var url = "{{ route('preview-event') }}";
-                        newwindow.location= url;
+                        newTab(url);
                         //return false;
                     },
                     error: function(response){
@@ -941,6 +942,10 @@
                     }
                 });
             });   
+
+            function newTab(url){
+                window.open(url, '_blank');
+            }
 
             $(".datepicker").datepicker( {
                 format: "yyyy-mm-dd",
