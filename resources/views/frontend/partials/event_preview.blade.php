@@ -292,7 +292,7 @@
                                                                 {!! $event->venue->mrtdirection !!}
                                                             </li>
                                                             <li class="taxi">
-                                                                <h3 class="font-bold">{{ trans('frontend/general.by_taxi_uber') }}</h3>
+                                                                <h3 class="font-bold">{{ trans('frontend/general.by_taxi') }}</h3>
                                                                 {!! $event->venue->taxidirection !!}
                                                             </li>
                                                             <li class="car">

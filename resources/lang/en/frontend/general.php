@@ -69,6 +69,7 @@ return [
     'getting_to_the_venue' => 'Getting to the Venue',
     'by_mrt' => 'By MRT',
     'by_taxi_uber' => 'By Taxi / UBER Drop Off',
+    'by_taxi' => 'By Taxi',
     'by_car' => 'By Car',
     'get_the_latest_news_promotions' => 'Get the Latest News or Promotions for',
     'first_name' => 'First Name',
