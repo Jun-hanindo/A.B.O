@@ -510,6 +510,7 @@
                     $("#additional_info").val(data.additional_info);
                     $("#price").val(data.price);
                     $("#price_cat").val(data.time_period);
+                    $("#seat_color").val(data.seat_color);
                     var def = $("#form-event-category #currency_id").attr('data-default');
                     if(!data.currency_id){
                         $("#form-event-category #currency_id").val(def);
