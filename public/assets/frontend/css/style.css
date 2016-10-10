@@ -3814,6 +3814,8 @@ ul#getvenue li:before {
 
 .mapEvent iframe{
    pointer-events: none;
+   width: 100%;
+  height: 300px;
 }
 
 #footer3 p a{
