@@ -89,7 +89,7 @@ class EventsController extends Controller
                 $extension1 = $featured_image1->getClientOriginalExtension();
                 $filename1 = "image1".time().'.'.$extension1;
                 $img1 = \Image::make($featured_image1);
-                $img1->resize(1440, 444);
+                //$img1->resize(1440, 444);
                 // $img1_tmp = (string) $img1->encode('data-url');
                 $img1->save($pathDest.'/'.$filename1);
                 $param['featured_image1'] = $filename1;
@@ -99,7 +99,7 @@ class EventsController extends Controller
                 $extension2 = $featured_image2->getClientOriginalExtension();
                 $filename2 = "image2".time().'.'.$extension2;
                 $img2 = \Image::make($featured_image2);
-                $img2->resize(370, 250);
+                //$img2->resize(370, 250);
                 // $img2_tmp =  (string) $img2->encode('data-url');
                 $img2->save($pathDest.'/'.$filename2);
                 $param['featured_image2'] =  $filename2;

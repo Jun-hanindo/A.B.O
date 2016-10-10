@@ -402,9 +402,9 @@
   .box-release{
     display: block;
   }
-  .place p{
+  /*.place p{
     margin-left: 30px;
-  }
+  }*/
   .mobile-logo img,
   .logo-footer img{
     width: 87px;
