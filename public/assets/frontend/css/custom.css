@@ -64,3 +64,13 @@ iframe[name="google_conversion_frame"]{
   margin: 0;
   float: left;
 }
+.box-release {
+  display: inline-block;
+  float: none;
+  box-sizing: border-box;
+  text-align: left;
+}
+.newRelease{
+  padding-bottom: 50px;
+  text-align: center;
+}

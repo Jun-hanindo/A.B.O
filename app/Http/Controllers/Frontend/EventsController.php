@@ -17,6 +17,7 @@ use App\Models\Trail;
 use App\Models\Subscription;
 use App\Http\Requests\Frontend\SubscribeRequest;
 use Mail;
+use File;
 
 class EventsController extends Controller
 {
@@ -67,47 +68,52 @@ class EventsController extends Controller
     {
 
         try{
-            //\Session::forget('preview_event');
+            $pathDest = public_path().'/uploads/temp';
+            $temp = \Session::get('preview_event');
+            if (isset($temp['featured_image1'])) {
+                File::delete($pathDest.'/'.$temp['featured_image1']);
+            }
+            if (isset($temp['featured_image2'])) {
+                File::delete($pathDest.'/'.$temp['featured_image2']);
+            }
+            if (isset($temp['seat_image'])) {
+                File::delete($pathDest.'/'.$temp['seat_image']);
+            }
+            \Session::forget('preview_event');
             $param = $req->all();
+            if(!File::exists($pathDest)) {
+                File::makeDirectory($pathDest, $mode=0777,true,true);
+            }
             if (isset($param['featured_image1'])) {
                 $featured_image1 = $param['featured_image1'];
-                //$extension1 = $featured_image1->getClientOriginalExtension();
-                //$filename1 = "image1".time().'.'.$extension1;
+                $extension1 = $featured_image1->getClientOriginalExtension();
+                $filename1 = "image1".time().'.'.$extension1;
                 $img1 = \Image::make($featured_image1);
                 $img1->resize(1440, 444);
-                $img1_type = $img1->mime();
-                $img1_tmp = (string) $img1->encode('data-url');
-                $param['featured_image1'] = $img1_tmp;
+                // $img1_tmp = (string) $img1->encode('data-url');
+                $img1->save($pathDest.'/'.$filename1);
+                $param['featured_image1'] = $filename1;
             }
             if (isset($param['featured_image2'])) {
                 $featured_image2 = $param['featured_image2'];
-                //$extension2 = $featured_image2->getClientOriginalExtension();
-                //$filename2 = "image2".time().'.'.$extension2;
+                $extension2 = $featured_image2->getClientOriginalExtension();
+                $filename2 = "image2".time().'.'.$extension2;
                 $img2 = \Image::make($featured_image2);
                 $img2->resize(370, 250);
-                $img2_type = $img2->mime();
-                $img2_tmp =  (string) $img2->encode('data-url');
-                $param['featured_image2'] =  $img2_tmp;
+                // $img2_tmp =  (string) $img2->encode('data-url');
+                $img2->save($pathDest.'/'.$filename2);
+                $param['featured_image2'] =  $filename2;
             }
-            // if (isset($param['featured_image3'])) {
-            //     $featured_image3 = $param['featured_image3'];
-            //     //$extension3 = $featured_image3->getClientOriginalExtension();
-            //     //$filename3 = "image3".time().'.'.$extension3;
-            //     $img3 = \Image::make($featured_image3);
-            //     $img3->resize(150, 101);
-            //     $img3_type = $img3->mime();
-            //     $img3_tmp =  (string) $img3->encode('data-url');
-            //     $param['featured_image3'] = $img3_tmp;
-            // }
             if (isset($param['seat_image'])) {
                 $seat_image = $param['seat_image'];
-                //$extensionseat = $seat_image->getClientOriginalExtension();
-                //$filenameseat = "imageseat".time().'.'.$extensionseat;
+                $extensionseat = $seat_image->getClientOriginalExtension();
+                $filenameseat = "imageseat".time().'.'.$extensionseat;
                 $simg = \Image::make($seat_image);
-                $simg_type = $simg->mime();
-                $simg_tmp =  (string) $simg->encode('data-url');
-                $param['seat_image'] = $simg_tmp;
+                // $simg_tmp =  (string) $simg->encode('data-url');
+                $simg->save($pathDest.'/'.$filenameseat);
+                $param['seat_image'] = $filenameseat;
             }
+
             \Session::put('preview_event', $param);
             \Session::save();
             // $this->preview();
@@ -207,12 +213,16 @@ class EventsController extends Controller
                     $ev = $this->model->findEventByID($event->event_id);
                     $event->featured_image1 = $ev->featured_image1_url;
                 }
+            }else{
+                $event->featured_image1 = url('uploads/temp').'/'.$event->featured_image1;
             }
             if(!isset($event->featured_image2)){
                 if(!empty($event->event_id)){
                     $ev = $this->model->findEventByID($event->event_id);
                     $event->featured_image2 = $ev->featured_image2_url;
                 }
+            }else{
+                $event->featured_image2 = url('uploads/temp/').'/'.$event->featured_image2;
             }
             // if(!isset($event->featured_image3)){
             //     if(!empty($event->event_id)){
@@ -225,6 +235,8 @@ class EventsController extends Controller
                     $ev = $this->model->findEventByID($event->event_id);
                     $event->seat_image = $ev->seat_image_url;
                 }
+            }else{
+                $event->seat_image = url('uploads/temp/').'/'.$event->seat_image;
             }
             $data['event'] = $event;
             return view('frontend.partials.event_preview', $data);

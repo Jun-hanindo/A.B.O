@@ -62,9 +62,20 @@ class Controller extends BaseController
         $setting['language_long'] = \Config::get('app.locales')[$lang];
         //dd($setting['language_long']);
         
-        if(!\Request::is('preview') && !\Request::is('getpost')){
-            \Session::forget('preview_event');
-        }
+        // if(!\Request::is('preview') && !\Request::is('getpost')){
+        //     $pathDest = public_path().'/uploads/temp';
+        //     $temp = \Session::get('preview_event');
+        //     if (isset($temp['featured_image1'])) {
+        //         \File::delete($pathDest.'/'.$temp['featured_image1']);
+        //     }
+        //     if (isset($temp['featured_image2'])) {
+        //         \File::delete($pathDest.'/'.$temp['featured_image2']);
+        //     }
+        //     if (isset($temp['seat_image'])) {
+        //         \File::delete($pathDest.'/'.$temp['seat_image']);
+        //     }
+        //     \Session::forget('preview_event');
+        // }
 
         \View::share ('user_login',$currentUserLogin);
         \View::share ('setting',$setting);

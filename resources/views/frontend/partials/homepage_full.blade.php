@@ -19,7 +19,7 @@
                         <div class="item {{ $key == 0 ? 'active' : ' '}}">
                             <a href="{{ URL::route('event-detail', $slider->event->slug) }}">
                                 <img src="{{ file_url('events/'.$slider->event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-xs" alt="...">
-                                <img src="{{ file_url('events/'.$slider->event->featured_image2, env('FILESYSTEM_DEFAULT')) }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+                                <img src="{{ file_url('events/'.$slider->event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-lg hidden-md hidden-sm" alt="...">
                             </a>
                             <div class="carousel-caption bg-green" style="background-color:{{ $slider->event->background_color }} !important">
                                 <div class="container">
@@ -63,7 +63,7 @@
             <div class="row">
                 @foreach($events as $key => $event)  
                     <a href="{{ URL::route('event-detail', $event->event->slug) }}">
-                        <div class="col-md-6 box-release">
+                        <div class="col-md-4 box-release">
                             <img src="{{ file_url('events/'.$event->event->featured_image2, env('FILESYSTEM_DEFAULT')) }}">
                             <div class="boxInfo box-info1 bg-green" style="background-color:{{ $event->event->background_color }} !important">
                                 <ul>      

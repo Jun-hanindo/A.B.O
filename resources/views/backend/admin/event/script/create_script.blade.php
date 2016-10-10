@@ -930,7 +930,7 @@
                     data: fd,
                     success: function (data) {
                         HoldOn.close();
-                        $("#button_preview").attr('target', '_blank');
+                        //$("#button_preview").attr('target', '_blank');
                         var url = "{{ route('preview-event') }}";
                         newwindow.location= url;
                         //return false;

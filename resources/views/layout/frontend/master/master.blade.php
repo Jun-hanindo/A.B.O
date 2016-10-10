@@ -10,7 +10,7 @@
         <meta property="og:image:height" content="630">
         <meta property="og:description" content="&nbsp;" />
         <!-- Purpleclick head -->
-        {!! $setting['purpleclick_head'] !!}
+        {!! (isset($setting['purpleclick_head'])) ? $setting['purpleclick_head'] : '' !!}
         <!-- End Purpleclick head -->
 
           <!-- Bootstrap -->
@@ -26,12 +26,12 @@
         <link rel="shortcut icon" href="{{ asset('assets/frontend/images/favico.ico') }}">
         {!! Html::script('assets/frontend/js/modernizr.js') !!}
         <!-- Google Analytic Production AWS -->
-        {!! $setting['google_analytics'] !!}
+        {!! (isset($setting['google_analytics'])) ? $setting['google_analytics'] : '' !!}
         <!-- End Google Analytic Production AWS -->
    </head>
    <body>
         <!-- Purpleclick body -->
-        {!! $setting['purpleclick_body'] !!}
+        {!! (isset($setting['purpleclick_body'])) ? $setting['purpleclick_body'] : '' !!}
         <!-- End Purpleclick body -->
         @if(!Request::is('subscribe'))
             <div class="page-wrapper">
