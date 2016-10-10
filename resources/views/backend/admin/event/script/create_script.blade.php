@@ -891,10 +891,7 @@
                 autoSaveUpdateEvent(cat);
             }); 
 
-            $('#button_preview').on('click',function(){
-                // var cat = 'preview';
-                // autoSaveUpdateEvent(cat);
-
+            $('#form-event').on("click", "#button_preview", function (e) {
                 $(".tooltip-field").remove();
                 $(".form-group").removeClass('has-error');
                 $(".text-danger").remove();
@@ -921,7 +918,7 @@
                     fd.append(input.name,input.value);
                 });
                 modal_loader();
-                //var newwindow = window.open('', '_blank');
+                var newwindow = window.open('', '_blank');
                 $.ajax({
                     url: "{{ route('getpost-event') }}",
                     type: "POST",
@@ -929,23 +926,19 @@
                     processData: false,
                     contentType: false,
                     data: fd,
-                    async: false,
                     success: function (data) {
                         HoldOn.close();
                         var url = '{{ route('preview-event') }}';
                         //$("#button_preview").attr('target', '_blank');
-                        newTab(url);
-                        //return false;
+                        newwindow.location = url;
+                        //window.open(url, '_blank')
+                        return false;
                     },
                     error: function(response){
                         $('.error').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                     }
                 });
             });   
-
-            function newTab(url){
-                window.open(url, '_blank');
-            }
 
             $(".datepicker").datepicker( {
                 format: "yyyy-mm-dd",
