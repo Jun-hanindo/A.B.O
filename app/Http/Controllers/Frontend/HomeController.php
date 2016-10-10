@@ -187,7 +187,7 @@ class HomeController extends Controller
             //$result['src'] = url('uploads/events').'/';
             $modelCategory = new Category();
             $result['categories'] = $modelCategory->getCategory();
-            $limit = 9;
+            $limit = 8;
             $modelEvent = new Event();
             $result['events'] = $modelEvent->getEvent($limit);
             if($req->ajax()){      

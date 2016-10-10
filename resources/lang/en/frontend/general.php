@@ -108,6 +108,7 @@ return [
     'about_asiaboxoffice' => 'About Asia Box Office',
     'discount' => 'Discount',
     'per_person' => '/person',
-    'seat_map' => 'Seat Map'
+    'seat_map' => 'Seat Map',
+    'discover_events' => 'Discover Events',
 
 ];

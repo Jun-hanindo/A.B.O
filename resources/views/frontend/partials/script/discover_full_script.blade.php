@@ -31,7 +31,7 @@
                         
                         var htmlTop = 
                             '<a href="'+uri+'">'
-                                +'<div class="col-md-6 box-release">'
+                                +'<div class="col-md-4 box-release">'
                                     +'<img src="'+val.featured_image2_url+'">'
                                     +'<div class="boxInfo info1 bg-green" style="background-color:'+val.background_color+' !important">'
                                         +'<ul>'

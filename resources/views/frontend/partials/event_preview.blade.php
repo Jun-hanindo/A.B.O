@@ -150,7 +150,7 @@
                                     <table>
                                         <tr>
                                             <td>{{ $prc->additional_info }}</td>
-                                            <td>{{ $prc->symbol_left.number_format_drop_zero_decimals($prc->price).$prc->symbol_right }}</span></td>
+                                            <td><span>{{ $prc->symbol_left.number_format_drop_zero_decimals($prc->price).$prc->symbol_right }}</span></td>
                                         </tr>
                                     </table>
                                 </li>
