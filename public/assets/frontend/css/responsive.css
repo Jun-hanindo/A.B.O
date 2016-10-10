@@ -399,6 +399,9 @@
   .information-title-mobile{
     margin-left: -90px !important;
   }
+  .box-release{
+    display: block;
+  }
   .place p{
     margin-left: 30px;
   }
