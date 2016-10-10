@@ -53,8 +53,10 @@ class EventRequest extends Request
                 $rules['featured_image3'] = 'required';
             }
 
-            if (empty($event->seat_image)){
-                $rules['seat_image'] = 'required';
+            if($req['event_type'] == 0){
+                if (empty($event->seat_image)){
+                    $rules['seat_image'] = 'required';
+                }
             }
 
             return $rules;
