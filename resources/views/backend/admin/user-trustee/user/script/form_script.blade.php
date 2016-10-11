@@ -50,7 +50,7 @@
         }else{
             $('#promotor_div').hide();
             $('#promotor_id').val('');
-            $('#promotor_number').val('');
+            $('#promotor_number').val(0);
         }
     }
 
