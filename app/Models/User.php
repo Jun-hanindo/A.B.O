@@ -36,7 +36,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * {@inheritDoc}
      */
     protected $fillable = [
-        'email', 'password', 'permissions', 'first_name', 'last_name', 'avatar', 'is_admin', 'skin', 'username', 'phone', 'address', 'branch_id',
+        'email', 'password', 'permissions', 'first_name', 'last_name', 'avatar', 'is_admin', 'skin', 'username', 'phone', 'address', 'branch_id', 'promotor_id', 'promotor_number'
     ];
 
     /**
@@ -68,8 +68,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             'users.last_login',
             'users.phone'
         )
-        ->join('role_users', 'role_users.user_id', '=', 'users.id')
-        ->join('roles', 'role_users.role_id', '=', 'roles.id')
+        ->leftJoin('role_users', 'role_users.user_id', '=', 'users.id')
+        ->leftJoin('roles', 'role_users.role_id', '=', 'roles.id')
         ->orderBy('users.created_at', 'desc');
 
         return $return;
@@ -711,6 +711,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function countUsers(){
         return User::count();
+    }
+
+    public function getPromotorLastID(){
+        $data = User::where('promotor_number', '>', 0)->orderBy('promotor_number', 'desc')->first();
+
+        return $data;
     }
 
 }

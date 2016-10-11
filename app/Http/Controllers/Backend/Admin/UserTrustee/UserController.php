@@ -180,6 +180,7 @@ class UserController extends BaseController
                 'id' => 'create-form'
             ],
             'user' => [
+                'id' => null,
                 'email' => null,
                 'first_name' => null,
                 'last_name' => null,
@@ -188,6 +189,8 @@ class UserController extends BaseController
                 'phone' => null,
                 'address' => null,
                 'branch' => null,
+                'promotor_number' => null,
+                'promotor_id' => null,
                 //'username' =>null
             ],
             'dropdown' => Role::dropdown(),
@@ -245,6 +248,7 @@ class UserController extends BaseController
                 $role->users()->detach($user);
 
                 $user = Sentinel::update($user, $data);
+                //dd($data);
 
                 $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'User "'.$data['email'].'" was updated';
@@ -421,5 +425,51 @@ class UserController extends BaseController
         // }
             
         //return redirect()->route('admin.user-trustees.users.index');
+    }
+
+    function getPromotorID(Req $req){
+
+        $param = $req->all();
+        $id = $param['id'];
+        try
+        {
+            $data = $this->model->getPromotorLastID();
+            if(empty($data)){
+                $pm = 1;
+            }else{
+                $pm = $data->promotor_number + 1;
+            }
+            
+            if($id > 0){
+                $user = $this->model->find($id);
+                if($user->promotor_number > 0){
+                    $promotor_number = $user->promotor_number;
+                }else{
+                    $promotor_number = $pm;
+                }
+            }else{
+                $promotor_number = $pm;
+            }
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'Success',
+                'data' => $promotor_number,
+            ],200);
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'error',
+                'message' => trans('general.data_not_found'),
+            ],400);
+        
+        }
     }
 }

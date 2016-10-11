@@ -23,9 +23,9 @@ class Venue extends Model
         ];
     }
 
-    protected $fillable = [
-        'user_id', 'name', 'address', 'mrtdirection', 'cardirection', 'taxidirection', 'capacity', 'link_map', 'gmap_link'
-    ];
+    // protected $fillable = [
+    //     'user_id', 'name', 'address', 'mrtdirection', 'cardirection', 'taxidirection', 'capacity', 'link_map', 'gmap_link'
+    // ];
 
     public function user()
     {
@@ -35,6 +35,11 @@ class Venue extends Model
 
     public function events() {
         return $this->hasMany('App\Event', 'venue_id');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo('App\Models\Country','country_id');
     }
 
     /**
@@ -68,6 +73,7 @@ class Venue extends Model
         $this->capacity = $param['capacity'];
         $this->link_map = $param['link_map'];
         $this->gmap_link = $param['gmap_link'];
+        $this->country_id = $param['country'];
     	if($this->save()){
             return $this;
         } else {
@@ -113,6 +119,7 @@ class Venue extends Model
             $data->capacity = $param['capacity'];
             $data->link_map = $param['link_map'];
             $data->gmap_link = $param['gmap_link'];
+            $data->country_id = $param['country'];
             if($data->save()) {
                 return $data;
             } else {

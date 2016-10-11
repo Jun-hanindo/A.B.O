@@ -38,7 +38,7 @@
                                             +'<li class="eventType">'+val.cat_name+'</li>'
                                             +'<li class="eventName">'+val.title+'</li>'
                                             +'<li class="eventDate"><i class="fa fa-calendar-o"></i>'+val.date_at+'</li>'
-                                            +'<li class="eventPlace"><i class="fa fa-map-marker"></i>'+val.venue.name+'</li>'
+                                            +'<li class="eventPlace"><i class="fa fa-map-marker"></i>'+val.venue_name+val.country_name+'</li>'
                                         +'</ul>'
                                     +'</div>'
                                 +'</div>'

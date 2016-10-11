@@ -33,7 +33,46 @@
             });
         });
 
+        $('#role').change(function(){
+            var val = $(this).val();
+            hideShowPromotorID(val);
+        });
+
+        var val = $('#role').val();
+        hideShowPromotorID(val);
+
     });
+
+    function hideShowPromotorID(val){
+        if(val == 2){
+            $('#promotor_div').show();
+            getPromotorID();
+        }else{
+            $('#promotor_div').hide();
+            $('#promotor_id').val('');
+            $('#promotor_number').val('');
+        }
+    }
+
+    function getPromotorID(){
+        var id = $('#id').val();
+        if (id == ''){
+            id = 0;
+        }
+        $.ajax({
+            url: "{{ URL::route('admin-promotor-id-user') }}",
+            type: "get",
+            dataType: 'json',
+            data: 'id='+id,
+            success: function (response) {
+                $('#promotor_number').val(response.data);
+                $('#promotor_id').val(response.data);
+            },
+            error: function(response){
+                $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
+            }
+        });
+    }
     
     </script>
 @endsection

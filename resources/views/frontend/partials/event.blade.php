@@ -269,21 +269,29 @@
                                                             {!! $event->venue->gmap_link !!}
                                                         </div>
 
-                                                        <h3 class="font-bold">{{ trans('frontend/general.getting_to_the_venue') }}</h3>
-                                                        <ul id="getvenue">
-                                                            <li class="mrt">
-                                                                <h3 class="font-bold">{{ trans('frontend/general.by_mrt') }}</h3>
-                                                                {!! $event->venue->mrtdirection !!}
-                                                            </li>
-                                                            <li class="taxi">
-                                                                <h3 class="font-bold">{{ trans('frontend/general.by_taxi') }}</h3>
-                                                                {!! $event->venue->taxidirection !!}
-                                                            </li>
-                                                            <li class="car">
-                                                                <h3 class="font-bold">{{ trans('frontend/general.by_car') }}</h3>
-                                                                {!! $event->venue->cardirection !!}
-                                                            </li>
-                                                        </ul>
+                                                        @if(!empty($event->venue->mrtdirection) || !empty($event->venue->taxidirection) || !empty($event->venue->cardirection))
+                                                            <h3 class="font-bold">{{ trans('frontend/general.getting_to_the_venue') }}</h3>
+                                                            <ul id="getvenue">
+                                                                @if(!empty($event->venue->mrtdirection))
+                                                                    <li class="mrt">
+                                                                        <h3 class="font-bold">{{ trans('frontend/general.by_mrt') }}</h3>
+                                                                        {!! $event->venue->mrtdirection !!}
+                                                                    </li>
+                                                                @endif
+                                                                @if(!empty($event->venue->taxidirection))
+                                                                    <li class="taxi">
+                                                                        <h3 class="font-bold">{{ trans('frontend/general.by_taxi') }}</h3>
+                                                                        {!! $event->venue->taxidirection !!}
+                                                                    </li>
+                                                                @endif
+                                                                @if(!empty($event->venue->cardirection))
+                                                                    <li class="car">
+                                                                        <h3 class="font-bold">{{ trans('frontend/general.by_car') }}</h3>
+                                                                        {!! $event->venue->cardirection !!}
+                                                                    </li>
+                                                                @endif
+                                                            </ul>
+                                                        @endif
                                                     </section>
                                                 </div>
                                             </div>

@@ -64,7 +64,7 @@ class Role extends Model
         $data = $this->find($id);
         if(!empty($data)) {
             $data->delete();
-            //$data->UserRoles()->detach();
+            $data->UserRoles()->detach();
             return $data;
         } else {
             return false;

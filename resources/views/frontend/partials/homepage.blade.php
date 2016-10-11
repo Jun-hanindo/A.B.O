@@ -30,7 +30,7 @@
                                                 <i class="fa fa-calendar-o"></i>{{ $slider->schedule_range }}
                                             </div>
                                         </li>
-                                        <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->venue->name }}</div></li>
+                                        <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->venue_name.$slider->country_name }}</div></li>
                                     </ul>
                                     <div class="moreDetail">
                                         <a href="{{ URL::route('event-detail', $slider->event->slug) }}">
@@ -72,7 +72,7 @@
                                     <li class="eventDate"><i class="fa fa-calendar-o"></i> 
                                         {{ $event->schedule_range }}
                                     </li>
-                                    <li class="eventPlace"><i class="fa fa-map-marker"></i>{{ $event->venue->name }}</li>
+                                    <li class="eventPlace"><i class="fa fa-map-marker"></i>{{ $event->venue_name.$event->country_name }}</li>
                                 </ul>
                             </div>
                         </div>

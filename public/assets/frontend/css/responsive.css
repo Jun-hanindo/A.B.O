@@ -402,6 +402,9 @@
   .box-release{
     display: block;
   }
+  .discoverCategory h2 {
+    font-size: 20px;
+  }
   /*.place p{
     margin-left: 30px;
   }*/

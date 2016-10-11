@@ -145,7 +145,7 @@ class CountryTableSeeder extends Seeder
 
         $country = new Country();
         $country->id = "27";
-        $country->name = "BoliviaBolivia, Plurinational state of";
+        $country->name = "Bolivia, Plurinational state of";
         $country->save();
 
         $country = new Country();
@@ -1205,7 +1205,7 @@ class CountryTableSeeder extends Seeder
 
         $country = new Country();
         $country->id = "239";
-        $country->name = "Viet Nam";
+        $country->name = "Vietnam";
         $country->save();
 
         $country = new Country();

@@ -23,6 +23,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::post('users/email-exist', array('as' => 'admin-email-exist-user', 'uses' => 'UserController@checkEmailExist'));
         Route::post('users/reactivate', array('as' => 'admin-reactivate-user', 'uses' => 'UserController@reactivate'));
 
+        Route::get('users/promotor-id', array('as' => 'admin-promotor-id-user', 'uses' => 'UserController@getPromotorID'));
     });
 
     Route::group(['prefix' => 'master'], function () {

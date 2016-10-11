@@ -229,7 +229,19 @@ class Homepage extends Model
                                 $i++;
                             }
                         }
-                        $homepage->venue = $homepage->Event->Venue;
+                        $homepage->venue = $homepage->Event->Venue()->where('avaibility', true)->first();
+                        if(!empty($homepage->venue)){
+                            $homepage->venue_name = $homepage->venue->name;
+                            $homepage->country = $homepage->venue->country()->first();
+                            if(!empty($homepage->country)){
+                                $homepage->country_name = ', '.$homepage->country->name;
+                            }else{
+                                $homepage->country_name = '';
+                            }
+                        }else{
+                            $homepage->venue_name = '';
+                            $homepage->country_name = '';
+                        }
                         $homepage->promo = $homepage->Event->promotions()->where('avaibility', true)->where(DB::raw('CURRENT_DATE-end_date'), '<', 0)->orderBy(DB::raw('CURRENT_DATE-end_date'), 'desc')->first();
                         if(!empty($homepage->promo)){
                             $homepage->promo->category = str_replace('-', ' ', strtoupper($homepage->promo->category));

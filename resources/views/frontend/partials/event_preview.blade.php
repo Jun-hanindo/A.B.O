@@ -1,26 +1,26 @@
 @extends('layout.frontend.master.master')
-@section('title', $event->title.' - ')
+@section('title', (!empty($event->title)) ? $event->title : ''.' - ')
 @section('content')
 <section class="eventBanner" id="eventBanner">
     <div class="imageBanner">
-        <img src="{{ $event->featured_image1 }}" class="hidden-xs">
-        <img src="{{ $event->featured_image2 }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+        <img src="{{ (!empty($event->featured_image1)) ? $event->featured_image1 : '' }}" class="hidden-xs">
+        <img src="{{ (!empty($event->featured_image1)) ? $event->featured_image2 : '' }}" class="hidden-lg hidden-md hidden-sm" alt="...">
     </div>
-    <div class="infoBanner bg-green" style="background-color:{{ $event->background_color }} !important" id="eventTabShow">
+    <div class="infoBanner bg-green" style="background-color:{{ (!empty($event->background_color)) ? $event->background_color : '' }} !important" id="eventTabShow">
         <div class="container">
             <div class="detail">
                 <h5>{{ (!empty($event->cat)) ? strtoupper($event->cat->name) : '&nbsp;' }}</h5>
-                <h2 class="font-light">{{ $event->title }}</h2>
+                <h2 class="font-light">{{ (!empty($event->title)) ? $event->title : '' }}</h2>
             </div>
             <div class="moreDetail">
-                <a href="{{ $event->buylink }}" target="_blank">
+                <a href="{{ (!empty($event->buylink)) ? $event->buylink : '' }}" target="_blank">
                     <button class="btn btnDetail font-bold">{{ trans('frontend/general.buy_now') }}</button>
                 </a>
             </div>
         </div>
     </div>
 </section>
-<div class="eventTabScroll bg-green" style="background-color:{{ $event->background_color }} !important">
+<div class="eventTabScroll bg-green" style="background-color:{{ (!empty($event->background_color)) ? $event->background_color : '' }} !important">
     <div class="row">
         <div class="col-md-12">
             <div class="container">
@@ -30,17 +30,19 @@
                     @if(!empty($event->promotions) && !$event->promotions->isEmpty())
                         <li><a href="#promoBox" class="smoothScroll">{{ trans('frontend/general.promotions') }}</a></li>
                     @endif
-                    <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue_info') }}</a></li>
+                    @if(!empty($event->venue))
+                        <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue_info') }}</a></li>
+                    @endif
                     @if(!empty($event->admission))
                         <li><a href="#admissionBox" class="smoothScroll">{{ trans('frontend/general.admission_rules') }}</a></li>
                     @endif
-                    <li><a href="{{ $event->buylink }}" target="_blank"><button class="btn btnBuy btnABO font-bold">{{ trans('frontend/general.buy_now') }}</button></a></li>
+                    <li><a href="{{ (!empty($event->buylink)) ? $event->buylink : '' }}" target="_blank"><button class="btn btnBuy btnABO font-bold">{{ trans('frontend/general.buy_now') }}</button></a></li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
-<div class="eventTabScroll-mobile bg-green" style="background-color:{{ $event->background_color }} !important">
+<div class="eventTabScroll-mobile bg-green" style="background-color:{{ (!empty($event->background_color)) ? $event->background_color : '' }} !important">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -50,11 +52,13 @@
                     @if(!empty($event->promotions) && !$event->promotions->isEmpty())
                         <li><a href="#promoBox" class="smoothScroll">{{ trans('frontend/general.promotions') }}</a></li>
                     @endif
-                    <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue') }}</a></li>
+                    @if(!empty($event->venue))
+                        <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue') }}</a></li>
+                    @endif
                     @if(!empty($event->admission))
                         <li><a href="#admissionBox" class="smoothScroll">{{ trans('frontend/general.admission') }}</a></li>
                     @endif
-                    <li><a href="{{ $event->buylink }}"><button class="btn btnBuy btnABO font-bold">{{ trans('frontend/general.buy') }}</button></a></li>
+                    <li><a href="{{ (!empty($event->buylink)) ? $event->buylink : '' }}"><button class="btn btnBuy btnABO font-bold">{{ trans('frontend/general.buy') }}</button></a></li>
                 </ul>
             </div>
         </div>
@@ -159,12 +163,14 @@
                                 @endphp  
                             @endforeach
                     @endif
-                    <div class="additional-info">{!! $event->price_info !!}</div>
-                    @if($event->event_type == false)
-                        <li class="liParent parentButton">
-                          <button class="btn btnBlackDefault font-bold" data-target="#modalSeatMap" data-toggle="modal">See Seat Map</button>
-                          <!-- <button class="btn btnticket bg-white font-bold">More Ticket Info</button> -->
-                        </li>
+                    <div class="additional-info">{!! (!empty($event->price_info)) ? $event->price_info : '' !!}</div>
+                    @if(!empty($event->event_type))
+                        @if($event->event_type == false)
+                            <li class="liParent parentButton">
+                              <button class="btn btnBlackDefault font-bold" data-target="#modalSeatMap" data-toggle="modal">See Seat Map</button>
+                              <!-- <button class="btn btnticket bg-white font-bold">More Ticket Info</button> -->
+                            </li>
+                        @endif
                     @endif
                 </ul>
             </div>
@@ -175,7 +181,9 @@
                         @if(!empty($event->promotions) && !$event->promotions->isEmpty())
                             <li><a href="#promoBox" class="smoothScroll">{{ trans('frontend/general.promotions') }}</a></li>
                         @endif
-                        <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue_info') }}</a></li>
+                        @if(!empty($event->venue))
+                            <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue_info') }}</a></li>
+                        @endif
                         @if(!empty($event->admission))
                             <li><a href="#admissionBox" class="smoothScroll">{{ trans('frontend/general.admission_rules') }}</a></li>
                         @endif
@@ -187,7 +195,9 @@
                         @if(!empty($event->promotions) && !$event->promotions->isEmpty())
                             <li><a href="#promoBox" class="smoothScroll">{{ trans('frontend/general.promotions') }}</a></li>
                         @endif
-                        <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue') }}</a></li>
+                        @if(!empty($event->venue))
+                            <li><a href="#venueBox" class="smoothScroll">{{ trans('frontend/general.venue') }}</a></li>
+                        @endif
                         @if(!empty($event->admission))
                             <li><a href="#admissionBox" class="smoothScroll">{{ trans('frontend/general.admission') }}</a></li>
                         @endif
@@ -214,7 +224,7 @@
                                             <div class="main-content">
                                                 <div class="">
                                                     <section id="about" class="sectionEvent">
-                                                        {!! $event->description !!}    
+                                                        {!! (!empty($event->description)) ? $event->description : '' !!}    
                                                     </section>
                                                 </div>
                                             </div>
@@ -404,45 +414,47 @@
         </div>
     </div>
 </section>
-@if($event->event_type == false)
-    <div class="modal fade modal-hochi" id="modalSeatMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ trans('frontend/general.seat_map') }}</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="seat-map-modal">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <img src="{{ (!empty($event->seat_image)) ? $event->seat_image : '' }}">
-                            </div>
-                            <div class="col-md-5">
-                                <div class="seat-map-price">
-                                    <ul>
-                                        @if(!empty($event->prices))
-                                            @php 
-                                                $count = count($event->prices)
-                                            @endphp
+@if(!empty($event->event_type))
+    @if($event->event_type == false)
+        <div class="modal fade modal-hochi" id="modalSeatMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{ trans('frontend/general.seat_map') }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="seat-map-modal">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <img src="{{ (!empty($event->seat_image)) ? $event->seat_image : '' }}">
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="seat-map-price">
+                                        <ul>
+                                            @if(!empty($event->prices))
                                                 @php 
-                                                    $i = 1; 
+                                                    $count = count($event->prices)
                                                 @endphp
-                                                @foreach($event->prices as $prc)
-                                                    <li>
-                                                        <span class="seat-dot" style="background-color:{{ $prc->seat_color }}"></span>
-                                                        <span class="box-line">
-                                                            <span class="category">{{ $prc->additional_info }}</span>
-                                                            <span class="price">{{ $prc->symbol_left.number_format_drop_zero_decimals($prc->price).$prc->symbol_right }}</span>
-                                                        </span>
-                                                    </li>
                                                     @php 
-                                                        $i++; 
-                                                    @endphp  
-                                                @endforeach
-                                        @endif
-                                    </ul>
-                                    {!! $event->price_info !!}
+                                                        $i = 1; 
+                                                    @endphp
+                                                    @foreach($event->prices as $prc)
+                                                        <li>
+                                                            <span class="seat-dot" style="background-color:{{ $prc->seat_color }}"></span>
+                                                            <span class="box-line">
+                                                                <span class="category">{{ $prc->additional_info }}</span>
+                                                                <span class="price">{{ $prc->symbol_left.number_format_drop_zero_decimals($prc->price).$prc->symbol_right }}</span>
+                                                            </span>
+                                                        </li>
+                                                        @php 
+                                                            $i++; 
+                                                        @endphp  
+                                                    @endforeach
+                                            @endif
+                                        </ul>
+                                        {!! $event->price_info !!}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -450,7 +462,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @endif
 @stop
 @include('frontend.partials.script.subscribe_script')

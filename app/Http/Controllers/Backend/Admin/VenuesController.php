@@ -150,6 +150,11 @@ class VenuesController extends BaseController
         
         try{
             $data = $this->model->findVenueByID($id);
+            if(!empty($data->country->name)) {
+                $data->country = $data->country->name;
+            } else {
+                $data->country = '';
+            }
         //if(!empty($data)) {
             
             $trail = 'Venue Form';

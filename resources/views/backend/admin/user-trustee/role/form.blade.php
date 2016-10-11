@@ -28,7 +28,7 @@
                         <div class="form-group{{ Form::hasError('name') }}">
                             {!! Form::label('name', 'Name *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::text('name', null, ['class' => 'form-control']) !!}
+                                {!! Form::text('name', null, ['class' => 'form-control', ($data['id'] == 2 || $data['id'] == 1) ? 'readonly' : '' ]) !!}
                                 {!! Form::errorMsg('name') !!}
                             </div>
                         </div>

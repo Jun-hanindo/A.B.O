@@ -3605,6 +3605,10 @@ ul#getvenue li:before {
 
 .mobile-title-faq a{
   font-size: 14px;
+  text-decoration: none;
+}
+.mobile-title-faq a:hover {
+  color: #1a1a1a;
 }
 
 .support-desc h5{

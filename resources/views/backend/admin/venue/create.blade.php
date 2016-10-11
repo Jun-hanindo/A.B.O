@@ -22,23 +22,28 @@
                                 {!! Form::text('name', old('name'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.venue_name')]) !!}
                                 {!! Form::errorMsg('name') !!}
                             </div>
+                            <div class="form-group{{ Form::hasError('country') }} country">
+                                {!! Form::label('country', trans('general.country').' *') !!}
+                                {!! Form::text('country', old('country'), array('id' => 'country', 'class' => 'form-control','data-option' => old('country'))) !!}
+                                {!! Form::errorMsg('country') !!}
+                            </div>
                             <div class="form-group{{ Form::hasError('address') }} address">
                                 {!! Form::label('address', trans('general.address').' *') !!}
                                 {!! Form::textarea('address', old('address'), ['class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.address')]) !!}
                                 {!! Form::errorMsg('address') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('mrtdirection') }} mrtdirection">
-                                {!! Form::label('mrtdirection', trans('general.mrtdirection').' *') !!}
+                                {!! Form::label('mrtdirection', trans('general.mrtdirection')) !!}
                                 {!! Form::textarea('mrtdirection', old('mrtdirection'), ['class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.mrtdirection')]) !!}
                                 {!! Form::errorMsg('mrtdirection') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('cardirection') }} cardirection">
-                                {!! Form::label('cardirection', trans('general.cardirection').' *') !!}
+                                {!! Form::label('cardirection', trans('general.cardirection')) !!}
                                 {!! Form::textarea('cardirection', old('cardirection'), ['class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.cardirection')]) !!}
                                 {!! Form::errorMsg('cardirection') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('taxidirection') }} taxidirection">
-                                {!! Form::label('taxidirection', trans('general.taxidirection').' *') !!}
+                                {!! Form::label('taxidirection', trans('general.taxidirection')) !!}
                                 {!! Form::textarea('taxidirection', old('taxidirection'), ['class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.taxidirection')]) !!}
                                 {!! Form::errorMsg('taxidirection') !!}
                             </div>

@@ -514,7 +514,8 @@ class Event extends Model
                     'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right')
                     ->where('event_schedule_id', $near_schedule->id)
                     ->leftJoin('currencies', 'currencies.id', '=', 'event_schedule_categories.currency_id')
-                    ->orderBy('price', 'desc')->get();
+                    ->orderBy('price', 'desc')
+                    ->orderBy('additional_info', 'asc')->get();
                 $count = count($event->prices);
                 if(!empty($event->prices)){
                     $i = 1;
@@ -618,7 +619,19 @@ class Event extends Model
                         $event->date_at = full_text_date($event->schedule->date_at);
                     }
 
-                    $event->venue = $event->Venue;
+                    $event->venue = $event->Venue()->where('avaibility', true)->first();
+                    if(!empty($event->venue)){
+                        $event->venue_name = $event->venue->name;
+                        $event->country = $event->venue->country()->first();
+                        if(!empty($event->country)){
+                            $event->country_name = ', '.$event->country->name;
+                        }else{
+                            $event->country_name = '';
+                        }
+                    }else{
+                        $event->venue_name = '';
+                        $event->country_name = '';
+                    }
                     
                     $array[] = $event;
                 } 
