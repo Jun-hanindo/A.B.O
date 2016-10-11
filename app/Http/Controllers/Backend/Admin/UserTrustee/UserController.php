@@ -180,7 +180,7 @@ class UserController extends BaseController
                 'id' => 'create-form'
             ],
             'user' => [
-                'id' => null,
+                'id' => 0,
                 'email' => null,
                 'first_name' => null,
                 'last_name' => null,
@@ -189,7 +189,7 @@ class UserController extends BaseController
                 'phone' => null,
                 'address' => null,
                 'branch' => null,
-                'promotor_number' => null,
+                'promotor_number' => 0,
                 'promotor_id' => null,
                 //'username' =>null
             ],
