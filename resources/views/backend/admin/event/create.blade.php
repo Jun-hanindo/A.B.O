@@ -62,7 +62,7 @@
                                 {!! Form::errorMsg('admission') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('schedule_info') }} schedule_info">
-                                {!! Form::label('schedule_info', trans('general.schedule_info').' *') !!}
+                                {!! Form::label('schedule_info', trans('general.schedule_info')) !!}
                                 {!! Form::textarea('schedule_info', old('schedule_info'), ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.schedule_info')]) !!}
                                 {!! Form::errorMsg('schedule_info') !!}
                             </div>
