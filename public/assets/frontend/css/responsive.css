@@ -413,6 +413,7 @@
  }
  .place span {
 margin-left: 30px;
+display: block;
 }
   /*.place p{
     margin-left: 30px;
