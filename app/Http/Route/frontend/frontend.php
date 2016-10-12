@@ -58,7 +58,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('language', array('as' => 'language', 'uses' => 'LanguagesController@setLanguage'));
     Route::get('preview', array('as' => 'preview-event', 'uses' => 'EventsController@preview'));
     Route::post('getpost', array('as' => 'getpost-event', 'uses' => 'EventsController@getPost'));
-    Route::get('{slug}', array('as' => 'event-detail', 'uses' => 'EventsController@index'));
+    Route::get('event/{slug}', array('as' => 'event-detail', 'uses' => 'EventsController@index'));
 
 
     
