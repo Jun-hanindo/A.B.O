@@ -34,8 +34,8 @@
                 ajax: '{!! URL::route("datatables-event-category") !!}',
                 columns: [
                     {data: 'name', name: 'name'},
-                    {data: 'avaibility', name: 'avaibility', searchable: false, orderable: false},
-                    {data: 'status', name: 'status', searchable: false, orderable: false},
+                    {data: 'avaibility', name: 'avaibility', class: 'center-align', searchable: false, orderable: false},
+                    {data: 'status', name: 'status', class: 'center-align', searchable: false, orderable: false},
                     {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
                 ],
                 "fnDrawCallback": function() {

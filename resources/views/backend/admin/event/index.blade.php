@@ -45,7 +45,8 @@
                             <!-- <th><input name="select_all" value="1" type="checkbox" class="select_all-checkbox"></th> -->
                             <th class="center-align">{{ trans('general.event_title') }}</th>
                             <th class="center-align">{{ trans('general.post_by') }}</th>
-                            <th class="center-align">{{ trans('general.avaibility') }}</th>
+                            <th width="20%" class="center-align">{{ trans('general.avaibility') }}</th>
+                            <th width="12%"></th>
                         </tr>
                     </thead>
                 </table>

@@ -405,6 +405,15 @@
   .discoverCategory h2 {
     font-size: 20px;
   }
+  .information-place{
+   margin-left: 5px !important;
+ }
+ .information-place:before{
+   margin: 0 5px 0 0px;
+ }
+ .place span {
+margin-left: 30px;
+}
   /*.place p{
     margin-left: 30px;
   }*/

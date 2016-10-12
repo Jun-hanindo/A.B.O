@@ -46,11 +46,6 @@ class EventsController extends BaseController
                 ->editColumn('id', function ($event) {
                     return '<input type="checkbox" name="checkboxid['.$event->id.']" class="item-checkbox">';
                 })
-                ->editColumn('title', function ($event) {
-                    $url = route('admin-edit-event',$event->id);
-                    return $event->title.'</br><a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit">Edit</a>&nbsp;
-                        <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$event->id.'" data-button="delete">Delete</a>';
-                })
                 ->editColumn('user_id', function ($event){
                     $username = $event->user->first_name.' '.$event->user->last_name;
                     return $username;
@@ -62,6 +57,11 @@ class EventsController extends BaseController
                         $checked = '';
                     }
                     return '<input type="checkbox" name="avaibility['.$event->id.']" class="avaibility-check" data-id="'.$event->id.'" '.$checked.'>';
+                })
+                ->addColumn('action', function ($event) {
+                    $url = route('admin-edit-event',$event->id);
+                    return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
+                        <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$event->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
                 })
                 ->make(true);
     }

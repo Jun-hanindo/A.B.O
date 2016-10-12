@@ -25,8 +25,8 @@ class CareerRequest extends Request
     {
         return [
             'position'          => 'required',
-            'department'     => 'required',
-            'type'              => 'required',
+            'department'        => 'required',
+            'job_type'          => 'required',
             'salary'            => 'required',
             'description'       => 'required',
             'responsibilities'  => 'required',

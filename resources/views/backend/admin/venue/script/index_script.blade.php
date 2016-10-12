@@ -35,7 +35,8 @@
                     {data: 'name', name: 'name'},
                     {data: 'address', name: 'address'},
                     {data: 'post_by', name: 'post_by'},
-                    {data: 'avaibility', name: 'avaibility', searchable: false, orderable: false}
+                    {data: 'avaibility', name: 'avaibility', class: 'center-align', searchable: false, orderable: false},
+                    {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
                 ],
                 "fnDrawCallback": function() {
                     //Initialize checkbos for enable/disable user

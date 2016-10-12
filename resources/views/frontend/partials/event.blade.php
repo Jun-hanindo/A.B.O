@@ -108,8 +108,8 @@
                 @endif
             </div>
             <div class="col-md-4 place">
-                <div class="information-title">
-                    <i class="fa fa-map-marker"></i> {{ $event->venue->name }}
+                <div class="information-title information-place">
+                     <span>{{ $event->venue->name }}</span>
                 </div>
                 <ul class="list-unstyled">
                     <li>{!! $event->venue->address !!}</li>
@@ -136,7 +136,7 @@
                                     <table>
                                         <tr>
                                             <td>{{ $prc->additional_info }}</td>
-                                            <td><span>{{ $prc->symbol_left.number_format_drop_zero_decimals($prc->price).$prc->symbol_right }}</span></td>
+                                            <td><span>{{ $prc->code.' '.number_format_drop_zero_decimals($prc->price) }}</span></td>
                                         </tr>
                                     </table>
                                 </li>
@@ -229,16 +229,14 @@
                                                                     @else
                                                                         @if($promotion->currency_id == 0)
                                                                             @php
-                                                                                $symbol_left = '';
-                                                                                $symbol_right = '';
+                                                                                $code = '';
                                                                             @endphp
                                                                         @else
                                                                             @php
-                                                                                $symbol_left = $promotion->currency->symbol_left;
-                                                                                $symbol_right = $promotion->currency->symbol_right;
+                                                                                $code = $promotion->currency->code;
                                                                             @endphp
                                                                         @endif
-                                                                        {{ $symbol_left.number_format_drop_zero_decimals($promotion->discount_nominal).$symbol_right }}
+                                                                        {{ $code.' '.number_format_drop_zero_decimals($promotion->discount_nominal) }}
                                                                     @endif
                                                                 </p>
                                                                 <p>{{ trans('frontend/general.start_date') }}: {{ full_text_date($promotion->start_date) }}</p>
@@ -424,7 +422,7 @@
                                                         <span class="seat-dot" style="background-color:{{ $prc->seat_color }}"></span>
                                                         <span class="box-line">
                                                             <span class="category">{{ $prc->additional_info }}</span>
-                                                            <span class="price">{{ $prc->symbol_left.number_format_drop_zero_decimals($prc->price).$prc->symbol_right }}</span>
+                                                            <span class="price">{{ $prc->code.' '.number_format_drop_zero_decimals($prc->price) }}</span>
                                                         </span>
                                                     </li>
                                                     @php 

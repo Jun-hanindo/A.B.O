@@ -44,10 +44,19 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group{{ Form::hasError('type') }} type">
-                                {!! Form::label('type', trans('general.type').' *') !!}
-                                {!! Form::text('type', old('type'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.type')]) !!}
-                                {!! Form::errorMsg('type') !!}
+                            <div class="form-group{{ Form::hasError('job_type') }} job_type">
+                                {!! Form::label('job_type', trans('general.job_type').' *') !!}
+                                {!! Form::select('job_type', array('Full-time' => 'Full-time',
+                                                                'Permanent' => 'Permanent',
+                                                                'Contract' => 'Contract',
+                                                                'Internship' => 'Internship',
+                                                                'Part-time' => 'Part-time',
+                                                                'Temporary' => 'Temporary',
+                                                                'Subcontract' => 'Subcontract',
+                                                                'Fresh Graduate' => 'Fresh Graduate',
+                                                                'Volunteer' => 'Volunteer',
+                                                                'Remote' => 'Remote'), old('job_type'), ['class' => 'form-control job_type', 'id' => 'job_type']) !!}
+                                {!! Form::errorMsg('job_type') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('salary') }} salary">
                                 {!! Form::label('salary', trans('general.salary').' *') !!}

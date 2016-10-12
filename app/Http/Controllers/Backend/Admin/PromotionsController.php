@@ -44,11 +44,6 @@ class PromotionsController extends BaseController
                 ->editColumn('id', function ($promotion) {
                     return '<input type="checkbox" name="checkboxid['.$promotion->id.']" class="item-checkbox">';
                 })
-                ->editColumn('title', function ($promotion) {
-                    $url = route('admin-edit-promotion',$promotion->id);
-                    return $promotion->title.'</br><a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit">Edit</a>&nbsp;
-                        <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$promotion->id.'" data-button="delete">Delete</a>';
-                })
                 ->editColumn('user_id', function ($promotion){
                     $username = $promotion->user->first_name.' '.$promotion->user->last_name;
                     return $username;
@@ -60,6 +55,11 @@ class PromotionsController extends BaseController
                         $checked = '';
                     }
                     return '<input type="checkbox" name="avaibility['.$promotion->id.']" class="avaibility-check" data-id="'.$promotion->id.'" '.$checked.'>';
+                })
+                ->addColumn('action', function ($promotion) {
+                    $url = route('admin-edit-promotion',$promotion->id);
+                    return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
+                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$promotion->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
                 })
                 ->make(true);
     }

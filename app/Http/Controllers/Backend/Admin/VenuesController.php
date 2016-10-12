@@ -43,11 +43,6 @@ class VenuesController extends BaseController
             ->editColumn('id', function ($venue) {
                 return '<input type="checkbox" name="checkboxid['.$venue->id.']" class="item-checkbox">';
             })
-            ->editColumn('name', function ($venue) {
-                $url = route('admin-edit-venue',$venue->id);
-                return $venue->name.'</br><a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit">Edit</a>&nbsp;
-                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$venue->id.'" data-button="delete">Delete</a>';
-            })
             ->editColumn('avaibility', function ($venue) {
                 if($venue->avaibility == TRUE){
                     $checked = 'checked';
@@ -55,6 +50,11 @@ class VenuesController extends BaseController
                     $checked = '';
                 }
                 return '<input type="checkbox" name="avaibility['.$venue->id.']" class="avaibility-check" data-id="'.$venue->id.'" '.$checked.'>';
+            })
+            ->addColumn('action', function ($venue) {
+                $url = route('admin-edit-venue',$venue->id);
+                return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
+                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$venue->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
             })
             ->filterColumn('address', function($query, $keyword) {
                 $query->whereRaw("LOWER(CAST(venues.address as TEXT)) ilike ?", ["%{$keyword}%"]);

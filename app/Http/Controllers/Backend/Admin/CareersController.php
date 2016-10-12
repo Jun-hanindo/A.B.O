@@ -45,11 +45,6 @@ class CareersController extends BaseController
             ->editColumn('id', function ($career) {
                 return '<input type="checkbox" name="checkboxid['.$career->id.']" class="item-checkbox">';
             })
-            ->editColumn('job', function ($career) {
-                $url = route('admin-edit-career',$career->id);
-                return $career->job.'</br><a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit">Edit</a>&nbsp;
-                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$career->id.'" data-button="delete">Delete</a>';
-            })
             ->editColumn('avaibility', function ($career) {
                 if($career->avaibility == TRUE){
                     $checked = 'checked';
@@ -57,6 +52,11 @@ class CareersController extends BaseController
                     $checked = '';
                 }
                 return '<input type="checkbox" name="avaibility['.$career->id.']" class="avaibility-check" data-id="'.$career->id.'" '.$checked.'>';
+            })
+            ->addColumn('action', function ($career) {
+                $url = route('admin-edit-career',$career->id);
+                return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
+                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$career->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
             })
             ->make(true);
     }

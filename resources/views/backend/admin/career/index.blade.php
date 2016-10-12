@@ -33,7 +33,8 @@
                             <th class="center-align">{{ trans('general.position') }}</th>
                             <th class="center-align">{{ trans('general.department') }}</th>
                             <th class="center-align">{{ trans('general.type') }}</th>
-                            <th class="center-align">{{ trans('general.avaibility') }}</th>
+                            <th width="20%" class="center-align">{{ trans('general.avaibility') }}</th>
+                            <th width="12%"></th>
                         </tr>
                     </thead>
                 </table>

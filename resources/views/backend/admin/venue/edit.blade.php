@@ -23,10 +23,10 @@
                                 {!! Form::text('name', $data->name, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.venue_name')]) !!}
                                 {!! Form::errorMsg('name') !!}
                             </div>
-                            <div class="form-group{{ Form::hasError('country') }} country">
-                                {!! Form::label('country', trans('general.country').' *') !!}
-                                {!! Form::text('country', $data->country_id, array('id' => 'country', 'class' => 'form-control','data-option' => $data->country)) !!}
-                                {!! Form::errorMsg('country') !!}
+                            <div class="form-group{{ Form::hasError('city') }} city">
+                                {!! Form::label('city', trans('general.city').' *') !!}
+                                {!! Form::text('city', $data->city, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.city')]) !!}
+                                {!! Form::errorMsg('city') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('address') }} address">
                                 {!! Form::label('address', trans('general.address').' *') !!}

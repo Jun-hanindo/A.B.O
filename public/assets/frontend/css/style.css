@@ -3592,7 +3592,7 @@ ul#getvenue li:before {
 }
 
 .right-header li:first-child{
-  padding-right: 10px;
+  padding-right: 20px;
 }
 
 .faq-support{
@@ -3991,5 +3991,18 @@ li ol > li:before {
 .modal-hochi .modal-dialog .modal-content {
     width: 100%;
     margin: 0 auto;
+}
+.information-place{
+ position: relative;
+ margin-left: 53px !important;
+}
+
+.information-place:before{
+ font-family: 'FontAwesome';
+ content: "\f041";
+ margin: 0 5px 0 -25px;
+ color: #000;
+ position: absolute;
+ font-size: inherit;
 }
 

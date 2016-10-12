@@ -232,15 +232,17 @@ class Homepage extends Model
                         $homepage->venue = $homepage->Event->Venue()->where('avaibility', true)->first();
                         if(!empty($homepage->venue)){
                             $homepage->venue_name = $homepage->venue->name;
-                            $homepage->country = $homepage->venue->country()->first();
-                            if(!empty($homepage->country)){
-                                $homepage->country_name = ', '.$homepage->country->name;
-                            }else{
-                                $homepage->country_name = '';
-                            }
+                            $homepage->city = ', '.$homepage->venue->city;
+                            // $homepage->country = $homepage->venue->country()->first();
+                            // if(!empty($homepage->country)){
+                            //     $homepage->country_name = ', '.$homepage->country->name;
+                            // }else{
+                            //     $homepage->country_name = '';
+                            // }
                         }else{
                             $homepage->venue_name = '';
-                            $homepage->country_name = '';
+                            //$homepage->country_name = '';
+                            $homepage->city = '';
                         }
                         $homepage->promo = $homepage->Event->promotions()->where('avaibility', true)->where(DB::raw('CURRENT_DATE-end_date'), '<', 0)->orderBy(DB::raw('CURRENT_DATE-end_date'), 'desc')->first();
                         if(!empty($homepage->promo)){
@@ -250,13 +252,15 @@ class Homepage extends Model
                                 $homepage->promo->disc = number_format_drop_zero_decimals($homepage->promo->discount).'%';
                             }else{
                                 if($homepage->promo->currency_id == 0){
-                                    $currency_symbol_left = '';
-                                    $currency_symbol_right = '';
+                                    // $currency_symbol_left = '';
+                                    // $currency_symbol_right = '';
+                                    $currency_code = '';
                                 }else{
-                                    $currency_symbol_left = $homepage->promo->currency->symbol_left;
-                                    $currency_symbol_right = $homepage->promo->currency->symbol_right;
+                                    // $currency_symbol_left = $homepage->promo->currency->symbol_left;
+                                    // $currency_symbol_right = $homepage->promo->currency->symbol_right;
+                                    $currency_code = $homepage->promo->currency->code;
                                 }
-                                $homepage->promo->disc = $currency_symbol_left.number_format_drop_zero_decimals($homepage->promo->discount_nominal).$currency_symbol_right;
+                                $homepage->promo->disc = $currency_code.' '.number_format_drop_zero_decimals($homepage->promo->discount_nominal);
                             }
                         } 
                         $array[] = $homepage;

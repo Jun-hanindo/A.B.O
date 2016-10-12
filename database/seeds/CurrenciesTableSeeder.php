@@ -122,7 +122,7 @@ class CurrenciesTableSeeder extends Seeder
         $currency = new Currency();
         $currency->title = 'Philippine Peso';
         $currency->code = 'PHP';
-        $currency->symbol_left = 'Php';
+        $currency->symbol_left = 'PHP';
         $currency->symbol_right = '';
         $currency->save();
 
@@ -179,6 +179,13 @@ class CurrenciesTableSeeder extends Seeder
         $currency->title = 'U.S. Dollar';
         $currency->code = 'USD';
         $currency->symbol_left = 'US$';
+        $currency->symbol_right = '';
+        $currency->save();
+
+        $currency = new Currency();
+        $currency->title = 'Vietnamese Dong';
+        $currency->code = 'VND';
+        $currency->symbol_left = 'VND';
         $currency->symbol_right = '';
         $currency->save();
         //

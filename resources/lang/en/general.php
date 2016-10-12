@@ -245,5 +245,8 @@ return [
     'price_name' => 'Price Name',
     'seat_color' => 'Seat Color',
     'seat_image' => 'Seat Image',
+    'job_type'  => 'Job Type',
+    'career'    => 'Career',
+    'city'      => 'City',
 
 ];

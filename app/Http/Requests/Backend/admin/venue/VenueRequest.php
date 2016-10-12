@@ -26,7 +26,8 @@ class VenueRequest extends Request
         return [
             'name'              => 'required',
             'address'           => 'required',
-            'country'           => 'required',
+            // 'country'           => 'required',
+            'city'              => 'required',
             // 'mrtdirection'      => 'required',
             // 'cardirection'      => 'required',
             // 'taxidirection'     => 'required',

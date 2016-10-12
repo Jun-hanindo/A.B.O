@@ -43,7 +43,8 @@
                             <th class="center-align">{{ trans('general.venue_title') }}</th>
                             <th class="center-align">{{ trans('general.address') }}</th>
                             <th class="center-align">{{ trans('general.post_by') }}</th>
-                            <th class="center-align">{{ trans('general.avaibility') }}</th>
+                            <th width="20%" class="center-align">{{ trans('general.avaibility') }}</th>
+                            <th width="12%"></th>
                         </tr>
                     </thead>
                 </table>

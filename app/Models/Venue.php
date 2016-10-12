@@ -73,7 +73,7 @@ class Venue extends Model
         $this->capacity = $param['capacity'];
         $this->link_map = $param['link_map'];
         $this->gmap_link = $param['gmap_link'];
-        $this->country_id = $param['country'];
+        $this->city = $param['city'];
     	if($this->save()){
             return $this;
         } else {
@@ -119,7 +119,7 @@ class Venue extends Model
             $data->capacity = $param['capacity'];
             $data->link_map = $param['link_map'];
             $data->gmap_link = $param['gmap_link'];
-            $data->country_id = $param['country'];
+            $data->city = $param['city'];
             if($data->save()) {
                 return $data;
             } else {

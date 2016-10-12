@@ -30,9 +30,9 @@
                 <thead>
                     <tr>
                         <th class="center-align">{{ trans('general.name') }}</th>
-                        <th class="center-align">{{ trans('general.avaibility_on_discover') }}</th>
-                        <th class="center-align">{{ trans('general.status') }}</th>
-                        <th width="12%">{{ trans('general.action') }}</th>
+                        <th width="20%" class="center-align">{{ trans('general.avaibility_on_discover') }}</th>
+                        <th width="20%" class="center-align">{{ trans('general.status') }}</th>
+                        <th width="12%"></th>
                     </tr>
                 </thead>
             </table>

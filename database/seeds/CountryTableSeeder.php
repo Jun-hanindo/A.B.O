@@ -13,6 +13,8 @@ class CountryTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('countries')->truncate();
+        
         $country = new Country();
         $country->id = "1";
         $country->name = "Afghanistan";

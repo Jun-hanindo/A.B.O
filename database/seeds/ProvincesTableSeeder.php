@@ -13,6 +13,8 @@ class ProvincesTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('provinces')->truncate(); 
+        
         $province = new Province();
         $province->id = "1";
         $province->countries_id = "6";

@@ -511,7 +511,8 @@ class Event extends Model
 
             if(!empty($near_schedule)){
                 $event->prices = EventScheduleCategory::select('event_schedule_categories.*', 
-                    'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right')
+                    'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right', 
+                    'currencies.code as code')
                     ->where('event_schedule_id', $near_schedule->id)
                     ->leftJoin('currencies', 'currencies.id', '=', 'event_schedule_categories.currency_id')
                     ->orderBy('price', 'desc')
@@ -521,14 +522,14 @@ class Event extends Model
                     $i = 1;
                     foreach ($event->prices as $k => $val) {
                         if($count == 1){
-                            $event->price_range = $val->symbol_left.number_format_drop_zero_decimals($val->price).$val->symbol_right;
+                            $event->price_range = $val->code.' '.number_format_drop_zero_decimals($val->price);
                         }else{
                             if($i == 1){
                                 $event->max_range = number_format_drop_zero_decimals($val->price);
                             }elseif ($i == $count) {
                                 $event->min_range = number_format_drop_zero_decimals($val->price);
                             }
-                            $event->price_range = $val->symbol_left.$event->min_range.'-'.$event->max_range.$val->symbol_right;
+                            $event->price_range = $val->code.' '.$event->min_range.'-'.$event->max_range;
                         }
                         $i++;
                     }
@@ -622,15 +623,17 @@ class Event extends Model
                     $event->venue = $event->Venue()->where('avaibility', true)->first();
                     if(!empty($event->venue)){
                         $event->venue_name = $event->venue->name;
-                        $event->country = $event->venue->country()->first();
-                        if(!empty($event->country)){
-                            $event->country_name = ', '.$event->country->name;
-                        }else{
-                            $event->country_name = '';
-                        }
+                        $event->city = ', '.$event->venue->city;
+                        // $event->country = $event->venue->country()->first();
+                        // if(!empty($event->country)){
+                        //     $event->country_name = ', '.$event->country->name;
+                        // }else{
+                        //     $event->country_name = '';
+                        // }
                     }else{
                         $event->venue_name = '';
-                        $event->country_name = '';
+                        $event->city = '';
+                        //$event->country_name = '';
                     }
                     
                     $array[] = $event;
@@ -700,7 +703,8 @@ class Event extends Model
             'promotions.end_date as end_date', 'promotions.category as category',
             'promotions.title as promo_title', 'promotions.discount as discount', 
             'promotions.discount_nominal as discount_nominal', 
-            'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right')
+            'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right',
+            'currencies.code as currency_code')
             ->join('event_promotions', 'event_promotions.event_id', '=', 'events.id')
             ->join('promotions', 'promotions.id', '=', 'event_promotions.promotion_id')
             ->leftjoin('currencies', 'currencies.id', '=', 'promotions.currency_id')
@@ -729,7 +733,7 @@ class Event extends Model
                 if($event->discount > 0){
                     $event->disc = number_format_drop_zero_decimals($event->discount).'%';
                 }else{
-                    $event->disc = $event->symbol_left.number_format_drop_zero_decimals($event->discount_nominal).$event->symbol_right;
+                    $event->disc = $event->currency_code.' '.number_format_drop_zero_decimals($event->discount_nominal);
                 }
             }
             return $events;
@@ -748,7 +752,8 @@ class Event extends Model
             'promotions.end_date as end_date', 'promotions.category as category',
             'promotions.title as promo_title', 'promotions.discount as discount', 
             'promotions.discount_nominal as discount_nominal', 
-            'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right')
+            'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right',
+            'currencies.code as currency_code')
             ->join('event_promotions', 'event_promotions.event_id', '=', 'events.id')
             ->join('promotions', 'promotions.id', '=', 'event_promotions.promotion_id')
             ->leftjoin('currencies', 'currencies.id', '=', 'promotions.currency_id')
@@ -777,7 +782,7 @@ class Event extends Model
                 if($event->discount > 0){
                     $event->disc = number_format_drop_zero_decimals($event->discount).'%';
                 }else{
-                    $event->disc = $event->symbol_left.number_format_drop_zero_decimals($event->discount_nominal).$event->symbol_right;
+                    $event->disc = $event->currency_code.' '.number_format_drop_zero_decimals($event->discount_nominal);
                 }
             }
             return $events;
@@ -791,7 +796,7 @@ class Event extends Model
     public function minPrice($slug)
     {
         $data = DB::table('events')
-        ->select('events.id as id', 'price', 'currency_id', 'symbol_left', 'symbol_right')
+        ->select('events.id as id', 'price', 'currency_id', 'symbol_left', 'symbol_right', 'code')
         ->leftjoin('event_schedules', 'events.id', '=', 'event_schedules.event_id')
         ->leftjoin('event_schedule_categories', 'event_schedules.id', '=', 'event_schedule_categories.event_schedule_id')
         ->leftjoin('currencies', 'currencies.id', '=', 'event_schedule_categories.currency_id')
@@ -815,7 +820,7 @@ class Event extends Model
     public function minPriceById($id)
     {
         $data = DB::table('events')
-        ->select('events.id as id', 'price', 'currency_id', 'symbol_left', 'symbol_right')
+        ->select('events.id as id', 'price', 'currency_id', 'symbol_left', 'symbol_right', 'code')
         ->leftjoin('event_schedules', 'events.id', '=', 'event_schedules.event_id')
         ->leftjoin('event_schedule_categories', 'event_schedules.id', '=', 'event_schedule_categories.event_schedule_id')
         ->leftjoin('currencies', 'currencies.id', '=', 'event_schedule_categories.currency_id')

@@ -116,8 +116,8 @@
             </div>
             @if(!empty($event->venue))
             <div class="col-md-4 place">
-                <div class="information-title">
-                    <i class="fa fa-map-marker"></i> {{ $event->venue->name }}
+                <div class="information-title information-place">
+                    <span> {{ $event->venue->name }}</span>
                 </div>
                 <ul class="list-unstyled">
                     <li>{!! $event->venue->address !!}</li>

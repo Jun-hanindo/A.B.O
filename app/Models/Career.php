@@ -60,7 +60,7 @@ class Career extends Model
         $this->user_id = $user_id;
         $this->job = $param['position'];
         $this->department_id = $param['department'];
-        $this->type = $param['type'];
+        $this->type = $param['job_type'];
         $this->salary = $param['salary'];
         $this->description = $param['description'];
         $this->responsibilities = $param['responsibilities'];
@@ -105,7 +105,7 @@ class Career extends Model
         if (!empty($data)) {
             $data->job = $param['position'];
             $data->department_id = $param['department'];
-            $data->type = $param['type'];
+            $data->type = $param['job_type'];
             $data->salary = $param['salary'];
             $data->description = $param['description'];
             $data->responsibilities = $param['responsibilities'];
