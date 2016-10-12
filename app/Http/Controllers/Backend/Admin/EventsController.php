@@ -485,7 +485,7 @@ class EventsController extends BaseController
         try{
             $data = $this->model->checkSlug($slug);
 
-            if(!empty($data)){
+            //if(!empty($data)){
 
                 return response()->json([
                     'code' => 200,
@@ -493,7 +493,7 @@ class EventsController extends BaseController
                     'message' => 'Success',
                     'data' => $data
                 ],200);
-            }
+            //}
 
         } catch (\Exception $e) {
 

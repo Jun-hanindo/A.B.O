@@ -849,25 +849,33 @@
 
 
 
-        $(document).ready(function(){
-            $(document).on('keyup','#title',function( e ) {  
+        $(document).ready(function(){ 
+            var typingTimer;                //timer identifier
+            $('#title').on('input keypress', function(event) {
+                var doneTypingInterval = 500;
                 var title = $('#title').val();
                 var slug = getSlug(title);
-                var uri = "{{ URL::route('admin-slug-check-event', "::param") }}";
-                uri = uri.replace('::param', slug);
-                $.ajax({
-                    url: uri,
-                    type: "get",
-                    contentType: "application/json",
-                    dataType: 'json',
-                    success: function (response) {
-                        var data = response.data;
-                        $('#slug').val(data.slug);
-                    },
-                    error: function(response){
-                        $('#slug').val(slug);
-                    }
-                });
+                clearTimeout(typingTimer);
+                typingTimer = setTimeout(function(){
+                    var uri = "{{ URL::route('admin-slug-check-event', "::param") }}";
+                    uri = uri.replace('::param', slug);
+                    $.ajax({
+                        url: uri,
+                        type: "get",
+                        contentType: "application/json",
+                        dataType: 'json',
+                        success: function (response) {
+                            var data = response.data;
+                            $('#slug').val(data.slug);
+                            if(data == false){
+                                $('#slug').val(slug);
+                            }
+                        },
+                        error: function(response){
+                            $('#slug').val(slug);
+                        }
+                    });
+                }, doneTypingInterval);
             })
 
 
