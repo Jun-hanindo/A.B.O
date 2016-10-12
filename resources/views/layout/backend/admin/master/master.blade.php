@@ -49,7 +49,7 @@
             <header class="main-header">
                 <a href="{{ route('admin-dashboard') }}" class="logo" title="{{ env('APP_WEB_ADMIN_NAME', 'Asia Box Office Web Admin') }}">
                     <span class="logo-mini"><b>{{ env('APP_NAME_INITIAL', 'A') }}</b></span>
-                    <span class="logo-lg"><b>{{ env('APP_NAME', 'Asia Box Office') }}</b></span>
+                    <span class="logo-lg"><img src="{{ asset('assets/frontend/images/footer-logo.svg') }}"></span>
                 </a>
 
                 <nav class="navbar navbar-static-top" role="navigation">

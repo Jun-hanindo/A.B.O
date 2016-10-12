@@ -7,6 +7,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
     Route::put('profile/{type}', array('as' => 'admin-profile-update', 'uses' => 'ProfileController@update'));
 
 
+
     Route::group(['prefix' => 'user-trustees','namespace' => 'UserTrustee'], function () {
 
         // Menu Management...

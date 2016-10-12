@@ -57,6 +57,9 @@
     height: 10px;
     border-radius: 50%;
     display: inline-block;
+}.main-header .logo .logo-lg {
+    width: 50%;
+    margin: 0 auto;
 }
 
 /*.cke_chrome{

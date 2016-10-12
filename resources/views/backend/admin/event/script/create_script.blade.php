@@ -147,6 +147,7 @@
             var thumb_i = $('#featured_image2').prop('files')[0];
             var side_i = $('#featured_image3').prop('files')[0];
             var seat_i = $('#seat_image').prop('files')[0];
+            var share_i = $('#share_image').prop('files')[0];
             if(silde_i != undefined){
                 fd.append('featured_image1',silde_i);
             }
@@ -158,6 +159,9 @@
             }
             if(seat_i != undefined){
                 fd.append('seat_image',seat_i);
+            }
+            if(share_i != undefined){
+                fd.append('share_image',share_i);
             }
 
             // for (i=0; i < tinyMCE.editors.length; i++){

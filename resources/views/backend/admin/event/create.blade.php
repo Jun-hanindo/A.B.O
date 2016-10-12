@@ -127,6 +127,14 @@
                             <div class="form-group privew" id="div-preview_image3" data-name="image3" style="display:none">
                                 <img src="" name="preview" id="preview_image3" height="50%" width="50%">
                             </div>
+                            <div class="form-group{{ Form::hasError('share_image') }} share_image">
+                                <label for="share_image">Social Media Sharing Image<br>(1200px x 630px) *</label>
+                                <input id="share_image" name="share_image" class="form-control image" data-name="share_image" type="file" value="">
+                                {!! Form::errorMsg('share_image') !!}
+                            </div>
+                            <div class="form-group privew" id="div-preview_share_image" data-name="share_image" style="display:none">
+                                <img src="" name="preview" id="preview_share_image" height="50%" width="50%">
+                            </div>
                             <div class="form-group{{ Form::hasError('event_type') }} event_type">
                                 {!! Form::label('event_type', trans('general.event_type').' *', array('class' => 'full-width')) !!}
                                 {!! Form::select('event_type', array('1' => 'General',

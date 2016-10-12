@@ -34,6 +34,7 @@ class EventRequest extends Request
                 'featured_image1'   => 'mimes:jpg,jpeg|dimensions:width=2880,height=1000',
                 'featured_image2'   => 'mimes:jpg,jpeg|dimensions:width=1125,height=762',
                 'featured_image3'   => 'mimes:jpg,jpeg|dimensions:width=300,height=200',
+                'share_image'       => 'mimes:jpg,jpeg|dimensions:width=1200,height=630',
                 'buylink'           => 'required|url',
                 'venue_id'          => 'required',
                 'schedule_and_price_detail' => 'required',
@@ -53,6 +54,10 @@ class EventRequest extends Request
                 $rules['featured_image3'] = 'required';
             }
 
+            if ($event->notHavingImageShare($req)){
+                $rules['share_image'] = 'required';
+            }
+
             if($req['event_type'] == 0){
                 if (empty($event->seat_image)){
                     $rules['seat_image'] = 'required';
@@ -67,9 +72,10 @@ class EventRequest extends Request
                 'title'             => 'required',
                 'description'       => 'required',
                 'schedule_info'        => 'required',
-                'featured_image1'   => 'required|mimes:jpg|dimensions:width=2880,height=1000',
-                'featured_image2'   => 'required|mimes:jpg|dimensions:width=1125,height=762',
-                'featured_image3'   => 'required|mimes:jpg|dimensions:width=300,height=200',
+                'featured_image1'   => 'required|mimes:jpg,jpeg|dimensions:width=2880,height=1000',
+                'featured_image2'   => 'required|mimes:jpg,jpeg|dimensions:width=1125,height=762',
+                'featured_image3'   => 'required|mimes:jpg,jpeg|dimensions:width=300,height=200',
+                'share_image'       => 'required|mimes:jpg,jpeg|dimensions:width=1200,height=630',
                 'buylink'           => 'required|url',
                 'venue_id'          => 'required',
                 'schedule_and_price_detail' => 'required',

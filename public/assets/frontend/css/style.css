@@ -3162,7 +3162,7 @@ footer .information-title{
   padding-bottom: 15px !important;
 }
 
-.register-mobile{
+.mobile-collapse-body-top li:last-child a{
   padding-top: 0 !important;
   padding-bottom: 40px !important;
 }

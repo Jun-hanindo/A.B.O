@@ -171,6 +171,13 @@ class Event extends Model
             $this->seat_image = $filenameseat;
         }
 
+        if (isset($param['share_image'])) {
+            $share_image = $param['share_image'];
+            $extensionshare = $share_image->getClientOriginalExtension();
+            $filenameshare = "imageshare".time().'.'.$extensionshare;
+            $this->share_image = $filenameshare;
+        }
+
     	if($this->save()){
 	        if (isset($featured_image1)) {
 	    		$img1 = Image::make($featured_image1);
@@ -204,6 +211,14 @@ class Event extends Model
                 $simg_tmp = $simg->stream();
                 Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
                     'events/'.$filenameseat, $simg_tmp->__toString(), 'public'
+                );
+                //$img3->save($pathDest.'/'.$filename3); 
+            }
+            if (isset($share_image)) {
+                $shimg = Image::make($share_image);
+                $shimg_tmp = $shimg->stream();
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                    'events/'.$filenameshare, $shimg_tmp->__toString(), 'public'
                 );
                 //$img3->save($pathDest.'/'.$filename3); 
             }
@@ -309,6 +324,19 @@ class Event extends Model
                 $data->seat_image = $filenameseat;
             }
 
+            if(isset($param['share_image'])){
+                $oldImage = $data->share_image;
+                if(!empty($data->share_image)){
+                    file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+                }
+                
+                $share_image = $param['share_image'];
+                $extensionshare = $share_image->getClientOriginalExtension();
+
+                $filenameshare = "imageshare".time().'.'.$extensionshare;
+                $data->share_image = $filenameshare;
+            }
+
             if($data->save()){
                 if(isset($param['featured_image1'])){
                     $img1 = Image::make($featured_image1);
@@ -360,6 +388,15 @@ class Event extends Model
                         'events/'.$filenameseat, $simg_tmp->__toString(), 'public'
                     );
                 }
+
+                if(isset($param['share_image'])){
+                    $shimg = Image::make($share_image);
+                    $shimg_tmp = $shimg->stream();
+                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                        'events/'.$filenameshare, $shimg_tmp->__toString(), 'public'
+                    );
+                }
+
                 if(isset($param['categories'])){
                     $data->categories()->sync($param['categories']);
                 }else{
@@ -481,6 +518,14 @@ class Event extends Model
         }
     }
 
+    public function notHavingImageShare($param){
+        if(empty($param['share_image']) && empty($this->share_image)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function findEventBySlug($slug)
     {
         $event = Event::where('slug' , '=', $slug)->first();
@@ -535,7 +580,7 @@ class Event extends Model
                     }
                 }
             } 
-            $event->venue = $event->Venue;
+            $event->venue = $event->Venue()->where('avaibility', true)->first();
             $event->promotions = $event->promotions()->where('avaibility', true)->orderBy('start_date')->get();
             return $event;
         
@@ -561,6 +606,10 @@ class Event extends Model
 
         if($event->seat_image != ''){
             $event->seat_image_url = file_url('events/'.$event->seat_image, env('FILESYSTEM_DEFAULT'));
+        }
+
+        if($event->share_image != ''){
+            $event->share_image_url = file_url('events/'.$event->share_image, env('FILESYSTEM_DEFAULT'));
         }
     }
 

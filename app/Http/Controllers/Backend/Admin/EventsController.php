@@ -172,18 +172,18 @@ class EventsController extends BaseController
     {
         try{
             $data = $this->model->findEventByID($id);
-            $data->src = url('uploads/events');
-            if(isset($data->featured_image1)){
-                $data->src_featured_image1 = $data->src.'/'.$data->featured_image1; 
-            }
+            // $data->src = url('uploads/events');
+            // if(isset($data->featured_image1)){
+            //     $data->src_featured_image1 = $data->src.'/'.$data->featured_image1; 
+            // }
 
-            if(isset($data->featured_image2)){
-                $data->src_featured_image2 = $data->src.'/'.$data->featured_image2; 
-            }
+            // if(isset($data->featured_image2)){
+            //     $data->src_featured_image2 = $data->src.'/'.$data->featured_image2; 
+            // }
 
-            if(isset($data->featured_image3)){
-                $data->src_featured_image3 = $data->src.'/'.$data->featured_image3; 
-            }
+            // if(isset($data->featured_image3)){
+            //     $data->src_featured_image3 = $data->src.'/'.$data->featured_image3; 
+            // }
 
             if($data->event_type == true){
                 $data->event_type = 1;

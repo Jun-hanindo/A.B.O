@@ -248,5 +248,6 @@ return [
     'job_type'  => 'Job Type',
     'career'    => 'Career',
     'city'      => 'City',
+    'social_media_sharing_image' => 'Social Media Sharing Image',
 
 ];

@@ -563,7 +563,8 @@ class AuthController extends Controller
             $insertLog->insertLogActivity($log);
 
             flash()->success('Login success!');
-            return redirect()->route('admin-dashboard');
+            //return redirect()->route('admin-dashboard');
+            return redirect()->route('admin-index-event');
         } catch (ThrottlingException $e) {
 
             $log['user_id'] = $findUser->id;

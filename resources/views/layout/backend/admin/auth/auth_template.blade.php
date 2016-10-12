@@ -22,7 +22,7 @@
     <body class="login-page">
         <div class="login-box">
             <div class="login-logo">
-                <a href="{{ route('admin-dashboard') }}"><b>{{ env('APP_WEB_ADMIN_NAME', 'AHLOO Web Admin') }}</b></a>
+                <a href="{{ route('admin-dashboard') }}"><b><img src="{{ asset('assets/frontend/images/ABO-logo-black.svg') }}"></b></a>
             </div>
 
             <div class="login-box-body">
