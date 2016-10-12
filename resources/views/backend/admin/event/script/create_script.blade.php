@@ -850,6 +850,28 @@
 
 
         $(document).ready(function(){
+            $(document).on('keyup','#title',function( e ) {  
+                var title = $('#title').val();
+                var slug = getSlug(title);
+                var uri = "{{ URL::route('admin-slug-check-event', "::param") }}";
+                uri = uri.replace('::param', slug);
+                $.ajax({
+                    url: uri,
+                    type: "get",
+                    contentType: "application/json",
+                    dataType: 'json',
+                    success: function (response) {
+                        var data = response.data;
+                        $('#slug').val(data.slug);
+                    },
+                    error: function(response){
+                        $('#slug').val(slug);
+                    }
+                });
+            })
+
+
+
             loadTextEditor(); 
             $('.colorpicker').colorpicker();
 

@@ -317,6 +317,9 @@
     width: 100%;
     height: 60px;
   }
+  .mobile-content{
+    min-height: 413px;
+  }
   .mobile-logo img,
   .logo-footer img{
     width: 87px;
@@ -382,7 +385,7 @@
     display: block;
     background-color: #fff;
     padding-bottom: 45px;
-    min-height: 375px;
+    min-height: 413px;
   }
   .search-mobile .search-faq input{
     max-width: 100%;

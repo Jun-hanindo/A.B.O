@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
@@ -16,6 +17,7 @@ use Image;
 class Event extends Model
 {
     use Sluggable;
+    use SluggableScopeHelpers;
     use SoftDeletes;
     protected $table = 'events';
     protected $dates = ['deleted_at'];
@@ -132,6 +134,7 @@ class Event extends Model
         }
         $this->user_id = $user_id;
     	$this->title = $param['title'];
+        //$this->slug = $param['slug'];
     	$this->description = $param['description'];
         $this->admission = $param['admission'];
         $this->schedule_info = $param['schedule_info'];
@@ -256,6 +259,7 @@ class Event extends Model
                 $param['event_type'] = false;
             }
            	$data->title = $param['title'];
+            //$data->slug = $param['slug'];
 	    	$data->description = $param['description'];
 	        $data->admission = $param['admission'];
             $data->schedule_info = $param['schedule_info'];
@@ -610,6 +614,17 @@ class Event extends Model
 
         if($event->share_image != ''){
             $event->share_image_url = file_url('events/'.$event->share_image, env('FILESYSTEM_DEFAULT'));
+        }
+    }
+
+    public function checkSlug($slugString){
+        $data = Event::findBySlug($slugString);
+
+        if(!empty($data)){
+            $data = $data->replicate();
+            return $data;
+        }else{
+            return false;
         }
     }
 

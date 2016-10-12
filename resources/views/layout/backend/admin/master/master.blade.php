@@ -136,6 +136,7 @@
         {!! Html::script('assets/plugins/bootstrap-select/bootstrap-select.min.js') !!}
         {!! Html::script('assets/plugins/timepicker/bootstrap-timepicker.min.js') !!}
         {!! Html::script('assets/plugins/colorpicker/bootstrap-colorpicker.min.js') !!}
+        {!! Html::script('assets/plugins/speakingurl/speakingurl.min.js') !!}
         
 
         <script>

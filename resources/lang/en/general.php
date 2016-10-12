@@ -107,7 +107,7 @@ return [
 
     'bulk_action' => 'Bulk Action',
     'post_by' => 'Post By',
-    'avaibility' => 'Avaibility',
+    'avaibility' => 'Availability',
     'enable' => 'Enable',
     'disable' => 'Disable',
     'description' => 'Description',
@@ -249,5 +249,6 @@ return [
     'career'    => 'Career',
     'city'      => 'City',
     'social_media_sharing_image' => 'Social Media Sharing Image',
+    'slug'  => 'Slug',
 
 ];

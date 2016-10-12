@@ -51,6 +51,11 @@
                                 {!! Form::text('title', old('title'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.title')]) !!}
                                 {!! Form::errorMsg('title') !!}
                             </div>
+                            <div class="form-group{{ Form::hasError('slug') }} slug">
+                                {!! Form::label('slug', trans('general.slug').' *') !!}
+                                {!! Form::text('slug', old('slug'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.slug')]) !!}
+                                {!! Form::errorMsg('slug') !!}
+                            </div>
                             <div class="form-group{{ Form::hasError('description') }} description">
                                 {!! Form::label('description', trans('general.description').' *') !!}
                                 {!! Form::textarea('description', old('description'), ['class' => 'form-control tinymce', 'rows'=> '12', 'placeholder' => trans('general.description')]) !!}
