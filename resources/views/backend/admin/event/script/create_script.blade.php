@@ -3,6 +3,14 @@
     {!! Html::script('assets/plugins/datatables/dataTables.bootstrap.min.js') !!}
     <script type="text/javascript">
 
+        function hideShowSeatImage(val){
+            if(val == 0){
+                $('#seat_image-div').show();
+            }else{
+                $('#seat_image-div').hide();
+            }
+        }
+
         function countSchedule(event_id)
         {
             var uri = "{{ URL::route('admin-count-event-schedule', "::param") }}";
@@ -19,6 +27,7 @@
                     }
                     var data = response.data;
                     $("#count_schedule").val(data);
+                    handleScheduleCategory();
                 },
                 error: function(response){
                     response.responseJSON.message;
@@ -27,6 +36,23 @@
                 }
             });
         }  
+
+        function handleScheduleCategory()
+        {
+            var count_s = $('#count_schedule').val();
+            var bool = true;
+            $('input[name^="count_category"]').each(function() {
+                if($(this).val() == 0){
+                    bool = false;
+                }
+            });
+            var event_id = $('#event_id').val();
+            if(count_s > 0 && bool == true){
+                $('#schedule_and_price_detail').val('ok');
+            }else{
+                $('#schedule_and_price_detail').val('');
+            }
+        }
 
         function loadDataSchedule(event_id)
         {
@@ -74,23 +100,7 @@
                 }
             });
             //return table;
-        }
-
-        function handleScheduleCategory()
-        {
-            var count_s = $('#count_schedule').val();
-            var bool = true;
-            $('input[name^="count_category"]').each(function() {
-                if($(this).val() == 0){
-                    bool = false;
-                }
-            });
-            var event_id = $('#event_id').val();
-            if(count_s > 0 && bool == true){
-                $('#schedule_and_price_detail').val('ok');
-            }else{
-                $('#schedule_and_price_detail').val('');
-            }
+            handleScheduleCategory();
         }
 
         function loadDataPromotion(event_id)
@@ -547,6 +557,7 @@
                     loadDataScheduleCategory(schedule_id);
                     $('#modal-form-category').modal('hide');
                     $('#modal-form-schedule').modal('show'); 
+                    $('body').addClass('modal-open2');
                     $('#title-create-schedule').hide();
                     $('#title-update-schedule').show();
                     $('#button_update_schedule').show();
@@ -585,6 +596,7 @@
                     //loadDataScheduleCategory(schedule_id);
                     $('#modal-form-category').modal('hide');
                     $('#modal-form-schedule').modal('show'); 
+                    $('body').addClass('modal-open2');
                     // $('#title-create-schedule').hide();
                     // $('#title-update-schedule').show();
                     // $('#button_update_schedule').show();
@@ -850,11 +862,20 @@
 
 
         $(document).ready(function(){ 
+            var event_id = $('#event_id').val();
+            
+            if(event_id != ''){
+                countSchedule(event_id);
+            }else{
+                event_id = 0;
+            }    
+
             var typingTimer;                //timer identifier
             $('#title').on('input keypress', function(event) {
                 var doneTypingInterval = 500;
-                var title = $('#title').val();
+                var title = $(this).val();
                 var slug = getSlug(title);
+                console.log(slug);
                 clearTimeout(typingTimer);
                 typingTimer = setTimeout(function(){
                     var uri = "{{ URL::route('admin-slug-check-event', "::param") }}";
@@ -879,16 +900,7 @@
             })
 
 
-
             loadTextEditor(); 
-            $('.colorpicker').colorpicker();
-
-            var event_id = $('#event_id').val();
-            if(event_id != ''){
-                countSchedule(event_id);
-            }else{
-                event_id = 0;
-            } 
 
             $('.image').change(function(){
                 var name = $(this).attr('data-name');
@@ -896,34 +908,21 @@
                 preview(this,$(this).data('type'),name);
             });
 
-            loadDataSchedule(event_id);
-            loadDataPromotion(event_id);
-            //loadSwitchButton('event_type-check');
-            var val = $('#event_type').val();
-            if(val == 0){
-                $('#seat_image-div').show();
-            }else{
-                $('#seat_image-div').hide();
-            }
+            var event_type = $('#event_type').val();
+            hideShowSeatImage(event_type)
             $('#event_type').change(function(){
                 var val = $(this).val();
-                if(val == 0){
-                    $('#seat_image-div').show();
-                }else{
-                    $('#seat_image-div').hide();
-                }
+                hideShowSeatImage(val)
             });
-            loadSwitchButton('discount_type-check');
-            discountSwitch();
 
             $(".categories").select2();
-            //$('#button_submit').hide();
-            //$('#button_draft').show();
+
+            $('.colorpicker').colorpicker();
 
             $('#button_draft').on('click',function(){
                 var cat = '';
                 autoSaveUpdateEvent(cat);
-            }); 
+            });
 
             $('#form-event').on("click", "#button_preview", function (e) {
                 $(".tooltip-field").remove();
@@ -932,7 +931,6 @@
                 var fd = new FormData();
                 var silde_i = $('#featured_image1').prop('files')[0];
                 var thumb_i = $('#featured_image2').prop('files')[0];
-                //var side_i = $('#featured_image3').prop('files')[0];
                 var seat_i = $('#seat_image').prop('files')[0];
                 if(silde_i != undefined){
                     fd.append('featured_image1',silde_i);
@@ -940,9 +938,6 @@
                 if(thumb_i != undefined){
                     fd.append('featured_image2',thumb_i);
                 }
-                // if(side_i != undefined){
-                //     fd.append('featured_image3',side_i);
-                // }
                 if(seat_i != undefined){
                     fd.append('seat_image',seat_i);
                 }
@@ -963,22 +958,18 @@
                     success: function (data) {
                         HoldOn.close();
                         var url = '{{ route('preview-event') }}';
-                        //$("#button_preview").attr('target', '_blank');
                         newwindow.location = url;
-                        //window.open(url, '_blank')
                         return false;
                     },
                     error: function(response){
                         $('.error').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                     }
                 });
-            });   
+            }); 
 
-            $(".datepicker").datepicker( {
-                format: "yyyy-mm-dd",
-            });
+            loadDataSchedule(event_id);
 
-            $('#start_time, #end_time').timepicker();   
+            loadDataPromotion(event_id);
 
             $('.actAdd, .addPromotion').on('click',function(){
                 var cat = $(this).attr('data-name');
@@ -991,7 +982,22 @@
                 }
                 loadDataScheduleCategory(schedule_id);
 
-            });    
+            });  
+            //loadSwitchButton('event_type-check');
+            loadSwitchButton('discount_type-check');
+            discountSwitch();
+            //$('#button_submit').hide();
+            //$('#button_draft').show();   
+
+            $(".datepicker").datepicker( {
+                format: "yyyy-mm-dd",
+            });
+
+            $('#start_time, #end_time').timepicker(); 
+
+            $('.close').click(function(){
+                $('body').removeClass('modal-open2');
+            });
 
             $('#modal-form-schedule').on('show.bs.modal', function (e) {
                 $(".tooltip-field").remove();
@@ -1054,7 +1060,8 @@
                     var event_id = $('#event_id').val();
                     saveEventScheduleCategory(schedule_id); 
                     loadDataScheduleCategory(schedule_id);    
-                    loadDataSchedule(event_id);          
+                    loadDataSchedule(event_id); 
+                    $('body').removeClass('modal-open2');         
                 });
 
                 $("#button_update_category").unbind('click').bind('click', function () {
@@ -1063,7 +1070,8 @@
                     var event_id = $('#event_id').val();
                     updateEventScheduleCategory(category_id);  
                     loadDataScheduleCategory(schedule_id);    
-                    loadDataSchedule(event_id);                   
+                    loadDataSchedule(event_id);   
+                    $('body').removeClass('modal-open2');                
                 });
             }); 
 

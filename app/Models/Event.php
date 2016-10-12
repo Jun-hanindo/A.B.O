@@ -134,7 +134,7 @@ class Event extends Model
         }
         $this->user_id = $user_id;
     	$this->title = $param['title'];
-        //$this->slug = $param['slug'];
+        $this->slug = $param['slug'];
     	$this->description = $param['description'];
         $this->admission = $param['admission'];
         $this->schedule_info = $param['schedule_info'];
@@ -259,7 +259,7 @@ class Event extends Model
                 $param['event_type'] = false;
             }
            	$data->title = $param['title'];
-            //$data->slug = $param['slug'];
+            $data->slug = $param['slug'];
 	    	$data->description = $param['description'];
 	        $data->admission = $param['admission'];
             $data->schedule_info = $param['schedule_info'];

@@ -61,6 +61,13 @@
     width: 50%;
     margin: 0 auto;
 }
+.modal-open2{
+    overflow: hidden;
+}
+.modal-open2 .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 
 /*.cke_chrome{
 	border-left: 1px solid #b6b6b6 !important;
