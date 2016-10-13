@@ -72,7 +72,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     
 
     //uncomment 161013
-    Route::get('/', array('as' => 'static', 'uses' => 'HomeController@indexStatic'));
+    Route::get('/', array('as' => 'home', 'uses' => 'HomeController@indexStatic'));
     Route::get('bryan-adams', array('as' => 'bryan-adams', 'uses' => 'HomeController@bryanAdams'));
     Route::get('jessica-jung-singapore', array('as' => 'jessica-jung-singapore', 'uses' => 'HomeController@jessicaJungSingapore'));
     Route::get('jessica-jung-hochiminh', array('as' => 'jessica-jung-hochiminh', 'uses' => 'HomeController@jessicaJungHochiminh'));
