@@ -195,3 +195,25 @@ $('#show-message').on('click',function(){
     });
 });
 
+// $( ".menu-disabled" ).each(function( e ) {
+//     var title = $(this).text();
+//     $('.menu-disabled').click(function(e){
+//         //$( ".menu-disabled" ).each(function( e ) {
+//         var title = $(this).attr('title');
+//         console.log(title);
+//         if(title != 'Events' || title != 'Accounts Management'){
+//             e.preventDefault();
+//             return false;
+//         }
+//     });
+// });
+
+$('.menu-disabled').click(function(e){
+    var title = $(this).attr('title');
+    if(title != 'Events' && title != 'Accounts Management' && title != 'Homepage' && title != 'Venue' && 
+        title != 'Trail' && title != 'System Log' && title != 'Logout'){
+        e.preventDefault();
+        return false;
+    }
+});
+

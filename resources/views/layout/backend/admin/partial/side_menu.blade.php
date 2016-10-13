@@ -3,7 +3,7 @@
     @if ($menu['is_parent'])
         @hasaccess((isset($menu['child_permissions']) ? $menu['child_permissions'] : []), true)
             <li class="treeview{!! (Request::is($menu['pattern'].'/*')) ? ' active' : '' !!}">
-                <a href="#" title="{{ $menu['display_name'] }}">
+                <a class="menu-disabled" href="#" title="{{ $menu['display_name'] }}">
                     <i class="fa fa-{{ $menu['icon'] }}"></i> <span>{{ $menu['display_name'] }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
@@ -25,7 +25,7 @@
     @else
         @hasaccess($menu['name'])
             <li{!! (url($menu['href']) == Request::url() OR Request::is($menu['href'].'/*')) ? ' class="active"' : '' !!}>
-                <a href="{!! url($menu['href']) !!}" title="{!! $menu['display_name'] !!}">
+                <a class="menu-disabled" href="{!! url($menu['href']) !!}" title="{!! $menu['display_name'] !!}">
                     <i class="fa fa-{{ $menu['icon'] }}"></i> <span>{{ $menu['display_name'] }}</span>
                     @if($menu['name'] == 'inbox')
                         <span class="pull-right-container">
