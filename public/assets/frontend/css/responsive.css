@@ -867,9 +867,9 @@ display: block;
     top: 25%;
     left: 43%;
   }*/
-  .eventBanner .btnPlayEvent a{
+  /*.eventBanner .btnPlayEvent a{
     font-size: 50px;
-  }
+  }*/
   .back-menu-search a:before{
     content: "\f104";
     font-family: 'FontAwesome';

@@ -492,7 +492,9 @@
                 <h4 class="modal-title" id="myModalLabel">{{ trans('frontend/general.event_promotion_video') }}</h4>
             </div>
             <div class="modal-body">
-                {!! $event->video_link !!}
+                <div class='embed-container'>
+                    {!! $event->video_link !!}
+                </div>
             </div>
         </div>
     </div>
