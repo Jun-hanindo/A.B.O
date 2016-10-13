@@ -760,10 +760,11 @@ display: block;
   .eventBanner .detail h5{
     font-size: 11px;
   }
-  /*.eventBanner .btnPlayEvent{
-    top: 40%;
-    left: 45%;
-  }*/
+  .eventBanner .btnPlayEvent{
+    /*top: 40%;
+    left: 45%;*/
+    left:43%;
+  }
   .main-content section{
     margin-top: 0;
   }
@@ -833,9 +834,9 @@ display: block;
     margin: 0 auto;
     left: 10%;
   }
-  .eventBanner .btnPlayEvent a{
+  /*.eventBanner .btnPlayEvent a{
     font-size: 60px;
-  }
+  }*/
   .eventTab .nav-tabs>li>a{
     font-size: 12px !important;
   }
