@@ -521,4 +521,32 @@ class EventsController extends BaseController
 
     }
 
+    public function deleteSeatImage(Request $req, $id){
+
+        try{
+            $param = $req->all();
+            $data = $this->model->deleteSeatImage($param, $id);
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => trans('general.delete_seat_image_success')
+                ],200);
+
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'error',
+                'message' => trans('general.data_not_found')
+            ],400);
+
+        }
+
+    }
+
 }

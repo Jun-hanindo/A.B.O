@@ -497,22 +497,6 @@ class Event extends Model
     {
         $data = $this->find($id);
         if(!empty($data)) {
-            // $data->status = false;
-            // if($data->save()) {
-            //     $pathDest = public_path().'/uploads/events';
-            //     $oldImage1 = $data->featured_image1;
-            //     $oldImage2 = $data->featured_image2;
-            //     $oldImage3 = $data->featured_image3;
-            //     File::delete($pathDest.'/'.$oldImage1);
-            //     File::delete($pathDest.'/'.$oldImage2);
-            //     File::delete($pathDest.'/'.$oldImage3);
-            //     return $data;
-            // } else {
-            //     return false;
-
-            // }
-
-            //$pathDest = public_path().'/uploads/events';
             $oldImage1 = $data->featured_image1;
             $oldImage2 = $data->featured_image2;
             $oldImage3 = $data->featured_image3;
@@ -536,6 +520,33 @@ class Event extends Model
         } else {
             return false;
         }
+    }
+
+    public function deleteSeatImage($param, $id){
+        $data = $this->find($id);
+        if(!empty($data)) {
+            if(isset($param['seat_image2'])){
+                $seat_image2 = $data->seat_image2;
+                $data->seat_image2 = '';
+                if($data->save()){
+                    file_delete('events/'.$seat_image2, env('FILESYSTEM_DEFAULT'));
+                }else{
+                    return false;
+                }
+            }
+            if(isset($param['seat_image3'])){
+                $seat_image3 = $data->seat_image3;
+                $data->seat_image3 = '';
+                if($data->save()){
+                    file_delete('events/'.$seat_image3, env('FILESYSTEM_DEFAULT'));
+                }else{
+                    return false;
+                }
+            }
+        } else {
+            return false;
+        }
+
     }
 
     public function changeAvaibility($param, $id){
@@ -716,92 +727,103 @@ class Event extends Model
         }
     }
 
-    // public function getEvent($limit)
-    // {
-    //     $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
-    //         'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color', 
-    //         DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',')  as category"))
-    //         ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
-    //         ->join('categories', 'event_categories.category_id', '=', 'categories.id')
-    //         ->where('categories.status', true)
-    //         ->where('events.avaibility','=',true)
-    //         ->groupBy('events.id')
-    //         ->orderBy('events.created_at', 'desc')
-    //         ->paginate($limit);
-
-    //     if(!empty($events)) {
-    //         foreach ($events as $key => $event) {
-
-    //             $event->title = string_limit($event->title);
-    //             $cats = explode(',', $event->category);
-    //             $event->cat_name = strtoupper($cats[0]);
-
-    //             $this->setImageUrl($event);
-
-    //             $event->venue = $event->Venue;
-                
-    //             $event->schedule = $event->EventSchedule()->orderBy('date_at', 'asc')->first();
-    //                 if(!empty($event->schedule)){
-    //                     $event->date_at = full_text_date($event->schedule->date_at);
-    //                 }
-    //         }
-    //         return $events;
-    //     }else{
-    //         return false;
-    //     }
-    // }
-
     public function getEvent($limit)
     {
         $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
-            'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color')
-            ->where('avaibility', true)
-            ->orderBy('created_at', 'desc')
-            //->paginate($limit);
-            ->get();
+            'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color', 
+            DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',')  as category"))
+            ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
+            ->join('categories', 'event_categories.category_id', '=', 'categories.id')
+            ->where('categories.status', true)
+            ->where('events.avaibility','=',true)
+            ->groupBy('events.id')
+            ->orderBy('events.created_at', 'desc')
+            ->paginate($limit);
+
         if(!empty($events)) {
-            $array = [];
             foreach ($events as $key => $event) {
+
                 $event->title = string_limit($event->title);
-                $event->cat = $event->Categories()->where('status', true)->orderBy('name', 'asc')->first();
-                if(!empty($event->cat)){
-                    $event->cat_name = strtoupper($event->cat->name);
-                    $this->setImageUrl($event);
-                    $event->schedule = $event->EventSchedule()->orderBy('date_at', 'asc')->first();
+                $cats = explode(',', $event->category);
+                $event->cat_name = strtoupper($cats[0]);
+
+                $this->setImageUrl($event);
+
+                $event->venue = $event->Venue()->where('avaibility', true)->first();
+                if(!empty($event->venue)){
+                    $event->venue_name = $event->venue->name;
+                    if(!empty($event->venue->city)){
+                        $event->city = ', '.$event->venue->city;
+                    }else{
+                        $event->city = '';
+                    }
+                }else{
+                    $event->venue_name = '';
+                    $event->city = '';
+                }
+                
+                $event->schedule = $event->EventSchedule()->orderBy('date_at', 'asc')->first();
                     if(!empty($event->schedule)){
                         $event->date_at = full_text_date($event->schedule->date_at);
                     }
-
-                    $event->venue = $event->Venue()->where('avaibility', true)->first();
-                    if(!empty($event->venue)){
-                        $event->venue_name = $event->venue->name;
-                        $event->city = ', '.$event->venue->city;
-                        // $event->country = $event->venue->country()->first();
-                        // if(!empty($event->country)){
-                        //     $event->country_name = ', '.$event->country->name;
-                        // }else{
-                        //     $event->country_name = '';
-                        // }
-                    }else{
-                        $event->venue_name = '';
-                        $event->city = '';
-                        //$event->country_name = '';
-                    }
-                    
-                    $array[] = $event;
-                } 
             }
-            $col = collect($array);
-            $currentPage = LengthAwarePaginator::resolveCurrentPage();
-            $currentPageSearchResults = $col->slice(($currentPage - 1) * $limit, $limit)->all();
-            $events = new LengthAwarePaginator($currentPageSearchResults, count($col), $limit);
-            $events = $events->setPath(route('discover'));
-            //dd($events);
             return $events;
         }else{
             return false;
         }
     }
+
+    // public function getEvent($limit)
+    // {
+    //     $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
+    //         'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color')
+    //         ->where('avaibility', true)
+    //         ->orderBy('created_at', 'desc')
+    //         //->paginate($limit);
+    //         ->get();
+    //     if(!empty($events)) {
+    //         $array = [];
+    //         foreach ($events as $key => $event) {
+    //             $event->title = string_limit($event->title);
+    //             $event->cat = $event->Categories()->where('status', true)->orderBy('name', 'asc')->first();
+    //             if(!empty($event->cat)){
+    //                 $event->cat_name = strtoupper($event->cat->name);
+    //                 $this->setImageUrl($event);
+    //                 $event->schedule = $event->EventSchedule()->orderBy('date_at', 'asc')->first();
+    //                 if(!empty($event->schedule)){
+    //                     $event->date_at = full_text_date($event->schedule->date_at);
+    //                 }
+
+    //                 $event->venue = $event->Venue()->where('avaibility', true)->first();
+    //                 if(!empty($event->venue)){
+    //                     $event->venue_name = $event->venue->name;
+    //                     $event->city = ', '.$event->venue->city;
+    //                     // $event->country = $event->venue->country()->first();
+    //                     // if(!empty($event->country)){
+    //                     //     $event->country_name = ', '.$event->country->name;
+    //                     // }else{
+    //                     //     $event->country_name = '';
+    //                     // }
+    //                 }else{
+    //                     $event->venue_name = '';
+    //                     $event->city = '';
+    //                     //$event->country_name = '';
+    //                 }
+                    
+    //                 $array[] = $event;
+    //             } 
+    //         }
+    //         $col = collect($array);
+    //         $currentPage = LengthAwarePaginator::resolveCurrentPage();
+    //         $currentPageSearchResults = $col->slice(($currentPage - 1) * $limit, $limit)->all();
+    //         $events = new LengthAwarePaginator($currentPageSearchResults, count($col), $limit);
+    //         $events = $events->setPath(route('discover'));
+    //         //dd($events);
+    //         return $events;
+    //     }else{
+    //         return false;
+    //     }
+    // }
 
 
     public function getEventByCategory($category, $limit)

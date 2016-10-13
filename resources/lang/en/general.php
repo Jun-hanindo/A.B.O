@@ -38,6 +38,7 @@ return [
     'update_success' => 'Has been successfully updated',
     'update_error' => 'Update data has been failed',
     'delete_success' => 'Delete data has been successfully',
+    'delete_seat_image_success' => 'Delete Seat Image has been successfully',
     'banned_success' => 'Has been successfully banned', 
     'banned_failed' => 'Has been fail banned',
     'restore_success' => 'Has been successfully restored',

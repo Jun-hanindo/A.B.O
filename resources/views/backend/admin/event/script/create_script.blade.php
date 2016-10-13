@@ -1000,6 +1000,73 @@
                 hideShowSeatImage(val)
             });
 
+            $('.delete-seat_image2').click(function(){
+                $('#delete-modal-seat-image').modal('show');
+                var name = $(this).attr('data-id');
+                var val = $(this).attr('data-value');
+
+                $('#delete-modal-seat-image .continue-delete').attr('data-id', name);
+                $('#delete-modal-seat-image .continue-delete').attr('data-value', val);
+            });
+
+            $('.delete-seat_image3').click(function(){
+                $('#delete-modal-seat-image').modal('show');
+                var name = $(this).attr('data-id');
+                var val = $(this).attr('data-value');
+
+                $('#delete-modal-seat-image .continue-delete').attr('data-id', name);
+                $('#delete-modal-seat-image .continue-delete').attr('data-value', val);
+            });
+
+            $('#delete-modal-seat-image').on('click', '.continue-delete', function () {
+                var id = $('#event_id').val();
+                var image = $(this).attr('data-value');
+                var uri = "{{ URL::route('admin-delete-seat-image', "::param") }}";
+                var name = $(this).attr('data-id');
+                var image = $(this).attr('data-value');
+                uri = uri.replace('::param', id);
+                $.ajax({
+                    url: uri,
+                    type: "POST",
+                    dataType: 'json',
+                    data: name+'='+image,
+                    success: function (data) {
+                        $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        
+                        $('#'+name).val('');
+                        $('#div-preview_'+name+' img').attr('src', '');
+                        $('.delete-'+name).remove();
+
+                    },
+                    error: function(response){
+                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    }
+                });
+            });
+
+            $('.delete-seat-image3').click(function(){
+                var id = $('#event_id').val();
+                var image = $(this).attr('data-value');
+                console.log(image);
+                var uri = "{{ URL::route('admin-delete-seat-image', "::param") }}";
+                uri = uri.replace('::param', id);
+                $.ajax({
+                    url: uri,
+                    type: "POST",
+                    dataType: 'json',
+                    data: {seat_image3: image},
+                    success: function (data) {
+                        $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        
+                    },
+                    error: function(response){
+                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        $('#seat_image3').val('');
+                        $('#div-preview_seat_image3 img').attr('src', '');
+                    }
+                });
+            });
+
             $(".categories").select2();
 
             $('.colorpicker').colorpicker();

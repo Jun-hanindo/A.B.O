@@ -106,6 +106,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::post('category/{id}/avaibility-edit', array('as' => 'admin-update-category-avaibility', 'uses' => 'CategoriesController@avaibilityUpdate'));
         Route::post('category/{id}/status-edit', array('as' => 'admin-update-category-status', 'uses' => 'CategoriesController@statusUpdate'));
         Route::get('{slug}/check', array('as' => 'admin-slug-check-event', 'uses' => 'EventsController@slug'));
+        Route::post('{id}/delete-seat-image', array('as' => 'admin-delete-seat-image', 'uses' => 'EventsController@deleteSeatImage'));
         //Route::get('preview', array('as' => 'admin-preview-event', 'uses' => 'EventsController@preview'));
 
         

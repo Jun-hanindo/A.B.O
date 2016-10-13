@@ -111,7 +111,7 @@
                                 {!! Form::errorMsg('featured_image1') !!}
                             </div>
                             <div class="form-group preview" id="div-preview_image1" data-name="image1">
-                                <img src="{{ (!empty($data->seat_image)) ? file_url('events/'.$data->featured_image1, env('FILESYSTEM_DEFAULT')) : '' }}" name="preview" id="preview_image1" height="50%" width="50%">
+                                <img src="{{ (!empty($data->featured_image1)) ? file_url('events/'.$data->featured_image1, env('FILESYSTEM_DEFAULT')) : '' }}" name="preview" id="preview_image1" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image2') }} featured_image2">
                                 {!! Form::label('featured_image2', trans('general.featured_image2').'(1125px x 762px) *') !!}
@@ -120,7 +120,7 @@
                                 
                             </div>
                             <div class="form-group preview" id="div-preview_image2" data-name="image2">
-                                <img src="{{ (!empty($data->seat_image)) ? file_url('events/'.$data->featured_image2, env('FILESYSTEM_DEFAULT')) : '' }}" name="preview" id="preview_image2" height="50%" width="50%">
+                                <img src="{{ (!empty($data->featured_image2)) ? file_url('events/'.$data->featured_image2, env('FILESYSTEM_DEFAULT')) : '' }}" name="preview" id="preview_image2" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image3') }} featured_image3">
                                 {!! Form::label('featured_image3', trans('general.featured_image3').'(300px x 200px) *') !!}
@@ -128,7 +128,7 @@
                                 {!! Form::errorMsg('featured_image3') !!}
                             </div>
                             <div class="form-group preview" id="div-preview_image3" data-name="image3">
-                                <img src="{{ (!empty($data->seat_image)) ? file_url('events/'.$data->featured_image3, env('FILESYSTEM_DEFAULT')) : '' }}" name="preview" id="preview_image3" height="50%" width="50%">
+                                <img src="{{ (!empty($data->featured_image3)) ? file_url('events/'.$data->featured_image3, env('FILESYSTEM_DEFAULT')) : '' }}" name="preview" id="preview_image3" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('share_image') }} share_image">
                                 <label for="share_image">Social Media Sharing Image<br>(1200px x 630px) *</label>
@@ -155,16 +155,16 @@
                                 </div>
 
                                 <div class="form-group{{ Form::hasError('seat_image2') }} seat_image2">
-                                    {!! Form::label('seat_image2', trans('general.seat_image2')) !!}
+                                    {!! Form::label('seat_image2', trans('general.seat_image2')) !!} {!! (!empty($data->seat_image2)) ? '<a href="javascript:void(0)" data-id="seat_image2" data-value="'.$data->seat_image2.'" class="btn btn-danger btn-xs delete-seat_image2" title="Delete Seat Image 2"><i class="fa fa-trash-o fa-fw"></i></a>' : '' !!}
                                     <input id="seat_image2" name="seat_image2" class="form-control image" data-name="seat_image2" type="file" value="{{$data->seat_image2}}">
                                     {!! Form::errorMsg('seat_image2') !!}
                                 </div>
                                 <div class="form-group preview" id="div-preview_seat_image2" data-name="seat_image2">
-                                    <img src="{{ (!empty($data->seat_image2)) ? file_url('events/'.$data->seat_image, env('FILESYSTEM_DEFAULT')) : '' }}" name="preview" id="preview_seat_image2" height="50%" width="50%">
+                                    <img src="{{ (!empty($data->seat_image2)) ? file_url('events/'.$data->seat_image2, env('FILESYSTEM_DEFAULT')) : '' }}" name="preview" id="preview_seat_image2" height="50%" width="50%">
                                 </div>
 
                                 <div class="form-group{{ Form::hasError('seat_image3') }} seat_image3">
-                                    {!! Form::label('seat_image3', trans('general.seat_image3')) !!}
+                                    {!! Form::label('seat_image3', trans('general.seat_image3')) !!} {!! (!empty($data->seat_image3)) ? '<a href="javascript:void(0)" data-id="seat_image3" data-value="'.$data->seat_image3.'" class="btn btn-danger btn-xs delete-seat_image3" title="Delete Seat Image 3"><i class="fa fa-trash-o fa-fw"></i></a>' : '' !!}
                                     <input id="seat_image3" name="seat_image3" class="form-control image" data-name="seat_image3" type="file" value="{{$data->seat_image3}}">
                                     {!! Form::errorMsg('seat_image3') !!}
                                 </div>
@@ -497,6 +497,25 @@
                     {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
                         <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
                         <a id="delete-modal-promotion" href="#" class="continue-delete btn btn-default" data-dismiss="modal">Continue</a>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="delete-modal-seat-image" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{ trans('general.confirmation_delete') }} <strong id="name"></strong> ?</p>
+                </div>
+                <div class="modal-footer">
+                    {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
+                        <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
+                        <a id="delete-modal-seat-image" href="#" class="continue-delete btn btn-default" data-dismiss="modal">Continue</a>
                     {!! Form::close() !!}
                 </div>
             </div>
