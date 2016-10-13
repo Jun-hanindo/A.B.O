@@ -2405,9 +2405,10 @@ footer .information-title{
 
 .eventBanner .btnPlayEvent{
   position: absolute;
-  top: 32%;
+  top: 50%;
   margin: 0 auto;
   left: 47%;
+  transform: translateY(-50%);
 }
 
 .eventBanner .btnPlayEvent a{

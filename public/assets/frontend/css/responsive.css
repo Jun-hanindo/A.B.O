@@ -760,10 +760,10 @@ display: block;
   .eventBanner .detail h5{
     font-size: 11px;
   }
-  .eventBanner .btnPlayEvent{
+  /*.eventBanner .btnPlayEvent{
     top: 40%;
     left: 45%;
-  }
+  }*/
   .main-content section{
     margin-top: 0;
   }
@@ -805,10 +805,10 @@ display: block;
 }
 
 @media (max-width: 650px){
-  .eventBanner .btnPlayEvent{
+  /*.eventBanner .btnPlayEvent{
     top: 20%;
     left: 44%;
-  }
+  }*/
   .eventBanner .btnPlayEvent a{
     font-size: 80px;
   }
@@ -824,10 +824,10 @@ display: block;
 }
 
 @media (max-width: 500px){
-  .eventBanner .btnPlayEvent{
+  /*.eventBanner .btnPlayEvent{
     top: 18%;
     left: 43%;
-  }
+  }*/
   .box-mobile-faq{
     width: 80%;
     margin: 0 auto;
@@ -863,10 +863,10 @@ display: block;
 }
 
 @media (max-width: 420px){
-  .eventBanner .btnPlayEvent{
+  /*.eventBanner .btnPlayEvent{
     top: 25%;
     left: 43%;
-  }
+  }*/
   .eventBanner .btnPlayEvent a{
     font-size: 50px;
   }
