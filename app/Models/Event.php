@@ -174,6 +174,20 @@ class Event extends Model
             $this->seat_image = $filenameseat;
         }
 
+        if (isset($param['seat_image2'])) {
+            $seat_image2 = $param['seat_image2'];
+            $extensionseat2 = $seat_image2->getClientOriginalExtension();
+            $filenameseat2 = "imageseat2".time().'.'.$extensionseat2;
+            $this->seat_image2 = $filenameseat2;
+        }
+
+        if (isset($param['seat_image3'])) {
+            $seat_image3 = $param['seat_image3'];
+            $extensionseat3 = $seat_image3->getClientOriginalExtension();
+            $filenameseat3 = "imageseat3".time().'.'.$extensionseat3;
+            $this->seat_image3 = $filenameseat3;
+        }
+
         if (isset($param['share_image'])) {
             $share_image = $param['share_image'];
             $extensionshare = $share_image->getClientOriginalExtension();
@@ -214,6 +228,22 @@ class Event extends Model
                 $simg_tmp = $simg->stream();
                 Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
                     'events/'.$filenameseat, $simg_tmp->__toString(), 'public'
+                );
+                //$img3->save($pathDest.'/'.$filename3); 
+            }
+            if (isset($seat_image2)) {
+                $simg2 = Image::make($seat_image2);
+                $simg_tmp2 = $simg2->stream();
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                    'events/'.$filenameseat2, $simg_tmp2->__toString(), 'public'
+                );
+                //$img3->save($pathDest.'/'.$filename3); 
+            }
+            if (isset($seat_image3)) {
+                $simg3 = Image::make($seat_image3);
+                $simg_tmp3 = $simg3->stream();
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                    'events/'.$filenameseat3, $simg_tmp3->__toString(), 'public'
                 );
                 //$img3->save($pathDest.'/'.$filename3); 
             }
@@ -328,6 +358,32 @@ class Event extends Model
                 $data->seat_image = $filenameseat;
             }
 
+            if(isset($param['seat_image2'])){
+                $oldImage = $data->seat_image2;
+                if(!empty($data->seat_image2)){
+                    file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+                }
+                
+                $seat_image2 = $param['seat_image2'];
+                $extensionseat2 = $seat_image2->getClientOriginalExtension();
+
+                $filenameseat2 = "imageseat2".time().'.'.$extensionseat2;
+                $data->seat_image2 = $filenameseat2;
+            }
+
+            if(isset($param['seat_image3'])){
+                $oldImage = $data->seat_image3;
+                if(!empty($data->seat_image3)){
+                    file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+                }
+                
+                $seat_image3 = $param['seat_image3'];
+                $extensionseat3 = $seat_image3->getClientOriginalExtension();
+
+                $filenameseat3 = "imageseat3".time().'.'.$extensionseat3;
+                $data->seat_image3 = $filenameseat3;
+            }
+
             if(isset($param['share_image'])){
                 $oldImage = $data->share_image;
                 if(!empty($data->share_image)){
@@ -393,6 +449,22 @@ class Event extends Model
                     );
                 }
 
+                if(isset($param['seat_image2'])){
+                    $simg2 = Image::make($seat_image2);
+                    $simg_tmp2 = $simg2->stream();
+                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                        'events/'.$filenameseat2, $simg_tmp2->__toString(), 'public'
+                    );
+                }
+
+                if(isset($param['seat_image3'])){
+                    $simg3 = Image::make($seat_image3);
+                    $simg_tmp3 = $simg3->stream();
+                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                        'events/'.$filenameseat3, $simg_tmp3->__toString(), 'public'
+                    );
+                }
+
                 if(isset($param['share_image'])){
                     $shimg = Image::make($share_image);
                     $shimg_tmp = $shimg->stream();
@@ -444,12 +516,20 @@ class Event extends Model
             $oldImage1 = $data->featured_image1;
             $oldImage2 = $data->featured_image2;
             $oldImage3 = $data->featured_image3;
+            $seat_image = $data->seat_image;
+            $seat_image2 = $data->seat_image2;
+            $seat_image3 = $data->seat_image3;
+            $share_image = $data->share_image;
             // File::delete($pathDest.'/'.$oldImage1);
             // File::delete($pathDest.'/'.$oldImage2);
             // File::delete($pathDest.'/'.$oldImage3);
             file_delete('events/'.$oldImage1, env('FILESYSTEM_DEFAULT'));
             file_delete('events/'.$oldImage2, env('FILESYSTEM_DEFAULT'));
             file_delete('events/'.$oldImage3, env('FILESYSTEM_DEFAULT'));
+            file_delete('events/'.$seat_image, env('FILESYSTEM_DEFAULT'));
+            file_delete('events/'.$seat_image2, env('FILESYSTEM_DEFAULT'));
+            file_delete('events/'.$seat_image3, env('FILESYSTEM_DEFAULT'));
+            file_delete('events/'.$share_image, env('FILESYSTEM_DEFAULT'));
             $data->delete();
             $data->Homepage()->delete();
             return $data;
@@ -532,7 +612,7 @@ class Event extends Model
 
     public function findEventBySlug($slug)
     {
-        $event = Event::where('slug' , '=', $slug)->first();
+        $event = Event::where('slug' , '=', $slug)->orderBy('created_at', 'desc')->first();
         if (!empty($event)) {
             $event->cat = $event->Categories()->where('status', true)->orderBy('name', 'asc')->first();
             $this->setImageUrl($event);
@@ -610,6 +690,14 @@ class Event extends Model
 
         if($event->seat_image != ''){
             $event->seat_image_url = file_url('events/'.$event->seat_image, env('FILESYSTEM_DEFAULT'));
+        }
+
+        if($event->seat_image2 != ''){
+            $event->seat_image2_url = file_url('events/'.$event->seat_image2, env('FILESYSTEM_DEFAULT'));
+        }
+
+        if($event->seat_image3 != ''){
+            $event->seat_image3_url = file_url('events/'.$event->seat_image3, env('FILESYSTEM_DEFAULT'));
         }
 
         if($event->share_image != ''){

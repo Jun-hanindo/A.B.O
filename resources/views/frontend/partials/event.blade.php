@@ -417,7 +417,34 @@
                     <div class="seat-map-modal">
                         <div class="row">
                             <div class="col-md-7">
-                                <img src="{{ (!empty($event->seat_image)) ? file_url('events/'.$event->seat_image, env('FILESYSTEM_DEFAULT')) : '' }}">
+                                @if(!empty($event->seat_image2) || !empty($event->seat_image3))
+                                    <div class="navigation-level">
+                                        <ul class="nav nav-tabs nav-level" role="tablist">
+                                            @if(!empty($event->seat_image))
+                                                <li role="presentation" class="active"><a href="#level1" aria-controls="home" role="tab" data-toggle="tab">Level 1</a></li>
+                                            @endif
+                                            @if(!empty($event->seat_image2))
+                                                <li role="presentation"><a href="#level2" aria-controls="profile" role="tab" data-toggle="tab">Level 2</a></li>
+                                            @endif
+                                            @if(!empty($event->seat_image3))
+                                                <li role="presentation"><a href="#level3" aria-controls="messages" role="tab" data-toggle="tab">Level 3</a></li>
+                                            @endif
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content">
+                                        @if(!empty($event->seat_image))
+                                            <div role="tabpanel" class="tab-pane active" id="level1"><img src="{{ $event->seat_image_url  }}"></div>
+                                        @endif
+                                        @if(!empty($event->seat_image2))
+                                            <div role="tabpanel" class="tab-pane" id="level2"><img src="{{ $event->seat_image2_url  }}"></div>
+                                        @endif
+                                        @if(!empty($event->seat_image3))
+                                            <div role="tabpanel" class="tab-pane" id="level3"><img src="{{ $event->seat_image3_url  }}"></div>
+                                        @endif
+                                    </div>
+                                @else
+                                    <img src="{{ (!empty($event->seat_image)) ? $event->seat_image_url : '' }}">
+                                @endif
                             </div>
                             <div class="col-md-5">
                                 <div class="seat-map-price">

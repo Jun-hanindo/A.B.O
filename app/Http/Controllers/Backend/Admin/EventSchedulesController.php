@@ -196,14 +196,13 @@ class EventSchedulesController extends BaseController
                 'data' => $data
             ],200);
 
-        } else {
+        } /*else {
             return response()->json([
                 'code' => 400,
                 'status' => 'error',
                 'message' => trans('general.data_not_found'),
-                'data' => 0
             ],400);
-        }
+        }*/
     }
 
 }

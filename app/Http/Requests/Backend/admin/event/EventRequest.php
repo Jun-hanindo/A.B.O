@@ -83,7 +83,7 @@ class EventRequest extends Request
                 'background_color'  => 'required',
             ];
 
-            dd($req['event_type']);
+            //dd($req['event_type']);
 
             if ($req['event_type'] == 0){
                 $rules['seat_image'] = 'required';

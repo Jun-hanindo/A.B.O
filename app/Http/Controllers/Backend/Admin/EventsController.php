@@ -137,30 +137,74 @@ class EventsController extends BaseController
         }
     }
 
-    // public function autoStore(Request $req)
-    // {
-    //     $param = $req->all();
-    //     $user_id = $this->currentUser->id;
-    //     $saveData = $this->model->insertNewEvent($param, $user_id);
-    //     if(!empty($saveData))
-    //     {
-    //         return response()->json([
-    //             'code' => 200,
-    //             'status' => 'success',
-    //             'last_insert_id' => $saveData->id,
-    //             'message' => '<strong>'.$saveData->title.'</strong> '.trans('general.save_success')
-    //         ],200);
-        
-    //     } else {
+    public function saveUpdate(Request $req)
+    {
+        $this->validate($req, [
+            'title' => 'required',
+        ]);
+        $param = $req->all();
+        $id = $param['event_id'];
 
-    //         return response()->json([
-    //             'code' => 400,
-    //             'status' => 'success',
-    //             'message' => trans('general.save_error')
-    //         ],400);
-        
-    //     }
-    // }
+        try{
+
+            if($id == ''){
+                $user_id = $this->currentUser->id;
+                $saveData = $this->model->insertNewEvent($param, $user_id);
+                $this->model->updateAvaibilityFalse($saveData->id);
+
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Event "'.$saveData->title.'" draft was created';
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
+
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'last_insert_id' => $saveData->id,
+                    'message' => '<strong>'.$saveData->title.'</strong> '.trans('general.save_success')
+                ],200);
+            }else{
+                $updateData = $this->model->updateEvent($param,$id);
+                //$this->model->updateAvaibilityFalse($id);
+
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Event "'.$updateData->title.'" draft was updated';
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
+
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
+                ],200);
+            }
+
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            if($id == ''){
+
+                return response()->json([
+                    'code' => 400,
+                    'status' => 'success',
+                    'message' => trans('general.save_error')
+                ],400);
+
+            }else{
+
+                return response()->json([
+                    'code' => 400,
+                    'status' => 'success',
+                    'message' => trans('general.update_error')
+                ],400);
+            }
+
+        }
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -172,19 +216,6 @@ class EventsController extends BaseController
     {
         try{
             $data = $this->model->findEventByID($id);
-            // $data->src = url('uploads/events');
-            // if(isset($data->featured_image1)){
-            //     $data->src_featured_image1 = $data->src.'/'.$data->featured_image1; 
-            // }
-
-            // if(isset($data->featured_image2)){
-            //     $data->src_featured_image2 = $data->src.'/'.$data->featured_image2; 
-            // }
-
-            // if(isset($data->featured_image3)){
-            //     $data->src_featured_image3 = $data->src.'/'.$data->featured_image3; 
-            // }
-
             if($data->event_type == true){
                 $data->event_type = 1;
             }else{
@@ -270,29 +301,6 @@ class EventsController extends BaseController
 
         }
     }
-
-    // public function autoUpdate(Request $req, $id)
-    // {
-    //     $param = $req->all();
-    //     $updateData = $this->model->updateEvent($param,$id);
-    //     if(!empty($updateData))
-    //     {
-    //         return response()->json([
-    //             'code' => 200,
-    //             'status' => 'success',
-    //             'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
-    //         ],200);
-        
-    //     } else {
-
-    //         return response()->json([
-    //             'code' => 400,
-    //             'status' => 'success',
-    //             'message' => trans('general.save_error')
-    //         ],400);
-        
-    //     }
-    // }
 
     /**
      * Remove the specified resource from storage.

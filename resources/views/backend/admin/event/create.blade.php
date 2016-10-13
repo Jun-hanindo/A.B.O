@@ -154,6 +154,22 @@
                                 <div class="form-group preview" id="div-preview_seat_image" data-name="seat_image">
                                     <img src="" name="preview" id="preview_seat_image" height="50%" width="50%">
                                 </div>
+                                <div class="form-group{{ Form::hasError('seat_image2') }} seat_image2">
+                                    {!! Form::label('seat_image2', trans('general.seat_image2')) !!}
+                                    <input id="seat_image2" name="seat_image2" class="form-control image" data-name="seat_image2" type="file" value="">
+                                    {!! Form::errorMsg('seat_image2') !!}
+                                </div>
+                                <div class="form-group preview" id="div-preview_seat_image2" data-name="seat_image2">
+                                    <img src="" name="preview" id="preview_seat_image2" height="50%" width="50%">
+                                </div>
+                                <div class="form-group{{ Form::hasError('seat_image3') }} seat_image3">
+                                    {!! Form::label('seat_image3', trans('general.seat_image3')) !!}
+                                    <input id="seat_image3" name="seat_image3" class="form-control image" data-name="seat_image3" type="file" value="">
+                                    {!! Form::errorMsg('seat_image3') !!}
+                                </div>
+                                <div class="form-group preview" id="div-preview_seat_image3" data-name="seat_image3">
+                                    <img src="" name="preview" id="preview_seat_image3" height="50%" width="50%">
+                                </div>
                             </div>
                             <div class="form-group{{ Form::hasError('venue_id') }} venue_id">
                                 {!! Form::label('venue_id', trans('general.venue').' *') !!}

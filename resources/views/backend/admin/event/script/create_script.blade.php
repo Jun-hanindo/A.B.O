@@ -30,8 +30,8 @@
                     handleScheduleCategory();
                 },
                 error: function(response){
-                    response.responseJSON.message;
-                    $("#count_schedule").val(response.responseJSON.data);
+                    //response.responseJSON.message;
+                    $("#count_schedule").val(0);
                     handleScheduleCategory();
                 }
             });
@@ -157,6 +157,8 @@
             var thumb_i = $('#featured_image2').prop('files')[0];
             var side_i = $('#featured_image3').prop('files')[0];
             var seat_i = $('#seat_image').prop('files')[0];
+            var seat_i2 = $('#seat_image2').prop('files')[0];
+            var seat_i3 = $('#seat_image3').prop('files')[0];
             var share_i = $('#share_image').prop('files')[0];
             if(silde_i != undefined){
                 fd.append('featured_image1',silde_i);
@@ -169,6 +171,12 @@
             }
             if(seat_i != undefined){
                 fd.append('seat_image',seat_i);
+            }
+            if(seat_i2 != undefined){
+                fd.append('seat_image2',seat_i2);
+            }
+            if(seat_i3 != undefined){
+                fd.append('seat_image3',seat_i3);
             }
             if(share_i != undefined){
                 fd.append('share_image',share_i);
@@ -183,7 +191,7 @@
                 fd.append(input.name,input.value);
             });
             $.ajax({
-                url: "{{ route('admin-draft-event') }}",
+                url: "{{ route('admin-saveupdate-event') }}",
                 type: "POST",
                 dataType: 'json',
                 processData: false,
@@ -221,6 +229,83 @@
                     }else{
                         window.location.href = "{{ route('admin-index-event') }}"
                     }
+                },
+                error: function(response){
+                    if (response.status === 422) {
+                        var data = response.responseJSON;
+                        $.each(data,function(key,val){
+                            $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
+                            $('.'+key).addClass('has-error');
+                        });
+                    } else {
+                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    }
+                }
+            });
+        }
+
+        function draft(){
+            $(".tooltip-field").remove();
+            $(".form-group").removeClass('has-error');
+            $(".text-danger").remove();
+            var fd = new FormData();
+            var silde_i = $('#featured_image1').prop('files')[0];
+            var thumb_i = $('#featured_image2').prop('files')[0];
+            var side_i = $('#featured_image3').prop('files')[0];
+            var seat_i = $('#seat_image').prop('files')[0];
+            var seat_i2 = $('#seat_image2').prop('files')[0];
+            var seat_i3 = $('#seat_image3').prop('files')[0];
+            var share_i = $('#share_image').prop('files')[0];
+            if(silde_i != undefined){
+                fd.append('featured_image1',silde_i);
+            }
+            if(thumb_i != undefined){
+                fd.append('featured_image2',thumb_i);
+            }
+            if(side_i != undefined){
+                fd.append('featured_image3',side_i);
+            }
+            if(seat_i != undefined){
+                fd.append('seat_image',seat_i);
+            }
+            if(seat_i2 != undefined){
+                fd.append('seat_image2',seat_i2);
+            }
+            if(seat_i3 != undefined){
+                fd.append('seat_image3',seat_i3);
+            }
+            if(share_i != undefined){
+                fd.append('share_image',share_i);
+            }
+
+            // for (i=0; i < tinyMCE.editors.length; i++){
+            //     var content = tinyMCE.editors[i].save();
+            // }
+
+            var other_data = $('#form-event').serializeArray();
+            $.each(other_data,function(key,input){
+                fd.append(input.name,input.value);
+            });
+            $.ajax({
+                url: "{{ route('admin-draft-event') }}",
+                type: "POST",
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                data: fd,
+                success: function (data) {
+                    var event_id = $('#event_id').val();
+                    if(event_id == ''){
+                        event_id = data.last_insert_id;
+                        $('#event_id').val(event_id);
+                        var uri = "{{ URL::route('admin-update-event', "::param") }}";
+                        uri = uri.replace('::param', event_id);
+                        var uri2 = "{{ URL::route('admin-edit-event', "::param") }}";
+                        uri2 = uri2.replace('::param', event_id);
+                        $('#form-event').attr('action', uri);
+                        window.history.pushState("string", data.status, uri2);
+                    }
+                        window.location.href = "{{ route('admin-index-event') }}";
                 },
                 error: function(response){
                     if (response.status === 422) {
@@ -557,7 +642,7 @@
                     loadDataScheduleCategory(schedule_id);
                     $('#modal-form-category').modal('hide');
                     $('#modal-form-schedule').modal('show'); 
-                    $('body').addClass('modal-open2');
+                    //$('body').addClass('modal-open2');
                     $('#title-create-schedule').hide();
                     $('#title-update-schedule').show();
                     $('#button_update_schedule').show();
@@ -596,7 +681,7 @@
                     //loadDataScheduleCategory(schedule_id);
                     $('#modal-form-category').modal('hide');
                     $('#modal-form-schedule').modal('show'); 
-                    $('body').addClass('modal-open2');
+                    //$('body').addClass('modal-open2');
                     // $('#title-create-schedule').hide();
                     // $('#title-update-schedule').show();
                     // $('#button_update_schedule').show();
@@ -921,7 +1006,7 @@
 
             $('#button_draft').on('click',function(){
                 var cat = '';
-                autoSaveUpdateEvent(cat);
+                draft(cat);
             });
 
             $('#form-event').on("click", "#button_preview", function (e) {
@@ -932,6 +1017,8 @@
                 var silde_i = $('#featured_image1').prop('files')[0];
                 var thumb_i = $('#featured_image2').prop('files')[0];
                 var seat_i = $('#seat_image').prop('files')[0];
+                var seat_i2 = $('#seat_image2').prop('files')[0];
+                var seat_i3 = $('#seat_image3').prop('files')[0];
                 if(silde_i != undefined){
                     fd.append('featured_image1',silde_i);
                 }
@@ -940,6 +1027,12 @@
                 }
                 if(seat_i != undefined){
                     fd.append('seat_image',seat_i);
+                }
+                if(seat_i2 != undefined){
+                    fd.append('seat_image2',seat_i2);
+                }
+                if(seat_i3 != undefined){
+                    fd.append('seat_image3',seat_i3);
                 }
 
                 var other_data = $('#form-event').serializeArray();
@@ -995,9 +1088,9 @@
 
             $('#start_time, #end_time').timepicker(); 
 
-            $('.close').click(function(){
-                $('body').removeClass('modal-open2');
-            });
+            // $('.close').click(function(){
+            //     $('body').removeClass('modal-open2');
+            // });
 
             $('#modal-form-schedule').on('show.bs.modal', function (e) {
                 $(".tooltip-field").remove();
@@ -1061,7 +1154,7 @@
                     saveEventScheduleCategory(schedule_id); 
                     loadDataScheduleCategory(schedule_id);    
                     loadDataSchedule(event_id); 
-                    $('body').removeClass('modal-open2');         
+                    //$('body').removeClass('modal-open2');         
                 });
 
                 $("#button_update_category").unbind('click').bind('click', function () {
@@ -1071,7 +1164,7 @@
                     updateEventScheduleCategory(category_id);  
                     loadDataScheduleCategory(schedule_id);    
                     loadDataSchedule(event_id);   
-                    $('body').removeClass('modal-open2');                
+                    //$('body').removeClass('modal-open2');                
                 });
             }); 
 

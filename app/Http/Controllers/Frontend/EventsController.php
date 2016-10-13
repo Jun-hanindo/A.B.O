@@ -79,6 +79,12 @@ class EventsController extends Controller
             if (isset($temp['seat_image'])) {
                 File::delete($pathDest.'/'.$temp['seat_image']);
             }
+            if (isset($temp['seat_image2'])) {
+                File::delete($pathDest.'/'.$temp['seat_image2']);
+            }
+            if (isset($temp['seat_image3'])) {
+                File::delete($pathDest.'/'.$temp['seat_image3']);
+            }
             \Session::forget('preview_event');
             $param = $req->all();
             if(!File::exists($pathDest)) {
@@ -112,6 +118,24 @@ class EventsController extends Controller
                 // $simg_tmp =  (string) $simg->encode('data-url');
                 $simg->save($pathDest.'/'.$filenameseat);
                 $param['seat_image'] = $filenameseat;
+            }
+            if (isset($param['seat_image2'])) {
+                $seat_image2 = $param['seat_image2'];
+                $extensionseat2 = $seat_image2->getClientOriginalExtension();
+                $filenameseat2 = "imageseat2".time().'.'.$extensionseat2;
+                $simg2 = \Image::make($seat_image2);
+                // $simg_tmp =  (string) $simg->encode('data-url');
+                $simg2->save($pathDest.'/'.$filenameseat2);
+                $param['seat_image2'] = $filenameseat2;
+            }
+            if (isset($param['seat_image3'])) {
+                $seat_image3 = $param['seat_image3'];
+                $extensionseat3 = $seat_image3->getClientOriginalExtension();
+                $filenameseat3 = "imageseat3".time().'.'.$extensionseat3;
+                $simg3 = \Image::make($seat_image3);
+                // $simg_tmp =  (string) $simg->encode('data-url');
+                $simg3->save($pathDest.'/'.$filenameseat3);
+                $param['seat_image3'] = $filenameseat3;
             }
 
             \Session::put('preview_event', $param);
@@ -208,13 +232,15 @@ class EventsController extends Controller
                 $modelCategory = new Category();
                 $event->cat =  $modelCategory->findCategoryByID($cat_id);
             }
+
+            $url_image = url('uploads/temp').'/';
             if(!isset($event->featured_image1)){
                 if(!empty($event->event_id)){
                     $ev = $this->model->findEventByID($event->event_id);
                     $event->featured_image1 = $ev->featured_image1_url;
                 }
             }else{
-                $event->featured_image1 = url('uploads/temp').'/'.$event->featured_image1;
+                $event->featured_image1 = $url_image.$event->featured_image1;
             }
             if(!isset($event->featured_image2)){
                 if(!empty($event->event_id)){
@@ -222,21 +248,32 @@ class EventsController extends Controller
                     $event->featured_image2 = $ev->featured_image2_url;
                 }
             }else{
-                $event->featured_image2 = url('uploads/temp/').'/'.$event->featured_image2;
-            }
-            // if(!isset($event->featured_image3)){
-            //     if(!empty($event->event_id)){
-            //         $ev = $this->model->findEventByID($event->event_id);
-            //         $event->featured_image3 = $ev->featured_image3_url;
-            //     }
-            // }
+                $event->featured_image2 = $url_image.$event->featured_image2;
+            } 
+
             if(!isset($event->seat_image)){
                 if(!empty($event->event_id)){
                     $ev = $this->model->findEventByID($event->event_id);
                     $event->seat_image = $ev->seat_image_url;
                 }
             }else{
-                $event->seat_image = url('uploads/temp/').'/'.$event->seat_image;
+                $event->seat_image = $url_image.$event->seat_image;
+            }
+            if(!isset($event->seat_image2)){
+                if(!empty($event->event_id)){
+                    $ev = $this->model->findEventByID($event->event_id);
+                    $event->seat_image2 = $ev->seat_image2_url;
+                }
+            }else{
+                $event->seat_image2 = $url_image.$event->seat_image2;
+            }
+            if(!isset($event->seat_image3)){
+                if(!empty($event->event_id)){
+                    $ev = $this->model->findEventByID($event->event_id);
+                    $event->seat_image3 = $ev->seat_image3_url;
+                }
+            }else{
+                $event->seat_image3 = $url_image.$event->seat_image3;
             }
             $data['event'] = $event;
             return view('frontend.partials.event_preview', $data);

@@ -250,5 +250,7 @@ return [
     'city'      => 'City',
     'social_media_sharing_image' => 'Social Media Sharing Image',
     'slug'  => 'Slug',
+    'seat_image2' => 'Seat Image 2',
+    'seat_image3' => 'Seat Image 3',
 
 ];

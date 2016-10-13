@@ -164,7 +164,7 @@
                             @endforeach
                     @endif
                     <div class="additional-info">{!! (!empty($event->price_info)) ? $event->price_info : '' !!}</div>
-                    @if(!empty($event->event_type))
+                    @if(isset($event->event_type))
                         @if($event->event_type == false)
                             <li class="liParent parentButton">
                               <button class="btn btnBlackDefault font-bold" data-target="#modalSeatMap" data-toggle="modal">See Seat Map</button>
@@ -414,8 +414,8 @@
         </div>
     </div>
 </section>
-@if(!empty($event->event_type))
-    @if($event->event_type == false)
+@if(isset($event->event_type))
+    @if($event->event_type == 0)
         <div class="modal fade modal-hochi" id="modalSeatMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -427,7 +427,34 @@
                         <div class="seat-map-modal">
                             <div class="row">
                                 <div class="col-md-7">
+                                    @if(!empty($event->seat_image2) || !empty($event->seat_image3))
+                                    <div class="navigation-level">
+                                        <ul class="nav nav-tabs nav-level" role="tablist">
+                                            @if(!empty($event->seat_image))
+                                                <li role="presentation" class="active"><a href="#level1" aria-controls="home" role="tab" data-toggle="tab">Level 1</a></li>
+                                            @endif
+                                            @if(!empty($event->seat_image2))
+                                                <li role="presentation"><a href="#level2" aria-controls="profile" role="tab" data-toggle="tab">Level 2</a></li>
+                                            @endif
+                                            @if(!empty($event->seat_image3))
+                                                <li role="presentation"><a href="#level3" aria-controls="messages" role="tab" data-toggle="tab">Level 3</a></li>
+                                            @endif
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content">
+                                        @if(!empty($event->seat_image))
+                                            <div role="tabpanel" class="tab-pane active" id="level1"><img src="{{ $event->seat_image  }}"></div>
+                                        @endif
+                                        @if(!empty($event->seat_image2))
+                                            <div role="tabpanel" class="tab-pane" id="level2"><img src="{{ $event->seat_image2  }}"></div>
+                                        @endif
+                                        @if(!empty($event->seat_image3))
+                                            <div role="tabpanel" class="tab-pane" id="level3"><img src="{{ $event->seat_image3  }}"></div>
+                                        @endif
+                                    </div>
+                                @else
                                     <img src="{{ (!empty($event->seat_image)) ? $event->seat_image : '' }}">
+                                @endif
                                 </div>
                                 <div class="col-md-5">
                                     <div class="seat-map-price">

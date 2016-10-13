@@ -93,6 +93,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::delete('{id}/delete', array('as' => 'admin-delete-event', 'uses' => 'EventsController@destroy'));
         Route::post('{id}/avaibility-edit', array('as' => 'admin-update-event-avaibility', 'uses' => 'EventsController@avaibilityUpdate'));
         Route::post('draft', array('as' => 'admin-draft-event', 'uses' => 'EventsController@draft'));
+        Route::post('saveUpdate', array('as' => 'admin-saveupdate-event', 'uses' => 'EventsController@saveUpdate'));
         Route::get('combo', array('as' => 'list-combo-event', 'uses' => 'EventsController@comboEvent'));
         Route::get('combo-promotion', array('as' => 'list-combo-event-promotion', 'uses' => 'EventsController@comboEventByPromotion'));
         Route::get('category', array('as' => 'admin-index-event-category', 'uses' => 'CategoriesController@index'));
