@@ -21,11 +21,11 @@ Route::group(['namespace' => 'Frontend'], function () {
     // Route::get('index', array('as' => 'index', 'uses' => 'HomeController@index'));
     
     //comment 161013
-    // Route::get('static', array('as' => 'static', 'uses' => 'HomeController@indexStatic'));
-    // Route::get('static/bryan-adams', array('as' => 'bryan-adams', 'uses' => 'HomeController@bryanAdams'));
-    // Route::get('static/jessica-jung-singapore', array('as' => 'jessica-jung-singapore', 'uses' => 'HomeController@jessicaJungSingapore'));
-    // Route::get('static/jessica-jung-hochiminh', array('as' => 'jessica-jung-hochiminh', 'uses' => 'HomeController@jessicaJungHochiminh'));
-    // Route::get('static/jessica-jung-manila', array('as' => 'jessica-jung-manila', 'uses' => 'HomeController@jessicaJungManila'));
+    Route::get('static', array('as' => 'static', 'uses' => 'HomeController@indexStatic'));
+    Route::get('static/bryan-adams', array('as' => 'bryan-adams', 'uses' => 'HomeController@bryanAdams'));
+    Route::get('static/jessica-jung-singapore', array('as' => 'jessica-jung-singapore', 'uses' => 'HomeController@jessicaJungSingapore'));
+    Route::get('static/jessica-jung-hochiminh', array('as' => 'jessica-jung-hochiminh', 'uses' => 'HomeController@jessicaJungHochiminh'));
+    Route::get('static/jessica-jung-manila', array('as' => 'jessica-jung-manila', 'uses' => 'HomeController@jessicaJungManila'));
     //
     
     Route::get('support', array('as' => 'support', 'uses' => 'HomeController@supportStatic'));
@@ -38,7 +38,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     
     /*Dynamic*/
     //comment 161013
-    //Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
+    Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
     //
 
     Route::get('discover', array('as' => 'discover', 'uses' => 'HomeController@discover'));
@@ -67,18 +67,18 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('getpost', array('as' => 'getpost-event', 'uses' => 'EventsController@getPost'));
 
     //comment 161013
-    //Route::get('{slug}', array('as' => 'event-detail', 'uses' => 'EventsController@index'));
+    Route::get('{slug}', array('as' => 'event-detail', 'uses' => 'EventsController@index'));
     //
     
 
     //uncomment 161013
-    Route::get('/', array('as' => 'home', 'uses' => 'HomeController@indexStatic'));
-    Route::get('bryan-adams', array('as' => 'bryan-adams', 'uses' => 'HomeController@bryanAdams'));
-    Route::get('jessica-jung-singapore', array('as' => 'jessica-jung-singapore', 'uses' => 'HomeController@jessicaJungSingapore'));
-    Route::get('jessica-jung-hochiminh', array('as' => 'jessica-jung-hochiminh', 'uses' => 'HomeController@jessicaJungHochiminh'));
-    Route::get('jessica-jung-manila', array('as' => 'jessica-jung-manila', 'uses' => 'HomeController@jessicaJungManila'));
-    Route::get('dynamic', array('as' => 'dynamic', 'uses' => 'HomeController@index'));
-    Route::get('event/{slug}', array('as' => 'event-detail', 'uses' => 'EventsController@index'));
+    // Route::get('/', array('as' => 'home', 'uses' => 'HomeController@indexStatic'));
+    // Route::get('bryan-adams', array('as' => 'bryan-adams', 'uses' => 'HomeController@bryanAdams'));
+    // Route::get('jessica-jung-singapore', array('as' => 'jessica-jung-singapore', 'uses' => 'HomeController@jessicaJungSingapore'));
+    // Route::get('jessica-jung-hochiminh', array('as' => 'jessica-jung-hochiminh', 'uses' => 'HomeController@jessicaJungHochiminh'));
+    // Route::get('jessica-jung-manila', array('as' => 'jessica-jung-manila', 'uses' => 'HomeController@jessicaJungManila'));
+    // Route::get('dynamic', array('as' => 'dynamic', 'uses' => 'HomeController@index'));
+    // Route::get('event/{slug}', array('as' => 'event-detail', 'uses' => 'EventsController@index'));
     //
 
     
