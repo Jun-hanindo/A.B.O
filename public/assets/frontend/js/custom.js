@@ -87,3 +87,7 @@ function autoSearch(q, sort)
         }
     });
 }
+
+$("#eventVideo").on('hidden.bs.modal', function (e) {
+    $("#eventVideo iframe").attr("src", $("#eventVideo iframe").attr("src"));
+});
