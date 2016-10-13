@@ -277,7 +277,7 @@
                     <form class="form-horizontal" id="form-event-category">
                         <input type="hidden" name="id" class="form-control" id="category_id">
                         <div class="form-group">
-                            {!! Form::label('additional_info', trans('general.price_name'), array('class' => 'col-sm-3 control-label pull-left')) !!}
+                            {!! Form::label('additional_info', trans('general.price_name').' *', array('class' => 'col-sm-3 control-label pull-left')) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('additional_info', old('additional_info'), ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.price_name')]) !!}
                             </div>
@@ -408,11 +408,11 @@
             <form id="form-cat">
                 <input type="hidden" name="id" class="form-control" id="id-cat">
                 <div class="form-group name">
-                    <label for="event" class="control-label">{{ trans('general.name') }} :</label>
+                    <label for="event" class="control-label">{{ trans('general.name') }} *</label>
                     {!! Form::text('name-cat', old('name'), array('id' => 'name-cat', 'class' => 'form-control')) !!}
                 </div>
                 <div class="form-group icon">
-                    <label for="event" class="control-label">{{ trans('general.icon') }} :</label>
+                    <label for="event" class="control-label">{{ trans('general.icon') }} *</label>
 
                     <select name="icon" id="icon-cat" class="form-control selectpicker" data-live-search="true">
                         @if(!empty($data['icons']))
@@ -428,7 +428,7 @@
                     </select>
                 </div>
                 <div class="form-group description">
-                    <label for="event" class="control-label">{{ trans('general.description') }} :</label>
+                    <label for="event" class="control-label">{{ trans('general.description') }}  *</label>
                     {!! Form::textarea('description-cat', old('description'), array('id' => 'description-cat', 'class' => 'form-control tinymce')) !!}
                 </div>
                 
