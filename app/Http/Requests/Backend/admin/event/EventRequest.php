@@ -29,6 +29,7 @@ class EventRequest extends Request
         $event = Event::find($req['event_id']);
             $rules =  [
                 'title'             => 'required',
+                'slug'              => 'required',
                 'description'       => 'required',
                 //'schedule_info'     => 'required',
                 'featured_image1'   => 'mimes:jpg,jpeg|dimensions:width=2880,height=1000',
@@ -70,6 +71,7 @@ class EventRequest extends Request
 
             $rules =  [
                 'title'             => 'required',
+                'slug'              => 'required',
                 'description'       => 'required',
                 //'schedule_info'        => 'required',
                 'featured_image1'   => 'required|mimes:jpg,jpeg|dimensions:width=2880,height=1000',
