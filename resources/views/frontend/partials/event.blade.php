@@ -4,6 +4,9 @@
 @section('content')
 <section class="eventBanner" id="eventBanner">
     <div class="imageBanner">
+        @if(!empty($event->video_link))
+            <div class="btnPlayEvent"><a data-toggle="modal" data-target="#eventVideo"><i class="fa fa-play-circle-o"></i></a></div>
+        @endif
         <img src="{{ $event->featured_image1_url }}" class="hidden-xs">
         <img src="{{ $event->featured_image2_url }}" class="hidden-lg hidden-md hidden-sm" alt="...">
     </div>
@@ -479,6 +482,21 @@
             </div>
         </div>
     </div>
+@endif
+@if(!empty($event->video_link))
+<div class="modal fade" id="eventVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{ trans('frontend/general.event_promotion_video') }}</h4>
+            </div>
+            <div class="modal-body">
+                {!! $event->video_link !!}
+            </div>
+        </div>
+    </div>
+</div>
 @endif
 @stop
 @include('frontend.partials.script.subscribe_script')
