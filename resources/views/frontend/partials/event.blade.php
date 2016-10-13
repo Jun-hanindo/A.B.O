@@ -145,7 +145,7 @@
                                     <table>
                                         <tr>
                                             <td>{{ $prc->additional_info }}</td>
-                                            <td><span>{{ $prc->code.' '.number_format_drop_zero_decimals($prc->price) }}</span></td>
+                                            <td><span>{{ ($prc->price > 0) ? $prc->code.' '.number_format_drop_zero_decimals($prc->price) : '' }}</span></td>
                                         </tr>
                                     </table>
                                 </li>
@@ -464,7 +464,7 @@
                                                         <span class="seat-dot" style="background-color:{{ $prc->seat_color }}"></span>
                                                         <span class="box-line">
                                                             <span class="category">{{ $prc->additional_info }}</span>
-                                                            <span class="price">{{ $prc->code.' '.number_format_drop_zero_decimals($prc->price) }}</span>
+                                                            <span class="price">{{ ($prc->price > 0) ? $prc->code.' '.number_format_drop_zero_decimals($prc->price) : '' }}</span>
                                                         </span>
                                                     </li>
                                                     @php 

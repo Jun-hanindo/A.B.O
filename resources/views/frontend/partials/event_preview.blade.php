@@ -138,7 +138,11 @@
                             $count = count($event->prices)
                         @endphp
                         @if($count > 1)
-                            {{ $event->symbol_left.$event->min_range.'-'.$event->max_range.$event->symbol_right.trans('frontend/general.per_person') }}
+                            @if($event->min_range > 0)
+                                {{ $event->code.' '.$event->min_range.'-'.$event->max_range.trans('frontend/general.per_person') }}
+                            @else
+                                {{ $event->code.' '.$event->max_range.trans('frontend/general.per_person') }}
+                            @endif
                         @else
                             {{ $event->price_range.trans('frontend/general.per_person') }}
                         @endif
@@ -157,7 +161,7 @@
                                     <table>
                                         <tr>
                                             <td>{{ $prc->additional_info }}</td>
-                                            <td><span>{{ $prc->symbol_left.number_format_drop_zero_decimals($prc->price).$prc->symbol_right }}</span></td>
+                                            <td><span>{{ ($prc->price > 0) ? $prc->code.' '.number_format_drop_zero_decimals($prc->price) : '' }}</span></td>
                                         </tr>
                                     </table>
                                 </li>
@@ -474,7 +478,7 @@
                                                             <span class="seat-dot" style="background-color:{{ $prc->seat_color }}"></span>
                                                             <span class="box-line">
                                                                 <span class="category">{{ $prc->additional_info }}</span>
-                                                                <span class="price">{{ $prc->symbol_left.number_format_drop_zero_decimals($prc->price).$prc->symbol_right }}</span>
+                                                                <span class="price">{{ ($prc->price > 0) ? $prc->code.' '.number_format_drop_zero_decimals($prc->price) : '' }}</span>
                                                             </span>
                                                         </li>
                                                         @php 

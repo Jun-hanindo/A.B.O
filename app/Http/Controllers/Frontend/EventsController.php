@@ -194,7 +194,8 @@ class EventsController extends Controller
 
                 if(!empty($near_schedule)){
                     $event->prices = EventScheduleCategory::select('event_schedule_categories.*', 
-                        'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right')
+                        'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right', 
+                        'currencies.code as code')
                         ->where('event_schedule_id', $near_schedule->id)
                         ->leftJoin('currencies', 'currencies.id', '=', 'event_schedule_categories.currency_id')
                         ->orderBy('price', 'desc')->get();
@@ -203,7 +204,7 @@ class EventsController extends Controller
                         $i = 1;
                         foreach ($event->prices as $k => $val) {
                             if($count == 1){
-                                $event->price_range = $val->symbol_left.number_format_drop_zero_decimals($val->price).$val->symbol_right;
+                                $event->price_range = $val->code.' '.number_format_drop_zero_decimals($val->price);
                             }else{
                                 if($i == 1){
                                     $event->max_range = number_format_drop_zero_decimals($val->price);
@@ -212,6 +213,7 @@ class EventsController extends Controller
                                 }
                                 $event->symbol_left = $val->symbol_left;
                                 $event->symbol_right = $val->symbol_right;
+                                $event->code = $val->code;
                                 //$event->price_range = $val->symbol_left.$event->max_range.'-'.$event->min_range.$val->symbol_right;
                             }
                             $i++;

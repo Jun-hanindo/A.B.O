@@ -669,7 +669,11 @@ class Event extends Model
                             }elseif ($i == $count) {
                                 $event->min_range = number_format_drop_zero_decimals($val->price);
                             }
-                            $event->price_range = $val->code.' '.$event->min_range.'-'.$event->max_range;
+                            if($event->min_range > 0){
+                                $event->price_range = $val->code.' '.$event->min_range.'-'.$event->max_range;
+                            }else{
+                                $event->price_range = $val->code.' '.$event->max_range;
+                            }
                         }
                         $i++;
                     }
@@ -722,6 +726,86 @@ class Event extends Model
         if(!empty($data)){
             $data = $data->replicate();
             return $data;
+        }else{
+            return false;
+        }
+    }
+
+    public function duplicate($id){
+        $data = $this->find($id);
+
+        if (!empty($data)){
+            $newdata = $data->replicate();
+            if(!empty($data->featured_image1)){
+                $oldimage = $data->featured_image1;
+                $fileExtension = \File::extension($oldimage);
+                $newName = "image1".time().'.'.$fileExtension;
+                $newdata->featured_image1 = $newName;
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->copy(
+                    'events/'.$oldimage, 'events/'.$newName 
+                );
+            }
+            if(!empty($data->featured_image2)){
+                $oldimage = $data->featured_image2;
+                $fileExtension = \File::extension($oldimage);
+                $newName = "image2".time().'.'.$fileExtension;
+                $newdata->featured_image2 = $newName;
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->copy(
+                    'events/'.$oldimage, 'events/'.$newName 
+                );
+            }
+            if(!empty($data->featured_image3)){
+                $oldimage = $data->featured_image3;
+                $fileExtension = \File::extension($oldimage);
+                $newName = "image3".time().'.'.$fileExtension;
+                $newdata->featured_image3 = $newName;
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->copy(
+                    'events/'.$oldimage, 'events/'.$newName 
+                );
+            }
+            if(!empty($data->share_image)){
+                $oldimage = $data->share_image;
+                $fileExtension = \File::extension($oldimage);
+                $newName = "imageshare".time().'.'.$fileExtension;
+                $newdata->share_image = $newName;
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->copy(
+                    'events/'.$oldimage, 'events/'.$newName 
+                );
+            }
+            if(!empty($data->seat_image)){
+                $oldimage = $data->seat_image;
+                $fileExtension = \File::extension($oldimage);
+                $newName = "imageseat".time().'.'.$fileExtension;
+                $newdata->seat_image = $newName;
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->copy(
+                    'events/'.$oldimage, 'events/'.$newName 
+                );
+            }
+            if(!empty($data->seat_image2)){
+                $oldimage = $data->seat_image2;
+                $fileExtension = \File::extension($oldimage);
+                $newName = "imageseat2".time().'.'.$fileExtension;
+                $newdata->seat_image2 = $newName;
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->copy(
+                    'events/'.$oldimage, 'events/'.$newName 
+                );
+            }
+            if(!empty($data->seat_image3)){
+                $oldimage = $data->seat_image3;
+                $fileExtension = \File::extension($oldimage);
+                $newName = "imageseat3".time().'.'.$fileExtension;
+                $newdata->seat_image3 = $newName;
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->copy(
+                    'events/'.$oldimage, 'events/'.$newName 
+                );
+            }
+            $newdata->avaibility = false;
+            if($newdata->save()){
+                return $newdata;
+
+            } else {
+                return false;    
+            }
         }else{
             return false;
         }
