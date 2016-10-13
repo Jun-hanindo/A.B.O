@@ -8,7 +8,7 @@
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
                     @foreach($sliders as $key => $slider)
-                        <li data-target="#carousel-example-generic" data-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : ' '}}"></li> 
+                        <li data-target="#carouselHacked" data-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : ' '}}"></li> 
                     @endforeach
                 </ol>
 
