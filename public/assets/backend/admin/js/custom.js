@@ -208,12 +208,15 @@ $('#show-message').on('click',function(){
 //     });
 // });
 
-$('.menu-disabled').click(function(e){
+$('.menu-disabled').on('click mouseover', function (e) {
     var title = $(this).attr('title');
     if(title != 'Events' && title != 'Accounts Management' && title != 'Homepage' && title != 'Venue' && 
         title != 'Trail' && title != 'System Log' && title != 'Logout'){
+        $(this).css('cursor','default');
         e.preventDefault();
         return false;
+    }else{
+        $(this).css('cursor','pointer');
     }
 });
 
