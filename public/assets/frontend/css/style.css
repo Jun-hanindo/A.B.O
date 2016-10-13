@@ -1694,8 +1694,9 @@ footer .information-title{
   margin: 0;
 }
 .mobile-collapse-body-top li a {
+
     display: block;
-    padding: 15px 15px 20px;
+    padding: 15px 15px 15px;
     color: #fff;
     text-align: center;
     text-decoration: none;
