@@ -44,27 +44,27 @@ class RolesTableSeeder extends Seeder
         ]);
 
         Sentinel::getRoleRepository()->createModel()->create([
-            'slug' => 'sales-representative',
-            'name' => 'Sales Representative',
+            'slug' => 'admin',
+            'name' => 'Administrator',
             'permissions' => [],
         ]);
 
-        Sentinel::getRoleRepository()->createModel()->create([
-            'slug' => 'finance-admin',
-            'name' => 'Finance Administrator',
-            'permissions' => [],
-        ]);
+        // Sentinel::getRoleRepository()->createModel()->create([
+        //     'slug' => 'finance-admin',
+        //     'name' => 'Finance Administrator',
+        //     'permissions' => [],
+        // ]);
 
-        Sentinel::getRoleRepository()->createModel()->create([
-            'slug' => 'shop-admin',
-            'name' => 'Shop Administrator',
-            'permissions' => [],
-        ]);
+        // Sentinel::getRoleRepository()->createModel()->create([
+        //     'slug' => 'shop-admin',
+        //     'name' => 'Shop Administrator',
+        //     'permissions' => [],
+        // ]);
 
-        Sentinel::getRoleRepository()->createModel()->create([
-            'slug' => 'editor-admin',
-            'name' => 'Editor Administrator',
-            'permissions' => [],
-        ]);
+        // Sentinel::getRoleRepository()->createModel()->create([
+        //     'slug' => 'editor-admin',
+        //     'name' => 'Editor Administrator',
+        //     'permissions' => [],
+        // ]);
     }
 }
