@@ -36,6 +36,7 @@ return [
     'save_error' => 'Save new data has been failed',
     'data_not_found' => 'Data not found',
     'update_success' => 'Has been successfully updated',
+    'duplicate_success' => 'Has been successfully duplicated',
     'update_error' => 'Update data has been failed',
     'delete_success' => 'Delete data has been successfully',
     'delete_seat_image_success' => 'Delete Seat Image has been successfully',
@@ -122,7 +123,7 @@ return [
     'add' => 'Add',
     'mrtdirection' => 'Getting to venue by MRT',
     'cardirection' => 'Getting to venue by Car',
-    'taxidirection' => 'Getting to venue by Taxi/Uber',
+    'taxidirection' => 'Getting to venue by Taxi',
     'link_map' => 'Link Map',
     'gmap_link' => 'Google Maps',
 
