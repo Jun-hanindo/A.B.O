@@ -37,6 +37,12 @@ class HomeController extends Controller
         return view('frontend.partials.static.bryan_adams'); 
     }
 
+    public function maintenance()
+    {
+
+        return view('frontend.partials.static.maintenance'); 
+    }
+
     public function indexStatic()
     {
         $trail = 'Homepage Static front end';
