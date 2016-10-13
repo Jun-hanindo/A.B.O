@@ -825,10 +825,9 @@ display: block;
 }
 
 @media (max-width: 500px){
-  /*.eventBanner .btnPlayEvent{
-    top: 18%;
-    left: 43%;
-  }*/
+  .eventBanner .btnPlayEvent{
+    left: 40%;
+  }
   .box-mobile-faq{
     width: 80%;
     margin: 0 auto;
