@@ -4007,4 +4007,7 @@ li ol > li:before {
  position: absolute;
  font-size: inherit;
 }
+.imageBanner {
+position: relative;
+}
 
