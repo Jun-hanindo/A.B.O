@@ -48,7 +48,7 @@
                             <input type="hidden" name="count_schedule" class="form-control" id="count_schedule">
                             <div class="form-group{{ Form::hasError('title') }} title">
                                 {!! Form::label('title', trans('general.title').' *') !!}
-                                {!! Form::text('title', old('title'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.title')]) !!}
+                                {!! Form::text('title', old('title'), ['class' => 'form-control title_new','maxlength'=>'255', 'placeholder' => trans('general.title')]) !!}
                                 {!! Form::errorMsg('title') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('slug') }} slug">

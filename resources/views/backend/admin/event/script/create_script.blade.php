@@ -956,7 +956,7 @@
             }    
 
             var typingTimer;                //timer identifier
-            $('#title').on('input keypress', function(event) {
+            $('.title_new').on('input keypress', function(event) {
                 var doneTypingInterval = 500;
                 var title = $(this).val();
                 var slug = getSlug(title);

@@ -61,7 +61,8 @@ class EventsController extends BaseController
                 ->addColumn('action', function ($event) {
                     $url = route('admin-edit-event',$event->id);
                     return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
-                        <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$event->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                        <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$event->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>&nbsp;
+                        <a href="#" class="btn btn-primary btn-xs actDuplicate" title="Duplicate" data-id="'.$event->id.'" data-button="duplicate"><i class="fa fa-copy fa-fw"></i></a>';
                 })
                 ->make(true);
     }
@@ -547,6 +548,33 @@ class EventsController extends BaseController
 
         }
 
+    }
+
+    public function duplicate($id)
+    {
+        try{
+            $data = $this->model->duplicate($id);
+            //dd($data);
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => trans('general.duplicate_success')
+                ],200);
+
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'error',
+                'message' => trans('general.data_not_found')
+            ],400);
+
+        }
     }
 
 }

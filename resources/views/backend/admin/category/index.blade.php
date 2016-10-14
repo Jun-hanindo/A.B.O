@@ -51,12 +51,12 @@
             <form id="form">
                 <input type="hidden" name="id" class="form-control" id="id">
                 <div class="form-group name">
-                    <label for="event" class="control-label">{{ trans('general.name') }} :</label>
+                    <label for="event" class="control-label">{{ trans('general.name') }} *</label>
                     {!! Form::text('name', old('name'), array('id' => 'name', 'class' => 'form-control')) !!}
                     {!! Form::errorMsg('name') !!}
                 </div>
                 <div class="form-group icon">
-                    <label for="event" class="control-label">{{ trans('general.icon') }} :</label>
+                    <label for="event" class="control-label">{{ trans('general.icon') }} *</label>
                     <select name="icon" id="icon" class="form-control selectpicker" data-live-search="true">
                         @if(!empty($icons))
                             @foreach ($icons as $icon)
@@ -73,7 +73,7 @@
                     {!! Form::errorMsg('icon') !!}
                 </div>
                 <div class="form-group description">
-                    <label for="event" class="control-label">{{ trans('general.description') }} :</label>
+                    <label for="event" class="control-label">{{ trans('general.description') }} *</label>
                     {!! Form::textarea('description', old('description'), array('id' => 'description', 'class' => 'form-control tinymce')) !!}
                     {!! Form::errorMsg('description') !!}
                 </div>

@@ -60,7 +60,7 @@ class Event extends Model
 
     public function Categories()
     {
-        return $this->belongsToMany('App\Models\Category', 'event_categories', 'event_id', 'category_id');
+        return $this->belongsToMany('App\Models\Category', 'event_categories', 'event_id', 'category_id')->withTimestamps();
 
     }
 
@@ -72,7 +72,7 @@ class Event extends Model
 
     public function Promotions()
     {
-        return $this->belongsToMany('App\Models\Promotion', 'event_promotions', 'event_id', 'promotion_id');
+        return $this->belongsToMany('App\Models\Promotion', 'event_promotions', 'event_id', 'promotion_id')->withTimestamps();
 
     }
 
@@ -800,7 +800,36 @@ class Event extends Model
                 );
             }
             $newdata->avaibility = false;
+            $newdata->user_id = \Sentinel::getUser()->id;
             if($newdata->save()){
+                if(!$data->categories->isEmpty()){
+                    foreach ($data->categories as $cat => $category) {
+                        $newdata->categories()->attach($category);
+                    }
+                }
+
+                if(!$data->promotions->isEmpty()){
+                    foreach ($data->promotions as $pro => $promotion) {
+                        $newdata->promotions()->attach($promotion);
+                    }
+                }
+
+                if(!$data->EventSchedule->isEmpty()){
+                    foreach ($data->EventSchedule as $es => $schedule) {
+                        $schedule->event_id = $newdata->id;
+                        $newschedule = $schedule->replicate();
+                        if($newschedule->save()){
+                            if(!$schedule->EventScheduleCategory->isEmpty()){
+                                foreach ($schedule->EventScheduleCategory as $esc => $schcat) {
+                                    $schcat->event_schedule_id = $newschedule->id;
+                                    $newschedulecat = $schcat->replicate();
+                                    $newschedulecat->save();
+                                }
+                            }
+                        }
+                    }
+                }
+                
                 return $newdata;
 
             } else {
