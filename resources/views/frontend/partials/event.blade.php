@@ -1,5 +1,7 @@
 @extends('layout.frontend.master.master')
-@section('title', $event->title.' - ')
+@section('title', $event->title_meta_tag.' - ')
+@section('description_meta', $event->description_meta_tag)
+@section('keywords_meta', $event->keywords_meta_tag)
 @section('og_image', $event->share_image_url)
 @section('content')
 <section class="eventBanner" id="eventBanner">

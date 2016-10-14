@@ -144,6 +144,9 @@ class Event extends Model
         $this->venue_id = $param['venue_id'];
         $this->background_color = $param['background_color'];
         $this->video_link = $param['video_link'];
+        $this->title_meta_tag = $param['title_meta_tag'];
+        $this->description_meta_tag = $param['description_meta_tag'];
+        $this->keywords_meta_tag = $param['keywords_meta_tag'];
         $this->avaibility = true;
 
         if (isset($param['featured_image1'])) {
@@ -299,6 +302,9 @@ class Event extends Model
 	        $data->venue_id = $param['venue_id'];
             $data->background_color = $param['background_color'];
             $data->video_link = $param['video_link'];
+            $data->title_meta_tag = $param['title_meta_tag'];
+            $data->description_meta_tag = $param['description_meta_tag'];
+            $data->keywords_meta_tag = $param['keywords_meta_tag'];
             $data->avaibility = true;
 
             // $pathDest = public_path().'/uploads/events';

@@ -53,6 +53,21 @@
                                 {!! Form::text('slug', $data->slug, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.slug')]) !!}
                                 {!! Form::errorMsg('slug') !!}
                             </div>
+                            <div class="form-group{{ Form::hasError('title_meta_tag') }} title_meta_tag">
+                                {!! Form::label('title_meta_tag', trans('general.title_meta_tag').' *') !!}
+                                {!! Form::text('title_meta_tag', $data->title_meta_tag, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.title_meta_tag')]) !!}
+                                {!! Form::errorMsg('title_meta_tag') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('description_meta_tag') }} description_meta_tag">
+                                {!! Form::label('description_meta_tag', trans('general.description_meta_tag').' *') !!}
+                                {!! Form::textarea('description_meta_tag', $data->description_meta_tag, ['rows' => 5, 'class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.description_meta_tag')]) !!}
+                                {!! Form::errorMsg('description_meta_tag') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('keywords_meta_tag') }} keywords_meta_tag">
+                                {!! Form::label('keywords_meta_tag', trans('general.keywords_meta_tag').' *') !!}
+                                {!! Form::textarea('keywords_meta_tag', $data->keywords_meta_tag, ['rows' => 5, 'class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.keywords_meta_tag')]) !!}
+                                {!! Form::errorMsg('keywords_meta_tag') !!}
+                            </div>
                             <div class="form-group{{ Form::hasError('description') }} description">
                                 {!! Form::label('description', trans('general.description').' *') !!}
                                 {!! Form::textarea('description', $data->description, ['class' => 'form-control tinymce', 'rows'=> '12', 'placeholder' => trans('general.description')]) !!}

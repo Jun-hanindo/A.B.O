@@ -4,6 +4,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@yield('title') {{ env('APP_WEB_ADMIN_NAME', 'AsiaBoxOffice') }}</title>
+        <meta name="description" content="@yield('description_meta')">
+        <meta name="keywords" content="@yield('keywords_meta')">
         <meta property="og:image" content="@yield('og_image')" />
         <meta property="og:image:type" content="image/jpeg">
         <meta property="og:image:width" content="1200">

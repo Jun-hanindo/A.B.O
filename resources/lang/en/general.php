@@ -255,5 +255,8 @@ return [
     'slug'  => 'Slug',
     'seat_image2' => 'Seat Image 2',
     'seat_image3' => 'Seat Image 3',
+    'title_meta_tag' => 'Title Meta Tag',
+    'description_meta_tag' => 'Description Meta Tag',
+    'keywords_meta_tag' => 'Keywords Meta Tag',
 
 ];
