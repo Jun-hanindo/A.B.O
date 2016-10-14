@@ -92,6 +92,6 @@ $("#eventVideo").on('hidden.bs.modal', function (e) {
     $("#eventVideo iframe").attr("src", $("#eventVideo iframe").attr("src"));
 });
 
-$(".modal-backdrop, #eventVideo .close, #eventVideo .btn").live("click", function() {
+$(".modal-backdrop, #eventVideo .close, #eventVideo .btn").on("click", function() {
     $("#eventVideo iframe").attr("src", $("#eventVideo iframe").attr("src"));
 });
