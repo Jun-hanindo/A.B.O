@@ -4043,4 +4043,7 @@ position: relative;
   text-decoration: none;
   display: block;
 }
+.mobile-content-show {
+display: none;
+}
 
