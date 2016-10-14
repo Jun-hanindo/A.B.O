@@ -558,7 +558,7 @@ class EventsController extends BaseController
                 return response()->json([
                     'code' => 200,
                     'status' => 'success',
-                    'message' => trans('general.duplicate_success')
+                    'message' => $data->title.' '.trans('general.duplicate_success')
                 ],200);
 
         } catch (\Exception $e) {
