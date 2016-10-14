@@ -91,3 +91,7 @@ function autoSearch(q, sort)
 $("#eventVideo").on('hidden.bs.modal', function (e) {
     $("#eventVideo iframe").attr("src", $("#eventVideo iframe").attr("src"));
 });
+
+$(".modal-backdrop, #eventVideo .close, #eventVideo .btn").live("click", function() {
+    $("#eventVideo iframe").attr("src", $("#eventVideo iframe").attr("src"));
+});
