@@ -82,6 +82,14 @@
 
         $('[data-tables=true]').on('click', '.actDuplicate', function(e) {
             var id = $(this).attr('data-id');
+            $('#duplicate-modal .continue-duplicate').attr('data-id', id);
+            $('#duplicate-modal').modal('show');
+
+            
+        });
+
+        $('#duplicate-modal').on('click', '.continue-duplicate', function () {
+            var id = $(this).attr('data-id');
             var uri = "{{ URL::route('admin-duplicate-event', "::param") }}";
             uri = uri.replace('::param', id);
             $.ajax({

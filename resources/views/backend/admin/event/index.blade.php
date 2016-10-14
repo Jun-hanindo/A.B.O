@@ -53,5 +53,24 @@
             </form>
         </div>
     </div>
+<div id="duplicate-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>{{ trans('general.confirmation_duplicate') }} <strong id="name"></strong> ?</p>
+            </div>
+            <div class="modal-footer">
+                {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
+                    <a id="duplicate-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
+                    <a id="duplicate-modal-events" href="#" class="continue-duplicate btn btn-default" data-dismiss="modal">Continue</a>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @include('backend.admin.event.script.index_script')
