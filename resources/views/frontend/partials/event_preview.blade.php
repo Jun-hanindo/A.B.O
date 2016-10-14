@@ -1,5 +1,7 @@
 @extends('layout.frontend.master.master')
-@section('title', (!empty($event->title)) ? $event->title : ''.' - ')
+@section('title', (!empty($event->title_meta_tag)) ? $event->title_meta_tag : (!empty($event->title)) ? $event->title : ''.' - ')
+@section('description_meta', (!empty($event->title_meta_tag)) ? $event->description_meta_tag : '')
+@section('keywords_meta', (!empty($event->keywords_meta_tag)) ? $event->keywords_meta_tag : '')
 @section('content')
 <section class="eventBanner" id="eventBanner">
     <div class="imageBanner">
