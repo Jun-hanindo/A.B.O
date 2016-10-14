@@ -51,6 +51,7 @@ return [
 
     'confirmation_delete' => 'Are you sure want to continue delete data ',
     'confirmation_restore' => 'Are you sure want to continue restore activated data ',
+    'confirmation_duplicate' => 'Are you sure want to continue duplicate data ',
 
     'create_new' => 'Add New',
     'edit' => 'Edit',
