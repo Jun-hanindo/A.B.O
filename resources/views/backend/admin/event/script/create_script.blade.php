@@ -960,7 +960,7 @@
                 var doneTypingInterval = 500;
                 var title = $(this).val();
                 var slug = getSlug(title);
-                console.log(slug);
+                //console.log(slug);
                 clearTimeout(typingTimer);
                 typingTimer = setTimeout(function(){
                     var uri = "{{ URL::route('admin-slug-check-event', "::param") }}";

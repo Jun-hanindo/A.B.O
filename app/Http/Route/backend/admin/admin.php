@@ -240,6 +240,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::post('reply-store', array('as' => 'admin-post-reply-message', 'uses' => 'MessageRepliesController@store'));
 
     });
+
+    Route::group(['prefix' => 'tixtrack','namespace' => 'Tixtrack'], function () {
+        Route::get('login', array('as' => 'admin-tixtrack-login', 'uses' => 'LoginController@login'));
+        Route::post('post-login', array('as' => 'admin-tixtrack-login-post', 'uses' => 'LoginController@postLogin'));
+        Route::put('change-account', array('as' => 'admin-tixtrack-change-account', 'uses' => 'LoginController@changeAccount'));
+        Route::get('download-member', array('as' => 'admin-tixtrack-download-member', 'uses' => 'LoginController@changeAccount'));
+        Route::get('download-transaction', array('as' => 'admin-tixtrack-download-transaction', 'uses' => 'LoginController@changeAccount'));
+    });
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () {
