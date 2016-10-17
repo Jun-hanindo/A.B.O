@@ -147,6 +147,10 @@ class Event extends Model
         $this->title_meta_tag = $param['title_meta_tag'];
         $this->description_meta_tag = $param['description_meta_tag'];
         $this->keywords_meta_tag = $param['keywords_meta_tag'];
+        $this->ga_tracking_code = $param['ga_tracking_code'];
+        $this->ga_conversion_code = $param['ga_conversion_code'];
+        $this->fp_tracking_code = $param['fp_tracking_code'];
+        $this->fp_conversion_code = $param['fp_conversion_code'];
         $this->avaibility = true;
 
         if (isset($param['featured_image1'])) {
@@ -305,6 +309,10 @@ class Event extends Model
             $data->title_meta_tag = $param['title_meta_tag'];
             $data->description_meta_tag = $param['description_meta_tag'];
             $data->keywords_meta_tag = $param['keywords_meta_tag'];
+            $data->ga_tracking_code = $param['ga_tracking_code'];
+            $data->ga_conversion_code = $param['ga_conversion_code'];
+            $data->fp_tracking_code = $param['fp_tracking_code'];
+            $data->fp_conversion_code = $param['fp_conversion_code'];
             $data->avaibility = true;
 
             // $pathDest = public_path().'/uploads/events';
@@ -503,23 +511,34 @@ class Event extends Model
     {
         $data = $this->find($id);
         if(!empty($data)) {
-            $oldImage1 = $data->featured_image1;
-            $oldImage2 = $data->featured_image2;
-            $oldImage3 = $data->featured_image3;
-            $seat_image = $data->seat_image;
-            $seat_image2 = $data->seat_image2;
-            $seat_image3 = $data->seat_image3;
-            $share_image = $data->share_image;
-            // File::delete($pathDest.'/'.$oldImage1);
-            // File::delete($pathDest.'/'.$oldImage2);
-            // File::delete($pathDest.'/'.$oldImage3);
-            file_delete('events/'.$oldImage1, env('FILESYSTEM_DEFAULT'));
-            file_delete('events/'.$oldImage2, env('FILESYSTEM_DEFAULT'));
-            file_delete('events/'.$oldImage3, env('FILESYSTEM_DEFAULT'));
-            file_delete('events/'.$seat_image, env('FILESYSTEM_DEFAULT'));
-            file_delete('events/'.$seat_image2, env('FILESYSTEM_DEFAULT'));
-            file_delete('events/'.$seat_image3, env('FILESYSTEM_DEFAULT'));
-            file_delete('events/'.$share_image, env('FILESYSTEM_DEFAULT'));
+            if(!empty($data->featured_image1)){
+                $oldImage1 = $data->featured_image1;
+                file_delete('events/'.$oldImage1, env('FILESYSTEM_DEFAULT'));
+            }
+            if(!empty($data->featured_image2)){
+                $oldImage2 = $data->featured_image2;
+                file_delete('events/'.$oldImage2, env('FILESYSTEM_DEFAULT'));
+            }
+            if(!empty($data->featured_image3)){
+                $oldImage3 = $data->featured_image3;
+                file_delete('events/'.$oldImage3, env('FILESYSTEM_DEFAULT'));
+            }
+            if(!empty($data->seat_image)){
+                $seat_image = $data->seat_image;
+                file_delete('events/'.$seat_image, env('FILESYSTEM_DEFAULT'));
+            }
+            if(!empty($data->seat_image2)){
+                $seat_image2 = $data->seat_image2;
+                file_delete('events/'.$seat_image2, env('FILESYSTEM_DEFAULT'));
+            }
+            if(!empty($data->seat_image3)){
+                $seat_image3 = $data->seat_image3;
+                file_delete('events/'.$seat_image3, env('FILESYSTEM_DEFAULT'));
+            }
+            if(!empty($data->share_image)){
+                $share_image = $data->share_image;
+                file_delete('events/'.$share_image, env('FILESYSTEM_DEFAULT'));
+            }
             $data->delete();
             $data->Homepage()->delete();
             return $data;

@@ -258,5 +258,9 @@ return [
     'title_meta_tag' => 'Title Meta Tag',
     'description_meta_tag' => 'Description Meta Tag',
     'keywords_meta_tag' => 'Keywords Meta Tag',
+    'ga_tracking_code' => 'Google Analytics Tracking Code',
+    'ga_conversion_code' => 'Google Analytics Conversion Code',
+    'fp_tracking_code' => 'Facebook Pixel Tracking Code',
+    'fp_conversion_code' => 'Facebook Pixel Conversion Code',
 
 ];

@@ -64,10 +64,8 @@
                 <p>{{ trans('general.confirmation_duplicate') }} <strong id="name"></strong> ?</p>
             </div>
             <div class="modal-footer">
-                {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
-                    <a id="duplicate-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
-                    <a id="duplicate-modal-events" href="#" class="continue-duplicate btn btn-default" data-dismiss="modal">Continue</a>
-                {!! Form::close() !!}
+                <a id="duplicate-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
+                <a id="duplicate-modal-events" href="#" class="continue-duplicate btn btn-default" data-dismiss="modal">Continue</a>
             </div>
         </div>
     </div>

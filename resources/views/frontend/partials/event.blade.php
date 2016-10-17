@@ -3,6 +3,10 @@
 @section('description_meta', $event->description_meta_tag)
 @section('keywords_meta', $event->keywords_meta_tag)
 @section('og_image', $event->share_image_url)
+@section('ga_tracking_code', $event->ga_tracking_code)
+@section('ga_conversion_code', $event->ga_conversion_code)
+@section('fp_tracking_code', $event->fp_tracking_code)
+@section('fp_conversion_code', $event->fp_conversion_code)
 @section('content')
 <section class="eventBanner" id="eventBanner">
     <div class="imageBanner">

@@ -14,7 +14,6 @@
         <!-- Purpleclick head -->
         {!! (isset($setting['purpleclick_head'])) ? $setting['purpleclick_head'] : '' !!}
         <!-- End Purpleclick head -->
-        {{-- @yield('google_tag_manager') --}}
 
           <!-- Bootstrap -->
         {!! Html::style('assets/frontend/css/bootstrap.min.css') !!}
@@ -28,15 +27,20 @@
         <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,800,700,900' rel='stylesheet' type='text/css'>
         <link rel="shortcut icon" href="{{ asset('assets/frontend/images/favico.ico') }}">
         {!! Html::script('assets/frontend/js/modernizr.js') !!}
-        <!-- Google Analytic Production AWS -->
+        <!-- Google Analytics Production -->
         {!! (isset($setting['google_analytics'])) ? $setting['google_analytics'] : '' !!}
-        <!-- End Google Analytic Production AWS -->
+        <!-- End Google Analytics Production -->
     </head>
     <body>
         <!-- Purpleclick body -->
         {!! (isset($setting['purpleclick_body'])) ? $setting['purpleclick_body'] : '' !!}
         <!-- End Purpleclick body -->
-        {{-- @yield('no_script_google_tag_manager') --}}
+        <!-- Google Analytics Tracking Code -->
+        @yield('ga_tracking_code')
+        <!-- End Google Analytics Tracking Code -->
+        <!-- Facebook Pixel Tracking Code -->
+        @yield('fp_tracking_code')
+        <!-- End Facebook Pixel Tracking Code -->
         @if(!Request::is('subscribe'))
             <div class="page-wrapper">
                 <header>

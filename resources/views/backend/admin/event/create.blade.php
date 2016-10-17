@@ -63,13 +63,33 @@
                             </div>
                             <div class="form-group{{ Form::hasError('description_meta_tag') }} description_meta_tag">
                                 {!! Form::label('description_meta_tag', trans('general.description_meta_tag')) !!}
-                                {!! Form::textarea('description_meta_tag', old('description_meta_tag'), ['rows' => 5, 'class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.description_meta_tag')]) !!}
+                                {!! Form::textarea('description_meta_tag', old('description_meta_tag'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.description_meta_tag')]) !!}
                                 {!! Form::errorMsg('description_meta_tag') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('keywords_meta_tag') }} keywords_meta_tag">
                                 {!! Form::label('keywords_meta_tag', trans('general.keywords_meta_tag')) !!}
-                                {!! Form::textarea('keywords_meta_tag', old('keywords_meta_tag'), ['rows' => 5, 'class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.keywords_meta_tag')]) !!}
+                                {!! Form::textarea('keywords_meta_tag', old('keywords_meta_tag'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.keywords_meta_tag')]) !!}
                                 {!! Form::errorMsg('keywords_meta_tag') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('ga_tracking_code') }} ga_tracking_code">
+                                {!! Form::label('ga_tracking_code', trans('general.ga_tracking_code')) !!}
+                                {!! Form::textarea('ga_tracking_code', old('ga_tracking_code'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.ga_tracking_code')]) !!}
+                                {!! Form::errorMsg('ga_tracking_code') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('ga_conversion_code') }} ga_conversion_code">
+                                {!! Form::label('ga_conversion_code', trans('general.ga_conversion_code')) !!}
+                                {!! Form::textarea('ga_conversion_code', old('ga_conversion_code'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.ga_conversion_code')]) !!}
+                                {!! Form::errorMsg('ga_conversion_code') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('fp_tracking_code') }} fp_tracking_code">
+                                {!! Form::label('fp_tracking_code', trans('general.fp_tracking_code')) !!}
+                                {!! Form::textarea('fp_tracking_code', old('fp_tracking_code'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.fp_tracking_code')]) !!}
+                                {!! Form::errorMsg('fp_tracking_code') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('fp_conversion_code') }} fp_conversion_code">
+                                {!! Form::label('fp_conversion_code', trans('general.fp_conversion_code')) !!}
+                                {!! Form::textarea('fp_conversion_code', old('fp_conversion_code'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.fp_conversion_code')]) !!}
+                                {!! Form::errorMsg('fp_conversion_code') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('description') }} description">
                                 {!! Form::label('description', trans('general.description').' *') !!}
@@ -125,6 +145,7 @@
                         <div class="col-md-3">
                             <div class="form-group{{ Form::hasError('featured_image1') }} featured_image1">
                                 {!! Form::label('featured_image1', trans('general.featured_image1').'(2880px x 1000px) *') !!}
+                                <br>(Max. size 1 mb)
                                 <input id="featured_image1" name="featured_image1" class="form-control image" data-name="image1" type="file" value="">
                                 {!! Form::errorMsg('featured_image1') !!}
                             </div>
@@ -133,6 +154,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image2') }} featured_image2">
                                 {!! Form::label('featured_image2', trans('general.featured_image2').'(1125px x 762px) *') !!}
+                                <br>(Max. size 1 mb)
                                 <input id="featured_image2" name="featured_image2" class="form-control image" data-name="image2" type="file" value="">
                                 {!! Form::errorMsg('featured_image2') !!}
                             </div>
@@ -141,6 +163,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image3') }} featured_image3">
                                 {!! Form::label('featured_image3', trans('general.featured_image3').'(300px x 200px) *') !!}
+                                <br>(Max. size 1 mb)
                                 <input id="featured_image3" name="featured_image3" class="form-control image" data-name="image3" type="file" value="">
                                 {!! Form::errorMsg('featured_image3') !!}
                             </div>
@@ -149,6 +172,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('share_image') }} share_image">
                                 <label for="share_image">Social Media Sharing Image<br>(1200px x 630px) *</label>
+                                <br>(Max. size 1 mb)
                                 <input id="share_image" name="share_image" class="form-control image" data-name="share_image" type="file" value="">
                                 {!! Form::errorMsg('share_image') !!}
                             </div>
@@ -163,6 +187,7 @@
                             <div id="seat_image-div" style="display:none">
                                 <div class="form-group{{ Form::hasError('seat_image') }} seat_image">
                                     {!! Form::label('seat_image', trans('general.seat_image').' *') !!}
+                                    <br>(Max. size 1 mb)
                                     <input id="seat_image" name="seat_image" class="form-control image" data-name="seat_image" type="file" value="">
                                     {!! Form::errorMsg('seat_image') !!}
                                 </div>
@@ -171,6 +196,7 @@
                                 </div>
                                 <div class="form-group{{ Form::hasError('seat_image2') }} seat_image2">
                                     {!! Form::label('seat_image2', trans('general.seat_image2')) !!}
+                                    <br>(Max. size 1 mb)
                                     <input id="seat_image2" name="seat_image2" class="form-control image" data-name="seat_image2" type="file" value="">
                                     {!! Form::errorMsg('seat_image2') !!}
                                 </div>
@@ -179,6 +205,7 @@
                                 </div>
                                 <div class="form-group{{ Form::hasError('seat_image3') }} seat_image3">
                                     {!! Form::label('seat_image3', trans('general.seat_image3')) !!}
+                                    <br>(Max. size 1 mb)
                                     <input id="seat_image3" name="seat_image3" class="form-control image" data-name="seat_image3" type="file" value="">
                                     {!! Form::errorMsg('seat_image3') !!}
                                 </div>
