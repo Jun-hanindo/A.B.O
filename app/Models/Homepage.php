@@ -33,11 +33,17 @@ class Homepage extends Model
     }
 
     public function getFirstSort($category){
-        return Homepage::where('category', $category)->orderBy('sort_order', 'asc')->first();
+        return Homepage::join('events', 'events.id', '=', 'homepages.event_id')
+            ->where('category', $category)
+            ->whereNull('events.deleted_at')
+            ->orderBy('sort_order', 'asc')->first();
     }
 
     public function getLastSort($category){
-        return Homepage::where('category', $category)->orderBy('sort_order', 'desc')->first();
+        return Homepage::join('events', 'events.id', '=', 'homepages.event_id')
+            ->where('category', $category)
+            ->whereNull('events.deleted_at')
+            ->orderBy('sort_order', 'desc')->first();
     }
 
     public function getSortById($id){

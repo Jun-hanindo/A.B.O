@@ -142,13 +142,13 @@ class EventsController extends BaseController
     {
         $this->validate($req, [
             'title'             => 'required',
-            'featured_image1'   => 'image|mimes:jpg,jpeg|dimensions:width=2880,height=1000|max:2000',
-            'featured_image2'   => 'image|mimes:jpg,jpeg|dimensions:width=1125,height=762|max:2000',
-            'featured_image3'   => 'image|mimes:jpg,jpeg|dimensions:width=300,height=200|max:2000',
-            'share_image'       => 'image|mimes:jpg,jpeg|dimensions:width=1200,height=630|max:2000',
-            'seat_image'        => 'image|mimes:jpg,jpeg|max:2000',
-            'seat_image2'       => 'image|mimes:jpg,jpeg|max:2000',
-            'seat_image2'       => 'image|mimes:jpg,jpeg|max:2000',
+            'featured_image1'   => 'image|mimes:jpg,jpeg|dimensions:width=2880,height=1000|max:1000',
+            'featured_image2'   => 'image|mimes:jpg,jpeg|dimensions:width=1125,height=762|max:1000',
+            'featured_image3'   => 'image|mimes:jpg,jpeg|dimensions:width=300,height=200|max:1000',
+            'share_image'       => 'image|mimes:jpg,jpeg|dimensions:width=1200,height=630|max:1000',
+            'seat_image'        => 'image|mimes:jpg,jpeg|max:1000',
+            'seat_image2'       => 'image|mimes:jpg,jpeg|max:1000',
+            'seat_image2'       => 'image|mimes:jpg,jpeg|max:1000',
         ]);
         $param = $req->all();
         $id = $param['event_id'];
@@ -386,13 +386,13 @@ class EventsController extends BaseController
         
         $this->validate($req, [
             'title'             => 'required',
-            'featured_image1'   => 'image|mimes:jpg,jpeg|dimensions:width=2880,height=1000|max:2000',
-            'featured_image2'   => 'image|mimes:jpg,jpeg|dimensions:width=1125,height=762|max:2000',
-            'featured_image3'   => 'image|mimes:jpg,jpeg|dimensions:width=300,height=200|max:2000',
-            'share_image'       => 'image|mimes:jpg,jpeg|dimensions:width=1200,height=630|max:2000',
-            'seat_image'        => 'image|mimes:jpg,jpeg|max:2000',
-            'seat_image2'       => 'image|mimes:jpg,jpeg|max:2000',
-            'seat_image2'       => 'image|mimes:jpg,jpeg|max:2000',
+            'featured_image1'   => 'image|mimes:jpg,jpeg|dimensions:width=2880,height=1000|max:1000',
+            'featured_image2'   => 'image|mimes:jpg,jpeg|dimensions:width=1125,height=762|max:1000',
+            'featured_image3'   => 'image|mimes:jpg,jpeg|dimensions:width=300,height=200|max:1000',
+            'share_image'       => 'image|mimes:jpg,jpeg|dimensions:width=1200,height=630|max:1000',
+            'seat_image'        => 'image|mimes:jpg,jpeg|max:1000',
+            'seat_image2'       => 'image|mimes:jpg,jpeg|max:1000',
+            'seat_image2'       => 'image|mimes:jpg,jpeg|max:1000',
         ]);
         $param = $req->all();
         $id = $param['event_id'];

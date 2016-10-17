@@ -33,23 +33,24 @@ class DownloadController extends BaseController
         
         try{
             $client = new Client(); //GuzzleHttp\Client
-            $response = $client->post('https://nliven.co/admin/Account/Login', [
-                'body' => [
-                    'UserName' => $param['UserName'],
-                    'Password' => $param['Password'],
-                    'RememberMe' => False,
-                ],
-                'cookies' => true
-            ]
-            );
 
-            $status = $response->getStatusCode();
-
-            if($status == 200 || $status == 302){
-                return redirect()->route('admin-tixtrack-change-account');
+            if(!empty($param)){
+                $response = $client->get('https://nliven.co/admin/Customers/Download?objectFilterJSON=', [
+                    'body' => [
+                        
+                    ],
+                    'cookies' => true
+                ]
+                );
             }else{
-                return redirect()->route('admin-tixtrack-login');
+                $response = $client->get('https://nliven.co/admin/Customers/Download?objectFilterJSON=', [
+                    'save_to' => 'Download_member_'.time().'.csv',
+                    'cookies' => true
+                ]
+                );
             }
+
+            echo $response;
         
         //} else {
         } catch (\Exception $e) {
@@ -68,22 +69,20 @@ class DownloadController extends BaseController
         
         try{
             $client = new Client(); //GuzzleHttp\Client
-            $response = $client->post('https://nliven.co/admin/Account/Login', [
-                'body' => [
-                    'UserName' => $param['UserName'],
-                    'Password' => $param['Password'],
-                    'RememberMe' => False,
-                ],
-                'cookies' => true
-            ]
-            );
 
-            $status = $response->getStatusCode();
-
-            if($status == 200 || $status == 302){
-                return redirect()->route('admin-tixtrack-change-account');
+            if(!empty($param)){
+                $response = $client->get('https://nliven.co/admin/Orders/Download?objectFilterJSON=', [
+                    'body' => [
+                        
+                    ],
+                    'cookies' => true
+                ]
+                );
             }else{
-                return redirect()->route('admin-tixtrack-login');
+                $response = $client->get('https://nliven.co/admin/Orders/Download?objectFilterJSON=', [
+                    'cookies' => true
+                ]
+                );
             }
         
         //} else {

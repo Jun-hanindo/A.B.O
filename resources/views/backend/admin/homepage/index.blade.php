@@ -25,7 +25,12 @@
             </div>
         </div>
         <div class="box-body">
-            @include('flash::message')
+            @if(\Session::has('slider'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {!! \Session::get('slider') !!}
+                </div>
+            @endif
             <div class="error-slider"></div>
             <table id="homepage-sliders-table" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                 <thead>
@@ -50,7 +55,12 @@
             </div>
         </div>
         <div class="box-body">
-            @include('flash::message')
+            @if(\Session::has('event'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {{ \Session::get('event') }}
+                </div>
+            @endif
             <div class="error-event"></div>
             <table id="homepage-events-table" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                 <thead>
@@ -75,7 +85,12 @@
             </div>
         </div>
         <div class="box-body">
-            @include('flash::message')
+            @if(\Session::has('promotion'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {{ \Session::get('promotion') }}
+                </div>
+            @endif
             <div class="error-promotion"></div>
             <table id="homepage-promotions-table" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                 <thead>

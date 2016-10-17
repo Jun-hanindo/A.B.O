@@ -12,6 +12,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 
+
 class LoginController extends BaseController
 {
     public function __construct(LogActivity $model)
@@ -44,9 +45,11 @@ class LoginController extends BaseController
             ]
             );
 
+            echo $response;
+
             $status = $response->getStatusCode();
 
-            if($status == 200 || $status == 302){
+            if($status == 200/* || $status == 302*/){
                 return redirect()->route('admin-tixtrack-change-account');
             }else{
                 return redirect()->route('admin-tixtrack-login');
@@ -65,10 +68,10 @@ class LoginController extends BaseController
     }
 
     public function changeAccount(){
-        $response = $client->put('http://github.com', [
-            'allow_redirects' => false
-        ]);
+        // $response = $client->put('http://github.com', [
+        //     'allow_redirects' => false
+        // ]);
 
-        echo $response->getStatusCode();
+        //return redirect()->route('admin-tixtrack-download');
     }
 }

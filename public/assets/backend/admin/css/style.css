@@ -68,6 +68,16 @@
     overflow-x: hidden;
     overflow-y: auto;
 }
+.tixtrack-filter .addFilter{
+    padding: 10px;
+    text-align: center;
+}
+.tixtrack-filter .addFilter a{
+    text-decoration: underline;
+}
+.tixtrack-filter table tr td{
+    vertical-align: middle;
+}
 
 /*.cke_chrome{
 	border-left: 1px solid #b6b6b6 !important;

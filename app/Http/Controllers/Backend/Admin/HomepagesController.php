@@ -39,9 +39,10 @@ class HomepagesController extends BaseController
         $category = $param['category'];
         return datatables($this->model->datatables($category))
             ->addColumn('sort_order', function ($homepage) {
+                $first = $this->model->getFirstSort($homepage->category)->sort_order;
                 $last = $this->model->getLastSort($homepage->category)->sort_order;
                 $style = 'style="display:inline-block"';
-                if($homepage->sort_order == 1){
+                if($homepage->sort_order == $first){
                     $style1 = 'style="display:none"';
                 }else{
                     $style1 = $style;
@@ -191,7 +192,15 @@ class HomepagesController extends BaseController
             $data = $this->model->deleteByID($id);
         //if(!empty($data)) {
 
-            flash()->success(trans('general.delete_success'));
+            if($data->category == 'event'){
+                \Session::flash('event', trans('general.delete_success'));
+            }else if($data->category == 'slider'){
+                \Session::flash('slider', trans('general.delete_success'));
+            }else{
+                \Session::flash('promotion', trans('general.delete_success'));
+            }
+
+            //flash()->success(trans('general.delete_success'));
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Homepage "'.$data->Event->title.' to '.$data->category.'" was deleted';
