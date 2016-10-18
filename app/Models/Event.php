@@ -84,8 +84,59 @@ class Event extends Model
     function datatables()
     {
 
-    	return static::select('id', 'title', 'venue_id', 'user_id', 'avaibility')->orderBy('created_at', 'desc');
+    	return static::select('id', 'title', 'venue_id', 'user_id', 'avaibility', 'sort_order')
+            ->orderBy('sort_order', 'asc')
+            ->orderBy('created_at', 'desc');
     
+    }
+
+    public function getFirstSort(){
+        return Event::orderBy('sort_order', 'asc')
+            ->orderBy('created_at', 'desc')->first();
+    }
+
+    public function getLastSort(){
+        return Event::orderBy('sort_order', 'desc')
+            ->orderBy('created_at', 'desc')->first();
+    }
+
+    public function getSortById($id){
+        return Event::where('id', $id)->first();
+    }
+
+    public function updateCurrentSortOrder($param){
+        $data = $this->getSortById($param['id_current']);
+        if($param['update_sort'] == 0){
+            $last = $this->getLastSort();
+            $data->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
+        }else{
+            $data->sort_order = $param['update_sort'];
+        }
+        if($data->save()) {
+            $this->updateOtherSortOrder($param);
+            return $data;
+        } else {
+
+            return false;
+
+        }
+    }
+
+    public function updateOtherSortOrder($param){
+        $data = $this->getSortById($param['id_other']);
+        if($param['current_sort'] == 0){
+            $last = $this->getLastSort();
+            $data->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
+        }else{
+            $data->sort_order = $param['current_sort'];
+        }
+        if($data->save()) {
+            return $data;
+        } else {
+
+            return false;
+
+        }
     }
 
     // public function preview($param, $user_id)
@@ -682,6 +733,7 @@ class Event extends Model
                     'currencies.code as code')
                     ->where('event_schedule_id', $near_schedule->id)
                     ->leftJoin('currencies', 'currencies.id', '=', 'event_schedule_categories.currency_id')
+                    ->orderBy('sort_order', 'asc')
                     ->orderBy('price', 'desc')
                     ->orderBy('additional_info', 'asc')->get();
                 $count = count($event->prices);
@@ -881,7 +933,8 @@ class Event extends Model
             ->where('categories.status', true)
             ->where('events.avaibility','=',true)
             ->groupBy('events.id')
-            ->orderBy('events.created_at', 'desc')
+            //->orderBy('events.created_at', 'desc')
+            ->orderBy('events.sort_order', 'asc')
             ->paginate($limit);
 
         if(!empty($events)) {
