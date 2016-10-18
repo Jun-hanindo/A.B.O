@@ -1329,13 +1329,11 @@
                 var id_current = $(this).attr('data-id');
                 var current_sort = $(this).attr('data-sort');
                 var update_sort = +current_sort - 1;
-                if(update_sort < 0){
-                    update_sort = 0;
-                }
-                console.log(current_sort);
-                // console.log(current_sort);
-                // console.log(update_sort);
                 var id_other = $('#event-schedule-category-datatables tbody .sort_asc[data-sort="'+update_sort+'"]').attr('data-id');
+                if(id_other == undefined){
+                    update_sort = 0;
+                    id_other = $('#event-schedule-category-datatables tbody .sort_asc[data-sort="'+update_sort+'"]').attr('data-id');
+                }
                 saveSortOrder(schedule_id, id_current, current_sort, update_sort, id_other);
                 loadDataScheduleCategory(schedule_id);
 
@@ -1347,10 +1345,11 @@
                 var id_current = $(this).attr('data-id');
                 var current_sort = $(this).attr('data-sort');
                 var update_sort = +current_sort + 1;
-                if(update_sort < 0){
-                    update_sort = 0;
-                }
                 var id_other = $('#event-schedule-category-datatables tbody .sort_desc[data-sort="'+update_sort+'"]').attr('data-id');
+                if(id_other == undefined){
+                    update_sort = 0;
+                    id_other = $('#event-schedule-category-datatables tbody .sort_desc[data-sort="'+update_sort+'"]').attr('data-id');
+                }
                 saveSortOrder(schedule_id, id_current, current_sort, update_sort, id_other);
                 loadDataScheduleCategory(schedule_id);
 
