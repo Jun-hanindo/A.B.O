@@ -25,7 +25,7 @@ class Homepage extends Model
     }
     public static function datatables($category)
     {
-        return static::select('homepages.id as id', 'events.title as title', 'homepages.category as category', 'homepages.sort_order')
+        return static::select('homepages.id as id', 'events.title as title', 'homepages.category as category', 'homepages.sort_order as sort_order')
             ->join('events', 'homepages.event_id','=','events.id')
             ->where('homepages.category', '=', $category)
             ->whereNull('events.deleted_at')
@@ -33,17 +33,19 @@ class Homepage extends Model
     }
 
     public function getFirstSort($category){
-        return Homepage::join('events', 'events.id', '=', 'homepages.event_id')
+        return Homepage::select('homepages.category as category', 'homepages.sort_order as sort_order')
+            ->join('events', 'events.id', '=', 'homepages.event_id')
             ->where('category', $category)
             ->whereNull('events.deleted_at')
-            ->orderBy('sort_order', 'asc')->first();
+            ->orderBy('homepages.sort_order', 'asc')->first();
     }
 
     public function getLastSort($category){
-        return Homepage::join('events', 'events.id', '=', 'homepages.event_id')
+        return Homepage::select('homepages.category as category', 'homepages.sort_order as sort_order')
+            ->join('events', 'events.id', '=', 'homepages.event_id')
             ->where('category', $category)
             ->whereNull('events.deleted_at')
-            ->orderBy('sort_order', 'desc')->first();
+            ->orderBy('homepages.sort_order', 'desc')->first();
     }
 
     public function getSortById($id){
@@ -51,7 +53,7 @@ class Homepage extends Model
     }
 
     public function getSort($category){
-        return Homepage::where('category', $category)->orderBy('sort_order', 'desc')->get();
+        return Homepage::where('category', $category)->orderBy('homepages.sort_order', 'desc')->get();
     }
 
     // public function updateSortEmpty($category){
@@ -206,7 +208,7 @@ class Homepage extends Model
     public function getHomepage($category)
     {
         $homepages = Homepage::where('category', $category)
-            ->orderBy('sort_order', 'asc')->get();
+            ->orderBy('homepages.sort_order', 'asc')->get();
         if(!empty($homepages)) {
             $array = [];
             foreach ($homepages as $key => $homepage) {
