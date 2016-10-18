@@ -30,12 +30,16 @@ class EventScheduleCategoriesController extends BaseController
                     $last = $this->model->getLastSort($category->event_schedule_id)->sort_order;
                     $style = 'style="display:inline-block"';
                     $style2 = 'style="display:none"';
-                    if($category->sort_order == $last){
-                        $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style.' data-schedule="'.$category->event_schedule_id.'"  data-id="'.$category->id.'" data-sort="'.$category->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
-                                <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style2.' data-schedule="'.$category->event_schedule_id.'"  data-id="'.$category->id.'" data-sort="'.$category->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                    if($category->sort_order == 0){
+                        $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style2.' data-schedule="'.$category->event_schedule_id.'"  data-id="'.$category->id.'" data-sort="'.$category->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                                <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style.' data-schedule="'.$category->event_schedule_id.'"  data-id="'.$category->id.'" data-sort="'.$category->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+
                     }elseif($category->sort_order == $first){
                         $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style2.' data-schedule="'.$category->event_schedule_id.'"  data-id="'.$category->id.'" data-sort="'.$category->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
                                 <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style.' data-schedule="'.$category->event_schedule_id.'"  data-id="'.$category->id.'" data-sort="'.$category->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                    }elseif($category->sort_order == $last){
+                        $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style.' data-schedule="'.$category->event_schedule_id.'"  data-id="'.$category->id.'" data-sort="'.$category->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                                <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style2.' data-schedule="'.$category->event_schedule_id.'"  data-id="'.$category->id.'" data-sort="'.$category->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
                     }else{
                         $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style.' data-schedule="'.$category->event_schedule_id.'"  data-id="'.$category->id.'" data-sort="'.$category->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
                                 <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style.' data-schedule="'.$category->event_schedule_id.'"  data-id="'.$category->id.'" data-sort="'.$category->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';

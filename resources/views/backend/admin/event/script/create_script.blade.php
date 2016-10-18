@@ -956,7 +956,7 @@
                     $('.error-modal').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                 },
                 error: function(response){
-                    $('.error-modal').addClass('alert alert-danger').html(response.responseJSON.message);
+                    $('.error-modal').html('<div class="alert alert-success">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                 }
             });
         }
@@ -1332,6 +1332,7 @@
                 if(update_sort < 0){
                     update_sort = 0;
                 }
+                console.log(current_sort);
                 // console.log(current_sort);
                 // console.log(update_sort);
                 var id_other = $('#event-schedule-category-datatables tbody .sort_asc[data-sort="'+update_sort+'"]').attr('data-id');
