@@ -12,26 +12,28 @@
         $('#homepage-sliders-table tbody').on('click', '.sort_asc',function(){
             var category = $(this).attr('data-category');
             var id_current = $(this).attr('data-id');
-            var current_sort = $(this).attr('data-sort');
+            // var current_sort = $(this).attr('data-sort');
             
-            var parent = $(this).parents('tr');
-            var prev = parent.prev().children().children('.sort_asc');
-            var update_sort = prev.attr('data-sort');
-            var id_other = prev.attr('data-id');
-            saveSortOrder(category, id_current, current_sort, update_sort, id_other);
+            // var parent = $(this).parents('tr');
+            // var prev = parent.prev().children().children('.sort_asc');
+            // var update_sort = prev.attr('data-sort');
+            // var id_other = prev.attr('data-id');
+            var order = 'asc';
+            saveSortOrder(category, id_current, order);
             loadDataSlider();
         });
 
         $('#homepage-events-table tbody').on('click', '.sort_asc',function(){
             var category = $(this).attr('data-category');
             var id_current = $(this).attr('data-id');
-            var current_sort = $(this).attr('data-sort');
+            // var current_sort = $(this).attr('data-sort');
 
-            var parent = $(this).parents('tr');
-            var prev = parent.prev().children().children('.sort_asc');
-            var update_sort = prev.attr('data-sort');
-            var id_other = prev.attr('data-id');
-            saveSortOrder(category, id_current, current_sort, update_sort, id_other);
+            // var parent = $(this).parents('tr');
+            // var prev = parent.prev().children().children('.sort_asc');
+            // var update_sort = prev.attr('data-sort');
+            // var id_other = prev.attr('data-id');
+            var order = 'asc';
+            saveSortOrder(category, id_current, order);
             loadDataEvent();
 
         });
@@ -39,13 +41,14 @@
         $('#homepage-promotions-table tbody').on('click', '.sort_asc',function(){
             var category = $(this).attr('data-category');
             var id_current = $(this).attr('data-id');
-            var current_sort = $(this).attr('data-sort');
+            // var current_sort = $(this).attr('data-sort');
             
-            var parent = $(this).parents('tr');
-            var prev = parent.prev().children().children('.sort_asc');
-            var update_sort = prev.attr('data-sort');
-            var id_other = prev.attr('data-id');
-            saveSortOrder(category, id_current, current_sort, update_sort, id_other);
+            // var parent = $(this).parents('tr');
+            // var prev = parent.prev().children().children('.sort_asc');
+            // var update_sort = prev.attr('data-sort');
+            // var id_other = prev.attr('data-id');
+            var order = 'asc';
+            saveSortOrder(category, id_current, order);
             loadDataPromotion();
 
         });
@@ -53,13 +56,14 @@
         $('#homepage-sliders-table tbody').on('click', '.sort_desc',function(){
             var category = $(this).attr('data-category');
             var id_current = $(this).attr('data-id');
-            var current_sort = $(this).attr('data-sort');
+            // var current_sort = $(this).attr('data-sort');
 
-            var parent = $(this).parents('tr');
-            var next = parent.next().children().children('.sort_desc');
-            var update_sort = next.attr('data-sort');
-            var id_other = next.attr('data-id');
-            saveSortOrder(category, id_current, current_sort, update_sort, id_other);
+            // var parent = $(this).parents('tr');
+            // var next = parent.next().children().children('.sort_desc');
+            // var update_sort = next.attr('data-sort');
+            // var id_other = next.attr('data-id');
+            var order = 'desc';
+            saveSortOrder(category, id_current, order);
             loadDataSlider();
 
         });
@@ -67,16 +71,17 @@
         $('#homepage-events-table tbody').on('click', '.sort_desc',function(){
             var category = $(this).attr('data-category');
             var id_current = $(this).attr('data-id');
-            var current_sort = $(this).attr('data-sort');
+            // var current_sort = $(this).attr('data-sort');
 
-            var parent = $(this).parents('tr');
-            var next = parent.next().children().children('.sort_desc');
-            var update_sort = next.attr('data-sort');
-            var id_other = next.attr('data-id');
+            // var parent = $(this).parents('tr');
+            // var next = parent.next().children().children('.sort_desc');
+            // var update_sort = next.attr('data-sort');
+            // var id_other = next.attr('data-id');
+            var order = 'desc';
 
             // var update_sort = +current_sort + 1;
             // var id_other = $('#homepage-events-table tbody .sort_desc[data-sort="'+update_sort+'"]').attr('data-id');
-            saveSortOrder(category, id_current, current_sort, update_sort, id_other);
+            saveSortOrder(category, id_current, order);
             loadDataEvent();
 
         });
@@ -84,13 +89,14 @@
         $('#homepage-promotions-table tbody').on('click', '.sort_desc',function(){
             var category = $(this).attr('data-category');
             var id_current = $(this).attr('data-id');
-            var current_sort = $(this).attr('data-sort');
+            // var current_sort = $(this).attr('data-sort');
 
-            var parent = $(this).parents('tr');
-            var next = parent.next().children().children('.sort_desc');
-            var update_sort = next.attr('data-sort');
-            var id_other = next.attr('data-id');
-            saveSortOrder(category, id_current, current_sort, update_sort, id_other);
+            // var parent = $(this).parents('tr');
+            // var next = parent.next().children().children('.sort_desc');
+            // var update_sort = next.attr('data-sort');
+            // var id_other = next.attr('data-id');
+            var order = 'desc';
+            saveSortOrder(category, id_current, order);
             loadDataPromotion();
 
         });
@@ -141,13 +147,15 @@
 
     });
 
-    function saveSortOrder(category, id_current, current_sort, update_sort, id_other){
+    //function saveSortOrder(category, id_current, current_sort, update_sort, id_other){
+    function saveSortOrder(category, id_current, order){
         $('.error-'+category).html('');
         $.ajax({
             url: "{{ route('admin-update-sort-order') }}",
             type: "POST",
             dataType: 'json',
-            data: "current_sort=" + current_sort + "&update_sort=" + update_sort + "&id_current=" + id_current + "&id_other=" + id_other + "&category=" + category,
+            data: "id_current=" + id_current + "&order=" + order + "&category=" + category,
+            //data: "current_sort=" + current_sort + "&update_sort=" + update_sort + "&id_current=" + id_current + "&id_other=" + id_other + "&category=" + category,
             success: function (data) {
                 $('.error-'+category).html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
             },

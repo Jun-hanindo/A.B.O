@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\Admin\BaseController;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
+use GuzzleHttp\Cookie\CookieJarInterface;
 
 class DownloadController extends BaseController
 {
@@ -32,20 +33,22 @@ class DownloadController extends BaseController
         $param = $req->all();
         
         try{
-            $client = new Client(); //GuzzleHttp\Client
+            $client = new Client(['cookies' => true]); //GuzzleHttp\Client
 
             if(!empty($param)){
                 $response = $client->get('https://nliven.co/admin/Customers/Download?objectFilterJSON=', [
                     'body' => [
                         
                     ],
-                    'cookies' => true
+                    //'cookies' => true
+                    'cookies' => $cookieJar
                 ]
                 );
             }else{
                 $response = $client->get('https://nliven.co/admin/Customers/Download?objectFilterJSON=', [
                     'save_to' => 'Download_member_'.time().'.csv',
-                    'cookies' => true
+                    //'cookies' => true
+                    'cookies' => $cookieJar
                 ]
                 );
             }
@@ -68,19 +71,19 @@ class DownloadController extends BaseController
         $param = $req->all();
         
         try{
-            $client = new Client(); //GuzzleHttp\Client
+            $client = new Client(['cookies' => true]); //GuzzleHttp\Client
 
             if(!empty($param)){
                 $response = $client->get('https://nliven.co/admin/Orders/Download?objectFilterJSON=', [
                     'body' => [
                         
                     ],
-                    'cookies' => true
+                    //'cookies' => true
                 ]
                 );
             }else{
                 $response = $client->get('https://nliven.co/admin/Orders/Download?objectFilterJSON=', [
-                    'cookies' => true
+                    //'cookies' => true
                 ]
                 );
             }

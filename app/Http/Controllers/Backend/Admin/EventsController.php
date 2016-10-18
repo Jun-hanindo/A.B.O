@@ -43,28 +43,50 @@ class EventsController extends BaseController
     public function datatables()
     {
         return datatables($this->model->datatables())
-                ->addColumn('action', function ($event) {
-                    $url = route('admin-edit-event',$event->id);
-                    return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
-                        <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$event->id.'" data-name="'.$event->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>&nbsp;
-                        <a href="#" class="btn btn-primary btn-xs actDuplicate" title="Duplicate" data-id="'.$event->id.'" data-button="duplicate"><i class="fa fa-copy fa-fw"></i></a>';
-                })
-                ->editColumn('id', function ($event) {
-                    return '<input type="checkbox" name="checkboxid['.$event->id.']" class="item-checkbox">';
-                })
-                ->editColumn('user_id', function ($event){
-                    $username = $event->user->first_name.' '.$event->user->last_name;
-                    return $username;
-                })
-                ->editColumn('avaibility', function ($event) {
-                    if($event->avaibility == TRUE){
-                        $checked = 'checked';
-                    }else{
-                        $checked = '';
-                    }
-                    return '<input type="checkbox" name="avaibility['.$event->id.']" class="avaibility-check" data-id="'.$event->id.'" '.$checked.'>';
-                })
-                ->make(true);
+            ->addColumn('sort_order', function ($event) {
+                $first = $this->model->getFirstSort()->sort_order;
+                $last = $this->model->getLastSort()->sort_order;
+                $style = 'style="display:inline-block"';
+                $style2 = 'style="display:none"';
+                if($event->sort_order == 0){
+                    $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style2.' data-id="'.$event->id.'" data-sort="'.$event->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                            <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style.' data-id="'.$event->id.'" data-sort="'.$event->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+
+                }elseif($event->sort_order == $first){
+                    $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style2.' data-id="'.$event->id.'" data-sort="'.$event->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                            <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style.' data-id="'.$event->id.'" data-sort="'.$event->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                }elseif($event->sort_order == $last){
+                    $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style.' data-id="'.$event->id.'" data-sort="'.$event->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                            <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style2.' data-id="'.$event->id.'" data-sort="'.$event->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                }else{
+                    $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style.' data-id="'.$event->id.'" data-sort="'.$event->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                            <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style.' data-id="'.$event->id.'" data-sort="'.$event->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                }
+
+                return $sort;
+            })
+            ->addColumn('action', function ($event) {
+                $url = route('admin-edit-event',$event->id);
+                return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
+                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$event->id.'" data-name="'.$event->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>&nbsp;
+                    <a href="#" class="btn btn-primary btn-xs actDuplicate" title="Duplicate" data-id="'.$event->id.'" data-button="duplicate"><i class="fa fa-copy fa-fw"></i></a>';
+            })
+            ->editColumn('id', function ($event) {
+                return '<input type="checkbox" name="checkboxid['.$event->id.']" class="item-checkbox">';
+            })
+            ->editColumn('user_id', function ($event){
+                $username = $event->user->first_name.' '.$event->user->last_name;
+                return $username;
+            })
+            ->editColumn('avaibility', function ($event) {
+                if($event->avaibility == TRUE){
+                    $checked = 'checked';
+                }else{
+                    $checked = '';
+                }
+                return '<input type="checkbox" name="avaibility['.$event->id.']" class="avaibility-check" data-id="'.$event->id.'" '.$checked.'>';
+            })
+            ->make(true);
     }
 
     /**
@@ -588,6 +610,41 @@ class EventsController extends BaseController
                 'message' => trans('general.data_not_found')
             ],400);
 
+        }
+    }
+
+    public function updateSortOrder(Request $req){
+
+        try{
+            // $updateData = $this->model->updateSortEmpty($param['category']);
+            $param = $req->all();
+            $updateData = $this->model->updateCurrentSortOrder($param);
+
+            // $log['user_id'] = $this->currentUser->id;
+            // $log['description'] = 'Homepage Sort Order was updated';
+            // $insertLog = new LogActivity();
+            // $insertLog->insertLogActivity($log);
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'Sort Order '.trans('general.update_success')
+            ],200);
+        
+        //} else {
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.save_error')
+            ],400);
+        
         }
     }
 

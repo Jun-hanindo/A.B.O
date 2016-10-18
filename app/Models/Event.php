@@ -111,10 +111,10 @@ class Event extends Model
             if($order == 'asc'){
                 if($sort_no == 0){
                     $result = Event::select('id', 'sort_order')->where('sort_order', '<=', $sort_no)
-                    ->orderBy('sort_order', 'asc')->orderBy('created_at', 'desc')->first();
+                    ->orderBy('sort_order', 'desc')->orderBy('created_at', 'desc')->first();
                 }else{
                     $result = Event::select('id', 'sort_order')->where('sort_order', '<', $sort_no)
-                    ->orderBy('sort_order', 'asc')->orderBy('created_at', 'desc')->first();
+                    ->orderBy('sort_order', 'desc')->orderBy('created_at', 'desc')->first();
                 }
             }else{
                 if($sort_no == 0){

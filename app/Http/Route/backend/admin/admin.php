@@ -108,6 +108,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::get('{slug}/check', array('as' => 'admin-slug-check-event', 'uses' => 'EventsController@slug'));
         Route::post('{id}/delete-seat-image', array('as' => 'admin-delete-seat-image', 'uses' => 'EventsController@deleteSeatImage'));
         Route::get('{id}/duplicate', array('as' => 'admin-duplicate-event', 'uses' => 'EventsController@duplicate'));
+        Route::post('update-sort', array('as' => 'admin-event-sort-order', 'uses' => 'EventsController@updateSortOrder'));
         //Route::get('preview', array('as' => 'admin-preview-event', 'uses' => 'EventsController@preview'));
 
         
@@ -245,7 +246,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
     Route::group(['prefix' => 'tixtrack','namespace' => 'Tixtrack'], function () {
         Route::get('login', array('as' => 'admin-tixtrack-login', 'uses' => 'LoginController@login'));
         Route::post('post-login', array('as' => 'admin-tixtrack-login-post', 'uses' => 'LoginController@postLogin'));
-        Route::put('change-account', array('as' => 'admin-tixtrack-change-account', 'uses' => 'LoginController@changeAccount'));
+        Route::get('change-account', array('as' => 'admin-tixtrack-change-account', 'uses' => 'LoginController@changeAccount'));
         Route::get('download', array('as' => 'admin-tixtrack-download', 'uses' => 'DownloadController@download'));
         Route::get('download-member', array('as' => 'admin-tixtrack-download-member', 'uses' => 'DownloadController@downloadMember'));
         Route::get('download-transaction', array('as' => 'admin-tixtrack-download-transaction', 'uses' => 'DownloadController@downloadTransaction'));

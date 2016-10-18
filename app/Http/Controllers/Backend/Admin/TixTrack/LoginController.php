@@ -10,7 +10,8 @@ use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\TixTrack\LoginRequest;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
-use GuzzleHttp\Cookie\CookieJar;
+//use GuzzleHttp\Cookie\CookieJar;
+//use GuzzleHttp\Cookie\CookieJarInterface;
 
 
 class LoginController extends BaseController
@@ -34,6 +35,7 @@ class LoginController extends BaseController
         $param = $req->all();
         
         try{
+            $cookieJar = new \GuzzleHttp\Cookie\CookieJar();
             $client = new Client(); //GuzzleHttp\Client
             $response = $client->post('https://nliven.co/admin/Account/Login', [
                 'body' => [
@@ -41,17 +43,19 @@ class LoginController extends BaseController
                     'Password' => $param['Password'],
                     'RememberMe' => False,
                 ],
-                'cookies' => true
+                'cookies' => $cookieJar,
             ]
             );
 
-            echo $response;
+            //echo $response;
 
             $status = $response->getStatusCode();
 
-            if($status == 200/* || $status == 302*/){
+            if(/*$status == 200 || */$status == 302){
+                flash()->success('Login success!');
                 return redirect()->route('admin-tixtrack-change-account');
             }else{
+                flash()->error('The user name or password provided is incorrect.');
                 return redirect()->route('admin-tixtrack-login');
             }
         
@@ -69,9 +73,9 @@ class LoginController extends BaseController
 
     public function changeAccount(){
         // $response = $client->put('http://github.com', [
-        //     'allow_redirects' => false
+        //     'cookies' => $cookieJar
         // ]);
 
-        //return redirect()->route('admin-tixtrack-download');
+        return redirect()->route('admin-tixtrack-download');
     }
 }
