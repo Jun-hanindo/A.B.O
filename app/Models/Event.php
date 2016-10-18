@@ -413,6 +413,7 @@ class Event extends Model
             $data->fp_tracking_code = $param['fp_tracking_code'];
             $data->fp_conversion_code = $param['fp_conversion_code'];
             $data->price_title = $param['price_title'];
+
             $data->avaibility = true;
 
             // $pathDest = public_path().'/uploads/events';

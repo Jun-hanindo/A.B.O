@@ -945,13 +945,15 @@
             });
         }
 
-        function saveSortOrder(schedule_id, id_current, current_sort, update_sort, id_other){
+        //function saveSortOrder(schedule_id, id_current, current_sort, update_sort, id_other){
+        function saveSortOrder(schedule_id, id_current, order){
             $('.error-modal').html('');
             $.ajax({
                 url: "{{ route('admin-sort-order-schedule-category') }}",
                 type: "POST",
                 dataType: 'json',
-                data: "current_sort=" + current_sort + "&update_sort=" + update_sort + "&id_current=" + id_current + "&id_other=" + id_other + "&schedule_id=" + schedule_id,
+                //data: "current_sort=" + current_sort + "&update_sort=" + update_sort + "&id_current=" + id_current + "&id_other=" + id_other + "&schedule_id=" + schedule_id,
+                data: "id_current=" + id_current + "&schedule_id=" + schedule_id + "&order=" + order,
                 success: function (data) {
                     $('.error-modal').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                 },
@@ -1327,14 +1329,16 @@
                 //console.log('tes asc');
                 var schedule_id = $(this).attr('data-schedule');
                 var id_current = $(this).attr('data-id');
-                var current_sort = $(this).attr('data-sort');
-                var update_sort = +current_sort - 1;
-                var id_other = $('#event-schedule-category-datatables tbody .sort_asc[data-sort="'+update_sort+'"]').attr('data-id');
-                if(id_other == undefined){
-                    update_sort = 0;
-                    id_other = $('#event-schedule-category-datatables tbody .sort_asc[data-sort="'+update_sort+'"]').attr('data-id');
-                }
-                saveSortOrder(schedule_id, id_current, current_sort, update_sort, id_other);
+                // var current_sort = $(this).attr('data-sort');
+                // var update_sort = +current_sort - 1;
+                // var id_other = $('#event-schedule-category-datatables tbody .sort_asc[data-sort="'+update_sort+'"]').attr('data-id');
+                // if(id_other == undefined){
+                //     update_sort = 0;
+                //     id_other = $('#event-schedule-category-datatables tbody .sort_asc[data-sort="'+update_sort+'"]').attr('data-id');
+                // }
+                var order = 'asc';
+                //saveSortOrder(schedule_id, id_current, current_sort, update_sort, id_other);
+                saveSortOrder(schedule_id, id_current, order);
                 loadDataScheduleCategory(schedule_id);
 
             });
@@ -1343,14 +1347,15 @@
                 //console.log('tes desc');
                 var schedule_id = $(this).attr('data-schedule');
                 var id_current = $(this).attr('data-id');
-                var current_sort = $(this).attr('data-sort');
-                var update_sort = +current_sort + 1;
-                var id_other = $('#event-schedule-category-datatables tbody .sort_desc[data-sort="'+update_sort+'"]').attr('data-id');
-                if(id_other == undefined){
-                    update_sort = 0;
-                    id_other = $('#event-schedule-category-datatables tbody .sort_desc[data-sort="'+update_sort+'"]').attr('data-id');
-                }
-                saveSortOrder(schedule_id, id_current, current_sort, update_sort, id_other);
+                // var current_sort = $(this).attr('data-sort');
+                // var update_sort = +current_sort + 1;
+                // var id_other = $('#event-schedule-category-datatables tbody .sort_desc[data-sort="'+update_sort+'"]').attr('data-id');
+                // if(id_other == undefined){
+                //     update_sort = 0;
+                //     id_other = $('#event-schedule-category-datatables tbody .sort_desc[data-sort="'+update_sort+'"]').attr('data-id');
+                // }
+                var order = 'desc';
+                saveSortOrder(schedule_id, id_current,order);
                 loadDataScheduleCategory(schedule_id);
 
             });

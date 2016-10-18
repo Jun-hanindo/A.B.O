@@ -61,23 +61,85 @@ class EventScheduleCategory extends Model
         return EventScheduleCategory::where('id', $id)->first();
     }
 
-    public function getSort($event_schedule_id){
-        return EventScheduleCategory::where('event_schedule_id', $event_schedule_id)
-            ->orderBy('sort_order', 'desc')
-            ->orderBy('price', 'desc')->get();
+    public function getOtherSort($id, $order, $event_schedule_id){
+        $data = $this->find($id);
+        if(!empty($data)){
+            $sort_no = $data->sort_order;
+            if($order == 'asc'){
+                if($sort_no == 0){
+                    $result = EventScheduleCategory::select('event_schedule_categories.id as id', 'event_schedule_categories.sort_order as sort_order')
+                    ->where('event_schedule_categories.sort_order', '<=', $sort_no)
+                    ->where('event_schedule_id', $event_schedule_id)
+                    ->orderBy('event_schedule_categories.sort_order', 'desc')
+                    ->orderBy('event_schedule_categories.created_at', 'desc')->first();
+                }else{
+                    $result = EventScheduleCategory::select('event_schedule_categories.id as id', 'event_schedule_categories.sort_order as sort_order')
+                    ->where('event_schedule_categories.sort_order', '<', $sort_no)
+                    ->where('event_schedule_id', $event_schedule_id)
+                    ->orderBy('event_schedule_categories.sort_order', 'desc')
+                    ->orderBy('event_schedule_categories.created_at', 'desc')->first();
+                }
+            }else{
+                if($sort_no == 0){
+                    $result = EventScheduleCategory::select('event_schedule_categories.id as id', 'event_schedule_categories.sort_order as sort_order')
+                    ->where('event_schedule_categories.sort_order', '>=', $sort_no)
+                    ->where('event_schedule_id', $event_schedule_id)
+                    ->orderBy('event_schedule_categories.sort_order', 'asc')
+                    ->orderBy('event_schedule_categories.created_at', 'desc')->first();
+                }else{
+                    $result = EventScheduleCategory::select('event_schedule_categories.id as id', 'event_schedule_categories.sort_order as sort_order')
+                    ->where('event_schedule_categories.sort_order', '>', $sort_no)
+                    ->where('event_schedule_id', $event_schedule_id)
+                    ->orderBy('event_schedule_categories.sort_order', 'asc')
+                    ->orderBy('event_schedule_categories.created_at', 'desc')->first();
+                }
+            }
+
+            return $result;
+        }else{
+            return false;
+        }
     }
+
+    // public function getSort($event_schedule_id){
+    //     return EventScheduleCategory::where('event_schedule_id', $event_schedule_id)
+    //         ->orderBy('sort_order', 'desc')
+    //         ->orderBy('price', 'desc')->get();
+    // }
 
     public function updateCurrentSortOrder($param){
-        $data = $this->getSortById($param['id_current']);
-        if($param['update_sort'] == 0){
-            $last = $this->getLastSort($param['schedule_id']);
-            $data->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
+        $id = $param['id_current'];
+        $order = $param['order'];
+        $schedule_id = $param['schedule_id'];
+
+        $data = $this->getSortById($id);
+        $other = $this->getOtherSort($id, $order, $schedule_id);
+        $current_sort = $data->sort_order;
+
+        if($other->sort_order == 0){
+            $last = $this->getLastSort($schedule_id);
+            $data->sort_order = $last->sort_order + 1;
         }else{
-            $data->sort_order = $param['update_sort'];
+            $data->sort_order = $other->sort_order;
         }
+
         if($data->save()) {
-            $this->updateOtherSortOrder($param);
-            return $data;
+            //$this->updateOtherSortOrder($param);
+            $data2 = $this->getSortById($other->id);
+            if($current_sort == 0){
+                $last = $this->getLastSort($schedule_id);
+                $data2->sort_order = $last->sort_order + 1;
+            }else{
+                $data2->sort_order = $current_sort;
+            }
+            if($data2->save()) {
+                return $data2;
+            } else {
+
+                return false;
+
+            }
+            //return $data;
         } else {
 
             return false;
@@ -85,22 +147,22 @@ class EventScheduleCategory extends Model
         }
     }
 
-    public function updateOtherSortOrder($param){
-        $data = $this->getSortById($param['id_other']);
-        if($param['current_sort'] == 0){
-            $last = $this->getLastSort($param['schedule_id']);
-            $data->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
-        }else{
-            $data->sort_order = $param['current_sort'];
-        }
-        if($data->save()) {
-            return $data;
-        } else {
+    // public function updateOtherSortOrder($param){
+    //     $data = $this->getSortById($param['id_other']);
+    //     if($param['current_sort'] == 0){
+    //         $last = $this->getLastSort($param['schedule_id']);
+    //         $data->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
+    //     }else{
+    //         $data->sort_order = $param['current_sort'];
+    //     }
+    //     if($data->save()) {
+    //         return $data;
+    //     } else {
 
-            return false;
+    //         return false;
 
-        }
-    }
+    //     }
+    // }
 
 
     /**
