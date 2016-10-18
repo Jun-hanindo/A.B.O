@@ -198,7 +198,9 @@ class EventsController extends Controller
                         'currencies.code as code')
                         ->where('event_schedule_id', $near_schedule->id)
                         ->leftJoin('currencies', 'currencies.id', '=', 'event_schedule_categories.currency_id')
-                        ->orderBy('price', 'desc')->get();
+                        ->orderBy('sort_order', 'asc')
+                        ->orderBy('price', 'desc')
+                        ->orderBy('additional_info', 'asc')->get();
                     $count = count($event->prices);
                     if(!empty($event->prices)){
                         $i = 1;
