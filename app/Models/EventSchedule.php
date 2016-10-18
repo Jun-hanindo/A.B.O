@@ -23,7 +23,7 @@ class EventSchedule extends Model
 
     public function EventScheduleCategory()
     {
-        return $this->hasMany('App\Models\EventScheduleCategory', 'event_schedule_id')/*->where('status', true)*/->orderBy('price');
+        return $this->hasMany('App\Models\EventScheduleCategory', 'event_schedule_id')->orderBy('sort_order', 'asc')->orderBy('price', 'desc');
 
     }
 

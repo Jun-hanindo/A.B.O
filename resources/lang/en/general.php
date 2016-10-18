@@ -262,5 +262,6 @@ return [
     'ga_conversion_code' => 'Google Analytics Conversion Code',
     'fp_tracking_code' => 'Facebook Pixel Tracking Code',
     'fp_conversion_code' => 'Facebook Pixel Conversion Code',
+    'price_title'   => 'Price Title',
 
 ];

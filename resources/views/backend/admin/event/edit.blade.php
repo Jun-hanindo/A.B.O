@@ -103,6 +103,11 @@
                                 {!! Form::textarea('schedule_info', $data->schedule_info, ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.schedule_info')]) !!}
                                 {!! Form::errorMsg('schedule_info') !!}
                             </div>
+                            <div class="form-group{{ Form::hasError('price_title') }} price_title">
+                                {!! Form::label('price_title', trans('general.price_title')) !!}
+                                {!! Form::text('price_title', $data->price_title, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.price_title')]) !!}
+                                {!! Form::errorMsg('price_title') !!}
+                            </div>
                             <div class="form-group{{ Form::hasError('price_info') }} price_info">
                                 {!! Form::label('price_info', trans('general.price_info')) !!}
                                 {!! Form::textarea('price_info', $data->price_info, ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.price_info')]) !!}
@@ -290,10 +295,11 @@
                         <table id="event-schedule-category-datatables" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                             <thead>
                                 <tr>
-                                    <th width="20%" class="center-align"></th>
-                                    <th width="40%" class="center-align">{{ trans('general.price_name') }}</th>
-                                    <th width="20%">{{ trans('general.price') }}</th>
+                                    <th width="15%" class="center-align"></th>
+                                    <th width="35%" class="center-align">{{ trans('general.price_name') }}</th>
+                                    <th width="15%">{{ trans('general.price') }}</th>
                                     <th width="15%">{{ trans('general.seat_color') }}</th>
+                                    <th width="15%">{{ trans('general.sort_order') }}</th>
                                 </tr>
                             </thead>
                         </table>

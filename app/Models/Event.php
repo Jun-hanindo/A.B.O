@@ -151,6 +151,7 @@ class Event extends Model
         $this->ga_conversion_code = $param['ga_conversion_code'];
         $this->fp_tracking_code = $param['fp_tracking_code'];
         $this->fp_conversion_code = $param['fp_conversion_code'];
+        $this->price_title = $param['price_title'];
         $this->avaibility = true;
 
         if (isset($param['featured_image1'])) {
@@ -313,6 +314,7 @@ class Event extends Model
             $data->ga_conversion_code = $param['ga_conversion_code'];
             $data->fp_tracking_code = $param['fp_tracking_code'];
             $data->fp_conversion_code = $param['fp_conversion_code'];
+            $data->price_title = $param['price_title'];
             $data->avaibility = true;
 
             // $pathDest = public_path().'/uploads/events';
@@ -687,7 +689,11 @@ class Event extends Model
                     $i = 1;
                     foreach ($event->prices as $k => $val) {
                         if($count == 1){
-                            $event->price_range = $val->code.' '.number_format_drop_zero_decimals($val->price);
+                            if($val->price > 0){
+                                $event->price_range = $val->code.' '.number_format_drop_zero_decimals($val->price);
+                            }else{
+                                $event->price_range = '';
+                            }
                         }else{
                             if($i == 1){
                                 $event->max_range = number_format_drop_zero_decimals($val->price);

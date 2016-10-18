@@ -25,6 +25,24 @@ class EventScheduleCategoriesController extends BaseController
         $param = $req->all();
         $schedule_id = $param['schedule_id'];
          return datatables($this->model->datatables($schedule_id))
+                ->addColumn('sort_order', function ($category) {
+                    $first = $this->model->getFirstSort($category->event_schedule_id)->sort_order;
+                    $last = $this->model->getLastSort($category->event_schedule_id)->sort_order;
+                    $style = 'style="display:inline-block"';
+                    $style2 = 'style="display:none"';
+                    if($category->sort_order == $last){
+                        $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style.' data-schedule="'.$category->event_schedule_id.'"  data-id="'.$category->id.'" data-sort="'.$category->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                                <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style2.' data-schedule="'.$category->event_schedule_id.'"  data-id="'.$category->id.'" data-sort="'.$category->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                    }elseif($category->sort_order == $first){
+                        $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style2.' data-schedule="'.$category->event_schedule_id.'"  data-id="'.$category->id.'" data-sort="'.$category->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                                <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style.' data-schedule="'.$category->event_schedule_id.'"  data-id="'.$category->id.'" data-sort="'.$category->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                    }else{
+                        $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style.' data-schedule="'.$category->event_schedule_id.'"  data-id="'.$category->id.'" data-sort="'.$category->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                                <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style.' data-schedule="'.$category->event_schedule_id.'"  data-id="'.$category->id.'" data-sort="'.$category->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                    }
+
+                    return $sort;
+                })
                 ->addColumn('action', function ($category) {
                     return '<input type="hidden" name="id" class="form-control" id="id_category" value="'.$category->id.'">
                     <a href="javascript:void(0)" data-id="'.$category->id.'" class="btn btn-warning btn-xs actEditCategory" title="Edit"><i class="fa fa-pencil-square-o fa-fw">
@@ -229,6 +247,41 @@ class EventScheduleCategoriesController extends BaseController
                 'message' => trans('general.data_not_found'),
                 'data' => 0
             ],400);
+        }
+    }
+
+    public function updateSortOrder(Request $req){
+        $param = $req->all();
+
+        try{
+            // $updateData = $this->model->updateSortEmpty($param['category']);
+            $updateData = $this->model->updateCurrentSortOrder($param);
+
+            // $log['user_id'] = $this->currentUser->id;
+            // $log['description'] = 'Homepage Sort Order was updated';
+            // $insertLog = new LogActivity();
+            // $insertLog->insertLogActivity($log);
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'Sort Order '.trans('general.update_success')
+            ],200);
+        
+        //} else {
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.save_error')
+            ],400);
+        
         }
     }
 

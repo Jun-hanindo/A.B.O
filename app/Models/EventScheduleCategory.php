@@ -37,10 +37,69 @@ class EventScheduleCategory extends Model
     {
 
     	return static::select('event_schedule_categories.id as id', 'additional_info', 'price', 'seat_color', 'event_schedule_id', 
-            'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right')
-        ->leftJoin('currencies', 'currencies.id', '=', 'event_schedule_categories.currency_id')
-        ->where('event_schedule_id', $event_schedule_id);
+            'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right', 'sort_order')
+            ->leftJoin('currencies', 'currencies.id', '=', 'event_schedule_categories.currency_id')
+            ->where('event_schedule_id', $event_schedule_id)
+            ->orderBy('sort_order', 'asc')
+            ->orderBy('price', 'desc');
     
+    }
+
+    public function getFirstSort($event_schedule_id){
+        return EventScheduleCategory::where('event_schedule_id', $event_schedule_id)
+            ->orderBy('sort_order', 'asc')
+            ->orderBy('price', 'desc')->first();
+    }
+
+    public function getLastSort($event_schedule_id){
+        return EventScheduleCategory::where('event_schedule_id', $event_schedule_id)
+            ->orderBy('sort_order', 'desc')
+            ->orderBy('price', 'desc')->first();
+    }
+
+    public function getSortById($id){
+        return EventScheduleCategory::where('id', $id)->first();
+    }
+
+    public function getSort($event_schedule_id){
+        return EventScheduleCategory::where('event_schedule_id', $event_schedule_id)
+            ->orderBy('sort_order', 'desc')
+            ->orderBy('price', 'desc')->get();
+    }
+
+    public function updateCurrentSortOrder($param){
+        $data = $this->getSortById($param['id_current']);
+        if($param['update_sort'] == 0){
+            $last = $this->getLastSort($param['schedule_id']);
+            $data->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
+        }else{
+            $data->sort_order = $param['update_sort'];
+        }
+        if($data->save()) {
+            $this->updateOtherSortOrder($param);
+            return $data;
+        } else {
+
+            return false;
+
+        }
+    }
+
+    public function updateOtherSortOrder($param){
+        $data = $this->getSortById($param['id_other']);
+        if($param['current_sort'] == 0){
+            $last = $this->getLastSort($param['schedule_id']);
+            $data->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
+        }else{
+            $data->sort_order = $param['current_sort'];
+        }
+        if($data->save()) {
+            return $data;
+        } else {
+
+            return false;
+
+        }
     }
 
 
@@ -56,7 +115,8 @@ class EventScheduleCategory extends Model
         // $this->price_cat = $param['price_cat'];
         $this->seat_color = $param['seat_color'];
         $this->currency_id = $param['currency_id'];
-
+        $last = $this->getLastSort($param['event_schedule_id']);
+        $this->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
     	if($this->save()){
             return $this;
         } else {
@@ -88,6 +148,11 @@ class EventScheduleCategory extends Model
             // $data->price_cat = $param['price_cat'];
             $data->seat_color = $param['seat_color'];
             $data->currency_id = $param['currency_id'];
+
+            if($data->sort_order == 0){
+                $last = $this->getLastSort($data->event_schedule_id);
+                $data->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
+            }
 
             if($data->save()){
 

@@ -136,7 +136,11 @@
             <div class="col-md-4 ticket" id="ticket">
                 <div class="information-title">
                     <i class="fa fa-ticket"></i> 
-                    {{ !empty($event->prices) ? $event->price_range.trans('frontend/general.per_person'): '' }}
+                    @if(!empty($event->price_title))
+                        {{ $event->price_title }}
+                    @else
+                        {{ !empty($event->prices) ? $event->price_range.trans('frontend/general.per_person'): '' }}
+                    @endif
                 </div>
                 <ul class="list-unstyled">
                     @if(!empty($event->prices))

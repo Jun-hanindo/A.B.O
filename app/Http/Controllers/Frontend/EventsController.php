@@ -204,7 +204,11 @@ class EventsController extends Controller
                         $i = 1;
                         foreach ($event->prices as $k => $val) {
                             if($count == 1){
-                                $event->price_range = $val->code.' '.number_format_drop_zero_decimals($val->price);
+                                if($val->price > 0){
+                                    $event->price_range = $val->code.' '.number_format_drop_zero_decimals($val->price);
+                                }else{
+                                    $event->price_range = '';
+                                }
                             }else{
                                 if($i == 1){
                                     $event->max_range = number_format_drop_zero_decimals($val->price);

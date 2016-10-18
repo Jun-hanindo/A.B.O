@@ -134,19 +134,23 @@
             @endif
             <div class="col-md-4 ticket" id="ticket">
                 <div class="information-title">
-                    <i class="fa fa-ticket"></i> 
-                    @if(!empty($event->prices))
-                        @php 
-                            $count = count($event->prices)
-                        @endphp
-                        @if($count > 1)
-                            @if($event->min_range > 0)
-                                {{ $event->code.' '.$event->min_range.'-'.$event->max_range.trans('frontend/general.per_person') }}
+                    <i class="fa fa-ticket"></i>
+                    @if(!empty($event->price_title)) 
+                        {{ $event->price_title }}
+                    @else
+                        @if(!empty($event->prices))
+                            @php 
+                                $count = count($event->prices)
+                            @endphp
+                            @if($count > 1)
+                                @if($event->min_range > 0)
+                                    {{ $event->code.' '.$event->min_range.'-'.$event->max_range.trans('frontend/general.per_person') }}
+                                @else
+                                    {{ $event->code.' '.$event->max_range.trans('frontend/general.per_person') }}
+                                @endif
                             @else
-                                {{ $event->code.' '.$event->max_range.trans('frontend/general.per_person') }}
+                                {{ $event->price_range.trans('frontend/general.per_person') }}
                             @endif
-                        @else
-                            {{ $event->price_range.trans('frontend/general.per_person') }}
                         @endif
                     @endif
                 </div>

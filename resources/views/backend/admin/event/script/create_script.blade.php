@@ -561,7 +561,8 @@
                     {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
                     {data: 'additional_info', name: 'additional_info'},
                     {data: 'price', name: 'price'},
-                    {data: 'seat_color', name: 'seat_color'}
+                    {data: 'seat_color', name: 'seat_color'},
+                    {data: 'sort_order', name: 'sort_order', class: 'center-align', searchable: false, orderable: false},
                 ],
                 "fnDrawCallback": function() {
                     //Initialize checkbos for enable/disable user
@@ -944,6 +945,22 @@
             });
         }
 
+        function saveSortOrder(schedule_id, id_current, current_sort, update_sort, id_other){
+            $('.error-modal').html('');
+            $.ajax({
+                url: "{{ route('admin-sort-order-schedule-category') }}",
+                type: "POST",
+                dataType: 'json',
+                data: "current_sort=" + current_sort + "&update_sort=" + update_sort + "&id_current=" + id_current + "&id_other=" + id_other + "&schedule_id=" + schedule_id,
+                success: function (data) {
+                    $('.error-modal').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                },
+                error: function(response){
+                    $('.error-modal').addClass('alert alert-danger').html(response.responseJSON.message);
+                }
+            });
+        }
+
 
 
         $(document).ready(function(){ 
@@ -1047,7 +1064,7 @@
             $('.delete-seat-image3').click(function(){
                 var id = $('#event_id').val();
                 var image = $(this).attr('data-value');
-                console.log(image);
+                //console.log(image);
                 var uri = "{{ URL::route('admin-delete-seat-image', "::param") }}";
                 uri = uri.replace('::param', id);
                 $.ajax({
@@ -1154,10 +1171,12 @@
             });
 
             $('#start_time, #end_time').timepicker(); 
-
-            // $('.close').click(function(){
-            //     $('body').removeClass('modal-open2');
-            // });
+            
+            $(".modal").on('hidden.bs.modal', function (e) {
+                if($('.modal').hasClass('in')) {
+                    $('body').addClass('modal-open');
+                } 
+            });
 
             $('#modal-form-schedule').on('show.bs.modal', function (e) {
                 $(".tooltip-field").remove();
@@ -1301,6 +1320,38 @@
                     saveCat();                
                 });
                 clearInputCat();
+
+            });
+
+            $(document).on('click', '.sort_asc',function(){
+                //console.log('tes asc');
+                var schedule_id = $(this).attr('data-schedule');
+                var id_current = $(this).attr('data-id');
+                var current_sort = $(this).attr('data-sort');
+                var update_sort = +current_sort - 1;
+                if(update_sort < 0){
+                    update_sort = 0;
+                }
+                // console.log(current_sort);
+                // console.log(update_sort);
+                var id_other = $('#event-schedule-category-datatables tbody .sort_asc[data-sort="'+update_sort+'"]').attr('data-id');
+                saveSortOrder(schedule_id, id_current, current_sort, update_sort, id_other);
+                loadDataScheduleCategory(schedule_id);
+
+            });
+
+            $(document).on('click', '.sort_desc',function(){
+                //console.log('tes desc');
+                var schedule_id = $(this).attr('data-schedule');
+                var id_current = $(this).attr('data-id');
+                var current_sort = $(this).attr('data-sort');
+                var update_sort = +current_sort + 1;
+                if(update_sort < 0){
+                    update_sort = 0;
+                }
+                var id_other = $('#event-schedule-category-datatables tbody .sort_desc[data-sort="'+update_sort+'"]').attr('data-id');
+                saveSortOrder(schedule_id, id_current, current_sort, update_sort, id_other);
+                loadDataScheduleCategory(schedule_id);
 
             });
 
