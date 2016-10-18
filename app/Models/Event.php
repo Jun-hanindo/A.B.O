@@ -104,17 +104,64 @@ class Event extends Model
         return Event::where('id', $id)->first();
     }
 
+    public function getOtherSort($id, $order){
+        $data = $this->find($id);
+        if(!empty($data)){
+            $sort_no = $data->sort_order;
+            if($order == 'asc'){
+                if($sort_no == 0){
+                    $result = Event::select('id', 'sort_order')->where('sort_order', '<=', $sort_no)
+                    ->orderBy('sort_order', 'asc')->orderBy('created_at', 'desc')->first();
+                }else{
+                    $result = Event::select('id', 'sort_order')->where('sort_order', '<', $sort_no)
+                    ->orderBy('sort_order', 'asc')->orderBy('created_at', 'desc')->first();
+                }
+            }else{
+                if($sort_no == 0){
+                    $result = Event::select('id', 'sort_order')->where('sort_order', '>=', $sort_no)
+                    ->orderBy('sort_order', 'asc')->orderBy('created_at', 'desc')->first();
+                }else{
+                    $result = Event::select('id', 'sort_order')->where('sort_order', '>', $sort_no)
+                    ->orderBy('sort_order', 'asc')->orderBy('created_at', 'desc')->first();
+                }
+            }
+
+            return $result;
+        }else{
+            return false;
+        }
+    }
+
     public function updateCurrentSortOrder($param){
-        $data = $this->getSortById($param['id_current']);
-        if($param['update_sort'] == 0){
+        $id = $param['id_current'];
+        $order = $param['order'];
+
+        $data = $this->getSortById($id);
+        $other = $this->getOtherSort($id, $order);
+        $current_sort = $data->sort_order;
+
+        if($other->sort_order == 0){
             $last = $this->getLastSort();
-            $data->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
+            $data->sort_order = $last->sort_order + 1;
         }else{
-            $data->sort_order = $param['update_sort'];
+            $data->sort_order = $other->sort_order;
         }
         if($data->save()) {
-            $this->updateOtherSortOrder($param);
-            return $data;
+            //$this->updateOtherSortOrder($other->id, $data->sort_order);
+            $data2 = $this->getSortById($other->id);
+            if($current_sort == 0){
+                $last = $this->getLastSort();
+                $data2->sort_order = $last->sort_order + 1;
+            }else{
+                $data2->sort_order = $current_sort;
+            }
+            if($data2->save()) {
+                return $data2;
+            } else {
+
+                return false;
+
+            }
         } else {
 
             return false;
@@ -122,22 +169,22 @@ class Event extends Model
         }
     }
 
-    public function updateOtherSortOrder($param){
-        $data = $this->getSortById($param['id_other']);
-        if($param['current_sort'] == 0){
-            $last = $this->getLastSort();
-            $data->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
-        }else{
-            $data->sort_order = $param['current_sort'];
-        }
-        if($data->save()) {
-            return $data;
-        } else {
+    // public function updateOtherSortOrder($id, $sort){
+    //     $data = $this->getSortById($id);
+    //     if($sort == 0){
+    //         $last = $this->getLastSort();
+    //         $data->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
+    //     }else{
+    //         $data->sort_order = $sort;
+    //     }
+    //     if($data->save()) {
+    //         return $data;
+    //     } else {
 
-            return false;
+    //         return false;
 
-        }
-    }
+    //     }
+    // }
 
     // public function preview($param, $user_id)
     // {

@@ -13,8 +13,11 @@
             var category = $(this).attr('data-category');
             var id_current = $(this).attr('data-id');
             var current_sort = $(this).attr('data-sort');
-            var update_sort = +current_sort - 1;
-            var id_other = $('#homepage-sliders-table tbody .sort_asc[data-sort="'+update_sort+'"]').attr('data-id');
+            
+            var parent = $(this).parents('tr');
+            var prev = parent.prev().children().children('.sort_asc');
+            var update_sort = prev.attr('data-sort');
+            var id_other = prev.attr('data-id');
             saveSortOrder(category, id_current, current_sort, update_sort, id_other);
             loadDataSlider();
         });
@@ -23,8 +26,11 @@
             var category = $(this).attr('data-category');
             var id_current = $(this).attr('data-id');
             var current_sort = $(this).attr('data-sort');
-            var update_sort = +current_sort - 1;
-            var id_other = $('#homepage-events-table tbody .sort_asc[data-sort="'+update_sort+'"]').attr('data-id');
+
+            var parent = $(this).parents('tr');
+            var prev = parent.prev().children().children('.sort_asc');
+            var update_sort = prev.attr('data-sort');
+            var id_other = prev.attr('data-id');
             saveSortOrder(category, id_current, current_sort, update_sort, id_other);
             loadDataEvent();
 
@@ -34,8 +40,11 @@
             var category = $(this).attr('data-category');
             var id_current = $(this).attr('data-id');
             var current_sort = $(this).attr('data-sort');
-            var update_sort = +current_sort - 1;
-            var id_other = $('#homepage-promotions-table tbody .sort_asc[data-sort="'+update_sort+'"]').attr('data-id');
+            
+            var parent = $(this).parents('tr');
+            var prev = parent.prev().children().children('.sort_asc');
+            var update_sort = prev.attr('data-sort');
+            var id_other = prev.attr('data-id');
             saveSortOrder(category, id_current, current_sort, update_sort, id_other);
             loadDataPromotion();
 
@@ -45,8 +54,11 @@
             var category = $(this).attr('data-category');
             var id_current = $(this).attr('data-id');
             var current_sort = $(this).attr('data-sort');
-            var update_sort = +current_sort + 1;
-            var id_other = $('#homepage-sliders-table tbody .sort_desc[data-sort="'+update_sort+'"]').attr('data-id');
+
+            var parent = $(this).parents('tr');
+            var next = parent.next().children().children('.sort_desc');
+            var update_sort = next.attr('data-sort');
+            var id_other = next.attr('data-id');
             saveSortOrder(category, id_current, current_sort, update_sort, id_other);
             loadDataSlider();
 
@@ -56,8 +68,14 @@
             var category = $(this).attr('data-category');
             var id_current = $(this).attr('data-id');
             var current_sort = $(this).attr('data-sort');
-            var update_sort = +current_sort + 1;
-            var id_other = $('#homepage-events-table tbody .sort_desc[data-sort="'+update_sort+'"]').attr('data-id');
+
+            var parent = $(this).parents('tr');
+            var next = parent.next().children().children('.sort_desc');
+            var update_sort = next.attr('data-sort');
+            var id_other = next.attr('data-id');
+
+            // var update_sort = +current_sort + 1;
+            // var id_other = $('#homepage-events-table tbody .sort_desc[data-sort="'+update_sort+'"]').attr('data-id');
             saveSortOrder(category, id_current, current_sort, update_sort, id_other);
             loadDataEvent();
 
@@ -67,8 +85,11 @@
             var category = $(this).attr('data-category');
             var id_current = $(this).attr('data-id');
             var current_sort = $(this).attr('data-sort');
-            var update_sort = +current_sort + 1;
-            var id_other = $('#homepage-promotions-table tbody .sort_desc[data-sort="'+update_sort+'"]').attr('data-id');
+
+            var parent = $(this).parents('tr');
+            var next = parent.next().children().children('.sort_desc');
+            var update_sort = next.attr('data-sort');
+            var id_other = next.attr('data-id');
             saveSortOrder(category, id_current, current_sort, update_sort, id_other);
             loadDataPromotion();
 
@@ -131,7 +152,7 @@
                 $('.error-'+category).html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
             },
             error: function(response){
-                $('.error-'+category).addClass('alert alert-danger').html(response.responseJSON.message);
+                $('.error-'+category).html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
             }
         });
     }

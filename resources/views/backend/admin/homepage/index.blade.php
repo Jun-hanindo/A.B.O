@@ -38,7 +38,7 @@
                         <th width="12%">{{ trans('general.sort_order') }}</th>
                         <th class="center-align">{{ trans('general.event') }}</th>
                         <!-- <th class="center-align">Category</th> -->
-                        <th width="12%">{{ trans('general.action') }}</th>
+                        <th width="12%"></th>
                     </tr>
                 </thead>
             </table>
