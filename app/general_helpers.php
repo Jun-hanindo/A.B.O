@@ -244,7 +244,7 @@ if (! function_exists('file_url')) {
             return Storage::disk($disk)->url($file);
         }
  
-        return 'http://lorempixel.com/128/128/';
+        return asset('assets/frontend/images/default_image.jpg');
     }
 }
  
