@@ -789,7 +789,6 @@ class Event extends Model
                     'currencies.code as code')
                     ->where('event_schedule_id', $near_schedule->id)
                     ->leftJoin('currencies', 'currencies.id', '=', 'event_schedule_categories.currency_id')
-                    ->orderBy('sort_order', 'asc')
                     ->orderBy('price', 'desc')
                     ->orderBy('additional_info', 'asc')->get();
                 $count = count($event->ranges);
