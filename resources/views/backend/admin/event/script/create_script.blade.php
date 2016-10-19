@@ -286,6 +286,7 @@
             $.each(other_data,function(key,input){
                 fd.append(input.name,input.value);
             });
+            modal_loader();
             $.ajax({
                 url: "{{ route('admin-draft-event') }}",
                 type: "POST",
@@ -294,6 +295,7 @@
                 contentType: false,
                 data: fd,
                 success: function (data) {
+                    HoldOn.close();
                     var event_id = $('#event_id').val();
                     if(event_id == ''){
                         event_id = data.last_insert_id;
@@ -308,6 +310,7 @@
                         window.location.href = "{{ route('admin-index-event') }}";
                 },
                 error: function(response){
+                    HoldOn.close();
                     if (response.status === 422) {
                         var data = response.responseJSON;
                         $.each(data,function(key,val){
@@ -1166,7 +1169,11 @@
             loadSwitchButton('discount_type-check');
             discountSwitch();
             //$('#button_submit').hide();
-            //$('#button_draft').show();   
+            //$('#button_draft').show();  
+            //
+            $('#button_submit').click(function(){
+                modal_loader();
+            }); 
 
             $(".datepicker").datepicker( {
                 format: "yyyy-mm-dd",
