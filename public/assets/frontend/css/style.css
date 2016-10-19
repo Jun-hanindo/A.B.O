@@ -2404,10 +2404,15 @@ footer .information-title{
 }
 
 .eventBanner .btnPlayEvent{
-  position: absolute;
+  /*position: absolute;
   top: 32%;
   margin: 0 auto;
+  left: 47%;*/
+    position: absolute;
+  top: 50%;
+  margin: 0 auto;
   left: 47%;
+  transform: translateY(-50%);
 }
 
 .eventBanner .btnPlayEvent a{
@@ -4006,3 +4011,4 @@ ol .a li:before{
 .imageBanner {
   position: relative;
 }
+.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
