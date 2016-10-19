@@ -109,7 +109,7 @@ return [
     'data_empty' => 'Data is empty',
 
     'bulk_action' => 'Bulk Action',
-    'post_by' => 'Post By',
+    'post_by' => 'Posted By',
     'avaibility' => 'Availability',
     'enable' => 'Enable',
     'disable' => 'Disable',

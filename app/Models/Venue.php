@@ -111,6 +111,7 @@ class Venue extends Model
     {
         $data = $this->find($id);
         if (!empty($data)) {
+            $data->user_id = \Sentinel::getUser()->id;
             $data->name = $param['name'];
             $data->address = $param['address'];
             $data->mrtdirection = $param['mrtdirection'];

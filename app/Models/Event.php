@@ -396,6 +396,7 @@ class Event extends Model
             }else{
                 $param['event_type'] = false;
             }
+            $data->user_id = \Sentinel::getUser()->id;
            	$data->title = $param['title'];
             $data->slug = $param['slug'];
 	    	$data->description = $param['description'];
@@ -937,7 +938,7 @@ class Event extends Model
                     'events/'.$oldimage, 'events/'.$newName 
                 );
             }
-            
+
             $last = $this->getFirstSort();
             $newdata->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
             $newdata->avaibility = false;
