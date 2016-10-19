@@ -231,17 +231,20 @@ if (! function_exists('file_url')) {
     function file_url($file, $disk = null)
     {
         $disk = $disk ?: config('filesystems.default');
-
-
  
         $check = file_is_exists($file, $disk);
+
+        $image = substr($file, strpos($file, "/") + 1);
  
         if ($check) {
-            if ('public' == $disk) {
-                return asset('storage/'.$file);
+
+            if($image != ''){
+                if ('public' == $disk) {
+                    return asset('storage/'.$file);
+                }
+     
+                return Storage::disk($disk)->url($file);
             }
- 
-            return Storage::disk($disk)->url($file);
         }
  
         return asset('assets/frontend/images/default_image.jpg');
