@@ -3558,7 +3558,7 @@ ul#getvenue li:before {
     }
 }
 
-#carouselCustom .glyphicon-chevron-left:before {
+#carouselSlider .glyphicon-chevron-left:before {
   content: "\f104";
   font-family: 'fontAwesome';
   font-size: 26px;
@@ -3570,7 +3570,7 @@ ul#getvenue li:before {
 
 }
 
-#carouselCustom .glyphicon-chevron-right:before {
+#carouselSlider .glyphicon-chevron-right:before {
   content: "\f105";
   font-family: 'fontAwesome';
   font-size: 26px;
@@ -3581,7 +3581,7 @@ ul#getvenue li:before {
   right: 0;
 }
 
-#carouselCustom .carousel-control .glyphicon{
+#carouselSlider .carousel-control .glyphicon{
   width: 40px;
   background-color: rgba(153, 153, 153, 0.4);
   height: 50px;
