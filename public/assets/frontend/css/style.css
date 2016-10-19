@@ -3999,6 +3999,10 @@ ol .a li:before{
   display: none;
 }
 
+.btnPlayEvent a i {
+  text-shadow: 2px 2px rgba(0,0,0, 0.1);
+}
 
-
-
+.imageBanner {
+  position: relative;
+}
