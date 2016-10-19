@@ -138,9 +138,9 @@
                     @if(!empty($event->price_title)) 
                         {{ $event->price_title }}
                     @else
-                        @if(!empty($event->prices))
+                        @if(!empty($event->ranges))
                             @php 
-                                $count = count($event->prices)
+                                $count = count($event->ranges)
                             @endphp
                             @if($count > 1)
                                 @if($event->min_range > 0)

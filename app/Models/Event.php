@@ -784,7 +784,7 @@ class Event extends Model
                 ->orderBy('date_at', 'desc')->first();
 
             if(!empty($near_schedule)){
-                $event->prices = EventScheduleCategory::select('event_schedule_categories.*', 
+                $event->ranges = EventScheduleCategory::select('event_schedule_categories.*', 
                     'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right', 
                     'currencies.code as code')
                     ->where('event_schedule_id', $near_schedule->id)
@@ -792,10 +792,10 @@ class Event extends Model
                     ->orderBy('sort_order', 'asc')
                     ->orderBy('price', 'desc')
                     ->orderBy('additional_info', 'asc')->get();
-                $count = count($event->prices);
-                if(!empty($event->prices)){
+                $count = count($event->ranges);
+                if(!empty($event->ranges)){
                     $i = 1;
-                    foreach ($event->prices as $k => $val) {
+                    foreach ($event->ranges as $k => $val) {
                         if($count == 1){
                             if($val->price > 0){
                                 $event->price_range = $val->code.' '.number_format_drop_zero_decimals($val->price);
@@ -817,6 +817,15 @@ class Event extends Model
                         $i++;
                     }
                 }
+
+                $event->prices = EventScheduleCategory::select('event_schedule_categories.*', 
+                    'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right', 
+                    'currencies.code as code')
+                    ->where('event_schedule_id', $near_schedule->id)
+                    ->leftJoin('currencies', 'currencies.id', '=', 'event_schedule_categories.currency_id')
+                    ->orderBy('sort_order', 'asc')
+                    ->orderBy('price', 'desc')
+                    ->orderBy('additional_info', 'asc')->get();
             } 
             $event->venue = $event->Venue()->where('avaibility', true)->first();
             $event->promotions = $event->promotions()->where('avaibility', true)->orderBy('start_date')->get();

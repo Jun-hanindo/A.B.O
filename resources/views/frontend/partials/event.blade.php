@@ -139,7 +139,7 @@
                     @if(!empty($event->price_title))
                         {{ $event->price_title }}
                     @else
-                        {{ !empty($event->prices) ? $event->price_range.trans('frontend/general.per_person'): '' }}
+                        {{ !empty($event->ranges) ? $event->price_range.trans('frontend/general.per_person'): '' }}
                     @endif
                 </div>
                 <ul class="list-unstyled">
