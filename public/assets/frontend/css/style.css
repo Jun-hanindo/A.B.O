@@ -1127,8 +1127,8 @@ footer .information-title{
 
 /*.place p{
   margin-left: 22px;
-}
-*/
+}*/
+
 .place .i-long{
   float: left;
 }
@@ -1264,12 +1264,13 @@ footer .information-title{
 
 .discoverCategory {
   text-align: center;
-  /*padding-top: 25px;*/
+  padding-top: 25px;
   background-color: #fff;
 }
 
 .discoverCategory h2{
   font-size: 26px;
+  margin-bottom: 20px;
 }
 
 .discoverCategory .tabCategory{
@@ -1694,9 +1695,8 @@ footer .information-title{
   margin: 0;
 }
 .mobile-collapse-body-top li a {
-
     display: block;
-    padding: 15px 15px 15px;
+    padding: 15px 15px 20px;
     color: #fff;
     text-align: center;
     text-decoration: none;
@@ -2405,10 +2405,9 @@ footer .information-title{
 
 .eventBanner .btnPlayEvent{
   position: absolute;
-  top: 50%;
+  top: 32%;
   margin: 0 auto;
   left: 47%;
-  transform: translateY(-50%);
 }
 
 .eventBanner .btnPlayEvent a{
@@ -2660,6 +2659,7 @@ footer .information-title{
 .faq-menu-mobile a{
   color: #000;
   text-decoration: none;
+  display: block;
 }
 
 .back a{
@@ -2786,7 +2786,7 @@ footer .information-title{
 }
 
 .iconWays i{
-  font-size: 25px;
+  font-size: 30px;
   border: 1px solid #000;
   border-radius: 50%;
   padding: 11px;
@@ -2795,8 +2795,7 @@ footer .information-title{
 }
 
 .mobileTab .iconWays i{
-    padding: 11px;
-    padding-left: 12px;
+  padding: 9px;
 }
 
 .headWays{
@@ -3300,7 +3299,8 @@ ul#getvenue li:before {
 }
 
 .newRelease{
-  padding-bottom: 50px
+  padding-bottom: 50px;
+  text-align: center;
 }
 
 .btnBlackDefault:hover {
@@ -3512,8 +3512,8 @@ ul#getvenue li:before {
 /*-------------------------*/
 
 .carousel-fade .carousel-inner .item {
-  opacity: 0.5;
-  transition-property: opacity ;
+  opacity: 0;
+  transition-property: opacity;
 }
 
 .carousel-fade .carousel-inner .active {
@@ -3558,7 +3558,7 @@ ul#getvenue li:before {
     }
 }
 
-#carouselHacked .glyphicon-chevron-left:before {
+#carouselCustom .glyphicon-chevron-left:before {
   content: "\f104";
   font-family: 'fontAwesome';
   font-size: 26px;
@@ -3570,7 +3570,7 @@ ul#getvenue li:before {
 
 }
 
-#carouselHacked .glyphicon-chevron-right:before {
+#carouselCustom .glyphicon-chevron-right:before {
   content: "\f105";
   font-family: 'fontAwesome';
   font-size: 26px;
@@ -3581,7 +3581,7 @@ ul#getvenue li:before {
   right: 0;
 }
 
-#carouselHacked .carousel-control .glyphicon{
+#carouselCustom .carousel-control .glyphicon{
   width: 40px;
   background-color: rgba(153, 153, 153, 0.4);
   height: 50px;
@@ -3609,7 +3609,8 @@ ul#getvenue li:before {
   font-size: 14px;
   text-decoration: none;
 }
-.mobile-title-faq a:hover {
+
+.mobile-title-faq a:hover{
   color: #1a1a1a;
 }
 
@@ -3619,18 +3620,12 @@ ul#getvenue li:before {
 }
 
 .terms-content ol{
-  padding-left: 20px;
+  padding-left: 0;
   font-size: 12px;
 }
 
 .privacy-content{
   font-size: 12px;
-}
-
-.terms-content ol li{
-  padding-left: 15px;
-  width: 500px;
-  margin-top: 15px;
 }
 
 .main-terms{
@@ -3820,8 +3815,6 @@ ul#getvenue li:before {
 
 .mapEvent iframe{
    pointer-events: none;
-   width: 100%;
-  height: 300px;
 }
 
 #footer3 p a{
@@ -3856,28 +3849,19 @@ ul#getvenue li:before {
 }
 
 .dot-hochi1{
-  background-color: #BB95E8 !important;
+  background-color: #C4B3D5 !important;
 }
 
 .dot-hochi2{
-  background-color: #92CEEF !important;
+  background-color: #A1C3DC !important;
 }
 
 .dot-hochi3{
-  background-color: #F291A4 !important;
+  background-color: #F4A9B0 !important;
 }
 
 .dot-hochi4{
-  background-color: #FFC392 !important;
-}
-.dot-manila2{
-  background-color: #a3cf88 !important;
-}
-.dot-manila3{
-  background-color: #fdf2a2 !important;
-}
-.dot-manila4{
-  background-color: #9874b1 !important;
+  background-color: #FFCFAE !important;
 }
 
 .nav-level {
@@ -3907,6 +3891,7 @@ ul#getvenue li:before {
 .nav-level>li {
     padding: 5px;
 }
+
 .navigation-level{
   float: right;
 
@@ -3919,6 +3904,7 @@ ul#getvenue li:before {
   position: relative;
   left: 50%;
 }
+
 .eventTabScroll li a button:hover{
   color: #a0a0a0;
 }
@@ -3938,6 +3924,7 @@ ol.a,
 ul.a {
   list-style-type: lower-alpha;
 }
+
 .hotline .button-email,
 .contentTab .button-email{
   margin-bottom: 10px;
@@ -3948,9 +3935,22 @@ ol{
   list-style-type: none;
 }
 
+.terms-content ol li,
+.privacy-content ol li {
+    padding-left: 20px;
+    width: 500px;
+    margin-top: 15px;
+    position: relative;
+}
+
+.terms-content ol li ol li,
+.privacy-content ol li ol li {
+    padding-left: 25px;
+}
+
 ol li::before {
   counter-increment: section;            
-  content: counters(section,".") " ";  
+  content: counters(section,".") ". ";  
   padding-right: 10px;
   position: absolute;
   left: 0; 
@@ -3965,27 +3965,6 @@ ol .a li:before{
   padding-left: 10px !important;
 }
 
-.terms-content ol li,
-.privacy-content ol li {
-    padding-left: 20px;
-    position: relative;
-}
-
-.terms-content ol li ol li,
-.privacy-content ol li ol li {
-    padding-left: 25px;
-}
-
-ol > li:before {
-  content: counters(section, ".") ". ";   
-}
-
-li ol > li:before {
-  content: counters(section, ".") " ";
-}
-.tab-mobile-contact>li>a:hover {
-    border-bottom: 3px solid transparent;
-}
 .modal-hochi .modal-dialog {
     min-width: 800px;
 }
@@ -3994,56 +3973,32 @@ li ol > li:before {
     width: 100%;
     margin: 0 auto;
 }
+
+.box-release {
+   display: inline-block;
+   float: none;
+   box-sizing: border-box;
+   text-align: left;
+}
+
 .information-place{
- position: relative;
- margin-left: 53px !important;
+  position: relative;
+  margin-left: 53px !important;
 }
 
 .information-place:before{
- font-family: 'FontAwesome';
- content: "\f041";
- margin: 0 5px 0 -25px;
- color: #000;
- position: absolute;
- font-size: inherit;
-}
-.imageBanner {
-position: relative;
-}
-.embed-container { 
-  position: relative; 
-  padding-bottom: 56.25%; 
-  height: 0; 
-  overflow: hidden; 
-  max-width: 100%; 
-  } 
-  .embed-container iframe, 
-  .embed-container object, 
-  .embed-container embed { 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-  }
-.btnPlayEvent a i {
-  text-shadow: 2px 2px rgba(0,0,0, 0.1);
-}
-.mobile-title-faq a{
-  font-size: 14px;
-  text-decoration: none;
-}
-
-.mobile-title-faq a:hover{
-  color: #1a1a1a;
-}
-
-.faq-menu-mobile a{
+  font-family: 'FontAwesome';
+  content: "\f041";
+  margin: 0 5px 0 -25px;
   color: #000;
-  text-decoration: none;
-  display: block;
+  position: absolute;
+  font-size: inherit;
 }
-.mobile-content-show {
-display: none;
+
+.mobile-content-show{
+  display: none;
 }
+
+
+
 
