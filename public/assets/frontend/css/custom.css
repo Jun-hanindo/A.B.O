@@ -20,6 +20,7 @@
 
 .mapEvent iframe{
     pointer-events: none;
+    height: 300px;
 }
 
 iframe[name="google_conversion_frame"]{
