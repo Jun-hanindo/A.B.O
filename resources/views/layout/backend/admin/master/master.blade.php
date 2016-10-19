@@ -68,7 +68,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="user-header">
-                                        <img src="{{ link_to_avatar(user_info('avatar')) }}" alt="{{ user_info('full_name') }}" class="img-circle">
+                                        <img src="{{ file_url('avatars/'.user_info('avatar'), env('FILESYSTEM_DEFAULT')) }}" alt="{{ user_info('full_name') }}" class="img-circle">
                                         <p>
                                             {{ user_info('full_name') }}
                                             <small>{{ user_info('role')->name }}</small>
