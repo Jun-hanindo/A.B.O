@@ -78,6 +78,11 @@
 .tixtrack-filter table tr td{
     vertical-align: middle;
 }
+.user-panel>.image>img {
+    width: 45px;
+    max-width: 45px;
+    height: 45px;
+}
 
 /*.cke_chrome{
 	border-left: 1px solid #b6b6b6 !important;
