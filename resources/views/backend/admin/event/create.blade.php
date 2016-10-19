@@ -56,41 +56,6 @@
                                 {!! Form::text('slug', old('slug'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.slug')]) !!}
                                 {!! Form::errorMsg('slug') !!}
                             </div>
-                            <div class="form-group{{ Form::hasError('title_meta_tag') }} title_meta_tag">
-                                {!! Form::label('title_meta_tag', trans('general.title_meta_tag')) !!}
-                                {!! Form::text('title_meta_tag', old('title_meta_tag'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.title_meta_tag')]) !!}
-                                {!! Form::errorMsg('title_meta_tag') !!}
-                            </div>
-                            <div class="form-group{{ Form::hasError('description_meta_tag') }} description_meta_tag">
-                                {!! Form::label('description_meta_tag', trans('general.description_meta_tag')) !!}
-                                {!! Form::textarea('description_meta_tag', old('description_meta_tag'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.description_meta_tag')]) !!}
-                                {!! Form::errorMsg('description_meta_tag') !!}
-                            </div>
-                            <div class="form-group{{ Form::hasError('keywords_meta_tag') }} keywords_meta_tag">
-                                {!! Form::label('keywords_meta_tag', trans('general.keywords_meta_tag')) !!}
-                                {!! Form::textarea('keywords_meta_tag', old('keywords_meta_tag'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.keywords_meta_tag')]) !!}
-                                {!! Form::errorMsg('keywords_meta_tag') !!}
-                            </div>
-                            <div class="form-group{{ Form::hasError('ga_tracking_code') }} ga_tracking_code">
-                                {!! Form::label('ga_tracking_code', trans('general.ga_tracking_code')) !!}
-                                {!! Form::textarea('ga_tracking_code', old('ga_tracking_code'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.ga_tracking_code')]) !!}
-                                {!! Form::errorMsg('ga_tracking_code') !!}
-                            </div>
-                            <div class="form-group{{ Form::hasError('ga_conversion_code') }} ga_conversion_code">
-                                {!! Form::label('ga_conversion_code', trans('general.ga_conversion_code')) !!}
-                                {!! Form::textarea('ga_conversion_code', old('ga_conversion_code'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.ga_conversion_code')]) !!}
-                                {!! Form::errorMsg('ga_conversion_code') !!}
-                            </div>
-                            <div class="form-group{{ Form::hasError('fp_tracking_code') }} fp_tracking_code">
-                                {!! Form::label('fp_tracking_code', trans('general.fp_tracking_code')) !!}
-                                {!! Form::textarea('fp_tracking_code', old('fp_tracking_code'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.fp_tracking_code')]) !!}
-                                {!! Form::errorMsg('fp_tracking_code') !!}
-                            </div>
-                            <div class="form-group{{ Form::hasError('fp_conversion_code') }} fp_conversion_code">
-                                {!! Form::label('fp_conversion_code', trans('general.fp_conversion_code')) !!}
-                                {!! Form::textarea('fp_conversion_code', old('fp_conversion_code'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.fp_conversion_code')]) !!}
-                                {!! Form::errorMsg('fp_conversion_code') !!}
-                            </div>
                             <div class="form-group{{ Form::hasError('description') }} description">
                                 {!! Form::label('description', trans('general.description').' *') !!}
                                 {!! Form::textarea('description', old('description'), ['class' => 'form-control tinymce', 'rows'=> '12', 'placeholder' => trans('general.description')]) !!}
@@ -145,6 +110,41 @@
                                     </thead>
                                 </table>
                                 <a class="addPromotion add-underline" data-name="promotion" href="javascript:void(0)" title="{{ trans('general.add_more_promotion') }}"><u>+ {{ trans('general.add_more_promotion') }}</u></a>
+                            </div>
+                            <div class="form-group{{ Form::hasError('title_meta_tag') }} title_meta_tag">
+                                {!! Form::label('title_meta_tag', trans('general.title_meta_tag')) !!}
+                                {!! Form::text('title_meta_tag', old('title_meta_tag'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.title_meta_tag')]) !!}
+                                {!! Form::errorMsg('title_meta_tag') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('description_meta_tag') }} description_meta_tag">
+                                {!! Form::label('description_meta_tag', trans('general.description_meta_tag')) !!}
+                                {!! Form::textarea('description_meta_tag', old('description_meta_tag'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.description_meta_tag')]) !!}
+                                {!! Form::errorMsg('description_meta_tag') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('keywords_meta_tag') }} keywords_meta_tag">
+                                {!! Form::label('keywords_meta_tag', trans('general.keywords_meta_tag')) !!}
+                                {!! Form::textarea('keywords_meta_tag', old('keywords_meta_tag'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.keywords_meta_tag')]) !!}
+                                {!! Form::errorMsg('keywords_meta_tag') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('ga_tracking_code') }} ga_tracking_code">
+                                {!! Form::label('ga_tracking_code', trans('general.ga_tracking_code')) !!}
+                                {!! Form::textarea('ga_tracking_code', old('ga_tracking_code'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.ga_tracking_code')]) !!}
+                                {!! Form::errorMsg('ga_tracking_code') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('ga_conversion_code') }} ga_conversion_code">
+                                {!! Form::label('ga_conversion_code', trans('general.ga_conversion_code')) !!}
+                                {!! Form::textarea('ga_conversion_code', old('ga_conversion_code'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.ga_conversion_code')]) !!}
+                                {!! Form::errorMsg('ga_conversion_code') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('fp_tracking_code') }} fp_tracking_code">
+                                {!! Form::label('fp_tracking_code', trans('general.fp_tracking_code')) !!}
+                                {!! Form::textarea('fp_tracking_code', old('fp_tracking_code'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.fp_tracking_code')]) !!}
+                                {!! Form::errorMsg('fp_tracking_code') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('fp_conversion_code') }} fp_conversion_code">
+                                {!! Form::label('fp_conversion_code', trans('general.fp_conversion_code')) !!}
+                                {!! Form::textarea('fp_conversion_code', old('fp_conversion_code'), ['rows' => 5, 'class' => 'form-control', 'placeholder' => trans('general.fp_conversion_code')]) !!}
+                                {!! Form::errorMsg('fp_conversion_code') !!}
                             </div>
                         </div>
                         <div class="col-md-3">
