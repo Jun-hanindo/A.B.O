@@ -39,7 +39,7 @@ class EventsController extends Controller
                 $limit = 5;
                 //$result['category_events'] = $this->model->getFeaturedEventByCategory($result['event']->id, $result['event']->category->id, $limit);
 
-                $trail = 'Event detail front end';
+                $trail = $result['event']->title. ' front end';
                 $insertTrail = new Trail();
                 $insertTrail->insertTrail($trail);
 

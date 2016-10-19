@@ -83,6 +83,11 @@
     max-width: 45px;
     height: 45px;
 }
+#tab-profile img,
+.display-avatar-form img{
+    width: 120px;
+    height: 120px;
+}
 
 /*.cke_chrome{
 	border-left: 1px solid #b6b6b6 !important;
