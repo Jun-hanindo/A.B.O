@@ -85,18 +85,18 @@ class Event extends Model
     {
 
     	return static::select('id', 'title', 'venue_id', 'user_id', 'avaibility', 'sort_order')
-            ->orderBy('sort_order', 'asc')
+            ->orderBy('sort_order', 'desc')
             ->orderBy('created_at', 'desc');
     
     }
 
     public function getFirstSort(){
-        return Event::orderBy('sort_order', 'asc')
+        return Event::orderBy('sort_order', 'desc')
             ->orderBy('created_at', 'desc')->first();
     }
 
     public function getLastSort(){
-        return Event::orderBy('sort_order', 'desc')
+        return Event::orderBy('sort_order', 'asc')
             ->orderBy('created_at', 'desc')->first();
     }
 
@@ -108,7 +108,7 @@ class Event extends Model
         $data = $this->find($id);
         if(!empty($data)){
             $sort_no = $data->sort_order;
-            if($order == 'asc'){
+            if($order == 'desc'){
                 if($sort_no == 0){
                     $result = Event::select('id', 'sort_order')->where('sort_order', '<=', $sort_no)
                     ->orderBy('sort_order', 'desc')->orderBy('created_at', 'desc')->first();
@@ -250,6 +250,8 @@ class Event extends Model
         $this->fp_tracking_code = $param['fp_tracking_code'];
         $this->fp_conversion_code = $param['fp_conversion_code'];
         $this->price_title = $param['price_title'];
+        $last = $this->getFirstSort();
+        $this->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
         $this->avaibility = true;
 
         if (isset($param['featured_image1'])) {
@@ -413,6 +415,11 @@ class Event extends Model
             $data->fp_tracking_code = $param['fp_tracking_code'];
             $data->fp_conversion_code = $param['fp_conversion_code'];
             $data->price_title = $param['price_title'];
+
+            if($data->sort_order == 0){
+                $last = $this->getFirstSort();
+                $data->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
+            }
 
             $data->avaibility = true;
 
@@ -749,7 +756,7 @@ class Event extends Model
 
     public function findEventBySlug($slug)
     {
-        $event = Event::where('slug' , '=', $slug)->orderBy('created_at', 'desc')->first();
+        $event = Event::where('slug' , '=', $slug)->orderBy('sort_order', 'desc')->first();
         if (!empty($event)) {
             $event->cat = $event->Categories()->where('status', true)->orderBy('name', 'asc')->first();
             $this->setImageUrl($event);
@@ -930,6 +937,9 @@ class Event extends Model
                     'events/'.$oldimage, 'events/'.$newName 
                 );
             }
+            
+            $last = $this->getFirstSort();
+            $newdata->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
             $newdata->avaibility = false;
             $newdata->user_id = \Sentinel::getUser()->id;
             if($newdata->save()){
@@ -981,8 +991,8 @@ class Event extends Model
             ->where('categories.status', true)
             ->where('events.avaibility','=',true)
             ->groupBy('events.id')
-            //->orderBy('events.created_at', 'desc')
-            ->orderBy('events.sort_order', 'asc')
+            ->orderBy('events.sort_order', 'desc')
+            ->orderBy('events.created_at', 'desc')
             ->paginate($limit);
 
         if(!empty($events)) {

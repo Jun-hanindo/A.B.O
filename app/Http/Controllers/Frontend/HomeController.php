@@ -171,8 +171,8 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
 
-            echo ini_get('post_max_size');
-            echo ini_get('upload_max_filesize');
+            // echo ini_get('post_max_size');
+            // echo ini_get('upload_max_filesize');
 
             return view('frontend.partials.homepage', $result); 
         
