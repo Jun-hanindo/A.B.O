@@ -3,7 +3,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>@yield('title') {{ env('APP_WEB_ADMIN_NAME', 'AsiaBoxOffice') }}</title>
+        <title>@yield('title'){{ env('APP_WEB_ADMIN_NAME', 'AsiaBoxOffice') }}</title>
         <meta name="description" content="@yield('description_meta')">
         <meta name="keywords" content="@yield('keywords_meta')">
         <meta property="og:image" content="@yield('og_image')" />
