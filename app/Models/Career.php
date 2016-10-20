@@ -194,4 +194,17 @@ class Career extends Model
 
         return $careers;
     }
+
+    public function autocompletePosition($param){
+        $q = $param['position'];
+        $query = Career::select('job')
+            ->where('job','ilike','%'.$q.'%')
+            ->take(10)->get();
+
+        if(!empty($query)){
+            return $query;
+        }else{  
+            return false;
+        }
+    }
 }

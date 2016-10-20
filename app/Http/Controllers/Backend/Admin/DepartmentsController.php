@@ -250,4 +250,22 @@ class DepartmentsController extends BaseController
         }
     }
 
+    public function comboDepartment(Request $request){
+        $term = $request->q;
+        
+        $results = Department::where('avaibility', true)->where('name', 'ilike', '%'.$term.'%')->get();
+
+        foreach ($results as $result) {
+            $data[] = array('id'=>$result->id,'text'=>$result->name);
+        }
+        
+        
+        $resData = array(
+            "success" => true,
+            "results" => $data);
+
+        return json_encode($resData);
+        exit;
+    }
+
 }

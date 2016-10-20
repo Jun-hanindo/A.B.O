@@ -18,14 +18,15 @@
                         <div class="error"></div>
                         <div class="col-md-9">
                             <div class="form-group{{ Form::hasError('department') }} department">
-                                {!! Form::label('department', trans('general.department').' *') !!}
-                                {!! Form::select('department', $data['departments'], null, array('class' => 'form-control','data-option' => old('department'))) !!}
+                                {!! Form::label('department', trans('general.department').' *') !!} <a href="javascript:void(0)" class="btn btn-primary btn-xs addDepartment" title="Add"><i class="fa fa-plus fa-fw"></i></a>
+                                {!! Form::text('department', old('department'), array('id' => 'department', 'class' => 'form-control','data-option' => old('department'))) !!}
                                 {!! Form::errorMsg('department') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('position') }} position">
                                 {!! Form::label('position', trans('general.position').' *') !!}
-                                {!! Form::text('position', old('position'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.position')]) !!}
+                                {!! Form::text('position', old('position'), ['id' => 'position', 'class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.position')]) !!}
                                 {!! Form::errorMsg('position') !!}
+                                <div id="suggesstion-box"></div>
                             </div>
                             <div class="form-group{{ Form::hasError('description') }} description">
                                 {!! Form::label('description', trans('general.description').' *') !!}
@@ -77,6 +78,32 @@
                 {!! Form::close() !!}
             </div>
         </div>
+    </div>
+
+    <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="ModalLabel"><span id="title-create" style="display:none">{{ trans('general.create_new') }} {{ trans('general.department') }}</span></h4>
+          </div>
+          <div class="modal-body">
+            <div class="error-modal"></div>
+            <form id="form">
+                <input type="hidden" name="id" class="form-control" id="id">
+                <div class="form-group name">
+                    <label for="event" class="control-label">{{ trans('general.name') }} :</label>
+                    {!! Form::text('name', old('name'), array('id' => 'name', 'class' => 'form-control')) !!}
+                    {!! Form::errorMsg('name') !!}
+                </div>
+                
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="button_save" class="btn btn-primary" title="{{ trans('general.button_save') }}">{{ trans('general.button_save') }}</button>
+          </div>
+        </div>
+      </div>
     </div>
 @endsection
 @include('backend.admin.career.script.create_script')

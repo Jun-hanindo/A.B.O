@@ -128,4 +128,18 @@ class Department extends Model
     public function getDepartment(){
         return Department::where('avaibility' , true)->orderBy('name', 'asc')->get();
     }
+
+    public function findDepartmentAvaibility($id)
+    {
+        $data = Department::where('id' , $id)->where('avaibility' , true)->first();
+        if (!empty($data)) {
+        
+            return $data;
+        
+        } else {
+        
+            return false;
+
+        }
+    }
 }

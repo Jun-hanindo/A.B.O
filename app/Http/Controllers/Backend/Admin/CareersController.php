@@ -151,6 +151,13 @@ class CareersController extends BaseController
             $data = $this->model->findCareerByID($id);
             $data['departments'] = Department::dropdown();
             $data['currencies'] = Currency::dropdownCode();
+            $modelDepartment = new Department();
+            $department = $modelDepartment->findDepartmentAvaibility($data->department_id);
+            if($department){
+                $data->department_name = $department->name;
+            }else{
+                $data->department_name = '';
+            }
         //if(!empty($data)) {
             
             $trail = 'Career Form';
@@ -290,6 +297,40 @@ class CareersController extends BaseController
                 'message' => trans('general.update_error')
             ],400);
 
+        }
+    }
+
+    public function autocompletePosition(Request $req){
+        try{
+            $param = $req->all();
+            $results['position'] = $this->model->autocompletePosition($param);
+
+            if($req->ajax()) {
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => 'success',
+                    'data' => $results
+                ],200);
+
+            }
+        
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            if($req->ajax()) {
+                return response()->json([
+                    'code' => 400,
+                    'status' => 'error',
+                    'message' => 'error'
+                ],400);
+
+            }
+        
         }
     }
 }

@@ -230,6 +230,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::post('department/{id}/update', array('as' => 'admin-update-department', 'uses' => 'DepartmentsController@update'));
         Route::delete('department/{id}/delete', array('as' => 'admin-delete-department', 'uses' => 'DepartmentsController@destroy'));
         Route::post('department/{id}/avaibility-edit', array('as' => 'admin-update-department-avaibility', 'uses' => 'DepartmentsController@avaibilityUpdate'));
+        Route::get('combo-department', array('as' => 'list-combo-department', 'uses' => 'DepartmentsController@comboDepartment'));
+        Route::get('autocomplete-position', array('as' => 'admin-career-autocomplete-position', 'uses' => 'CareersController@autocompletePosition'));
 
         
     });
