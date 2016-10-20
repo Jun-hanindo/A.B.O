@@ -141,7 +141,7 @@ class Event extends Model
         $current_sort = $data->sort_order;
 
         if($other->sort_order == 0){
-            $last = $this->getLastSort();
+            $last = $this->getFirstSort();
             $data->sort_order = $last->sort_order + 1;
         }else{
             $data->sort_order = $other->sort_order;
@@ -150,7 +150,7 @@ class Event extends Model
             //$this->updateOtherSortOrder($other->id, $data->sort_order);
             $data2 = $this->getSortById($other->id);
             if($current_sort == 0){
-                $last = $this->getLastSort();
+                $last = $this->getFirstSort();
                 $data2->sort_order = $last->sort_order + 1;
             }else{
                 $data2->sort_order = $current_sort;

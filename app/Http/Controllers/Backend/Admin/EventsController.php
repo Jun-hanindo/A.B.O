@@ -49,8 +49,8 @@ class EventsController extends BaseController
                 $style = 'style="display:inline-block"';
                 $style2 = 'style="display:none"';
                 if($event->sort_order == 0){
-                    $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style2.' data-id="'.$event->id.'" data-sort="'.$event->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
-                            <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style.' data-id="'.$event->id.'" data-sort="'.$event->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                    $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style.' data-id="'.$event->id.'" data-sort="'.$event->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                            <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style2.' data-id="'.$event->id.'" data-sort="'.$event->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
 
                 }elseif($event->sort_order == $first){
                     $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style2.' data-id="'.$event->id.'" data-sort="'.$event->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
