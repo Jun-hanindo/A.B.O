@@ -9,7 +9,9 @@ use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\TixTrack\LoginRequest;
 use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client;
+//use GuzzleHttp\Client;
+// use GuzzleHttp\Message\Request as GuzzleRequest;
+// use GuzzleHttp\Message\Response as GuzzleResponse;
 //use GuzzleHttp\Cookie\CookieJar;
 //use GuzzleHttp\Cookie\CookieJarInterface;
 
@@ -35,25 +37,32 @@ class LoginController extends BaseController
         $param = $req->all();
         
         try{
-            $cookieJar = new \GuzzleHttp\Cookie\CookieJar();
-            $client = new Client(); //GuzzleHttp\Client
+            //$jar = new \GuzzleHttp\Cookie\CookieJar;
+            //$client = new Client(); //GuzzleHttp\Client
+            $username = $param['UserName'];
+            $password = $param['Password'];
+            $remember = false;
+            $client = new \GuzzleHttp\Client;
             $response = $client->post('https://nliven.co/admin/Account/Login', [
-                'body' => [
-                    'UserName' => $param['UserName'],
-                    'Password' => $param['Password'],
-                    'RememberMe' => False,
+                //'allow_redirects' => false,
+                //'headers'  => ['content-type' => 'application/x-www-form-urlencoded', 'Accept'     => '*/*',],
+                'form_params' => [
+                    'UserName' => $username,
+                    'Password' => $password,
+                    'RememberMe' => $remember,
                 ],
-                'cookies' => $cookieJar,
-            ]
-            );
+                //'cookies' => $jar,
+            ]);
 
-            //echo $response;
+            echo $response->getStatusCode();
+            exit;
 
             $status = $response->getStatusCode();
 
             if(/*$status == 200 || */$status == 302){
                 flash()->success('Login success!');
-                return redirect()->route('admin-tixtrack-change-account');
+                return redirect()->route('admin-tixtrack-download');
+                //return redirect()->route('admin-tixtrack-change-account');
             }else{
                 flash()->error('The user name or password provided is incorrect.');
                 return redirect()->route('admin-tixtrack-login');
