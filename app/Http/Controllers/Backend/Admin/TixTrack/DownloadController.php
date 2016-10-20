@@ -41,19 +41,18 @@ class DownloadController extends BaseController
                         
                     ],
                     //'cookies' => true
-                    'cookies' => $cookieJar
                 ]
                 );
             }else{
                 $response = $client->get('https://nliven.co/admin/Customers/Download?objectFilterJSON=', [
                     'save_to' => 'Download_member_'.time().'.csv',
                     //'cookies' => true
-                    'cookies' => $cookieJar
                 ]
                 );
             }
 
-            echo $response;
+            echo $response->getBody();
+            exit;
         
         //} else {
         } catch (\Exception $e) {
