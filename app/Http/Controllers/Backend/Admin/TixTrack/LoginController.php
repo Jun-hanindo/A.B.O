@@ -7,7 +7,7 @@ use App\Http\Requests;
 use App\Models\LogActivity;
 use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
-use App\Http\Requests\Backend\TixTrack\LoginRequest;
+use App\Http\Requests\Backend\admin\tixtrack\LoginRequest;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
@@ -31,24 +31,24 @@ class LoginController extends BaseController
         $insertTrail->insertTrail($trail);
         
 
-        return view('backend.tixtrack.login');
+        return view('backend.admin.tixtrack.login');
     }
 
     public function postLogin(LoginRequest $req){
         $param = $req->all();
         
         try{
-            $jar = new \GuzzleHttp\Cookie\CookieJar(); 
+            $jar = new \GuzzleHttp\Cookie\CookieJar; 
 
             $username = $param['UserName'];
             $password = $param['Password'];
             $remember = "false";
 
-            $body = [
-                'UserName' => $username,
-                'Password' => $password,
-                'RememberMe' => $remember,
-            ];
+            // $body = [
+            //     'UserName' => $username,
+            //     'Password' => $password,
+            //     'RememberMe' => $remember,
+            // ];
 
             $client = new Client();
             $response = $client->post('https://nliven.co/admin/Account/Login', [
@@ -59,14 +59,16 @@ class LoginController extends BaseController
                     'Password' => $password,
                     'RememberMe' => $remember,
                 ],
-                'cookies' => $jar,
+                //'cookies' => $jar,
             ]);
             
             // $request = new GuzzleRequest('POST', 'https://nliven.co/admin/Account/Login', $body);
-            // $response = $client->send($request, ['timeout' => 5]);
+            // $response = $client->send($request);
 
-            echo $response->getBody();
-            exit;
+            $ASPXAUTH = $response->getHeader('set-cookie')[0];
+            \Session::put('ASPXAUTH', $ASPXAUTH);
+
+            //echo $ASPXAUTH;exit;
 
             $status = $response->getStatusCode();
 

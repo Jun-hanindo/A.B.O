@@ -52,4 +52,4 @@
         </div>
     </div>
 @endsection
-@include('backend.tixtrack.script.download')
+@include('backend.admin.tixtrack.script.download')

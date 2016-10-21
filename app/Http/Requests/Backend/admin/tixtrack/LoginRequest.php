@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Backend\TixTrack;
+namespace App\Http\Requests\Backend\admin\TixTrack;
 
 use App\Http\Requests\Request;
 
