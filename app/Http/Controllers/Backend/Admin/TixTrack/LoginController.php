@@ -26,12 +26,18 @@ class LoginController extends BaseController
 
     public function login(){
 
-        $trail = 'System Log';
-        $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
-        
+        //\Session::forget('ASPXAUTH');
+        if (\Session::has('ASPXAUTH')) {
+            return redirect()->route('admin-tixtrack-download');
+        }else{
+            $trail = 'Tixtrack login';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
 
-        return view('backend.admin.tixtrack.login');
+            return view('backend.admin.tixtrack.login');
+        }
+
+        
     }
 
     public function postLogin(LoginRequest $req){
@@ -65,10 +71,10 @@ class LoginController extends BaseController
             // $request = new GuzzleRequest('POST', 'https://nliven.co/admin/Account/Login', $body);
             // $response = $client->send($request);
 
-            $ASPXAUTH = $response->getHeader('set-cookie')[0];
+            $ASPXAUTH = $response->getHeader('set-cookie')[1];
             \Session::put('ASPXAUTH', $ASPXAUTH);
 
-            //echo $ASPXAUTH;exit;
+            //print_r($ASPXAUTH);exit;
 
             $status = $response->getStatusCode();
 

@@ -84,7 +84,7 @@ class MenusTableSeeder extends Seeder
             ['is_parent' => false, 'name' => str_slug('Trail'), 'display_name' => 'Trail', 'icon' => 'road', 'href' => 'admin/trail', 'pattern' => 'admin/trail'],
             ['is_parent' => false, 'name' => str_slug('System Log'), 'display_name' => 'System Log', 'icon' => 'archive', 'href' => 'admin/system-log', 'pattern' => 'admin/system-log'],
             ['is_parent' => false, 'name' => str_slug('Inbox'), 'display_name' => 'Inbox', 'icon' => 'inbox', 'href' => 'admin/inbox', 'pattern' => 'admin/inbox'],
-            ['is_parent' => false, 'name' => str_slug('Customer Report'), 'display_name' => 'Customer Report', 'icon' => 'archive', 'href' => '#', 'pattern' => 'admin/customer-report'],
+            ['is_parent' => false, 'name' => str_slug('Customer Report'), 'display_name' => 'Customer Report', 'icon' => 'archive', 'href' => 'admin/tixtrack/login', 'pattern' => 'admin/tixtrack/login'],
             ['is_parent' => false, 'name' => str_slug('Logout'), 'display_name' => 'Logout', 'icon' => 'sign-out', 'href' => 'admin/logout', 'pattern' => 'admin/logout'],
 
             /*['is_parent' => false, 'name' => str_slug('Application Management'), 'display_name' => 'Manajemen Pengajuan', 'icon' => 'folder', 'href' => 'admin/application/management', 'pattern' => 'admin/application/management'],
