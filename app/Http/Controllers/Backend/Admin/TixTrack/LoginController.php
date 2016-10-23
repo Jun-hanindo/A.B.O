@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Admin\Tixtrack;
+namespace App\Http\Controllers\Backend\Admin\TixTrack;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
