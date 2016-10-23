@@ -245,7 +245,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
 
     });
 
-    Route::group(['prefix' => 'tixtrack','namespace' => 'Tixtrack'], function () {
+    Route::group(['prefix' => 'tixtrack','namespace' => 'TixTrack'], function () {
         Route::get('login', array('as' => 'admin-tixtrack-login', 'uses' => 'LoginController@login'));
         Route::post('post-login', array('as' => 'admin-tixtrack-login-post', 'uses' => 'LoginController@postLogin'));
         Route::get('change-account', array('as' => 'admin-tixtrack-change-account', 'uses' => 'LoginController@changeAccount'));
