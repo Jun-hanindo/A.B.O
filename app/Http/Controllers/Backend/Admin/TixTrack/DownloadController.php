@@ -11,6 +11,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use File;
+use GuzzleHttp\Middleware;
 //use GuzzleHttp\Cookie\CookieJar;
 //use GuzzleHttp\Cookie\CookieJarInterface;
 
@@ -28,6 +29,25 @@ class DownloadController extends BaseController
         }else{
             return redirect()->route('admin-tixtrack-login');
         }
+    }
+
+    public function changeAccount(){
+        $client = new Client();
+
+        $request = new GuzzleRequest('PUT', 'https://nliven.co/api/admin/userprofiles/swapaccounts/18', [
+            'Cookie' => $this->cookie(),
+        ]);
+        $response = $client->send($request);
+
+        return redirect()->route('admin-tixtrack-download');
+    }
+
+    public function changeEvent(){
+        $response = $client->put('https://nliven.co/api/admin/userprofiles/swapaccounts/49', [
+            'Cookie' => $this->cookie(),
+        ]);
+
+        return redirect()->route('admin-tixtrack-download');
     }
 
     public function download(){
@@ -193,12 +213,12 @@ class DownloadController extends BaseController
                         "FilterConditions" => [
                             [
                                 "HasCondition" => true,
-                                "Available Values" => [],
-                                "AttributeName" => "LocalCreated",
+                                "AvailableValues" => [],
+                                "AttributeName" => "FirstName",
                                 "ChainOperator" => null,
-                                "ConditionValue" => "10/21/2016 12:00 AM",
-                                "AvailableOperators" => ["=",">=","<="],
-                                "OperatorValue" => ">=",
+                                "ConditionValue" => "jessica",
+                                "AvailableOperators" => ["=","Contains","Has A Value","Starts With","Ends With"],
+                                "OperatorValue" => "=",
                                 "IsDate" => false,
                                 "IsTime" => false,
                             ]
@@ -207,14 +227,16 @@ class DownloadController extends BaseController
                     ]
                 ],
             ];
-            //$data = json_encode($param);
-            $data = $param;
+            $data = json_encode($param);
+            //$data = urlencode (json_encode($param));
+            //$data = $param;
+            //dd($data);
 
             if(!empty($param)){
                 $file_transaction = $pathDest.'/Download_transaction_'.date('Y-m-d-H-i-s').'.csv';
                 $request = new GuzzleRequest('POST', 'https://nliven.co/api/admin/Orders/Download?objectFilterJSON=', [
                     'json' => $data,
-                    'headers' => ['Accept' => 'application/json'],
+                    'headers' => ['Content-Type' => 'application/json;charset=UTF-8', 'Accept' => 'application/json'],
                     'Cookie' => $this->cookie(),
                 ]);
 
@@ -222,6 +244,11 @@ class DownloadController extends BaseController
                 $response = $client->send($request, [
                     'save_to' => $file_transaction,
                 ]);
+                // $res = $client->post('https://nliven.co/api/admin/Orders/Download?objectFilterJSON=', [
+                //     'headers' => ['Content-Type' => 'application/json;charset=UTF-8', 'Accept' => 'application/json'],
+                //     'json' => $data,
+                //     'save_to' => $file_transaction,
+                // ]);
             }else{
                 $file_transaction = $pathDest.'/Download_transaction_'.date('Y-m-d-H-i').'.csv';
                 $request = new GuzzleRequest('POST', 'https://nliven.co/api/admin/Orders/Download?objectFilterJSON=', [

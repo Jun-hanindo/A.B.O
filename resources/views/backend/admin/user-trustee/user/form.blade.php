@@ -44,12 +44,11 @@
                             </div>
                         </div>
                         <div class="form-group" id="promotor_div" style="display:none;">
-                            {!! Form::label('promotor_id', 'Promotor ID', ['class' => 'col-sm-3 control-label']) !!}
-                            <div class="col-sm-5">
-                                {!! Form::hidden('promotor_number', null, ['class' => 'form-control', 'id' => 'promotor_number']) !!}
-                                {!! Form::hidden('id', null, ['class' => 'form-control', 'id' => 'id']) !!}
-                                {!! Form::text('promotor_id', null, ['class' => 'form-control', 'readonly' => 'readonly']) !!}
-                                {!! Form::errorMsg('promotor_id') !!}
+                            {!! Form::label('promoter', 'Promoter', ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::text('promoter_id', null, ['id' => 'promoter_id', 'class' => 'form-control', 'data-option' => old('promoter_id')]) !!}
+                                {!! Form::hidden('promoter_name', null, ['id' => 'promoter_name', 'class' => 'form-control']) !!}
+                                {!! Form::errorMsg('promoter_id') !!}
                             </div>
                         </div>
                         {{-- <div class="form-group{{ Form::hasError('username') }}">

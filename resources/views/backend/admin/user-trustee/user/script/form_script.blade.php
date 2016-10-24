@@ -45,41 +45,53 @@
             hideShowPromotorID(val);
         });
 
+        var pro_name = $('#promoter_name').val();
+        $("#promoter_id").attr('data-option', pro_name);
+
         var val = $('#role').val();
         hideShowPromotorID(val);
+
+        $("#promoter_id").select2({
+            ajax: {
+                url: "{{route('list-combo-promoter')}}",
+                dataType: 'json',
+                type: "POST",
+                data: function (term, page) {
+                    return {
+                        type: 'promoter_id',
+                        q: term
+                    };
+                },
+                results: function (data, page) {
+                    return { results: data.results };
+                }
+
+            },
+            initSelection: function (item, callback) {
+                var id = item.val();
+                var text = item.data('option');
+
+                if(id > 0){
+
+                    var data = { id: id, text: text };
+                    callback(data);
+                }
+            },
+            formatAjaxError:function(a,b,c){return"Not Found .."}
+        });
 
     });
 
     function hideShowPromotorID(val){
         if(val == 2){
             $('#promotor_div').show();
-            getPromotorID();
         }else{
             $('#promotor_div').hide();
-            $('#promotor_id').val('');
-            $('#promotor_number').val(0);
         }
+        $("#promoter_id").select2("val", "0");
     }
 
-    function getPromotorID(){
-        var id = $('#id').val();
-        if (id == ''){
-            id = 0;
-        }
-        $.ajax({
-            url: "{{ URL::route('admin-promotor-id-user') }}",
-            type: "get",
-            dataType: 'json',
-            data: 'id='+id,
-            success: function (response) {
-                $('#promotor_number').val(response.data);
-                $('#promotor_id').val(response.data);
-            },
-            error: function(response){
-                $('.error').addClass('alert alert-danger').html(response.responseJSON.message);
-            }
-        });
-    }
+    
     
     </script>
 @endsection

@@ -24,7 +24,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::post('users/email-exist', array('as' => 'admin-email-exist-user', 'uses' => 'UserController@checkEmailExist'));
         Route::post('users/reactivate', array('as' => 'admin-reactivate-user', 'uses' => 'UserController@reactivate'));
 
-        Route::get('users/promotor-id', array('as' => 'admin-promotor-id-user', 'uses' => 'UserController@getPromotorID'));
+        Route::post('promoter-combo', array('as' => 'list-combo-promoter', 'uses' => 'PromotersController@comboPromoter'));
+        Route::get('promoter', array('as' => 'admin-index-promoter', 'uses' => 'PromotersController@index'));
+        Route::get('promoter/create', array('as' => 'admin-create-promoter', 'uses' => 'PromotersController@create'));
+        Route::post('promoter/store', array('as' => 'admin-post-promoter', 'uses' => 'PromotersController@store'));
+        Route::get('promoter/{id}/edit', array('as' => 'admin-edit-promoter', 'uses' => 'PromotersController@edit'));
+        Route::post('promoter/{id}/update', array('as' => 'admin-update-promoter', 'uses' => 'PromotersController@update'));
+        Route::delete('promoter/{id}/delete', array('as' => 'admin-delete-promoter', 'uses' => 'PromotersController@destroy'));
     });
 
     Route::group(['prefix' => 'master'], function () {
@@ -248,7 +254,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
     Route::group(['prefix' => 'tixtrack','namespace' => 'TixTrack'], function () {
         Route::get('login', array('as' => 'admin-tixtrack-login', 'uses' => 'LoginController@login'));
         Route::post('post-login', array('as' => 'admin-tixtrack-login-post', 'uses' => 'LoginController@postLogin'));
-        Route::get('change-account', array('as' => 'admin-tixtrack-change-account', 'uses' => 'LoginController@changeAccount'));
+        Route::get('change-account', array('as' => 'admin-tixtrack-change-account', 'uses' => 'DownloadController@changeAccount'));
         Route::get('download', array('as' => 'admin-tixtrack-download', 'uses' => 'DownloadController@download'));
         Route::get('download-member', array('as' => 'admin-tixtrack-download-member', 'uses' => 'DownloadController@downloadMember'));
         Route::get('download-transaction', array('as' => 'admin-tixtrack-download-transaction', 'uses' => 'DownloadController@downloadTransaction'));

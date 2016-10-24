@@ -498,6 +498,7 @@ class AuthController extends Controller
             'url' => route('admin-login'),
             'autocomplete' => 'off',
         ];
+        \Session::forget('ASPXAUTH');
 
         return view('auth.login', compact('form'));
     }

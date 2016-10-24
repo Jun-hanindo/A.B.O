@@ -180,7 +180,7 @@ class UserController extends BaseController
                 'id' => 'create-form'
             ],
             'user' => [
-                'id' => 0,
+                //'id' => 0,
                 'email' => null,
                 'first_name' => null,
                 'last_name' => null,
@@ -189,8 +189,8 @@ class UserController extends BaseController
                 'phone' => null,
                 'address' => null,
                 'branch' => null,
-                'promotor_number' => 0,
-                'promotor_id' => null,
+                'promoter_id' => 0,
+                'promotor_name' => null,
                 //'username' =>null
             ],
             'dropdown' => Role::dropdown(),
@@ -202,6 +202,7 @@ class UserController extends BaseController
             $data['form']['method'] = 'PUT';
             $data['user'] = User::findOrFail($id);
             $data['user']['role'] = (!$data['user']->roles->isEmpty()) ? $data['user']->roles[0]->id : '';
+            $data['user']['promoter_name'] = (!empty($data['user']->promoter_id)) ? User::find($id)->promoter->name : '';
             //$data['user']['branch'] = $data['user']->branch_id;
         }
 
@@ -427,49 +428,49 @@ class UserController extends BaseController
         //return redirect()->route('admin.user-trustees.users.index');
     }
 
-    function getPromotorID(Req $req){
+    // function getPromotorID(Req $req){
 
-        $param = $req->all();
-        $id = $param['id'];
-        try
-        {
-            $data = $this->model->getPromotorLastID();
-            if(empty($data)){
-                $pm = 1;
-            }else{
-                $pm = $data->promotor_number + 1;
-            }
+    //     $param = $req->all();
+    //     $id = $param['id'];
+    //     try
+    //     {
+    //         $data = $this->model->getPromotorLastID();
+    //         if(empty($data)){
+    //             $pm = 1;
+    //         }else{
+    //             $pm = $data->promotor_number + 1;
+    //         }
             
-            if($id > 0){
-                $user = $this->model->find($id);
-                if($user->promotor_number > 0){
-                    $promotor_number = $user->promotor_number;
-                }else{
-                    $promotor_number = $pm;
-                }
-            }else{
-                $promotor_number = $pm;
-            }
+    //         if($id > 0){
+    //             $user = $this->model->find($id);
+    //             if($user->promotor_number > 0){
+    //                 $promotor_number = $user->promotor_number;
+    //             }else{
+    //                 $promotor_number = $pm;
+    //             }
+    //         }else{
+    //             $promotor_number = $pm;
+    //         }
 
-            return response()->json([
-                'code' => 200,
-                'status' => 'success',
-                'message' => 'Success',
-                'data' => $promotor_number,
-            ],200);
-        } catch (\Exception $e) {
+    //         return response()->json([
+    //             'code' => 200,
+    //             'status' => 'success',
+    //             'message' => 'Success',
+    //             'data' => $promotor_number,
+    //         ],200);
+    //     } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
-            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-            $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+    //         $log['user_id'] = $this->currentUser->id;
+    //         $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+    //         $insertLog = new LogActivity();
+    //         $insertLog->insertLogActivity($log);
 
-            return response()->json([
-                'code' => 400,
-                'status' => 'error',
-                'message' => trans('general.data_not_found'),
-            ],400);
+    //         return response()->json([
+    //             'code' => 400,
+    //             'status' => 'error',
+    //             'message' => trans('general.data_not_found'),
+    //         ],400);
         
-        }
-    }
+    //     }
+    // }
 }

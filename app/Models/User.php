@@ -36,7 +36,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * {@inheritDoc}
      */
     protected $fillable = [
-        'email', 'password', 'permissions', 'first_name', 'last_name', 'avatar', 'is_admin', 'skin', 'username', 'phone', 'address', 'branch_id', 'promotor_id', 'promotor_number'
+        'email', 'password', 'permissions', 'first_name', 'last_name', 'avatar', 'is_admin', 'skin', 'username', 'phone', 'address', 'branch_id', 'promoter_id'
     ];
 
     /**
@@ -118,6 +118,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function GetUserFollowers(){
         return $this->belongsToMany('App\Models\User','followers','user_id','follower_id');
+    }
+
+    public function promoter()
+    {
+        return $this->belongsTo('App\Models\Promoter','promoter_id');
     }
 
     public function checkFollowerByID($user_id,$user_id_follower)
@@ -713,10 +718,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return User::count();
     }
 
-    public function getPromotorLastID(){
-        $data = User::where('promotor_number', '>', 0)->orderBy('promotor_number', 'desc')->first();
+    // public function getPromotorLastID(){
+    //     $data = User::where('promotor_number', '>', 0)->orderBy('promotor_number', 'desc')->first();
 
-        return $data;
-    }
+    //     return $data;
+    // }
 
 }

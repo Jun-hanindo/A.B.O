@@ -263,5 +263,7 @@ return [
     'fp_tracking_code' => 'Facebook Pixel Tracking Code',
     'fp_conversion_code' => 'Facebook Pixel Conversion Code',
     'price_title'   => 'Price Title',
+    'promoter'  => 'Promoter',
+    'promoters' => 'Promoters',
 
 ];

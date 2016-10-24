@@ -44,6 +44,7 @@ class MenusTableSeeder extends Seeder
                 ['name' => str_slug('Menu Management'), 'display_name' => 'Menu Management', 'icon' => 'bars', 'href' => 'admin/user-trustees/menus', 'pattern' => 'admin/user-trustees'],
                 ['name' => str_slug('Role Management'), 'display_name' => 'Role Management', 'icon' => 'user-secret', 'href' => 'admin/user-trustees/roles', 'pattern' => 'admin/user-trustees'],
                 ['name' => str_slug('User Management'), 'display_name' => 'User Management', 'icon' => 'users', 'href' => 'admin/user-trustees/users', 'pattern' => 'admin/user-trustees'],
+                ['name' => str_slug('Promoter'), 'display_name' => 'Promoter', 'icon' => 'users', 'href' => 'admin/user-trustees/promoter', 'pattern' => 'admin/user-trustees'],
             ]],
             ['is_parent' => true, 'name' => str_slug('Manage Pages'), 'display_name' => 'Manage Pages', 'icon' => 'files-o', 'href' => '#', 'pattern' => 'admin/manage-pages', 'child' => [
                 ['name' => str_slug('Contact Us'), 'display_name' => 'Contact Us', 'icon' => 'phone-square', 'href' => 'admin/manage-pages/contact-us', 'pattern' => 'admin/manage-pages'],

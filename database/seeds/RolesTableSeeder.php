@@ -38,8 +38,8 @@ class RolesTableSeeder extends Seeder
         ]);
 
         Sentinel::getRoleRepository()->createModel()->create([
-            'slug' => 'promotor',
-            'name' => 'Promotor',
+            'slug' => 'promoter',
+            'name' => 'Promoter',
             'permissions' => [],
         ]);
 

@@ -4,13 +4,33 @@
     $(document).ready(function() {
         
         $('.tixtrack-filter').on('click', '.delete-member', function(){
-            $('#member-table tr:nth-child(2)').remove();
-            $('#member-table tr:nth-child(1)').remove();
+            var id = $(this).attr('data-id');
+            if ($(this).parents('tr').is(":last-child")) {
+                id2 = id -1;
+                $('#member_tr_'+id).remove();
+                $('#member_condition_tr_'+id2).remove();
+            }else{
+                $('#member_tr_'+id).remove();
+                $('#member_condition_tr_'+id).remove();
+            }
+            // 
+            // $('#member-table tr:nth-child(2)').remove();
+            // $('#member-table tr:nth-child(1)').remove();
         });
 
-        $('.tixtrack-filter').on('click', '.delete-transaction', function(){
-            $('#transaction-table tr:nth-child(2)').remove();
-            $('#transaction-table tr:nth-child(1)').remove();
+        $('.tixtrack-filter').on('click', '.delete-transaction', function(){ 
+            var id = $(this).attr('data-id');
+            if ($(this).parents('tr').is(":last-child")) {
+                id2 = id -1;
+                $('#transaction_tr_'+id).remove();
+                $('#transaction_condition_tr_'+id2).remove();
+            }else{
+                $('#transaction_tr_'+id).remove();
+                $('#transaction_condition_tr_'+id).remove();
+            }
+
+            // $('#transaction-table tr:nth-child(2)').remove();
+            // $('#transaction-table tr:nth-child(1)').remove();
         });
 
         $('.tixtrack-filter').on('change', '.attribute_member-filter', function(){
@@ -85,6 +105,76 @@
                 +'</select>';
                 $('#operator_transaction_td_'+id).html(html);
             }
+
+
+
+            if(val == 'Customer.FraudStatus' || val == 'Seller.FraudStatus'){
+                html2 = '<select name="transaction['+id+'][ConditionValue]" data-id="'+id+'" type="text" class="form-control condition_transaction-filter">'
+                    +'<option label="Uncategorized" value="Uncategorized" selected="selected">Uncategorized</option>'
+                    +'<option label="PendingReview" value="PendingReview">PendingReview</option>'
+                    +'<option label="Valid" value="Valid">Valid</option>'
+                    +'<option label="Fraud" value="Fraud">Fraud</option>'
+                    +'<option label="Inconclusive" value="Inconclusive">Inconclusive</option>'
+                $('#condition_transaction_td_'+id).html(html2);
+            }else if(val == 'SalesChannel'){
+                html2 = '<select name="transaction['+id+'][ConditionValue]" data-id="'+id+'" type="text" class="form-control condition_transaction-filter">'
+                    +'<option label="Web" value="Web" selected="selected">Web</option>'
+                    +'<option label="PointOfSale" value="PointOfSale">PointOfSale</option>'
+                    +'<option label="StubHub" value="StubHub">StubHub</option>'
+                    +'<option label="VividSeats" value="VividSeats">VividSeats</option>'
+                    +'<option label="Outlet" value="Outlet">Outlet</option>'
+                    +'<option label="API" value="API">API</option>'
+                    +'<option label="HouseSeats" value="HouseSeats">HouseSeats</option>'
+                $('#condition_transaction_td_'+id).html(html2);
+            }else if(val == 'OrderStatus'){
+                html2 = '<select name="transaction['+id+'][ConditionValue]" data-id="'+id+'" type="text" class="form-control condition_transaction-filter">'
+                    +'<option label="Accepted" value="Accepted" selected="selected">Accepted</option>'
+                    +'<option label="Cancelled" value="Cancelled">Cancelled</option>'
+                $('#condition_transaction_td_'+id).html(html2);
+            }else if(val == 'IsFraud' || val == 'Event.RequireRecaptcha' || val == 'Event.HasProducts' || val == 'Event.Active'){
+                html2 = '<select name="transaction['+id+'][ConditionValue]" data-id="'+id+'" type="text" class="form-control condition_transaction-filter">'
+                    +'<option label="True" value="True" selected="selected">True</option>'
+                    +'<option label="False" value="False">False</option>'
+                $('#condition_transaction_td_'+id).html(html2);
+            }else if(val == 'Event.TimePeriod'){
+                html2 = '<select name="transaction['+id+'][ConditionValue]" data-id="'+id+'" type="text" class="form-control condition_transaction-filter">'
+                    +'<option label="Morning" value="Morning" selected="selected">Morning</option>'
+                    +'<option label="Afternoon" value="Afternoon">Afternoon</option>'
+                    +'<option label="Evening" value="Evening">Evening</option>'
+                $('#condition_transaction_td_'+id).html(html2);
+            }else if(val == 'Event.DayOfWeek'){
+                html2 = '<select name="transaction['+id+'][ConditionValue]" data-id="'+id+'" type="text" class="form-control condition_transaction-filter">'
+                    +'<option label="Sunday" value="Sunday" selected="selected">Sunday</option>'
+                    +'<option label="Monday" value="Monday">Monday</option>'
+                    +'<option label="Tuesday" value="Tuesday">Tuesday</option>'
+                    +'<option label="Wednesday" value="Wednesday">Wednesday</option>'
+                    +'<option label="Thursday" value="Thursday">Thursday</option>'
+                    +'<option label="Friday" value="Friday">Friday</option>'
+                    +'<option label="Saturday" value="Saturday">Saturday</option>'
+                $('#condition_transaction_td_'+id).html(html2);
+            }else if(val == 'Event.AwayTeam.Sport'){
+                html2 = '<select name="transaction['+id+'][ConditionValue]" data-id="'+id+'" type="text" class="form-control condition_transaction-filter">'
+                    +'<option label="Basketball" value="Basketball" selected="selected">Basketball</option>'
+                    +'<option label="Baseball" value="Baseball">Baseball</option>'
+                    +'<option label="Football" value="Football">Football</option>'
+                    +'<option label="Soccer" value="Soccer">Soccer</option>'
+                $('#condition_transaction_td_'+id).html(html2);
+            }else if(val == 'LocalCreated' || val == 'Event.LocalDate'){
+                html2 = '<input name="transaction['+id+'][ConditionValue]" data-id="'+id+'" type="text" class="form-control datepicker condition_transaction-filter" value=""/>';
+                $('#condition_transaction_td_'+id).html(html2);
+            }else if(val == 'Event.TimeOfDay'){
+                html2 = '<input name="transaction['+id+'][ConditionValue]" data-id="'+id+'" type="text" class="form-control timepicker condition_transaction-filter" value=""/>';
+                $('#condition_transaction_td_'+id).html(html2);
+            }else{
+                html2 = '<input name="transaction['+id+'][ConditionValue]" data-id="'+id+'" type="text" class="form-control condition_transaction-filter" value=""/>';
+                $('#condition_transaction_td_'+id).html(html2);
+            }
+
+            $(".datepicker").datepicker( {
+                format: "mm/dd/yyyy",
+            });
+
+            $('.timepicker').timepicker();
         });
 
     });
@@ -99,6 +189,7 @@
                     +'<option label="AND" value="AND" selected="selected">AND</option>'
                     +'<option label="OR" value="OR">OR</option>'
                 +'</select></td>'
+                +'<td></td>'
                 +'<td></td>'
                 +'</tr>';
         }else{
@@ -128,7 +219,7 @@
                 +'<option label="Ends With" value="Ends With">Ends With</option>'
             +'</select></td>'
             +'<td id="condition_member_td_'+i+'"><input name="member['+i+'][ConditionValue]" data-id="'+i+'" type="text" class="form-control condition_member-filter" value=""/></td>'
-            +'<td><a class="delete-member" data-id="'+i+'"><i class="fa fa-times-circle fa-lg"></i></a></td>'
+            +'<td width="5%"><a class="delete-member" data-id="'+i+'"><i class="fa fa-times-circle fa-lg"></i></a></td>'
         +'</tr>';
         
         $('#member-table tbody').append(html);
@@ -145,6 +236,7 @@
                     +'<option label="AND" value="AND" selected="selected">AND</option>'
                     +'<option label="OR" value="OR">OR</option>'
                 +'</select></td>'
+                +'<td></td>'
                 +'<td></td>'
                 +'</tr>';
         }else{
@@ -228,7 +320,7 @@
                 +'<option value="<="> <= </option>'
             +'</select></td>'
             +'<td id="condition_transaction_td_'+j+'"><input name="transaction['+j+'][ConditionValue]" data-id="'+j+'" type="text" class="form-control condition_transaction-filter" value=""/></td>'
-            +'<td><a class="delete-transaction" data-id="'+j+'"><i class="fa fa-times-circle fa-lg"></i></a></td>'
+            +'<td width="5%"><a class="delete-transaction" data-id="'+j+'"><i class="fa fa-times-circle fa-lg"></i></a></td>'
         +'</tr>';
         
         $('#transaction-table tbody').append(html);

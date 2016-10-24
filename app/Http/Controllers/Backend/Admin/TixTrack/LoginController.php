@@ -98,12 +98,4 @@ class LoginController extends BaseController
         
         }
     }
-
-    public function changeAccount(){
-        // $response = $client->put('http://github.com', [
-        //     'cookies' => $cookieJar
-        // ]);
-
-        return redirect()->route('admin-tixtrack-download');
-    }
 }
