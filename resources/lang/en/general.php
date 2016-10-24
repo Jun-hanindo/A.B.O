@@ -265,5 +265,8 @@ return [
     'price_title'   => 'Price Title',
     'promoter'  => 'Promoter',
     'promoters' => 'Promoters',
+    'accounts' => 'Accounts',
+    'account' => 'Account',
+    'account_id' => 'Account ID',
 
 ];

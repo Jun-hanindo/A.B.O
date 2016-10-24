@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\LogActivity;
 use App\Models\Trail;
+use App\Models\TixtrackAccount;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
@@ -17,10 +18,10 @@ use GuzzleHttp\Middleware;
 
 class DownloadController extends BaseController
 {
-    public function __construct(LogActivity $model)
-    {
-        parent::__construct($model);
-    }
+    // public function __construct(LogActivity $model)
+    // {
+    //     parent::__construct($model);
+    // }
 
     public function cookie(){
         if (\Session::has('ASPXAUTH')) {
@@ -31,10 +32,13 @@ class DownloadController extends BaseController
         }
     }
 
-    public function changeAccount(){
+    public function changeAccount(Request $req){
+        $param = $req->all();
+        $accountID = $param['account'];
+        \Session::put('AccountID', $accountID);
         $client = new Client();
 
-        $request = new GuzzleRequest('PUT', 'https://nliven.co/api/admin/userprofiles/swapaccounts/18', [
+        $request = new GuzzleRequest('PUT', 'https://nliven.co/api/admin/userprofiles/swapaccounts/'.$accountID, [
             'Cookie' => $this->cookie(),
         ]);
         $response = $client->send($request);
@@ -57,8 +61,16 @@ class DownloadController extends BaseController
             $trail = 'Tixtrack download';
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
+            $accountModel = new TixtrackAccount();
+            if (\Session::has('AccountID')) {
+                $AccountID = \Session::get('AccountID'); 
+            }else{
+                $AccountID = '';
+            }
+            $data['account_selected'] = $AccountID;
+            $data['account'] = $accountModel->getTixtrackAccount();
 
-            return view('backend.admin.tixtrack.download');
+            return view('backend.admin.tixtrack.download', $data);
         }else{
             return redirect()->route('admin-tixtrack-login');
         }
@@ -185,7 +197,8 @@ class DownloadController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-            $saveData = $this->model->insertLogActivity($log);
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             flash()->error('Download Member failed');
             return view('backend.admin.tixtrack.download');
@@ -273,7 +286,8 @@ class DownloadController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-            $saveData = $this->model->insertLogActivity($log);
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
 
             flash()->error('Download Transaction failed');
             return view('backend.admin.tixtrack.download');

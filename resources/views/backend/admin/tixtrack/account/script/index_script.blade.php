@@ -11,12 +11,12 @@
         function loadData()
         {
             $.fn.dataTable.ext.errMode = 'none';
-            $('#promoters-table').on('error.dt', function(e, settings, techNote, message) {
+            $('#accounts-table').on('error.dt', function(e, settings, techNote, message) {
                 $.ajax({
                     url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
                     type: "POST",
                     dataType: 'json',
-                    data: "message= Promoter "+message,
+                    data: "message= Account Tixtrack "+message,
                     success: function (data) {
                         data.message;
                     },
@@ -26,22 +26,17 @@
                 });
             });
 
-            var table = $('#promoters-table').DataTable();
+            var table = $('#accounts-table').DataTable();
             table.destroy();
-            $('#promoters-table').DataTable({
+            $('#accounts-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! URL::route("datatables-promoter") !!}',
+                ajax: '{!! URL::route("datatables-tixtrack-account") !!}',
                 columns: [
+                    {data: 'account_id', name: 'account_id'},
                     {data: 'name', name: 'name'},
-                    {data: 'country', name: 'country'},
                     {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
                 ],
-                "fnDrawCallback": function() {
-                    //Initialize checkbos for enable/disable user
-                    $(".avaibility-check").bootstrapSwitch({onText: "Show", offText:"Off", animate: false});
-                    $(".status-check").bootstrapSwitch({onText: "Active", offText:"Inactive", animate: false});
-                }
             });
             return table;
         }
@@ -54,7 +49,7 @@
             $('#button_save').show();
         });
 
-        $('#promoters-table tbody').on( 'click', '.actEdit', function () {
+        $('#accounts-table tbody').on( 'click', '.actEdit', function () {
             $('#modal-form').modal('show');
             $('#title-create').hide();
             $('#title-update').show();
@@ -62,7 +57,7 @@
             $('#button_save').hide();
 
             var id = $(this).data('id');
-            getPromoter(id);
+            getAccount(id);
 
         });
 
@@ -75,19 +70,18 @@
                 update();                
             });
             clearInput();
-            saveTrailModal('Promoter Form');
+            saveTrailModal('Account Tixtrack Form');
 
             function save()
             {
                 modal_loader();
                 var name = $("#name").val();
-                var country = $("#country").val();
-                var address = $("#address").val();
+                var account_id = $("#account_id").val();
                 $.ajax({
-                    url: "{{ route('admin-post-promoter') }}",
+                    url: "{{ route('admin-post-tixtrack-account') }}",
                     type: "POST",
                     dataType: 'json',
-                    data: {'name':name,"address":address,"country":country},
+                    data: {'name':name,"account_id":account_id},
                     success: function (data) {
                         HoldOn.close();
                         loadData();
@@ -113,17 +107,16 @@
             {
                 
                 var name = $("#name").val();
-                var country = $("#country").val();
-                var address = $("#address").val();
+                var account_id = $("#account_id").val();
                 var id = $("#id").val();
                 modal_loader();
-                var uri = "{{ URL::route('admin-update-promoter', "::param") }}";
+                var uri = "{{ URL::route('admin-update-tixtrack-account', "::param") }}";
                 uri = uri.replace('::param', id);
                 $.ajax({
                     url: uri,
                     type: "POST",
                     dataType: 'json',
-                    data: {'name':name,"address":address,"country":country},
+                    data: {'name':name,"account_id":account_id},
                     success: function (data) {
                         HoldOn.close();
                         loadData();
@@ -147,40 +140,11 @@
 
         });
 
-        $("#country").select2({
-            ajax: {
-                url: "{{route('list-combo-country')}}",
-                dataType: 'json',
-                type: "POST",
-                data: function (term, page) {
-                    return {
-                        type: 'country',
-                        q: term
-                    };
-                },
-                results: function (data, page) {
-                    return { results: data.results };
-                }
-
-            },
-            initSelection: function (item, callback) {
-                var id = item.val();
-                var text = item.data('option');
-
-                if(id > 0){
-
-                    var data = { id: id, text: text };
-                    callback(data);
-                }
-            },
-            formatAjaxError:function(a,b,c){return"Not Found .."}
-        });
-
     });
 
 
-    function getPromoter(id){
-        var uri = "{{ URL::route('admin-edit-promoter', "::param") }}";
+    function getAccount(id){
+        var uri = "{{ URL::route('admin-edit-tixtrack-account', "::param") }}";
         uri = uri.replace('::param', id);
         $.ajax({
             url: uri,
@@ -197,8 +161,7 @@
 
                 $("#id").val(data.id);
                 $("#name").val(data.name);
-                $("#address").val(data.address);
-                $("#country").select2('data', { id:data.country_id, text: data.country_name});
+                $("#account_id").val(data.account_id);
             },
             error: function(response){
                 loadData();
@@ -210,9 +173,8 @@
 
     function clearInput(){
         $("#name").val('');
-        $("#country").select2("val", "");
         $("#id").val('');
-        $("#address").val('');
+        $("#account_id").val('');
     }
     
     </script>
