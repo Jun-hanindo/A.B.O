@@ -28,6 +28,21 @@ class Promoter extends Model
         return $this->belongsTo('App\Models\Country','country_id');
     }
 
+    public function users()
+    {
+        return $this->hasMany('App\Models\User','promoter_id');
+    }
+
+    public function events()
+    {
+        return $this->hasMany('App\Models\Event','promoter_id');
+    }
+
+    public function promotions()
+    {
+        return $this->hasMany('App\Models\Promotion','promoter_id');
+    }
+
     function datatables()
     {
 

@@ -76,6 +76,12 @@ class Event extends Model
 
     }
 
+    public function Promoter()
+    {
+        return $this->belongsTo('App\Models\Promoter', 'promoter_id');
+
+    }
+
     /**
      * Return event's query for Datatables.
      *
@@ -85,6 +91,16 @@ class Event extends Model
     {
 
     	return static::select('id', 'title', 'venue_id', 'user_id', 'avaibility', 'sort_order')
+            ->orderBy('sort_order', 'desc')
+            ->orderBy('created_at', 'desc');
+    
+    }
+
+    function promoterDatatables($promoter_id)
+    {
+
+        return static::select('id', 'title', 'venue_id', 'user_id', 'avaibility', 'sort_order', 'promoter_id')
+            ->where('promoter_id', $promoter_id)
             ->orderBy('sort_order', 'desc')
             ->orderBy('created_at', 'desc');
     
@@ -230,7 +246,9 @@ class Event extends Model
         }else{
             $param['event_type'] = false;
         }
+        $promoter_id = \Sentinel::getUser()->promoter_id;
         $this->user_id = $user_id;
+        $this->promoter_id = ($promoter_id > 0) ? $promoter_id : 0;
     	$this->title = $param['title'];
         $this->slug = $param['slug'];
     	$this->description = $param['description'];
@@ -252,7 +270,11 @@ class Event extends Model
         $this->price_title = $param['price_title'];
         $last = $this->getFirstSort();
         $this->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
-        $this->avaibility = true;
+        if(\Sentinel::getUser()->promoter_id > 0){
+            $this->avaibility = false;
+        }else{
+            $this->avaibility = true;
+        }
 
         if (isset($param['featured_image1'])) {
         	$featured_image1 = $param['featured_image1'];
@@ -396,7 +418,9 @@ class Event extends Model
             }else{
                 $param['event_type'] = false;
             }
+            $promoter_id = \Sentinel::getUser()->promoter_id;
             $data->user_id = \Sentinel::getUser()->id;
+            //$data->promoter_id = ($promoter_id > 0) ? $promoter_id : 0;
            	$data->title = $param['title'];
             $data->slug = $param['slug'];
 	    	$data->description = $param['description'];
@@ -422,7 +446,15 @@ class Event extends Model
                 $data->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
             }
 
-            $data->avaibility = true;
+            if(\Sentinel::getUser()->promoter_id > 0){
+                if($data->avaibility){
+                    $data->avaibility = true;
+                }else{
+                    $data->avaibility = false;
+                }
+            }else{
+                $data->avaibility = true;
+            }
 
             // $pathDest = public_path().'/uploads/events';
             // if(!File::exists($pathDest)) {

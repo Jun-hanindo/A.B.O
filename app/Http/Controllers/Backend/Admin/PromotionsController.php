@@ -40,7 +40,17 @@ class PromotionsController extends BaseController
      */
     public function datatables()
     {
-         return datatables($this->model->datatables())
+        if(!empty($this->currentUser)){
+            if($this->currentUser->promoter_id > 0){
+                $promoter_id = $this->currentUser->promoter_id;
+                $datatables = $this->model->promoterDatatables($promoter_id);
+            }else{
+                $datatables = $this->model->datatables();
+            }
+        }else{
+            $datatables = $this->model->datatables();
+        }
+         return datatables($datatables)
                 ->editColumn('id', function ($promotion) {
                     return '<input type="checkbox" name="checkboxid['.$promotion->id.']" class="item-checkbox">';
                 })

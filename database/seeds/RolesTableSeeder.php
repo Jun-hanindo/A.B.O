@@ -40,7 +40,13 @@ class RolesTableSeeder extends Seeder
         Sentinel::getRoleRepository()->createModel()->create([
             'slug' => 'promoter',
             'name' => 'Promoter',
-            'permissions' => [],
+            'permissions' => [
+                'dashboard' => true,
+                'list-event' => true,
+                'register-event' => true,
+                'category' => true,
+                'promotions' => true,
+            ],
         ]);
 
         Sentinel::getRoleRepository()->createModel()->create([

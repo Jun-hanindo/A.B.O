@@ -50,7 +50,9 @@
                 {data: 'sort_order', name: 'sort_order', class: 'center-align', searchable: false, orderable: false},
                 {data: 'title', name: 'title'},
                 {data: 'user_id', name: 'user_id'},
-                {data: 'avaibility', name: 'avaibility', class: 'center-align', searchable: false, orderable: false},
+                @if(\Sentinel::getUser()->promoter_id == 0)
+                    {data: 'avaibility', name: 'avaibility', class: 'center-align', searchable: false, orderable: false},
+                @endif
                 {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
             ],
             "fnDrawCallback": function() {

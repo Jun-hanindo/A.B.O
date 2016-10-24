@@ -47,7 +47,9 @@
                             <th width="12%">{{ trans('general.sort_order') }}</th>
                             <th class="center-align">{{ trans('general.event_title') }}</th>
                             <th class="center-align">{{ trans('general.post_by') }}</th>
-                            <th width="20%" class="center-align">{{ trans('general.avaibility') }}</th>
+                            @if(\Sentinel::getUser()->promoter_id == 0)
+                                <th width="20%" class="center-align">{{ trans('general.avaibility') }}</th>
+                            @endif
                             <th width="12%"></th>
                         </tr>
                     </thead>

@@ -33,7 +33,6 @@ class EventsController extends BaseController
      */
     public function index()
     {
-        
         $trail = 'List Event';
         $insertTrail = new Trail();
         $insertTrail->insertTrail($trail);
@@ -42,7 +41,17 @@ class EventsController extends BaseController
 
     public function datatables()
     {
-        return datatables($this->model->datatables())
+        if(!empty($this->currentUser)){
+            if($this->currentUser->promoter_id > 0){
+                $promoter_id = $this->currentUser->promoter_id;
+                $datatables = $this->model->promoterDatatables($promoter_id);
+            }else{
+                $datatables = $this->model->datatables();
+            }
+        }else{
+            $datatables = $this->model->datatables();
+        }
+        return datatables($datatables)
             ->addColumn('sort_order', function ($event) {
                 $first = $this->model->getFirstSort()->sort_order;
                 $last = $this->model->getLastSort()->sort_order;
@@ -246,39 +255,44 @@ class EventsController extends BaseController
     {
         try{
             $data = $this->model->findEventByID($id);
-            if($data->event_type == true){
-                $data->event_type = 1;
+            if($data->promoter_id == \Sentinel::getUser()->promoter_id){
+                if($data->event_type == true){
+                    $data->event_type = 1;
+                }else{
+                    $data->event_type = 0;
+                }
+
+                $cat_selected = $data->categories()->get();
+                $selected = [];
+                foreach ($cat_selected as $key => $value) {
+                    $selected[] = $value->id;
+                }
+                $data['selected'] = $selected;
+
+
+                $data['dropdown'] = Venue::dropdown();
+                $data['categories'] = Category::dropdown();
+                $iconModel = new Icon();
+                $data['icons'] = $iconModel->getIcon();
+                $data['currencies'] = Currency::dropdownCode();
+                $data['currency_sel'] = $this->setting['currency'];
+                if($data['event_type'] == TRUE){
+                    $data['checked'] = 'checked';
+                }else{
+                    $data['checked'] = '';
+                }
+            
+                //if(!empty($data)) {
+            
+                $trail = 'Regiser Event';
+                $insertTrail = new Trail();
+                $insertTrail->insertTrail($trail);
+
+                return view('backend.admin.event.edit')->withData($data);
             }else{
-                $data->event_type = 0;
+                flash()->error(trans('general.access_forbiden'));
+                return redirect()->route('admin-index-event');
             }
-
-            $cat_selected = $data->categories()->get();
-            $selected = [];
-            foreach ($cat_selected as $key => $value) {
-                $selected[] = $value->id;
-            }
-            $data['selected'] = $selected;
-
-
-            $data['dropdown'] = Venue::dropdown();
-            $data['categories'] = Category::dropdown();
-            $iconModel = new Icon();
-            $data['icons'] = $iconModel->getIcon();
-            $data['currencies'] = Currency::dropdownCode();
-            $data['currency_sel'] = $this->setting['currency'];
-            if($data['event_type'] == TRUE){
-                $data['checked'] = 'checked';
-            }else{
-                $data['checked'] = '';
-            }
-        
-            //if(!empty($data)) {
-        
-            $trail = 'Regiser Event';
-            $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
-
-            return view('backend.admin.event.edit')->withData($data);
         
         //} else {
         } catch (\Exception $e) {
@@ -288,7 +302,7 @@ class EventsController extends BaseController
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            flash()->success(trans('general.data_not_found'));
+            flash()->error(trans('general.data_not_found'));
             return redirect()->route('admin-index-event');
 
         }

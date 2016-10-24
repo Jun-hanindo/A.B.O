@@ -62,7 +62,7 @@ class MenusTableSeeder extends Seeder
             ]],
             ['is_parent' => false, 'name' => str_slug('Homepage'), 'display_name' => 'Homepage', 'icon' => 'home', 'href' => 'admin/homepage', 'pattern' => 'admin/homepage'],
             ['is_parent' => true, 'name' => str_slug('Events'), 'display_name' => 'Events', 'icon' => 'calendar', 'href' => '#', 'pattern' => 'admin/event', 'child' => [
-                ['name' => str_slug('Regiter Event'), 'display_name' => 'Register Event', 'icon' => 'plus-circle', 'href' => 'admin/event/create', 'pattern' => 'admin/event'],
+                ['name' => str_slug('Register Event'), 'display_name' => 'Register Event', 'icon' => 'plus-circle', 'href' => 'admin/event/create', 'pattern' => 'admin/event'],
                 ['name' => str_slug('List Event'), 'display_name' => 'List Event', 'icon' => 'bars', 'href' => 'admin/event', 'pattern' => 'admin/event'],
                 ['name' => str_slug('Category'), 'display_name' => 'Categories', 'icon' => 'bars', 'href' => 'admin/event/category', 'pattern' => 'admin/event'],
             ]],

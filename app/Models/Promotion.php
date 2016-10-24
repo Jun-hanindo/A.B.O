@@ -25,13 +25,19 @@ class Promotion extends Model
 
     public function Events()
     {
-        return $this->belongsToMany('App\Models\Event', 'event_promotions', 'promotion_id', 'event_id');
+        return $this->belongsToMany('App\Models\Event', 'event_promotions', 'promotion_id', 'event_id')->withTimestamps();
 
     }
 
     public function currency()
     {
         return $this->belongsTo('App\Models\Currency', 'currency_id');
+
+    }
+
+    public function Promoter()
+    {
+        return $this->belongsTo('App\Models\Promoter', 'promoter_id');
 
     }
 
@@ -61,6 +67,13 @@ class Promotion extends Model
 
         return $events;
     
+    }
+
+    function promoterDatatables($promoter_id){
+        return static::select('promotions.id', 'title', 'user_id', 'avaibility')
+        ->join('event_promotions', 'event_promotions.promotion_id', '=', 'promotions.id')
+        ->where('promoter_id', $promoter_id)
+        ->orderBy('promotions.created_at', 'desc');
     }
 
 
@@ -107,7 +120,13 @@ class Promotion extends Model
             }
 
             if(isset($param['event_id'])){
-                $this->events()->attach($param['event_id']);
+                $promoter_id = \Sentinel::getUser()->promoter_id;
+                if($promoter_id > 0){
+                    $promoter_id = $promoter_id;
+                }else{
+                    $promoter_id = 0;
+                }
+                $this->events()->attach($param['event_id'], ['promoter_id' => $promoter_id]);
             }
 
             return $this;
