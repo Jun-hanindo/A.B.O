@@ -159,7 +159,7 @@
                                     {{ $event->code.' '.$event->max_range.trans('frontend/general.per_person') }}
                                 @endif
                             @else
-                                {{ $event->price_range.trans('frontend/general.per_person') }}
+                                {{ !empty($event->price_range) ? $event->price_range.trans('frontend/general.per_person') : '' }}
                             @endif
                         @endif
                     @endif
