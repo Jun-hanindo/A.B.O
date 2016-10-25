@@ -237,6 +237,11 @@
                                 {!! Form::label('buylink', trans('general.buylink').' *') !!}
                                 {!! Form::text('buylink', old('buylink'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.buylink')]) !!}
                                 {!! Form::errorMsg('buylink') !!}
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('buy_button_disabled', true, false) !!} {{ trans('general.buy_button_disabled') }}
+                                    </label>
+                                </div>
                             </div>
                             <div class="form-group{{ Form::hasError('video_link') }} video_link">
                                 {!! Form::label('video_link', trans('general.video_link').' ('.trans('general.embed').')') !!}

@@ -27,7 +27,7 @@
                                     <h2 class="titleSlide font-light">{{ $slider->event->title }}</h2>
                                     <ul>
                                         <li><div class="eventDate">
-                                                <i class="fa fa-calendar-o"></i>{{ $slider->schedule_range }}
+                                                <i class="fa fa-calendar-o"></i>{{ (!empty($slider->event->schedule_title)) ? $slider->event->schedule_title : $slider->schedule_range }}
                                             </div>
                                         </li>
                                         <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->venue_name.$slider->city }}</div></li>
@@ -70,7 +70,7 @@
                                     <li class="eventType">{{ strtoupper($event->cat_name) }}</li>
                                     <li class="eventName">{{ string_limit($event->event->title) }}</li>
                                     <li class="eventDate"><i class="fa fa-calendar-o"></i> 
-                                        {{ $event->schedule_range }}
+                                        {{ (!empty($event->event->schedule_title)) ? $event->event->schedule_title : $event->schedule_range }}
                                     </li>
                                     <li class="eventPlace"><i class="fa fa-map-marker"></i>{{ $event->venue_name.$event->city }}</li>
                                 </ul>

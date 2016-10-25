@@ -270,6 +270,7 @@ class Event extends Model
         $this->price_title = $param['price_title'];
         $this->schedule_title = $param['schedule_title'];
         $this->hide_schedule = isset($param['hide_schedule']) ? true : false;
+        $this->buy_button_disabled = isset($param['buy_button_disabled']) ? true : false;
         $last = $this->getFirstSort();
         $this->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
         if(\Sentinel::getUser()->promoter_id > 0){
@@ -444,6 +445,7 @@ class Event extends Model
             $data->price_title = $param['price_title'];
             $data->schedule_title = $param['schedule_title'];
             $data->hide_schedule = isset($param['hide_schedule']) ? true : false;
+            $data->buy_button_disabled = isset($param['buy_button_disabled']) ? true : false;
 
             if($data->sort_order == 0){
                 $last = $this->getFirstSort();
@@ -1030,6 +1032,7 @@ class Event extends Model
     {
         $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
             'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color', 
+            'events.schedule_title',
             DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',')  as category"))
             ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
             ->join('categories', 'event_categories.category_id', '=', 'categories.id')

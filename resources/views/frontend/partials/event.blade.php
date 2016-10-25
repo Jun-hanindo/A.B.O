@@ -22,11 +22,13 @@
                 <h5>{{ (!empty($event->cat)) ? strtoupper($event->cat->name) : '&nbsp;' }}</h5>
                 <h2 class="font-light">{{ $event->title }}</h2>
             </div>
-            <div class="moreDetail">
-                <a href="{{ $event->buylink }}" target="_blank">
-                    <button class="btn btnDetail font-bold">{{ trans('frontend/general.buy_now') }}</button>
-                </a>
-            </div>
+            @if($event->buy_button_disabled == false)
+                <div class="moreDetail">
+                    <a href="{{ $event->buylink }}" target="_blank">
+                        <button class="btn btnDetail font-bold">{{ trans('frontend/general.buy_now') }}</button>
+                    </a>
+                </div>
+            @endif
         </div>
     </div>
 </section>
@@ -46,7 +48,9 @@
                     @if(!empty($event->admission))
                         <li><a href="#admissionBox" class="smoothScroll">{{ trans('frontend/general.admission_rules') }}</a></li>
                     @endif
-                    <li><a href="{{ $event->buylink }}" target="_blank"><button class="btn btnBuy btnABO font-bold">{{ trans('frontend/general.buy_now') }}</button></a></li>
+                    @if($event->buy_button_disabled == false)
+                        <li><a href="{{ $event->buylink }}" target="_blank"><button class="btn btnBuy btnABO font-bold">{{ trans('frontend/general.buy_now') }}</button></a></li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -68,7 +72,9 @@
                     @if(!empty($event->admission))
                         <li><a href="#admissionBox" class="smoothScroll">{{ trans('frontend/general.admission') }}</a></li>
                     @endif
-                    <li><a href="{{ $event->buylink }}"><button class="btn btnBuy btnABO font-bold">{{ trans('frontend/general.buy') }}</button></a></li>
+                    @if($event->buy_button_disabled == false)
+                        <li><a href="{{ $event->buylink }}"><button class="btn btnBuy btnABO font-bold">{{ trans('frontend/general.buy') }}</button></a></li>
+                    @endif
                 </ul>
             </div>
         </div>

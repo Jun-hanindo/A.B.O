@@ -270,5 +270,6 @@ return [
     'account_id' => 'Account ID',
     'schedule_title' => 'Schedule Title',
     'hide_schedule_price_details' => 'Hide Schedule and Price Detail',
+    'buy_button_disabled' => 'Buy Button Disabled',
 
 ];
