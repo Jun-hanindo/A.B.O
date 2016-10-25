@@ -5,9 +5,30 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="nav-tabs-custom">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Change Account/Event</h3>
+                </div>
+                <div class="box-body">
+                    {!! Form::open(array('url' => route('admin-tixtrack-change-account'),'method'=>'PUT','id'=>'form-account')) !!}
+                        <div class="box-body">
+                            @include('flash::message')
+                            <div id="switch-account" class="tixtrack-switch">
+                                <div class="form-group{{ Form::hasError('account') }} account">
+                                    {!! Form::select('account', $account, $account_selected, array('class' => 'form-control')) !!}
+                                    {!! Form::errorMsg('account') !!}
+                                </div>
+                            </div>
+                            <div class="box-footer">
+                                {!! Form::submit('Apply', ['class' => 'btn btn-primary pull-right']) !!}
+                            </div>
+                        </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+            {{-- <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab-account" data-toggle="tab">Switch Account</a></li>
+                    <li class="active"><a href="#tab-account" data-toggle="tab">Switch Account/Event</a></li>
                     <li><a href="#tab-event" data-toggle="tab">Switch Event</a></li>
                 </ul>
                 <div class="tab-content">
@@ -41,7 +62,7 @@
                         {!! Form::close() !!}
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 

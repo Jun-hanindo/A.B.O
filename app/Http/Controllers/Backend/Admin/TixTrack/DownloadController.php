@@ -44,13 +44,12 @@ class DownloadController extends BaseController
         ]);
         $response = $client->send($request);
 
-        return redirect()->route('admin-tixtrack-download');
-    }
-
-    public function changeEvent(){
-        $response = $client->put('https://nliven.co/api/admin/userprofiles/swapaccounts/49', [
-            'Cookie' => $this->cookie(),
-        ]);
+        $status = $response->getStatusCode();
+        if($status == 200){
+            flash()->success('Change Account/Event success!');
+        }else{
+            flash()->error('Change Account/Event failed');
+        }
 
         return redirect()->route('admin-tixtrack-download');
     }
