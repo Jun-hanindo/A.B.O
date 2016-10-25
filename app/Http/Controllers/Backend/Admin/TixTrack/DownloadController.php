@@ -12,6 +12,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use File;
+use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 //use GuzzleHttp\Cookie\CookieJar;
 //use GuzzleHttp\Cookie\CookieJarInterface;
@@ -78,6 +79,14 @@ class DownloadController extends BaseController
 
     public function downloadMember(Request $req){
         $param = $req->all();
+        $accountModel = new TixtrackAccount();
+        if (\Session::has('AccountID')) {
+            $AccountID = \Session::get('AccountID'); 
+        }else{
+            $AccountID = '';
+        }
+        $data['account_selected'] = $AccountID;
+        $data['account'] = $accountModel->getTixtrackAccount();
         
         try{
             $client = new Client(); //GuzzleHttp\Client
@@ -149,7 +158,7 @@ class DownloadController extends BaseController
                     $i++;
                 }
 
-                $data = [
+                $member = [
                     "ID" => 0,
                     "Name" => "",
                     "Save" => false,
@@ -160,12 +169,12 @@ class DownloadController extends BaseController
                         ]
                     ],
                 ]; 
-                $data = json_encode($data);
-                //$data = urlencode (json_encode($data));
-                //dd($data);
+                $member = json_encode($member);
+                //$member = urlencode (json_encode($member));
+                //dd($member);
         
                 $file_member = $pathDest.'/Download_member_'.date('Y-m-d-H-i-s').'.csv';
-                $request = new GuzzleRequest('GET', 'https://nliven.co/admin/Customers/Download?objectFilterJSON='.$data, [
+                $request = new GuzzleRequest('GET', 'https://nliven.co/admin/Customers/Download?objectFilterJSON='.$member, [
                     'Cookie' => $this->cookie(),
                 ]);
                 $response = $client->send($request, [
@@ -189,7 +198,7 @@ class DownloadController extends BaseController
             }else{
                 flash()->error('Download Member failed');
             }
-            return view('backend.admin.tixtrack.download');
+            return view('backend.admin.tixtrack.download', $data);
             //exit;
         
         //} else {
@@ -201,13 +210,22 @@ class DownloadController extends BaseController
             $insertLog->insertLogActivity($log);
 
             flash()->error('Download Member failed');
-            return view('backend.admin.tixtrack.download');
+            return view('backend.admin.tixtrack.download', $data);
         
         }
     }
 
     public function downloadTransaction(Request $req){
+
         $param = $req->all();
+        $accountModel = new TixtrackAccount();
+        if (\Session::has('AccountID')) {
+            $AccountID = \Session::get('AccountID'); 
+        }else{
+            $AccountID = '';
+        }
+        $data['account_selected'] = $AccountID;
+        $data['account'] = $accountModel->getTixtrackAccount();
         
         try{
             $client = new Client(); //GuzzleHttp\Client
@@ -217,54 +235,134 @@ class DownloadController extends BaseController
                 File::makeDirectory($pathDest, $mode=0777,true,true);
             }
 
-            $param = [
-                // "ID" => 0,
-                // "Name" => "",
-                // "Save" => false,
-                "FilterGroups" => [
-                    [
-                        "FilterConditions" => [
-                            [
-                                "HasCondition" => true,
-                                "AvailableValues" => [],
-                                "AttributeName" => "FirstName",
-                                "ChainOperator" => null,
-                                "ConditionValue" => "jessica",
-                                "AvailableOperators" => ["=","Contains","Has A Value","Starts With","Ends With"],
-                                "OperatorValue" => "=",
-                                "IsDate" => false,
-                                "IsTime" => false,
-                            ]
-                        ],
-                        "ChainOperator" => null
-                    ]
-                ],
-            ];
-            $data = json_encode($param);
-            //$data = urlencode (json_encode($param));
-            //$data = $param;
-            //dd($data);
+            // $param = [
+            //     "FilterGroups" => [
+            //         [
+            //             "FilterConditions" => [
+            //                 [
+            //                     "HasCondition" => true,
+            //                     "AvailableValues" => [],
+            //                     "AttributeName" => "FirstName",
+            //                     "ChainOperator" => null,
+            //                     "ConditionValue" => "aaron",
+            //                     "AvailableOperators" => ["=","Contains","Has A Value","Starts With","Ends With"],
+            //                     "OperatorValue" => "=",
+            //                     "IsDate" => false,
+            //                     "IsTime" => false,
+            //                 ]
+            //             ],
+            //             "ChainOperator" => null
+            //         ]
+            //     ],
+            // ];
+            //$transaction = json_encode($param);
+            //$transaction = urlencode (json_encode($param));
+            $transaction = $param;
 
             if(!empty($param)){
+                $filter_transactions = $param['transaction'];
+                //dd($param);
+                $condition = [];
+                $total = count($filter_transactions);
+                $i = 1;
+                foreach ($filter_transactions as $key => $filter_transaction) {
+                    if($i == $total){
+                        $chainOperator = null;
+                    }else{
+                        $chainOperator = $filter_transaction['ChainOperator'];
+                    }
+
+                    if($filter_transaction['AttributeName'] == 'Customer.FraudStatus' || $filter_transaction['AttributeName'] == 'Event.AwayTeam.Sport' || 
+                        $filter_transaction['AttributeName'] == 'Event.DayOfWeek' || $filter_transaction['AttributeName'] == 'Event.TimePeriod' || 
+                        $filter_transaction['AttributeName'] == 'OrderStatus' || $filter_transaction['AttributeName'] == 'SalesChannel' || 
+                        $filter_transaction['AttributeName'] == 'Seller.FraudStatus'){
+                            $availableOperators = ["="];
+                    }elseif($filter_transaction['AttributeName'] == 'Balance' || $filter_transaction['AttributeName'] == 'Customer.UserId' || 
+                        $filter_transaction['AttributeName'] == 'Event.EventTemplate.ID' || $filter_transaction['AttributeName'] == 'Event.ID' ||
+                        $filter_transaction['AttributeName'] == 'Event.LocalDate' || $filter_transaction['AttributeName'] == 'Event.TimeOfDay' || 
+                        $filter_transaction['AttributeName'] == 'Event.Venue.ID' || $filter_transaction['AttributeName'] == 'Event.VenueConfig.ID' ||
+                        $filter_transaction['AttributeName'] == 'EventID' || $filter_transaction['AttributeName'] == 'FraudScore' || 
+                        $filter_transaction['AttributeName'] == 'ID' || $filter_transaction['AttributeName'] == 'LocalCreated' || 
+                        $filter_transaction['AttributeName'] == 'Partner.ID' || $filter_transaction['AttributeName'] == 'Partner.PartnerCategoryID' || 
+                        $filter_transaction['AttributeName'] == 'Seller.UserId' || $filter_transaction['AttributeName'] == 'Total'){
+                        $availableOperators = ["=",">=","<="];
+                    }elseif($filter_transaction['AttributeName'] == 'Event.Active' || $filter_transaction['AttributeName'] == 'Event.HasProducts' || 
+                        $filter_transaction['AttributeName'] == 'Event.RequireRecaptcha' || $filter_transaction['AttributeName'] == 'IsFraud'){
+                            $availableOperators = ["Is"];
+                    }else{
+                        $availableOperators = ["=","Contains","Has A Value","Starts With","Ends With"];
+                    }
+
+                    if($filter_transaction['AttributeName'] == 'Customer.FraudStatus' || $filter_transaction['AttributeName'] == 'Seller.FraudStatus'){
+                            $availableValues = ["Uncategorized","PendingReview","Valid","Fraud","Inconclusive"];
+                    }elseif($filter_transaction['AttributeName'] == 'SalesChannel'){
+                            $availableValues = ["Web", "PointOfSale", "StubHub", "VividSeats", "Outlet", "API", "HouseSeats"];
+                    }elseif($filter_transaction['AttributeName'] == 'OrderStatus'){
+                            $availableValues = ["Accepted", "Cancelled"];
+                    }elseif($filter_transaction['AttributeName'] == 'IsFraud' || $filter_transaction['AttributeName'] == 'Event.RequireRecaptcha' || 
+                        $filter_transaction['AttributeName'] == 'Event.HasProducts' || $filter_transaction['AttributeName'] == 'Event.Active'){
+                            $availableValues = ["True", "False"];
+                    }else if($filter_transaction['AttributeName'] == 'Event.TimePeriod'){
+                            $availableValues = ["Morning", "Afternoon", "Evening"];
+                    }else if($filter_transaction['AttributeName'] == 'Event.DayOfWeek'){
+                            $availableValues = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                    }else if($filter_transaction['AttributeName'] == 'Event.AwayTeam.Sport'){
+                            $availableValues = ["Basketball", "Baseball", "Football", "Soccer"];
+                    }else{
+                            $availableValues = [];
+                    }
+
+                    if($filter_transaction['AttributeName'] == 'LocalCreated' || $filter_transaction['AttributeName'] == 'Event.LocalDate'){
+                        $isDate = true;
+                    }else{
+                        $isDate = false;
+                    }
+
+                    if($filter_transaction['AttributeName'] == 'Event.TimeOfDay'){
+                        $IsTime = true;
+                    }else{
+                        $IsTime = false;
+                    }
+
+                    $condition[] = [
+                        "HasCondition" => true,
+                        "AvailableValues" => $availableValues,
+                        "AttributeName" => $filter_transaction['AttributeName'],
+                        "ChainOperator" => $chainOperator,
+                        "ConditionValue" => $filter_transaction['ConditionValue'],
+                        "AvailableOperators" => $availableOperators,
+                        "OperatorValue" => $filter_transaction['OperatorValue'],
+                        "IsDate" => $isDate,
+                        "IsTime" => $IsTime,
+                    ];
+                    $i++;
+                }
+
+                $transaction = [
+                    "FilterGroups" => [
+                        [
+                            "FilterConditions" => $condition,
+                            "ChainOperator" => null
+                        ]
+                    ],
+                ]; 
+
                 $file_transaction = $pathDest.'/Download_transaction_'.date('Y-m-d-H-i-s').'.csv';
-                $request = new GuzzleRequest('POST', 'https://nliven.co/api/admin/Orders/Download?objectFilterJSON=', [
-                    'json' => $data,
+
+                $request = new GuzzleRequest('POST', 'https://nliven.co/api/admin/orders/download', [
                     'headers' => ['Content-Type' => 'application/json;charset=UTF-8', 'Accept' => 'application/json'],
                     'Cookie' => $this->cookie(),
                 ]);
 
-                //print_r($request);exit;
                 $response = $client->send($request, [
                     'save_to' => $file_transaction,
+                    'json'    => $transaction,
                 ]);
-                // $res = $client->post('https://nliven.co/api/admin/Orders/Download?objectFilterJSON=', [
-                //     'headers' => ['Content-Type' => 'application/json;charset=UTF-8', 'Accept' => 'application/json'],
-                //     'json' => $data,
-                //     'save_to' => $file_transaction,
-                // ]);
+                
             }else{
                 $file_transaction = $pathDest.'/Download_transaction_'.date('Y-m-d-H-i').'.csv';
-                $request = new GuzzleRequest('POST', 'https://nliven.co/api/admin/Orders/Download?objectFilterJSON=', [
+                $request = new GuzzleRequest('POST', 'https://nliven.co/api/admin/orders/download', [
+                    'headers' => ['Content-Type' => 'application/json;charset=UTF-8'],
                     'Cookie' => $this->cookie(),
                 ]);
                 $response = $client->send($request, [
@@ -279,7 +377,7 @@ class DownloadController extends BaseController
             }else{
                 flash()->error('Download Transaction failed');
             }
-            return view('backend.admin.tixtrack.download');
+            return view('backend.admin.tixtrack.download', $data);
         
         //} else {
         } catch (\Exception $e) {
@@ -290,7 +388,7 @@ class DownloadController extends BaseController
             $insertLog->insertLogActivity($log);
 
             flash()->error('Download Transaction failed');
-            return view('backend.admin.tixtrack.download');
+            return view('backend.admin.tixtrack.download', $data);
         
         }
     }

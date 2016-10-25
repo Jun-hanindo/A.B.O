@@ -257,7 +257,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::put('change-account', array('as' => 'admin-tixtrack-change-account', 'uses' => 'DownloadController@changeAccount'));
         Route::get('download', array('as' => 'admin-tixtrack-download', 'uses' => 'DownloadController@download'));
         Route::get('download-member', array('as' => 'admin-tixtrack-download-member', 'uses' => 'DownloadController@downloadMember'));
-        Route::get('download-transaction', array('as' => 'admin-tixtrack-download-transaction', 'uses' => 'DownloadController@downloadTransaction'));
+        Route::post('download-transaction', array('as' => 'admin-tixtrack-download-transaction', 'uses' => 'DownloadController@downloadTransaction'));
         
         Route::get('account', array('as' => 'admin-index-tixtrack-account', 'uses' => 'AccountsController@index'));
         Route::get('account/create', array('as' => 'admin-create-tixtrack-account', 'uses' => 'AccountsController@create'));
@@ -272,3 +272,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     Route::post('country/combo', array('as' => 'list-combo-country', 'uses' => 'CountriesController@comboCountry'));
     Route::get('region/combo', array('as' => 'list-combo-region', 'uses' => 'RegionsController@comboRegion'));
 });
+
+// Route::group(['prefix' => 'tixtrack','namespace' => 'Backend\Admin\TixTrack'], function () {
+//     Route::get('test-get-file', array('as' => 'test-get-file', 'uses' => 'DownloadController@downloadTransaction'));
+// });

@@ -7,11 +7,11 @@
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab-profile" data-toggle="tab">Switch Account</a></li>
-                    <li><a href="#tab-password" data-toggle="tab">Switch Event</a></li>
+                    <li class="active"><a href="#tab-account" data-toggle="tab">Switch Account</a></li>
+                    <li><a href="#tab-event" data-toggle="tab">Switch Event</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="tab-profile">
+                    <div class="tab-pane active" id="tab-account">
                         {!! Form::open(array('url' => route('admin-tixtrack-change-account'),'method'=>'PUT','id'=>'form-account')) !!}
                             <div class="box-body">
                                 @include('flash::message')
@@ -27,7 +27,7 @@
                             </div>
                         {!! Form::close() !!}
                     </div>
-                    <div class="tab-pane" id="tab-password">
+                    <div class="tab-pane" id="tab-event">
                         {!! Form::open(array('url' => route('admin-tixtrack-download-transaction'),'method'=>'GET','id'=>'form-tixtrack')) !!}
                             <div class="box-body">
                                 @include('flash::message')
@@ -49,11 +49,11 @@
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab-profile" data-toggle="tab">Member Data</a></li>
-                    <li><a href="#tab-password" data-toggle="tab">Transaction Data</a></li>
+                    <li class="active"><a href="#tab-member" data-toggle="tab">Member Data</a></li>
+                    <li><a href="#tab-transaction" data-toggle="tab">Transaction Data</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="tab-profile">
+                    <div class="tab-pane active" id="tab-member">
                         {!! Form::open(array('url' => route('admin-tixtrack-download-member'),'method'=>'GET','id'=>'form-member')) !!}
                             <div class="box-body">
                                 @include('flash::message')
@@ -71,8 +71,8 @@
                             </div>
                         {!! Form::close() !!}
                     </div>
-                    <div class="tab-pane" id="tab-password">
-                        {!! Form::open(array('url' => route('admin-tixtrack-download-transaction'),'method'=>'GET','id'=>'form-tixtrack')) !!}
+                    <div class="tab-pane" id="tab-transaction">
+                        {!! Form::open(array('url' => route('admin-tixtrack-download-transaction'),'method'=>'POST','id'=>'form-transaction')) !!}
                             <div class="box-body">
                                 @include('flash::message')
                                 <div id="transaction-filter" class="tixtrack-filter">
