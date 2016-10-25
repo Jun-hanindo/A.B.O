@@ -63,6 +63,11 @@
                                 {!! Form::textarea('admission', $data->admission, ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.admission')]) !!}
                                 {!! Form::errorMsg('admission') !!}
                             </div>
+                            <div class="form-group{{ Form::hasError('schedule_title') }} schedule_title">
+                                {!! Form::label('schedule_title', trans('general.schedule_title')) !!}
+                                {!! Form::text('schedule_title', $data->schedule_title, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.schedule_title')]) !!}
+                                {!! Form::errorMsg('schedule_title') !!}
+                            </div>
                             <div class="form-group{{ Form::hasError('schedule_info') }} schedule_info">
                                 {!! Form::label('schedule_info', trans('general.schedule_info')) !!}
                                 {!! Form::textarea('schedule_info', $data->schedule_info, ['class' => 'form-control tinymce', 'rows'=> '7', 'placeholder' => trans('general.schedule_info')]) !!}
@@ -93,7 +98,12 @@
                                         </tr>
                                     </thead>
                                 </table>
-                                <a class="actAdd add-underline" data-name="schedule" href="javascript:void(0)" title="{{ trans('general.add_more_schedules_and_prices') }}"><u>+ {{ trans('general.add_more_schedules_and_prices') }}</u></a>
+                                <div class="checkbox">
+                                    <a class="actAdd add-underline" data-name="schedule" href="javascript:void(0)" title="{{ trans('general.add_more_schedules_and_prices') }}"><u>+ {{ trans('general.add_more_schedules_and_prices') }}</u></a>
+                                    <label class="padding-left-50">
+                                        {!! Form::checkbox('hide_schedule', true, $data->hide_schedule) !!} {{ trans('general.hide_schedule_price_details') }}
+                                    </label>
+                                </div>
                             </div>
                             <div class="form-group{{ Form::hasError('promotion') }} promotion">
                                 {!! Form::label('promotion', trans('general.promotion')) !!}

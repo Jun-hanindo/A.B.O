@@ -80,42 +80,52 @@
                     @if($count > 1)
                         <div class="information-title">
                             <i class="fa fa-calendar-o"></i> 
-                            {{ date_from_to($event->start_range, $event->end_range) }}
+                            @if(!empty($event->schedule_title))
+                                {{ $event->schedule_title }}
+                            @else
+                                {{ date_from_to($event->start_range, $event->end_range) }}
+                            @endif
+                            
                         </div>
-                        <ul class="list-unstyled">
-                            @php 
-                                $i = 1; 
-                            @endphp
-                            @foreach($event->schedules as $sch)
-                                <li class="liParent {{ ($i == $count) ? 'parentLast' : '' }} li-mobile">
-                                    <table>
-                                        <tr>
-                                            <td>{{ get_day_date($sch->date_at) }}</td>
-                                            <td>{{ $sch->description }}</span>
-                                            </td>
-                                            <td>{{ $sch->start_time.'-'.$sch->end_time }}</td>
-                                        </tr>
-                                    </table>
-                                </li>
+
+                        @if(empty($event->hide_schedule))
+                            <ul class="list-unstyled">
                                 @php 
-                                    $i++; 
-                                @endphp  
-                            @endforeach
-                        </ul>
-                        <div class="information-event">
-                            {!! $event->schedule_info !!}
-                        </div>
+                                    $i = 1; 
+                                @endphp
+                                @foreach($event->schedules as $sch)
+                                    <li class="liParent {{ ($i == $count) ? 'parentLast' : '' }} li-mobile">
+                                        <table>
+                                            <tr>
+                                                <td>{{ get_day_date($sch->date_at) }}</td>
+                                                <td>{{ $sch->description }}</span>
+                                                </td>
+                                                <td>{{ $sch->start_time.'-'.$sch->end_time }}</td>
+                                            </tr>
+                                        </table>
+                                    </li>
+                                    @php 
+                                        $i++; 
+                                    @endphp  
+                                @endforeach
+                            </ul>
+                        @endif
+                            <div class="information-event">
+                                {!! $event->schedule_info !!}
+                            </div>
                     @else
                         <div class="information-title">
                             <i class="fa fa-calendar-o"></i> 
                             {{ !empty($event->schedule_range) ? $event->schedule_range : '' }}
                         </div>
-                        <div class="information-event">
-                            @foreach($event->schedules as $sch)
-                                <p>{{ get_day_name($sch->date_at) }}, {{ $sch->start_time }}</p>
-                            @endforeach
-                            {!! $event->schedule_info !!}
-                        </div>
+                            <div class="information-event">
+                                @if(empty($event->hide_schedule))
+                                    @foreach($event->schedules as $sch)
+                                        <p>{{ get_day_name($sch->date_at) }}, {{ $sch->start_time }}</p>
+                                    @endforeach
+                                @endif
+                                {!! $event->schedule_info !!}
+                            </div>
                     @endif
                 @endif
             </div>

@@ -80,45 +80,53 @@
             <div class="col-md-4 date">
                     <div class="information-title">
                         <i class="fa fa-calendar-o"></i> 
-                        {{ $event->schedule_range }}
+                        @if(!empty($event->schedule_title))
+                            {{ $event->schedule_title }}
+                        @else
+                            {{ $event->schedule_range }}
+                        @endif
                     </div>
-                @if(!empty($event->schedules))
-                    @php 
-                        $count = count($event->schedules)
-                    @endphp
-                    @if($count > 1)
-                        <ul class="list-unstyled">
-                            @php 
-                                $i = 1; 
-                            @endphp
-                            @foreach($event->schedules as $sch)
-                                <li class="liParent {{ ($i == $count) ? 'parentLast' : '' }} li-mobile">
-                                    <table>
-                                        <tr>
-                                            <td>{{ get_day_date($sch->date_at) }}</td>
-                                            <td>{{ $sch->description }}</span>
-                                            </td>
-                                            <td>{{ $sch->start_time.'-'.$sch->end_time }}</td>
-                                        </tr>
-                                    </table>
-                                </li>
-                                @php 
-                                    $i++; 
-                                @endphp  
-                            @endforeach
-                        </ul>
-                        <div class="information-event">
-                            {!! $event->schedule_info !!}
-                        </div>
-                    @else
-                        <div class="information-event">
-                            @foreach($event->schedules as $sch)
-                                <p>{{ get_day_name($sch->date_at) }}, {{ $sch->start_time }}</p>
-                            @endforeach
-                            {!! $event->schedule_info !!}
-                        </div>
+                    @if(!empty($event->schedules))
+                        @php 
+                            $count = count($event->schedules)
+                        @endphp
+                        @if($count > 1)
+                            @if($event->hide_schedule == false)
+                                <ul class="list-unstyled">
+                                    @php 
+                                        $i = 1; 
+                                    @endphp
+                                    @foreach($event->schedules as $sch)
+                                        <li class="liParent {{ ($i == $count) ? 'parentLast' : '' }} li-mobile">
+                                            <table>
+                                                <tr>
+                                                    <td>{{ get_day_date($sch->date_at) }}</td>
+                                                    <td>{{ $sch->description }}</span>
+                                                    </td>
+                                                    <td>{{ $sch->start_time.'-'.$sch->end_time }}</td>
+                                                </tr>
+                                            </table>
+                                        </li>
+                                        @php 
+                                            $i++; 
+                                        @endphp  
+                                    @endforeach
+                                </ul>
+                            @endif
+                            <div class="information-event">
+                                {!! $event->schedule_info !!}
+                            </div>
+                        @else
+                            <div class="information-event">
+                                @if($event->hide_schedule == false)
+                                    @foreach($event->schedules as $sch)
+                                        <p>{{ get_day_name($sch->date_at) }}, {{ $sch->start_time }}</p>
+                                    @endforeach
+                                @endif
+                                {!! $event->schedule_info !!}
+                            </div>
+                        @endif
                     @endif
-                @endif
             </div>
             @if(!empty($event->venue))
                 <div class="col-md-4 place">

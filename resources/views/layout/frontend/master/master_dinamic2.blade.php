@@ -3,7 +3,9 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>@yield('title') {{ env('APP_WEB_ADMIN_NAME', 'AsiaBoxOffice') }}</title>
+        <title>@yield('title'){{ env('APP_WEB_ADMIN_NAME', 'AsiaBoxOffice') }}</title>
+        <meta name="description" content="@yield('description_meta')">
+        <meta name="keywords" content="@yield('keywords_meta')">
         <meta property="og:image" content="@yield('og_image')" />
         <meta property="og:image:type" content="image/jpeg">
         <meta property="og:image:width" content="1200">
@@ -25,14 +27,20 @@
         <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,800,700,900' rel='stylesheet' type='text/css'>
         <link rel="shortcut icon" href="{{ asset('assets/frontend/images/favico.ico') }}">
         {!! Html::script('assets/frontend/js/modernizr.js') !!}
-        <!-- Google Analytic Production AWS -->
+        <!-- Google Analytics Production -->
         {!! (isset($setting['google_analytics'])) ? $setting['google_analytics'] : '' !!}
-        <!-- End Google Analytic Production AWS -->
+        <!-- End Google Analytics Production -->
    </head>
    <body>
         <!-- Purpleclick body -->
         {!! (isset($setting['purpleclick_body'])) ? $setting['purpleclick_body'] : '' !!}
         <!-- End Purpleclick body -->
+        <!-- Google Analytics Tracking Code -->
+        @yield('ga_tracking_code')
+        <!-- End Google Analytics Tracking Code -->
+        <!-- Facebook Pixel Tracking Code -->
+        @yield('fp_tracking_code')
+        <!-- End Facebook Pixel Tracking Code -->
         @if(!Request::is('subscribe'))
             <div class="page-wrapper">
               <header>

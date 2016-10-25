@@ -294,10 +294,10 @@ if (! function_exists('full_text_date')) {
     function full_text_date($date)
     {
         if (is_null($date)) {
-            return date('d F Y');
+            return date('j F Y');
         }
 
-        return date('d F Y', strtotime($date));
+        return date('j F Y', strtotime($date));
     }
 }
 
@@ -312,10 +312,10 @@ if (! function_exists('short_text_date')) {
     function short_text_date($date)
     {
         if (is_null($date)) {
-            return date('d M Y');
+            return date('j M Y');
         }
 
-        return date('d M Y', strtotime($date));
+        return date('j M Y', strtotime($date));
     }
 }
 
@@ -330,10 +330,10 @@ if (! function_exists('short_text_date_time')) {
     function short_text_date_time($date)
     {
         if (is_null($date)) {
-            return date('d M Y h:i A');
+            return date('j M Y h:i A');
         }
 
-        return date('d M Y h:i A', strtotime($date));
+        return date('j M Y h:i A', strtotime($date));
     }
 }
 
@@ -348,10 +348,10 @@ if (! function_exists('get_date')) {
     function get_date($date)
     {
         if (is_null($date)) {
-            return date('d');
+            return date('j');
         }
 
-        return date('d', strtotime($date));
+        return date('j', strtotime($date));
     }
 }
 
@@ -402,10 +402,10 @@ if (! function_exists('get_date_full_month')) {
     function get_date_full_month($date)
     {
         if (is_null($date)) {
-            return date('d F');
+            return date('j F');
         }
 
-        return date('d F', strtotime($date));
+        return date('j F', strtotime($date));
     }
 }
 
@@ -481,10 +481,10 @@ if (! function_exists('get_day_date')) {
     function get_day_date($date)
     {
         if (is_null($date)) {
-            return date('d M, D');
+            return date('j M, D');
         }
 
-        return date('d M, D', strtotime($date));
+        return date('j M, D', strtotime($date));
     }
 }
 

@@ -268,6 +268,8 @@ class Event extends Model
         $this->fp_tracking_code = $param['fp_tracking_code'];
         $this->fp_conversion_code = $param['fp_conversion_code'];
         $this->price_title = $param['price_title'];
+        $this->schedule_title = $param['schedule_title'];
+        $this->hide_schedule = isset($param['hide_schedule']) ? true : false;
         $last = $this->getFirstSort();
         $this->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
         if(\Sentinel::getUser()->promoter_id > 0){
@@ -440,6 +442,8 @@ class Event extends Model
             $data->fp_tracking_code = $param['fp_tracking_code'];
             $data->fp_conversion_code = $param['fp_conversion_code'];
             $data->price_title = $param['price_title'];
+            $data->schedule_title = $param['schedule_title'];
+            $data->hide_schedule = isset($param['hide_schedule']) ? true : false;
 
             if($data->sort_order == 0){
                 $last = $this->getFirstSort();

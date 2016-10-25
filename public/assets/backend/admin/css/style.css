@@ -88,6 +88,23 @@
     width: 120px;
     height: 120px;
 }
+.icheckbox_flat-green {
+    background-position: 0 0;
+}
+.icheckbox_flat-green, .iradio_flat-green {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    background: url(green.png) no-repeat;
+    border: none;
+    cursor: pointer;
+}
+.padding-left-50{
+    padding-left: 50px !important;
+}
 
 /*.cke_chrome{
 	border-left: 1px solid #b6b6b6 !important;
