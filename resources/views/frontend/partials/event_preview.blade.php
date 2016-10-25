@@ -116,7 +116,11 @@
                     @else
                         <div class="information-title">
                             <i class="fa fa-calendar-o"></i> 
-                            {{ !empty($event->schedule_range) ? $event->schedule_range : '' }}
+                            @if(!empty($event->schedule_title))
+                                {{ $event->schedule_title }}
+                            @else
+                                {{ !empty($event->schedule_range) ? $event->schedule_range : '' }}
+                            @endif
                         </div>
                             <div class="information-event">
                                 @if(empty($event->hide_schedule))
