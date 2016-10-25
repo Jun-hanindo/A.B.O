@@ -948,6 +948,14 @@
             });
         }
 
+        function hideShowBuyMessage(val){
+            if(val == 1){
+                $('.buymessage-div').show()
+            }else{
+                $('.buymessage-div').hide()
+            }
+        }
+
         //function saveSortOrder(schedule_id, id_current, current_sort, update_sort, id_other){
         function saveSortOrder(schedule_id, id_current, order){
             $('.error-modal').html('');
@@ -1088,6 +1096,24 @@
                     }
                 });
             });
+
+            var buyCheck = $('.buy_button_disabled').prop( "checked" );
+            if(buyCheck){
+                var buyButton = 1;
+            }else{
+                var buyButton = 0;
+            }
+            hideShowBuyMessage(buyButton);
+
+            $('.buy_button_disabled').on('click', function(){
+                var check = $( this ).prop( "checked" );
+                if(check){
+                    var buyButton = 1;
+                }else{
+                    var buyButton = 0;
+                }
+                hideShowBuyMessage(buyButton);
+            })
 
             $(".categories").select2();
 

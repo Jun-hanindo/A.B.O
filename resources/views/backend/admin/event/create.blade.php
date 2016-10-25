@@ -239,8 +239,15 @@
                                 {!! Form::errorMsg('buylink') !!}
                                 <div class="checkbox">
                                     <label>
-                                        {!! Form::checkbox('buy_button_disabled', true, false) !!} {{ trans('general.buy_button_disabled') }}
+                                        {!! Form::checkbox('buy_button_disabled', true, false, ['id' => 'buy_button_disabled', 'class' => 'buy_button_disabled']) !!} {{ trans('general.buy_button_disabled') }}
                                     </label>
+                                </div>
+                            </div>
+                            <div class="buymessage-div" style="display:none">
+                                <div class="form-group{{ Form::hasError('buy_button_disabled_message') }} buy_button_disabled_message">
+                                    {!! Form::label('buy_button_disabled_message', trans('general.buy_button_disabled_message').' *') !!}
+                                    {!! Form::text('buy_button_disabled_message', old('buy_button_disabled_message'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.buy_button_disabled_message')]) !!}
+                                    {!! Form::errorMsg('buy_button_disabled_message') !!}
                                 </div>
                             </div>
                             <div class="form-group{{ Form::hasError('video_link') }} video_link">

@@ -19,7 +19,11 @@
             </div>
             <div class="moreDetail">
                 <a href="{{ (!empty($event->buylink)) ? $event->buylink : '' }}" target="_blank">
-                    <button class="btn btnDetail font-bold" {{ (!empty($event->buy_button_disabled)) ? 'disabled' : '' }}>{{ trans('frontend/general.buy_now') }}</button>
+                    @if(!empty($event->buy_button_disabled))
+                        <button class="btn btnDetail font-bold" disabled>{{ (!empty($event->buy_button_disabled_message)) ? $event->buy_button_disabled_message : '' }}</button>
+                    @else
+                        <button class="btn btnDetail font-bold">{{ trans('frontend/general.buy_now') }}</button>
+                    @endif
                 </a>
             </div>
         </div>
@@ -41,7 +45,13 @@
                     @if(!empty($event->admission))
                         <li><a href="#admissionBox" class="smoothScroll">{{ trans('frontend/general.admission_rules') }}</a></li>
                     @endif
-                    <li><a href="{{ (!empty($event->buylink)) ? $event->buylink : '' }}" target="_blank"><button class="btn btnBuy btnABO font-bold" {{ (!empty($event->buy_button_disabled)) ? 'disabled' : '' }}>{{ trans('frontend/general.buy_now') }}</button></a></li>
+                    <li><a href="{{ (!empty($event->buylink)) ? $event->buylink : '' }}" target="_blank">
+                        @if(!empty($event->buy_button_disabled))
+                            <button class="btn btnBuy btnABO font-bold" disabled>{{ (!empty($event->buy_button_disabled_message)) ? $event->buy_button_disabled_message : '' }}</button>
+                        @else
+                            <button class="btn btnBuy btnABO font-bold">{{ trans('frontend/general.buy_now') }}</button>
+                        @endif
+                    </a></li>
                     
                 </ul>
             </div>
@@ -64,7 +74,13 @@
                     @if(!empty($event->admission))
                         <li><a href="#admissionBox" class="smoothScroll">{{ trans('frontend/general.admission') }}</a></li>
                     @endif
-                    <li><a href="{{ (!empty($event->buylink)) ? $event->buylink : '' }}"><button class="btn btnBuy btnABO font-bold" {{ (!empty($event->buy_button_disabled)) ? 'disabled' : '' }}>{{ trans('frontend/general.buy') }}</button></a></li>
+                    <li><a href="{{ (!empty($event->buylink)) ? $event->buylink : '' }}">
+                        @if(!empty($event->buy_button_disabled))
+                            <button class="btn btnBuy btnABO font-bold" disabled>{{ (!empty($event->buy_button_disabled_message)) ? $event->buy_button_disabled_message : '' }}</button>
+                        @else
+                            <button class="btn btnBuy btnABO font-bold">{{ trans('frontend/general.buy') }}</button>
+                        @endif
+                    </a></li>
                     
                 </ul>
             </div>

@@ -71,6 +71,14 @@ class EventRequest extends Request
                 }
             }
 
+            if(isset($req['buy_button_disabled'])){
+                if($req['buy_button_disabled'] == 1){
+                    if (empty($event->seat_image)){
+                        $rules['buy_button_disabled_message'] = 'required';
+                    }
+                }
+            }
+
             return $rules;
 
         } else {
@@ -101,6 +109,14 @@ class EventRequest extends Request
 
             if ($req['event_type'] == 0){
                 $rules['seat_image'] = 'required';
+            }
+
+            if(isset($req['buy_button_disabled'])){
+                if($req['buy_button_disabled'] == 1){
+                    if (empty($event->seat_image)){
+                        $rules['buy_button_disabled_message'] = 'required';
+                    }
+                }
             }
 
             return $rules;

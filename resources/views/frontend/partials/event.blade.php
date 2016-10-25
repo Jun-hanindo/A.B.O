@@ -24,7 +24,11 @@
             </div>
             <div class="moreDetail">
                 <a href="{{ $event->buylink }}" target="_blank">
-                    <button class="btn btnDetail font-bold" {{ ($event->buy_button_disabled == true) ? 'disabled' : '' }}>{{ trans('frontend/general.buy_now') }}</button>
+                    @if($event->buy_button_disabled == true)
+                        <button class="btn btnDetail font-bold" disabled>{{ $event->buy_button_disabled_message }}</button>
+                    @else
+                        <button class="btn btnDetail font-bold">{{ trans('frontend/general.buy_now') }}</button>
+                    @endif
                 </a>
             </div>
         </div>
@@ -46,7 +50,13 @@
                     @if(!empty($event->admission))
                         <li><a href="#admissionBox" class="smoothScroll">{{ trans('frontend/general.admission_rules') }}</a></li>
                     @endif
-                    <li><a href="{{ $event->buylink }}" target="_blank"><button class="btn btnBuy btnABO font-bold" {{ ($event->buy_button_disabled == true) ? 'disabled' : '' }}>{{ trans('frontend/general.buy_now') }}</button></a></li>
+                    <li><a href="{{ $event->buylink }}" target="_blank">
+                        @if($event->buy_button_disabled == true)
+                            <button class="btn btnBuy btnABO font-bold" disabled>{{ $event->buy_button_disabled_message }}</button>
+                        @else
+                            <button class="btn btnBuy btnABO font-bold">{{ trans('frontend/general.buy_now') }}</button>
+                        @endif
+                    </a></li>
                     
                 </ul>
             </div>
@@ -69,7 +79,13 @@
                     @if(!empty($event->admission))
                         <li><a href="#admissionBox" class="smoothScroll">{{ trans('frontend/general.admission') }}</a></li>
                     @endif
-                    <li><a href="{{ $event->buylink }}"><button class="btn btnBuy btnABO font-bold" {{ ($event->buy_button_disabled == true) ? 'disabled' : '' }}>{{ trans('frontend/general.buy') }}</button></a></li>
+                    <li><a href="{{ $event->buylink }}">
+                        @if($event->buy_button_disabled == true)
+                            <button class="btn btnBuy btnABO font-bold" disabled>{{ $event->buy_button_disabled_message }}</button>
+                        @else
+                            <button class="btn btnBuy btnABO font-bold">{{ trans('frontend/general.buy') }}</button>
+                        @endif
+                    </a></li>
                     
                 </ul>
             </div>

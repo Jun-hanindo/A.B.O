@@ -271,5 +271,6 @@ return [
     'schedule_title' => 'Schedule Title',
     'hide_schedule_price_details' => 'Hide Schedule and Price Detail',
     'buy_button_disabled' => 'Buy Button Disabled',
+    'buy_button_disabled_message' => 'Buy Button Disabled Message',
 
 ];
