@@ -1062,10 +1062,24 @@ class Event extends Model
                     $event->city = '';
                 }
                 
-                $event->schedule = $event->EventSchedule()->orderBy('date_at', 'asc')->first();
-                    if(!empty($event->schedule)){
-                        $event->date_at = full_text_date($event->schedule->date_at);
+                $event->schedules = $event->EventSchedule()->orderBy('date_at', 'asc')->get();
+                $count = count($event->schedules);
+                if(!empty($event->schedules)){
+                    $i = 1;
+                    foreach ($event->schedules as $sc => $sch) {
+                        if($count == 1){
+                            $event->schedule_range = full_text_date($sch->date_at);
+                        }else{
+                            if($i == 1){
+                                $event->start_range = $sch->date_at;
+                            }elseif ($i == $count) {
+                                $event->end_range = $sch->date_at;
+                            }
+                            $event->schedule_range = date_from_to($event->start_range, $event->end_range);
+                        }
+                        $i++;
                     }
+                }
             }
             return $events;
         }else{
