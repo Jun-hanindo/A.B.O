@@ -167,10 +167,10 @@ class Promotion extends Model
         if (!empty($data)) {
             $data->title = $param['title_promo'];
             $data->description = $param['description_promo'];
-            $data->discount = (isset($param['discount_type'])) ? $param['discount'] : 0;
-            $data->discount_nominal = (!isset($param['discount_type'])) ? $param['discount_nominal'] : 0;
-            $data->start_date = date('Y-m-d',strtotime($param['start_date']));
-            $data->end_date = date('Y-m-d',strtotime($param['end_date']));
+            $data->discount = (isset($param['discount_type'])) ? (!empty($param['discount'])) ? $param['discount'] : 0 : 0;
+            $data->discount_nominal = (!isset($param['discount_type'])) ? (!empty($param['discount_nominal'])) ? $param['discount_nominal'] : 0 : 0;
+            $data->start_date = (!empty($param['start_date'])) ? date('Y-m-d',strtotime($param['start_date'])) : null;
+            $data->end_date = (!empty($param['end_date'])) ? date('Y-m-d',strtotime($param['end_date'])) : null;
             $data->code = $param['promotion_code'];
             $data->category = $param['category'];
             $data->currency_id = (!isset($param['discount_type'])) ? $param['currency_id'] : 0;
