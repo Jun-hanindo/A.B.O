@@ -168,7 +168,7 @@
                                 <img src="" name="preview" id="preview_image1" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image2') }} featured_image2">
-                                {!! Form::label('featured_image2', trans('general.featured_image2').'(1125px x 762px) *') !!}
+                                {!! Form::label('featured_image2', trans('general.featured_image2').'(1200px x 800px) *') !!}
                                 <br>(Max. size 1 mb)
                                 <input id="featured_image2" name="featured_image2" class="form-control image" data-name="image2" type="file" value="">
                                 {!! Form::errorMsg('featured_image2') !!}
