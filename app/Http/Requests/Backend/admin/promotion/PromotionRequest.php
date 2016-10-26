@@ -33,15 +33,19 @@ class PromotionRequest extends Request
                 'title_promo'       => 'required',
                 'description_promo' => 'required',
                 'featured_image'    => 'mimes:jpg,jpeg,png,gif',
-                'start_date'        => 'required|date|after:'.$daysAgo,
-                'end_date'          => 'required|date|after:start_date|after:'.$today,
+                //'start_date'        => 'required|date|after:'.$daysAgo,
+                //'end_date'          => 'required|date|after:start_date|after:'.$today,
+                'start_date'        => 'date|after:'.$daysAgo,
+                'end_date'          => 'date|after:start_date|after:'.$today,
                 'category'          => 'required'
             ];
 
             if (isset($req['discount_type'])){
-                $rules['discount'] = 'required|numeric|max:99|min:1';
+                //$rules['discount'] = 'required|numeric|max:99|min:1';
+                $rules['discount'] = 'numeric|max:99|min:1';
             }else{
-                $rules['discount_nominal'] = 'required|numeric|min:1';
+                //$rules['discount_nominal'] = 'required|numeric|min:1';
+                $rules['discount_nominal'] = 'numeric|min:1';
             }
 
 
@@ -52,15 +56,19 @@ class PromotionRequest extends Request
                 'title_promo'       => 'required',
                 'description_promo' => 'required',
                 'featured_image'    => 'required|mimes:jpg,jpeg,png,gif',
-                'start_date'        => 'required|date|after:'.$daysAgo,
-                'end_date'          => 'required|date|after:start_date|after:'.$today,
+                //'start_date'        => 'required|date|after:'.$daysAgo,
+                //'end_date'          => 'required|date|after:start_date|after:'.$today,
+                'start_date'        => 'date|after:'.$daysAgo,
+                'end_date'          => 'date|after:start_date|after:'.$today,
                 'category'          => 'required'
             ];
 
             if (isset($req['discount_type'])){
-                $rules['discount'] = 'required|numeric|max:99|min:1';
+                //$rules['discount'] = 'required|numeric|max:99|min:1';
+                $rules['discount'] = 'numeric|max:99|min:1';
             }else{
-                $rules['discount_nominal'] = 'required|numeric|min:1';
+                //$rules['discount_nominal'] = 'required|numeric|min:1';
+                $rules['discount_nominal'] = 'numeric|min:1';
             }
 
             return $rules;

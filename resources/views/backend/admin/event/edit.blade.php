@@ -404,7 +404,7 @@
 
 
                             <div class="form-group{{ Form::hasError('discount') }} discount {{ Form::hasError('discount_nominal') }} discount_nominal full-width">
-                                {!! Form::label('discount', trans('general.discount').' *', array('class' => 'full-width ')) !!}
+                                {!! Form::label('discount', trans('general.discount'), array('class' => 'full-width ')) !!}
                                 {!! Form::checkbox('discount_type', '1', null, ['class' => 'form-control pull-left discount_type-check', 'data-animate' => 'false', 'data-on-text' => 'Percent',  'data-off-color' => 'success', 'data-off-text' => 'Nominal']) !!}
                                 <div id="discount-percent" class="pull-left col-sm-3">
                                     <div class="input-group ">
@@ -423,7 +423,7 @@
                             </div>
 
                             <div class="form-group{{ Form::hasError('discount_period') }} discount_period full-width">
-                                {!! Form::label('discount_period', trans('general.discount_period').' *', array('class' => 'full-width ')) !!}
+                                {!! Form::label('discount_period', trans('general.discount_period'), array('class' => 'full-width ')) !!}
                                 <div class="col-sm-3 row form-group{{ Form::hasError('start_date') }} start_date">
                                     {!! Form::text('start_date', old('start_date'), ['class' => 'form-control  datepicker', 'id' => 'start_date', 'maxlength'=>'255', 'placeholder' => trans('general.start_date')]) !!}
                                     {!! Form::errorMsg('start_date') !!}

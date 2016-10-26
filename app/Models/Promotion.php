@@ -86,10 +86,10 @@ class Promotion extends Model
         $this->user_id = $user_id;
         $this->title = $param['title_promo'];
         $this->description = $param['description_promo'];
-        $this->discount = (isset($param['discount_type'])) ? $param['discount'] : 0;
-        $this->discount_nominal = (!isset($param['discount_type'])) ? $param['discount_nominal'] : 0;
-        $this->start_date = date('Y-m-d',strtotime($param['start_date']));
-        $this->end_date = date('Y-m-d',strtotime($param['end_date']));
+        $this->discount = (isset($param['discount_type'])) ? (!empty($param['discount'])) ? $param['discount'] : 0 : 0;
+        $this->discount_nominal = (!isset($param['discount_type'])) ? (!empty($param['discount_nominal'])) ? $param['discount_nominal'] : 0 : 0;
+        $this->start_date = (!empty($param['start_date'])) ? date('Y-m-d',strtotime($param['start_date'])) : null;
+        $this->end_date = (!empty($param['end_date'])) ? date('Y-m-d',strtotime($param['end_date'])) : null;
         $this->code = $param['promotion_code'];
         $this->category = $param['category'];
         $this->currency_id = (!isset($param['discount_type'])) ? $param['currency_id'] : 0;

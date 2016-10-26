@@ -292,26 +292,31 @@
                                                                 <img src="{{ file_url('promotions/'.$promotion->featured_image, env('FILESYSTEM_DEFAULT')) }}">
                                                                 <h3 class="font-bold">{{ $promotion->title }}</h3>
                                                                 {!! $promotion->description !!}
-                                                                <p>{{ trans('general.discount') }}: 
-                                                                    @if($promotion->discount > 0)
-                                                                        {{ number_format_drop_zero_decimals($promotion->discount).'%' }}
-                                                                    @else
-                                                                        @if($promotion->currency_id == 0)
-                                                                            @php
-                                                                                $symbol_left = '';
-                                                                                $symbol_right = '';
-                                                                            @endphp
+                                                                @if($promotion->discount > 0 || $promotion->discount_nominal > 0)
+                                                                    <p>{{ trans('general.discount') }}: 
+                                                                        @if($promotion->discount > 0)
+                                                                            {{ number_format_drop_zero_decimals($promotion->discount).'%' }}
                                                                         @else
-                                                                            @php
-                                                                                $symbol_left = $promotion->currency->symbol_left;
-                                                                                $symbol_right = $promotion->currency->symbol_right;
-                                                                            @endphp
+                                                                            @if($promotion->currency_id == 0)
+                                                                                @php
+                                                                                    $symbol_left = '';
+                                                                                    $symbol_right = '';
+                                                                                @endphp
+                                                                            @else
+                                                                                @php
+                                                                                    $code = $promotion->currency->code;
+                                                                                @endphp
+                                                                            @endif
+                                                                            {{ $code.' '.number_format_drop_zero_decimals($promotion->discount_nominal) }}
                                                                         @endif
-                                                                        {{ $symbol_left.number_format_drop_zero_decimals($promotion->discount_nominal).$symbol_right }}
-                                                                    @endif
-                                                                </p>
-                                                                <p>{{ trans('frontend/general.start_date') }}: {{ full_text_date($promotion->start_date) }}</p>
-                                                                <p>{{ trans('frontend/general.end_date') }}: {{ full_text_date($promotion->end_date) }}</p>
+                                                                    </p>
+                                                                @endif
+                                                                @if(!empty($promotion->start_date))
+                                                                    <p>{{ trans('frontend/general.start_date') }}: {{ full_text_date($promotion->start_date) }}</p>
+                                                                @endif
+                                                                @if(!empty($promotion->end_date))
+                                                                    <p>{{ trans('frontend/general.end_date') }}: {{ full_text_date($promotion->end_date) }}</p>
+                                                                @endif
                                                             </section>
                                                         @endforeach
                                                     </div>
