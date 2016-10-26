@@ -84,7 +84,15 @@ class PromotionsController extends BaseController
                     </i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDeletePromotion" title="Delete" data-id="'.$promotion->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
                 })
                 ->editColumn('date', function ($promotion){
-                    $time_period = date('d F Y', strtotime($promotion->start_date)).' - '.date('d F Y', strtotime($promotion->end_date));
+                    if(!empty($promotion->start_date) && !empty($promotion->end_date)){
+                        $time_period = date('j F Y', strtotime($promotion->start_date)).' - '.date('j F Y', strtotime($promotion->end_date));
+                    }elseif(empty($promotion->start_date) && !empty($promotion->end_date)){
+                        $time_period = 'until '.date('j F Y', strtotime($promotion->end_date));
+                    }elseif(!empty($promotion->start_date) && empty($promotion->end_date)){
+                        $time_period = 'from '.date('j F Y', strtotime($promotion->start_date));
+                    }else{
+                        $time_period = '';
+                    }
                     return $time_period;
                 })
                 ->make(true);

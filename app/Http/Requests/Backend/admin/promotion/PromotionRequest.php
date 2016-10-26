@@ -32,12 +32,14 @@ class PromotionRequest extends Request
             $rules = [
                 'title_promo'       => 'required',
                 'description_promo' => 'required',
-                'featured_image'    => 'mimes:jpg,jpeg,png,gif',
+                //'featured_image'    => 'mimes:jpg,jpeg,png,gif',
+                'featured_image'    => 'image|mimes:jpg,jpeg,png,gif|dimensions:max_width=100,max_height=100|max:1024',
                 //'start_date'        => 'required|date|after:'.$daysAgo,
                 //'end_date'          => 'required|date|after:start_date|after:'.$today,
                 'start_date'        => 'date|after:'.$daysAgo,
                 'end_date'          => 'date|after:start_date|after:'.$today,
-                'category'          => 'required'
+                'category'          => 'required',
+                'featured_image_link'   => 'url'
             ];
 
             if (isset($req['discount_type'])){
@@ -55,12 +57,14 @@ class PromotionRequest extends Request
             $rules = [
                 'title_promo'       => 'required',
                 'description_promo' => 'required',
-                'featured_image'    => 'required|mimes:jpg,jpeg,png,gif',
+                //'featured_image'    => 'required|mimes:jpg,jpeg,png,gif',
+                'featured_image'    => 'required|image|mimes:jpg,jpeg,png,gif|dimensions:max_width=100,max_height=100|max:1024',
                 //'start_date'        => 'required|date|after:'.$daysAgo,
                 //'end_date'          => 'required|date|after:start_date|after:'.$today,
                 'start_date'        => 'date|after:'.$daysAgo,
                 'end_date'          => 'date|after:start_date|after:'.$today,
-                'category'          => 'required'
+                'category'          => 'required',
+                'featured_image_link'   => 'url'
             ];
 
             if (isset($req['discount_type'])){

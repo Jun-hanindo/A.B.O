@@ -48,7 +48,7 @@
 
 
                             <div class="form-group{{ Form::hasError('discount') }} discount {{ Form::hasError('discount_nominal') }} discount_nominal full-width">
-                                {!! Form::label('discount', trans('general.discount').' *', array('class' => 'full-width ')) !!}
+                                {!! Form::label('discount', trans('general.discount'), array('class' => 'full-width ')) !!}
                                 {!! Form::checkbox('discount_type', '1', true, ['class' => 'form-control pull-left discount_type-check', 'data-animate' => 'false', 'data-on-text' => 'Percent',  'data-off-color' => 'success', 'data-off-text' => 'Nominal']) !!}
                                 <div id="discount-percent" class="pull-left col-sm-3">
                                     <div class="input-group ">
@@ -68,7 +68,7 @@
 
 
                             <div class="form-group{{ Form::hasError('discount_period') }} discount_period full-width">
-                                {!! Form::label('discount_period', trans('general.discount_period').' *', array('class' => 'full-width ')) !!}
+                                {!! Form::label('discount_period', trans('general.discount_period'), array('class' => 'full-width ')) !!}
                                 <div class="col-sm-3 row form-group{{ Form::hasError('start_date') }}">
                                     {!! Form::text('start_date', old('start_date'), ['class' => 'form-control  datepicker', 'id' => 'start_date', 'maxlength'=>'255', 'placeholder' => trans('general.start_date')]) !!}
                                     {!! Form::errorMsg('start_date') !!}
@@ -89,12 +89,18 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group{{ Form::hasError('featured_image') }} featured_image">
-                                {!! Form::label('featured_image', trans('general.featured_image').' *') !!}
+                                {!! Form::label('featured_image', trans('general.featured_image').'(Max. 100px x 100px) *') !!}
+                                (Max. size 1 mb)
                                 <input id="featured_image" name="featured_image" class="form-control image" data-name="image" type="file" value="">
                                 {!! Form::errorMsg('featured_image') !!}
                             </div>
                             <div class="form-group privew" id="div-preview_image" data-name="image" style="display:none">
                                 <img src="" name="preview" id="preview_image" height="50%" width="50%">
+                            </div>
+                            <div class="form-group{{ Form::hasError('featured_image_link') }} featured_image_link">
+                                {!! Form::label('featured_image_link', trans('general.featured_image_link')) !!}
+                                {!! Form::text('featured_image_link', old('featured_image_link'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.featured_image_link')]) !!}
+                                {!! Form::errorMsg('featured_image_link') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('category') }} category">
                                 {!! Form::label('category', trans('general.category')) !!}

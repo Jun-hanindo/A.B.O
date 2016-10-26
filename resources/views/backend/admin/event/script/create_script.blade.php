@@ -841,14 +841,23 @@
                     $("#promotion_code").val(data.code);   
                     $("#category").val(data.category); 
                     $('#div-preview_image').show();
-                    $("#discount").val(data.discount); 
                     if(!data.currency_id){
                         var def = $("#form-event-promotion #currency_id").attr('data-default');
                         $("#form-event-promotion #currency_id").val(def);
                     }else{
                         $("#form-event-promotion #currency_id").val(data.currency_id);
                     }
-                    $("#discount_nominal").val(data.discount_nominal);
+                    if(data.discount > 0){
+                        $("#discount").val(data.discount);
+                    }else{
+                        $("#discount").val('');
+                    }
+
+                    if(data.discount > 0){
+                        $("#discount_nominal").val(data.discount_nominal);
+                    }else{
+                        $("#discount_nominal").val('');
+                    }  
                     if(data.discount > 0){
                         $(".discount_type-check").bootstrapSwitch('state', true); 
                         $('#discount-percent').show();
@@ -860,6 +869,7 @@
                     }
                     $('#preview_image').attr('src', data.src_featured_image);  
                     $("#description_promo").val(data.description);
+                    $("#featured_image_link").val(data.featured_image_link);
                 },
                 error: function(response){
                     loadDataSchedule(event_id);
@@ -879,6 +889,7 @@
             $("#discount_nominal").val('');
             $(".discount_type-check").bootstrapSwitch('state', true); 
             $('#description_promo').val('');
+            $('#featured_image_link').val('');
             var currency = $("#form-event-promotion #currency_id").attr('data-default');
             $("#form-event-promotion #currency_id").val(currency);
             $('#start_date').data('datepicker').setDate(null);

@@ -93,6 +93,7 @@ class Promotion extends Model
         $this->code = $param['promotion_code'];
         $this->category = $param['category'];
         $this->currency_id = (!isset($param['discount_type'])) ? $param['currency_id'] : 0;
+        $this->featured_image_link = $param['featured_image_link'];
 
         // $pathDest = public_path().'/uploads/promotions';
         // if(!File::exists($pathDest)) {
@@ -109,9 +110,9 @@ class Promotion extends Model
     	if($this->save()){
             if (isset($featured_image)) {
                 $img = Image::make($featured_image);
-                $img->resize(50, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
+                // $img->resize(50, null, function ($constraint) {
+                //     $constraint->aspectRatio();
+                // });
                 $img_tmp = $img->stream();
                 Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
                     'promotions/'.$filename, $img_tmp->__toString(), 'public'
@@ -174,6 +175,7 @@ class Promotion extends Model
             $data->code = $param['promotion_code'];
             $data->category = $param['category'];
             $data->currency_id = (!isset($param['discount_type'])) ? $param['currency_id'] : 0;
+            $data->featured_image_link = $param['featured_image_link'];
 
             // $pathDest = public_path().'/uploads/promotions';
             // if(!File::exists($pathDest)) {
@@ -196,9 +198,9 @@ class Promotion extends Model
             if($data->save()) {
                 if(isset($param['featured_image'])){
                     $img = Image::make($featured_image);
-                    $img->resize(50, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    });
+                    // $img->resize(50, null, function ($constraint) {
+                    //     $constraint->aspectRatio();
+                    // });
                     //$img->save($pathDest.'/'.$filename);
                     $img_tmp = $img->stream();
                     
