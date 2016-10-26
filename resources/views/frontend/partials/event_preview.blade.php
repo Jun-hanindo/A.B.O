@@ -290,7 +290,7 @@
                                                         @foreach($event->promotions as $key => $promotion) 
                                                             <section id="promotion" class="sectionEvent">
                                                                 <a {!! (!empty($promotion->featured_image_link)) ? 'href="'.$promotion->featured_image_link.'" target="_blank"' : '' !!}>
-                                                                    <img src="{{ file_url('promotions/'.$promotion->featured_image, env('FILESYSTEM_DEFAULT')) }}">
+                                                                    <img src="{{ file_url('promotions/'.$promotion->featured_image, env('FILESYSTEM_DEFAULT')) }}" onload="this.width/=2;this.onload=null;">
                                                                 </a>
                                                                 <h3 class="font-bold">{{ $promotion->title }}</h3>
                                                                 {!! $promotion->description !!}
