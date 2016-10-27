@@ -9,6 +9,7 @@ use DB;
 use File;
 use Image;
 use App\Models\Event;
+use App\Models\EventPromotion;
 
 class Promotion extends Model
 {
@@ -56,13 +57,15 @@ class Promotion extends Model
     function datatablesByEvent($event_id)
     {
 
-        $events = Promotion::select('promotions.id as id','promotions.title as title', 'promotions.start_date as start_date',
-            'promotions.end_date as end_date', 'event_promotions.event_id as event_id')
+        $events = Promotion::select('promotions.id as id', 'event_promotions.id as event_promotion_id','promotions.title as title', 'promotions.start_date as start_date',
+            'promotions.end_date as end_date', 'event_promotions.event_id as event_id', 'event_promotions.sort_order as sort_order')
             ->join('event_promotions', 'event_promotions.promotion_id', '=', 'promotions.id')
             ->where('promotions.avaibility', true)
             /*->where('status', true)*/
             ->where('event_id', '=', $event_id)
-            //->orderBy('promotions.created_at', 'desc')
+            ->orderBy('event_promotions.sort_order', 'asc')
+            ->orderBy('event_promotions.created_at', 'asc')
+            ->orderBy('event_promotions.id', 'asc')
             ->get();
 
         return $events;
@@ -127,7 +130,10 @@ class Promotion extends Model
                 }else{
                     $promoter_id = 0;
                 }
-                $this->events()->attach($param['event_id'], ['promoter_id' => $promoter_id]);
+                $modelEventPromotion = new EventPromotion();
+                $last = $modelEventPromotion->getLastSort($param['event_id']);
+                $sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
+                $this->events()->attach($param['event_id'], ['promoter_id' => $promoter_id, 'sort_order' => $sort_order]);
             }
 
             return $this;

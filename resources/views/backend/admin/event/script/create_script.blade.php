@@ -141,7 +141,8 @@
                 columns: [
                     {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
                     {data: 'title', name: 'title'},
-                    {data: 'date', name: 'date'}
+                    {data: 'date', name: 'date'},
+                    {data: 'sort_order', name: 'sort_order', class: 'center-align', searchable: false, orderable: false}
                 ],
             });
             //return table;
@@ -841,6 +842,7 @@
                     $("#promotion_code").val(data.code);   
                     $("#category").val(data.category); 
                     $('#div-preview_image').show();
+                    //$('#featured_image').val(data.featured_image);
                     if(!data.currency_id){
                         var def = $("#form-event-promotion #currency_id").attr('data-default');
                         $("#form-event-promotion #currency_id").val(def);
@@ -981,6 +983,23 @@
                 },
                 error: function(response){
                     $('.error-modal').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                }
+            });
+        }
+
+        //function saveSortOrder(schedule_id, id_current, current_sort, update_sort, id_other){
+        function saveSortOrderPromotion(event_id, id_current, order){
+            $('.error').html('');
+            $.ajax({
+                url: "{{ route('admin-update-promotion-sort-order') }}",
+                type: "POST",
+                dataType: 'json',
+                data: "id_current=" + id_current + "&event_id=" + event_id + "&order=" + order,
+                success: function (data) {
+                    $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                },
+                error: function(response){
+                    $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                 }
             });
         }
@@ -1304,6 +1323,7 @@
                 saveTrailModal('Promotion Form');
                 var id = $(this).data('id');
                 getDataEventPromotion(id);
+                clearInputPromotion();
                 $('#modal-form-promotion').modal('show');
                 $('#title-create-promotion').hide();
                 $('#title-update-promotion').show();
@@ -1401,6 +1421,24 @@
                 var order = 'desc';
                 saveSortOrder(schedule_id, id_current,order);
                 loadDataScheduleCategory(schedule_id);
+
+            });
+
+            $(document).on('click', '.sort_asc_promo',function(){
+                var event_id = $(this).attr('data-event');
+                var id_current = $(this).attr('data-id');
+                var order = 'asc';
+                saveSortOrderPromotion(event_id, id_current, order);
+                loadDataPromotion(event_id);
+
+            });
+
+            $(document).on('click', '.sort_desc_promo',function(){
+                var event_id = $(this).attr('data-event');
+                var id_current = $(this).attr('data-id');
+                var order = 'desc';
+                saveSortOrderPromotion(event_id, id_current,order);
+                loadDataPromotion(event_id);
 
             });
 

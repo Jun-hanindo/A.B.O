@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Promotion;
 use App\Models\LogActivity;
 use App\Models\Trail;
+use App\Models\EventPromotion;
 use App\Models\Currency;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\promotion\PromotionRequest;
@@ -79,6 +80,29 @@ class PromotionsController extends BaseController
         $param = $req->all();
         $event_id = $param['event_id'];
          return datatables($this->model->datatablesByEvent($event_id))
+                ->addColumn('sort_order', function ($promotion) {
+                    $modelEventPromotion = new EventPromotion;
+                    $first = $modelEventPromotion->getFirstSort($promotion->event_id)->sort_order;
+                    $last = $modelEventPromotion->getLastSort($promotion->event_id)->sort_order;
+                    $style = 'style="display:inline-block"';
+                    $style2 = 'style="display:none"';
+                    if($promotion->sort_order == 0){
+                        $sort = '<a href="javascript:void(0)" class="sort_asc_promo btn btn-xs btn-default" '.$style2.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                                <a href="javascript:void(0)" class="sort_desc_promo btn btn-xs btn-default" '.$style.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+
+                    }elseif($promotion->sort_order == $first){
+                        $sort = '<a href="javascript:void(0)" class="sort_asc_promo btn btn-xs btn-default" '.$style2.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                                <a href="javascript:void(0)" class="sort_desc_promo btn btn-xs btn-default" '.$style.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                    }elseif($promotion->sort_order == $last){
+                        $sort = '<a href="javascript:void(0)" class="sort_asc_promo btn btn-xs btn-default" '.$style.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                                <a href="javascript:void(0)" class="sort_desc_promo btn btn-xs btn-default" '.$style2.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                    }else{
+                        $sort = '<a href="javascript:void(0)" class="sort_asc_promo btn btn-xs btn-default" '.$style.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                                <a href="javascript:void(0)" class="sort_desc_promo btn btn-xs btn-default" '.$style.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                    }
+
+                    return $sort;
+                })
                 ->addColumn('action', function ($promotion) {
                     return '<a href="javascript:void(0)" data-id="'.$promotion->id.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw">
                     </i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDeletePromotion" title="Delete" data-id="'.$promotion->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';

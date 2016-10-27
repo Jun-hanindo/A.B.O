@@ -116,6 +116,7 @@
                                             <th class="center-align"></th>
                                             <th>{{ trans('general.title') }}</th>
                                             <th>{{ trans('general.date') }}</th>
+                                            <th width="15%">{{ trans('general.sort_order') }}</th>
                                         </tr>
                                     </thead>
                                 </table>

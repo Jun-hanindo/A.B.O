@@ -867,7 +867,16 @@ class Event extends Model
                     ->orderBy('additional_info', 'asc')->get();
             } 
             $event->venue = $event->Venue()->where('avaibility', true)->first();
-            $event->promotions = $event->promotions()->where('avaibility', true)->orderBy('start_date')->get();
+            $event->promotions = $event->promotions()->where('avaibility', true)
+                ->orderBy('sort_order', 'asc')
+                ->orderBy('event_promotions.created_at', 'asc')->get();
+            // $event->promotions = EventPromotion::select('promotions.*', 'event_promotions.sort_order as sort_order')
+            //     ->join('promotions', 'promotions.id', '=', 'event_promotions.promotion_id')
+            //     ->where('event_id', $event->id)
+            //     ->orderBy('sort_order', 'asc')
+            //     ->orderBy('event_promotions.created_at', 'asc')
+            //     ->get();
+            // dd($event->promotions);
             return $event;
         
         } else {

@@ -115,6 +115,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::post('{id}/delete-seat-image', array('as' => 'admin-delete-seat-image', 'uses' => 'EventsController@deleteSeatImage'));
         Route::get('{id}/duplicate', array('as' => 'admin-duplicate-event', 'uses' => 'EventsController@duplicate'));
         Route::post('update-sort', array('as' => 'admin-event-sort-order', 'uses' => 'EventsController@updateSortOrder'));
+        Route::post('promotion-update-sort', array('as' => 'admin-update-promotion-sort-order', 'uses' => 'EventPromotionsController@updateSortOrder'));
         //Route::get('preview', array('as' => 'admin-preview-event', 'uses' => 'EventsController@preview'));
 
         
@@ -273,6 +274,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     Route::get('region/combo', array('as' => 'list-combo-region', 'uses' => 'RegionsController@comboRegion'));
 });
 
-// Route::group(['prefix' => 'tixtrack','namespace' => 'Backend\Admin\TixTrack'], function () {
-//     Route::get('test-get-file', array('as' => 'test-get-file', 'uses' => 'DownloadController@downloadTransaction'));
-// });
+Route::group(['prefix' => 'tixtrack','namespace' => 'Backend\Admin\TixTrack'], function () {
+    Route::get('test-get-file', array('as' => 'test-get-file', 'uses' => 'DownloadController@downloadMember'));
+});

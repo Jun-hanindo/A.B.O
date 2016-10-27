@@ -234,7 +234,9 @@ class EventsController extends Controller
                         ->orderBy('price', 'desc')
                         ->orderBy('additional_info', 'asc')->get();
                 } 
-                $event->promotions = $ev->promotions()->where('avaibility', true)->orderBy('start_date')->get();
+                $event->promotions = $ev->promotions()->where('avaibility', true)
+                ->orderBy('sort_order', 'asc')
+                ->orderBy('event_promotions.created_at', 'asc')->get();
                 //dd($event['promotions']);
             }
 
