@@ -412,252 +412,7 @@ class Event extends Model
         }
     }
 
-
-    function updateEvent($param, $id)
-    {
-        $data = $this->find($id);
-        if (!empty($data)) {
-            if($param['event_type'] == 1){
-                $param['event_type'] = true;
-            }else{
-                $param['event_type'] = false;
-            }
-            $promoter_id = \Sentinel::getUser()->promoter_id;
-            $data->user_id = \Sentinel::getUser()->id;
-            //$data->promoter_id = ($promoter_id > 0) ? $promoter_id : 0;
-           	$data->title = $param['title'];
-            $data->slug = $param['slug'];
-	    	$data->description = $param['description'];
-	        $data->admission = $param['admission'];
-            $data->schedule_info = $param['schedule_info'];
-            $data->price_info = $param['price_info'];
-	        $data->buylink = $param['buylink'];
-	        $data->event_type = $param['event_type'];
-	        $data->venue_id = $param['venue_id'];
-            $data->background_color = $param['background_color'];
-            $data->video_link = $param['video_link'];
-            $data->title_meta_tag = $param['title_meta_tag'];
-            $data->description_meta_tag = $param['description_meta_tag'];
-            $data->keywords_meta_tag = $param['keywords_meta_tag'];
-            $data->ga_tracking_code = $param['ga_tracking_code'];
-            $data->ga_conversion_code = $param['ga_conversion_code'];
-            $data->fp_tracking_code = $param['fp_tracking_code'];
-            $data->fp_conversion_code = $param['fp_conversion_code'];
-            $data->price_title = $param['price_title'];
-            $data->schedule_title = $param['schedule_title'];
-            $data->hide_schedule = isset($param['hide_schedule']) ? true : false;
-            $data->buy_button_disabled = isset($param['buy_button_disabled']) ? true : false;
-            $data->buy_button_disabled_message = $param['buy_button_disabled_message'];
-
-            if($data->sort_order == 0){
-                $last = $this->getFirstSort();
-                $data->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
-            }
-
-            if(\Sentinel::getUser()->promoter_id > 0){
-                if($data->avaibility){
-                    $data->avaibility = true;
-                }else{
-                    $data->avaibility = false;
-                }
-            }else{
-                $data->avaibility = true;
-            }
-
-            // $pathDest = public_path().'/uploads/events';
-            // if(!File::exists($pathDest)) {
-            //     File::makeDirectory($pathDest, $mode=0777,true,true);
-            // }
-            
-            if(isset($param['featured_image1'])){
-                $oldImage = $data->featured_image1;
-                if(!empty($oldImage)){
-                    file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
-                }
-                
-                $featured_image1 = $param['featured_image1'];
-                $extension1 = $featured_image1->getClientOriginalExtension();
-
-                $filename1 = "image1".time().'.'.$extension1;
-                $data->featured_image1 = $filename1;
-            }
-
-            if(isset($param['featured_image2'])){
-                $oldImage = $data->featured_image2;
-                if(!empty($oldImage)){
-                    file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
-                }
-                
-                $featured_image2 = $param['featured_image2'];
-                $extension2 = $featured_image2->getClientOriginalExtension();
-
-                $filename2 = "image2".time().'.'.$extension2;
-                $data->featured_image2 = $filename2;
-            }
-
-            if(isset($param['featured_image3'])){
-                $oldImage = $data->featured_image3;
-                if(!empty($oldImage)){
-                    file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
-                }
-                
-                $featured_image3 = $param['featured_image3'];
-                $extension3 = $featured_image3->getClientOriginalExtension();
-
-                $filename3 = "image3".time().'.'.$extension3;
-                $data->featured_image3 = $filename3;
-            }
-
-            if(isset($param['seat_image'])){
-                $oldImage = $data->seat_image;
-                if(!empty($data->seat_image)){
-                    file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
-                }
-                
-                $seat_image = $param['seat_image'];
-                $extensionseat = $seat_image->getClientOriginalExtension();
-
-                $filenameseat = "imageseat".time().'.'.$extensionseat;
-                $data->seat_image = $filenameseat;
-            }
-
-            if(isset($param['seat_image2'])){
-                $oldImage = $data->seat_image2;
-                if(!empty($data->seat_image2)){
-                    file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
-                }
-                
-                $seat_image2 = $param['seat_image2'];
-                $extensionseat2 = $seat_image2->getClientOriginalExtension();
-
-                $filenameseat2 = "imageseat2".time().'.'.$extensionseat2;
-                $data->seat_image2 = $filenameseat2;
-            }
-
-            if(isset($param['seat_image3'])){
-                $oldImage = $data->seat_image3;
-                if(!empty($data->seat_image3)){
-                    file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
-                }
-                
-                $seat_image3 = $param['seat_image3'];
-                $extensionseat3 = $seat_image3->getClientOriginalExtension();
-
-                $filenameseat3 = "imageseat3".time().'.'.$extensionseat3;
-                $data->seat_image3 = $filenameseat3;
-            }
-
-            if(isset($param['share_image'])){
-                $oldImage = $data->share_image;
-                if(!empty($data->share_image)){
-                    file_delete('events/'.$oldImage, env('FILESYSTEM_DEFAULT'));
-                }
-                
-                $share_image = $param['share_image'];
-                $extensionshare = $share_image->getClientOriginalExtension();
-
-                $filenameshare = "imageshare".time().'.'.$extensionshare;
-                $data->share_image = $filenameshare;
-            }
-
-            if($data->save()){
-                if(isset($param['featured_image1'])){
-                    $img1 = Image::make($featured_image1);
-                    // list($width1, $height1) = getimagesize($featured_image1);
-                    // if($width1 != 2880 && $height1 != 1000){
-                    //     $img1->resize(2880, 1000);
-                    // }
-                    $img1_tmp = $img1->stream();
-
-                    //dd($img1_tmp->__toString());
-                    //dd($img1->dirname.DIRECTORY_SEPARATOR.$img1->filename);
-                    //$img1->save($pathDest.'/'.$filename1);
-                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'events/'.$filename1, $img1_tmp->__toString(), 'public'
-                    );
-                }
-
-                if(isset($param['featured_image2'])){
-                    $img2 = Image::make($featured_image2);
-                    // list($width2, $height2) = getimagesize($featured_image2);
-                    // if($width2 != 1125 && $height2 != 762){
-                    //     $img2->resize(1125, 762);
-                    // }
-                    $img2_tmp = $img2->stream();
-                    // $img2->save($pathDest.'/'.$filename2);
-                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'events/'.$filename2, $img2_tmp->__toString(), 'public'
-                    );
-                }
-
-                if(isset($param['featured_image3'])){
-                    $img3 = Image::make($featured_image3);
-                    // list($width3, $height3) = getimagesize($featured_image3);
-                    // if($width3 != 150 && $height3 != 101){
-                    //    $img3->resize(150, 101);
-                    // }
-                    $img3_tmp = $img3->stream();
-                    // $img3->save($pathDest.'/'.$filename3);
-                    
-                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'events/'.$filename3, $img3_tmp->__toString(), 'public'
-                    );
-                }
-
-                if(isset($param['seat_image'])){
-                    $simg = Image::make($seat_image);
-                    $simg_tmp = $simg->stream();
-                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'events/'.$filenameseat, $simg_tmp->__toString(), 'public'
-                    );
-                }
-
-                if(isset($param['seat_image2'])){
-                    $simg2 = Image::make($seat_image2);
-                    $simg_tmp2 = $simg2->stream();
-                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'events/'.$filenameseat2, $simg_tmp2->__toString(), 'public'
-                    );
-                }
-
-                if(isset($param['seat_image3'])){
-                    $simg3 = Image::make($seat_image3);
-                    $simg_tmp3 = $simg3->stream();
-                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'events/'.$filenameseat3, $simg_tmp3->__toString(), 'public'
-                    );
-                }
-
-                if(isset($param['share_image'])){
-                    $shimg = Image::make($share_image);
-                    $shimg_tmp = $shimg->stream();
-                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'events/'.$filenameshare, $shimg_tmp->__toString(), 'public'
-                    );
-                }
-
-                if(isset($param['categories'])){
-                    $data->categories()->sync($param['categories']);
-                }else{
-                    $data->categories()->detach();
-                }
-                
-
-                return $data;
-
-            } else {
-                return false;    
-            }
-        
-        } else {
-
-            return false;
-
-        }
-    }
-
-    function autoUpdateEvent($param, $id)
-    {
+    public function updateData($param, $id){
         $data = $this->find($id);
         if (!empty($data)) {
             if($param['event_type'] == 1){
@@ -697,6 +452,16 @@ class Event extends Model
                 $data->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
             }
 
+            // if(\Sentinel::getUser()->promoter_id > 0){
+            //     if($data->avaibility){
+            //         $data->avaibility = true;
+            //     }else{
+            //         $data->avaibility = false;
+            //     }
+            // }else{
+            //     $data->avaibility = true;
+            // }
+
             // $pathDest = public_path().'/uploads/events';
             // if(!File::exists($pathDest)) {
             //     File::makeDirectory($pathDest, $mode=0777,true,true);
@@ -888,6 +653,38 @@ class Event extends Model
 
         }
     }
+
+
+    function updateEvent($param, $id)
+    {
+        $data = $this->find($id);
+        if (!empty($data)) {
+            $this->updateData($param, $id);
+
+            if(\Sentinel::getUser()->promoter_id > 0){
+                if($data->avaibility){
+                    $data->avaibility = true;
+                }else{
+                    $data->avaibility = false;
+                }
+            }else{
+                $data->avaibility = true;
+            }
+
+            if($data->save()){
+
+                return $data;
+
+            } else {
+                return false;    
+            }
+        
+        } else {
+
+            return false;
+
+        }
+    } 
     
     public function deleteByID($id)
     {

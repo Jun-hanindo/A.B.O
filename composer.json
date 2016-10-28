@@ -19,7 +19,8 @@
         "greggilbert/recaptcha": "dev-master",
         "doctrine/dbal": "^2.5",
         "cviebrock/eloquent-sluggable": "^4.0",
-        "league/flysystem-aws-s3-v3": "~1.0"
+        "league/flysystem-aws-s3-v3": "~1.0",
+        "maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

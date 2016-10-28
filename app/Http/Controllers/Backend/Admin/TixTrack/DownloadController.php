@@ -14,6 +14,10 @@ use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use File;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use Excel;
+use DB;
+use App\Models\TixtrackCustomer;
+use PHPExcel_Settings;
 //use GuzzleHttp\Cookie\CookieJar;
 //use GuzzleHttp\Cookie\CookieJarInterface;
 
@@ -77,52 +81,88 @@ class DownloadController extends BaseController
     }
 
     public function downloadMember(Request $req){
+        // testing
+        // $pathDest = public_path().'/downloads';
+        // $file = '/Download_member_2016-10-27-10-45-33.csv'; //member gourmet
+        // $file2 = '/Download_member_2016-10-26-17-40-05.csv'; //member asiabox
+        // $file3 = '/sample.csv';
+
+        // $upload = Excel::load($pathDest.$file2, function($reader) {
+        //        $reader->toArray();
+        // }, 'ISO-8859-1')->get();
+        //         // exit;
+        //         // echo 'Plain    : ', iconv("UTF-8", "ISO-8859-1", $text), PHP_EOL;
+        // //dd($upload->toArray());
+        // if(!empty($upload)){
+        //     foreach ($upload->toArray() as $key => $value) {
+        //         //$insert[] = ['id' => $value->id, 'email' => $value->email];
+        //         // print_r($value->id);
+        //         // exit;
+        //         //dd(preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $value));
+        //         //dd(preg_replace('/[\x00-\n]/', '', $value['id']));
+        //         dd(mb_convert_encoding($value['first_name'], 'UTF-8', 'ASCII'));
+        //         //var_dump($value["id"]);
+        //         //die();
+        //         $customer_id = preg_replace('/[\x00-\n]/', '', $value['id']);
+        //         $modelCustomer = new TixtrackCustomer();
+        //         $data = $modelCustomer->findTixtrackCustomerByCutomerID($customer_id);
+        //         $insert/*[]*/ = [
+        //             'customer_id' => $customer_id,
+        //             'email' => preg_replace('/[\x00-\n]/', '', $value['email']),
+        //             'first_name' => preg_replace('/[\x00-\n]/', '', $value['first_name']),
+        //             'last_name' => preg_replace('/[\x00-\n]/', '', $value['last_name']),
+        //             'phone' => preg_replace('/[\x00-\n]/', '', $value['phone']),
+        //             'bill_to_address_1' => preg_replace('/[\x00-\n]/', '', $value['bill_to_address_1']),
+        //             'bill_to_address_2' => preg_replace('/[\x00-\n]/', '', $value['bill_to_address_2']),
+        //             'bill_to_city' => preg_replace('/[\x00-\n]/', '', $value['bill_to_city']),
+        //             'bill_to_state' => preg_replace('/[\x00-\n]/', '', $value['bill_to_state']),
+        //             'bill_to_postal_code' => preg_replace('/[\x00-\n]/', '', $value['bill_to_postal_code']),
+        //             'bill_to_country' => preg_replace('/[\x00-\n]/', '', $value['bill_to_country']),
+        //             'ship_to_address_1' => preg_replace('/[\x00-\n]/', '', $value['ship_to_address_1']),
+        //             'ship_to_address_2' => preg_replace('/[\x00-\n]/', '', $value['ship_to_address_2']),
+        //             'ship_to_city' => preg_replace('/[\x00-\n]/', '', $value['ship_to_city']),
+        //             'ship_to_state' => preg_replace('/[\x00-\n]/', '', $value['ship_to_state']),
+        //             'ship_to_postal_code' => preg_replace('/[\x00-\n]/', '', $value['ship_to_postal_code']),
+        //             'ship_to_country' => preg_replace('/[\x00-\n]/', '', $value['ship_to_country'])
+        //         ];
+        //         if(empty($data)){
+        //             TixtrackCustomer::create($insert);
+        //         }else{
+        //             TixtrackCustomer::where('customer_id',$customer_id)->update($insert);
+        //         }
+        //         //dd($insert);
+        //         // dd($data);
+        //         // exit;
+        //        // $modelTixtrackCustomer = new TixtrackCustomer();
+        //        // $modelTixtrackCustomer->create(['id' => $value->id, 'email' => $value->email]);
+             
+        //     }
+        //     //dd($insert);
+        //     // if(!empty($insert)){
+        //     //     //TixtrackCustomer::create($insert);
+        //     //     //DB::table('tixtrack_customers')->insert($insert);
+        //     //     dd('Insert Record successfully.');
+        //     // }
+        // }
+        // exit;
+        // end testing
+
+
         $param = $req->all();
-        $accountModel = new TixtrackAccount();
-        if (\Session::has('AccountID')) {
-            $AccountID = \Session::get('AccountID'); 
-        }else{
-            $AccountID = '';
+        if (!\Session::has('ASPXAUTH')) {
+            return redirect()->route('admin-tixtrack-login');
         }
-        $data['account_selected'] = $AccountID;
-        $data['account'] = $accountModel->getTixtrackAccount();
         
         try{
             $client = new Client(); //GuzzleHttp\Client
 
-            $pathDest = public_path().'/donwloads';
+            $pathDest = public_path( 'downloads' );
             if(!File::exists($pathDest)) {
                 File::makeDirectory($pathDest, $mode=0777,true,true);
             }
 
-            // $param = [
-            //     "ID" => 0,
-            //     "Name" => "",
-            //     "Save" => false,
-            //     "FilterGroups" => [
-            //         [
-            //             "FilterConditions" => [
-            //                 [
-            //                     "HasCondition" => true,
-            //                     "Available Values" => [],
-            //                     "AttributeName" => "FirstName",
-            //                     "ChainOperator" => null,
-            //                     "ConditionValue" => "jun",
-            //                     "AvailableOperators" => ["=","Contains","Has A Value","Starts With","Ends With"],
-            //                     "OperatorValue" => "=",
-            //                     "IsDate" => false,
-            //                     "IsTime" => false,
-            //                 ]
-            //             ],
-            //             "ChainOperator" => null
-            //         ]
-            //     ],
-            // ];
-            // $data = urlencode (json_encode($param));
-
             if(!empty($param)){
                 $filter_members = $param['member'];
-                //dd($param);
                 $condition = [];
                 $total = count($filter_members);
                 $i = 1;
@@ -169,10 +209,9 @@ class DownloadController extends BaseController
                     ],
                 ]; 
                 $member = json_encode($member);
-                //$member = urlencode (json_encode($member));
-                //dd($member);
         
-                $file_member = $pathDest.'/Download_member_'.date('Y-m-d-H-i-s').'.csv';
+                $filename = 'Download_member_'.date('Y-m-d-H-i-s').'.csv';
+                $file_member = $pathDest.'/'.$filename;
                 $request = new GuzzleRequest('GET', 'https://nliven.co/admin/Customers/Download?objectFilterJSON='.$member, [
                     'Cookie' => $this->cookie(),
                 ]);
@@ -180,7 +219,8 @@ class DownloadController extends BaseController
                     'save_to' => $file_member,
                 ]);
             }else{
-                $file_member = $pathDest.'/Download_member_'.date('Y-m-d-H-i-s').'.csv';
+                $filename = 'Download_member_'.date('Y-m-d-H-i-s').'.csv';
+                $file_member = $pathDest.'/'.$filename;
                 $request = new GuzzleRequest('GET', 'https://nliven.co/admin/Customers/Download?objectFilterJSON=', [
                     'Cookie' => $this->cookie(),
                 ]);
@@ -189,18 +229,59 @@ class DownloadController extends BaseController
                 ]);
 
             }
-            //print_r($response);exit;
+            
             $status = $response->getStatusCode();
+            // if($status == 200){
+            //     // $upload = Excel::load($file_member, function($reader) {
+            //     //     $reader->toArray();
+            //     // }, 'ISO-8859-1')->get();
+
+            //     // if(!empty($upload)){
+            //     //     foreach ($upload->toArray() as $key => $value) {
+            //     //         $customer_id = preg_replace('/[\x00-\n]/', '', $value['id']);
+            //     //         $modelCustomer = new TixtrackCustomer();
+            //     //         $customer = $modelCustomer->findTixtrackCustomerByCutomerID($customer_id);
+            //     //         $newData/*[]*/ = [
+            //     //             'customer_id' => $customer_id,
+            //     //             'email' => preg_replace('/[\x00-\n]/', '', $value['email']),
+            //     //             'first_name' => preg_replace('/[\x00-\n]/', '', $value['first_name']),
+            //     //             'last_name' => preg_replace('/[\x00-\n]/', '', $value['last_name']),
+            //     //             'phone' => preg_replace('/[\x00-\n]/', '', $value['phone']),
+            //     //             'bill_to_address_1' => preg_replace('/[\x00-\n]/', '', $value['bill_to_address_1']),
+            //     //             'bill_to_address_2' => preg_replace('/[\x00-\n]/', '', $value['bill_to_address_2']),
+            //     //             'bill_to_city' => preg_replace('/[\x00-\n]/', '', $value['bill_to_city']),
+            //     //             'bill_to_state' => preg_replace('/[\x00-\n]/', '', $value['bill_to_state']),
+            //     //             'bill_to_postal_code' => preg_replace('/[\x00-\n]/', '', $value['bill_to_postal_code']),
+            //     //             'bill_to_country' => preg_replace('/[\x00-\n]/', '', $value['bill_to_country']),
+            //     //             'ship_to_address_1' => preg_replace('/[\x00-\n]/', '', $value['ship_to_address_1']),
+            //     //             'ship_to_address_2' => preg_replace('/[\x00-\n]/', '', $value['ship_to_address_2']),
+            //     //             'ship_to_city' => preg_replace('/[\x00-\n]/', '', $value['ship_to_city']),
+            //     //             'ship_to_state' => preg_replace('/[\x00-\n]/', '', $value['ship_to_state']),
+            //     //             'ship_to_postal_code' => preg_replace('/[\x00-\n]/', '', $value['ship_to_postal_code']),
+            //     //             'ship_to_country' => preg_replace('/[\x00-\n]/', '', $value['ship_to_country'])
+            //     //         ];
+            //     //         if(empty($customer)){
+            //     //             TixtrackCustomer::create($newData);
+            //     //         }else{
+            //     //             TixtrackCustomer::where('customer_id',$customer_id)->update($newData);
+            //     //         }
+                     
+            //     //     }
+            //     // }
+            //     flash()->success('Import Member success');
+            // }else{
+            //     flash()->error('Import Member failed');
+            // }
+            //file_delete('downloads/'.$filename, env('FILESYSTEM_DEFAULT'));
+            //File::delete($pathDest.'/'.$filename);
             if($status == 200){
-                flash()->success('Download Member success!');
+                flash()->success('Download Transaction success!');
                 return \Response::download($file_member)->deleteFileAfterSend(true);
             }else{
-                flash()->error('Download Member failed');
+                flash()->error('Download Transaction failed');
             }
-            return view('backend.admin.tixtrack.download', $data);
-            //exit;
-        
-        //} else {
+            return redirect()->route('admin-tixtrack-download');
+            
         } catch (\Exception $e) {
 
             $log['user_id'] = $this->currentUser->id;
@@ -209,27 +290,82 @@ class DownloadController extends BaseController
             $insertLog->insertLogActivity($log);
 
             flash()->error('Download Member failed');
-            return view('backend.admin.tixtrack.download', $data);
+            return redirect()->route('admin-tixtrack-download');
         
         }
     }
 
     public function downloadTransaction(Request $req){
+        // testing
+        // $pathDest = public_path().'/downloads';
+        // $file = '/Download_transaction_2016-10-28-09-50-05.csv'; //member gourmet
+        // $file2 = '/Download_member_2016-10-26-17-40-05.csv'; //member asiabox
+        // $file3 = '/sample.csv';
+        // // $upload = Excel::load($pathDest.$file, function($reader) {
+        // //     //dd($reader);
+        // //     //$reader->toArray();
+        // //     $reader->get()->toArray();
+        // // });
+        // $upload = Excel::load($pathDest.$file, function($reader) {
+        //        $reader->toArray();
+        //    })->get();
+        //         // exit;
+        // dd($upload->toArray());
+        // if(!empty($upload)){
+        //     foreach ($upload->toArray() as $key => $value) {
+        //         //$insert[] = ['id' => $value->id, 'email' => $value->email];
+        //         // print_r($value->id);
+        //         // exit;
+        //         //dd(preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $value));
+        //         //dd(preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $value->first_name));
+        //         $insert[] = [
+        //             'customer_id' => $value['id'],
+        //             'email' => $value['email'],
+        //             'first_name' => $value['first_name'], "ASCII", "UTF-8",
+        //             'last_name' => $value['last_name'],
+        //             'phone' => $value['phone'],
+        //             'bill_to_address_1' => $value['bill_to_address_1'],
+        //             'bill_to_address_2' => $value['bill_to_address_2'],
+        //             'bill_to_city' => $value['bill_to_city'],
+        //             'bill_to_state' => $value['bill_to_state'],
+        //             'bill_to_postal_code' => $value['bill_to_postal_code'],
+        //             'bill_to_country' => $value['bill_to_country'],
+        //             'ship_to_address_1' => $value['ship_to_address_1'],
+        //             'ship_to_address_2' => $value['ship_to_address_2'],
+        //             'ship_to_city' => $value['ship_to_city'],
+        //             'ship_to_state' => $value['ship_to_state'],
+        //             'ship_to_postal_code' => $value['ship_to_postal_code'],
+        //             'ship_to_country' => $value['ship_to_country']
 
-        $param = $req->all();
-        $accountModel = new TixtrackAccount();
-        if (\Session::has('AccountID')) {
-            $AccountID = \Session::get('AccountID'); 
-        }else{
-            $AccountID = '';
+        //         ];
+        //         //TixtrackCustomer::create($insert);
+        //         //dd($insert);
+        //         // dd($data);
+        //         // exit;
+        //        // $modelTixtrackCustomer = new TixtrackCustomer();
+        //        // $modelTixtrackCustomer->create(['id' => $value->id, 'email' => $value->email]);
+             
+        //     }
+        //     dd($insert);
+        //     // if(!empty($insert)){
+        //     //     //TixtrackCustomer::create($insert);
+        //     //     //DB::table('tixtrack_customers')->insert($insert);
+        //     //     dd('Insert Record successfully.');
+        //     // }
+        // }
+        // exit;
+        // end testing
+        
+
+        $param = $req->except('_token');
+        if (!\Session::has('ASPXAUTH')) {
+            return redirect()->route('admin-tixtrack-login');
         }
-        $data['account_selected'] = $AccountID;
-        $data['account'] = $accountModel->getTixtrackAccount();
         
         try{
             $client = new Client(); //GuzzleHttp\Client
 
-            $pathDest = public_path().'/donwloads';
+            $pathDest = public_path().'/downloads';
             if(!File::exists($pathDest)) {
                 File::makeDirectory($pathDest, $mode=0777,true,true);
             }
@@ -256,7 +392,8 @@ class DownloadController extends BaseController
             // ];
             //$transaction = json_encode($param);
             //$transaction = urlencode (json_encode($param));
-            $transaction = $param;
+            //$transaction = $param;
+            //dd($param);
 
             if(!empty($param)){
                 $filter_transactions = $param['transaction'];
@@ -376,7 +513,7 @@ class DownloadController extends BaseController
             }else{
                 flash()->error('Download Transaction failed');
             }
-            return view('backend.admin.tixtrack.download', $data);
+            return redirect()->route('admin-tixtrack-download');
         
         //} else {
         } catch (\Exception $e) {
@@ -387,7 +524,7 @@ class DownloadController extends BaseController
             $insertLog->insertLogActivity($log);
 
             flash()->error('Download Transaction failed');
-            return view('backend.admin.tixtrack.download', $data);
+            return redirect()->route('admin-tixtrack-download');
         
         }
     }

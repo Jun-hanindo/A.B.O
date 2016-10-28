@@ -277,3 +277,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
 Route::group(['prefix' => 'tixtrack','namespace' => 'Backend\Admin\TixTrack'], function () {
     Route::get('test-get-file', array('as' => 'test-get-file', 'uses' => 'DownloadController@downloadMember'));
 });
+
+Route::group(['prefix' => 'tixtrack','namespace' => 'Backend\Admin\TixTrack'], function () {
+    Route::get('test-get-file2', array('as' => 'test-get-file2', 'uses' => 'DownloadController@downloadTransaction'));
+});

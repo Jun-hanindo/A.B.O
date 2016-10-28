@@ -203,7 +203,8 @@ class EventsController extends BaseController
                     'message' => '<strong>'.$saveData->title.'</strong> '.trans('general.save_success')
                 ],200);
             }else{
-                $updateData = $this->model->autoUpdateEvent($param,$id);
+                //$updateData = $this->model->autoUpdateEvent($param,$id);
+                $updateData = $this->model->updateData($param,$id);
                 //$this->model->updateAvaibilityFalse($id);
 
                 $log['user_id'] = $this->currentUser->id;
