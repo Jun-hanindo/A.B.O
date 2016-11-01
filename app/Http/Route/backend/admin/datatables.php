@@ -61,8 +61,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::get('currency', array('as' => 'datatables-currency', 'uses' => 'CurrenciesController@datatables'));
         Route::get('subscription', array('as' => 'datatables-subscription', 'uses' => 'SubscriptionsController@datatables'));
         Route::get('subscription-event', array('as' => 'datatables-subscription-event', 'uses' => 'SubscriptionsController@eventDatatables'));
-        Route::get('tixtrack-member', array('as' => 'datatables-tixtrack-member', 'uses' => 'Tixtrack\ReportsController@datatablesMember'));
-        Route::get('tixtrack-transaction', array('as' => 'datatables-tixtrack-transaction', 'uses' => 'Tixtrack\ReportsController@datatablesTransaction'));
+        Route::get('tixtrack-member', array('as' => 'datatables-tixtrack-member', 'uses' => 'TixTrack\ReportsController@datatablesMember'));
+        Route::get('tixtrack-transaction', array('as' => 'datatables-tixtrack-transaction', 'uses' => 'TixTrack\ReportsController@datatablesTransaction'));
         
 
     });
