@@ -266,6 +266,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::get('account/{id}/edit', array('as' => 'admin-edit-tixtrack-account', 'uses' => 'AccountsController@edit'));
         Route::post('account/{id}/update', array('as' => 'admin-update-tixtrack-account', 'uses' => 'AccountsController@update'));
         Route::delete('account/{id}/delete', array('as' => 'admin-delete-tixtrack-account', 'uses' => 'AccountsController@destroy'));
+
+        Route::get('', array('as' => 'admin-index-tixtrack', 'uses' => 'ReportsController@index'));
+        Route::get('report', array('as' => 'admin-report-tixtrack', 'uses' => 'ReportsController@report'));
+        //Route::get('report-event', array('as' => 'admin-report-tixtrack-event', 'uses' => 'ReportsController@report'));
     });
 });
 

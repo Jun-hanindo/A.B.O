@@ -266,6 +266,11 @@
                                 {!! Form::text('background_color', old('background_color'), ['id' => 'background_color', 'class' => 'form-control colorpicker','maxlength'=>'255', 'placeholder' => trans('general.background_color')]) !!}
                                 {!! Form::errorMsg('background_color') !!}
                             </div>
+                            <div class="form-group{{ Form::hasError('event_id_tixtrack') }} event_id_tixtrack">
+                                {!! Form::label('event_id_tixtrack', trans('general.event_id_tixtrack').' *') !!} 
+                                {!! Form::text('event_id_tixtrack', old('event_id_tixtrack'), ['id' => 'event_id_tixtrack', 'class' => 'form-control number-only','maxlength'=>'255', 'placeholder' => trans('general.event_id_tixtrack')]) !!}
+                                {!! Form::errorMsg('event_id_tixtrack') !!}
+                            </div>
                             <div class="box-footer">
                                 <a href="{{ route('admin-index-event') }}" class="btn btn-default">{{ trans('general.button_back') }}</a>
                                 <button type="button" id="button_draft" class="btn btn-warning " title="{{ trans('general.button_draft') }}">{{ trans('general.button_draft') }}</button>

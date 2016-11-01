@@ -28,7 +28,7 @@ class LoginController extends BaseController
 
         //\Session::forget('ASPXAUTH');
         if (\Session::has('ASPXAUTH')) {
-            return redirect()->route('admin-tixtrack-download');
+            return redirect()->route('admin-index-tixtrack');
         }else{
             $trail = 'Tixtrack login';
             $insertTrail = new Trail();
@@ -78,9 +78,9 @@ class LoginController extends BaseController
 
             $status = $response->getStatusCode();
 
-            if(/*$status == 200 || */$status == 302){
+            if($status == 302){
                 flash()->success('Login success!');
-                return redirect()->route('admin-tixtrack-download');
+                return redirect()->route('admin-index-tixtrack');
                 //return redirect()->route('admin-tixtrack-change-account');
             }else{
                 flash()->error('The user name or password provided is incorrect.');

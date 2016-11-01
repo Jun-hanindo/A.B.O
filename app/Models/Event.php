@@ -274,6 +274,7 @@ class Event extends Model
         $this->buy_button_disabled_message = $param['buy_button_disabled_message'];
         $last = $this->getFirstSort();
         $this->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
+        $this->event_id_tixtrack = (!empty($param['event_id_tixtrack'])) ? $param['event_id_tixtrack'] : null;
         if(\Sentinel::getUser()->promoter_id > 0){
             $this->avaibility = false;
         }else{
@@ -446,6 +447,7 @@ class Event extends Model
             $data->hide_schedule = isset($param['hide_schedule']) ? true : false;
             $data->buy_button_disabled = isset($param['buy_button_disabled']) ? true : false;
             $data->buy_button_disabled_message = $param['buy_button_disabled_message'];
+            $data->event_id_tixtrack = (!empty($param['event_id_tixtrack'])) ? $param['event_id_tixtrack'] : null;
 
             if($data->sort_order == 0){
                 $last = $this->getFirstSort();

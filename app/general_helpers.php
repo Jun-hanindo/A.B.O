@@ -412,6 +412,9 @@ if (! function_exists('get_date_full_month')) {
 if (! function_exists('number_format_drop_zero_decimals')) {
 /*Format number*/
     function number_format_drop_zero_decimals($number){
+        if($number == null){
+            return 0;
+        }
         return ((floor($number) == round($number, 2)) ? number_format($number, 0, '.', ',') : number_format($number, 2, '.', ','));
     }
 }

@@ -30,40 +30,9 @@ class TixtrackCustomer extends Model
     function datatables()
     {
 
-        return static::select('id', 'name', 'customer_id')
-            ->orderBy('name', 'asc');
+        return static::select('id', 'customer_id', 'first_name', 'last_name', 'email')
+            ->orderBy('customer_id', 'asc');
     
-    }
-
-
-    /**
-     * Insert new data venue
-     * @return [type]
-     */
-    function insertNewTixtrackCustomer($param)
-    {
-        $this->name = $param['name'];
-        $this->customer_id = $param['customer_id'];
-
-        if($this->save()){
-            return $this;
-        } else {
-            return false;
-        }
-    }
-
-    public function findTixtrackCustomerByID($id)
-    {
-        $data = $this->find($id);
-        if (!empty($data)) {
-        
-            return $data;
-        
-        } else {
-        
-            return false;
-
-        }
     }
 
     public function findTixtrackCustomerByCutomerID($customer_id)
@@ -80,48 +49,4 @@ class TixtrackCustomer extends Model
         }
     }
 
-
-    public function updateTixtrackCustomer($param, $id)
-    {
-        $data = $this->find($id);
-        if (!empty($data)) {
-            $data->name = $param['name'];
-            $data->customer_id = $param['customer_id'];
-
-            if($data->save()){
-
-                return $data;
-
-            } else {
-                return false;    
-            }
-        
-        } else {
-
-            return false;
-
-        }
-    }
-    
-    public function deleteByID($id)
-    {
-        $data = $this->find($id);
-        if(!empty($data)) {
-            $data->delete();
-            return $data;
-        } else {
-            return false;
-        }
-    }
-
-    public function getTixtrackCustomer(){
-        // $data = TixtrackCustomer::orderBy('name', 'asc')->get();
-
-        // if(!empty($data)) {
-        //     return $data;
-        // } else {
-        //     return false;
-        // }
-        return static::orderBy('name')->lists('name', 'customer_id');
-    }
 }

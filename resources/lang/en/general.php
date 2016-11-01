@@ -273,5 +273,15 @@ return [
     'buy_button_disabled' => 'Buy Button Disabled',
     'buy_button_disabled_message' => 'Buy Button Disabled Message',
     'featured_image_link' => 'Featured Image Link',
+    'customer_id' => 'Customer ID',
+    'order_id' => 'Order ID',
+    'customer' => 'Customer',
+    'member' => 'Member',
+    'transaction' => 'Transaction',
+    'event_id_tixtrack' => 'Event ID Tixtrack',
+    'report_tixtrack' => 'Report Tixtrack',
+    'by_category' => 'By Category',
+    'by_payment' => 'By Payment',
+    'by_promotion' => 'By Promotion',
 
 ];

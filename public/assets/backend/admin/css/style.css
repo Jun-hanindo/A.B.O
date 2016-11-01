@@ -105,6 +105,9 @@
 .padding-left-50{
     padding-left: 50px !important;
 }
+.center-align {
+    text-align: center;
+}
 
 /*.cke_chrome{
 	border-left: 1px solid #b6b6b6 !important;
