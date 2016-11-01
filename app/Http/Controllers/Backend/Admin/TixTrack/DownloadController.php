@@ -82,58 +82,58 @@ class DownloadController extends BaseController
             }
 
             //import member
-                // $filename = 'Download_member_'.date('Y-m-d-H-i-s').'.csv';
-                // $file_member = $pathDest.'/'.$filename;
-                // $request = new GuzzleRequest('GET', 'https://nliven.co/admin/Customers/Download?objectFilterJSON=', [
-                //     'Cookie' => $this->cookie(),
-                // ]);
-                // $response = $client->send($request, [
-                //     'save_to' => $file_member,
-                // ]);
+                $filename = 'Download_member_'.date('Y-m-d-H-i-s').'.csv';
+                $file_member = $pathDest.'/'.$filename;
+                $request = new GuzzleRequest('GET', 'https://nliven.co/admin/Customers/Download?objectFilterJSON=', [
+                    'Cookie' => $this->cookie(),
+                ]);
+                $response = $client->send($request, [
+                    'save_to' => $file_member,
+                ]);
 
-                // $status = $response->getStatusCode();
-                // if($status == 200){
-                //     $upload = Excel::load($file_member, function($reader) {
-                //         $reader->toArray();
-                //     }, 'ISO-8859-1')->get();
+                $status = $response->getStatusCode();
+                if($status == 200){
+                    $upload = Excel::load($file_member, function($reader) {
+                        $reader->toArray();
+                    }, 'ISO-8859-1')->get();
 
-                //     if(!empty($upload)){
-                //         foreach ($upload->toArray() as $key => $value) {
-                //             $customer_id = preg_replace('/[\x00-\n]/', '', $value['id']);
-                //             $customer = $modelCustomer->findTixtrackCustomerByCutomerID($customer_id);
-                //             $newData = [
-                //                 'customer_id' => $customer_id,
-                //                 'email' => preg_replace('/[\x00-\n]/', '', $value['email']),
-                //                 'first_name' => preg_replace('/[\x00-\n]/', '', $value['first_name']),
-                //                 'last_name' => preg_replace('/[\x00-\n]/', '', $value['last_name']),
-                //                 'phone' => preg_replace('/[\x00-\n]/', '', $value['phone']),
-                //                 'bill_to_address_1' => preg_replace('/[\x00-\n]/', '', $value['bill_to_address_1']),
-                //                 'bill_to_address_2' => preg_replace('/[\x00-\n]/', '', $value['bill_to_address_2']),
-                //                 'bill_to_city' => preg_replace('/[\x00-\n]/', '', $value['bill_to_city']),
-                //                 'bill_to_state' => preg_replace('/[\x00-\n]/', '', $value['bill_to_state']),
-                //                 'bill_to_postal_code' => preg_replace('/[\x00-\n]/', '', $value['bill_to_postal_code']),
-                //                 'bill_to_country' => preg_replace('/[\x00-\n]/', '', $value['bill_to_country']),
-                //                 'ship_to_address_1' => preg_replace('/[\x00-\n]/', '', $value['ship_to_address_1']),
-                //                 'ship_to_address_2' => preg_replace('/[\x00-\n]/', '', $value['ship_to_address_2']),
-                //                 'ship_to_city' => preg_replace('/[\x00-\n]/', '', $value['ship_to_city']),
-                //                 'ship_to_state' => preg_replace('/[\x00-\n]/', '', $value['ship_to_state']),
-                //                 'ship_to_postal_code' => preg_replace('/[\x00-\n]/', '', $value['ship_to_postal_code']),
-                //                 'ship_to_country' => preg_replace('/[\x00-\n]/', '', $value['ship_to_country'])
-                //             ];
-                //             if(empty($customer)){
-                //                 TixtrackCustomer::create($newData);
-                //             }else{
-                //                 TixtrackCustomer::where('customer_id',$customer_id)->update($newData);
-                //             }
+                    if(!empty($upload)){
+                        foreach ($upload->toArray() as $key => $value) {
+                            $customer_id = preg_replace('/[\x00-\n]/', '', $value['id']);
+                            $customer = $modelCustomer->findTixtrackCustomerByCutomerID($customer_id);
+                            $newData = [
+                                'customer_id' => $customer_id,
+                                'email' => preg_replace('/[\x00-\n]/', '', $value['email']),
+                                'first_name' => preg_replace('/[\x00-\n]/', '', $value['first_name']),
+                                'last_name' => preg_replace('/[\x00-\n]/', '', $value['last_name']),
+                                'phone' => preg_replace('/[\x00-\n]/', '', $value['phone']),
+                                'bill_to_address_1' => preg_replace('/[\x00-\n]/', '', $value['bill_to_address_1']),
+                                'bill_to_address_2' => preg_replace('/[\x00-\n]/', '', $value['bill_to_address_2']),
+                                'bill_to_city' => preg_replace('/[\x00-\n]/', '', $value['bill_to_city']),
+                                'bill_to_state' => preg_replace('/[\x00-\n]/', '', $value['bill_to_state']),
+                                'bill_to_postal_code' => preg_replace('/[\x00-\n]/', '', $value['bill_to_postal_code']),
+                                'bill_to_country' => preg_replace('/[\x00-\n]/', '', $value['bill_to_country']),
+                                'ship_to_address_1' => preg_replace('/[\x00-\n]/', '', $value['ship_to_address_1']),
+                                'ship_to_address_2' => preg_replace('/[\x00-\n]/', '', $value['ship_to_address_2']),
+                                'ship_to_city' => preg_replace('/[\x00-\n]/', '', $value['ship_to_city']),
+                                'ship_to_state' => preg_replace('/[\x00-\n]/', '', $value['ship_to_state']),
+                                'ship_to_postal_code' => preg_replace('/[\x00-\n]/', '', $value['ship_to_postal_code']),
+                                'ship_to_country' => preg_replace('/[\x00-\n]/', '', $value['ship_to_country'])
+                            ];
+                            if(empty($customer)){
+                                TixtrackCustomer::create($newData);
+                            }else{
+                                TixtrackCustomer::where('customer_id',$customer_id)->update($newData);
+                            }
                          
-                //         }
-                //     }
-                //     flash()->success('Import Member success');
-                // }else{
-                //     flash()->error('Import Member failed');
-                // }
+                        }
+                    }
+                    flash()->success('Import Member success');
+                }else{
+                    flash()->error('Import Member failed');
+                }
 
-                // File::delete($pathDest.'/'.$filename);
+                File::delete($pathDest.'/'.$filename);
             //end import member
             
             //import order
