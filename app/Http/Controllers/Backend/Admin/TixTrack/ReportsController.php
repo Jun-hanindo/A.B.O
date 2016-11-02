@@ -103,6 +103,11 @@ class ReportsController extends BaseController
             $data['totalPros'] = $modelOrder->totalPromotionEvent($event_id, $start_date, $end_date);
 
             $data['total'] = $modelOrder->total($event_id, $start_date, $end_date);
+            $data['allTotalPro'] = $modelOrder->allTotalPromotion($event_id, $start_date, $end_date);
+
+            $data['allCategories'] = $modelOrder->getAllCategoryEvent($event_id);
+            $data['allSale'] = $modelOrder->getAllSale($event_id);
+            $data['countAllCat'] = count($data['allCategories']);
 
             $data['start_date'] = $start_date;
             $data['end_date'] = $end_date;

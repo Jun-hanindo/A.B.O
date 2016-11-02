@@ -283,5 +283,6 @@ return [
     'by_category' => 'By Category',
     'by_payment' => 'By Payment',
     'by_promotion' => 'By Promotion',
+    'sale_to_date' => 'Sale to Date',
 
 ];

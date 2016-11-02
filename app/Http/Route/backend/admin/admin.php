@@ -259,6 +259,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::get('download', array('as' => 'admin-tixtrack-download', 'uses' => 'DownloadController@download'));
         Route::get('download-member', array('as' => 'admin-tixtrack-download-member', 'uses' => 'DownloadController@downloadMember'));
         Route::post('download-transaction', array('as' => 'admin-tixtrack-download-transaction', 'uses' => 'DownloadController@downloadTransaction'));
+        Route::post('import-transaction', array('as' => 'admin-tixtrack-import-transaction', 'uses' => 'DownloadController@importTransaction'));
         
         Route::get('account', array('as' => 'admin-index-tixtrack-account', 'uses' => 'AccountsController@index'));
         Route::get('account/create', array('as' => 'admin-create-tixtrack-account', 'uses' => 'AccountsController@create'));
@@ -283,5 +284,5 @@ Route::group(['prefix' => 'tixtrack','namespace' => 'Backend\Admin\TixTrack'], f
 });
 
 Route::group(['prefix' => 'tixtrack','namespace' => 'Backend\Admin\TixTrack'], function () {
-    Route::get('test-get-file2', array('as' => 'test-get-file2', 'uses' => 'DownloadController@downloadTransaction'));
+    Route::get('test-get-file2', array('as' => 'test-get-file2', 'uses' => 'DownloadController@tesimportTransaction'));
 });

@@ -33,43 +33,27 @@ Tixtrack
                     {!! Form::close() !!}
                 </div>
             </div>
-            {{-- <div class="nav-tabs-custom">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab-account" data-toggle="tab">Switch Account/Event</a></li>
-                    <li><a href="#tab-event" data-toggle="tab">Switch Event</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="tab-account">
-                        {!! Form::open(array('url' => route('admin-tixtrack-change-account'),'method'=>'PUT','id'=>'form-account')) !!}
-                            <div class="box-body">
-                                @include('flash::message')
-                                <div id="switch-account" class="tixtrack-switch">
-                                    <div class="form-group{{ Form::hasError('account') }} account">
-                                        {!! Form::select('account', $account, $account_selected, array('class' => 'form-control')) !!}
-                                        {!! Form::errorMsg('account') !!}
-                                    </div>
-                                </div>
-                                <div class="box-footer">
-                                    {!! Form::submit('Apply', ['class' => 'btn btn-primary pull-right']) !!}
-                                </div>
-                            </div>
-                        {!! Form::close() !!}
-                    </div>
-                    <div class="tab-pane" id="tab-event">
-                        {!! Form::open(array('url' => route('admin-tixtrack-download-transaction'),'method'=>'GET','id'=>'form-tixtrack')) !!}
-                            <div class="box-body">
-                                @include('flash::message')
-                                <div id="switch-event" class="tixtrack-switch">
-                                    
-                                </div>
-                                <div class="box-footer">
-                                    {!! Form::submit('Apply', ['class' => 'btn btn-primary pull-right']) !!}
-                                </div>
-                            </div>
-                        {!! Form::close() !!}
-                    </div>
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Import Transaction</h3>
                 </div>
-            </div> --}}
+                <div class="box-body">
+                    {!! Form::open(array('url' => route('admin-tixtrack-import-transaction'),'files'=>'true','method'=>'POST','id'=>'form-import')) !!}
+                        <div class="box-body">
+                            @include('flash::message')
+                            <div id="import-transaction" class="tixtrack-import">
+                                <div class="form-group{{ Form::hasError('import_transaction') }} import_transaction">
+                                    <input id="import_transaction" name="import_transaction" class="form-control" data-name="import_transaction" type="file" value="">
+                                    {!! Form::errorMsg('import_transaction') !!}
+                                </div>
+                            </div>
+                            <div class="box-footer">
+                                {!! Form::submit('Import', ['class' => 'btn btn-primary pull-right']) !!}
+                            </div>
+                        </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
         </div>
     </div>
 
