@@ -90,11 +90,4 @@ iframe[name="google_conversion_frame"]{
 }
 #promotion img {
   width: 100%;
-  /*zoom:50%;*/
-  /*-webkit-transform: scale(0.5); 
-  -moz-transform: scale(0.5); 
-  -ms-transform: scale(0.5); 
-   -o-transform: scale(0.5); 
-      transform: scale(0.5);
-         filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9999619230641713, M12=-0.008726535498373935, M21=0.008726535498373935, M22=0.9999619230641713,SizingMethod='auto expand');*/
 }​
