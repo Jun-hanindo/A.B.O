@@ -50,6 +50,13 @@ class TixtrackOrder extends Model
         return $data;
     }
 
+    function getLastOrder(){
+        $data = TixtrackOrder::select('order_id')
+            ->orderBy('order_id', 'desc')->first();
+
+        return $data;
+    }
+
     public function findTixtrackOrder($order_id, $section, $row_section, $seat_id, $price_level_name)
     {
         $data = TixtrackOrder::where('order_id', $order_id)

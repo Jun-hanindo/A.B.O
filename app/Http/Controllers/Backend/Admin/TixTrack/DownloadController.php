@@ -217,8 +217,7 @@ class DownloadController extends BaseController
                             $fee_id = preg_replace('/[\x00-\n]/', '', $value['feeid']);
                             $fee_id = (!empty($fee_id)) ? $fee_id : null;
 
-                            $modelOrder = new TixtrackOrder();
-                            $order = $modelOrder->findTixtrackOrder($order_id, $section, $row_section, $seat_id, $price_level_name);
+                            $order = $modelOrder->getLastOrder();
                             
                             
                             
@@ -279,12 +278,9 @@ class DownloadController extends BaseController
                             if(empty($order)){
                                 TixtrackOrder::create($newData);
                             }else{
-                                TixtrackOrder::where('order_id', $order_id)
-                                    ->where('order_id', $order_id)
-                                    ->where('section', $section)
-                                    ->where('row_section', $row_section)
-                                    ->where('seat_id', $seat_id)
-                                    ->where('price_level_name', $price_level_name)->update($newData);
+                                if($order_id > $order->order_id){
+                                    TixtrackOrder::create($newData);
+                                }
                             }
                          
                         }
@@ -525,10 +521,10 @@ class DownloadController extends BaseController
                         $fee_id = preg_replace('/[\x00-\n]/', '', $value['feeid']);
                         $fee_id = (!empty($fee_id)) ? $fee_id : null;
 
-                        // $modelOrder = new TixtrackOrder();
-                        // $order = $modelOrder->findTixtrackOrder($order_id, $section, $row_section, $seat_id, $price_level_name);
+                        $order = $modelOrder->getLastOrder();
                         
-                        //dd($value['billtopostalcode']);
+                        
+                        
                         $newData = [
                             'order_id' => $order_id,
                             'local_created' => $local_created,
@@ -586,12 +582,9 @@ class DownloadController extends BaseController
                         if(empty($order)){
                             TixtrackOrder::create($newData);
                         }else{
-                            TixtrackOrder::where('order_id', $order_id)
-                                ->where('order_id', $order_id)
-                                ->where('section', $section)
-                                ->where('row_section', $row_section)
-                                ->where('seat_id', $seat_id)
-                                ->where('price_level_name', $price_level_name)->update($newData);
+                            if($order_id > $order->order_id){
+                                TixtrackOrder::create($newData);
+                            }
                         }
                      
                     }
@@ -620,12 +613,21 @@ class DownloadController extends BaseController
         $pathDest = public_path().'/downloads';
         $file = '/Download_transaction_2016-11-02-10-21-37.csv'; //member gourmet
         $file2 = '/Download_transaction_2016-11-02-10-40-302.csv'; //member gourmet
-        $file3 = '/nliven_sales_report_undefined_undefined.csv'; //member gourmet
+        $file3 = '/nliven_sales_report_undefined-undefined_4.csv'; //member gourmet
+        $file4 = '/nliven_sales_report_undefined_undefined.csv'; //member gourmet
 
-        $upload = Excel::load($pathDest.$file, function($reader) {
+        // $file = fopen($pathDest.$file4,"r");
+        // while(! feof($file))
+        // {
+        //     $text[] = fgetcsv($file);
+        // }
+        // print_r($text[624]);
+        // fclose($file);
+        // exit;
+        $upload = Excel::load($pathDest.$file3, function($reader) {
             $reader->toArray();
         }, 'ISO-8859-1')->get();
-        dd($upload->toArray()[632]);
+        dd($upload->toArray()[1]);
                 //exit;
         if(!empty($upload)){
             foreach ($upload->toArray() as $key => $value) {

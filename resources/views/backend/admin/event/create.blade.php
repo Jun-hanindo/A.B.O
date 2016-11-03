@@ -450,7 +450,7 @@
                                 </div>
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image') }} featured_image">
-                                {!! Form::label('featured_image', trans('general.featured_image').'(Max. 100px x 100px) *') !!}
+                                {!! Form::label('featured_image', trans('general.featured_image').'(Max. 2880px x 800px) *') !!}
                                 (Max. size 1 mb)
                                 <input id="featured_image" name="featured_image" class="form-control image" data-name="image" type="file" value="">
                                 {!! Form::errorMsg('featured_image') !!}
