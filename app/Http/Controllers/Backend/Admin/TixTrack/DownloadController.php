@@ -406,10 +406,10 @@ class DownloadController extends BaseController
                 $upload = Excel::load($path, function($reader) {
                     $reader->toArray();
                 }, 'ISO-8859-1')->get();
+                $order = $modelOrder->getLastOrder();
 
                 if(!empty($upload)){
                     foreach ($upload->toArray() as $key => $value) {
-                        $order = $modelOrder->getLastOrder();
                         $order_id = $value['orderid'];
                         $local_created = date('Y-m-d H:i:s', strtotime($value['local_created']));
                         $local_last_updated = date('Y-m-d H:i:s', strtotime($value['local_lastupdated']));
