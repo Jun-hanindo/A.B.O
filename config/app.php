@@ -184,7 +184,6 @@ return [
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         App\Providers\LogServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        Chumper\Zipper\ZipperServiceProvider::class,
 
 
     ],
@@ -251,7 +250,6 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'Zipper' => Chumper\Zipper\Zipper::class,
 
     ],
 
