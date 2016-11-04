@@ -67,12 +67,12 @@
                             <img src="{{ file_url('events/'.$event->event->featured_image2, env('FILESYSTEM_DEFAULT')) }}">
                             <div class="boxInfo box-info1 bg-green" style="background-color:{{ $event->event->background_color }} !important">
                                 <ul>      
-                                    <li class="eventType">{{ strtoupper($event->cat_name) }}</li>
-                                    <li class="eventName">{{ string_limit($event->event->title) }}</li>
-                                    <li class="eventDate"><i class="fa fa-calendar-o"></i> 
-                                        {{ (!empty($event->event->schedule_title)) ? $event->event->schedule_title : $event->schedule_range }}
+                                    <li class="eventType">{{strtoupper($event->cat_name)}}</li>
+                                    <li class="eventName">{{string_limit($event->event->title)}}</li>
+                                    <li class="eventDate">
+                                        <i class="fa fa-calendar-o"></i>{{(!empty($event->event->schedule_title)) ? $event->event->schedule_title : $event->schedule_range}}
                                     </li>
-                                    <li class="eventPlace"><i class="fa fa-map-marker"></i>{{ $event->venue_name.$event->city }}</li>
+                                    <li class="eventPlace"><i class="fa fa-map-marker"></i>{{$event->venue_name.$event->city}}</li>
                                 </ul>
                             </div>
                         </div>

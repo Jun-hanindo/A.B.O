@@ -19,8 +19,8 @@
                                 <ul>
                                     <li class="eventType">{{ $event->cat_name }}</li>
                                     <li class="eventName">{{ $event->title }}</li>
-                                    <li class="eventDate"><i class="fa fa-calendar-o"></i>{{ (!empty($event->schedule_title)) ? $event->schedule_title : $event->schedule_range }}</li>
-                                    <li class="eventPlace"><i class="fa fa-map-marker"></i> {{ $event->venue_name.$event->city }}</li>
+                                    <li class="eventDate"><i class="fa fa-calendar-o"></i>{{(!empty($event->schedule_title)) ? $event->schedule_title : $event->schedule_range}}</li>
+                                    <li class="eventPlace"><i class="fa fa-map-marker"></i>{{$event->venue_name.$event->city}}</li>
                                 </ul>
                             </div>
                         </div>
