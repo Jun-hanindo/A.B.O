@@ -8,6 +8,10 @@
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">Change Account/Event</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="box-body">
                     {!! Form::open(array('url' => route('admin-tixtrack-download-data'),'method'=>'PUT','id'=>'form-account')) !!}
@@ -30,20 +34,32 @@
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">Download Data Member and Transaction</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="box-body">
-                    {!! Form::open(array('url' => route('admin-tixtrack-download-member'),'files'=>'true','method'=>'GET','id'=>'form-download')) !!}
-                        {!! Form::submit('Download Member', ['class' => 'btn btn-primary']) !!}
-                    {!! Form::close() !!}
-                    {!! Form::open(array('url' => route('admin-tixtrack-download-transaction'),'files'=>'true','method'=>'POST','id'=>'form-download')) !!}
-                        {!! Form::submit('Download Transaction', ['class' => 'btn btn-primary']) !!}
-                    {!! Form::close() !!}
+                    <div class="col-md-4">
+                        {!! Form::open(array('url' => route('admin-tixtrack-download-member'),'files'=>'true','method'=>'GET','id'=>'form-download')) !!}
+                            {!! Form::submit('Download Member', ['class' => 'btn btn-block btn-primary btn-lg']) !!}
+                        {!! Form::close() !!}
+                    </div>
+                    <div class="col-md-4">
+                        {!! Form::open(array('url' => route('admin-tixtrack-download-transaction'),'files'=>'true','method'=>'POST','id'=>'form-download')) !!}
+                            {!! Form::submit('Download Transaction', ['class' => 'btn btn-block btn-success btn-lg']) !!}
+                        {!! Form::close() !!}
+                    </div>
                 </div>
             </div>
 
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">Import Data Member and Transaction</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="box-body">
                     {!! Form::open(array('url' => route('admin-tixtrack-import'),'files'=>'true','method'=>'POST','id'=>'form-import')) !!}
