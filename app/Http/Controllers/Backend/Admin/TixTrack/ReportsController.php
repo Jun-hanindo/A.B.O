@@ -141,7 +141,7 @@ class ReportsController extends BaseController
 
     public function truncateMember(){
         $model = new TixtrackCustomer();
-        $mode->truncate();
+        $model->truncate();
         return redirect()->route('admin-index-tixtrack');
     }
 
