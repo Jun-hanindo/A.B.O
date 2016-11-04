@@ -138,4 +138,16 @@ class ReportsController extends BaseController
         $data['events'] = Event::select('id', 'event_id_tixtrack', 'title')->orderBy('title', 'asc')->get();
         return view('backend.admin.tixtrack.report', $data);
     }
+
+    public function truncateMember(){
+        $model = new TixtrackCustomer();
+        $mode->truncate();
+        return redirect()->route('admin-index-tixtrack');
+    }
+
+    public function truncateTransaction(){
+        $model = new TixtrackOrder();
+        $model->truncate();
+        return redirect()->route('admin-index-tixtrack');
+    }
 }

@@ -67,6 +67,18 @@ class TixtrackOrder extends Model
         return $data;
     }
 
+    function getLastOrderAccount($account_id){
+        $data = TixtrackOrder::select('order_id')
+            ->where('account_id', $account_id)
+            ->orderBy('order_id', 'desc')->first();
+
+        return $data;
+    }
+
+    public function truncate(){
+        DB::table('tixtrack_orders')->truncate();
+    }
+
     public function findTixtrackOrder($order_id, $section, $row_section, $seat_id, $price_level_name)
     {
         $data = TixtrackOrder::where('order_id', $order_id)

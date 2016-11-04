@@ -267,7 +267,15 @@ class DownloadController extends BaseController
                 File::makeDirectory($pathDest, $mode=0777,true,true);
             }
 
-            $last = $modelOrder->getLastUpdate();
+            $accountID = \Session::get('AccountID');
+            if($accountID > 0){
+                $accountID = $modelAccount->findIdByAccountID($accountID)->id;
+            }else{
+                flash()->error('Account is empty!');
+                return redirect()->route('admin-tixtrack-download-import');
+            }
+
+            $last = $modelOrder->getLastOrderAccount($accountID);
             if(!empty($last)){
                 $local_created = date('m/d/Y', strtotime($last->local_created));
                 $transaction = [

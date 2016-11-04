@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 
 class TixtrackCustomer extends Model
 {
@@ -56,6 +57,10 @@ class TixtrackCustomer extends Model
             return false;
 
         }
+    }
+
+    public function truncate(){
+        DB::table('tixtrack_customers')->truncate();
     }
 
 }

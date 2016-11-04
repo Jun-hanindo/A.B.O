@@ -274,6 +274,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::get('list', array('as' => 'admin-index-tixtrack', 'uses' => 'ReportsController@index'));
         Route::get('report', array('as' => 'admin-report-tixtrack', 'uses' => 'ReportsController@report'));
         //Route::get('report-event', array('as' => 'admin-report-tixtrack-event', 'uses' => 'ReportsController@report'));
+    
+        Route::get('truncate-member', array('as' => 'admin-tixtrack-truncate-member', 'uses' => 'ReportsController@truncateMember'));
+        Route::get('truncate-transaction', array('as' => 'admin-tixtrack-truncate-transaction', 'uses' => 'ReportsController@truncateTransaction'));
     });
 });
 
