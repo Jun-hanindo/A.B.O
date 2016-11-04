@@ -29,6 +29,20 @@
 
             <div class="box box-primary">
                 <div class="box-header">
+                    <h3 class="box-title">Download Data Member and Transaction</h3>
+                </div>
+                <div class="box-body">
+                    {!! Form::open(array('url' => route('admin-tixtrack-download-member'),'files'=>'true','method'=>'GET','id'=>'form-download')) !!}
+                        {!! Form::submit('Download Member', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::close() !!}
+                    {!! Form::open(array('url' => route('admin-tixtrack-download-transaction'),'files'=>'true','method'=>'POST','id'=>'form-download')) !!}
+                        {!! Form::submit('Download Transaction', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::close() !!}
+                </div>
+            </div>
+
+            <div class="box box-primary">
+                <div class="box-header">
                     <h3 class="box-title">Import Data Member and Transaction</h3>
                 </div>
                 <div class="box-body">

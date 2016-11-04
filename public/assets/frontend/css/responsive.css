@@ -396,6 +396,9 @@
 }
 
 @media (max-width: 991px) {
+  .carousel-caption .eventDate i {
+     margin-right: 7px;
+  }
   .slider-home .carousel-caption{
     min-height: 210px;
   }
