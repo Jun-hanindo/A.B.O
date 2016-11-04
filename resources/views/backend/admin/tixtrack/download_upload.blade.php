@@ -4,16 +4,17 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" id="accordian">
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">Change Account/Event</h3>
                     <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                        <button class="btn btn-box-tool" role="button" data-widget="collapse" href="#collapseAccount" aria-expanded="true" aria-controls="collapseAccount">
+                            <i class="fa fa-minus"></i>
                         </button>
                     </div>
                 </div>
-                <div class="box-body">
+                <div class="box-body collapse in" id="collapseAccount">
                     {!! Form::open(array('url' => route('admin-tixtrack-download-data'),'method'=>'PUT','id'=>'form-account')) !!}
                         <div class="box-body">
                             @include('flash::message')
@@ -35,11 +36,12 @@
                 <div class="box-header">
                     <h3 class="box-title">Download Data Member and Transaction</h3>
                     <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                        <button class="btn btn-box-tool" role="button" data-widget="collapse" href="#collapseDownload" aria-expanded="true" aria-controls="collapseDownload">
+                            <i class="fa fa-plus"></i>
                         </button>
                     </div>
                 </div>
-                <div class="box-body">
+                <div class="box-body collapse" id="collapseDownload">
                     <div class="col-md-4">
                         {!! Form::open(array('url' => route('admin-tixtrack-download-member'),'files'=>'true','method'=>'GET','id'=>'form-download')) !!}
                             {!! Form::submit('Download Member', ['class' => 'btn btn-block btn-primary btn-lg']) !!}
@@ -57,11 +59,12 @@
                 <div class="box-header">
                     <h3 class="box-title">Import Data Member and Transaction</h3>
                     <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                        <button class="btn btn-box-tool" role="button" data-widget="collapse" href="#collapseImport" aria-expanded="true" aria-controls="collapseImport">
+                            <i class="fa fa-plus"></i>
                         </button>
                     </div>
                 </div>
-                <div class="box-body">
+                <div class="box-body collapse" id="collapseImport">
                     {!! Form::open(array('url' => route('admin-tixtrack-import'),'files'=>'true','method'=>'POST','id'=>'form-import')) !!}
                         <div class="box-body">
                             @if(\Session::has('member'))
