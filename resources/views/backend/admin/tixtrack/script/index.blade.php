@@ -31,10 +31,19 @@
             loadData(start_date, end_date);
         });
 
+        $('#account_id_member').on('change', function () {
+            loadDataMember();
+        });
+
+        $('#account_id_order').on('change', function () {
+            loadDataTransaction();
+        });
+
     });
 
     function loadDataMember()
     {
+        var account_id = $('select[name=account_id_member]').val();
         $.fn.dataTable.ext.errMode = 'none';
         $('#member-datatables').on('error.dt', function(e, settings, techNote, message) {
             $.ajax({
@@ -56,7 +65,12 @@
         $('#member-datatables').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! URL::route("datatables-tixtrack-member") !!}',
+            ajax: {
+                url: '{!! URL::route("datatables-tixtrack-member") !!}',
+                data: {
+                    'account_id': account_id,
+                }
+            },
             columns: [
                 {data: 'customer_id', name: 'customer_id'},
                 {data: 'email', name: 'email'},
@@ -71,6 +85,8 @@
 
     function loadDataTransaction()
     {
+        var account_id = $('select[name=account_id_order]').val();
+
         $.fn.dataTable.ext.errMode = 'none';
         $('#transaction-datatables').on('error.dt', function(e, settings, techNote, message) {
             $.ajax({
@@ -92,7 +108,12 @@
         $('#transaction-datatables').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! URL::route("datatables-tixtrack-transaction") !!}',
+            ajax: {
+                url: '{!! URL::route("datatables-tixtrack-transaction") !!}',
+                data: {
+                    'account_id': account_id,
+                }
+            },
             columns: [
                 {data: 'order_id', name: 'order_id'},
                 {data: 'event_name', name: 'event_name'},

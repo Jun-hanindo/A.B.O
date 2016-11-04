@@ -106,4 +106,23 @@ class TixtrackAccount extends Model
         // }
         return static::orderBy('name')->lists('name', 'account_id');
     }
+
+    public function findIdByAccountID($account_id)
+    {
+        $data = TixtrackAccount::where('account_id', $account_id)->first();
+        if (!empty($data)) {
+        
+            return $data;
+        
+        } else {
+        
+            return false;
+
+        }
+    }
+
+    public static function dropdown()
+    {
+        return static::select('id', 'name')->orderBy('name')->get();
+    }
 }

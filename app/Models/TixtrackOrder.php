@@ -16,7 +16,7 @@ class TixtrackOrder extends Model
         'user_id', 'name', 'address', 'mrtdirection', 'cardirection', 'taxidirection', 'capacity', 'link_map', 'gmap_link'
     ];*/
     protected $fillable = [
-        'order_id', 'local_created', 'local_last_updated', 'first_name', 'last_name', 'email', 
+        'account_id', 'order_id', 'local_created', 'local_last_updated', 'first_name', 'last_name', 'email', 
         'bill_to_address1', 'bill_to_address2', 'bill_to_address3', 'bill_to_city', 'bill_to_state', 'bill_to_postal_code', 
         'bill_to_country_code', 'phone', 'event_id', 'event_name', 'event_date', 'venue', 
         'ip', 'order_status', 'price_table_name', 'user_id', 'seller_email', 'partner', 
@@ -39,6 +39,16 @@ class TixtrackOrder extends Model
 
         return static::select('id', 'order_id', 'first_name', 'last_name', 'event_name', 'price', 
             DB::RAW("CONCAT(first_name, ' ', last_name)  as customer"))
+            ->orderBy('order_id', 'asc');
+    
+    }
+
+    function datatablesAccount($account_id)
+    {
+
+        return static::select('id', 'order_id', 'first_name', 'last_name', 'event_name', 'price', 
+            DB::RAW("CONCAT(first_name, ' ', last_name)  as customer"))
+            ->where('account_id', $account_id)
             ->orderBy('order_id', 'asc');
     
     }

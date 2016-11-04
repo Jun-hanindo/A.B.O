@@ -87,8 +87,10 @@ class MenusTableSeeder extends Seeder
             ['is_parent' => false, 'name' => str_slug('Inbox'), 'display_name' => 'Inbox', 'icon' => 'inbox', 'href' => 'admin/inbox', 'pattern' => 'admin/inbox'],
             //['is_parent' => false, 'name' => str_slug('Customer Report'), 'display_name' => 'Customer Report', 'icon' => 'archive', 'href' => 'admin/tixtrack/login', 'pattern' => 'admin/tixtrack/login'],
             ['is_parent' => true, 'name' => str_slug('TixTrack'), 'display_name' => 'TixTrack', 'icon' => 'map', 'href' => '#', 'pattern' => 'admin/tixtrack', 'child' => [
-                ['name' => str_slug('List Data'), 'display_name' => 'List Data', 'icon' => 'plus-circle', 'href' => 'admin/tixtrack/login', 'pattern' => 'admin/tixtrack'],
+                ['name' => str_slug('Update Data'), 'display_name' => 'Update Data', 'icon' => 'plus-circle', 'href' => 'admin/tixtrack/login', 'pattern' => 'admin/tixtrack'],
+                ['name' => str_slug('List Data'), 'display_name' => 'List Data', 'icon' => 'plus-circle', 'href' => 'admin/tixtrack/list', 'pattern' => 'admin/tixtrack'],
                 ['name' => str_slug('Report'), 'display_name' => 'Report', 'icon' => 'bars', 'href' => 'admin/tixtrack/report', 'pattern' => 'admin/tixtrack'],
+                ['name' => str_slug('Account'), 'display_name' => 'Account', 'icon' => 'bars', 'href' => 'admin/tixtrack/account', 'pattern' => 'admin/tixtrack'],
             ]],
             ['is_parent' => false, 'name' => str_slug('Logout'), 'display_name' => 'Logout', 'icon' => 'sign-out', 'href' => 'admin/logout', 'pattern' => 'admin/logout'],
 

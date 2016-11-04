@@ -2,6 +2,10 @@
 
     <script>
     $(document).ready(function() {
+
+        // $('#button_apply').click(function(){
+        //     modal_loader();
+        // }); 
         
         $('.tixtrack-filter').on('click', '.delete-member', function(){
             var id = $(this).attr('data-id');

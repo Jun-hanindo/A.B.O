@@ -10,52 +10,6 @@ Tixtrack
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-primary">
-                <div class="box-header">
-                    <h3 class="box-title">Change Account/Event</h3>
-                </div>
-                <div class="box-body">
-                    {!! Form::open(array('url' => route('admin-tixtrack-change-account'),'method'=>'PUT','id'=>'form-account')) !!}
-                        <div class="box-body">
-                            @include('flash::message')
-                            <div id="switch-account" class="tixtrack-switch">
-                                <div class="form-group{{ Form::hasError('account') }} account">
-                                    {!! Form::select('account', $account, $account_selected, array('class' => 'form-control')) !!}
-                                    {!! Form::errorMsg('account') !!}
-                                </div>
-                            </div>
-                            <div class="box-footer">
-                                {!! Form::submit('Apply', ['class' => 'btn btn-primary pull-right']) !!}
-                            </div>
-                        </div>
-                    {!! Form::close() !!}
-                </div>
-            </div>
-            <div class="box box-primary">
-                <div class="box-header">
-                    <h3 class="box-title">Import Transaction</h3>
-                </div>
-                <div class="box-body">
-                    {!! Form::open(array('url' => route('admin-tixtrack-import-transaction'),'files'=>'true','method'=>'POST','id'=>'form-import')) !!}
-                        <div class="box-body">
-                            @include('flash::message')
-                            <div id="import-transaction" class="tixtrack-import">
-                                <div class="form-group{{ Form::hasError('import_transaction') }} import_transaction">
-                                    <input id="import_transaction" name="import_transaction" class="form-control" data-name="import_transaction" type="file" value="">
-                                    {!! Form::errorMsg('import_transaction') !!}
-                                </div>
-                            </div>
-                            <div class="box-footer">
-                                {!! Form::submit('Import', ['class' => 'btn btn-primary pull-right']) !!}
-                            </div>
-                        </div>
-                    {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="box box-primary">
         <div class="box-header">
@@ -65,6 +19,12 @@ Tixtrack
             </div>
         </div>
         <div class="box-body">
+            <div class="form-inline activity-log-filter-date">
+                <div class="form-group">
+                    <label for="filter" class="">{{ trans('general.account') }} </label>
+                    {!! Form::select('account_id_member', $dropdown, null, ['class' => 'form-control', 'id' => 'account_id_member']) !!}
+                </div>
+            </div>
             <table id="member-datatables" class="table table-hover table-bordered table-condensed table-responsive datatables" data-tables="true">
                 <thead>
                     <tr>
@@ -88,6 +48,12 @@ Tixtrack
             </div>
         </div>
         <div class="box-body">
+            <div class="form-inline activity-log-filter-date">
+                <div class="form-group">
+                    <label for="filter" class="">{{ trans('general.account') }} </label>
+                    {!! Form::select('account_id_order', $dropdown, null, ['class' => 'form-control', 'id' => 'account_id_order']) !!}
+                </div>
+            </div>
             <table id="transaction-datatables" class="table table-hover table-bordered table-condensed table-responsive datatables" data-tables="true">
                 <thead>
                     <tr>

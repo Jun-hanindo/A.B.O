@@ -17,7 +17,7 @@ class TixtrackCustomer extends Model
     protected $fillable = [
         'customer_id', 'email', 'first_name', 'last_name', 'phone', 'bill_to_address_1', 'bill_to_address_2', 'bill_to_city',
         'bill_to_state', 'bill_to_postal_code', 'bill_to_country', 'ship_to_address_1', 'ship_to_address_2', 'ship_to_city',
-        'ship_to_state', 'ship_to_postal_code', 'ship_to_country'
+        'ship_to_state', 'ship_to_postal_code', 'ship_to_country', 'account_id'
     ];
 
     /**
@@ -31,6 +31,15 @@ class TixtrackCustomer extends Model
     {
 
         return static::select('id', 'customer_id', 'first_name', 'last_name', 'email')
+            ->orderBy('customer_id', 'asc');
+    
+    }
+
+    function datatablesAccount($account_id)
+    {
+
+        return static::select('id', 'customer_id', 'first_name', 'last_name', 'email')
+            ->where('account_id', $account_id)
             ->orderBy('customer_id', 'asc');
     
     }

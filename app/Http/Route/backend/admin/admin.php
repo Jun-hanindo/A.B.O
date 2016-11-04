@@ -260,6 +260,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::get('download-member', array('as' => 'admin-tixtrack-download-member', 'uses' => 'DownloadController@downloadMember'));
         Route::post('download-transaction', array('as' => 'admin-tixtrack-download-transaction', 'uses' => 'DownloadController@downloadTransaction'));
         Route::post('import-transaction', array('as' => 'admin-tixtrack-import-transaction', 'uses' => 'DownloadController@importTransaction'));
+        Route::get('download-import', array('as' => 'admin-tixtrack-download-import', 'uses' => 'DownloadController@changeAccountAndDownload'));
+        Route::post('import', array('as' => 'admin-tixtrack-import', 'uses' => 'DownloadController@importData'));
+        Route::put('download-data', array('as' => 'admin-tixtrack-download-data', 'uses' => 'DownloadController@downloadData'));
         
         Route::get('account', array('as' => 'admin-index-tixtrack-account', 'uses' => 'AccountsController@index'));
         Route::get('account/create', array('as' => 'admin-create-tixtrack-account', 'uses' => 'AccountsController@create'));
@@ -268,7 +271,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::post('account/{id}/update', array('as' => 'admin-update-tixtrack-account', 'uses' => 'AccountsController@update'));
         Route::delete('account/{id}/delete', array('as' => 'admin-delete-tixtrack-account', 'uses' => 'AccountsController@destroy'));
 
-        Route::get('', array('as' => 'admin-index-tixtrack', 'uses' => 'ReportsController@index'));
+        Route::get('list', array('as' => 'admin-index-tixtrack', 'uses' => 'ReportsController@index'));
         Route::get('report', array('as' => 'admin-report-tixtrack', 'uses' => 'ReportsController@report'));
         //Route::get('report-event', array('as' => 'admin-report-tixtrack-event', 'uses' => 'ReportsController@report'));
     });

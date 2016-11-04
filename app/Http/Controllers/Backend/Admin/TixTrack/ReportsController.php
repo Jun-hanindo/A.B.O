@@ -49,26 +49,47 @@ class ReportsController extends BaseController
         }
         $data['account_selected'] = $AccountID;
         $data['account'] = $accountModel->getTixtrackAccount();
+
+        $dropdown = $accountModel->dropdown();
+        $drop = [];
+        foreach ($dropdown as $key => $value) {
+            $drop[0] = 'All';
+            $drop[$value->id] = $value->name;
+        }
+
+        $data['dropdown'] = $drop;
+
         return view('backend.admin.tixtrack.index', $data);
     }
 
-    public function datatablesMember()
+    public function datatablesMember(Request $req)
     {
         $modelMember = new TixtrackCustomer();
-        return datatables($modelMember->datatables())
+        $param = $req->all();
+        $account = $param['account_id'];
+        if($account == 0){
+            $model = $modelMember->datatables();
+        }else{
+            $model = $modelMember->datatablesAccount($account);
+        }
+        return datatables($model)
             ->addColumn('action', function ($member) {
                 
             })
-            // ->filterColumn('post_by', function($query, $keyword) {
-            //     $query->whereRaw("LOWER(CAST(CONCAT(users.first_name, ' ', users.last_name) as TEXT)) ilike ?", ["%{$keyword}%"]);
-            // })
             ->make(true);
     }
 
-    public function datatablesTransaction()
+    public function datatablesTransaction(Request $req)
     {
         $modelTransaction = new TixtrackOrder();
-        return datatables($modelTransaction->datatables())
+        $param = $req->all();
+        $account = $param['account_id'];
+        if($account == 0){
+            $model = $modelTransaction->datatables();
+        }else{
+            $model = $modelTransaction->datatablesAccount($account);
+        }
+        return datatables($model)
             ->addColumn('action', function ($transaction) {
                 
             })
