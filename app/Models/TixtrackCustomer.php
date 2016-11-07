@@ -32,7 +32,7 @@ class TixtrackCustomer extends Model
     {
 
         return static::select('id', 'customer_id', 'first_name', 'last_name', 'email')
-            ->orderBy('customer_id', 'asc');
+            /*->orderBy('customer_id', 'asc')*/;
     
     }
 
@@ -41,7 +41,7 @@ class TixtrackCustomer extends Model
 
         return static::select('id', 'customer_id', 'first_name', 'last_name', 'email')
             ->where('account_id', $account_id)
-            ->orderBy('customer_id', 'asc');
+            /*->orderBy('customer_id', 'asc')*/;
     
     }
 

@@ -17,7 +17,7 @@
             $('#end_date').datepicker('setStartDate', new Date($('#start_date').val()));
             var start_date = $('input[name=start_date]').val();
             var end_date = $('input[name=end_date]').val();
-            loadData(start_date, end_date);
+            //loadData(start_date, end_date);
         });
 
         $('#end_date').datepicker({
@@ -28,7 +28,7 @@
             $('#start_date').datepicker('setEndDate', new Date($('#end_date').val()));
             var start_date = $('input[name=start_date]').val();
             var end_date = $('input[name=end_date]').val();
-            loadData(start_date, end_date);
+            //loadData(start_date, end_date);
         });
 
         $('#account_id_member').on('change', function () {
@@ -36,7 +36,7 @@
         });
 
         $('#account_id_order').on('change', function () {
-            loadDataTransaction();
+            //loadDataTransaction();
         });
 
     });
@@ -125,6 +125,13 @@
 
         return table;
     }
+
+    // var cat = document.getElementById("category_chart").getContext("2d");
+    // var catChart = new Chart(cat, {
+    //     type: 'line',
+    //     data: data,
+    // });
+
     </script>
     @include('backend.delete-modal-datatables')
 @endsection

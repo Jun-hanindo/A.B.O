@@ -1205,7 +1205,7 @@ class DownloadController extends BaseController
         $file2 = '/nliven_sales_report_undefined-undefined.csv'; //member gourmet
         $file3 = '/nliven_sales_report_361511361602.csv'; //member gourmet
         $file4 = '/nliven_sales_report_361511361602vsave.csv'; //member gourmet
-        $file5= '/empty.csv'; //member gourmet
+        $file5= '/nliven_sales_report_undefined-undefined (4).csv'; //member gourmet
 
         // $input_encode = 'ISO-8859-1';
         // $output_encode = 'UTF-8';
@@ -1290,7 +1290,7 @@ class DownloadController extends BaseController
         //         $upload[] = $datas;
         //     }
         // }
-        $upload = parseCSV($pathDest.$file3, '"', ",", 'ISO-8859-1', 'UTF-8');
+        $upload = parseCSV($pathDest.$file5, '"', ",", 'ISO-8859-1', 'UTF-8');
         if(!empty($upload)){
             foreach ($upload as $key => $value) {
                 $local_created = date('Y-m-d H:i:s', strtotime($value['local_created']));

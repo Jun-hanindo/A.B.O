@@ -39,7 +39,7 @@ class TixtrackOrder extends Model
 
         return static::select('id', 'order_id', 'first_name', 'last_name', 'event_name', 'price', 
             DB::RAW("CONCAT(first_name, ' ', last_name)  as customer"))
-            ->orderBy('order_id', 'asc');
+            /*->orderBy('order_id', 'asc')*/;
     
     }
 
@@ -49,7 +49,7 @@ class TixtrackOrder extends Model
         return static::select('id', 'order_id', 'first_name', 'last_name', 'event_name', 'price', 
             DB::RAW("CONCAT(first_name, ' ', last_name)  as customer"))
             ->where('account_id', $account_id)
-            ->orderBy('order_id', 'asc');
+            /*->orderBy('order_id', 'asc')*/;
     
     }
 

@@ -5,47 +5,6 @@
     <script>
     $(document).ready(function() {
         loadData();
-
-        function loadData()
-        {
-            $.fn.dataTable.ext.errMode = 'none';
-            $('#venue-datatables').on('error.dt', function(e, settings, techNote, message) {
-                $.ajax({
-                    url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
-                    type: "POST",
-                    dataType: 'json',
-                    data: "message= Venue "+message,
-                    success: function (data) {
-                        data.message;
-                    },
-                    error: function(response){
-                        response.responseJSON.message
-                    }
-                });
-            });
-
-            var table = $('#venue-datatables').DataTable();
-            table.destroy();
-            $('#venue-datatables').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: '{!! URL::route("datatables-venue") !!}',
-                columns: [
-                    // {data: 'id', name: 'id', searchable: false, orderable: false},
-                    {data: 'name', name: 'name'},
-                    {data: 'address', name: 'address'},
-                    {data: 'post_by', name: 'post_by'},
-                    {data: 'avaibility', name: 'avaibility', class: 'center-align', searchable: false, orderable: false},
-                    {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
-                ],
-                "fnDrawCallback": function() {
-                    //Initialize checkbos for enable/disable user
-                    $(".avaibility-check").bootstrapSwitch({onText: "Enabled", offText:"Disabled", animate: false});
-                }
-            });
-
-            return table;
-        }
         
         $('.select_all-checkbox').on('click', function(){
             datatablesSelectAll(loadData());
@@ -75,6 +34,47 @@
         });
 
     });
+
+    function loadData()
+    {
+        $.fn.dataTable.ext.errMode = 'none';
+        $('#venue-datatables').on('error.dt', function(e, settings, techNote, message) {
+            $.ajax({
+                url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
+                type: "POST",
+                dataType: 'json',
+                data: "message= Venue "+message,
+                success: function (data) {
+                    data.message;
+                },
+                error: function(response){
+                    response.responseJSON.message
+                }
+            });
+        });
+
+        var table = $('#venue-datatables').DataTable();
+        table.destroy();
+        $('#venue-datatables').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! URL::route("datatables-venue") !!}',
+            columns: [
+                // {data: 'id', name: 'id', searchable: false, orderable: false},
+                {data: 'name', name: 'name'},
+                {data: 'address', name: 'address'},
+                {data: 'post_by', name: 'post_by'},
+                {data: 'avaibility', name: 'avaibility', class: 'center-align', searchable: false, orderable: false},
+                {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
+            ],
+            "fnDrawCallback": function() {
+                //Initialize checkbos for enable/disable user
+                $(".avaibility-check").bootstrapSwitch({onText: "Enabled", offText:"Disabled", animate: false});
+            }
+        });
+
+        return table;
+    }
     </script>
     @include('backend.delete-modal-datatables')
 @endsection

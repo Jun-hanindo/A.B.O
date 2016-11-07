@@ -114,7 +114,7 @@ class ReportsController extends BaseController
             $data['dates'] = $modelOrder->getDate($event_id, $start_date, $end_date);
             $data['dateCats'] = $modelOrder->getCategoryByEvent($event_id, $start_date, $end_date);
             $data['datePays'] = $modelOrder->getPaymentByEvent($event_id, $start_date, $end_date);
-            //$data['datePros'] = $modelOrder->getPromotionByEvent($event_id, $start_date, $end_date);
+
             $data['countCat'] = count($data['categories']);
             $data['countPay'] = count($data['payments']);
             $data['countPro'] = count($data['promotions']);
@@ -134,6 +134,28 @@ class ReportsController extends BaseController
             $data['end_date'] = $end_date;
             $data['event_id'] = $event_id;
             $data['modelOrder'] = $modelOrder;
+
+            $cat = $data['dateCats'];
+            //dd($cat);
+            foreach ($cat as $key => $value) {
+                $labels[] = [
+                    $value->local_created.'|'.$value->event_date => [
+                        'Full Amount:',
+                        'Discounted Amt:',
+                        'Quantity:',
+                    ]
+                ];
+                // $labels[$value->local_created.'|'.$value->event_date] = [
+                //     'Full Amount:',
+                //     'Discounted Amt:',
+                //     'Quantity:',
+
+                // ];
+            }
+
+            //dd($labels);
+
+
         }
         $data['events'] = Event::select('id', 'event_id_tixtrack', 'title')->orderBy('title', 'asc')->get();
         return view('backend.admin.tixtrack.report', $data);
