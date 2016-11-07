@@ -36,7 +36,7 @@
         });
 
         $('#account_id_order').on('change', function () {
-            //loadDataTransaction();
+            loadDataTransaction();
         });
 
     });
@@ -86,6 +86,7 @@
     function loadDataTransaction()
     {
         var account_id = $('select[name=account_id_order]').val();
+        console.log(account_id);
 
         $.fn.dataTable.ext.errMode = 'none';
         $('#transaction-datatables').on('error.dt', function(e, settings, techNote, message) {
