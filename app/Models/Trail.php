@@ -60,7 +60,7 @@ class Trail extends Model
             ->leftJoin('users', 'trails.user_id','=','users.id')
             ->where(DB::raw('DATE(trails.created_at)'), '>=', $start)
             ->where(DB::raw('DATE(trails.created_at)'), '<=', $end)
-            ->orderBy('trails.created_at', 'desc');
+            /*->orderBy('trails.created_at', 'desc')*/;
         if($limit > 0){
             $data->take($limit);
         }
@@ -77,7 +77,7 @@ class Trail extends Model
             ->where('user_id', $user_id)
             ->where(DB::raw('DATE(trails.created_at)'), '>=', $start)
             ->where(DB::raw('DATE(trails.created_at)'), '<=', $end)
-            ->orderBy('trails.created_at', 'desc');
+            /*->orderBy('trails.created_at', 'desc')*/;
         if($limit > 0){
             $data->take($limit);
         }

@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div class="box-footer">
-                                {!! Form::submit('Apply', ['class' => 'btn btn-primary pull-right']) !!}
+                                {!! Form::submit('Apply', ['class' => 'btn btn-primary pull-right', 'id' => 'button_download_import']) !!}
                             </div>
                         </div>
                     {!! Form::close() !!}

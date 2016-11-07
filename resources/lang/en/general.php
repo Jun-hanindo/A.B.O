@@ -284,5 +284,6 @@ return [
     'by_payment' => 'By Payment',
     'by_promotion' => 'By Promotion',
     'sale_to_date' => 'Sale to Date',
+    'chart' => 'Chart',
 
 ];

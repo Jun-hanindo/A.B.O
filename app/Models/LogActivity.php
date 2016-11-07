@@ -37,7 +37,7 @@ class LogActivity extends Model
             ->leftJoin('users', 'log_activities.user_id','=','users.id')
             ->where(DB::raw('DATE(log_activities.created_at)'), '>=', $start)
             ->where(DB::raw('DATE(log_activities.created_at)'), '<=', $end)
-            ->orderBy('log_activities.created_at', 'desc');
+            /*->orderBy('log_activities.created_at', 'desc')*/;
         if($limit > 0){
             $data->take($limit);
         }
@@ -54,7 +54,7 @@ class LogActivity extends Model
             ->where('user_id', $user_id)
             ->where(DB::raw('DATE(log_activities.created_at)'), '>=', $start)
             ->where(DB::raw('DATE(log_activities.created_at)'), '<=', $end)
-            ->orderBy('created_at', 'desc');
+            /*->orderBy('created_at', 'desc')*/;
         if($limit > 0){
             $data->take($limit);
         }

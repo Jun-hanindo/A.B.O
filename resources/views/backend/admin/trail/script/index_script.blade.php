@@ -62,6 +62,7 @@ function loadData(start_date, end_date)
     $('#datatable').DataTable({
         processing: true,
         serverSide: true,
+        order: [[ 0, 'desc' ]],
         ajax: {
             url: '{!! URL::route("datatables-trail") !!}',
             data: {

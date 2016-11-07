@@ -3,9 +3,9 @@
     <script>
     $(document).ready(function() {
 
-        // $('#button_apply').click(function(){
-        //     modal_loader();
-        // });
+        $('#button_download_import').click(function(){
+            modal_loader();
+        });
         // 
         
         $('.tixtrack-filter').on('click', '.delete-member', function(){
