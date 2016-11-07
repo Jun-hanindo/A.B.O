@@ -30,7 +30,8 @@ class LoginController extends BaseController
         if (\Session::has('ASPXAUTH')) {
             //return redirect()->route('admin-index-tixtrack');
             //return redirect()->route('admin-tixtrack-download');
-            return redirect()->route('admin-tixtrack-download-import');
+            //return redirect()->route('admin-tixtrack-download-import');
+            return redirect()->route('admin-tixtrack-edit-data');
             
         }else{
             $trail = 'Tixtrack login';
@@ -73,7 +74,8 @@ class LoginController extends BaseController
                 flash()->success('Login success!');
                 //return redirect()->route('admin-index-tixtrack');
                 //return redirect()->route('admin-tixtrack-download');
-                return redirect()->route('admin-tixtrack-download-import');
+                //return redirect()->route('admin-tixtrack-download-import');
+                return redirect()->route('admin-tixtrack-edit-data');
             }else{
                 flash()->error('The user name or password provided is incorrect.');
                 return redirect()->route('admin-tixtrack-login');

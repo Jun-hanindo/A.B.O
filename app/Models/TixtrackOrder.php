@@ -75,6 +75,12 @@ class TixtrackOrder extends Model
         return $data;
     }
 
+    public function deleteByAccount($account_id){
+        $data = TixtrackOrder::select('order_id')->where('account_id', $account_id)->delete();
+
+        return $data;
+    }
+
     public function truncate(){
         DB::table('tixtrack_orders')->truncate();
     }

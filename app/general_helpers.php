@@ -491,6 +491,89 @@ if (! function_exists('get_day_date')) {
     }
 }
 
+if (! function_exists('parseCSV')) {
+
+    function parseCSV($file, $enclosure, $delimiter, $input_encode, $output_encode)
+    {
+
+        $file = $file = file_get_contents($file);
+        $content = iconv($input_encode, $output_encode, $file);
+        $content = preg_replace('/[\x00]/', '', $content);
+        $row = array( "" );
+        $idx = 0;
+        $quoted = false;
+        // $enter = "\r\n";
+        // $content .= $enter;
+        // $input_encode = 'ISO-8859-1';
+        // $output_encode = 'UTF-8';
+        // $enclosure = '"';
+        // $delimiter = ",";
+        if ( $content[strlen($content)-1] != "\n" )   // Make sure it always end with a newline
+        {
+            $content .= "\n";
+        }
+
+        for ( $i = 0; $i < strlen($content); $i++ )
+        {
+            $ch = $content[$i];
+
+            if ( $ch == $enclosure )
+            {
+                $quoted = !$quoted;
+            }
+
+            // End of line
+            if ( $ch == "\n" && !$quoted )
+            {
+                // Remove enclosure delimiters
+                for ( $k = 0; $k < count($row); $k++ )
+                {
+                    if ( $row[$k] != "" && $row[$k][0] == $enclosure )
+                    {
+                        $row[$k] = substr( $row[$k], 1, strlen($row[$k]) - 2 );
+                    }
+                    $row[$k] = str_replace( str_repeat($enclosure, 2), $enclosure, $row[$k] );
+                    $row[$k] = str_replace("\r", "", $row[$k]);
+                }
+                // Append row into table
+                $array[] = $row;
+                $row = array( "" );
+                $idx = 0;
+            }
+
+            // End of field
+            else if ( $ch == $delimiter && !$quoted )
+            {
+                $row[++$idx] = "";
+            }
+
+            // Inside the field
+            else
+            {
+                $row[$idx] .= $ch;
+            }
+        }
+
+        $names = $array[0];
+
+        foreach ($array as $key => $value) {
+            if($key > 0){
+                //$data[] = $value;
+                foreach ($names as $k => $name) {
+                    $name = trim($name, " ");
+                    $name = strtolower($name);
+                    $name = str_replace(' ', '_', $name);
+                    $datas[$name] = $value[$k];
+                }
+
+                $upload[] = $datas;
+            }
+        }
+
+        return $upload;
+    }
+}
+
 
 
 // if (! function_exists('count_message_unread')) {
