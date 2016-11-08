@@ -630,8 +630,8 @@ class DownloadController extends BaseController
                     }
                 //end import order
 
-                    File::delete($file_member);
-                    File::delete($file_transaction);
+                    //File::delete($file_member);
+                    //File::delete($file_transaction);
                     echo("Hello there!"); //would normally get printed to the screen/output to browser
                     $output = ob_get_contents();
                     ob_flush();
