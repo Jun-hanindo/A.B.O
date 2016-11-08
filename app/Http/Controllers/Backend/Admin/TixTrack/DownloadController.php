@@ -413,6 +413,7 @@ class DownloadController extends BaseController
         }
         
         try{
+            ob_start();
             $modelCustomer = new TixtrackCustomer();
             $modelOrder = new TixtrackOrder();
             $modelAccount = new TixtrackAccount();
@@ -631,6 +632,7 @@ class DownloadController extends BaseController
 
                     File::delete($file_member);
                     File::delete($file_transaction);
+                    ob_flush();
 
             }else{
                 flash()->error('Change Account/Event failed');
