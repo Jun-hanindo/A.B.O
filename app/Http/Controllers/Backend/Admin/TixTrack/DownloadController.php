@@ -645,7 +645,7 @@ class DownloadController extends BaseController
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
             flash()->error('Import failed');
-            return redirect()->route('admin-tixtrack-download-import');
+            return redirect()->route('admin-tixtrack-edit-data');
         
         }
     }
