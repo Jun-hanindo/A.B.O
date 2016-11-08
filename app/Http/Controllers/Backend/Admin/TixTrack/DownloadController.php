@@ -413,7 +413,6 @@ class DownloadController extends BaseController
         }
         
         try{
-            ini_set('max_execution_time', 30);
             $modelCustomer = new TixtrackCustomer();
             $modelOrder = new TixtrackOrder();
             $modelAccount = new TixtrackAccount();
