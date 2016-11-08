@@ -413,7 +413,7 @@ class DownloadController extends BaseController
         }
         
         try{
-            set_time_limit(9000);
+            set_time_limit(900);
             $modelCustomer = new TixtrackCustomer();
             $modelOrder = new TixtrackOrder();
             $modelAccount = new TixtrackAccount();
