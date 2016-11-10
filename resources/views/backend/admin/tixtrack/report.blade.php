@@ -55,6 +55,13 @@ Tixtrack
             </div>
             @if(!empty($event_id))
                 <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">{{ trans('general.event') }}</h3>
+                        <div class="pull-right">
+                            <a class="btn btn-success" href="{{ route('admin-report-tixtrack-excel', 'event='.$event_id.'&start_date='.$start_date.'&end_date='.$end_date) }}" title="{{ trans('general.create_new') }}"><i class="fa fa-upload fa-fw"></i> EXCEL</a>
+                            <a class="btn btn-danger" href="{{ route('admin-report-tixtrack-pdf', 'event='.$event_id.'&start_date='.$start_date.'&end_date='.$end_date) }}" title="{{ trans('general.create_new') }}"><i class="fa fa-upload fa-fw"></i> PDF</a>
+                        </div>
+                    </div>
                     <div class="box-body">
                         <h4>Event: <b>{{ $event->title }}</b></h4>
                         <h4>Report Period: {{ short_text_date($start_date) .' to '. short_text_date($end_date) }}</h4>
@@ -63,10 +70,6 @@ Tixtrack
                 <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('general.by_category') }}</h3>
-                        <div class="pull-right">
-                            <a class="btn btn-success" href="{{ route('admin-report-tixtrack-excel-category', 'event='.$event_id.'&start_date='.$start_date.'&end_date='.$end_date) }}" title="{{ trans('general.create_new') }}"><i class="fa fa-upload fa-fw"></i> EXCEL</a>
-                            <a class="btn btn-danger" href="{{ route('admin-report-tixtrack-pdf-category', 'event='.$event_id.'&start_date='.$start_date.'&end_date='.$end_date) }}" title="{{ trans('general.create_new') }}"><i class="fa fa-upload fa-fw"></i> PDF</a>
-                        </div>
                     </div>
                     <div class="box-body">
                         @if(!$dateCats->isEmpty())
@@ -170,10 +173,6 @@ Tixtrack
                 <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('general.by_payment') }}</h3>
-                        <div class="pull-right">
-                            <a class="btn btn-success" href="{{ route('admin-create-venue') }}" title="{{ trans('general.create_new') }}"><i class="fa fa-upload fa-fw"></i> EXCEL</a>
-                            <a class="btn btn-danger" href="{{ route('admin-create-venue') }}" title="{{ trans('general.create_new') }}"><i class="fa fa-upload fa-fw"></i> PDF</a>
-                        </div>
                     </div>
                     <div class="box-body">
                         @if(!$datePays->isEmpty())
@@ -269,10 +268,6 @@ Tixtrack
                 <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('general.by_promotion') }}</h3>
-                        <div class="pull-right">
-                            <a class="btn btn-success" href="{{ route('admin-create-venue') }}" title="{{ trans('general.create_new') }}"><i class="fa fa-upload fa-fw"></i> EXCEL</a>
-                            <a class="btn btn-danger" href="{{ route('admin-create-venue') }}" title="{{ trans('general.create_new') }}"><i class="fa fa-upload fa-fw"></i> PDF</a>
-                        </div>
                     </div>
                     <div class="box-body">
                         @if(!$datePros->isEmpty())

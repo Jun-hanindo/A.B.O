@@ -277,14 +277,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::get('report', array('as' => 'admin-report-tixtrack', 'uses' => 'ReportsController@report'));
         //Route::get('report-event', array('as' => 'admin-report-tixtrack-event', 'uses' => 'ReportsController@report'));
         
-        Route::get('excel-category', array('as' => 'admin-report-tixtrack-excel-category', 'uses' => 'ReportsController@exportCategoryToExcel'));
-        Route::get('pdf-category', array('as' => 'admin-report-tixtrack-pdf-category', 'uses' => 'ReportsController@exportCategoryToPdf'));
+        Route::get('excel', array('as' => 'admin-report-tixtrack-excel', 'uses' => 'ReportsController@exportReportToExcel'));
+        Route::get('pdf', array('as' => 'admin-report-tixtrack-pdf', 'uses' => 'ReportsController@exportReportToPdf'));
         
-        Route::get('excel-payment', array('as' => 'admin-report-tixtrack-excel-payment', 'uses' => 'ReportsController@exportPaymentToExcel'));
-        Route::get('pdf-payment', array('as' => 'admin-report-tixtrack-pdf-payment', 'uses' => 'ReportsController@exportPaymentToPdf'));
+        // Route::get('excel-category', array('as' => 'admin-report-tixtrack-excel-category', 'uses' => 'ReportsController@exportCategoryToExcel'));
+        // Route::get('pdf-category', array('as' => 'admin-report-tixtrack-pdf-category', 'uses' => 'ReportsController@exportCategoryToPdf'));
         
-        Route::get('excel-promotion', array('as' => 'admin-report-tixtrack-excel-promotion', 'uses' => 'ReportsController@exportPromotionToExcel'));
-        Route::get('pdf-promotion', array('as' => 'admin-report-tixtrack-pdf-promotion', 'uses' => 'ReportsController@exportPromotionToPdf'));
+        // Route::get('excel-payment', array('as' => 'admin-report-tixtrack-excel-payment', 'uses' => 'ReportsController@exportPaymentToExcel'));
+        // Route::get('pdf-payment', array('as' => 'admin-report-tixtrack-pdf-payment', 'uses' => 'ReportsController@exportPaymentToPdf'));
+        
+        // Route::get('excel-promotion', array('as' => 'admin-report-tixtrack-excel-promotion', 'uses' => 'ReportsController@exportPromotionToExcel'));
+        // Route::get('pdf-promotion', array('as' => 'admin-report-tixtrack-pdf-promotion', 'uses' => 'ReportsController@exportPromotionToPdf'));
 
     
         Route::get('truncate-member', array('as' => 'admin-tixtrack-truncate-member', 'uses' => 'ReportsController@truncateMember'));

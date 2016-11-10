@@ -39,9 +39,6 @@
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Total</th>
                     </tr>
                     <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
                         @if($countPro > 0)
                             @foreach($promotions as $key => $pro)  
                                 <th style="background:#e7e6e6;border:1px solid #000;">{{ $pro->promo_code }}</th>
