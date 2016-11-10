@@ -623,8 +623,8 @@
                     <p>{{ trans('general.confirmation_delete') }} <strong id="name"></strong> ?</p>
                 </div>
                 <div class="modal-footer">
-                        <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
-                        <a id="delete-modal-seat-image" href="#" class="continue-delete btn btn-default" data-dismiss="modal">Continue</a>
+                        <a id="btn-modal-cancel" class="btn btn-primary">{{ trans('general.button_cancel') }}</a>&nbsp;
+                        <a id="btn-modal-promotion-image" href="#" class="continue-delete btn btn-default" data-dismiss="modal">Continue</a>
                 </div>
             </div>
         </div>

@@ -1161,7 +1161,10 @@
             });
 
 
-
+            $('#delete-modal-promotion-image').on('click', '#btn-modal-cancel', function () {
+                $('#delete-modal-promotion-image').modal('hide');
+                $('#modal-form-promotion').modal('show');
+            });
             $('#delete-modal-promotion-image').on('click', '.continue-delete', function () {
                 var image = $(this).attr('data-value');
                 var name = $(this).attr('data-name');
