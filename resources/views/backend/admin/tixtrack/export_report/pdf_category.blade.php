@@ -1,20 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <style>
+            body{
+                font-family: 'Source Sans Pro',Helvetica,Arial,sans-serif;
+            }
+            .title-report{
+                border-bottom: 1px solid #000;
+                font-size: 22px;
+            }
+        </style>
     </head>
     <body>
+        <h3 class="title-report"><b>DAILY SALES SUMMARY REPORT BY EVENT</b></h3>
+        <br>
+        <br>
         <table>
             <tbody>
-                <tr>
-                    <td style="font-size: 36px;"><b>DAILY SALES REPORT BY CATEGORY</b></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <table>
-            <tbody>
-                <tr></tr>
                 <tr>
                     <td>Event:</td>
                     <td></td>
@@ -27,6 +30,7 @@
                 </tr>
             </tbody>
         </table>
+        <br>
 
         @if(!$dateCats->isEmpty())
             <table>
@@ -39,9 +43,6 @@
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Total</th>
                     </tr>
                     <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
                         @if($countCat > 0)
                             @foreach($categories as $key => $cat)  
                                 <th style="background:#e7e6e6;border:1px solid #000;">{{ $cat->price_level_name }}</th>

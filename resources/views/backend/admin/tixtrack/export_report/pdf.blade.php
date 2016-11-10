@@ -315,10 +315,13 @@
         @endif
         
         <div class="page-break"></div>
-        
+
         @if(!$allSale->isEmpty())
             <table>
                 <thead>
+                    <tr>
+                        <th colspan="{{ $countAllCat + 3 }}" align="center" style="background:#e7e6e6;">SALES TO DATE: {{ date('d M Y', strtotime($first_date->local_created)) .' - '. date('d M Y') }}</th>
+                    </tr>
                     <tr>
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Event Day</th>
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;"></th>

@@ -53,6 +53,14 @@ class TixtrackOrder extends Model
     
     }
 
+    public function getFirstDateEvent($event_id){
+        $data = TixtrackOrder::select(DB::raw('DATE(local_created) as local_created'))
+            ->where('event_id', $event_id)
+            ->orderBy(DB::raw('DATE(local_created)'), 'asc')->first();
+
+        return $data;
+    }
+
     function getLastUpdate(){
         $data = TixtrackOrder::select(DB::raw('DATE(local_created) as local_created'))
             ->orderBy(DB::raw('DATE(local_created)'), 'desc')->first();

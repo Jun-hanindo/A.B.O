@@ -375,7 +375,7 @@ Tixtrack
 
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">{{ trans('general.sale_to_date') }}</h3>
+                        <h3 class="box-title">{{ trans('general.sale_to_date') }} ( {{ date('d M Y', strtotime($first_date->local_created)) .' - '. date('d M Y') }} )</h3>
                     </div>
                     <div class="box-body">
                         @if(!$allSale->isEmpty())

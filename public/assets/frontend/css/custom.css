@@ -89,6 +89,7 @@ iframe[name="google_conversion_frame"]{
   opacity: 1; 
 }
 #promotion img {
-  width: 100%;
+  /*width: 100%;*/
+  max-width: 100%;
 }​
 
