@@ -18,9 +18,9 @@ use Excel;
 use DB;
 use App\Models\TixtrackCustomer;
 use App\Models\TixtrackOrder;
-use League\Csv\Reader;
-use League\Csv\Writer;
-use Chumper\Zipper\Zipper;
+// use League\Csv\Reader;
+// use League\Csv\Writer;
+// use Chumper\Zipper\Zipper;
 //use GuzzleHttp\Cookie\CookieJar;
 //use GuzzleHttp\Cookie\CookieJarInterface;
 
@@ -413,7 +413,7 @@ class DownloadController extends BaseController
         }
         
         try{
-            ob_start();
+            //ob_start();
             $modelCustomer = new TixtrackCustomer();
             $modelOrder = new TixtrackOrder();
             $modelAccount = new TixtrackAccount();
@@ -630,11 +630,11 @@ class DownloadController extends BaseController
                     }
                 //end import order
 
-                    //File::delete($file_member);
-                    //File::delete($file_transaction);
-                    echo("Hello there!"); //would normally get printed to the screen/output to browser
-                    $output = ob_get_contents();
-                    ob_flush();
+                    \File::delete('downloads/'.$filenameMember);
+                    \File::delete('downloads/'.$filenameTransaction);
+                    //echo("Hello there!"); //would normally get printed to the screen/output to browser
+                    //$output = ob_get_contents();
+                    //ob_flush();
 
             }else{
                 flash()->error('Change Account/Event failed');

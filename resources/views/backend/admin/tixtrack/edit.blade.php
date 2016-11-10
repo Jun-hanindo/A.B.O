@@ -8,6 +8,9 @@
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">Change Account/Event to Update Data</h3>
+                    <div class="pull-right">
+                        <a class="btn btn-danger" href="{{ route('admin-tixtrack-logout') }}" title="Sign Out from Tixtrack"><i class="fa fa-sign-out"></i> Sign Out from Tixtrack</a>
+                    </div>
                 </div>
                 <div class="box-body">
                     {!! Form::open(array('url' => route('admin-tixtrack-update-data'),'method'=>'PUT','id'=>'form-account')) !!}

@@ -39,6 +39,10 @@
             loadDataTransaction();
         });
 
+        $('#btn_apply_report').click(function(){
+            modal_loader();
+        });
+
     });
 
     function loadDataMember()

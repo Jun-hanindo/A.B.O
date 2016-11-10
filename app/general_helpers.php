@@ -419,6 +419,16 @@ if (! function_exists('number_format_drop_zero_decimals')) {
     }
 }
 
+if (! function_exists('number_format_decimals')) {
+/*Format number*/
+    function number_format_decimals($number){
+        if($number == null){
+            return 0;
+        }
+        return number_format($number, 2, '.', ',');
+    }
+}
+
 if (! function_exists('date_from_to')) {
     /**
      * Checks whether a file exists.

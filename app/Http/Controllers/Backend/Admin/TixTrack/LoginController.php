@@ -92,4 +92,21 @@ class LoginController extends BaseController
         
         }
     }
+
+    public function logout(){
+        
+        try{
+            \Session::forget('ASPXAUTH');
+
+            return redirect()->route('admin-tixtrack-login');
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $saveData = $this->model->insertLogActivity($log);
+
+            return redirect()->route('admin-tixtrack-login');
+        
+        }
+    }
 }

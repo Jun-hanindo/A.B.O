@@ -18,7 +18,7 @@ Tixtrack
 @endsection
 
 @section('content')
-    <div class="row">
+    <div class="row" id="report-tixtrack-box">
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header">
@@ -49,248 +49,286 @@ Tixtrack
                         </div>
                     </div>
                     <div class="box-footer">
-                        {!! Form::submit('Apply', ['class' => 'btn btn-primary pull-right']) !!}
+                        {!! Form::submit('Apply', ['class' => 'btn btn-primary pull-right', 'id' => 'btn_apply_report']) !!}
                     </div>
                 {!! Form::close() !!}
             </div>
             @if(!empty($event_id))
                 <div class="box box-primary">
+                    <div class="box-body">
+                        <h4>Event: <b>{{ $event->title }}</b></h4>
+                        <h4>Report Period: {{ short_text_date($start_date) .' to '. short_text_date($end_date) }}</h4>
+                    </div>
+                </div>
+                <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('general.by_category') }}</h3>
+                        <div class="pull-right">
+                            <a class="btn btn-success" href="{{ route('admin-report-tixtrack-excel-category', 'event='.$event_id.'&start_date='.$start_date.'&end_date='.$end_date) }}" title="{{ trans('general.create_new') }}"><i class="fa fa-upload fa-fw"></i> EXCEL</a>
+                            <a class="btn btn-danger" href="{{ route('admin-report-tixtrack-pdf-category', 'event='.$event_id.'&start_date='.$start_date.'&end_date='.$end_date) }}" title="{{ trans('general.create_new') }}"><i class="fa fa-upload fa-fw"></i> PDF</a>
+                        </div>
                     </div>
                     <div class="box-body">
-                        <table class="table-bordered table">
-                            <thead>
-                                <tr>
-                                    <td rowspan="2">Sale Date</td>
-                                    <td rowspan="2">Event Day/Time</td>
-                                    <td rowspan="2"></td>
-                                    <td colspan="{{ $countCat }}" align="center">PRICE LEVEL/CATEGORY</td>
-                                    <td rowspan="2">Total</td>
-                                </tr>
-                                <tr>
-                                    @if($countCat > 0)
-                                        @foreach($categories as $key1 => $cat)  
-                                            <td>{{ $cat->price_level_name }}</td>
-                                        @endforeach
-                                    @endif
-                                </tr>
-                            </thead>
-                            @if(!empty($dateCats))
+                        @if(!$dateCats->isEmpty())
+                            <table class="table-bordered table">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">Sale Date</th>
+                                        <th rowspan="2">Event Day/Time</th>
+                                        <th rowspan="2"></th>
+                                        <th colspan="{{ $countCat }}" align="center">PRICE LEVEL/CATEGORY</th>
+                                        <th rowspan="2">Total</th>
+                                    </tr>
+                                    <tr>
+                                        @if($countCat > 0)
+                                            @foreach($categories as $key1 => $cat)  
+                                                <th>{{ $cat->price_level_name }}</th>
+                                            @endforeach
+                                        @endif
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     @foreach($dateCats as $key2 => $dateCat) 
                                         <tr>
-                                            <td rowspan="3">{{ date('d-M-Y', strtotime($dateCat->local_created)) }}</td>
-                                            <td rowspan="3">{{ date('d-M-Y', strtotime($dateCat->event_date)) }}</td>
+                                            <td>{{ date('d-M-Y', strtotime($dateCat->local_created)) }}</td>
+                                            <td>{{ date('d-M-Y, g:ia', strtotime($dateCat->event_date)) }}</td>
                                             <td>Full Amount:</td>
                                             @if($countCat > 0)
                                                 @foreach($dateCat->amounts as $key3 => $amount) 
-                                                    <td>{{ number_format_drop_zero_decimals($amount->full_price) }}</td>
+                                                    <td>{{ number_format_decimals($amount->full_price) }}</td>
                                                 @endforeach
                                             @endif
-                                            <td>{{ number_format_drop_zero_decimals($dateCat->full_price) }}</td>
+                                            <td>{{ number_format_decimals($dateCat->full_price) }}</td>
                                         </tr>
                                         <tr>
+                                            <td></td>
+                                            <td></td>
                                             <td>Discounted Amt:</td>
                                             @if($countCat > 0)
                                                 @foreach($dateCat->amounts as $key3 => $amount) 
-                                                    <td>{{ number_format_drop_zero_decimals($amount->price) }}</td>
+                                                    <td>{{ number_format_decimals($amount->price) }}</td>
                                                 @endforeach
                                             @endif
-                                            <td>{{ number_format_drop_zero_decimals($dateCat->price) }}</td>
+                                            <td>{{ number_format_decimals($dateCat->price) }}</td>
                                         </tr>
                                         <tr>
+                                            <td></td>
+                                            <td></td>
                                             <td>Quantity:</td>
                                             @if($countCat > 0)
                                                 @foreach($dateCat->amounts as $key3 => $amount) 
-                                                    <td>{{ number_format_drop_zero_decimals($amount->ticket_quantity) }}</td>
+                                                    <td>{{ $amount->ticket_quantity }}</td>
                                                 @endforeach
                                             @endif
                                             <td>{{ $dateCat->ticket_quantity }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            @endif
-                            <tfoot>
-                                <tr>
-                                    <td rowspan="3"></td>
-                                    <td rowspan="3"></td>
-                                    <td>Full Amount:</td>
-                                    @if($countCat > 0)
-                                        @foreach($totalCats as $key1 => $totalCat)  
-                                            <td>{{ number_format_drop_zero_decimals($totalCat->full_price) }}</td>
-                                        @endforeach
-                                    @endif
-                                    <td>{{ number_format_drop_zero_decimals($total->full_price) }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Discounted Amount:</td>
-                                    @if($countCat > 0)
-                                        @foreach($totalCats as $key1 => $totalCat)  
-                                            <td>{{ number_format_drop_zero_decimals($totalCat->price) }}</td>
-                                        @endforeach
-                                    @endif
-                                    <td>{{ number_format_drop_zero_decimals($total->price) }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Quantity:</td>
-                                    @if($countCat > 0)
-                                        @foreach($totalCats as $key1 => $totalCat)  
-                                            <td>{{ number_format_drop_zero_decimals($totalCat->ticket_quantity) }}</td>
-                                        @endforeach
-                                    @endif
-                                    <td>{{ number_format_drop_zero_decimals($total->ticket_quantity) }}</td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" class="text">Full Amount:</td>
+                                        @if($countCat > 0)
+                                            @foreach($totalCats as $key1 => $totalCat)  
+                                                <td>{{ number_format_decimals($totalCat->full_price) }}</td>
+                                            @endforeach
+                                        @endif
+                                        <td>{{ number_format_decimals($total->full_price) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text">Discounted Amt:</td>
+                                        @if($countCat > 0)
+                                            @foreach($totalCats as $key1 => $totalCat)  
+                                                <td>{{ number_format_decimals($totalCat->price) }}</td>
+                                            @endforeach
+                                        @endif
+                                        <td>{{ number_format_decimals($total->price) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text">Quantity:</td>
+                                        @if($countCat > 0)
+                                            @foreach($totalCats as $key1 => $totalCat)  
+                                                <td>{{ $totalCat->ticket_quantity }}</td>
+                                            @endforeach
+                                        @endif
+                                        <td>{{ $total->ticket_quantity }}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        @else
+                            <h3 class="center-align">No Result.</h3>
+                        @endif
                     </div>
                 </div>
+                {{-- <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">{{ trans('general.by_category') }} {{ trans('general.chart') }}</h3>
+                    </div>
+                    <div class="box-body">
+                        <canvas id="category_chart" width="100%" height="400"></canvas>
+                    </div>
+                </div> --}}
                 <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('general.by_payment') }}</h3>
+                        <div class="pull-right">
+                            <a class="btn btn-success" href="{{ route('admin-create-venue') }}" title="{{ trans('general.create_new') }}"><i class="fa fa-upload fa-fw"></i> EXCEL</a>
+                            <a class="btn btn-danger" href="{{ route('admin-create-venue') }}" title="{{ trans('general.create_new') }}"><i class="fa fa-upload fa-fw"></i> PDF</a>
+                        </div>
                     </div>
                     <div class="box-body">
-                        <table class="table-bordered table">
-                            <thead>
-                                <tr>
-                                    <td rowspan="2">Sale Date</td>
-                                    <td rowspan="2">Event Day/Time</td>
-                                    <td rowspan="2"></td>
-                                    <td colspan="{{ $countPay }}" align="center">Method Of Payment</td>
-                                    <td rowspan="2">Total</td>
-                                </tr>
-                                <tr>
-                                    @if($countPay > 0)
-                                        @foreach($payments as $key1 => $pay)  
-                                            <td>{{ $pay->payment_method_name }}</td>
-                                        @endforeach
-                                    @endif
-                                </tr>
-                            </thead>
-                            @if(!empty($datePays))
+                        @if(!$datePays->isEmpty())
+                            <table class="table-bordered table">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">Sale Date</th>
+                                        <th rowspan="2">Event Day/Time</th>
+                                        <th rowspan="2"></th>
+                                        <th colspan="{{ $countPay }}" align="center">Method Of Payment</th>
+                                        <th rowspan="2">Total</th>
+                                    </tr>
+                                    <tr>
+                                        @if($countPay > 0)
+                                            @foreach($payments as $key1 => $pay)  
+                                                <th>{{ $pay->payment_method_name }}</th>
+                                            @endforeach
+                                        @endif
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     @foreach($datePays as $key2 => $datePay) 
                                         <tr>
-                                            <td rowspan="3">{{ date('d-M-Y', strtotime($datePay->local_created)) }}</td>
-                                            <td rowspan="3">{{ date('d-M-Y', strtotime($datePay->event_date)) }}</td>
+                                            <td>{{ date('d-M-Y', strtotime($datePay->local_created)) }}</td>
+                                            <td>{{ date('d-M-Y, g:ia', strtotime($datePay->event_date)) }}</td>
                                             <td>Full Amount:</td>
                                             @if($countPay > 0)
                                                 @foreach($datePay->amounts as $key3 => $amount) 
-                                                    <td>{{ number_format_drop_zero_decimals($amount->full_price) }}</td>
+                                                    <td>{{ number_format_decimals($amount->full_price) }}</td>
                                                 @endforeach
                                             @endif
-                                            <td>{{ number_format_drop_zero_decimals($datePay->full_price) }}</td>
+                                            <td>{{ number_format_decimals($datePay->full_price) }}</td>
                                         </tr>
                                         <tr>
+                                            <td></td>
+                                            <td></td>
                                             <td>Discounted Amt:</td>
                                             @if($countPay > 0)
                                                 @foreach($datePay->amounts as $key3 => $amount) 
-                                                    <td>{{ number_format_drop_zero_decimals($amount->price) }}</td>
+                                                    <td>{{ number_format_decimals($amount->price) }}</td>
                                                 @endforeach
                                             @endif
-                                            <td>{{ number_format_drop_zero_decimals($datePay->price) }}</td>
+                                            <td>{{ number_format_decimals($datePay->price) }}</td>
                                         </tr>
                                         <tr>
+                                            <td></td>
+                                            <td></td>
                                             <td>Quantity:</td>
                                             @if($countPay > 0)
                                                 @foreach($datePay->amounts as $key3 => $amount) 
-                                                    <td>{{ number_format_drop_zero_decimals($amount->ticket_quantity) }}</td>
+                                                    <td>{{ $amount->ticket_quantity }}</td>
                                                 @endforeach
                                             @endif
                                             <td>{{ $datePay->ticket_quantity }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            @endif
-                            <tfoot>
-                                <tr>
-                                    <td rowspan="3"></td>
-                                    <td rowspan="3"></td>
-                                    <td>Full Amount:</td>
-                                    @if($countPay > 0)
-                                        @foreach($totalPays as $key1 => $totalPay)  
-                                            <td>{{ number_format_drop_zero_decimals($totalPay->full_price) }}</td>
-                                        @endforeach
-                                    @endif
-                                    <td>{{ number_format_drop_zero_decimals($total->full_price) }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Discounted Amount:</td>
-                                    @if($countPay > 0)
-                                        @foreach($totalPays as $key1 => $totalPay)  
-                                            <td>{{ number_format_drop_zero_decimals($totalPay->price) }}</td>
-                                        @endforeach
-                                    @endif
-                                    <td>{{ number_format_drop_zero_decimals($total->price) }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Quantity:</td>
-                                    @if($countPay > 0)
-                                        @foreach($totalPays as $key1 => $totalPay)  
-                                            <td>{{ number_format_drop_zero_decimals($totalPay->ticket_quantity) }}</td>
-                                        @endforeach
-                                    @endif
-                                    <td>{{ number_format_drop_zero_decimals($total->ticket_quantity) }}</td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" class="text">Full Amount:</td>
+                                        @if($countPay > 0)
+                                            @foreach($totalPays as $key1 => $totalPay)  
+                                                <td>{{ number_format_decimals($totalPay->full_price) }}</td>
+                                            @endforeach
+                                        @endif
+                                        <td>{{ number_format_decimals($total->full_price) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text">Discounted Amount:</td>
+                                        @if($countPay > 0)
+                                            @foreach($totalPays as $key1 => $totalPay)  
+                                                <td>{{ number_format_decimals($totalPay->price) }}</td>
+                                            @endforeach
+                                        @endif
+                                        <td>{{ number_format_decimals($total->price) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text">Quantity:</td>
+                                        @if($countPay > 0)
+                                            @foreach($totalPays as $key1 => $totalPay)  
+                                                <td>{{ $totalPay->ticket_quantity }}</td>
+                                            @endforeach
+                                        @endif
+                                        <td>{{ $total->ticket_quantity }}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        @else
+                            <h3 class="center-align">No Result.</h3>
+                        @endif
                     </div>
                 </div>
                 <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('general.by_promotion') }}</h3>
+                        <div class="pull-right">
+                            <a class="btn btn-success" href="{{ route('admin-create-venue') }}" title="{{ trans('general.create_new') }}"><i class="fa fa-upload fa-fw"></i> EXCEL</a>
+                            <a class="btn btn-danger" href="{{ route('admin-create-venue') }}" title="{{ trans('general.create_new') }}"><i class="fa fa-upload fa-fw"></i> PDF</a>
+                        </div>
                     </div>
                     <div class="box-body">
-                        <table class="table-bordered table">
-                            <thead>
-                                <tr>
-                                    <td rowspan="2">Sale Date</td>
-                                    <td rowspan="2">Event Day/Time</td>
-                                    <td rowspan="2"></td>
-                                    <td colspan="{{ $countPro }}" align="center">Promotion</td>
-                                    <td rowspan="2">Total</td>
-                                </tr>
-                                <tr>
-                                    @if($countPro > 0)
-                                        @foreach($promotions as $key1 => $pro)  
-                                            <td>{{ $pro->promo_code }}&nbsp;</td>
-                                        @endforeach
-                                    @endif
-                                </tr>
-                            </thead>
-                            @if(!empty($dates))
+                        @if(!$datePros->isEmpty())
+                            <table class="table-bordered table">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">Sale Date</th>
+                                        <th rowspan="2">Event Day/Time</th>
+                                        <th rowspan="2"></th>
+                                        <th colspan="{{ $countPro }}" align="center">Promotion</th>
+                                        <th rowspan="2">Total</th>
+                                    </tr>
+                                    <tr>
+                                        @if($countPro > 0)
+                                            @foreach($promotions as $key1 => $pro)  
+                                                <th>{{ $pro->promo_code }}&nbsp;</th>
+                                            @endforeach
+                                        @endif
+                                    </tr>
+                                </thead>
                                 <tbody>
-                                    @foreach($dates as $key2 => $date) 
+                                    @foreach($datePros as $key2 => $date) 
                                         @php
                                             $subtotal = $modelOrder->totalByDatePromotion($event_id, $date->local_created, $date->event_date);
                                         @endphp
                                         <tr>
-                                            <td rowspan="3">{{ date('d-M-Y', strtotime($date->local_created)) }}</td>
-                                            <td rowspan="3">{{ date('d-M-Y', strtotime($date->event_date)) }}</td>
+                                            <td>{{ date('d-M-Y', strtotime($date->local_created)) }}</td>
+                                            <td>{{ date('d-M-Y, g:ia', strtotime($date->event_date)) }}</td>
                                             <td>Full Amount:</td>
                                             @if($countPro > 0)
                                                 @foreach($promotions as $key1 => $pro)  
                                                     @php
                                                         $amount = $modelOrder->amountByPromotion($event_id, $pro->promo_code, $date->local_created, $date->event_date);
                                                     @endphp
-                                                    <td>{{ number_format_drop_zero_decimals($amount->full_price) }}</td>
+                                                    <td>{{ number_format_decimals($amount->full_price) }}</td>
                                                 @endforeach
                                             @endif
-                                            <td>{{ number_format_drop_zero_decimals($subtotal->full_price) }}</td>
+                                            <td>{{ number_format_decimals($subtotal->full_price) }}</td>
                                         </tr>
                                         <tr>
+                                            <td></td>
+                                            <td></td>
                                             <td>Discounted Amt:</td>
                                             @if($countPro > 0)
                                                 @foreach($promotions as $key1 => $pro)  
                                                     @php
                                                         $amount = $modelOrder->amountByPromotion($event_id, $pro->promo_code, $date->local_created, $date->event_date);
                                                     @endphp
-                                                    <td>{{ number_format_drop_zero_decimals($amount->price) }}</td>
+                                                    <td>{{ number_format_decimals($amount->price) }}</td>
                                                 @endforeach
                                             @endif
-                                            <td>{{ number_format_drop_zero_decimals($subtotal->price) }}</td>
+                                            <td>{{ number_format_decimals($subtotal->price) }}</td>
                                         </tr>
                                         <tr>
+                                            <td></td>
+                                            <td></td>
                                             <td>Quantity:</td>
                                             @if($countPro > 0)
                                                 @foreach($promotions as $key1 => $pro) 
@@ -304,39 +342,39 @@ Tixtrack
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            @endif
-                            <tfoot>
-                                <tr>
-                                    <td rowspan="3"></td>
-                                    <td rowspan="3"></td>
-                                    <td>Full Amount:</td>
-                                    @if($countPro > 0)
-                                        @foreach($totalPros as $key1 => $totalPro)  
-                                            <td>{{ number_format_drop_zero_decimals($totalPro->full_price) }}</td>
-                                        @endforeach
-                                    @endif
-                                    <td>{{ number_format_drop_zero_decimals($allTotalPro->full_price) }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Discounted Amount:</td>
-                                    @if($countPro > 0)
-                                        @foreach($totalPros as $key1 => $totalPro)  
-                                            <td>{{ number_format_drop_zero_decimals($totalPro->price) }}</td>
-                                        @endforeach
-                                    @endif
-                                    <td>{{ number_format_drop_zero_decimals($allTotalPro->price) }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Quantity:</td>
-                                    @if($countPro > 0)
-                                        @foreach($totalPros as $key1 => $totalPro)  
-                                            <td>{{ number_format_drop_zero_decimals($totalPro->ticket_quantity) }}</td>
-                                        @endforeach
-                                    @endif
-                                    <td>{{ number_format_drop_zero_decimals($allTotalPro->ticket_quantity) }}</td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" class="text">Full Amount:</td>
+                                        @if($countPro > 0)
+                                            @foreach($totalPros as $key1 => $totalPro)  
+                                                <td>{{ number_format_decimals($totalPro->full_price) }}</td>
+                                            @endforeach
+                                        @endif
+                                        <td>{{ number_format_decimals($allTotalPro->full_price) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text">Discounted Amount:</td>
+                                        @if($countPro > 0)
+                                            @foreach($totalPros as $key1 => $totalPro)  
+                                                <td>{{ number_format_decimals($totalPro->price) }}</td>
+                                            @endforeach
+                                        @endif
+                                        <td>{{ number_format_decimals($allTotalPro->price) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text">Quantity:</td>
+                                        @if($countPro > 0)
+                                            @foreach($totalPros as $key1 => $totalPro)  
+                                                <td>{{ $totalPro->ticket_quantity }}</td>
+                                            @endforeach
+                                        @endif
+                                        <td>{{ $allTotalPro->ticket_quantity }}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        @else
+                            <h3 class="center-align">No Result.</h3>
+                        @endif
                     </div>
                 </div>
 
@@ -345,57 +383,61 @@ Tixtrack
                         <h3 class="box-title">{{ trans('general.sale_to_date') }}</h3>
                     </div>
                     <div class="box-body">
-                        <table class="table-bordered table">
-                            <thead>
-                                <tr>
-                                    <td rowspan="2">Event Day</td>
-                                    <td rowspan="2"></td>
-                                    <td colspan="{{ $countAllCat }}" align="center">PRICE LEVEL/CATEGORY</td>
-                                    <td rowspan="2">Total</td>
-                                </tr>
-                                <tr>
-                                    @if($countAllCat > 0)
-                                        @foreach($allCategories as $key1 => $cat)  
-                                            <td>{{ $cat->price_level_name }}</td>
-                                        @endforeach
-                                    @endif
-                                </tr>
-                            </thead>
-                            @if(!empty($allSale))
+                        @if(!$allSale->isEmpty())
+                            <table class="table-bordered table">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">Event Day</th>
+                                        <th rowspan="2"></th>
+                                        <th colspan="{{ $countAllCat }}" align="center">PRICE LEVEL/CATEGORY</th>
+                                        <th rowspan="2">Total</th>
+                                    </tr>
+                                    <tr>
+                                        @if($countAllCat > 0)
+                                            @foreach($allCategories as $key1 => $cat)  
+                                                <th>{{ $cat->price_level_name }}</th>
+                                            @endforeach
+                                        @endif
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     @foreach($allSale as $key2 => $sale) 
                                         <tr>
-                                            <td rowspan="3">{{ date('d-M-Y', strtotime($sale->event_date)) }}</td>
+                                            <td>{{ date('d-M-Y, g:ia', strtotime($sale->event_date)) }}</td>
                                             <td>Full Amount:</td>
                                             @if($countAllCat > 0)
                                                 @foreach($sale->amounts as $key3 => $amount) 
-                                                    <td>{{ number_format_drop_zero_decimals($amount->full_price) }}</td>
+                                                    <td>{{ number_format_decimals($amount->full_price) }}</td>
                                                 @endforeach
                                             @endif
-                                            <td>{{ number_format_drop_zero_decimals($sale->full_price) }}</td>
+                                            <td>{{ number_format_decimals($sale->full_price) }}</td>
                                         </tr>
                                         <tr>
+                                            <td></td>
                                             <td>Discounted Amt:</td>
                                             @if($countAllCat > 0)
                                                 @foreach($sale->amounts as $key3 => $amount) 
-                                                    <td>{{ number_format_drop_zero_decimals($amount->price) }}</td>
+                                                    <td>{{ number_format_decimals($amount->price) }}</td>
                                                 @endforeach
                                             @endif
-                                            <td>{{ number_format_drop_zero_decimals($sale->price) }}</td>
+                                            <td>{{ number_format_decimals($sale->price) }}</td>
                                         </tr>
                                         <tr>
+                                            <td></td>
                                             <td>Quantity:</td>
                                             @if($countAllCat > 0)
                                                 @foreach($sale->amounts as $key3 => $amount) 
-                                                    <td>{{ number_format_drop_zero_decimals($amount->ticket_quantity) }}</td>
+                                                    <td>{{ $amount->ticket_quantity }}</td>
                                                 @endforeach
                                             @endif
                                             <td>{{ $sale->ticket_quantity }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            @endif
-                        </table>
+                            </table>
+                        @else
+                            <h3 class="center-align">No Result.</h3>
+                        @endif
                     </div>
                 </div>
             @endif

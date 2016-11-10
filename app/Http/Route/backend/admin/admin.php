@@ -255,6 +255,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
     Route::group(['prefix' => 'tixtrack','namespace' => 'TixTrack'], function () {
         Route::get('login', array('as' => 'admin-tixtrack-login', 'uses' => 'LoginController@login'));
         Route::post('post-login', array('as' => 'admin-tixtrack-login-post', 'uses' => 'LoginController@postLogin'));
+        Route::get('logout', array('as' => 'admin-tixtrack-logout', 'uses' => 'LoginController@logout'));
         Route::get('edit-data', array('as' => 'admin-tixtrack-edit-data', 'uses' => 'DownloadController@account'));
         Route::put('update-data', array('as' => 'admin-tixtrack-update-data', 'uses' => 'DownloadController@updateData'));
         //Route::get('download', array('as' => 'admin-tixtrack-download', 'uses' => 'DownloadController@download'));
@@ -275,6 +276,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::get('list', array('as' => 'admin-index-tixtrack', 'uses' => 'ReportsController@index'));
         Route::get('report', array('as' => 'admin-report-tixtrack', 'uses' => 'ReportsController@report'));
         //Route::get('report-event', array('as' => 'admin-report-tixtrack-event', 'uses' => 'ReportsController@report'));
+        
+        Route::get('excel-category', array('as' => 'admin-report-tixtrack-excel-category', 'uses' => 'ReportsController@exportCategoryToExcel'));
+        Route::get('pdf-category', array('as' => 'admin-report-tixtrack-pdf-category', 'uses' => 'ReportsController@exportCategoryToPdf'));
+        
+        Route::get('excel-payment', array('as' => 'admin-report-tixtrack-excel-payment', 'uses' => 'ReportsController@exportPaymentToExcel'));
+        Route::get('pdf-payment', array('as' => 'admin-report-tixtrack-pdf-payment', 'uses' => 'ReportsController@exportPaymentToPdf'));
+        
+        Route::get('excel-promotion', array('as' => 'admin-report-tixtrack-excel-promotion', 'uses' => 'ReportsController@exportPromotionToExcel'));
+        Route::get('pdf-promotion', array('as' => 'admin-report-tixtrack-pdf-promotion', 'uses' => 'ReportsController@exportPromotionToPdf'));
+
     
         Route::get('truncate-member', array('as' => 'admin-tixtrack-truncate-member', 'uses' => 'ReportsController@truncateMember'));
         Route::get('truncate-transaction', array('as' => 'admin-tixtrack-truncate-transaction', 'uses' => 'ReportsController@truncateTransaction'));
@@ -286,10 +297,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     Route::get('region/combo', array('as' => 'list-combo-region', 'uses' => 'RegionsController@comboRegion'));
 });
 
-Route::group(['prefix' => 'tixtrack','namespace' => 'Backend\Admin\TixTrack'], function () {
-    Route::get('test-get-file', array('as' => 'test-get-file', 'uses' => 'DownloadController@downloadMember'));
-});
+// Route::group(['prefix' => 'tixtrack','namespace' => 'Backend\Admin\TixTrack'], function () {
+//     Route::get('test-get-file2', array('as' => 'test-get-file2', 'uses' => 'DownloadController@tesimportTransaction'));
+// });
 
 Route::group(['prefix' => 'tixtrack','namespace' => 'Backend\Admin\TixTrack'], function () {
-    Route::get('test-get-file2', array('as' => 'test-get-file2', 'uses' => 'DownloadController@tesimportTransaction'));
+    Route::get('test', array('as' => 'test-get-file2', 'uses' => 'ReportsController@tes_reportExcel'));
 });
+
