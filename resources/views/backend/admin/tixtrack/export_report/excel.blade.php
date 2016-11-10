@@ -373,7 +373,7 @@
             <tbody>
                 <tr>
                     <td colspan="{{ $countAllCat + 3 }}" align="left" style="border-top:1px solid #000;">
-                        <i>Printed on {{ date('d F Y, g:ia') }}, 10:00am by Jun Ledesma</i>
+                        <i>Printed on {{ date('d F Y, g:ia') }} by {{ \Sentinel::getUser()->first_name.' '.\Sentinel::getUser()->last_name }}</i>
                     </td>
                 </tr>
                 <tr>

@@ -206,10 +206,12 @@ class Promotion extends Model
             // }
             
             if(isset($param['promotion_logo'])){
-                $oldImage = $data->promotion_logo;
-                //File::delete($pathDest.'/'.$oldImage);
-                //
-                file_delete('promotions/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+                
+                $oldImage = $data->featured_image;
+                
+                if(!empty($oldImage)){
+                    file_delete('promotions/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+                }
                 
                 $promotion_logo = $param['promotion_logo'];
                 $extension = $promotion_logo->getClientOriginalExtension();
@@ -219,10 +221,11 @@ class Promotion extends Model
             }
             
             if(isset($param['promotion_banner'])){
-                $oldImage = $data->promotion_banner;
-                //File::delete($pathDest.'/'.$oldImage);
-                //
-                file_delete('promotions/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+                $oldImage2 = $data->banner_image; 
+
+                if(!empty($oldImage2)){
+                    file_delete('promotions/'.$oldImage2, env('FILESYSTEM_DEFAULT'));
+                }
                 
                 $promotion_banner = $param['promotion_banner'];
                 $extension = $promotion_banner->getClientOriginalExtension();
@@ -281,9 +284,14 @@ class Promotion extends Model
 
             $pathDest = public_path().'/uploads/promotions';
             $oldImage = $data->featured_image;
+            $oldImage2 = $data->banner_image;
             //File::delete($pathDest.'/'.$oldImage);
-            
-            file_delete('promotions/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+            if(!empty($oldImage)){
+                file_delete('promotions/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+            }
+            if(!empty($oldImage2)){
+                file_delete('promotions/'.$oldImage2, env('FILESYSTEM_DEFAULT'));
+            }
             $data->delete();
             $data->events()->detach();
             return $data;
