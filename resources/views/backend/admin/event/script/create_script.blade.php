@@ -713,9 +713,13 @@
             $(".tooltip-field").remove();
             $(".form-group").removeClass('has-error');
             var fd = new FormData();
-            var image = $('#featured_image').prop('files')[0];
-            if(image != undefined){
-                fd.append('featured_image',image);
+            var promo_logo = $('#promotion_logo').prop('files')[0];
+            if(promo_logo != undefined){
+                fd.append('promotion_logo',promo_logo);
+            }
+            var promo_banner = $('#promotion_banner').prop('files')[0];
+            if(promo_banner != undefined){
+                fd.append('promotion_banner',promo_banner);
             }
 
             // for (i=0; i < tinyMCE.editors.length; i++){
@@ -768,9 +772,13 @@
             $(".tooltip-field").remove();
             $(".form-group").removeClass('has-error');
             var fd = new FormData();
-            var image = $('#featured_image').prop('files')[0];
-            if(image != undefined){
-                fd.append('featured_image',image);
+            var promo_logo = $('#promotion_logo').prop('files')[0];
+            if(promo_logo != undefined){
+                fd.append('promotion_logo',promo_logo);
+            }
+            var promo_banner = $('#promotion_banner').prop('files')[0];
+            if(promo_banner != undefined){
+                fd.append('promotion_banner',promo_banner);
             }
 
             // for (i=0; i < tinyMCE.editors.length; i++){
@@ -841,7 +849,8 @@
                     $("#end_date").val(data.end_date);   
                     $("#promotion_code").val(data.code);   
                     $("#category").val(data.category); 
-                    $('#div-preview_image').show();
+                    $('#div-preview_promo_logo').show(); 
+                    $('#div-preview_promo_banner').show();
                     //$('#featured_image').val(data.featured_image);
                     if(!data.currency_id){
                         var def = $("#form-event-promotion #currency_id").attr('data-default');
@@ -869,7 +878,8 @@
                         $('#discount-percent').hide();
                         $('#discount-nominal').show();
                     }
-                    $('#preview_image').attr('src', data.src_featured_image);  
+                    $('#preview_promo_logo').attr('src', data.src_featured_image);  
+                    $('#preview_promo_banner').attr('src', data.src_banner_image);  
                     $("#description_promo").val(data.description);
                     $("#featured_image_link").val(data.featured_image_link);
                 },
@@ -885,8 +895,10 @@
             $("#title_promo").val('');
             $("#discount").val('');
             $("#promotion_code").val('');
-            $("#featured_image").val('');
-            $('#preview_image').attr('src', '');
+            $("#promotion_logo").val('');
+            $("#promotion_banner").val('');
+            $('#preview_promo_logo').attr('src', '');
+            $('#preview_promo_banner').attr('src', '');
             $("#discount").val('');
             $("#discount_nominal").val('');
             $(".discount_type-check").bootstrapSwitch('state', true); 

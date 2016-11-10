@@ -88,8 +88,7 @@ iframe[name="google_conversion_frame"]{
   color: #000;
   opacity: 1; 
 }
-#promotion img {
-  /*width: 100%;*/
+#promotion .promo-banner{
   max-width: 100%;
-}​
+}
 

@@ -314,6 +314,9 @@
             <table>
                 <thead>
                     <tr>
+                        <th colspan="{{ $countAllCat + 3 }}" align="center" style="background:#e7e6e6;">SALES TO DATE: {{ date('d M Y', strtotime($first_date->local_created)) .' - '. date('d M Y') }}</th>
+                    </tr>
+                    <tr>
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Event Day</th>
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;"></th>
                         <th colspan="{{ $countAllCat }}" align="center" style="background:#e7e6e6;border:1px solid #000;">PRICE LEVEL/CATEGORY</th>
@@ -342,7 +345,7 @@
                             <td align="right" >{{ number_format_decimals($sale->full_price) }}</td>
                         </tr>
                         <tr>
-                            <td></td>
+                            <td style="border-bottom:1px solid #000;"></td>
                             <td align="right" >Discounted Amt:</td>
                             @if($countAllCat > 0)
                                 @foreach($sale->amounts as $key3 => $amount) 
@@ -353,17 +356,32 @@
                         </tr>
                         <tr>
                             <td></td>
-                            <td align="right" >Quantity:</td>
+                            <td align="right"  style="border-bottom:1px solid #000;">Quantity:</td>
                             @if($countAllCat > 0)
                                 @foreach($sale->amounts as $key3 => $amount) 
-                                    <td align="right" >{{ $amount->ticket_quantity }}</td>
+                                    <td align="right"  style="border-bottom:1px solid #000;">{{ $amount->ticket_quantity }}</td>
                                 @endforeach
                             @endif
-                            <td align="right" >{{ $sale->ticket_quantity }}</td>
+                            <td align="right" style="border-bottom:1px solid #000;">{{ $sale->ticket_quantity }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         @endif
+        <br>
+        <table>
+            <tbody>
+                <tr>
+                    <td colspan="{{ $countAllCat + 3 }}" align="left" style="border-top:1px solid #000;">
+                        <i>Printed on {{ date('d F Y, g:ia') }}, 10:00am by Jun Ledesma</i>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="{{ $countAllCat + 3 }}" align="left" style="">
+                        <i>{{ env('APP_NAME') }} - DailySummaryReport-Category-V1.0.0</i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>

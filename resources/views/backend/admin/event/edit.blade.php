@@ -447,14 +447,23 @@
                                     {!! Form::errorMsg('promotion_code') !!}
                                 </div>
                             </div>
-                            <div class="form-group{{ Form::hasError('featured_image') }} featured_image">
-                                {!! Form::label('featured_image', trans('general.featured_image').'(Max. 2880px x 800px) *') !!}
+                            <div class="form-group{{ Form::hasError('promotion_logo') }} promotion_logo">
+                                {!! Form::label('promotion_logo', trans('general.promotion_logo').'(Max. 100px x 100px)') !!}
                                 (Max. size 1 mb)
-                                <input id="featured_image" name="featured_image" class="form-control image" data-name="image" type="file" value="">
-                                {!! Form::errorMsg('featured_image') !!}
+                                <input id="promotion_logo" name="promotion_logo" class="form-control image" data-name="promo_logo" type="file" value="">
+                                {!! Form::errorMsg('promotion_logo') !!}
                             </div>
-                            <div class="form-group privew" id="div-preview_image" data-name="image" style="display:none">
-                                <img src="" name="preview" id="preview_image" height="20%" width="20%">
+                            <div class="form-group privew" id="div-preview_promo_logo" data-name="promo_logo" style="display:none">
+                                <img src="" name="preview" id="preview_promo_logo" height="20%" width="20%">
+                            </div>
+                            <div class="form-group{{ Form::hasError('promotion_banner') }} promotion_banner">
+                                {!! Form::label('promotion_banner', trans('general.promotion_banner').'(Max. 1440px x 400px)') !!}
+                                (Max. size 1 mb)
+                                <input id="promotion_banner" name="promotion_banner" class="form-control image" data-name="promo_banner" type="file" value="">
+                                {!! Form::errorMsg('promotion_banner') !!}
+                            </div>
+                            <div class="form-group privew" id="div-preview_promo_banner" data-name="promo_banner" style="display:none">
+                                <img src="" name="preview" id="preview_promo_banner" height="20%" width="20%">
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image_link') }} featured_image_link">
                                 {!! Form::label('featured_image_link', trans('general.featured_image_link')) !!}

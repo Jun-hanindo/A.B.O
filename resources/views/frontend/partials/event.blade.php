@@ -269,9 +269,14 @@
                                                     <div class="">
                                                         @foreach($event->promotions as $key => $promotion) 
                                                             <section id="promotion" class="sectionEvent">
-                                                                <a {!! (!empty($promotion->featured_image_link)) ? 'href="'.$promotion->featured_image_link.'" target="_blank"' : '' !!}>
-                                                                    <img src="{{ file_url('promotions/'.$promotion->featured_image, env('FILESYSTEM_DEFAULT')) }}" onload="this.width/=2;this.onload=null;">
-                                                                </a>
+                                                                @if(!empty($promotion->banner_image))
+                                                                    <img class="promo-banner" src="{{ file_url('promotions/'.$promotion->banner_image, env('FILESYSTEM_DEFAULT')) }}">
+                                                                @endif
+                                                                @if(!empty($promotion->featured_image))
+                                                                    <a {!! (!empty($promotion->featured_image_link)) ? 'href="'.$promotion->featured_image_link.'" target="_blank"' : '' !!}>
+                                                                        <img class="promo-logo" src="{{ file_url('promotions/'.$promotion->featured_image, env('FILESYSTEM_DEFAULT')) }}" onload="this.width/=2;this.onload=null;">
+                                                                    </a>
+                                                                @endif
                                                                 <h3 class="font-bold">{{ $promotion->title }}</h3>
                                                                 {!! $promotion->description !!}
                                                                     @if($promotion->discount > 0 || $promotion->discount_nominal > 0)

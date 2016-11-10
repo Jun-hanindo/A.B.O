@@ -285,5 +285,7 @@ return [
     'by_promotion' => 'By Promotion',
     'sale_to_date' => 'Sale to Date',
     'chart' => 'Chart',
+    'promotion_banner' => 'Promotion Banner',
+    'promotion_logo' => 'Promotion Logo',
 
 ];

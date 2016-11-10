@@ -103,22 +103,39 @@ class Promotion extends Model
         //     File::makeDirectory($pathDest, $mode=0777,true,true);
         // }
 
-        if (isset($param['featured_image'])) {
-            $featured_image = $param['featured_image'];
-            $extension = $featured_image->getClientOriginalExtension();
-            $filename = "image".time().'.'.$extension;
-            $this->featured_image = $filename;
+        if (isset($param['promotion_logo'])) {
+            $promotion_logo = $param['promotion_logo'];
+            $extension = $promotion_logo->getClientOriginalExtension();
+            $filename_logo = "promo_logo".time().'.'.$extension;
+            $this->featured_image = $filename_logo;
+        }
+        if (isset($param['promotion_banner'])) {
+            $promotion_banner = $param['promotion_banner'];
+            $extension = $promotion_banner->getClientOriginalExtension();
+            $filename_banner = "promo_banner".time().'.'.$extension;
+            $this->banner_image = $filename_banner;
         }
 
     	if($this->save()){
-            if (isset($featured_image)) {
-                $img = Image::make($featured_image);
+            if (isset($promotion_logo)) {
+                $img = Image::make($promotion_logo);
                 // $img->resize(50, null, function ($constraint) {
                 //     $constraint->aspectRatio();
                 // });
                 $img_tmp = $img->stream();
                 Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                    'promotions/'.$filename, $img_tmp->__toString(), 'public'
+                    'promotions/'.$filename_logo, $img_tmp->__toString(), 'public'
+                );
+                //$img->save($pathDest.'/'.$filename); 
+            }
+            if (isset($promotion_banner)) {
+                $img = Image::make($promotion_banner);
+                // $img->resize(50, null, function ($constraint) {
+                //     $constraint->aspectRatio();
+                // });
+                $img_tmp = $img->stream();
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                    'promotions/'.$filename_banner, $img_tmp->__toString(), 'public'
                 );
                 //$img->save($pathDest.'/'.$filename); 
             }
@@ -188,22 +205,35 @@ class Promotion extends Model
             //     File::makeDirectory($pathDest, $mode=0777,true,true);
             // }
             
-            if(isset($param['featured_image'])){
-                $oldImage = $data->featured_image;
+            if(isset($param['promotion_logo'])){
+                $oldImage = $data->promotion_logo;
                 //File::delete($pathDest.'/'.$oldImage);
                 //
                 file_delete('promotions/'.$oldImage, env('FILESYSTEM_DEFAULT'));
                 
-                $featured_image = $param['featured_image'];
-                $extension = $featured_image->getClientOriginalExtension();
+                $promotion_logo = $param['promotion_logo'];
+                $extension = $promotion_logo->getClientOriginalExtension();
 
-                $filename = "image".time().'.'.$extension;
-                $data->featured_image = $filename;
+                $filename_logo = "promo_logo".time().'.'.$extension;
+                $data->featured_image = $filename_logo;
+            }
+            
+            if(isset($param['promotion_banner'])){
+                $oldImage = $data->promotion_banner;
+                //File::delete($pathDest.'/'.$oldImage);
+                //
+                file_delete('promotions/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+                
+                $promotion_banner = $param['promotion_banner'];
+                $extension = $promotion_banner->getClientOriginalExtension();
+
+                $filename_banner = "promo_banner".time().'.'.$extension;
+                $data->banner_image = $filename_banner;
             }
 
             if($data->save()) {
-                if(isset($param['featured_image'])){
-                    $img = Image::make($featured_image);
+                if(isset($param['promotion_logo'])){
+                    $img = Image::make($promotion_logo);
                     // $img->resize(50, null, function ($constraint) {
                     //     $constraint->aspectRatio();
                     // });
@@ -211,7 +241,19 @@ class Promotion extends Model
                     $img_tmp = $img->stream();
                     
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'promotions/'.$filename, $img_tmp->__toString(), 'public'
+                        'promotions/'.$filename_logo, $img_tmp->__toString(), 'public'
+                    );
+                }
+                if(isset($param['promotion_banner'])){
+                    $img = Image::make($promotion_banner);
+                    // $img->resize(50, null, function ($constraint) {
+                    //     $constraint->aspectRatio();
+                    // });
+                    //$img->save($pathDest.'/'.$filename);
+                    $img_tmp = $img->stream();
+                    
+                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                        'promotions/'.$filename_banner, $img_tmp->__toString(), 'public'
                     );
                 }
                 return $data;
