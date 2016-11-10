@@ -451,7 +451,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('promotion_logo') }} promotion_logo">
                                 {!! Form::label('promotion_logo', trans('general.promotion_logo').'(Max. 100px x 100px)') !!}
-                                (Max. size 1 mb)
+                                (Max. size 1 mb) <span id="span-promotion_logo"></span>
                                 <input id="promotion_logo" name="promotion_logo" class="form-control image" data-name="promo_logo" type="file" value="">
                                 {!! Form::errorMsg('promotion_logo') !!}
                             </div>
@@ -460,7 +460,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('promotion_banner') }} promotion_banner">
                                 {!! Form::label('promotion_banner', trans('general.promotion_banner').'(Max. 1440px x 400px)') !!}
-                                (Max. size 1 mb)
+                                (Max. size 1 mb) <span id="span-promotion_banner"></span>
                                 <input id="promotion_banner" name="promotion_banner" class="form-control image" data-name="promo_banner" type="file" value="">
                                 {!! Form::errorMsg('promotion_banner') !!}
                             </div>
@@ -590,6 +590,23 @@
                         <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
                         <a id="delete-modal-promotion" href="#" class="continue-delete btn btn-default" data-dismiss="modal">Continue</a>
                     {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="delete-modal-promotion-image" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{ trans('general.confirmation_delete') }} <strong id="name"></strong> ?</p>
+                </div>
+                <div class="modal-footer">
+                        <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
+                        <a id="delete-modal-seat-image" href="#" class="continue-delete btn btn-default" data-dismiss="modal">Continue</a>
                 </div>
             </div>
         </div>

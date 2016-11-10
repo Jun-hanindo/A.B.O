@@ -151,6 +151,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::post('{id}/update', array('as' => 'admin-update-promotion', 'uses' => 'PromotionsController@update'));
         Route::delete('{id}/delete', array('as' => 'admin-delete-promotion', 'uses' => 'PromotionsController@destroy'));
         Route::post('{id}/avaibility-edit', array('as' => 'admin-update-promotion-avaibility', 'uses' => 'PromotionsController@avaibilityUpdate'));
+        Route::post('{id}/delete-promotion-image', array('as' => 'admin-delete-promotion-image', 'uses' => 'PromotionsController@deletePromotionImage'));
     });
 
     Route::group(['prefix' => 'venue'], function () {

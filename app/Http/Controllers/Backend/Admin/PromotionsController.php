@@ -222,6 +222,8 @@ class PromotionsController extends BaseController
             $data->src = url('uploads/promotions');
             if(isset($data->featured_image)){
                 $data->src_featured_image = file_url('promotions/'.$data->featured_image, env('FILESYSTEM_DEFAULT'));
+            }
+            if(isset($data->banner_image)){
                 $data->src_banner_image = file_url('promotions/'.$data->banner_image, env('FILESYSTEM_DEFAULT')); 
             }
             $data['currencies'] = Currency::dropdownCode();
@@ -413,5 +415,33 @@ class PromotionsController extends BaseController
             ],400);
 
         }
+    }
+
+    public function deletePromotionImage($id, Request $req){
+
+        try{
+            $param = $req->all();
+            $data = $this->model->deletePromotionImage($param, $id);
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => trans('general.delete_promotion_image_success')
+                ],200);
+
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'error',
+                'message' => trans('general.data_not_found')
+            ],400);
+
+        }
+
     }
 }

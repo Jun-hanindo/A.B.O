@@ -335,4 +335,35 @@ class Promotion extends Model
         ->whereNull('events.deleted_at')->count();
         return $data;
     }
+
+    public function deletePromotionImage($param, $id){
+        $data = $this->find($id);
+        if(!empty($data)) {
+            if(isset($param['promotion_logo'])){
+                $promotion_logo = $data->featured_image;
+                $data->featured_image = null;
+                if($data->save()){
+                    if(!empty($promotion_logo)){
+                        file_delete('promotions/'.$promotion_logo, env('FILESYSTEM_DEFAULT'));
+                    }
+                }else{
+                    return false;
+                }
+            }
+            if(isset($param['promotion_banner'])){
+                $promotion_banner = $data->banner_image;
+                $data->banner_image = null;
+                if($data->save()){
+                    if(!empty($promotion_banner)){
+                        file_delete('promotions/'.$promotion_banner, env('FILESYSTEM_DEFAULT'));
+                    }
+                }else{
+                    return false;
+                }
+            }
+        } else {
+            return false;
+        }
+
+    }
 }

@@ -880,6 +880,12 @@
                     }
                     $('#preview_promo_logo').attr('src', data.src_featured_image);  
                     $('#preview_promo_banner').attr('src', data.src_banner_image);  
+                    if(data.featured_image != null){
+                        $('#span-promotion_logo').html('<a href="javascript:void(0)" data-id="'+id+'" data-name="promotion_logo" data-value="'+data.featured_image +'" class="btn btn-danger btn-xs delete-promotion_logo" title="Delete Promotion Logo"><i class="fa fa-trash-o fa-fw"></i></a>');
+                    } 
+                    if(data.banner_image != null){
+                        $('#span-promotion_banner').html('<a href="javascript:void(0)" data-id="'+id+'" data-name="promotion_banner" data-value="'+data.banner_image +'" class="btn btn-danger btn-xs delete-promotion_banner" title="Delete Promotion Banner"><i class="fa fa-trash-o fa-fw"></i></a>');
+                    }
                     $("#description_promo").val(data.description);
                     $("#featured_image_link").val(data.featured_image_link);
                 },
@@ -1135,6 +1141,54 @@
                         $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                         $('#seat_image3').val('');
                         $('#div-preview_seat_image3 img').attr('src', '');
+                    }
+                });
+            });
+            // 
+            // 
+
+                
+            $('#modal-form-promotion').on('click', '.delete-promotion_logo, .delete-promotion_banner', function () {
+                $('#delete-modal-promotion-image').modal('show');
+                $('#modal-form-promotion').modal('hide');
+                var name = $(this).attr('data-name');
+                var val = $(this).attr('data-value');
+                var id = $(this).attr('data-id');
+
+                $('#delete-modal-promotion-image .continue-delete').attr('data-id', id);
+                $('#delete-modal-promotion-image .continue-delete').attr('data-name', name);
+                $('#delete-modal-promotion-image .continue-delete').attr('data-value', val);
+            });
+
+
+
+            $('#delete-modal-promotion-image').on('click', '.continue-delete', function () {
+                var image = $(this).attr('data-value');
+                var name = $(this).attr('data-name');
+                var id = $(this).attr('data-id');
+                var uri = "{{ URL::route('admin-delete-promotion-image', "::param") }}";
+                uri = uri.replace('::param', id);
+                $.ajax({
+                    url: uri,
+                    type: "POST",
+                    dataType: 'json',
+                    data: name+'='+image,
+                    success: function (data) {
+                        $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        
+                        $('#'+name).val('');
+                        if(name == 'promotion_logo'){
+                            $('#div-preview_promo_logo img').attr('src', '');
+                        }else{
+                           $('#div-preview_promo_banner img').attr('src', ''); 
+                        }
+                        $('.delete-'+name).remove();
+                        $('#delete-modal-promotion-image').modal('hide');
+                        $('#modal-form-promotion').modal('show');
+
+                    },
+                    error: function(response){
+                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                     }
                 });
             });
