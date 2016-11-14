@@ -282,8 +282,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::get('pdf', array('as' => 'admin-report-tixtrack-pdf', 'uses' => 'ReportsController@exportReportToPdf'));
 
         Route::get('chart-category', array('as' => 'admin-report-tixtrack-chart-category', 'uses' => 'ReportsController@chartCategory'));
-        Route::post('chart-payment', array('as' => 'admin-report-tixtrack-chart-payment', 'uses' => 'ReportsController@chartPayment'));
-        Route::post('chart-promotion', array('as' => 'admin-report-tixtrack-chart-promotion', 'uses' => 'ReportsController@chartPromotion'));
+        Route::get('chart-payment', array('as' => 'admin-report-tixtrack-chart-payment', 'uses' => 'ReportsController@chartPayment'));
+        Route::get('chart-promotion', array('as' => 'admin-report-tixtrack-chart-promotion', 'uses' => 'ReportsController@chartPromotion'));
         
         // Route::get('excel-category', array('as' => 'admin-report-tixtrack-excel-category', 'uses' => 'ReportsController@exportCategoryToExcel'));
         // Route::get('pdf-category', array('as' => 'admin-report-tixtrack-pdf-category', 'uses' => 'ReportsController@exportCategoryToPdf'));

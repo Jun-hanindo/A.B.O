@@ -162,14 +162,17 @@ Tixtrack
                         @endif
                     </div>
                 </div>
-                {{-- <div class="box box-primary">
-                    <div class="box-header">
-                        <h3 class="box-title">{{ trans('general.by_category') }} {{ trans('general.chart') }}</h3>
+                @if(!$dateCats->isEmpty())
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h3 class="box-title">{{ trans('general.by_category') }} {{ trans('general.chart') }}</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="error-category"></div>
+                            <canvas id="category_chart" width="1000" height="400"></canvas>
+                        </div>
                     </div>
-                    <div class="box-body">
-                        <canvas id="category_chart" width="100%" height="400"></canvas>
-                    </div>
-                </div> --}}
+                @endif
                 <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('general.by_payment') }}</h3>
@@ -265,6 +268,17 @@ Tixtrack
                         @endif
                     </div>
                 </div>
+                @if(!$datePays->isEmpty())
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h3 class="box-title">{{ trans('general.by_payment') }} {{ trans('general.chart') }}</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="error-category"></div>
+                            <canvas id="payment_chart" width="1000" height="400"></canvas>
+                        </div>
+                    </div>
+                @endif
                 <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('general.by_promotion') }}</h3>
@@ -372,7 +386,17 @@ Tixtrack
                         @endif
                     </div>
                 </div>
-
+                @if(!$datePros->isEmpty())
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h3 class="box-title">{{ trans('general.by_promotion') }} {{ trans('general.chart') }}</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="error-category"></div>
+                            <canvas id="promotion_chart" width="1000" height="400"></canvas>
+                        </div>
+                    </div>
+                @endif
                 <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('general.sale_to_date') }} ( {{ date('d M Y', strtotime($first_date->local_created)) .' - '. date('d M Y') }} )</h3>

@@ -137,6 +137,7 @@
         {!! Html::script('assets/plugins/timepicker/bootstrap-timepicker.min.js') !!}
         {!! Html::script('assets/plugins/colorpicker/bootstrap-colorpicker.min.js') !!}
         {!! Html::script('assets/plugins/speakingurl/speakingurl.min.js') !!}
+        {!! Html::script('assets/plugins/chartjs/Chart.bundle.min.js') !!}
         {!! Html::script('assets/plugins/chartjs/Chart.min.js') !!}
         
         

@@ -9,6 +9,7 @@
 
         var start_date = $('input[name=start_date]').val();
         var end_date = $('input[name=end_date]').val();
+        var event_id = $('#event').val();
 
         $('#start_date').datepicker({
             format: "yyyy-mm-dd",
@@ -42,6 +43,10 @@
         $('#btn_apply_report').click(function(){
             modal_loader();
         });
+            
+        chartCategory(event_id, start_date, end_date);
+        chartPayment(event_id, start_date, end_date);
+        chartPromotion(event_id, start_date, end_date);
 
     });
 
@@ -90,7 +95,6 @@
     function loadDataTransaction()
     {
         var account_id = $('select[name=account_id_order]').val();
-        console.log(account_id);
 
         $.fn.dataTable.ext.errMode = 'none';
         $('#transaction-datatables').on('error.dt', function(e, settings, techNote, message) {
@@ -129,6 +133,123 @@
         });
 
         return table;
+    }
+
+    function chartCategory(event_id, start, end){
+        // var uri = "{{ URL::route('admin-edit-homepage', "::param") }}";
+        // uri = uri.replace('::param', id);
+        var uri = "{{ URL::route('admin-report-tixtrack-chart-category') }}";
+        $.ajax({
+            url: uri,
+            type: "get",
+            dataType: 'json',
+            data:{'event':event_id, 'start_date':start, 'end_date':end},
+            success: function (response) {
+                var cat = document.getElementById("category_chart");
+                var data = response.data;
+                var catChart = new Chart(cat, {
+                    type: 'line',
+                    data: data,
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true,
+                                }
+                            }]
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            labels: {
+                                fontColor: 'rgb(255, 99, 132)'
+                            }
+                        }
+                    }
+                });
+            },
+            error: function(response){
+                $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
+            }
+        });
+    }
+
+    function chartPayment(event_id, start, end){
+        // var uri = "{{ URL::route('admin-edit-homepage', "::param") }}";
+        // uri = uri.replace('::param', id);
+        var uri = "{{ URL::route('admin-report-tixtrack-chart-payment') }}";
+        $.ajax({
+            url: uri,
+            type: "get",
+            dataType: 'json',
+            data:{'event':event_id, 'start_date':start, 'end_date':end},
+            success: function (response) {
+                var cat = document.getElementById("payment_chart");
+                var data = response.data;
+                var catChart = new Chart(cat, {
+                    type: 'line',
+                    data: data,
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true,
+                                }
+                            }]
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            labels: {
+                                fontColor: 'rgb(255, 99, 132)'
+                            }
+                        }
+                    }
+                });
+            },
+            error: function(response){
+                $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
+            }
+        });
+    }
+
+    function chartPromotion(event_id, start, end){
+        // var uri = "{{ URL::route('admin-edit-homepage', "::param") }}";
+        // uri = uri.replace('::param', id);
+        var uri = "{{ URL::route('admin-report-tixtrack-chart-promotion') }}";
+        $.ajax({
+            url: uri,
+            type: "get",
+            dataType: 'json',
+            data:{'event':event_id, 'start_date':start, 'end_date':end},
+            success: function (response) {
+                var cat = document.getElementById("promotion_chart");
+                var data = response.data;
+                var catChart = new Chart(cat, {
+                    type: 'line',
+                    data: data,
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true,
+                                }
+                            }]
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            labels: {
+                                fontColor: 'rgb(255, 99, 132)'
+                            }
+                        }
+                    }
+                });
+            },
+            error: function(response){
+                $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
+            }
+        });
     }
 
     </script>
