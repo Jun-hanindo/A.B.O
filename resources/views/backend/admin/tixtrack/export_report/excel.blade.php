@@ -116,8 +116,8 @@
                     </tr>
                 </tfoot>
             </table>
+            <br>
         @endif
-        <br>
         @if(!$datePays->isEmpty())
             <table>
                 <thead>
@@ -206,8 +206,8 @@
                     </tr>
                 </tfoot>
             </table>
+            <br>
         @endif
-        <br>
         @if(!$datePros->isEmpty())
             <table>
                 <thead>
@@ -308,8 +308,8 @@
                     </tr>
                 </tfoot>
             </table>
-        @endif
-        <br>       
+            <br>    
+        @endif   
         @if(!$allSale->isEmpty())
             <table>
                 <thead>
@@ -367,8 +367,8 @@
                     @endforeach
                 </tbody>
             </table>
+            <br>
         @endif
-        <br>
         <table>
             <tbody>
                 <tr>

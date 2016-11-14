@@ -143,22 +143,6 @@ class ReportsController extends BaseController
 
                 $data['first_date'] = $modelOrder->getFirstDateEvent($event_id);
 
-                $cat = $data['dateCats'];
-                //dd($cat[0]);
-                foreach ($cat as $key => $value) {
-                    $labels[] = [
-                        $value->local_created.'|'.$value->event_date
-                    ];
-                    // $labels[$value->local_created.'|'.$value->event_date] = [
-                    //     'Full Amount:',
-                    //     'Discounted Amt:',
-                    //     'Quantity:',
-
-                    // ];
-                }
-
-                //dd($labels);
-
 
             }
             $data['events'] = Event::select('id', 'event_id_tixtrack', 'title')->orderBy('title', 'asc')->get();
@@ -174,6 +158,72 @@ class ReportsController extends BaseController
             return redirect()->route('admin-report-tixtrack');
         
         }
+    }
+
+    public function chartCategory(Request $req){
+        $param = $req->all();
+        //if(!empty($param)){
+            $param['event'] = 50748;
+            $param['start_date'] = '2016-11-01';
+            $param['end_date'] = '2016-11-11';
+            $event_id = $param['event'];
+            $start_date = $param['start_date'];
+            $end_date = $param['end_date'];
+            $modelOrder = new TixtrackOrder();
+            $modelEvent = new Event();
+            //$categories = $modelOrder->getCategoryEvent($event_id, $start_date, $end_date);
+            $dateCats = $modelOrder->getCategoryByEvent($event_id, $start_date, $end_date);
+            //$countCat = count($categories);
+            $totalCats = $modelOrder->totalCategoryEvent($event_id, $start_date, $end_date);
+            $event = $modelEvent->getEventByTixtrack($event_id);
+            $start_date = $start_date;
+            $end_date = $end_date;
+            $event_id = $event_id;
+            $total = $modelOrder->total($event_id, $start_date, $end_date);
+
+            $output = array();
+            foreach ($dateCats as $key => $value) {
+                $date = date('d-M-Y', strtotime($value->local_created)).'|'.date('d-M-Y, g:ia', strtotime($value->event_date));
+                $full_amount = 'Full Amount:';
+                $disc_amount = 'Discounted Amt:';
+                $quantity = 'Quantity:';
+                $labels[] = [
+                    $date.'|'.$full_amount,
+                    $date.'|'.$disc_amount,
+                    $date.'|'.$quantity,
+                ];
+
+                $totals[] = [
+                    $value->full_price,
+                    $value->price,
+                    $value->ticket_quantity,
+                ];
+
+                $a[] = $value->amounts;
+                foreach ($value->amounts as $key2 => $value2) {
+                    $cat[$key2] = [
+                        $value2->full_price, $value2->price, $value2->ticket_quantity
+                    ];
+                }
+
+                $categories[] = array_flatten($cat);
+
+            }  
+
+            dd($a);
+            $totals = array_flatten($totals);
+            $set['total'] = $totals;
+
+            foreach ($categories as $key => $value) {
+                dd($value);
+                $label[$value] = array_flatten($value);
+            }
+
+            dd($label);
+            $data['labels'] = array_flatten($labels);      
+
+            dd($data['label']);   
+        //}
     }
 
     public function tes_reportExcel(Request $req){
@@ -217,6 +267,8 @@ class ReportsController extends BaseController
                     $data['countAllCat'] = count($data['allCategories']);
 
                     $data['modelOrder'] = $modelOrder;
+
+                    $data['first_date'] = $modelOrder->getFirstDateEvent($event_id);
                     //$pdf = PDF::loadView('backend.admin.tixtrack.export_report.pdf_category', $data);
                     //return $pdf->download($filename);
                     //$sheet->setAutoSize(false);
@@ -379,7 +431,7 @@ class ReportsController extends BaseController
                     $data['countAllCat'] = count($data['allCategories']);
 
                     $data['first_date'] = $modelOrder->getFirstDateEvent($event_id);
-                    
+
                     $sheet->setAutoSize(false);
 
                     $sheet->loadView('backend.admin.tixtrack.export_report.excel',$data);

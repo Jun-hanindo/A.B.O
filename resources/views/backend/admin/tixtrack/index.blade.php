@@ -69,4 +69,4 @@ Tixtrack
         </div>
     </div>
 @endsection
-@include('backend.admin.tixtrack.script.index')
+@include('backend.admin.tixtrack.script.index_script')

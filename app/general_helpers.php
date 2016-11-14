@@ -584,6 +584,32 @@ if (! function_exists('parseCSV')) {
     }
 }
 
+if (! function_exists('array_flatten')) {
+    /**
+     * Array two dimentional to one
+     *
+     * @param  string  $file
+     * @param  string|null  $disk
+     * @return bool
+     */
+    function array_flatten($array)
+    {
+        if (!is_array($array)) { 
+            return FALSE; 
+        } 
+        $result = array(); 
+        foreach ($array as $key => $value) { 
+            if (is_array($value)) { 
+                $result = array_merge($result, array_flatten($value)); 
+            } 
+            else { 
+                $result[$key] = $value; 
+            } 
+        } 
+        return $result; 
+    }
+}
+
 
 
 // if (! function_exists('count_message_unread')) {

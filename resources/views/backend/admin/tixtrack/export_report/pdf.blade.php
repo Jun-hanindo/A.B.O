@@ -3,16 +3,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <style>
+            @page { 
+                margin: 30px 30px 30px 30px; 
+            }
             body{
                 font-family: 'Source Sans Pro',Helvetica,Arial,sans-serif;
                 font-size: 12px;
+                margin: 30px;
             }
             .title-report{
                 border-bottom: 1px solid #000;
                 font-size: 18px;
             }
             table{
-                border-collapse: collapse;
+                /*border-collapse: collapse;*/
                 width: 100%;
                 max-width: 100%;
             }
@@ -29,9 +33,32 @@
             .page-break {
                 page-break-after: always;
             }
+            #footer { 
+                position: fixed; 
+                left: 30px; 
+                bottom: 40px; 
+                right: 30px; 
+                border-top: 1px solid #000;
+                /*height: 100px; */
+                /*background-color: lightblue; */
+            }
+            .page{
+                margin: 2px 0;
+                font-size: 10px;
+            }
+            #footer .page:after { 
+                content: counter(page, upper-roman); 
+            }
         </style>
     </head>
     <body>
+        <div id="footer">
+            <p class="page">
+                <i>Printed on {{ date('d F Y, g:ia') }} by {{ \Sentinel::getUser()->first_name.' '.\Sentinel::getUser()->last_name }}</i>
+                <br>
+                <i>{{ env('APP_NAME') }} - DailySummaryReport-Category-V1.0.0</i>
+            </p>
+        </div>
         <h3 class="title-report"><b>DAILY SALES SUMMARY REPORT BY EVENT</b></h3>
         <br>
         <br>
@@ -57,7 +84,7 @@
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Event Day/Time</th>
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;"></th>
                         <th colspan="{{ $countCat }}" align="center" style="background:#e7e6e6;border:1px solid #000;">PRICE LEVEL/CATEGORY</th>
-                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;border-left:1px solid #000;">Total</th>
+                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Total</th>
                     </tr>
                     <tr>
                         @if($countCat > 0)
@@ -130,9 +157,9 @@
                     </tr>
                 </tfoot>
             </table>
-        @endif
         
-        <div class="page-break"></div>
+            <div class="page-break"></div>
+        @endif
 
         @if(!$datePays->isEmpty())
             <table>
@@ -142,7 +169,7 @@
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Event Day/Time</th>
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;"></th>
                         <th colspan="{{ $countPay }}" align="center" style="background:#e7e6e6;border:1px solid #000;">Method of Payment</th>
-                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;border-left:1px solid #000;">Total</th>
+                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Total</th>
                     </tr>
                     <tr>
                         @if($countPay > 0)
@@ -215,9 +242,9 @@
                     </tr>
                 </tfoot>
             </table>
-        @endif
         
-        <div class="page-break"></div>
+            <div class="page-break"></div>
+        @endif
 
         @if(!$datePros->isEmpty())
             <table>
@@ -227,7 +254,7 @@
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Event Day/Time</th>
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;"></th>
                         <th colspan="{{ $countPro }}" align="center" style="background:#e7e6e6;border:1px solid #000;">Promotion</th>
-                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;border-left:1px solid #000;">Total</th>
+                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Total</th>
                     </tr>
                     <tr>
                         @if($countPro > 0)
@@ -312,9 +339,9 @@
                     </tr>
                 </tfoot>
             </table>
-        @endif
         
-        <div class="page-break"></div>
+            <div class="page-break"></div>
+        @endif
 
         @if(!$allSale->isEmpty())
             <table>

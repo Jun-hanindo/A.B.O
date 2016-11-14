@@ -115,4 +115,4 @@
         </div>
     </div>
 @endsection
-@include('backend.admin.tixtrack.script.download')
+@include('backend.admin.tixtrack.script.download_script')

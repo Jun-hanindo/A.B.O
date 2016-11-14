@@ -131,12 +131,6 @@
         return table;
     }
 
-    // var cat = document.getElementById("category_chart").getContext("2d");
-    // var catChart = new Chart(cat, {
-    //     type: 'line',
-    //     data: data,
-    // });
-
     </script>
     @include('backend.delete-modal-datatables')
 @endsection
