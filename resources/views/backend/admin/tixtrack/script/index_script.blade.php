@@ -144,7 +144,8 @@
             dataType: 'json',
             data:{'event':event_id, 'start_date':start, 'end_date':end},
             success: function (response) {
-                var cat = document.getElementById("category_chart").getContext("2d");
+                var cat = document.getElementById("category_chart");
+                cat.style.backgroundColor = 'rgba(158, 167, 184, 0.2)';
                 var data = response.data;
                 var catChart = new Chart(cat, {
                     type: 'line',
