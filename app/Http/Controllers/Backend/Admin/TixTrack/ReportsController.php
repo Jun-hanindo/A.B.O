@@ -525,9 +525,9 @@ class ReportsController extends BaseController
                     $drawing = new PHPExcel_Worksheet_Drawing();
                     //$drawing->setResizeProportional();
                     $drawing->setPath($data['chartCat']); //your image path
-                    $drawing->setCoordinates('A2');
+                    $cCat = (count($data['dateCats']) * 3) + 11;
+                    $drawing->setCoordinates('A'.$cCat);
                     $drawing->setWorksheet($sheet);
-
                     //$sheet->setAutoSize(false);
 
                     $sheet->loadView('backend.admin.tixtrack.export_report.excel',$data);
