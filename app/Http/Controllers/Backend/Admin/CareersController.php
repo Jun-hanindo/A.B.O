@@ -303,16 +303,16 @@ class CareersController extends BaseController
     public function autocompletePosition(Request $req){
         try{
             $param = $req->all();
-            $results['position'] = $this->model->autocompletePosition($param);
+            $results = $this->model->autocompletePosition($param);
 
-            if($req->ajax()) {
-                return response()->json([
-                    'code' => 200,
-                    'status' => 'success',
-                    'message' => 'success',
-                    'data' => $results
-                ],200);
+            if(!empty($results)){
+                foreach ($results as $value){
+                    $datas[] = ['value' => $value->job];
+                }
+                if($req->ajax()) {
+                    return response()->json($datas);
 
+                }
             }
         
         } catch (\Exception $e) {

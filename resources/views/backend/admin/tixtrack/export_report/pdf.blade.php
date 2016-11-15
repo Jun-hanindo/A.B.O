@@ -90,8 +90,14 @@
                     </tr>
                     <tr>
                         @if($countCat > 0)
+                            @php
+                                $cCat = 1;
+                            @endphp
                             @foreach($categories as $key => $cat)  
-                                <th style="background:#e7e6e6;border:1px solid #000;">{{ $cat->price_level_name }}</th>
+                                <th style="background:#e7e6e6;border:1px solid #000;{{ ($cCat == $countCat) ? 'border-right:2px solid #000;' : '' }}">{{ $cat->price_level_name }}</th>
+                                @php
+                                    $cCat++;
+                                @endphp
                             @endforeach
                         @endif
                     </tr>
@@ -177,8 +183,14 @@
                     </tr>
                     <tr>
                         @if($countPay > 0)
+                            @php
+                                $cPay = 1;
+                            @endphp
                             @foreach($payments as $key => $pay)  
-                                <th style="background:#e7e6e6;border:1px solid #000;">{{ $pay->payment_method_name }}</th>
+                                <th style="background:#e7e6e6;border:1px solid #000;{{ ($cPay == $countPay) ? 'border-right:2px solid #000;' : '' }}">{{ $pay->payment_method_name }}</th>
+                                @php
+                                    $cPay++;
+                                @endphp
                             @endforeach
                         @endif
                     </tr>
@@ -266,8 +278,14 @@
                     </tr>
                     <tr>
                         @if($countPro > 0)
+                            @php
+                                $cPro = 1;
+                            @endphp
                             @foreach($promotions as $key => $pro)  
-                                <th style="background:#e7e6e6;border:1px solid #000;">{{ $pro->promo_code }}</th>
+                                <th style="background:#e7e6e6;border:1px solid #000;{{ ($cPro == $countPro) ? 'border-right:2px solid #000;' : '' }}">{{ $pro->promo_code }}</th>
+                                @php
+                                    $cPro++;
+                                @endphp
                             @endforeach
                         @endif
                     </tr>
@@ -369,8 +387,14 @@
                     </tr>
                     <tr>
                         @if($countAllCat > 0)
+                            @php
+                                $cACat = 1;
+                            @endphp
                             @foreach($allCategories as $key1 => $cat)  
-                                <th style="background:#e7e6e6;border:1px solid #000;">{{ $cat->price_level_name }}</th>
+                                <th style="background:#e7e6e6;border:1px solid #000;{{ ($cACat == $countAllCat) ? 'border-right:2px solid #000;' : '' }}">{{ $cat->price_level_name }}</th>
+                                @php
+                                    $cACat++;
+                                @endphp
                             @endforeach
                         @endif
                     </tr>

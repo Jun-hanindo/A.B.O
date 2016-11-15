@@ -29,6 +29,7 @@
         {!! Html::style('assets/plugins/bootstrap-select/bootstrap-select.min.css') !!}
         {!! Html::style('assets/plugins/colorpicker/bootstrap-colorpicker.min.css') !!}
         
+        
         <link rel="shortcut icon" href="{{ asset('assets/frontend/images/favico.ico') }}">
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 
@@ -139,6 +140,7 @@
         {!! Html::script('assets/plugins/speakingurl/speakingurl.min.js') !!}
         {!! Html::script('assets/plugins/chartjs/Chart.bundle.min.js') !!}
         {!! Html::script('assets/plugins/chartjs/Chart.min.js') !!}
+        {!! Html::script('assets/plugins/jQueryUI/jquery-ui.min.js') !!}
         
         
 

@@ -26,7 +26,6 @@
                                 {!! Form::label('position', trans('general.position').' *') !!}
                                 {!! Form::text('position', old('position'), ['id' => 'position', 'class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.position')]) !!}
                                 {!! Form::errorMsg('position') !!}
-                                <div id="suggesstion-box"></div>
                             </div>
                             <div class="form-group{{ Form::hasError('description') }} description">
                                 {!! Form::label('description', trans('general.description').' *') !!}

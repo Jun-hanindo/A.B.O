@@ -12,10 +12,11 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use File;
+use DB;
+use Storage;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Excel;
-use DB;
 use App\Models\TixtrackCustomer;
 use App\Models\TixtrackOrder;
 // use League\Csv\Reader;
@@ -84,306 +85,306 @@ class DownloadController extends BaseController
         
     } 
 
-    public function downloadMember(Request $req){
+    // public function downloadMember(Request $req){
 
-        $param = $req->all();
-        if (!\Session::has('ASPXAUTH')) {
-            return redirect()->route('admin-tixtrack-login');
-        }
+    //     $param = $req->all();
+    //     if (!\Session::has('ASPXAUTH')) {
+    //         return redirect()->route('admin-tixtrack-login');
+    //     }
         
-        try{
-            $client = new Client(); //GuzzleHttp\Client
+    //     try{
+    //         $client = new Client(); //GuzzleHttp\Client
 
-            $pathDest = public_path( 'downloads' );
-            if(!File::exists($pathDest)) {
-                File::makeDirectory($pathDest, $mode=0777,true,true);
-            }
+    //         $pathDest = public_path( 'downloads' );
+    //         if(!File::exists($pathDest)) {
+    //             File::makeDirectory($pathDest, $mode=0777,true,true);
+    //         }
 
-            $filename = 'Download_member_'.date('Y-m-d-H-i-s').'.csv';
-            $file_member = $pathDest.'/'.$filename;
-            $request = new GuzzleRequest('GET', 'https://nliven.co/admin/Customers/Download?objectFilterJSON=', [
-                'Cookie' => $this->cookie(),
-            ]);
-            $response = $client->send($request, [
-                'save_to' => $file_member,
-            ]);
+    //         $filename = 'Download_member_'.date('Y-m-d-H-i-s').'.csv';
+    //         $file_member = $pathDest.'/'.$filename;
+    //         $request = new GuzzleRequest('GET', 'https://nliven.co/admin/Customers/Download?objectFilterJSON=', [
+    //             'Cookie' => $this->cookie(),
+    //         ]);
+    //         $response = $client->send($request, [
+    //             'save_to' => $file_member,
+    //         ]);
             
-            $status = $response->getStatusCode();
-            if($status == 200){     
-                //flash()->success('Import Member success');
-                return \Response::download($file_member)->deleteFileAfterSend(true);
-            }else{
-                flash()->error('Download Member failed');
-            }
+    //         $status = $response->getStatusCode();
+    //         if($status == 200){     
+    //             //flash()->success('Import Member success');
+    //             return \Response::download($file_member)->deleteFileAfterSend(true);
+    //         }else{
+    //             flash()->error('Download Member failed');
+    //         }
             
-        } catch (\Exception $e) {
+    //     } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
-            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-            $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+    //         $log['user_id'] = $this->currentUser->id;
+    //         $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+    //         $insertLog = new LogActivity();
+    //         $insertLog->insertLogActivity($log);
 
-            flash()->error('Download Member failed');
-            return redirect()->route('admin-tixtrack-download-import');
+    //         flash()->error('Download Member failed');
+    //         return redirect()->route('admin-tixtrack-download-import');
         
-        }
-    }
+    //     }
+    // }
 
-    public function downloadTransaction(Request $req){
+    // public function downloadTransaction(Request $req){
 
-        $param = $req->all();
-        if (!\Session::has('ASPXAUTH')) {
-            return redirect()->route('admin-tixtrack-login');
-        }
+    //     $param = $req->all();
+    //     if (!\Session::has('ASPXAUTH')) {
+    //         return redirect()->route('admin-tixtrack-login');
+    //     }
         
-        try{
-            $modelOrder = new TixtrackOrder();
-            $client = new Client(); //GuzzleHttp\Client
+    //     try{
+    //         $modelOrder = new TixtrackOrder();
+    //         $client = new Client(); //GuzzleHttp\Client
 
-            $pathDest = public_path( 'downloads' );
-            if(!File::exists($pathDest)) {
-                File::makeDirectory($pathDest, $mode=0777,true,true);
-            }
+    //         $pathDest = public_path( 'downloads' );
+    //         if(!File::exists($pathDest)) {
+    //             File::makeDirectory($pathDest, $mode=0777,true,true);
+    //         }
 
-            $accountID = \Session::get('AccountID');
-            if($accountID > 0){
-                $accountID = $modelAccount->findIdByAccountID($accountID)->id;
-            }else{
-                flash()->error('Account is empty!');
-                return redirect()->route('admin-tixtrack-download-import');
-            }
+    //         $accountID = \Session::get('AccountID');
+    //         if($accountID > 0){
+    //             $accountID = $modelAccount->findIdByAccountID($accountID)->id;
+    //         }else{
+    //             flash()->error('Account is empty!');
+    //             return redirect()->route('admin-tixtrack-download-import');
+    //         }
 
-            $last = $modelOrder->getLastOrderAccount($accountID);
-            if(!empty($last)){
-                $local_created = date('m/d/Y', strtotime($last->local_created));
-                $transaction = [
-                    "FilterGroups" => [
-                        [
-                            "FilterConditions" => 
-                            [[
-                                "HasCondition" => true,
-                                "AvailableValues" => [],
-                                "AttributeName" => "LocalCreated",
-                                "ChainOperator" => null,
-                                "ConditionValue" => $local_created,
-                                "AvailableOperators" => ["=",">=","<="],
-                                "OperatorValue" => ">=",
-                                "IsDate" => true,
-                                "IsTime" => false,
-                            ]],
-                            "ChainOperator" => null
-                        ]
-                    ],
-                ]; 
+    //         $last = $modelOrder->getLastOrderAccount($accountID);
+    //         if(!empty($last)){
+    //             $local_created = date('m/d/Y', strtotime($last->local_created));
+    //             $transaction = [
+    //                 "FilterGroups" => [
+    //                     [
+    //                         "FilterConditions" => 
+    //                         [[
+    //                             "HasCondition" => true,
+    //                             "AvailableValues" => [],
+    //                             "AttributeName" => "LocalCreated",
+    //                             "ChainOperator" => null,
+    //                             "ConditionValue" => $local_created,
+    //                             "AvailableOperators" => ["=",">=","<="],
+    //                             "OperatorValue" => ">=",
+    //                             "IsDate" => true,
+    //                             "IsTime" => false,
+    //                         ]],
+    //                         "ChainOperator" => null
+    //                     ]
+    //                 ],
+    //             ]; 
 
-                $filenameTransaction = 'Download_transaction_'.date('Y-m-d-H-i-s').'.csv';
-                $file_transaction = $pathDest.'/'.$filenameTransaction;
+    //             $filenameTransaction = 'Download_transaction_'.date('Y-m-d-H-i-s').'.csv';
+    //             $file_transaction = $pathDest.'/'.$filenameTransaction;
 
-                $request = new GuzzleRequest('POST', 'https://nliven.co/api/admin/orders/download', [
-                    'headers' => ['Content-Type' => 'application/json;charset=UTF-8', 'Accept' => 'application/json'],
-                    'Cookie' => $this->cookie(),
-                ]);
+    //             $request = new GuzzleRequest('POST', 'https://nliven.co/api/admin/orders/download', [
+    //                 'headers' => ['Content-Type' => 'application/json;charset=UTF-8', 'Accept' => 'application/json'],
+    //                 'Cookie' => $this->cookie(),
+    //             ]);
 
-                $responseTransaction = $client->send($request, [
-                    'save_to' => $file_transaction,
-                    'json'    => $transaction,
-                ]);
-            }else{
-                $filenameTransaction = 'Download_transaction_'.date('Y-m-d-H-i-s').'.csv';
-                $file_transaction = $pathDest.'/'.$filenameTransaction;
-                $request = new GuzzleRequest('POST', 'https://nliven.co/api/admin/orders/download', [
-                    'headers' => ['Content-Type' => 'application/json;charset=UTF-8'],
-                    'Cookie' => $this->cookie(),
-                ]);
-                $responseTransaction = $client->send($request, [
-                    'save_to' => $file_transaction,
-                ]);
-            }
+    //             $responseTransaction = $client->send($request, [
+    //                 'save_to' => $file_transaction,
+    //                 'json'    => $transaction,
+    //             ]);
+    //         }else{
+    //             $filenameTransaction = 'Download_transaction_'.date('Y-m-d-H-i-s').'.csv';
+    //             $file_transaction = $pathDest.'/'.$filenameTransaction;
+    //             $request = new GuzzleRequest('POST', 'https://nliven.co/api/admin/orders/download', [
+    //                 'headers' => ['Content-Type' => 'application/json;charset=UTF-8'],
+    //                 'Cookie' => $this->cookie(),
+    //             ]);
+    //             $responseTransaction = $client->send($request, [
+    //                 'save_to' => $file_transaction,
+    //             ]);
+    //         }
             
-            $status = $responseTransaction->getStatusCode();
-            if($status == 200){     
-                //flash()->success('Import Member success');
-                return \Response::download($file_transaction)->deleteFileAfterSend(true);
-            }else{
-                flash()->error('Download Transaction failed');
-            }
+    //         $status = $responseTransaction->getStatusCode();
+    //         if($status == 200){     
+    //             //flash()->success('Import Member success');
+    //             return \Response::download($file_transaction)->deleteFileAfterSend(true);
+    //         }else{
+    //             flash()->error('Download Transaction failed');
+    //         }
             
-        } catch (\Exception $e) {
+    //     } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
-            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-            $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+    //         $log['user_id'] = $this->currentUser->id;
+    //         $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+    //         $insertLog = new LogActivity();
+    //         $insertLog->insertLogActivity($log);
 
-            flash()->error('Download Transaction failed');
-            return redirect()->route('admin-tixtrack-download-import');
+    //         flash()->error('Download Transaction failed');
+    //         return redirect()->route('admin-tixtrack-download-import');
         
-        }
-    }
+    //     }
+    // }
 
-    public function importData(Request $req){
-        if (!\Session::has('ASPXAUTH')) {
-            return redirect()->route('admin-tixtrack-login');
-        }
+    // public function importData(Request $req){
+    //     if (!\Session::has('ASPXAUTH')) {
+    //         return redirect()->route('admin-tixtrack-login');
+    //     }
         
-        try{
-            $modelAccount = new TixtrackAccount();
-            $modelOrder = new TixtrackOrder();
-            $modelCustomer = new TixtrackCustomer();
+    //     try{
+    //         $modelAccount = new TixtrackAccount();
+    //         $modelOrder = new TixtrackOrder();
+    //         $modelCustomer = new TixtrackCustomer();
 
-            $accountID = \Session::get('AccountID');
-            if($accountID > 0){
-                $accountID = $modelAccount->findIdByAccountID($accountID)->id;
-            }else{
-                flash()->error('Account is empty!');
-                return redirect()->route('admin-tixtrack-download-import');
-            }
-            if(\Input::hasFile('import_member')){
-                $path = \Input::file('import_member')->getRealPath();
-                $upload = Excel::load($path, function($reader) {
-                    $reader->toArray();
-                }, 'ISO-8859-1')->get();
+    //         $accountID = \Session::get('AccountID');
+    //         if($accountID > 0){
+    //             $accountID = $modelAccount->findIdByAccountID($accountID)->id;
+    //         }else{
+    //             flash()->error('Account is empty!');
+    //             return redirect()->route('admin-tixtrack-download-import');
+    //         }
+    //         if(\Input::hasFile('import_member')){
+    //             $path = \Input::file('import_member')->getRealPath();
+    //             $upload = Excel::load($path, function($reader) {
+    //                 $reader->toArray();
+    //             }, 'ISO-8859-1')->get();
 
-                if(!empty($upload)){
-                    foreach ($upload->toArray() as $key => $value) {
-                        $customer_id = $value['id'];
-                        $customer = $modelCustomer->findTixtrackCustomerByCutomerID($customer_id);
-                        $newData = [
-                            'account_id' => $accountID,
-                            'customer_id' => $customer_id,
-                            'email' => $value['email'],
-                            'first_name' => $value['first_name'],
-                            'last_name' => $value['last_name'],
-                            'phone' => $value['phone'],
-                            'bill_to_address_1' => $value['bill_to_address_1'],
-                            'bill_to_address_2' => $value['bill_to_address_2'],
-                            'bill_to_city' => $value['bill_to_city'],
-                            'bill_to_state' => $value['bill_to_state'],
-                            'bill_to_postal_code' => $value['bill_to_postal_code'],
-                            'bill_to_country' => $value['bill_to_country'],
-                            'ship_to_address_1' => $value['ship_to_address_1'],
-                            'ship_to_address_2' => $value['ship_to_address_2'],
-                            'ship_to_city' => $value['ship_to_city'],
-                            'ship_to_state' => $value['ship_to_state'],
-                            'ship_to_postal_code' => $value['ship_to_postal_code'],
-                            'ship_to_country' => $value['ship_to_country']
-                        ];
-                        if(empty($customer)){
-                            TixtrackCustomer::create($newData);
-                        }else{
-                            TixtrackCustomer::where('customer_id',$customer_id)->update($newData);
-                        }
-                    }
-                }
+    //             if(!empty($upload)){
+    //                 foreach ($upload->toArray() as $key => $value) {
+    //                     $customer_id = $value['id'];
+    //                     $customer = $modelCustomer->findTixtrackCustomerByCutomerID($customer_id);
+    //                     $newData = [
+    //                         'account_id' => $accountID,
+    //                         'customer_id' => $customer_id,
+    //                         'email' => $value['email'],
+    //                         'first_name' => $value['first_name'],
+    //                         'last_name' => $value['last_name'],
+    //                         'phone' => $value['phone'],
+    //                         'bill_to_address_1' => $value['bill_to_address_1'],
+    //                         'bill_to_address_2' => $value['bill_to_address_2'],
+    //                         'bill_to_city' => $value['bill_to_city'],
+    //                         'bill_to_state' => $value['bill_to_state'],
+    //                         'bill_to_postal_code' => $value['bill_to_postal_code'],
+    //                         'bill_to_country' => $value['bill_to_country'],
+    //                         'ship_to_address_1' => $value['ship_to_address_1'],
+    //                         'ship_to_address_2' => $value['ship_to_address_2'],
+    //                         'ship_to_city' => $value['ship_to_city'],
+    //                         'ship_to_state' => $value['ship_to_state'],
+    //                         'ship_to_postal_code' => $value['ship_to_postal_code'],
+    //                         'ship_to_country' => $value['ship_to_country']
+    //                     ];
+    //                     if(empty($customer)){
+    //                         TixtrackCustomer::create($newData);
+    //                     }else{
+    //                         TixtrackCustomer::where('customer_id',$customer_id)->update($newData);
+    //                     }
+    //                 }
+    //             }
 
-                \Session::flash('member', 'Import Member success!');
-            }
+    //             \Session::flash('member', 'Import Member success!');
+    //         }
 
-            if(\Input::hasFile('import_transaction')){
-                $path = \Input::file('import_transaction')->getRealPath();
-                $upload = Excel::load($path, function($reader) {
-                    $reader->toArray();
-                }, 'ISO-8859-1')->get();
-                $order = $modelOrder->getLastOrder();
+    //         if(\Input::hasFile('import_transaction')){
+    //             $path = \Input::file('import_transaction')->getRealPath();
+    //             $upload = Excel::load($path, function($reader) {
+    //                 $reader->toArray();
+    //             }, 'ISO-8859-1')->get();
+    //             $order = $modelOrder->getLastOrder();
 
-                if(!empty($upload)){
-                    foreach ($upload->toArray() as $key => $value) {
-                        $order_id = $value['orderid'];
-                        $local_created = date('Y-m-d H:i:s', strtotime($value['local_created']));
-                        $local_last_updated = date('Y-m-d H:i:s', strtotime($value['local_lastupdated']));
-                        $event_id = (!empty($value['eventid'])) ? $value['eventid'] : null;
-                        $event_date = date('Y-m-d H:i:s', strtotime($value['eventdate']));
-                        $user_id = (!empty($value['userid'])) ? $value['userid'] : null;
-                        $partner_id = (!empty($$value['partnerid'])) ? $$value['partnerid'] : null;
-                        $item_id = (!empty($$value['itemid'])) ? $$value['itemid'] : null;
-                        $fee_id = (!empty($$value['feeid'])) ? $$value['feeid'] : null;
-                        $seat_id = (!empty($$value['seatid'])) ? $$value['seatid'] : null;
-                        $created = date('Y-m-d H:i:s', strtotime($value['created']));
-                        $last_updated = date('Y-m-d H:i:s', strtotime($value['lastupdated']));
+    //             if(!empty($upload)){
+    //                 foreach ($upload->toArray() as $key => $value) {
+    //                     $order_id = $value['orderid'];
+    //                     $local_created = date('Y-m-d H:i:s', strtotime($value['local_created']));
+    //                     $local_last_updated = date('Y-m-d H:i:s', strtotime($value['local_lastupdated']));
+    //                     $event_id = (!empty($value['eventid'])) ? $value['eventid'] : null;
+    //                     $event_date = date('Y-m-d H:i:s', strtotime($value['eventdate']));
+    //                     $user_id = (!empty($value['userid'])) ? $value['userid'] : null;
+    //                     $partner_id = (!empty($$value['partnerid'])) ? $$value['partnerid'] : null;
+    //                     $item_id = (!empty($$value['itemid'])) ? $$value['itemid'] : null;
+    //                     $fee_id = (!empty($$value['feeid'])) ? $$value['feeid'] : null;
+    //                     $seat_id = (!empty($$value['seatid'])) ? $$value['seatid'] : null;
+    //                     $created = date('Y-m-d H:i:s', strtotime($value['created']));
+    //                     $last_updated = date('Y-m-d H:i:s', strtotime($value['lastupdated']));
 
-                        $newData = [
-                            'account_id' => $accountID,
-                            'order_id' => $order_id,
-                            'local_created' => $local_created,
-                            'local_last_updated' => $local_last_updated,
-                            'first_name' => $value['firstname'],
-                            'last_name' => $value['lastname'],
-                            'email' => $value['email'],
-                            'bill_to_address1' => $value['billtoaddress1'],
-                            'bill_to_address2' => $value['billtoaddress2'],
-                            'bill_to_address3' => $value['billtoaddress3'],
-                            'bill_to_city' => $value['billtocity'],
-                            'bill_to_state' => $value['billtostate'],
-                            'bill_to_postal_code' => $value['billtopostalcode'],
-                            'bill_to_country_code' => $value['billtocountrycode'],
-                            'phone' => $value['phone'],
-                            'event_id' => $event_id,
-                            'event_name' => $value['eventname'],
-                            'event_date' => $event_date,
-                            'venue' => $value['venue'],
-                            'ip' => $value['ip'],
-                            'order_status' => $value['orderstatus'],
-                            'price_table_name' => $value['pricetablename'],
-                            'user_id' => $user_id,
-                            'seller_email' => $value['selleremail'],
-                            'partner' => $value['partner'],
-                            'partner_id' => $partner_id,
-                            'total' => $value['total'],
-                            'sales_channel' => $value['saleschannel'],
-                            'item_id' => $item_id,
-                            'order_item_type' => $value['orderitemtype'],
-                            'fee_id' => $fee_id,
-                            'fee_name' => $value['feename'],
-                            'section' => $value['section'],
-                            'row_section' => $value['row'],
-                            'seat_id' => $seat_id,
-                            'price_type' => $value['pricetype'],
-                            'price' => $value['price'],
-                            'full_price' => $value['fullprice'],
-                            'delivery_method_name' => $value['deliverymethodname'],
-                            'payment_method_type' => $value['paymentmethodtype'],
-                            'payment_method_name' => $value['paymentmethodname'],
-                            'provider_id' => $value['providerid'],
-                            'promo_code' => $value['promocode'],
-                            'marketing_opt_in1' => $value['marketingoptin1'],
-                            'marketing_opt_in2' => $value['marketingoptin2'],
-                            'created' => $created,
-                            'last_updated' => $last_updated,
-                            'promotion_name' => $value['promotion_name'],
-                            'price_level_name' => $value['price_level_name'],
-                            'ticket_quantity' => $value['ticketquantity'],
-                            'balance' => $value['balance'],
-                            'product_name' => $value['product_name'],
-                            'product_variant_name' => $value['product_variant_name'],
-                        ];
+    //                     $newData = [
+    //                         'account_id' => $accountID,
+    //                         'order_id' => $order_id,
+    //                         'local_created' => $local_created,
+    //                         'local_last_updated' => $local_last_updated,
+    //                         'first_name' => $value['firstname'],
+    //                         'last_name' => $value['lastname'],
+    //                         'email' => $value['email'],
+    //                         'bill_to_address1' => $value['billtoaddress1'],
+    //                         'bill_to_address2' => $value['billtoaddress2'],
+    //                         'bill_to_address3' => $value['billtoaddress3'],
+    //                         'bill_to_city' => $value['billtocity'],
+    //                         'bill_to_state' => $value['billtostate'],
+    //                         'bill_to_postal_code' => $value['billtopostalcode'],
+    //                         'bill_to_country_code' => $value['billtocountrycode'],
+    //                         'phone' => $value['phone'],
+    //                         'event_id' => $event_id,
+    //                         'event_name' => $value['eventname'],
+    //                         'event_date' => $event_date,
+    //                         'venue' => $value['venue'],
+    //                         'ip' => $value['ip'],
+    //                         'order_status' => $value['orderstatus'],
+    //                         'price_table_name' => $value['pricetablename'],
+    //                         'user_id' => $user_id,
+    //                         'seller_email' => $value['selleremail'],
+    //                         'partner' => $value['partner'],
+    //                         'partner_id' => $partner_id,
+    //                         'total' => $value['total'],
+    //                         'sales_channel' => $value['saleschannel'],
+    //                         'item_id' => $item_id,
+    //                         'order_item_type' => $value['orderitemtype'],
+    //                         'fee_id' => $fee_id,
+    //                         'fee_name' => $value['feename'],
+    //                         'section' => $value['section'],
+    //                         'row_section' => $value['row'],
+    //                         'seat_id' => $seat_id,
+    //                         'price_type' => $value['pricetype'],
+    //                         'price' => $value['price'],
+    //                         'full_price' => $value['fullprice'],
+    //                         'delivery_method_name' => $value['deliverymethodname'],
+    //                         'payment_method_type' => $value['paymentmethodtype'],
+    //                         'payment_method_name' => $value['paymentmethodname'],
+    //                         'provider_id' => $value['providerid'],
+    //                         'promo_code' => $value['promocode'],
+    //                         'marketing_opt_in1' => $value['marketingoptin1'],
+    //                         'marketing_opt_in2' => $value['marketingoptin2'],
+    //                         'created' => $created,
+    //                         'last_updated' => $last_updated,
+    //                         'promotion_name' => $value['promotion_name'],
+    //                         'price_level_name' => $value['price_level_name'],
+    //                         'ticket_quantity' => $value['ticketquantity'],
+    //                         'balance' => $value['balance'],
+    //                         'product_name' => $value['product_name'],
+    //                         'product_variant_name' => $value['product_variant_name'],
+    //                     ];
 
-                        if(empty($order)){
-                            TixtrackOrder::create($newData);
-                        }else{
-                            if($order_id > $order->order_id){
-                                TixtrackOrder::create($newData);
-                            }
-                        }
+    //                     if(empty($order)){
+    //                         TixtrackOrder::create($newData);
+    //                     }else{
+    //                         if($order_id > $order->order_id){
+    //                             TixtrackOrder::create($newData);
+    //                         }
+    //                     }
                      
-                    }
-                }
+    //                 }
+    //             }
 
-                \Session::flash('transaction', 'Import Transaction success!');
-            }
+    //             \Session::flash('transaction', 'Import Transaction success!');
+    //         }
 
-            return redirect()->route('admin-tixtrack-download-import');
-        } catch (\Exception $e) {
+    //         return redirect()->route('admin-tixtrack-download-import');
+    //     } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
-            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-            $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+    //         $log['user_id'] = $this->currentUser->id;
+    //         $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+    //         $insertLog = new LogActivity();
+    //         $insertLog->insertLogActivity($log);
 
-            \Session::flash('import_error', 'Import failed');
-            return redirect()->route('admin-tixtrack-download-import');
+    //         \Session::flash('import_error', 'Import failed');
+    //         return redirect()->route('admin-tixtrack-download-import');
         
-        }
-    }
+    //     }
+    // }
 
     public function account(){
         if (\Session::has('ASPXAUTH')) {
@@ -629,9 +630,6 @@ class DownloadController extends BaseController
                         \Session::flash('error_transaction', 'Import Transaction failed');
                     }
                 //end import order
-
-                    \File::delete('downloads/'.$filenameMember);
-                    \File::delete('downloads/'.$filenameTransaction);
                     //echo("Hello there!"); //would normally get printed to the screen/output to browser
                     //$output = ob_get_contents();
                     //ob_flush();
@@ -639,6 +637,9 @@ class DownloadController extends BaseController
             }else{
                 flash()->error('Change Account/Event failed');
             }
+
+            File::delete($pathDest.'/'.$filenameMember);
+            File::delete($pathDest.'/'.$filenameTransaction);
 
             return redirect()->route('admin-tixtrack-edit-data');
 
@@ -1202,177 +1203,177 @@ class DownloadController extends BaseController
     //     }
     // }
 
-    public function tesimportTransaction(){
-        // testing
-        $pathDest = public_path().'/downloads';
-        $file = '/Download_transaction_2016-11-02-10-21-37.csv'; //member gourmet
-        $file2 = '/nliven_sales_report_undefined-undefined.csv'; //member gourmet
-        $file3 = '/nliven_sales_report_361511361602.csv'; //member gourmet
-        $file4 = '/nliven_sales_report_361511361602vsave.csv'; //member gourmet
-        $file5= '/nliven_sales_report_undefined-undefined (4).csv'; //member gourmet
+    // public function tesimportTransaction(){
+    //     // testing
+    //     $pathDest = public_path().'/downloads';
+    //     $file = '/Download_transaction_2016-11-02-10-21-37.csv'; //member gourmet
+    //     $file2 = '/nliven_sales_report_undefined-undefined.csv'; //member gourmet
+    //     $file3 = '/nliven_sales_report_361511361602.csv'; //member gourmet
+    //     $file4 = '/nliven_sales_report_361511361602vsave.csv'; //member gourmet
+    //     $file5= '/nliven_sales_report_undefined-undefined (4).csv'; //member gourmet
 
-        // $input_encode = 'ISO-8859-1';
-        // $output_encode = 'UTF-8';
-        // $enclosure = '"';
-        // $delimiter = ",";
-        // $file = file_get_contents($pathDest.$file4);
-        // $content = iconv($input_encode, $output_encode, $file);
+    //     // $input_encode = 'ISO-8859-1';
+    //     // $output_encode = 'UTF-8';
+    //     // $enclosure = '"';
+    //     // $delimiter = ",";
+    //     // $file = file_get_contents($pathDest.$file4);
+    //     // $content = iconv($input_encode, $output_encode, $file);
 
-        // dd($file != "\r\n");
-        // if ( $file != "\r\n" )
-        // {
-        //     dd($pathDest.$file3);
-        // }
-        // //$content = str_replace( "\r\n", "\n", $content );
-        // //$content = str_replace( "\r", "\n", $content );
-        // $content = preg_replace('/[\x00]/', '', $content);
-        // //$content = preg_replace('/[\n]/', '\n', $content);
-        // $row = array( "" );
-        // $idx = 0;
-        // $quoted = false;
-        // // $enter = "\r\n";
-        // // $content .= $enter;
-        // if ( $content[strlen($content)-1] != "\n" )   // Make sure it always end with a newline
-        // {
-        //     $content .= "\n";
-        // }
-        // //dd($content);
-        // for ( $i = 0; $i < strlen($content); $i++ )
-        // {
-        //     $ch = $content[$i];
+    //     // dd($file != "\r\n");
+    //     // if ( $file != "\r\n" )
+    //     // {
+    //     //     dd($pathDest.$file3);
+    //     // }
+    //     // //$content = str_replace( "\r\n", "\n", $content );
+    //     // //$content = str_replace( "\r", "\n", $content );
+    //     // $content = preg_replace('/[\x00]/', '', $content);
+    //     // //$content = preg_replace('/[\n]/', '\n', $content);
+    //     // $row = array( "" );
+    //     // $idx = 0;
+    //     // $quoted = false;
+    //     // // $enter = "\r\n";
+    //     // // $content .= $enter;
+    //     // if ( $content[strlen($content)-1] != "\n" )   // Make sure it always end with a newline
+    //     // {
+    //     //     $content .= "\n";
+    //     // }
+    //     // //dd($content);
+    //     // for ( $i = 0; $i < strlen($content); $i++ )
+    //     // {
+    //     //     $ch = $content[$i];
 
-        //     if ( $ch == $enclosure )
-        //     {
-        //         $quoted = !$quoted;
-        //     }
+    //     //     if ( $ch == $enclosure )
+    //     //     {
+    //     //         $quoted = !$quoted;
+    //     //     }
 
-        //     // End of line
-        //     if ( $ch == "\n" && !$quoted )
-        //     {
-        //         // Remove enclosure delimiters
-        //         for ( $k = 0; $k < count($row); $k++ )
-        //         {
-        //             if ( $row[$k] != "" && $row[$k][0] == $enclosure )
-        //             {
-        //                 $row[$k] = substr( $row[$k], 1, strlen($row[$k]) - 2 );
-        //             }
-        //             $row[$k] = str_replace( str_repeat($enclosure, 2), $enclosure, $row[$k] );
-        //             $row[$k] = str_replace("\r", "", $row[$k]);
-        //         }
-        //         // Append row into table
-        //         $array[] = $row;
-        //         $row = array( "" );
-        //         $idx = 0;
-        //     }
+    //     //     // End of line
+    //     //     if ( $ch == "\n" && !$quoted )
+    //     //     {
+    //     //         // Remove enclosure delimiters
+    //     //         for ( $k = 0; $k < count($row); $k++ )
+    //     //         {
+    //     //             if ( $row[$k] != "" && $row[$k][0] == $enclosure )
+    //     //             {
+    //     //                 $row[$k] = substr( $row[$k], 1, strlen($row[$k]) - 2 );
+    //     //             }
+    //     //             $row[$k] = str_replace( str_repeat($enclosure, 2), $enclosure, $row[$k] );
+    //     //             $row[$k] = str_replace("\r", "", $row[$k]);
+    //     //         }
+    //     //         // Append row into table
+    //     //         $array[] = $row;
+    //     //         $row = array( "" );
+    //     //         $idx = 0;
+    //     //     }
 
-        //     // End of field
-        //     else if ( $ch == $delimiter && !$quoted )
-        //     {
-        //         $row[++$idx] = "";
-        //     }
+    //     //     // End of field
+    //     //     else if ( $ch == $delimiter && !$quoted )
+    //     //     {
+    //     //         $row[++$idx] = "";
+    //     //     }
 
-        //     // Inside the field
-        //     else
-        //     {
-        //         $row[$idx] .= $ch;
-        //     }
-        // }
-        // dd($array);
+    //     //     // Inside the field
+    //     //     else
+    //     //     {
+    //     //         $row[$idx] .= $ch;
+    //     //     }
+    //     // }
+    //     // dd($array);
 
-        // $names = $array[0];
+    //     // $names = $array[0];
 
-        // foreach ($array as $key => $value) {
-        //     if($key > 0){
-        //         //$data[] = $value;
-        //         foreach ($names as $k => $name) {
-        //             $name = trim($name, " ");
-        //             $name = strtolower($name);
-        //             $name = str_replace(' ', '_', $name);
-        //             $datas[$name] = $value[$k];
-        //         }
+    //     // foreach ($array as $key => $value) {
+    //     //     if($key > 0){
+    //     //         //$data[] = $value;
+    //     //         foreach ($names as $k => $name) {
+    //     //             $name = trim($name, " ");
+    //     //             $name = strtolower($name);
+    //     //             $name = str_replace(' ', '_', $name);
+    //     //             $datas[$name] = $value[$k];
+    //     //         }
 
-        //         $upload[] = $datas;
-        //     }
-        // }
-        $upload = parseCSV($pathDest.$file5, '"', ",", 'ISO-8859-1', 'UTF-8');
-        if(!empty($upload)){
-            foreach ($upload as $key => $value) {
-                $local_created = date('Y-m-d H:i:s', strtotime($value['local_created']));
-                $local_last_updated = date('Y-m-d H:i:s', strtotime($value['local_lastupdated']));
-                $event_id = (!empty($value['eventid'])) ? $value['eventid'] : null;
-                $event_date = date('Y-m-d H:i:s', strtotime($value['eventdate']));
-                $user_id = (!empty($value['userid'])) ? $value['userid'] : null;
-                $partner_id = (!empty($$value['partnerid'])) ? $$value['partnerid'] : null;
-                $item_id = (!empty($$value['itemid'])) ? $$value['itemid'] : null;
-                $fee_id = (!empty($$value['feeid'])) ? $$value['feeid'] : null;
-                $seat_id = (!empty($$value['seatid'])) ? $$value['seatid'] : null;
-                $created = date('Y-m-d H:i:s', strtotime($value['created']));
-                $last_updated = date('Y-m-d H:i:s', strtotime($value['lastupdated']));
+    //     //         $upload[] = $datas;
+    //     //     }
+    //     // }
+    //     $upload = parseCSV($pathDest.$file5, '"', ",", 'ISO-8859-1', 'UTF-8');
+    //     if(!empty($upload)){
+    //         foreach ($upload as $key => $value) {
+    //             $local_created = date('Y-m-d H:i:s', strtotime($value['local_created']));
+    //             $local_last_updated = date('Y-m-d H:i:s', strtotime($value['local_lastupdated']));
+    //             $event_id = (!empty($value['eventid'])) ? $value['eventid'] : null;
+    //             $event_date = date('Y-m-d H:i:s', strtotime($value['eventdate']));
+    //             $user_id = (!empty($value['userid'])) ? $value['userid'] : null;
+    //             $partner_id = (!empty($$value['partnerid'])) ? $$value['partnerid'] : null;
+    //             $item_id = (!empty($$value['itemid'])) ? $$value['itemid'] : null;
+    //             $fee_id = (!empty($$value['feeid'])) ? $$value['feeid'] : null;
+    //             $seat_id = (!empty($$value['seatid'])) ? $$value['seatid'] : null;
+    //             $created = date('Y-m-d H:i:s', strtotime($value['created']));
+    //             $last_updated = date('Y-m-d H:i:s', strtotime($value['lastupdated']));
 
-                $newData = [
-                    'order_id' => $value['orderid'],
-                    'local_created' => $local_created,
-                    'local_last_updated' => $local_last_updated,
-                    'first_name' => $value['firstname'],
-                    'last_name' => $value['lastname'],
-                    'email' => $value['email'],
-                    'bill_to_address1' => $value['billtoaddress1'],
-                    'bill_to_address2' => $value['billtoaddress2'],
-                    'bill_to_address3' => $value['billtoaddress3'],
-                    'bill_to_city' => $value['billtocity'],
-                    'bill_to_state' => $value['billtostate'],
-                    'bill_to_postal_code' => $value['billtopostalcode'],
-                    'bill_to_country_code' => $value['billtocountrycode'],
-                    'phone' => $value['phone'],
-                    'event_id' => $event_id,
-                    'event_name' => $value['eventname'],
-                    'event_date' => $event_date,
-                    'venue' => $value['venue'],
-                    'ip' => $value['ip'],
-                    'order_status' => $value['orderstatus'],
-                    'price_table_name' => $value['pricetablename'],
-                    'user_id' => $user_id,
-                    'seller_email' => $value['selleremail'],
-                    'partner' => $value['partner'],
-                    'partner_id' => $partner_id,
-                    'total' => $value['total'],
-                    'sales_channel' => $value['saleschannel'],
-                    'item_id' => $item_id,
-                    'order_item_type' => $value['orderitemtype'],
-                    'fee_id' => $fee_id,
-                    'fee_name' => $value['feename'],
-                    'section' => $value['section'],
-                    'row_section' => $value['row'],
-                    'seat_id' => $seat_id,
-                    'price_type' => $value['pricetype'],
-                    'price' => $value['price'],
-                    'full_price' => $value['fullprice'],
-                    'delivery_method_name' => $value['deliverymethodname'],
-                    'payment_method_type' => $value['paymentmethodtype'],
-                    'payment_method_name' => $value['paymentmethodname'],
-                    'provider_id' => $value['providerid'],
-                    'promo_code' => $value['promocode'],
-                    'marketing_opt_in1' => $value['marketingoptin1'],
-                    'marketing_opt_in2' => $value['marketingoptin2'],
-                    'created' => $created,
-                    'last_updated' => $last_updated,
-                    'promotion_name' => $value['promotion_name'],
-                    'price_level_name' => $value['price_level_name'],
-                    'ticket_quantity' => $value['ticketquantity'],
-                    'balance' => $value['balance'],
-                    'product_name' => $value['product_name'],
-                    'product_variant_name' => $value['product_variant_name'],
-                ];
+    //             $newData = [
+    //                 'order_id' => $value['orderid'],
+    //                 'local_created' => $local_created,
+    //                 'local_last_updated' => $local_last_updated,
+    //                 'first_name' => $value['firstname'],
+    //                 'last_name' => $value['lastname'],
+    //                 'email' => $value['email'],
+    //                 'bill_to_address1' => $value['billtoaddress1'],
+    //                 'bill_to_address2' => $value['billtoaddress2'],
+    //                 'bill_to_address3' => $value['billtoaddress3'],
+    //                 'bill_to_city' => $value['billtocity'],
+    //                 'bill_to_state' => $value['billtostate'],
+    //                 'bill_to_postal_code' => $value['billtopostalcode'],
+    //                 'bill_to_country_code' => $value['billtocountrycode'],
+    //                 'phone' => $value['phone'],
+    //                 'event_id' => $event_id,
+    //                 'event_name' => $value['eventname'],
+    //                 'event_date' => $event_date,
+    //                 'venue' => $value['venue'],
+    //                 'ip' => $value['ip'],
+    //                 'order_status' => $value['orderstatus'],
+    //                 'price_table_name' => $value['pricetablename'],
+    //                 'user_id' => $user_id,
+    //                 'seller_email' => $value['selleremail'],
+    //                 'partner' => $value['partner'],
+    //                 'partner_id' => $partner_id,
+    //                 'total' => $value['total'],
+    //                 'sales_channel' => $value['saleschannel'],
+    //                 'item_id' => $item_id,
+    //                 'order_item_type' => $value['orderitemtype'],
+    //                 'fee_id' => $fee_id,
+    //                 'fee_name' => $value['feename'],
+    //                 'section' => $value['section'],
+    //                 'row_section' => $value['row'],
+    //                 'seat_id' => $seat_id,
+    //                 'price_type' => $value['pricetype'],
+    //                 'price' => $value['price'],
+    //                 'full_price' => $value['fullprice'],
+    //                 'delivery_method_name' => $value['deliverymethodname'],
+    //                 'payment_method_type' => $value['paymentmethodtype'],
+    //                 'payment_method_name' => $value['paymentmethodname'],
+    //                 'provider_id' => $value['providerid'],
+    //                 'promo_code' => $value['promocode'],
+    //                 'marketing_opt_in1' => $value['marketingoptin1'],
+    //                 'marketing_opt_in2' => $value['marketingoptin2'],
+    //                 'created' => $created,
+    //                 'last_updated' => $last_updated,
+    //                 'promotion_name' => $value['promotion_name'],
+    //                 'price_level_name' => $value['price_level_name'],
+    //                 'ticket_quantity' => $value['ticketquantity'],
+    //                 'balance' => $value['balance'],
+    //                 'product_name' => $value['product_name'],
+    //                 'product_variant_name' => $value['product_variant_name'],
+    //             ];
 
-                TixtrackOrder::create($newData);
+    //             TixtrackOrder::create($newData);
 
              
-            }
-            //dd($newData);
-            //dd($newData[624]);
-        }
-        // end testing
-    }
+    //         }
+    //         //dd($newData);
+    //         //dd($newData[624]);
+    //     }
+    //     // end testing
+    // }
 
     // public function downloadTransaction(Request $req){
 

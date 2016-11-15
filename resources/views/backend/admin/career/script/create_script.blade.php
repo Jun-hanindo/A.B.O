@@ -23,15 +23,37 @@
             saveTrailModal('Department Form');
 
         });
+        
+        // $( "#position" ).autocomplete({
+        //     source: "{{ route('admin-career-autocomplete-position') }}",
+        //     minLength: 3,
+        //     select: function(event, ui) {
+        //         $('#position').val(ui.item.value);
+        //     }
+        // });
 
-        $("#position").on('keyup', function(){
-            // var q = $(this).val();
-
-            // if(q.length >=3 ) {
-            //     autocompletePosition(q);
-            // } else {
-            //     $("#suggesstion-box").hide();
-            // }
+        $( "#position" ).autocomplete({
+            minLength: 2,
+            source: function( request, response ) {
+                $.ajax( {
+                    url: "{{ route('admin-career-autocomplete-position') }}",
+                    dataType: "json",
+                    data: {
+                        term: request.term
+                    },
+                    success: function( data ) {
+                        response($.map(data, function(v){
+                            return {
+                              value: v.value
+                            };
+                        }));
+                    }
+                });
+            },
+            select: function( event, ui ) {
+                console.log(ui.item.value);
+                $('#position').val(ui.item.value);
+            }
         });
 
     });
@@ -97,29 +119,6 @@
                 } else {
                     $('.error-modal').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                 }
-            }
-        });
-    }
-
-    function autocompletePosition(q)
-    {
-        $.ajax({
-            url: "{{ route('admin-career-autocomplete-position') }}",
-            type: "GET",
-            dataType: 'json',
-            data: {'position':q},
-            success: function (response) {
-                    setTimeout(function() {
-                        $("#suggesstion-box").html('');
-                        $("#suggesstion-box").show();
-                        var results = response.data;
-                        console.log(results);
-                        $("#suggesstion-box").html(results.job)
-                    }, 300);
-                
-            },
-            error: function(response){
-                
             }
         });
     }

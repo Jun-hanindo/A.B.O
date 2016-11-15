@@ -196,9 +196,10 @@ class Career extends Model
     }
 
     public function autocompletePosition($param){
-        $q = $param['position'];
+        $q = $param['term'];
         $query = Career::select('job')
             ->where('job','ilike','%'.$q.'%')
+            ->groupBy('job')
             ->take(10)->get();
 
         if(!empty($query)){
