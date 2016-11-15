@@ -16,7 +16,7 @@
                 font-size: 18px;
             }
             table{
-                /*border-collapse: collapse;*/
+                border-collapse: collapse;
                 width: 100%;
                 max-width: 100%;
             }
@@ -157,7 +157,9 @@
                     </tr>
                 </tfoot>
             </table>
-        
+            <div id="chart-category" class="chart-img">
+                <img src="{{ $chartCat }}">
+            </div>
             <div class="page-break"></div>
         @endif
 
@@ -242,6 +244,10 @@
                     </tr>
                 </tfoot>
             </table>
+            
+            <div id="chart-payment" class="chart-img">
+                <img src="{{ $chartPay }}">
+            </div>
         
             <div class="page-break"></div>
         @endif
@@ -339,6 +345,10 @@
                     </tr>
                 </tfoot>
             </table>
+            
+            <div id="chart-promotion" class="chart-img">
+                <img src="{{ $chartPro }}">
+            </div>
         
             <div class="page-break"></div>
         @endif

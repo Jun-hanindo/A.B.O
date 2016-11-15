@@ -170,6 +170,7 @@ Tixtrack
                         <div class="box-body">
                             <div class="error-category"></div>
                             <canvas id="category_chart" width="1000" height="400"></canvas>
+                            <img src="" id="category_chart_img">
                         </div>
                     </div>
                 @endif
@@ -276,6 +277,7 @@ Tixtrack
                         <div class="box-body">
                             <div class="error-category"></div>
                             <canvas id="payment_chart" width="1000" height="400"></canvas>
+                            <img src="" id="payment_chart_img">
                         </div>
                     </div>
                 @endif
@@ -394,6 +396,7 @@ Tixtrack
                         <div class="box-body">
                             <div class="error-category"></div>
                             <canvas id="promotion_chart" width="1000" height="400"></canvas>
+                            <img src="" id="promotion_chart_img">
                         </div>
                     </div>
                 @endif

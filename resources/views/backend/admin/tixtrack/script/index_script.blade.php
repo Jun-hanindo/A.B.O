@@ -136,8 +136,7 @@
     }
 
     function chartCategory(event_id, start, end){
-        // var uri = "{{ URL::route('admin-edit-homepage', "::param") }}";
-        // uri = uri.replace('::param', id);
+        modal_loader();
         var uri = "{{ URL::route('admin-report-tixtrack-chart-category') }}";
         $.ajax({
             url: uri,
@@ -145,12 +144,13 @@
             dataType: 'json',
             data:{'event':event_id, 'start_date':start, 'end_date':end},
             success: function (response) {
-                var cat = document.getElementById("category_chart");
+                var cat = document.getElementById("category_chart").getContext("2d");
                 var data = response.data;
                 var catChart = new Chart(cat, {
                     type: 'line',
                     data: data,
                     options: {
+                        responsive: true,
                         scales: {
                             yAxes: [{
                                 ticks: {
@@ -164,19 +164,40 @@
                             labels: {
                                 fontColor: 'rgb(255, 99, 132)'
                             }
+                        },
+                        animation: {
+                            onComplete: function (animation) { 
+                                var image = this.toBase64Image();
+                                //document.getElementById("category_chart_img").src=image;
+                                var uriChart = "{{ URL::route('admin-report-tixtrack-image') }}";
+                                $.ajax({
+                                    url: uriChart,
+                                    type: "post",
+                                    dataType: 'json',
+                                    data:{'event':event_id, 'start_date':start, 'end_date':end, 'category': image},
+                                    success: function (response) {
+                                        response.message;
+                                    },
+                                    error: function(response){
+                                        $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
+                                    }
+                                });
+                            }
                         }
+
                     }
                 });
+                HoldOn.close();
             },
             error: function(response){
+                HoldOn.close();
                 $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
             }
         });
     }
 
     function chartPayment(event_id, start, end){
-        // var uri = "{{ URL::route('admin-edit-homepage', "::param") }}";
-        // uri = uri.replace('::param', id);
+        modal_loader();
         var uri = "{{ URL::route('admin-report-tixtrack-chart-payment') }}";
         $.ajax({
             url: uri,
@@ -190,6 +211,7 @@
                     type: 'line',
                     data: data,
                     options: {
+                        responsive: true,
                         scales: {
                             yAxes: [{
                                 ticks: {
@@ -203,19 +225,39 @@
                             labels: {
                                 fontColor: 'rgb(255, 99, 132)'
                             }
+                        },
+                        animation: {
+                            onComplete: function (animation) { 
+                                var image = this.toBase64Image();
+                                //document.getElementById("payment_chart_img").src=image;
+                                var uriChart = "{{ URL::route('admin-report-tixtrack-image') }}";
+                                $.ajax({
+                                    url: uriChart,
+                                    type: "post",
+                                    dataType: 'json',
+                                    data:{'event':event_id, 'start_date':start, 'end_date':end, 'payment': image},
+                                    success: function (response) {
+                                        response.message;
+                                    },
+                                    error: function(response){
+                                        $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
+                                    }
+                                });
+                            }
                         }
                     }
                 });
+                HoldOn.close();
             },
             error: function(response){
+                HoldOn.close();
                 $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
             }
         });
     }
 
     function chartPromotion(event_id, start, end){
-        // var uri = "{{ URL::route('admin-edit-homepage', "::param") }}";
-        // uri = uri.replace('::param', id);
+        modal_loader();
         var uri = "{{ URL::route('admin-report-tixtrack-chart-promotion') }}";
         $.ajax({
             url: uri,
@@ -223,30 +265,54 @@
             dataType: 'json',
             data:{'event':event_id, 'start_date':start, 'end_date':end},
             success: function (response) {
-                var cat = document.getElementById("promotion_chart");
-                var data = response.data;
-                var catChart = new Chart(cat, {
-                    type: 'line',
-                    data: data,
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero:true,
+                if(response.data != ''){
+                    var cat = document.getElementById("promotion_chart");
+                    var data = response.data;
+                    var catChart = new Chart(cat, {
+                        type: 'line',
+                        data: data,
+                        options: {
+                            responsive: true,
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero:true,
+                                    }
+                                }]
+                            },
+                            legend: {
+                                display: true,
+                                position: 'bottom',
+                                labels: {
+                                    fontColor: 'rgb(255, 99, 132)'
                                 }
-                            }]
-                        },
-                        legend: {
-                            display: true,
-                            position: 'bottom',
-                            labels: {
-                                fontColor: 'rgb(255, 99, 132)'
+                            },
+                            animation: {
+                                onComplete: function (animation) { 
+                                    var image = this.toBase64Image();
+                                    //document.getElementById("promotion_chart_img").src=image;
+                                    var uriChart = "{{ URL::route('admin-report-tixtrack-image') }}";
+                                    $.ajax({
+                                        url: uriChart,
+                                        type: "post",
+                                        dataType: 'json',
+                                        data:{'event':event_id, 'start_date':start, 'end_date':end, 'promotion': image},
+                                        success: function (response) {
+                                            response.message;
+                                        },
+                                        error: function(response){
+                                            $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
+                                        }
+                                    });
+                                }
                             }
                         }
-                    }
-                });
+                    });
+                }
+                HoldOn.close();
             },
             error: function(response){
+                HoldOn.close();
                 $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
             }
         });

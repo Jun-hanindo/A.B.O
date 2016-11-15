@@ -169,9 +169,6 @@ class ReportsController extends BaseController
             $modelOrder = new TixtrackOrder();
             $cats = $modelOrder->getCategoryEvent($event_id, $start_date, $end_date);
             $dateCats = $modelOrder->getCategoryByEvent($event_id, $start_date, $end_date);
-            $start_date = $start_date;
-            $end_date = $end_date;
-            $event_id = $event_id;
 
             foreach ($dateCats as $key => $value) {
                 $date = date('d-M-Y', strtotime($value->local_created))." | ".date('d-M-Y, g:ia', strtotime($value->event_date));
@@ -246,9 +243,6 @@ class ReportsController extends BaseController
             $modelEvent = new Event();
             $pays = $modelOrder->getPaymentEvent($event_id, $start_date, $end_date);
             $datePays = $modelOrder->getPaymentByEvent($event_id, $start_date, $end_date);
-            $start_date = $start_date;
-            $end_date = $end_date;
-            $event_id = $event_id;
 
             foreach ($datePays as $key => $value) {
                 $date = date('d-M-Y', strtotime($value->local_created))." | ".date('d-M-Y, g:ia', strtotime($value->event_date));
@@ -321,10 +315,10 @@ class ReportsController extends BaseController
 
     public function chartPromotion(Request $req){
         $param = $req->all();
-        //if(!empty($param)){
-            $param['event'] = 50748;
-            $param['start_date'] = '2016-11-01';
-            $param['end_date'] = '2016-11-11';
+        if(!empty($param)){
+            // $param['event'] = 50748;
+            // $param['start_date'] = '2016-11-01';
+            // $param['end_date'] = '2016-11-11';
             $event_id = $param['event'];
             $start_date = $param['start_date'];
             $end_date = $param['end_date'];
@@ -335,149 +329,98 @@ class ReportsController extends BaseController
             //$countCat = count($categories);
             //$totalCats = $modelOrder->totalCategoryEvent($event_id, $start_date, $end_date);
             //$event = $modelEvent->getEventByTixtrack($event_id);
-            $start_date = $start_date;
-            $end_date = $end_date;
-            $event_id = $event_id;
+            // $start_date = $start_date;
+            // $end_date = $end_date;
+            // $event_id = $event_id;
             //$total = $modelOrder->total($event_id, $start_date, $end_date);
-
-            foreach ($datePros as $key => $value) {
-                $date = date('d-M-Y', strtotime($value->local_created))." | ".date('d-M-Y, g:ia', strtotime($value->event_date));
-                $full_amount = 'Full Amount:';
-                $disc_amount = 'Discounted Amt:';
-                $quantity = 'Quantity:';
-                $labels[] = [
-                    $date." | ".$full_amount,
-                    $date." | ".$disc_amount,
-                    $date." | ".$quantity,
-                ];
-                $subtotal = $modelOrder->totalByDatePromotion($event_id, $value->local_created, $value->event_date);
-
-                $totals[] = [
-                    $subtotal->full_price,
-                    $subtotal->price,
-                    $subtotal->ticket_quantity,
-                ];
-
-                // $a[] = $value->amounts;
-                // foreach ($value->amounts as $key2 => $value2) {
-                //     $cat[$key2] = [
-                //         $value2->full_price, $value2->price, $value2->ticket_quantity
-                //     ];
-                // }
-
-                // $categories[] = array_flatten($cat);
-
-            }  
-
-            //$totals = array_flatten($totals);
-            //$set['total'] = $totals; 
-
-            $data['labels'] = array_flatten($labels);     
-
-            foreach ($pros as $key => $value) {
-                $categories[] = $value->promo_code;
-                foreach ($datePros as $key2 => $value2) {
-                    $date = date('d-M-Y', strtotime($value2->local_created)).'|'.date('d-M-Y, g:ia', strtotime($value2->event_date));
-                    $amount = $modelOrder->amountByPromotion($event_id, $value->promo_code, $value2->local_created, $value2->event_date);
-                    $amounts[$date] = [
-                        $amount->full_price, 
-                        $amount->price,
-                        $amount->ticket_quantity
+            $data = array();
+            if(!$datePros->isEmpty()){
+                foreach ($datePros as $key => $value) {
+                    $date = date('d-M-Y', strtotime($value->local_created))." | ".date('d-M-Y, g:ia', strtotime($value->event_date));
+                    $full_amount = 'Full Amount:';
+                    $disc_amount = 'Discounted Amt:';
+                    $quantity = 'Quantity:';
+                    $labels[] = [
+                        $date." | ".$full_amount,
+                        $date." | ".$disc_amount,
+                        $date." | ".$quantity,
                     ];
-                }
+                    $subtotal = $modelOrder->totalByDatePromotion($event_id, $value->local_created, $value->event_date);
+
+                    $totals[] = [
+                        $subtotal->full_price,
+                        $subtotal->price,
+                        $subtotal->ticket_quantity,
+                    ];
+
+                    // $a[] = $value->amounts;
+                    // foreach ($value->amounts as $key2 => $value2) {
+                    //     $cat[$key2] = [
+                    //         $value2->full_price, $value2->price, $value2->ticket_quantity
+                    //     ];
+                    // }
+
+                    // $categories[] = array_flatten($cat);
+
+                }  
+
+                //$totals = array_flatten($totals);
+                //$set['total'] = $totals; 
+
+                $data['labels'] = array_flatten($labels);  
+            }   
+
+            if(!$pros->isEmpty()){
+                foreach ($pros as $key => $value) {
+                    $categories[] = $value->promo_code;
+                    foreach ($datePros as $key2 => $value2) {
+                        $date = date('d-M-Y', strtotime($value2->local_created)).'|'.date('d-M-Y, g:ia', strtotime($value2->event_date));
+                        $amount = $modelOrder->amountByPromotion($event_id, $value->promo_code, $value2->local_created, $value2->event_date);
+                        $amounts[$date] = [
+                            $amount->full_price, 
+                            $amount->price,
+                            $amount->ticket_quantity
+                        ];
+                    }
+                    $data['datasets'][] = [
+                        'label' => $value->promo_code,
+                        'borderColor' => rand_color(),
+                        'fill' => false,
+                        'fillColor' => "rgba(220,220,220,0)",
+                        'data' => array_flatten($amounts)
+                    ];
+                } 
+            }
+
+            if(!$datePros->isEmpty()){
                 $data['datasets'][] = [
-                    'label' => $value->promo_code,
+                    'label' => 'Total',
                     'borderColor' => rand_color(),
                     'fill' => false,
                     'fillColor' => "rgba(220,220,220,0)",
-                    'data' => array_flatten($amounts)
+                    'data' => array_flatten($totals),
                 ];
-            } 
+            }
 
-            $data['datasets'][] = [
-                'label' => 'Total',
-                'borderColor' => rand_color(),
-                'fill' => false,
-                'fillColor' => "rgba(220,220,220,0)",
-                'data' => array_flatten($totals),
-            ];
-            //dd($data);
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
                 'message' => 'Success',
                 'data' => $data
             ],200);
-        //}
-    }
-
-    public function tes_reportExcel(Request $req){
-        $param = $req->all();
-        if(!empty($param)){
-            $filename = env('APP_NAME_INITIAL').'-Report-Category-'.date('Y-m-d-H-i-s').'.pdf';
-            //ob_end_clean();
-            //ob_start();
-
-            //Excel::create($filename, function($excel) use ($param) {
-
-                //$excel->sheet('REPORT BY CATEGORY', function($sheet) use ($param) {
-                    $event_id = $param['event'];
-                    $start_date = $param['start_date'];
-                    $end_date = $param['end_date'];
-                    $modelOrder = new TixtrackOrder();
-                    $modelEvent = new Event();
-                    $data['categories'] = $modelOrder->getCategoryEvent($event_id, $start_date, $end_date);
-                    $data['dateCats'] = $modelOrder->getCategoryByEvent($event_id, $start_date, $end_date);
-                    $data['countCat'] = count($data['categories']);
-                    $data['totalCats'] = $modelOrder->totalCategoryEvent($event_id, $start_date, $end_date);
-                    $data['event'] = $modelEvent->getEventByTixtrack($event_id);
-                    $data['start_date'] = $start_date;
-                    $data['end_date'] = $end_date;
-                    $data['event_id'] = $event_id;
-                    $data['total'] = $modelOrder->total($event_id, $start_date, $end_date);
-
-                    $data['payments'] = $modelOrder->getPaymentEvent($event_id, $start_date, $end_date);
-                    $data['datePays'] = $modelOrder->getPaymentByEvent($event_id, $start_date, $end_date);
-                    $data['countPay'] = count($data['payments']);
-                    $data['totalPays'] = $modelOrder->totalPaymentEvent($event_id, $start_date, $end_date);
-
-                    $data['promotions'] = $modelOrder->getPromotionEvent($event_id, $start_date, $end_date);
-                    $data['datePros'] = $modelOrder->getDatePromotion($event_id, $start_date, $end_date);
-                    $data['countPro'] = count($data['promotions']);
-                    $data['totalPros'] = $modelOrder->totalPromotionEvent($event_id, $start_date, $end_date);
-                    $data['allTotalPro'] = $modelOrder->allTotalPromotion($event_id, $start_date, $end_date);
-
-                    $data['allCategories'] = $modelOrder->getAllCategoryEvent($event_id);
-                    $data['allSale'] = $modelOrder->getAllSale($event_id);
-                    $data['countAllCat'] = count($data['allCategories']);
-
-                    $data['modelOrder'] = $modelOrder;
-
-                    $data['first_date'] = $modelOrder->getFirstDateEvent($event_id);
-                    //$pdf = PDF::loadView('backend.admin.tixtrack.export_report.pdf_category', $data);
-                    //return $pdf->download($filename);
-                    //$sheet->setAutoSize(false);
-
-                    //$sheet->loadView('backend.admin.tixtrack.export_report.excel_category',$data);
-
-                //});
-
-            //})->export('xlsx');
         }
-
-            return view('backend.admin.tixtrack.export_report.pdf', $data);
     }
 
-    // public function exportCategoryToExcel(Request $req){
+    // public function tes_reportExcel(Request $req){
     //     $param = $req->all();
     //     if(!empty($param)){
-    //         $filename = env('APP_NAME_INITIAL').'-Report-Category-'.date('Y-m-d-H-i-s');
-    //         ob_end_clean();
-    //         ob_start();
+    //         $filename = env('APP_NAME_INITIAL').'-Report-Category-'.date('Y-m-d-H-i-s').'.pdf';
+    //         //ob_end_clean();
+    //         //ob_start();
 
-    //         Excel::create($filename, function($excel) use ($param) {
+    //         //Excel::create($filename, function($excel) use ($param) {
 
-    //             $excel->sheet('REPORT BY CATEGORY', function($sheet) use ($param) {
+    //             //$excel->sheet('REPORT BY CATEGORY', function($sheet) use ($param) {
     //                 $event_id = $param['event'];
     //                 $start_date = $param['start_date'];
     //                 $end_date = $param['end_date'];
@@ -492,86 +435,38 @@ class ReportsController extends BaseController
     //                 $data['end_date'] = $end_date;
     //                 $data['event_id'] = $event_id;
     //                 $data['total'] = $modelOrder->total($event_id, $start_date, $end_date);
-    //                 $sheet->setAutoSize(false);
 
-    //                 $sheet->loadView('backend.admin.tixtrack.export_report.excel_category',$data);
-
-    //             });
-
-    //         })->export('xlsx');
-    //     }
-    // }
-
-    // public function exportPaymentToExcel(Request $req){
-    //     $param = $req->all();
-    //     if(!empty($param)){
-    //         $filename = env('APP_NAME_INITIAL').'-Report-Payment-'.date('Y-m-d-H-i-s');
-    //         ob_end_clean();
-    //         ob_start();
-
-    //         Excel::create($filename, function($excel) use ($param) {
-
-    //             $excel->sheet('REPORT BY PAYMENT', function($sheet) use ($param) {
-    //                 $event_id = $param['event'];
-    //                 $start_date = $param['start_date'];
-    //                 $end_date = $param['end_date'];
-    //                 $modelOrder = new TixtrackOrder();
-    //                 $modelEvent = new Event();
     //                 $data['payments'] = $modelOrder->getPaymentEvent($event_id, $start_date, $end_date);
     //                 $data['datePays'] = $modelOrder->getPaymentByEvent($event_id, $start_date, $end_date);
     //                 $data['countPay'] = count($data['payments']);
     //                 $data['totalPays'] = $modelOrder->totalPaymentEvent($event_id, $start_date, $end_date);
-    //                 $data['event'] = $modelEvent->getEventByTixtrack($event_id);
-    //                 $data['start_date'] = $start_date;
-    //                 $data['end_date'] = $end_date;
-    //                 $data['event_id'] = $event_id;
-    //                 $data['total'] = $modelOrder->total($event_id, $start_date, $end_date);
-    //                 $sheet->setAutoSize(false);
 
-    //                 $sheet->loadView('backend.admin.tixtrack.export_report.excel_payment',$data);
-
-    //             });
-
-    //         })->export('xlsx');
-    //     }
-    // }
-
-    // public function exportPromotionToExcel(Request $req){
-    //     $param = $req->all();
-    //     if(!empty($param)){
-    //         $filename = env('APP_NAME_INITIAL').'-Report-Promotion-'.date('Y-m-d-H-i-s');
-    //         ob_end_clean();
-    //         ob_start();
-
-    //         Excel::create($filename, function($excel) use ($param) {
-
-    //             $excel->sheet('REPORT BY PROMOTION', function($sheet) use ($param) {
-    //                 $event_id = $param['event'];
-    //                 $start_date = $param['start_date'];
-    //                 $end_date = $param['end_date'];
-    //                 $modelOrder = new TixtrackOrder();
-    //                 $modelEvent = new Event();
     //                 $data['promotions'] = $modelOrder->getPromotionEvent($event_id, $start_date, $end_date);
     //                 $data['datePros'] = $modelOrder->getDatePromotion($event_id, $start_date, $end_date);
     //                 $data['countPro'] = count($data['promotions']);
     //                 $data['totalPros'] = $modelOrder->totalPromotionEvent($event_id, $start_date, $end_date);
-    //                 $data['event'] = $modelEvent->getEventByTixtrack($event_id);
-    //                 $data['start_date'] = $start_date;
-    //                 $data['end_date'] = $end_date;
-    //                 $data['event_id'] = $event_id;
     //                 $data['allTotalPro'] = $modelOrder->allTotalPromotion($event_id, $start_date, $end_date);
-    //                 $data['total'] = $modelOrder->total($event_id, $start_date, $end_date);
+
+    //                 $data['allCategories'] = $modelOrder->getAllCategoryEvent($event_id);
+    //                 $data['allSale'] = $modelOrder->getAllSale($event_id);
+    //                 $data['countAllCat'] = count($data['allCategories']);
+
     //                 $data['modelOrder'] = $modelOrder;
-    //                 $sheet->setAutoSize(false);
 
-    //                 $sheet->loadView('backend.admin.tixtrack.export_report.excel_promotion',$data);
+    //                 $data['first_date'] = $modelOrder->getFirstDateEvent($event_id);
+    //                 //$pdf = PDF::loadView('backend.admin.tixtrack.export_report.pdf_category', $data);
+    //                 //return $pdf->download($filename);
+    //                 //$sheet->setAutoSize(false);
 
-    //             });
+    //                 //$sheet->loadView('backend.admin.tixtrack.export_report.excel_category',$data);
 
-    //         })->export('xlsx');
+    //             //});
+
+    //         //})->export('xlsx');
     //     }
-    // }
 
+    //         return view('backend.admin.tixtrack.export_report.pdf', $data);
+    // }
 
     
     public function exportReportToExcel(Request $req){
@@ -616,6 +511,15 @@ class ReportsController extends BaseController
                     $data['countAllCat'] = count($data['allCategories']);
 
                     $data['first_date'] = $modelOrder->getFirstDateEvent($event_id);
+
+                    $user = \Sentinel::getUser()->first_name.'-'.\Sentinel::getUser()->last_name;
+                    $data['first_date'] = $modelOrder->getFirstDateEvent($event_id);
+                    $fileChartCat = 'ChartCategory'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
+                    $data['chartCat'] = public_path().'/uploads/charts/'.$fileChartCat;
+                    $fileChartPay = 'ChartPayment'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
+                    $data['chartPay'] = public_path().'/uploads/charts/'.$fileChartPay;
+                    $fileChartPro = 'ChartPromotion'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
+                    $data['chartPro'] = public_path().'/uploads/charts/'.$fileChartPro;
 
                     $sheet->setAutoSize(false);
 
@@ -662,10 +566,19 @@ class ReportsController extends BaseController
             $data['allSale'] = $modelOrder->getAllSale($event_id);
             $data['countAllCat'] = count($data['allCategories']);
 
+            $user = \Sentinel::getUser()->first_name.'-'.\Sentinel::getUser()->last_name;
             $data['first_date'] = $modelOrder->getFirstDateEvent($event_id);
+            $fileChartCat = 'ChartCategory'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
+            $data['chartCat'] = public_path().'/uploads/charts/'.$fileChartCat;
+            $fileChartPay = 'ChartPayment'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
+            $data['chartPay'] = public_path().'/uploads/charts/'.$fileChartPay;
+            $fileChartPro = 'ChartPromotion'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
+            $data['chartPro'] = public_path().'/uploads/charts/'.$fileChartPro;
 
             $pdf = PDF::loadView('backend.admin.tixtrack.export_report.pdf', $data);
             return $pdf->setPaper('a4')->download($filename);
+            
+            //return view('backend.admin.tixtrack.export_report.pdf', $data);
         }
     }
 
@@ -679,5 +592,68 @@ class ReportsController extends BaseController
         $model = new TixtrackOrder();
         $model->truncate();
         return redirect()->route('admin-index-tixtrack');
+    }
+
+    public function chartImage(Request $req){
+        try{
+            $param = $req->all();
+            // $param['event'] = 50748;
+            // $param['start_date'] = '2016-11-01';
+            // $param['end_date'] = '2016-11-11';
+            $event_id = $param['event'];
+            $start_date = $param['start_date'];
+            $end_date = $param['end_date'];
+            $user = \Sentinel::getUser()->first_name.'-'.\Sentinel::getUser()->last_name;
+            $pathDest = public_path( 'uploads/charts' );
+            if(!File::exists($pathDest)) {
+                File::makeDirectory($pathDest, $mode=0777,true,true);
+            }
+            //dd($param['category']);
+            if(isset($param['category'])){
+                $imgbase1 = str_replace('data:image/png;base64,', '', $param['category']);
+                $img1 = base64_decode($imgbase1);
+                $filename1 = 'ChartCategory'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
+                File::delete($pathDest.'/'.$filename1);
+                // Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                //     'charts/'.$filename1, $img1, 'public'
+                // );
+                File::put($pathDest.'/'.$filename1, $img1);
+            }
+            if(isset($param['payment'])){
+                $imgbase2 = str_replace('data:image/png;base64,', '', $param['payment']);
+                $img2 = base64_decode($imgbase2);
+                $filename2 = 'ChartPayment'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
+                File::delete($pathDest.'/'.$filename2);
+                // Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                //     'charts/'.$filename2, $img2, 'public'
+                // );
+                File::put($pathDest.'/'.$filename2, $img2);
+            }
+            if(isset($param['promotion'])){
+                $imgbase3 = str_replace('data:image/png;base64,', '', $param['promotion']);
+                $img3 = base64_decode($imgbase3);
+                $filename3 = 'ChartPromotion'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
+                File::delete($pathDest.'/'.$filename3);
+                // Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                //     'charts/'.$filename3, $img3, 'public'
+                // );
+                File::put($pathDest.'/'.$filename3, $img3);
+            }
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'Success',
+            ],200);
+
+        } catch (\Exception $e) {
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+            flash()->error(trans('general.data_not_found'));
+            return redirect()->route('admin-report-tixtrack');
+        
+        }
     }
 }

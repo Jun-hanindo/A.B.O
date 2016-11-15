@@ -206,6 +206,9 @@
                     </tr>
                 </tfoot>
             </table>
+            <div id="chart-category" class="chart-img">
+                <img src="{{ $chartCat }}">
+            </div>
             <br>
         @endif
         @if(!$datePros->isEmpty())
@@ -308,6 +311,9 @@
                     </tr>
                 </tfoot>
             </table>
+            <div id="chart-payment" class="chart-img">
+                <img src="{{ $chartPay }}">
+            </div>
             <br>    
         @endif   
         @if(!$allSale->isEmpty())
@@ -367,6 +373,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div id="chart-promotion" class="chart-img">
+                <img src="{{ $chartPro }}">
+            </div>
             <br>
         @endif
         <table>
