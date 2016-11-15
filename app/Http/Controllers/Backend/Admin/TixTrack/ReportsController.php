@@ -524,9 +524,9 @@ class ReportsController extends BaseController
 
                     $drawing = new PHPExcel_Worksheet_Drawing();
                     //$drawing->setResizeProportional();
-                    $objDrawing->setPath($data['chartCat']); //your image path
-                    $objDrawing->setCoordinates('A2');
-                    $objDrawing->setWorksheet($sheet);
+                    $drawing->setPath($data['chartCat']); //your image path
+                    $drawing->setCoordinates('A2');
+                    $drawing->setWorksheet($sheet);
 
                     //$sheet->setAutoSize(false);
 
