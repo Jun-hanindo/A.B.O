@@ -600,7 +600,7 @@ class ReportsController extends BaseController
             $data['chartPro'] = public_path().'/uploads/charts/'.$fileChartPro;
 
             $pdf = PDF::loadView('backend.admin.tixtrack.export_report.pdf', $data);
-            return $pdf->setPaper('a4')->download($filename);
+            return $pdf->setPaper('A4')->download($filename);
             
             //return view('backend.admin.tixtrack.export_report.pdf', $data);
         }

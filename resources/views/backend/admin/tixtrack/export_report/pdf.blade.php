@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <style>
             @page { 
-                margin: 30px 30px 30px 30px; 
+                margin: 20px 30px 30px 30px; 
             }
             body{
                 font-family: 'Source Sans Pro',Helvetica,Arial,sans-serif;
@@ -14,6 +14,8 @@
             .title-report{
                 border-bottom: 1px solid #000;
                 font-size: 18px;
+                margin: 0;
+                padding:0;
             }
             table{
                 border-collapse: collapse;
@@ -158,7 +160,7 @@
                 </tfoot>
             </table>
             <div id="chart-category" class="chart-img" style="">
-                <img style="margin-top:5px;padding:5px;border:1px solid #000;" width="100%" src="{{ $chartCat }}">
+                <img style="margin-top:5px;" width="100%" src="{{ $chartCat }}">
             </div>
             <div class="page-break"></div>
         @endif
@@ -246,7 +248,7 @@
             </table>
             
             <div id="chart-payment" class="chart-img" style="">
-                <img style="margin-top:5px;padding:5px;border:1px solid #000;" width="100%" src="{{ $chartPay }}">
+                <img style="margin-top:5px;" width="100%" src="{{ $chartPay }}">
             </div>
         
             <div class="page-break"></div>
@@ -347,7 +349,7 @@
             </table>
             
             <div id="chart-promotion" class="chart-img" style="">
-                <img style="margin-top:5px;padding:5px;border:1px solid #000;" width="100%" src="{{ $chartPro }}">
+                <img style="margin-top:5px;" width="100%" src="{{ $chartPro }}">
             </div>
         
             <div class="page-break"></div>
@@ -376,7 +378,7 @@
                 <tbody>
                     @foreach($allSale as $key2 => $sale) 
                         <tr>
-                            <td align="right" rowspan="3" class="column-2">{{ date('d-M-Y, g:ia', strtotime($sale->event_date)) }}</td>
+                            <td align="right" rowspan="3" class="column-2" style="border-bottom:1px solid #000;">{{ date('d-M-Y, g:ia', strtotime($sale->event_date)) }}</td>
                             <td align="right" >Full Amount:</td>
                             @if($countAllCat > 0)
                                 @foreach($sale->amounts as $key3 => $amount) 
@@ -395,13 +397,13 @@
                             <td align="right" >{{ number_format_decimals($sale->price) }}</td>
                         </tr>
                         <tr>
-                            <td align="right" >Quantity:</td>
+                            <td align="right" style="border-bottom:1px solid #000;" >Quantity:</td>
                             @if($countAllCat > 0)
                                 @foreach($sale->amounts as $key3 => $amount) 
-                                    <td align="right" >{{ $amount->ticket_quantity }}</td>
+                                    <td align="right" style="border-bottom:1px solid #000;" >{{ $amount->ticket_quantity }}</td>
                                 @endforeach
                             @endif
-                            <td align="right" >{{ $sale->ticket_quantity }}</td>
+                            <td align="right" style="border-bottom:1px solid #000;" >{{ $sale->ticket_quantity }}</td>
                         </tr>
                     @endforeach
                 </tbody>

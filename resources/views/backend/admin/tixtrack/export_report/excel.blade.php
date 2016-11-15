@@ -367,7 +367,7 @@
                             <td align="right" >{{ number_format_decimals($sale->full_price) }}</td>
                         </tr>
                         <tr>
-                            <td style="border-bottom:1px solid #000;"></td>
+                            <td></td>
                             <td align="right" >Discounted Amt:</td>
                             @if($countAllCat > 0)
                                 @foreach($sale->amounts as $key3 => $amount) 
@@ -377,7 +377,7 @@
                             <td align="right" >{{ number_format_decimals($sale->price) }}</td>
                         </tr>
                         <tr>
-                            <td></td>
+                            <td style="border-bottom:1px solid #000;"></td>
                             <td align="right"  style="border-bottom:1px solid #000;">Quantity:</td>
                             @if($countAllCat > 0)
                                 @foreach($sale->amounts as $key3 => $amount) 

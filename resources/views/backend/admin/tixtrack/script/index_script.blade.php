@@ -142,7 +142,9 @@
             beforeDraw: function(chartInstance) {
                 var ctx = chartInstance.chart.ctx;
                 ctx.fillStyle = "white";
+                ctx.strokeStyle = "black";
                 ctx.fillRect(0, 0, chartInstance.chart.width, chartInstance.chart.height);
+                ctx.strokeRect(0, 0, chartInstance.chart.width, chartInstance.chart.height);
             }
         });
     }
@@ -164,6 +166,9 @@
                     data: data,
                     options: {
                         responsive: true,
+                        layout:{
+                            padding: 20,
+                        },
                         scales: {
                             yAxes: [{
                                 ticks: {
@@ -226,6 +231,9 @@
                     data: data,
                     options: {
                         responsive: true,
+                        layout:{
+                            padding: 20,
+                        },
                         scales: {
                             yAxes: [{
                                 ticks: {
@@ -288,6 +296,9 @@
                         data: data,
                         options: {
                             responsive: true,
+                            layout:{
+                                padding: 20,
+                            },
                             scales: {
                                 yAxes: [{
                                     ticks: {
