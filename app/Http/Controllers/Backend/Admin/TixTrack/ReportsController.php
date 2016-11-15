@@ -527,7 +527,6 @@ class ReportsController extends BaseController
                     $drawing->setPath($data['chartCat']); //your image path
                     $cCat = (count($data['dateCats']) * 3) + 12;
                     $drawing->setCoordinates('A'.$cCat);
-                    $drawing->setOffsetY(500);
                     $drawing->setWorksheet($sheet);
 
                     $drawingPay = new PHPExcel_Worksheet_Drawing();
