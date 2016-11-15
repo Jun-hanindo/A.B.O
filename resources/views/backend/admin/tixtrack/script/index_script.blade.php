@@ -11,6 +11,8 @@
         var end_date = $('input[name=end_date]').val();
         var event_id = $('#event').val();
 
+        var current_date = "{{ date('Y-m-d') }}";
+
         $('#start_date').datepicker({
             format: "yyyy-mm-dd",
             endDate: end_date,
@@ -24,7 +26,7 @@
         $('#end_date').datepicker({
             format: "yyyy-mm-dd",
             startDate: start_date,
-            endDate: end_date,
+            endDate: current_date,
         }).on('changeDate', function(){
             $('#start_date').datepicker('setEndDate', new Date($('#end_date').val()));
             var start_date = $('input[name=start_date]').val();
@@ -145,7 +147,6 @@
             data:{'event':event_id, 'start_date':start, 'end_date':end},
             success: function (response) {
                 var cat = document.getElementById("category_chart");
-                cat.style.backgroundColor = 'rgba(158, 167, 184, 0.2)';
                 var data = response.data;
                 var catChart = new Chart(cat, {
                     type: 'line',
