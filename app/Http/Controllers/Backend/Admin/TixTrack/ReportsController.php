@@ -527,20 +527,21 @@ class ReportsController extends BaseController
                     $drawing->setPath($data['chartCat']); //your image path
                     $cCat = (count($data['dateCats']) * 3) + 12;
                     $drawing->setCoordinates('A'.$cCat);
+                    $drawing->setWorksheet($sheet);
 
                     $drawingPay = new PHPExcel_Worksheet_Drawing();
 
                     $drawingPay->setPath($data['chartPay']); //your image path
                     $cPay = (count($data['dateCats']) * 3) + $cCat + 5;
                     $drawingPay->setCoordinates('A'.$cPay);
+                    $drawingPay->setWorksheet($sheet);
 
                     $drawingPro = new PHPExcel_Worksheet_Drawing();
 
                     $drawingPro->setPath($data['chartPro']); //your image path
                     $cPro = (count($data['dateCats']) * 3) + $cPay + 5;
                     $drawingPro->setCoordinates('A'.$cPro);
-
-                    $drawing->setWorksheet($sheet);
+                    $drawingPro->setWorksheet($sheet);
                     //$sheet->setAutoSize(false);
 
                     $sheet->loadView('backend.admin.tixtrack.export_report.excel',$data);
