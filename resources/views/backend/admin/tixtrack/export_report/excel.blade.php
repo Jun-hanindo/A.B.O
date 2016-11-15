@@ -116,6 +116,13 @@
                     </tr>
                 </tfoot>
             </table>
+            <table>
+                <tbody>
+                    <tr>
+                        <td colspan="{{ $countCat + 4 }}"><img src="{{ $chartCat }}"></td>
+                    </tr>
+                </tbody>
+            </table>
             <br>
         @endif
         @if(!$datePays->isEmpty())
@@ -206,9 +213,13 @@
                     </tr>
                 </tfoot>
             </table>
-            <div id="chart-category" class="chart-img">
-                <img src="{{ $chartCat }}">
-            </div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td colspan="{{ $countPay + 4 }}"><img src="{{ $chartPay }}"></td>
+                    </tr>
+                </tbody>
+            </table>
             <br>
         @endif
         @if(!$datePros->isEmpty())
@@ -311,9 +322,14 @@
                     </tr>
                 </tfoot>
             </table>
-            <div id="chart-payment" class="chart-img">
-                <img src="{{ $chartPay }}">
-            </div>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <td colspan="{{ $countPro + 4 }}"><img src="{{ $chartPro }}"></td>
+                    </tr>
+                </tbody>
+            </table>
             <br>    
         @endif   
         @if(!$allSale->isEmpty())
@@ -373,9 +389,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <div id="chart-promotion" class="chart-img">
-                <img src="{{ $chartPro }}">
-            </div>
             <br>
         @endif
         <table>
