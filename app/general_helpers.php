@@ -262,8 +262,15 @@ if (! function_exists('file_delete')) {
     function file_delete($file, $disk = null)
     {
         $disk = $disk ?: config('filesystems.default');
+
+        $check = file_is_exists($file, $disk);
+
+        if ($check) {
  
-        return Storage::disk($disk)->delete($file);
+            return Storage::disk($disk)->delete($file);
+        }
+
+        return false;
     }
 }
  
