@@ -521,7 +521,7 @@ class ReportsController extends BaseController
                     $fileChartPro = 'ChartPromotion'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
                     $data['chartPro'] = public_path().'/uploads/charts/'.$fileChartPro;
 
-                    $sheet->setAutoSize(false);
+                    //$sheet->setAutoSize(false);
 
                     $sheet->loadView('backend.admin.tixtrack.export_report.excel',$data);
 
