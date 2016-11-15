@@ -157,8 +157,8 @@
                     </tr>
                 </tfoot>
             </table>
-            <div id="chart-category" class="chart-img">
-                <img src="{{ $chartCat }}">
+            <div id="chart-category" class="chart-img" style="">
+                <img style="margin-top:5px;padding:5px;border:1px solid #000;" width="100%" src="{{ $chartCat }}">
             </div>
             <div class="page-break"></div>
         @endif
@@ -245,8 +245,8 @@
                 </tfoot>
             </table>
             
-            <div id="chart-payment" class="chart-img">
-                <img src="{{ $chartPay }}">
+            <div id="chart-payment" class="chart-img" style="">
+                <img style="margin-top:5px;padding:5px;border:1px solid #000;" width="100%" src="{{ $chartPay }}">
             </div>
         
             <div class="page-break"></div>
@@ -346,8 +346,8 @@
                 </tfoot>
             </table>
             
-            <div id="chart-promotion" class="chart-img">
-                <img src="{{ $chartPro }}">
+            <div id="chart-promotion" class="chart-img" style="">
+                <img style="margin-top:5px;padding:5px;border:1px solid #000;" width="100%" src="{{ $chartPro }}">
             </div>
         
             <div class="page-break"></div>
