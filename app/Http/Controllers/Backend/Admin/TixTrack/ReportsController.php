@@ -545,7 +545,7 @@ class ReportsController extends BaseController
                     $sheet->getRowDimension($cCat)->setRowHeight(400);
                     $sheet->getRowDimension($cPay)->setRowHeight(400);
                     $sheet->getRowDimension($cPro)->setRowHeight(400);
-                    //$sheet->setAutoSize(false);
+                    $sheet->setAutoSize(false);
 
                     $sheet->loadView('backend.admin.tixtrack.export_report.excel',$data);
 
