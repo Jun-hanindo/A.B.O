@@ -523,7 +523,7 @@ class ReportsController extends BaseController
                     $data['chartPro'] = public_path().'/uploads/charts/'.$fileChartPro;
 
                     $drawing = new PHPExcel_Worksheet_Drawing();
-                    $drawing->setResizeProportional();
+                    //$drawing->setResizeProportional();
                     $drawing->setOffsetX(15);
                     $drawing->setOffsetY(10);
 
