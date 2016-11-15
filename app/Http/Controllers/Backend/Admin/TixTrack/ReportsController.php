@@ -524,7 +524,8 @@ class ReportsController extends BaseController
 
                     $drawing = new PHPExcel_Worksheet_Drawing();
                     //$drawing->setResizeProportional();
-                    $drawing->getActiveSheet()->getColumnDimension('A')->setWidth(10);
+                    $drawing->setWidth(10);
+                    $drawing->setHeight(10);
 
                     $sheet->setAutoSize(false);
 
