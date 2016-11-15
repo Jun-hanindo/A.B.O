@@ -119,7 +119,7 @@
             <table>
                 <tbody>
                     <tr>
-                        <td colspan="{{ $countCat + 4 }}"><img src="{{ $chartCat }}"></td>
+                        <td colspan="{{ $countCat + 4 }}"><img width="400px" src="{{ $chartCat }}"></td>
                     </tr>
                 </tbody>
             </table>
