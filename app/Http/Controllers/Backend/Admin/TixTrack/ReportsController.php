@@ -528,7 +528,6 @@ class ReportsController extends BaseController
                     $cCat = (count($data['dateCats']) * 3) + 12;
                     $drawing->setCoordinates('A'.$cCat);
                     $drawing->setWorksheet($sheet);
-                    $sheet->getRowDimension($cCat)->setRowHeight(100);
 
                     $drawingPay = new PHPExcel_Worksheet_Drawing();
 
@@ -543,6 +542,9 @@ class ReportsController extends BaseController
                     $cPro = (count($data['datePros']) * 3) + $cPay + 7;
                     $drawingPro->setCoordinates('A'.$cPro);
                     $drawingPro->setWorksheet($sheet);
+                    $sheet->getRowDimension($cCat)->setRowHeight(400);
+                    $sheet->getRowDimension($cPay)->setRowHeight(400);
+                    $sheet->getRowDimension($cPro)->setRowHeight(400);
                     //$sheet->setAutoSize(false);
 
                     $sheet->loadView('backend.admin.tixtrack.export_report.excel',$data);
