@@ -119,7 +119,7 @@
             <table>
                 <tbody>
                     <tr>
-                        <td width="10px" colspan="{{ $countCat + 4 }}"><img width="500px" src="{{ $chartCat }}"></td>
+                        <td width="10px" colspan="{{ $countCat + 4 }}"><img src="{{ $chartCat }}"></td>
                     </tr>
                 </tbody>
             </table>
@@ -216,7 +216,7 @@
             <table>
                 <tbody>
                     <tr>
-                        <td width="10px" colspan="{{ $countPay + 4 }}"><img width="500px" src="{{ $chartPay }}"></td>
+                        <td width="10px" colspan="{{ $countPay + 4 }}"><img src="{{ $chartPay }}"></td>
                     </tr>
                 </tbody>
             </table>
@@ -326,7 +326,7 @@
             <table>
                 <tbody>
                     <tr>
-                        <td width="10px" colspan="{{ $countPro + 4 }}"><img width="500px" src="{{ $chartPro }}"></td>
+                        <td width="10px" colspan="{{ $countPro + 4 }}"><img src="{{ $chartPro }}"></td>
                     </tr>
                 </tbody>
             </table>
