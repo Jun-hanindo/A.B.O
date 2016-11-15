@@ -137,6 +137,16 @@
         return table;
     }
 
+    function bgChart(){
+        Chart.plugins.register({
+            beforeDraw: function(chartInstance) {
+                var ctx = chartInstance.chart.ctx;
+                ctx.fillStyle = "white";
+                ctx.fillRect(0, 0, chartInstance.chart.width, chartInstance.chart.height);
+            }
+        });
+    }
+
     function chartCategory(event_id, start, end){
         modal_loader();
         var uri = "{{ URL::route('admin-report-tixtrack-chart-category') }}";
@@ -146,8 +156,9 @@
             dataType: 'json',
             data:{'event':event_id, 'start_date':start, 'end_date':end},
             success: function (response) {
-                var cat = document.getElementById("category_chart");
+                var cat = document.getElementById("category_chart").getContext("2d");
                 var data = response.data;
+                bgChart();
                 var catChart = new Chart(cat, {
                     type: 'line',
                     data: data,
@@ -207,8 +218,9 @@
             dataType: 'json',
             data:{'event':event_id, 'start_date':start, 'end_date':end},
             success: function (response) {
-                var cat = document.getElementById("payment_chart");
+                var cat = document.getElementById("payment_chart").getContext("2d");
                 var data = response.data;
+                bgChart();
                 var catChart = new Chart(cat, {
                     type: 'line',
                     data: data,
@@ -268,8 +280,9 @@
             data:{'event':event_id, 'start_date':start, 'end_date':end},
             success: function (response) {
                 if(response.data != ''){
-                    var cat = document.getElementById("promotion_chart");
+                    var cat = document.getElementById("promotion_chart").getContext("2d");
                     var data = response.data;
+                    bgChart();
                     var catChart = new Chart(cat, {
                         type: 'line',
                         data: data,
