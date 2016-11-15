@@ -116,6 +116,13 @@
                     </tr>
                 </tfoot>
             </table>
+            <table>
+                <tbody>
+                    <tr>
+                        <td width="100px" colspan="{{ $countCat + 4 }}"><img width="500px" src="{{ $chartCat }}"></td>
+                    </tr>
+                </tbody>
+            </table>
             <br>
         @endif
         @if(!$datePays->isEmpty())
@@ -205,6 +212,13 @@
                         <td align="right" style="background: #e7e6e6;"><b>{{ $total->ticket_quantity }}</b></td>
                     </tr>
                 </tfoot>
+            </table>
+            <table>
+                <tbody>
+                    <tr>
+                        <td width="100px" colspan="{{ $countPay + 4 }}"><img width="500px" src="{{ $chartPay }}"></td>
+                    </tr>
+                </tbody>
             </table>
             <br>
         @endif
@@ -307,6 +321,14 @@
                         <td align="right" style="background: #e7e6e6;"><b>{{ $allTotalPro->ticket_quantity }}</b></td>
                     </tr>
                 </tfoot>
+            </table>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <td width="100px" colspan="{{ $countPro + 4 }}"><img width="500px" src="{{ $chartPro }}"></td>
+                    </tr>
+                </tbody>
             </table>
             <br>    
         @endif   
