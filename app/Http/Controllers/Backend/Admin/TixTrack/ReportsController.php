@@ -528,7 +528,7 @@ class ReportsController extends BaseController
                     $cCat = (count($data['dateCats']) * 3) + 12;
                     $drawing->setCoordinates('A'.$cCat);
                     $drawing->setWorksheet($sheet);
-                    $sheet->getRowDimension(1)->setRowHeight(100);
+                    $sheet->getRowDimension($cCat)->setRowHeight(100);
 
                     $drawingPay = new PHPExcel_Worksheet_Drawing();
 
