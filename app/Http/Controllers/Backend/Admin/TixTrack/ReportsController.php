@@ -16,6 +16,7 @@ use Excel;
 use DB;
 use Storage;
 use PDF;
+use PHPExcel_Worksheet_Drawing;
 //use GuzzleHttp\Cookie\CookieJar;
 //use GuzzleHttp\Cookie\CookieJarInterface;
 
