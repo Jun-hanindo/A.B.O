@@ -539,7 +539,7 @@ class ReportsController extends BaseController
                     $drawingPro = new PHPExcel_Worksheet_Drawing();
 
                     $drawingPro->setPath($data['chartPro']); //your image path
-                    $cPro = (count($data['dateCats']) * 3) + $cPay;
+                    $cPro = (count($data['dateCats']) * 3) + $cPay - 2;
                     $drawingPro->setCoordinates('A'.$cPro);
                     $drawingPro->setWorksheet($sheet);
                     //$sheet->setAutoSize(false);
