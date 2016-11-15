@@ -527,7 +527,7 @@ class ReportsController extends BaseController
                     // $drawing->setWidth(10);
                     // $drawing->setHeight(10);
 
-                    $sheet->setAutoSize(false);
+                    //$sheet->setAutoSize(false);
 
                     $sheet->loadView('backend.admin.tixtrack.export_report.excel',$data);
 
