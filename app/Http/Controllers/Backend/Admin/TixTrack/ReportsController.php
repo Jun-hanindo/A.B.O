@@ -527,15 +527,14 @@ class ReportsController extends BaseController
                     $drawing->setPath($data['chartCat']); //your image path
                     $cCat = (count($data['dateCats']) * 3) + 12;
                     $drawing->setCoordinates('A'.$cCat);
-                    $drawing->setRowHeight(100);
                     $drawing->setWorksheet($sheet);
+                    $drawing->getActiveSheet()->getRowDimension('1')->setRowHeight(40);
 
                     $drawingPay = new PHPExcel_Worksheet_Drawing();
 
                     $drawingPay->setPath($data['chartPay']); //your image path
                     $cPay = (count($data['datePays']) * 3) + $cCat + 7;
                     $drawingPay->setCoordinates('A'.$cPay);
-                    $drawingPay->setRowHeight(100);
                     $drawingPay->setWorksheet($sheet);
 
                     $drawingPro = new PHPExcel_Worksheet_Drawing();
@@ -543,7 +542,6 @@ class ReportsController extends BaseController
                     $drawingPro->setPath($data['chartPro']); //your image path
                     $cPro = (count($data['datePros']) * 3) + $cPay + 7;
                     $drawingPro->setCoordinates('A'.$cPro);
-                    $drawingPro->setRowHeight(100);
                     $drawingPro->setWorksheet($sheet);
                     //$sheet->setAutoSize(false);
 
