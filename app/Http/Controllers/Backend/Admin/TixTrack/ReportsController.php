@@ -527,7 +527,15 @@ class ReportsController extends BaseController
                     $drawing->setPath($data['chartCat']); //your image path
                     $cCat = (count($data['dateCats']) * 3) + 12;
                     $drawing->setCoordinates('A'.$cCat);
-                    $drawing->setOffsetY(100);
+
+                    $drawing->setPath($data['chartPay']); //your image path
+                    $cPay = (count($data['dateCats']) * 3) + $cCat + 5;
+                    $drawing->setCoordinates('A'.$cCat);
+
+                    $drawing->setPath($data['chartPro']); //your image path
+                    $cPro = (count($data['dateCats']) * 3) + $cPay + 5;
+                    $drawing->setCoordinates('A'.$cCat);
+
                     $drawing->setWorksheet($sheet);
                     //$sheet->setAutoSize(false);
 
