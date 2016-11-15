@@ -522,10 +522,10 @@ class ReportsController extends BaseController
                     $fileChartPro = 'ChartPromotion'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
                     $data['chartPro'] = public_path().'/uploads/charts/'.$fileChartPro;
 
-                    $drawing = new PHPExcel_Worksheet_Drawing();
-                    //$drawing->setResizeProportional();
-                    $drawing->setWidth(10);
-                    $drawing->setHeight(10);
+                    // $drawing = new PHPExcel_Worksheet_Drawing();
+                    // //$drawing->setResizeProportional();
+                    // $drawing->setWidth(10);
+                    // $drawing->setHeight(10);
 
                     $sheet->setAutoSize(false);
 
