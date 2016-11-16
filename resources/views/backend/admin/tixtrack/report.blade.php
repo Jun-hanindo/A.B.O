@@ -58,8 +58,8 @@ Tixtrack
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('general.event') }}</h3>
                         <div class="pull-right">
-                            <a class="btn btn-success" href="{{ route('admin-report-tixtrack-excel', 'event='.$event_id.'&start_date='.$start_date.'&end_date='.$end_date) }}" title="{{ trans('general.create_new') }}"><i class="fa fa-upload fa-fw"></i> EXCEL</a>
-                            <a class="btn btn-danger" href="{{ route('admin-report-tixtrack-pdf', 'event='.$event_id.'&start_date='.$start_date.'&end_date='.$end_date) }}" title="{{ trans('general.create_new') }}"><i class="fa fa-upload fa-fw"></i> PDF</a>
+                            <a class="btn btn-success" href="{{ route('admin-report-tixtrack-excel', 'event='.$event_id.'&start_date='.$start_date.'&end_date='.$end_date) }}" title="{{ trans('general.create_new') }}"><i class="fa fa-download fa-fw"></i> EXCEL</a>
+                            <a class="btn btn-danger" href="{{ route('admin-report-tixtrack-pdf', 'event='.$event_id.'&start_date='.$start_date.'&end_date='.$end_date) }}" title="{{ trans('general.create_new') }}"><i class="fa fa-download fa-fw"></i> PDF</a>
                         </div>
                     </div>
                     <div class="box-body">

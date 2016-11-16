@@ -16,6 +16,7 @@
                 font-size: 18px;
                 margin: 0;
                 padding:0;
+                clear: both;
             }
             table{
                 border-collapse: collapse;
@@ -51,12 +52,37 @@
             #footer .page:after { 
                 content: counter(page, upper-roman); 
             }
-            .logo-report{
+            /*.logo-report{
                 text-align: center;
                 margin-bottom: 20px; 
+                margin-top:0; 
             }
             .logo-report img{
                 width: 150px;
+            }
+            .logo-report span{
+                position: relative;
+                top: -23px;
+                margin-bottom: 20px;
+            }*/
+            .column-left, .column-right{
+                width: 50%;
+                float: left;
+                margin-bottom: 20px;
+                height: 70px;
+            }
+            .column-left .logo-title{
+                text-align: right;
+            }
+            .column-right .logo-title{
+                text-align: left;
+            }
+            .column-left img{
+                width: 150px;
+            }
+            .column-right h1{
+                margin:0;
+                margin-top: 20px;
             }
         </style>
     </head>
@@ -68,10 +94,17 @@
                 <i>{{ env('APP_NAME') }} - DailySummaryReport-Category-V1.0.0</i>
             </p>
         </div>
-        <h1 class="logo-report">
-            <img src="{{ public_path().'/assets/backend/admin/img/abo.png' }}">
-            {{ env('APP_NAME') }}
-        </h1>
+        <div class="column-left">
+            <div class="logo-title">
+                <img src="{{ public_path().'/assets/backend/admin/img/abo.png' }}">
+                {{-- <img src="{{ asset('/assets/backend/admin/img/abo.png') }}"> --}}
+            </div>
+        </div>
+        <div class="column-right">
+            <div class="logo-title">
+                <h1>{{ env('APP_NAME') }}</h1>
+            </div>
+        </div>
         <h3 class="title-report"><b>DAILY SALES SUMMARY REPORT BY EVENT</b></h3>
         <br>
         <br>

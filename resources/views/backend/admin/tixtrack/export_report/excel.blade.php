@@ -7,7 +7,7 @@
         <table>
             <tbody>
                 <tr>
-                    <td style="font-size: 36px;"><b>DAILY SALES REPORT BY CATEGORY</b></td>
+                    <td style="font-size: 36px;" colspan="2"><b>DAILY SALES REPORT BY CATEGORY</b></td>
                 </tr>
             </tbody>
         </table>
