@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <style>
             @page { 
-                margin: 20px 30px 30px 30px; 
+                margin: 30px 30px 33px 30px; 
             }
             body{
                 font-family: 'Source Sans Pro',Helvetica,Arial,sans-serif;
@@ -49,9 +49,9 @@
                 margin: 2px 0;
                 font-size: 10px;
             }
-            #footer .page:after { 
+            /*#footer .page:after { 
                 content: counter(page, upper-roman); 
-            }
+            }*/
             /*.column-left, .column-right{
                 width: 50%;
                 float: left;
