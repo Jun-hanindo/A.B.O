@@ -619,8 +619,16 @@ if (! function_exists('array_flatten')) {
 
 if (! function_exists('rand_color')) {
     
+    // function random_color_part() {
+    //     return str_pad( dechex( mt_rand( 0, 170 ) ), 2, '0', STR_PAD_LEFT);
+    // }
+
+    // function rand_color() {
+    //     return random_color_part() . random_color_part() . random_color_part();
+    // }
+
     function rand_color() {
-        return sprintf('#%06X', mt_rand(0, 0xAAAAAA));
+        return sprintf('#%06X', mt_rand(0, 0x323232));
     }
 }
 
