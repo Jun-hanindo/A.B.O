@@ -73,7 +73,7 @@
             }*/
             .logo-title{
                 text-align: center;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
             .logo-title img{
                 width: 200px;
