@@ -172,19 +172,19 @@ class ReportsController extends BaseController
             $dateCats = $modelOrder->getCategoryByEvent($event_id, $start_date, $end_date);
 
             foreach ($dateCats as $key => $value) {
-                $date = date('d-M-Y', strtotime($value->local_created))." | ".date('d-M-Y, g:ia', strtotime($value->event_date));
+                $date = date('d-m-Y', strtotime($value->local_created))." | ".date('d-m-Y, g:ia', strtotime($value->event_date));
                 $full_amount = 'Full Amount:';
                 $disc_amount = 'Discounted Amt:';
                 $quantity = 'Quantity:';
                 $labels[] = [
-                    $date." | ".$full_amount,
-                    $date." | ".$disc_amount,
+                    // $date." | ".$full_amount,
+                    // $date." | ".$disc_amount,
                     $date." | ".$quantity,
                 ];
 
                 $totals[] = [
-                    $value->full_price,
-                    $value->price,
+                    // $value->full_price,
+                    // $value->price,
                     $value->ticket_quantity,
                 ];
 
@@ -200,11 +200,11 @@ class ReportsController extends BaseController
             foreach ($cats as $key => $value) {
                 $categories[] = $value->price_level_name;
                 foreach ($dateCats as $key2 => $value2) {
-                    $date = date('d-M-Y', strtotime($value2->local_created)).'|'.date('d-M-Y, g:ia', strtotime($value2->event_date));
+                    $date = date('d-m-Y', strtotime($value2->local_created)).'|'.date('d-m-Y, g:ia', strtotime($value2->event_date));
                     $amount = $modelOrder->amountByCategory($event_id, $value->price_level_name, $value2->local_created, $value2->event_date);
                     $amounts[$date] = [
-                        $amount->full_price, 
-                        $amount->price,
+                        // $amount->full_price, 
+                        // $amount->price,
                         $amount->ticket_quantity
                     ];
                 }
@@ -246,19 +246,19 @@ class ReportsController extends BaseController
             $datePays = $modelOrder->getPaymentByEvent($event_id, $start_date, $end_date);
 
             foreach ($datePays as $key => $value) {
-                $date = date('d-M-Y', strtotime($value->local_created))." | ".date('d-M-Y, g:ia', strtotime($value->event_date));
+                $date = date('d-m-Y', strtotime($value->local_created))." | ".date('d-m-Y, g:ia', strtotime($value->event_date));
                 $full_amount = 'Full Amount:';
                 $disc_amount = 'Discounted Amt:';
                 $quantity = 'Quantity:';
                 $labels[] = [
-                    $date." | ".$full_amount,
-                    $date." | ".$disc_amount,
+                    // $date." | ".$full_amount,
+                    // $date." | ".$disc_amount,
                     $date." | ".$quantity,
                 ];
 
                 $totals[] = [
-                    $value->full_price,
-                    $value->price,
+                    // $value->full_price,
+                    // $value->price,
                     $value->ticket_quantity,
                 ];
 
@@ -281,8 +281,8 @@ class ReportsController extends BaseController
                     $date = date('d-M-Y', strtotime($value2->local_created)).'|'.date('d-M-Y, g:ia', strtotime($value2->event_date));
                     $amount = $modelOrder->amountByPayment($event_id, $value->payment_method_name, $value2->local_created, $value2->event_date);
                     $amounts[$date] = [
-                        $amount->full_price, 
-                        $amount->price,
+                        // $amount->full_price, 
+                        // $amount->price,
                         $amount->ticket_quantity
                     ];
                 }
@@ -342,15 +342,15 @@ class ReportsController extends BaseController
                     $disc_amount = 'Discounted Amt:';
                     $quantity = 'Quantity:';
                     $labels[] = [
-                        $date." | ".$full_amount,
-                        $date." | ".$disc_amount,
+                        // $date." | ".$full_amount,
+                        // $date." | ".$disc_amount,
                         $date." | ".$quantity,
                     ];
                     $subtotal = $modelOrder->totalByDatePromotion($event_id, $value->local_created, $value->event_date);
 
                     $totals[] = [
-                        $subtotal->full_price,
-                        $subtotal->price,
+                        // $subtotal->full_price,
+                        // $subtotal->price,
                         $subtotal->ticket_quantity,
                     ];
 
@@ -378,8 +378,8 @@ class ReportsController extends BaseController
                         $date = date('d-M-Y', strtotime($value2->local_created)).'|'.date('d-M-Y, g:ia', strtotime($value2->event_date));
                         $amount = $modelOrder->amountByPromotion($event_id, $value->promo_code, $value2->local_created, $value2->event_date);
                         $amounts[$date] = [
-                            $amount->full_price, 
-                            $amount->price,
+                            // $amount->full_price, 
+                            // $amount->price,
                             $amount->ticket_quantity
                         ];
                     }
