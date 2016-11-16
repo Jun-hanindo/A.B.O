@@ -24,7 +24,7 @@
             }
             table tr th, table tr td{
                 vertical-align: bottom;
-                padding: 3px;
+                padding: 2px;
             }
             .column-1{
                 width: 120px;
@@ -51,6 +51,13 @@
             #footer .page:after { 
                 content: counter(page, upper-roman); 
             }
+            .logo-report{
+                text-align: center;
+                margin-bottom: 20px; 
+            }
+            .logo-report img{
+                width: 150px;
+            }
         </style>
     </head>
     <body>
@@ -61,6 +68,10 @@
                 <i>{{ env('APP_NAME') }} - DailySummaryReport-Category-V1.0.0</i>
             </p>
         </div>
+        <h1 class="logo-report">
+            <img src="{{ public_path().'/assets/backend/admin/img/abo.png' }}">
+            {{ env('APP_NAME') }}
+        </h1>
         <h3 class="title-report"><b>DAILY SALES SUMMARY REPORT BY EVENT</b></h3>
         <br>
         <br>
