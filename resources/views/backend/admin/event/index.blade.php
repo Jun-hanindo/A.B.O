@@ -49,6 +49,8 @@
                             <th class="center-align">{{ trans('general.post_by') }}</th>
                             @if(\Sentinel::getUser()->promoter_id == 0)
                                 <th width="20%" class="center-align">{{ trans('general.avaibility') }}</th>
+                            @else
+                                <th width="20%" class="center-align">{{ trans('general.status') }}</th>
                             @endif
                             <th width="12%"></th>
                         </tr>

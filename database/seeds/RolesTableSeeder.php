@@ -45,7 +45,7 @@ class RolesTableSeeder extends Seeder
                 'list-event' => true,
                 'register-event' => true,
                 'category' => true,
-                'promotions' => true,
+                // 'promotions' => true,
             ],
         ]);
 

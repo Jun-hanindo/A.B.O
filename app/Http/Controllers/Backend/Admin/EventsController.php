@@ -80,6 +80,15 @@ class EventsController extends BaseController
                     <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$event->id.'" data-name="'.$event->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>&nbsp;
                     <a href="#" class="btn btn-primary btn-xs actDuplicate" title="Duplicate" data-id="'.$event->id.'" data-button="duplicate"><i class="fa fa-copy fa-fw"></i></a>';
             })
+            ->addColumn('status', function ($event) {
+                if($event->avaibility){
+                    $status = "Published";
+                }else{
+                    $status = "Pending";
+                }
+                
+                return $status;
+            })
             ->editColumn('id', function ($event) {
                 return '<input type="checkbox" name="checkboxid['.$event->id.']" class="item-checkbox">';
             })
@@ -256,7 +265,7 @@ class EventsController extends BaseController
     {
         try{
             $data = $this->model->findEventByID($id);
-            if($data->promoter_id == \Sentinel::getUser()->promoter_id){
+            if($data->promoter_id == \Sentinel::getUser()->promoter_id || \Sentinel::getUser()->promoter_id == 0 || \Sentinel::getUser()->promoter_id == null){
                 if($data->event_type == true){
                     $data->event_type = 1;
                 }else{

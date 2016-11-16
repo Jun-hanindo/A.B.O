@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      * @var array
      */
     protected $roleSlugsArray = [
-        'sales-admin', 'sales-representative', 'finance-admin', 'shop-admin', 'editor-admin',
+        'promotor', 'admin', /*'finance-admin', 'shop-admin', 'editor-admin',*/
     ];
 
     /**
@@ -46,24 +46,24 @@ class UsersTableSeeder extends Seeder
 
         Sentinel::findRoleBySlug('super-admin')->users()->attach(Sentinel::findById(1));
 
-        for ($i = 2; $i <= 5; $i++) {
-            $avatar = $faker->image(avatar_path(), 128, 128);
-            $avatar = explode(DIRECTORY_SEPARATOR, $avatar);
-            $avatar = last($avatar);
+        // for ($i = 2; $i <= 5; $i++) {
+        //     $avatar = $faker->image(avatar_path(), 128, 128);
+        //     $avatar = explode(DIRECTORY_SEPARATOR, $avatar);
+        //     $avatar = last($avatar);
 
-            Sentinel::registerAndActivate([
-                'avatar' => $avatar,
-                'email' => $faker->freeEmail,
-                'password' => User::DEFAULT_PASSWORD,
-                'first_name' => $faker->firstName,
-                'last_name' => $faker->lastName,
-                'is_admin' => true,
-            ]);
+        //     Sentinel::registerAndActivate([
+        //         'avatar' => $avatar,
+        //         'email' => $faker->freeEmail,
+        //         'password' => User::DEFAULT_PASSWORD,
+        //         'first_name' => $faker->firstName,
+        //         'last_name' => $faker->lastName,
+        //         'is_admin' => true,
+        //     ]);
 
-            $rand = array_rand($this->roleSlugsArray);
+        //     $rand = array_rand($this->roleSlugsArray);
 
-            Sentinel::findRoleBySlug($this->roleSlugsArray[$rand])->users()->attach(Sentinel::findById($i));
-        }
+        //     Sentinel::findRoleBySlug($this->roleSlugsArray[$rand])->users()->attach(Sentinel::findById($i));
+        // }
 
         Sentinel::registerAndActivate([
             'avatar' => $avatar,

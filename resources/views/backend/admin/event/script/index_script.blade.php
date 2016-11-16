@@ -52,6 +52,8 @@
                 {data: 'user_id', name: 'user_id'},
                 @if(\Sentinel::getUser()->promoter_id == 0)
                     {data: 'avaibility', name: 'avaibility', class: 'center-align', searchable: false, orderable: false},
+                @else
+                    {data: 'status', name: 'status', orderable: false},
                 @endif
                 {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
             ],

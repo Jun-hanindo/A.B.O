@@ -51,7 +51,7 @@
                                 <input type="checkbox" name="discount_type" class="form-control pull-left discount_type-check" data-animate="false" data-on-text="Percent" data-off-color="success" data-off-text="Nominal" {!! ($data->discount > 0) ? 'checked' : '' !!}>
                                 <div id="discount-percent" class="pull-left col-sm-3">
                                     <div class="input-group ">
-                                        {!! Form::text('discount', $data->discount, ['id' => 'discount', 'class' => 'form-control number-only percent','maxlength'=>'255', 'placeholder' => trans('general.discount')]) !!}
+                                        {!! Form::text('discount', ($data->discount > 0) ? $data->discount: '', ['id' => 'discount', 'class' => 'form-control number-only percent','maxlength'=>'255', 'placeholder' => trans('general.discount')]) !!}
                                         <div class="input-group-addon">%</div>
                                     </div>
                                     {!! Form::errorMsg('discount') !!}
@@ -59,7 +59,7 @@
                                 <div id="discount-nominal" class="pull-left col-sm-4" style="display:none">
                                     <div class="input-group currency-value">
                                         {!! Form::select('currency_id', $data['currencies'], $data->currency_id, array('class' => 'form-control','data-option' => old('currency_id'))) !!}
-                                        {!! Form::text('discount_nominal', $data->discount_nominal, ['id' => 'discount_nominal', 'class' => 'form-control number-only nominal','maxlength'=>'255', 'placeholder' => trans('general.discount')]) !!}
+                                        {!! Form::text('discount_nominal', ($data->discount_nominal > 0) ? $data->discount_nominal : '', ['id' => 'discount_nominal', 'class' => 'form-control number-only nominal','maxlength'=>'255', 'placeholder' => trans('general.discount')]) !!}
                                     </div>
                                     {!! Form::errorMsg('discount_nominal') !!}
                                 </div>
@@ -88,21 +88,21 @@
 
                             <div class="form-group{{ Form::hasError('promotion_logo') }} promotion_logo">
                                 {!! Form::label('promotion_logo', trans('general.promotion_logo').'(Max. 100px x 100px)') !!}
-                                (Max. size 1 mb)
+                                (Max. size 1 mb) {!! (!empty($data->featured_image)) ? '<a href="javascript:void(0)" data-id="'.$data->id.'" data-name="promotion_logo" data-value="'.$data->featured_image.'" class="btn btn-danger btn-xs delete-promotion_logo" title="Delete Promotion Logo"><i class="fa fa-trash-o fa-fw"></i></a>' : '' !!}
                                 <input id="promotion_logo" name="promotion_logo" class="form-control image" data-name="promo_logo" type="file" value="">
                                 {!! Form::errorMsg('promotion_logo') !!}
                             </div>
                             <div class="form-group privew" id="div-preview_promo_logo" data-name="promo_logo" >
-                                <img src="{{file_url('promotions/'.$data->featured_image, env('FILESYSTEM_DEFAULT'))}}" name="preview" id="preview_promo_logo" height="50%" width="50%">
+                                <img src="{{(!empty($data->featured_image)) ? file_url('promotions/'.$data->featured_image, env('FILESYSTEM_DEFAULT')) : ''}}" name="preview" id="preview_promo_logo" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('promotion_banner') }} promotion_banner">
                                 {!! Form::label('promotion_banner', trans('general.promotion_banner').'(Max. 1440px x 400px)') !!}
-                                (Max. size 1 mb)
+                                (Max. size 1 mb) {!! (!empty($data->banner_image)) ? '<a href="javascript:void(0)" data-id="'.$data->id.'" data-name="promotion_banner" data-value="'.$data->banner_image.'" class="btn btn-danger btn-xs delete-promotion_banner" title="Delete Promotion Banner"><i class="fa fa-trash-o fa-fw"></i></a>' : '' !!}
                                 <input id="promotion_banner" name="promotion_banner" class="form-control image" data-name="promo_banner" type="file" value="">
                                 {!! Form::errorMsg('promotion_banner') !!}
                             </div>
                             <div class="form-group privew" id="div-preview_promo_banner" data-name="promo_banner" >
-                                <img src="{{file_url('promotions/'.$data->banner_image, env('FILESYSTEM_DEFAULT'))}}" name="preview" id="preview_promo_banner" height="50%" width="50%">
+                                <img src="{{(!empty($data->banner_image)) ? file_url('promotions/'.$data->banner_image, env('FILESYSTEM_DEFAULT')) : ''}}" name="preview" id="preview_promo_banner" height="50%" width="50%">
                             </div>
                             <div class="form-group{{ Form::hasError('featured_image_link') }} featured_image_link">
                                 {!! Form::label('featured_image_link', trans('general.featured_image_link')) !!}
@@ -124,6 +124,25 @@
                         
                     </div>
                 {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+
+
+    <div id="delete-modal-promotion-image" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{ trans('general.confirmation_delete') }} <strong id="name"></strong> ?</p>
+                </div>
+                <div class="modal-footer">
+                        <a id="btn-modal-cancel" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
+                        <a id="btn-modal-promotion-image" href="#" class="continue-delete btn btn-default" data-dismiss="modal">Continue</a>
+                </div>
             </div>
         </div>
     </div>

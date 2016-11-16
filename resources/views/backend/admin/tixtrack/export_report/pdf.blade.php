@@ -24,7 +24,7 @@
             }
             table tr th, table tr td{
                 vertical-align: bottom;
-                padding: 5px;
+                padding: 3px;
             }
             .column-1{
                 width: 120px;
