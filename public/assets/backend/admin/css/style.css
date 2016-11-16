@@ -141,49 +141,6 @@
 
 
 /*autocomplete css*/
-.ui-autocomplete {
-    position: absolute;
-    top: 0;
-    left: 0;
-    cursor: default;
-}
-
-.ui-autocomplete.ui-widget-content {
-    border: 1px solid #ddd;
-    background: #fff;
-    color: #333;
-}
-.ui-autocomplete.ui-widget {
-    font-size: 14px;
-}
-.ui-autocomplete.ui-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: block;
-    outline: none;
-}
-.ui-autocomplete.ui-front {
-    z-index: 100;
-}
-.ui-autocomplete.ui-menu .ui-menu-item {
-    position: relative;
-    margin: 0;
-    padding: 3px 1em 3px .4em;
-    cursor: pointer;
-    min-height: 0;
-}
-.ui-autocomplete .ui-state-active {
-    color: #ffffff;
-    text-decoration: none;
-    background-color: #0088cc;
-    border-radius: 0px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    background-image: none;
-}
-.ui-autocomplete .ui-state-focus {
-    border: 1px solid #000;
-    background: #eee;
-    color: #000;
+.form-group .easy-autocomplete input{
+    border-radius: 0;
 }

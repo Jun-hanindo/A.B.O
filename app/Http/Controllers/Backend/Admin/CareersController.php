@@ -300,19 +300,20 @@ class CareersController extends BaseController
         }
     }
 
-    public function autocompletePosition(Request $req){
+    public function autocompletePosition(/*Request $req*/){
         try{
-            $param = $req->all();
-            $results = $this->model->autocompletePosition($param);
+            // $param = $req->all();
+            // $results = $this->model->autocompletePosition($param);
+            $results = $this->model->getPosition();
 
             if(!empty($results)){
                 foreach ($results as $value){
                     $datas[] = ['value' => $value->job];
                 }
-                if($req->ajax()) {
+                //if($req->ajax()) {
                     return response()->json($datas);
 
-                }
+                //}
             }
         
         } catch (\Exception $e) {

@@ -208,4 +208,17 @@ class Career extends Model
             return false;
         }
     }
+
+    public function getPosition(){
+        $query = Career::select('job')
+            ->withTrashed()
+            ->groupBy('job')
+            ->get();
+
+        if(!empty($query)){
+            return $query;
+        }else{  
+            return false;
+        }
+    }
 }

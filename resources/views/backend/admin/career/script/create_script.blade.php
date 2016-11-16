@@ -23,38 +23,45 @@
             saveTrailModal('Department Form');
 
         });
-        
+
         // $( "#position" ).autocomplete({
-        //     source: "{{ route('admin-career-autocomplete-position') }}",
-        //     minLength: 3,
-        //     select: function(event, ui) {
+        //     minLength: 2,
+        //     source: function( request, response ) {
+        //         $.ajax( {
+        //             url: "{{ route('admin-career-autocomplete-position') }}",
+        //             dataType: "json",
+        //             data: {
+        //                 term: request.term
+        //             },
+        //             success: function( data ) {
+        //                 response($.map(data, function(v){
+        //                     return {
+        //                       value: v.value
+        //                     };
+        //                 }));
+        //             }
+        //         });
+        //     },
+        //     select: function( event, ui ) {
+        //         console.log(ui.item.value);
         //         $('#position').val(ui.item.value);
         //     }
         // });
+        
+        var options = {
+            url: "{{ route('admin-career-autocomplete-position') }}",
 
-        $( "#position" ).autocomplete({
-            minLength: 2,
-            source: function( request, response ) {
-                $.ajax( {
-                    url: "{{ route('admin-career-autocomplete-position') }}",
-                    dataType: "json",
-                    data: {
-                        term: request.term
-                    },
-                    success: function( data ) {
-                        response($.map(data, function(v){
-                            return {
-                              value: v.value
-                            };
-                        }));
-                    }
-                });
+            getValue: "value",
+
+            list: {
+                match: {
+                    maxNumberOfElements: 10,
+                    enabled: true
+                }
             },
-            select: function( event, ui ) {
-                console.log(ui.item.value);
-                $('#position').val(ui.item.value);
-            }
-        });
+        };
+
+        $("#position").easyAutocomplete(options);
 
     });
 
