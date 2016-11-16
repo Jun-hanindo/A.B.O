@@ -217,13 +217,13 @@ class ReportsController extends BaseController
                 ];
             } 
 
-            $data['datasets'][] = [
-                'label' => 'Total',
-                'borderColor' => rand_color(),
-                'fill' => false,
-                'fillColor' => "rgba(220,220,220,0)",
-                'data' => array_flatten($totals),
-            ];
+            // $data['datasets'][] = [
+            //     'label' => 'Total',
+            //     'borderColor' => rand_color(),
+            //     'fill' => false,
+            //     'fillColor' => "rgba(220,220,220,0)",
+            //     'data' => array_flatten($totals),
+            // ];
  
             return response()->json([
                 'code' => 200,
@@ -295,13 +295,13 @@ class ReportsController extends BaseController
                 ];
             } 
 
-            $data['datasets'][] = [
-                'label' => 'Total',
-                'borderColor' => rand_color(),
-                'fill' => false,
-                'fillColor' => "rgba(220,220,220,0)",
-                'data' => array_flatten($totals),
-            ];
+            // $data['datasets'][] = [
+            //     'label' => 'Total',
+            //     'borderColor' => rand_color(),
+            //     'fill' => false,
+            //     'fillColor' => "rgba(220,220,220,0)",
+            //     'data' => array_flatten($totals),
+            // ];
 
             return response()->json([
                 'code' => 200,
@@ -393,15 +393,15 @@ class ReportsController extends BaseController
                 } 
             }
 
-            if(!$datePros->isEmpty()){
-                $data['datasets'][] = [
-                    'label' => 'Total',
-                    'borderColor' => rand_color(),
-                    'fill' => false,
-                    'fillColor' => "rgba(220,220,220,0)",
-                    'data' => array_flatten($totals),
-                ];
-            }
+            // if(!$datePros->isEmpty()){
+            //     $data['datasets'][] = [
+            //         'label' => 'Total',
+            //         'borderColor' => rand_color(),
+            //         'fill' => false,
+            //         'fillColor' => "rgba(220,220,220,0)",
+            //         'data' => array_flatten($totals),
+            //     ];
+            // }
 
             return response()->json([
                 'code' => 200,
