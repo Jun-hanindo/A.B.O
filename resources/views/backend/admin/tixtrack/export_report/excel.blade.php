@@ -116,13 +116,6 @@
                     </tr>
                 </tfoot>
             </table>
-            {{-- <table>
-                <tbody>
-                    <tr>
-                        <td><img width="300px" src="{{ $chartCat }}"></td>
-                    </tr>
-                </tbody>
-            </table> --}}
             <br>
         @endif
         @if(!$datePays->isEmpty())
@@ -213,13 +206,6 @@
                     </tr>
                 </tfoot>
             </table>
-            {{-- <table>
-                <tbody>
-                    <tr>
-                        <td><img width="300px" src="{{ $chartPay }}"></td>
-                    </tr>
-                </tbody>
-            </table> --}}
             <br>
         @endif
         @if(!$datePros->isEmpty())
@@ -322,14 +308,6 @@
                     </tr>
                 </tfoot>
             </table>
-
-            {{-- <table>
-                <tbody>
-                    <tr>
-                        <td><img width="300px" src="{{ $chartPro }}"></td>
-                    </tr>
-                </tbody>
-            </table> --}}
             <br>    
         @endif   
         @if(!$allSale->isEmpty())

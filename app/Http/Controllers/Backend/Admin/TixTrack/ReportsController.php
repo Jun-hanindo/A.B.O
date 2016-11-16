@@ -522,29 +522,32 @@ class ReportsController extends BaseController
                     $fileChartPro = 'ChartPromotion'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
                     $data['chartPro'] = public_path().'/uploads/charts/'.$fileChartPro;
 
-                    $drawing = new PHPExcel_Worksheet_Drawing();
-                    //$drawing->setResizeProportional();
-                    $drawing->setPath($data['chartCat']); //your image path
-                    $cCat = (count($data['dateCats']) * 3) + 12;
-                    $drawing->setCoordinates('A'.$cCat);
-                    $drawing->setWorksheet($sheet);
+                    if(!$data['dateCats']->isEmpty()){
+                        $drawing = new PHPExcel_Worksheet_Drawing();
+                        $drawing->setPath($data['chartCat']); //your image path
+                        $cCat = (count($data['dateCats']) * 3) + 12;
+                        $drawing->setCoordinates('A'.$cCat);
+                        $drawing->setWorksheet($sheet);
+                        $sheet->getRowDimension($cCat)->setRowHeight(400);
+                    }
 
-                    $drawingPay = new PHPExcel_Worksheet_Drawing();
+                    if(!$data['datePays']->isEmpty()){
+                        $drawingPay = new PHPExcel_Worksheet_Drawing();
+                        $drawingPay->setPath($data['chartPay']); //your image path
+                        $cPay = (count($data['datePays']) * 3) + $cCat + 7;
+                        $drawingPay->setCoordinates('A'.$cPay);
+                        $drawingPay->setWorksheet($sheet);
+                        $sheet->getRowDimension($cPay)->setRowHeight(400);
+                    }
 
-                    $drawingPay->setPath($data['chartPay']); //your image path
-                    $cPay = (count($data['datePays']) * 3) + $cCat + 7;
-                    $drawingPay->setCoordinates('A'.$cPay);
-                    $drawingPay->setWorksheet($sheet);
-
-                    $drawingPro = new PHPExcel_Worksheet_Drawing();
-
-                    $drawingPro->setPath($data['chartPro']); //your image path
-                    $cPro = (count($data['datePros']) * 3) + $cPay + 7;
-                    $drawingPro->setCoordinates('A'.$cPro);
-                    $drawingPro->setWorksheet($sheet);
-                    $sheet->getRowDimension($cCat)->setRowHeight(400);
-                    $sheet->getRowDimension($cPay)->setRowHeight(400);
-                    $sheet->getRowDimension($cPro)->setRowHeight(400);
+                    if(!$data['datePros']->isEmpty()){
+                        $drawingPro = new PHPExcel_Worksheet_Drawing();
+                        $drawingPro->setPath($data['chartPro']); //your image path
+                        $cPro = (count($data['datePros']) * 3) + $cPay + 7;
+                        $drawingPro->setCoordinates('A'.$cPro);
+                        $drawingPro->setWorksheet($sheet);
+                        $sheet->getRowDimension($cPro)->setRowHeight(400);
+                    }
                     $sheet->setAutoSize(false);
 
                     $sheet->loadView('backend.admin.tixtrack.export_report.excel',$data);
