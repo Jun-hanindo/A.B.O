@@ -17,13 +17,11 @@
                 <tr></tr>
                 <tr>
                     <td>Event:</td>
-                    <td></td>
-                    <td><b>{{ $event->title }}</b></td>
+                    <td colspan="2"><b>{{ $event->title }}</b></td>
                 </tr>
                 <tr>
                     <td>Report Period:</td>
-                    <td></td>
-                    <td>{{ short_text_date($start_date) .' to '. short_text_date($end_date) }}</td>
+                    <td colspan="2">{{ short_text_date($start_date) .' to '. short_text_date($end_date) }}</td>
                 </tr>
             </tbody>
         </table>
