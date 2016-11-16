@@ -132,8 +132,8 @@ class ReportsController extends BaseController
                 $data['total'] = $modelOrder->total($event_id, $start_date, $end_date);
                 $data['allTotalPro'] = $modelOrder->allTotalPromotion($event_id, $start_date, $end_date);
 
-                $data['allCategories'] = $modelOrder->getAllCategoryEvent($event_id);
-                $data['allSale'] = $modelOrder->getAllSale($event_id);
+                $data['allCategories'] = $modelOrder->getAllCategoryEvent($event_id, $end_date);
+                $data['allSale'] = $modelOrder->getAllSale($event_id, $end_date);
                 $data['countAllCat'] = count($data['allCategories']);
 
                 $data['start_date'] = $start_date;
@@ -450,8 +450,8 @@ class ReportsController extends BaseController
                     $data['allTotalPro'] = $modelOrder->allTotalPromotion($event_id, $start_date, $end_date);
                     $data['modelOrder'] = $modelOrder;
 
-                    $data['allCategories'] = $modelOrder->getAllCategoryEvent($event_id);
-                    $data['allSale'] = $modelOrder->getAllSale($event_id);
+                    $data['allCategories'] = $modelOrder->getAllCategoryEvent($event_id, $end_date);
+                    $data['allSale'] = $modelOrder->getAllSale($event_id, $end_date);
                     $data['countAllCat'] = count($data['allCategories']);
 
                     $data['first_date'] = $modelOrder->getFirstDateEvent($event_id);
@@ -532,8 +532,8 @@ class ReportsController extends BaseController
             $data['allTotalPro'] = $modelOrder->allTotalPromotion($event_id, $start_date, $end_date);
             $data['modelOrder'] = $modelOrder;
 
-            $data['allCategories'] = $modelOrder->getAllCategoryEvent($event_id);
-            $data['allSale'] = $modelOrder->getAllSale($event_id);
+            $data['allCategories'] = $modelOrder->getAllCategoryEvent($event_id, $end_date);
+            $data['allSale'] = $modelOrder->getAllSale($event_id, $end_date);
             $data['countAllCat'] = count($data['allCategories']);
 
             $user = \Sentinel::getUser()->first_name.'-'.\Sentinel::getUser()->last_name;

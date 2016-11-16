@@ -52,20 +52,7 @@
             #footer .page:after { 
                 content: counter(page, upper-roman); 
             }
-            /*.logo-report{
-                text-align: center;
-                margin-bottom: 20px; 
-                margin-top:0; 
-            }
-            .logo-report img{
-                width: 150px;
-            }
-            .logo-report span{
-                position: relative;
-                top: -23px;
-                margin-bottom: 20px;
-            }*/
-            .column-left, .column-right{
+            /*.column-left, .column-right{
                 width: 50%;
                 float: left;
                 margin-bottom: 20px;
@@ -83,6 +70,13 @@
             .column-right h1{
                 margin:0;
                 margin-top: 20px;
+            }*/
+            .logo-title{
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .logo-title img{
+                width: 200px;
             }
         </style>
     </head>
@@ -100,11 +94,11 @@
                 {{-- <img src="{{ asset('/assets/backend/admin/img/abo.png') }}"> --}}
             </div>
         </div>
-        <div class="column-right">
+        {{-- <div class="column-right">
             <div class="logo-title">
                 <h1>{{ env('APP_NAME') }}</h1>
             </div>
-        </div>
+        </div> --}}
         <h3 class="title-report"><b>DAILY SALES SUMMARY REPORT BY EVENT</b></h3>
         <br>
         <br>
@@ -421,7 +415,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th colspan="{{ $countAllCat + 3 }}" align="center" style="background:#e7e6e6;">SALES TO DATE: {{ date('d M Y', strtotime($first_date->local_created)) .' - '. date('d M Y') }}</th>
+                        <th colspan="{{ $countAllCat + 3 }}" align="center" style="background:#e7e6e6;">SALES TO DATE: {{ date('d M Y', strtotime($first_date->local_created)) .' - '. date('d M Y', strtotime($end_date)) }}</th>
                     </tr>
                     <tr>
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Event Day</th>
