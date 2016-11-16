@@ -73,10 +73,10 @@
             }*/
             .logo-title{
                 text-align: center;
-                margin-bottom: 15px;
+                margin-bottom: 20px;
             }
             .logo-title img{
-                width: 200px;
+                width: 180px;
             }
         </style>
     </head>
@@ -143,8 +143,8 @@
                 <tbody>
                     @foreach($dateCats as $key2 => $dateCat) 
                         <tr>
-                            <td align="right" rowspan="3" class="column-2">{{ date('d-M-Y', strtotime($dateCat->local_created)) }}</td>
-                            <td align="right" rowspan="3" class="column-2">{{ date('d-M-Y, g:ia', strtotime($dateCat->event_date)) }}</td>
+                            <td align="right" class="column-2">{{ date('d-M-Y', strtotime($dateCat->local_created)) }}</td>
+                            <td align="right" class="column-2">{{ date('d-M-Y,', strtotime($dateCat->event_date)) }}</td>
                             <td align="right">Full Amount:</td>
                             @if($countCat > 0)
                                 @foreach($dateCat->amounts as $key3 => $amount) 
@@ -154,6 +154,8 @@
                             <td align="right">{{ number_format_decimals($dateCat->full_price) }}</td>
                         </tr>
                         <tr>
+                            <td></td>
+                            <td align="right" class="column-2">{{ date('g:ia', strtotime($dateCat->event_date)) }}</td>
                             <td align="right">Discounted Amt:</td>
                             @if($countCat > 0)
                                 @foreach($dateCat->amounts as $key3 => $amount) 
@@ -163,6 +165,8 @@
                             <td align="right">{{ number_format_decimals($dateCat->price) }}</td>
                         </tr>
                         <tr>
+                            <td></td>
+                            <td></td>
                             <td align="right">Quantity:</td>
                             @if($countCat > 0)
                                 @foreach($dateCat->amounts as $key3 => $amount) 
@@ -236,8 +240,8 @@
                 <tbody>
                     @foreach($datePays as $key2 => $datePay) 
                         <tr>
-                            <td align="right" rowspan="3" class="column-2">{{ date('d-M-Y', strtotime($datePay->local_created)) }}</td>
-                            <td align="right" rowspan="3" class="column-2">{{ date('d-M-Y, g:ia', strtotime($datePay->event_date)) }}</td>
+                            <td align="right" class="column-2">{{ date('d-M-Y', strtotime($datePay->local_created)) }}</td>
+                            <td align="right" class="column-2">{{ date('d-M-Y,', strtotime($datePay->event_date)) }}</td>
                             <td align="right">Full Amount:</td>
                             @if($countPay > 0)
                                 @foreach($datePay->amounts as $key3 => $amount) 
@@ -247,6 +251,8 @@
                             <td align="right">{{ number_format_decimals($datePay->full_price) }}</td>
                         </tr>
                         <tr>
+                            <td></td>
+                            <td align="right" class="column-2">{{ date('g:ia', strtotime($datePay->event_date)) }}</td>
                             <td align="right">Discounted Amt:</td>
                             @if($countPay > 0)
                                 @foreach($datePay->amounts as $key3 => $amount) 
@@ -256,6 +262,8 @@
                             <td align="right">{{ number_format_decimals($datePay->price) }}</td>
                         </tr>
                         <tr>
+                            <td></td>
+                            <td></td>
                             <td align="right">Quantity:</td>
                             @if($countPay > 0)
                                 @foreach($datePay->amounts as $key3 => $amount) 
@@ -334,8 +342,8 @@
                             $subtotal = $modelOrder->totalByDatePromotion($event_id, $date->local_created, $date->event_date);
                         @endphp
                         <tr>
-                            <td align="right" rowspan="3" class="column-2">{{ date('d-M-Y', strtotime($date->local_created)) }}</td>
-                            <td align="right" rowspan="3" class="column-2">{{ date('d-M-Y, g:ia', strtotime($date->event_date)) }}</td>
+                            <td align="right" class="column-2">{{ date('d-M-Y', strtotime($date->local_created)) }}</td>
+                            <td align="right" class="column-2">{{ date('d-M-Y,', strtotime($date->event_date)) }}</td>
                             <td align="right">Full Amount:</td>
                             @if($countPro > 0)
                                 @foreach($promotions as $key1 => $pro)  
@@ -348,6 +356,8 @@
                             <td align="right">{{ number_format_decimals($subtotal->full_price) }}</td>
                         </tr>
                         <tr>
+                            <td></td>
+                            <td align="right" class="column-2">{{ date('g:ia', strtotime($date->event_date)) }}</td>
                             <td align="right">Discounted Amt:</td>
                             @if($countPro > 0)
                                 @foreach($promotions as $key1 => $pro)  
@@ -360,6 +370,8 @@
                             <td align="right">{{ number_format_decimals($subtotal->price) }}</td>
                         </tr>
                         <tr>
+                            <td></td>
+                            <td></td>
                             <td align="right">Quantity:</td>
                             @if($countPro > 0)
                                 @foreach($promotions as $key1 => $pro) 
@@ -440,7 +452,7 @@
                 <tbody>
                     @foreach($allSale as $key2 => $sale) 
                         <tr>
-                            <td align="right" rowspan="3" class="column-2" style="border-bottom:1px solid #000;">{{ date('d-M-Y, g:ia', strtotime($sale->event_date)) }}</td>
+                            <td align="right" class="column-2">{{ date('d-M-Y,', strtotime($sale->event_date)) }}</td>
                             <td align="right" >Full Amount:</td>
                             @if($countAllCat > 0)
                                 @foreach($sale->amounts as $key3 => $amount) 
@@ -450,6 +462,7 @@
                             <td align="right" >{{ number_format_decimals($sale->full_price) }}</td>
                         </tr>
                         <tr>
+                            <td align="right" class="column-2">{{ date('g:ia', strtotime($sale->event_date)) }}</td>
                             <td align="right" >Discounted Amt:</td>
                             @if($countAllCat > 0)
                                 @foreach($sale->amounts as $key3 => $amount) 
@@ -459,6 +472,7 @@
                             <td align="right" >{{ number_format_decimals($sale->price) }}</td>
                         </tr>
                         <tr>
+                            <td style="border-bottom:1px solid #000;"></td>
                             <td align="right" style="border-bottom:1px solid #000;" >Quantity:</td>
                             @if($countAllCat > 0)
                                 @foreach($sale->amounts as $key3 => $amount) 
