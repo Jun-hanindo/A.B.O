@@ -84,7 +84,7 @@
                             display: true,
                             position: 'bottom',
                             labels: {
-                                fontColor: 'rgb(255, 99, 132)'
+                                fontColor: 'rgb(0, 0, 0)'
                             }
                         },
                         animation: {
@@ -149,7 +149,7 @@
                             display: true,
                             position: 'bottom',
                             labels: {
-                                fontColor: 'rgb(255, 99, 132)'
+                                fontColor: 'rgb(0, 0, 0)'
                             }
                         },
                         animation: {
@@ -214,7 +214,7 @@
                                 display: true,
                                 position: 'bottom',
                                 labels: {
-                                    fontColor: 'rgb(255, 99, 132)'
+                                    fontColor: 'rgb(0, 0, 0)'
                                 }
                             },
                             animation: {
