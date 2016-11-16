@@ -8,7 +8,7 @@
             }
             body{
                 font-family: 'Source Sans Pro',Helvetica,Arial,sans-serif;
-                font-size: 12px;
+                font-size: 11px;
                 margin: 30px;
             }
             .title-report{
@@ -25,7 +25,7 @@
             }
             table tr th, table tr td{
                 vertical-align: bottom;
-                padding: 2px;
+                padding: 1px 2px;
             }
             .column-1{
                 width: 120px;
@@ -120,8 +120,8 @@
             <table>
                 <thead>
                     <tr>
-                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Sale Date</th>
-                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Event Day/Time</th>
+                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;width:70px;">Sale Date</th>
+                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;width:70px;">Event Day/Time</th>
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;"></th>
                         <th colspan="{{ $countCat }}" align="center" style="background:#e7e6e6;border:1px solid #000;">PRICE LEVEL/CATEGORY</th>
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Total</th>
@@ -213,8 +213,8 @@
             <table>
                 <thead>
                     <tr>
-                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Sale Date</th>
-                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Event Day/Time</th>
+                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;width:70px;">Sale Date</th>
+                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;width:70px;">Event Day/Time</th>
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;"></th>
                         <th colspan="{{ $countPay }}" align="center" style="background:#e7e6e6;border:1px solid #000;">Method of Payment</th>
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Total</th>
@@ -308,8 +308,8 @@
             <table>
                 <thead>
                     <tr>
-                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Sale Date</th>
-                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Event Day/Time</th>
+                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;width:70px;">Sale Date</th>
+                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;width:70px;">Event Day/Time</th>
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;"></th>
                         <th colspan="{{ $countPro }}" align="center" style="background:#e7e6e6;border:1px solid #000;">Promotion</th>
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Total</th>
@@ -418,7 +418,7 @@
                         <th colspan="{{ $countAllCat + 3 }}" align="center" style="background:#e7e6e6;">SALES TO DATE: {{ date('d M Y', strtotime($first_date->local_created)) .' - '. date('d M Y', strtotime($end_date)) }}</th>
                     </tr>
                     <tr>
-                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Event Day</th>
+                        <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;width:70px;">Event Day</th>
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;"></th>
                         <th colspan="{{ $countAllCat }}" align="center" style="background:#e7e6e6;border:1px solid #000;">PRICE LEVEL/CATEGORY</th>
                         <th rowspan="2" align="center" style="background: #e7e6e6;border-bottom:1px solid #000;">Total</th>
