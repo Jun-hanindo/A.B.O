@@ -466,4 +466,4 @@ Tixtrack
         </div>
     </div>
 @endsection
-@include('backend.admin.tixtrack.script.index_script')
+@include('backend.admin.tixtrack.script.chart_script')
