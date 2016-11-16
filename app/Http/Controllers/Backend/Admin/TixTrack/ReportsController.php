@@ -337,7 +337,7 @@ class ReportsController extends BaseController
             $data = array();
             if(!$datePros->isEmpty()){
                 foreach ($datePros as $key => $value) {
-                    $date = date('d-M-Y', strtotime($value->local_created))." | ".date('d-M-Y, g:ia', strtotime($value->event_date));
+                    $date = date('d-m-Y', strtotime($value->local_created))." | ".date('d-m-Y, g:ia', strtotime($value->event_date));
                     $full_amount = 'Full Amount:';
                     $disc_amount = 'Discounted Amt:';
                     $quantity = 'Quantity:';
