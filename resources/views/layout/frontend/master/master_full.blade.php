@@ -3,12 +3,17 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>@yield('title') {{ env('APP_WEB_ADMIN_NAME', 'AsiaBoxOffice') }}</title>
+        <title>@yield('title'){{ env('APP_WEB_ADMIN_NAME', 'AsiaBoxOffice') }}</title>
+        <meta name="description" content="@yield('description_meta')">
+        <meta name="keywords" content="@yield('keywords_meta')">
         <meta property="og:image" content="@yield('og_image')" />
         <meta property="og:image:type" content="image/jpeg">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
         <meta property="og:description" content="&nbsp;" />
+        <!-- Purpleclick head -->
+        {!! (isset($setting['purpleclick_head'])) ? $setting['purpleclick_head'] : '' !!}
+        <!-- End Purpleclick head -->
 
           <!-- Bootstrap -->
         {!! Html::style('assets/frontend/css/bootstrap.min.css') !!}
@@ -22,38 +27,20 @@
         <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,800,700,900' rel='stylesheet' type='text/css'>
         <link rel="shortcut icon" href="{{ asset('assets/frontend/images/favico.ico') }}">
         {!! Html::script('assets/frontend/js/modernizr.js') !!}
-      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-        <!-- Google Analytic Staging AWS -->
-        <script>
-            // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            // m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            // })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-            // ga('create', 'UA-85164631-1', 'auto');
-            // ga('send', 'pageview');
-
-        </script>
-        <!-- End Google Analytic Staging AWS -->
-        <!-- Google Analytic Production AWS -->
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-          ga('create', 'UA-85168114-1', 'auto');
-          ga('send', 'pageview');
-
-        </script>
-        <!-- End Google Analytic Production AWS -->
+        <!-- Google Analytics Production -->
+        {!! (isset($setting['google_analytics'])) ? $setting['google_analytics'] : '' !!}
+        <!-- End Google Analytics Production -->
    </head>
    <body>
+        <!-- Purpleclick body -->
+        {!! (isset($setting['purpleclick_body'])) ? $setting['purpleclick_body'] : '' !!}
+        <!-- End Purpleclick body -->
+        <!-- Google Analytics Tracking Code -->
+        @yield('ga_tracking_code')
+        <!-- End Google Analytics Tracking Code -->
+        <!-- Facebook Pixel Tracking Code -->
+        @yield('fp_tracking_code')
+        <!-- End Facebook Pixel Tracking Code -->
         @if(!Request::is('subscribe'))
             <div class="page-wrapper">
               <header>

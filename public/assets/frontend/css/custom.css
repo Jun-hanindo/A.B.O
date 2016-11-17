@@ -92,4 +92,7 @@ iframe[name="google_conversion_frame"]{
   max-width: 100%;
   margin-top: 10px;
 }
+.box-promo .eventName img{
+  width: 50px;
+}
 

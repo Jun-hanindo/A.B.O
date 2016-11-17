@@ -34,6 +34,7 @@ class LanguagesController extends Controller
             \Session::save();
 
             $data = \Session::get('locale');
+            \App::setLocale($data);
 
 
             return response()->json([
