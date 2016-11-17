@@ -78,18 +78,26 @@ class ManagePagesController extends BaseController
         $param = $req->all();
         
         try{
-
-            $user_id = $this->currentUser->id;
-            $updateData = $this->model->updateManagePage($param, $slug, $user_id);
-        //if(!empty($updateData)) {
-
-            $log['user_id'] = $this->currentUser->id;
-            $log['description'] = 'Page "'.$updateData->title.'" was updated';
-            $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
-
             if($req->ajax() && $param['status'] == 'draft'){
                 $this->model->updateStatusToDraft($param, $slug);
+
+                $user_id = $this->currentUser->id;
+                $updateData = $this->model->updateManagePage($param, $slug, $user_id);
+            //if(!empty($updateData)) {
+
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Page "'.$updateData->title.'" was updated';
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
+
+
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
+                ],200);
+            }elseif($req->ajax() && $param['status'] == 'preview'){
+                \Session::put('preview_'.$slug, $param);
 
                 return response()->json([
                     'code' => 200,
@@ -97,6 +105,15 @@ class ManagePagesController extends BaseController
                     'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
                 ],200);
             }else{
+
+                $user_id = $this->currentUser->id;
+                $updateData = $this->model->updateManagePage($param, $slug, $user_id);
+            //if(!empty($updateData)) {
+
+                $log['user_id'] = $this->currentUser->id;
+                $log['description'] = 'Page "'.$updateData->title.'" was updated';
+                $insertLog = new LogActivity();
+                $insertLog->insertLogActivity($log);
 
                 flash()->success($updateData->title.' '.trans('general.update_success'));
 

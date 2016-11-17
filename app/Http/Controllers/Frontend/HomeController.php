@@ -331,8 +331,9 @@ class HomeController extends Controller
     }
 
     function preview($slug){
-        $modelPage = new ManagePage();
-        $page = $modelPage->findPageBySlug($slug);
+        //$modelPage = new ManagePage();
+        //$page = $modelPage->findPageBySlug($slug);
+        $page = $event = (object) \Session::get('preview_'.$slug);
         if(!empty($page)){
             $content = $page->content;
         }else{

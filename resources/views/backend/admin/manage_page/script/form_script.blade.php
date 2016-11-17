@@ -30,8 +30,10 @@
             dataType: 'json',
             data: {'title':title,"content":content, "status":status},
             success: function (data) {
-                $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');  
-            	location.reload();
+                if(status != 'preview'){
+                    $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');  
+                	location.reload();
+                }
             },
             error: function(response){
                 if (response.status === 422) {
