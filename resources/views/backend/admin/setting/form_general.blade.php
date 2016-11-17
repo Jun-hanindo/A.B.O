@@ -114,7 +114,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('setting.limit_record') }} setting.limit_record">
-                            {!! Form::label('limit_record', trans('general.limit_record').' ('.trans('general.trail').' & '.trans('general.system_log').') *', ['class' => 'col-sm-3 control-label']) !!}
+                            <label for="limit_record" class="col-sm-3 control-label">Limit Record <br>(Trail & System Log) *</label>
                             <div class="col-sm-4">
                                 {!! Form::select('setting[limit_record]', array('0' => 'All',
                                                                 '1000' => '1000', 

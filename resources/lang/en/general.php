@@ -231,6 +231,10 @@ return [
     'mail_username' => 'Mail Username',
     'mail_password' => 'Mail Password',
     'mail_name' => 'Mail Name',
+    'mail_domain' => 'Mail Domain',
+    'mail_secret' => 'Mail Secret',
+    'mail_key' => 'Mail Key',
+    'mail_region' => 'Mail Region',
     'inbox' => 'Inbox',
     'subject' => 'Subject',
     'message' => 'Message',
@@ -288,5 +292,6 @@ return [
     'chart' => 'Chart',
     'promotion_banner' => 'Promotion Banner',
     'promotion_logo' => 'Promotion Logo',
+
 
 ];

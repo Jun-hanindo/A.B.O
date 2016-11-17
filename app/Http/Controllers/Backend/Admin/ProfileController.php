@@ -85,6 +85,8 @@ class ProfileController extends Controller
                 'email' => 'required|email|unique:users,email,'.user_info('id'),
                 'first_name' => 'required',
                 'last_name' => 'required',
+                'phone' => 'required',
+                'address' => 'required',
             ]);
 
             $data = $request->except('_token', '_method');
@@ -134,7 +136,7 @@ class ProfileController extends Controller
 
             flash()->error(trans('general.update_error'));
 
-            $log['user_id'] = $this->currentUser->id;
+            $log['user_id'] = \Sentinel::getUser()->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);

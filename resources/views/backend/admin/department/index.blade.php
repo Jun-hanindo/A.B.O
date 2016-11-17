@@ -50,7 +50,7 @@
             <form id="form">
                 <input type="hidden" name="id" class="form-control" id="id">
                 <div class="form-group name">
-                    <label for="event" class="control-label">{{ trans('general.name') }} :</label>
+                    <label for="event" class="control-label">{{ trans('general.name') }} * </label>
                     {!! Form::text('name', old('name'), array('id' => 'name', 'class' => 'form-control')) !!}
                     {!! Form::errorMsg('name') !!}
                 </div>

@@ -111,7 +111,7 @@
             $('#button_save').show();
         });
 
-        $('#homepage-events-table tbody, #homepage-sliders-table tbody').on( 'click', '.actEdit', function () {
+        $('#homepage-events-table tbody, #homepage-sliders-table tbody, #homepage-promotions-table tbody').on( 'click', '.actEdit', function () {
             var category = $(this).attr('data-category');
             $('#form').attr('data-category', category);
             $('#modal-form').modal('show');

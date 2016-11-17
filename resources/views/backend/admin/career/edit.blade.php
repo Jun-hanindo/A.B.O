@@ -46,7 +46,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group{{ Form::hasError('job_type') }} job_type">
-                                {!! Form::label('job_type', trans('general.job_type').' *') !!}
+                                {!! Form::label('job_type', trans('general.job_type')) !!}
                                 {!! Form::select('job_type', array('Full-time' => 'Full-time',
                                                                 'Permanent' => 'Permanent',
                                                                 'Contract' => 'Contract',

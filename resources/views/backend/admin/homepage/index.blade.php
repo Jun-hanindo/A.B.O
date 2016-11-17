@@ -116,9 +116,10 @@
             <div class="error"></div>
             <form id="form">
                 <input type="hidden" name="id" class="form-control" id="id">
-                <div class="form-group name">
-                    <label for="event" class="control-label">{{ trans('general.event') }} :</label>
+                <div class="form-group event_id">
+                    <label for="event" class="control-label">{{ trans('general.event') }} *</label>
                     {!! Form::text('event_id', old('event_id'), array('id' => 'event_id', 'class' => 'form-control','data-option' => old('event_id'))) !!}
+                    {!! Form::errorMsg('event_id') !!}
                 </div>
                 
             </form>
