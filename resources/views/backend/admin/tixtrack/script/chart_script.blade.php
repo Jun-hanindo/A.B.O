@@ -112,21 +112,21 @@
                 var cat = document.getElementById("category_chart").getContext("2d");
                 var data = response.data;
                 bgChart();
-                showTooltips();
+                //showTooltips();
                 var catChart = new Chart(cat, {
                     type: 'line',
                     data: data,
                     options: {
                         responsive: true,
-                        showAllTooltips: true,
+                        //showAllTooltips: true,
                         tooltips: {
                             callbacks: {
                                 title: function (tooltipItem, data) { 
                                     return ''; 
                                 },
-                                label: function(tooltipItem, data) {
-                                    return tooltipItem.yLabel;
-                                }
+                                // label: function(tooltipItem, data) {
+                                //     return tooltipItem.yLabel;
+                                // }
                             }
                         },
                         layout:{
@@ -195,21 +195,21 @@
                 var cat = document.getElementById("payment_chart").getContext("2d");
                 var data = response.data;
                 bgChart();
-                showTooltips();
+                //showTooltips();
                 var catChart = new Chart(cat, {
                     type: 'line',
                     data: data,
                     options: {
                         responsive: true,
-                        showAllTooltips: true,
+                        //showAllTooltips: true,
                         tooltips: {
                             callbacks: {
                                 title: function (tooltipItem, data) { 
                                     return ''; 
                                 },
-                                label: function(tooltipItem, data) {
-                                    return tooltipItem.yLabel;
-                                }
+                                // label: function(tooltipItem, data) {
+                                //     return tooltipItem.yLabel;
+                                // }
                             }
                         },
                         layout:{
@@ -277,21 +277,21 @@
                     var cat = document.getElementById("promotion_chart").getContext("2d");
                     var data = response.data;
                     bgChart();
-                    showTooltips();
+                    //showTooltips();
                     var catChart = new Chart(cat, {
                         type: 'line',
                         data: data,
                         options: {
                             responsive: true,
-                            showAllTooltips: true,
+                            //showAllTooltips: true,
                             tooltips: {
                                 callbacks: {
                                     title: function (tooltipItem, data) { 
                                         return ''; 
                                     },
-                                    label: function(tooltipItem, data) {
-                                        return tooltipItem.yLabel;
-                                    }
+                                    // label: function(tooltipItem, data) {
+                                    //     return tooltipItem.yLabel;
+                                    // }
                                 }
                             },
                             layout:{
