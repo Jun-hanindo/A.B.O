@@ -78,6 +78,11 @@
                                 ticks: {
                                     beginAtZero:true,
                                 }
+                            }],
+                            xAxes: [{
+                                ticks: {
+                                    autoSkip: false,
+                                }
                             }]
                         },
                         legend: {
@@ -143,6 +148,11 @@
                                 ticks: {
                                     beginAtZero:true,
                                 }
+                            }],
+                            xAxes: [{
+                                ticks: {
+                                    autoSkip: false,
+                                }
                             }]
                         },
                         legend: {
@@ -207,6 +217,11 @@
                                 yAxes: [{
                                     ticks: {
                                         beginAtZero:true,
+                                    }
+                                }],
+                                xAxes: [{
+                                    ticks: {
+                                        autoSkip: false,
                                     }
                                 }]
                             },
