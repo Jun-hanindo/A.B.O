@@ -53,6 +53,53 @@
         });
     }
 
+    function showTooltips(){
+        Chart.pluginService.register({
+            beforeRender: function(chart) {
+                if (chart.config.options.showAllTooltips) {
+                    // create an array of tooltips
+                    // we can't use the chart tooltip because there is only one tooltip per chart
+                    chart.pluginTooltips = [];
+                    chart.config.data.datasets.forEach(function(dataset, i) {
+                        chart.getDatasetMeta(i).data.forEach(function(sector, j) {
+                            chart.pluginTooltips.push(new Chart.Tooltip({
+                                _chart: chart.chart,
+                                _chartInstance: chart,
+                                _data: chart.data,
+                                _options: chart.options.tooltips,
+                                _active: [sector]
+                            }, chart));
+                        });
+                    });
+
+                    // turn off normal tooltips
+                    chart.options.tooltips.enabled = false;
+                }
+            },
+            afterDraw: function(chart, easing) {
+                if (chart.config.options.showAllTooltips) {
+                    // we don't want the permanent tooltips to animate, so don't do anything till the animation runs atleast once
+                    if (!chart.allTooltipsOnce) {
+                        if (easing !== 1)
+                            return;
+                            chart.allTooltipsOnce = true;
+                    }
+
+                    // turn on tooltips
+                    chart.options.tooltips.enabled = true;
+                    Chart.helpers.each(chart.pluginTooltips, function(tooltip) {
+                        tooltip.initialize();
+                        tooltip.update();
+                        // we don't actually need this since we are not animating tooltips
+                        tooltip.pivot();
+                        tooltip.transition(easing).draw();
+                    });
+                    chart.options.tooltips.enabled = false;
+                }
+            }
+        });
+    }
+
     function chartCategory(event_id, start, end){
         modal_loader();
         var uri = "{{ URL::route('admin-report-tixtrack-chart-category') }}";
@@ -65,11 +112,23 @@
                 var cat = document.getElementById("category_chart").getContext("2d");
                 var data = response.data;
                 bgChart();
+                showTooltips();
                 var catChart = new Chart(cat, {
                     type: 'line',
                     data: data,
                     options: {
                         responsive: true,
+                        showAllTooltips: true,
+                        tooltips: {
+                            callbacks: {
+                                title: function (tooltipItem, data) { 
+                                    return ''; 
+                                },
+                                label: function(tooltipItem, data) {
+                                    return tooltipItem.yLabel;
+                                }
+                            }
+                        },
                         layout:{
                             padding: 20,
                         },
@@ -94,6 +153,7 @@
                         },
                         animation: {
                             onComplete: function (animation) { 
+
                                 var image = this.toBase64Image();
                                 //document.getElementById("category_chart_img").src=image;
                                 var uriChart = "{{ URL::route('admin-report-tixtrack-image') }}";
@@ -135,11 +195,23 @@
                 var cat = document.getElementById("payment_chart").getContext("2d");
                 var data = response.data;
                 bgChart();
+                showTooltips();
                 var catChart = new Chart(cat, {
                     type: 'line',
                     data: data,
                     options: {
                         responsive: true,
+                        showAllTooltips: true,
+                        tooltips: {
+                            callbacks: {
+                                title: function (tooltipItem, data) { 
+                                    return ''; 
+                                },
+                                label: function(tooltipItem, data) {
+                                    return tooltipItem.yLabel;
+                                }
+                            }
+                        },
                         layout:{
                             padding: 20,
                         },
@@ -205,11 +277,23 @@
                     var cat = document.getElementById("promotion_chart").getContext("2d");
                     var data = response.data;
                     bgChart();
+                    showTooltips();
                     var catChart = new Chart(cat, {
                         type: 'line',
                         data: data,
                         options: {
                             responsive: true,
+                            showAllTooltips: true,
+                            tooltips: {
+                                callbacks: {
+                                    title: function (tooltipItem, data) { 
+                                        return ''; 
+                                    },
+                                    label: function(tooltipItem, data) {
+                                        return tooltipItem.yLabel;
+                                    }
+                                }
+                            },
                             layout:{
                                 padding: 20,
                             },
