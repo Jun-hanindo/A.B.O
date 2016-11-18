@@ -112,7 +112,7 @@
                 var cat = document.getElementById("category_chart").getContext("2d");
                 var data = response.data;
                 bgChart();
-                //showTooltips();
+                showTooltips();
                 var catChart = new Chart(cat, {
                     type: 'line',
                     data: data,
