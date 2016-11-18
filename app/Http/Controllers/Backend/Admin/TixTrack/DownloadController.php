@@ -1203,177 +1203,183 @@ class DownloadController extends BaseController
     //     }
     // }
 
-    // public function tesimportTransaction(){
-    //     // testing
-    //     $pathDest = public_path().'/downloads';
-    //     $file = '/Download_transaction_2016-11-02-10-21-37.csv'; //member gourmet
-    //     $file2 = '/nliven_sales_report_undefined-undefined.csv'; //member gourmet
-    //     $file3 = '/nliven_sales_report_361511361602.csv'; //member gourmet
-    //     $file4 = '/nliven_sales_report_361511361602vsave.csv'; //member gourmet
-    //     $file5= '/nliven_sales_report_undefined-undefined (4).csv'; //member gourmet
+    public function tesimportTransaction(){
+        // testing
+        $pathDest = public_path().'/downloads';
+        $file = '/Download_transaction_2016-11-02-10-21-37.csv'; //member gourmet
+        $file2 = '/nliven_sales_report_undefined-undefined.csv'; //member gourmet
+        $file3 = '/nliven_sales_report_361511361602.csv'; //member gourmet
+        $file4 = '/nliven_sales_report_361511361602vsave.csv'; //member gourmet
+        $file5= '/nliven_sales_report_undefined-undefined (4).csv'; //member gourmet
 
-    //     // $input_encode = 'ISO-8859-1';
-    //     // $output_encode = 'UTF-8';
-    //     // $enclosure = '"';
-    //     // $delimiter = ",";
-    //     // $file = file_get_contents($pathDest.$file4);
-    //     // $content = iconv($input_encode, $output_encode, $file);
+        $csv = $pathDest.$file3;
+        $fp = fopen($csv, 'w');
+        dd($fp);
+        fputcsv($fp);
+        fclose($fp);
 
-    //     // dd($file != "\r\n");
-    //     // if ( $file != "\r\n" )
-    //     // {
-    //     //     dd($pathDest.$file3);
-    //     // }
-    //     // //$content = str_replace( "\r\n", "\n", $content );
-    //     // //$content = str_replace( "\r", "\n", $content );
-    //     // $content = preg_replace('/[\x00]/', '', $content);
-    //     // //$content = preg_replace('/[\n]/', '\n', $content);
-    //     // $row = array( "" );
-    //     // $idx = 0;
-    //     // $quoted = false;
-    //     // // $enter = "\r\n";
-    //     // // $content .= $enter;
-    //     // if ( $content[strlen($content)-1] != "\n" )   // Make sure it always end with a newline
-    //     // {
-    //     //     $content .= "\n";
-    //     // }
-    //     // //dd($content);
-    //     // for ( $i = 0; $i < strlen($content); $i++ )
-    //     // {
-    //     //     $ch = $content[$i];
+        // $input_encode = 'ISO-8859-1';
+        // $output_encode = 'UTF-8';
+        // $enclosure = '"';
+        // $delimiter = ",";
+        // $file = file_get_contents($pathDest.$file4);
+        // $content = iconv($input_encode, $output_encode, $file);
 
-    //     //     if ( $ch == $enclosure )
-    //     //     {
-    //     //         $quoted = !$quoted;
-    //     //     }
+        // dd($file != "\r\n");
+        // if ( $file != "\r\n" )
+        // {
+        //     dd($pathDest.$file3);
+        // }
+        // //$content = str_replace( "\r\n", "\n", $content );
+        // //$content = str_replace( "\r", "\n", $content );
+        // $content = preg_replace('/[\x00]/', '', $content);
+        // //$content = preg_replace('/[\n]/', '\n', $content);
+        // $row = array( "" );
+        // $idx = 0;
+        // $quoted = false;
+        // // $enter = "\r\n";
+        // // $content .= $enter;
+        // if ( $content[strlen($content)-1] != "\n" )   // Make sure it always end with a newline
+        // {
+        //     $content .= "\n";
+        // }
+        // //dd($content);
+        // for ( $i = 0; $i < strlen($content); $i++ )
+        // {
+        //     $ch = $content[$i];
 
-    //     //     // End of line
-    //     //     if ( $ch == "\n" && !$quoted )
-    //     //     {
-    //     //         // Remove enclosure delimiters
-    //     //         for ( $k = 0; $k < count($row); $k++ )
-    //     //         {
-    //     //             if ( $row[$k] != "" && $row[$k][0] == $enclosure )
-    //     //             {
-    //     //                 $row[$k] = substr( $row[$k], 1, strlen($row[$k]) - 2 );
-    //     //             }
-    //     //             $row[$k] = str_replace( str_repeat($enclosure, 2), $enclosure, $row[$k] );
-    //     //             $row[$k] = str_replace("\r", "", $row[$k]);
-    //     //         }
-    //     //         // Append row into table
-    //     //         $array[] = $row;
-    //     //         $row = array( "" );
-    //     //         $idx = 0;
-    //     //     }
+        //     if ( $ch == $enclosure )
+        //     {
+        //         $quoted = !$quoted;
+        //     }
 
-    //     //     // End of field
-    //     //     else if ( $ch == $delimiter && !$quoted )
-    //     //     {
-    //     //         $row[++$idx] = "";
-    //     //     }
+        //     // End of line
+        //     if ( $ch == "\n" && !$quoted )
+        //     {
+        //         // Remove enclosure delimiters
+        //         for ( $k = 0; $k < count($row); $k++ )
+        //         {
+        //             if ( $row[$k] != "" && $row[$k][0] == $enclosure )
+        //             {
+        //                 $row[$k] = substr( $row[$k], 1, strlen($row[$k]) - 2 );
+        //             }
+        //             $row[$k] = str_replace( str_repeat($enclosure, 2), $enclosure, $row[$k] );
+        //             $row[$k] = str_replace("\r", "", $row[$k]);
+        //         }
+        //         // Append row into table
+        //         $array[] = $row;
+        //         $row = array( "" );
+        //         $idx = 0;
+        //     }
 
-    //     //     // Inside the field
-    //     //     else
-    //     //     {
-    //     //         $row[$idx] .= $ch;
-    //     //     }
-    //     // }
-    //     // dd($array);
+        //     // End of field
+        //     else if ( $ch == $delimiter && !$quoted )
+        //     {
+        //         $row[++$idx] = "";
+        //     }
 
-    //     // $names = $array[0];
+        //     // Inside the field
+        //     else
+        //     {
+        //         $row[$idx] .= $ch;
+        //     }
+        // }
+        // dd($array);
 
-    //     // foreach ($array as $key => $value) {
-    //     //     if($key > 0){
-    //     //         //$data[] = $value;
-    //     //         foreach ($names as $k => $name) {
-    //     //             $name = trim($name, " ");
-    //     //             $name = strtolower($name);
-    //     //             $name = str_replace(' ', '_', $name);
-    //     //             $datas[$name] = $value[$k];
-    //     //         }
+        // $names = $array[0];
 
-    //     //         $upload[] = $datas;
-    //     //     }
-    //     // }
-    //     $upload = parseCSV($pathDest.$file5, '"', ",", 'ISO-8859-1', 'UTF-8');
-    //     if(!empty($upload)){
-    //         foreach ($upload as $key => $value) {
-    //             $local_created = date('Y-m-d H:i:s', strtotime($value['local_created']));
-    //             $local_last_updated = date('Y-m-d H:i:s', strtotime($value['local_lastupdated']));
-    //             $event_id = (!empty($value['eventid'])) ? $value['eventid'] : null;
-    //             $event_date = date('Y-m-d H:i:s', strtotime($value['eventdate']));
-    //             $user_id = (!empty($value['userid'])) ? $value['userid'] : null;
-    //             $partner_id = (!empty($$value['partnerid'])) ? $$value['partnerid'] : null;
-    //             $item_id = (!empty($$value['itemid'])) ? $$value['itemid'] : null;
-    //             $fee_id = (!empty($$value['feeid'])) ? $$value['feeid'] : null;
-    //             $seat_id = (!empty($$value['seatid'])) ? $$value['seatid'] : null;
-    //             $created = date('Y-m-d H:i:s', strtotime($value['created']));
-    //             $last_updated = date('Y-m-d H:i:s', strtotime($value['lastupdated']));
+        // foreach ($array as $key => $value) {
+        //     if($key > 0){
+        //         //$data[] = $value;
+        //         foreach ($names as $k => $name) {
+        //             $name = trim($name, " ");
+        //             $name = strtolower($name);
+        //             $name = str_replace(' ', '_', $name);
+        //             $datas[$name] = $value[$k];
+        //         }
 
-    //             $newData = [
-    //                 'order_id' => $value['orderid'],
-    //                 'local_created' => $local_created,
-    //                 'local_last_updated' => $local_last_updated,
-    //                 'first_name' => $value['firstname'],
-    //                 'last_name' => $value['lastname'],
-    //                 'email' => $value['email'],
-    //                 'bill_to_address1' => $value['billtoaddress1'],
-    //                 'bill_to_address2' => $value['billtoaddress2'],
-    //                 'bill_to_address3' => $value['billtoaddress3'],
-    //                 'bill_to_city' => $value['billtocity'],
-    //                 'bill_to_state' => $value['billtostate'],
-    //                 'bill_to_postal_code' => $value['billtopostalcode'],
-    //                 'bill_to_country_code' => $value['billtocountrycode'],
-    //                 'phone' => $value['phone'],
-    //                 'event_id' => $event_id,
-    //                 'event_name' => $value['eventname'],
-    //                 'event_date' => $event_date,
-    //                 'venue' => $value['venue'],
-    //                 'ip' => $value['ip'],
-    //                 'order_status' => $value['orderstatus'],
-    //                 'price_table_name' => $value['pricetablename'],
-    //                 'user_id' => $user_id,
-    //                 'seller_email' => $value['selleremail'],
-    //                 'partner' => $value['partner'],
-    //                 'partner_id' => $partner_id,
-    //                 'total' => $value['total'],
-    //                 'sales_channel' => $value['saleschannel'],
-    //                 'item_id' => $item_id,
-    //                 'order_item_type' => $value['orderitemtype'],
-    //                 'fee_id' => $fee_id,
-    //                 'fee_name' => $value['feename'],
-    //                 'section' => $value['section'],
-    //                 'row_section' => $value['row'],
-    //                 'seat_id' => $seat_id,
-    //                 'price_type' => $value['pricetype'],
-    //                 'price' => $value['price'],
-    //                 'full_price' => $value['fullprice'],
-    //                 'delivery_method_name' => $value['deliverymethodname'],
-    //                 'payment_method_type' => $value['paymentmethodtype'],
-    //                 'payment_method_name' => $value['paymentmethodname'],
-    //                 'provider_id' => $value['providerid'],
-    //                 'promo_code' => $value['promocode'],
-    //                 'marketing_opt_in1' => $value['marketingoptin1'],
-    //                 'marketing_opt_in2' => $value['marketingoptin2'],
-    //                 'created' => $created,
-    //                 'last_updated' => $last_updated,
-    //                 'promotion_name' => $value['promotion_name'],
-    //                 'price_level_name' => $value['price_level_name'],
-    //                 'ticket_quantity' => $value['ticketquantity'],
-    //                 'balance' => $value['balance'],
-    //                 'product_name' => $value['product_name'],
-    //                 'product_variant_name' => $value['product_variant_name'],
-    //             ];
+        //         $upload[] = $datas;
+        //     }
+        // }
+        $upload = parseCSV($pathDest.$file5, '"', ",", 'ISO-8859-1', 'UTF-8');
+        if(!empty($upload)){
+            foreach ($upload as $key => $value) {
+                $local_created = date('Y-m-d H:i:s', strtotime($value['local_created']));
+                $local_last_updated = date('Y-m-d H:i:s', strtotime($value['local_lastupdated']));
+                $event_id = (!empty($value['eventid'])) ? $value['eventid'] : null;
+                $event_date = date('Y-m-d H:i:s', strtotime($value['eventdate']));
+                $user_id = (!empty($value['userid'])) ? $value['userid'] : null;
+                $partner_id = (!empty($$value['partnerid'])) ? $$value['partnerid'] : null;
+                $item_id = (!empty($$value['itemid'])) ? $$value['itemid'] : null;
+                $fee_id = (!empty($$value['feeid'])) ? $$value['feeid'] : null;
+                $seat_id = (!empty($$value['seatid'])) ? $$value['seatid'] : null;
+                $created = date('Y-m-d H:i:s', strtotime($value['created']));
+                $last_updated = date('Y-m-d H:i:s', strtotime($value['lastupdated']));
 
-    //             TixtrackOrder::create($newData);
+                $newData = [
+                    'order_id' => $value['orderid'],
+                    'local_created' => $local_created,
+                    'local_last_updated' => $local_last_updated,
+                    'first_name' => $value['firstname'],
+                    'last_name' => $value['lastname'],
+                    'email' => $value['email'],
+                    'bill_to_address1' => $value['billtoaddress1'],
+                    'bill_to_address2' => $value['billtoaddress2'],
+                    'bill_to_address3' => $value['billtoaddress3'],
+                    'bill_to_city' => $value['billtocity'],
+                    'bill_to_state' => $value['billtostate'],
+                    'bill_to_postal_code' => $value['billtopostalcode'],
+                    'bill_to_country_code' => $value['billtocountrycode'],
+                    'phone' => $value['phone'],
+                    'event_id' => $event_id,
+                    'event_name' => $value['eventname'],
+                    'event_date' => $event_date,
+                    'venue' => $value['venue'],
+                    'ip' => $value['ip'],
+                    'order_status' => $value['orderstatus'],
+                    'price_table_name' => $value['pricetablename'],
+                    'user_id' => $user_id,
+                    'seller_email' => $value['selleremail'],
+                    'partner' => $value['partner'],
+                    'partner_id' => $partner_id,
+                    'total' => $value['total'],
+                    'sales_channel' => $value['saleschannel'],
+                    'item_id' => $item_id,
+                    'order_item_type' => $value['orderitemtype'],
+                    'fee_id' => $fee_id,
+                    'fee_name' => $value['feename'],
+                    'section' => $value['section'],
+                    'row_section' => $value['row'],
+                    'seat_id' => $seat_id,
+                    'price_type' => $value['pricetype'],
+                    'price' => $value['price'],
+                    'full_price' => $value['fullprice'],
+                    'delivery_method_name' => $value['deliverymethodname'],
+                    'payment_method_type' => $value['paymentmethodtype'],
+                    'payment_method_name' => $value['paymentmethodname'],
+                    'provider_id' => $value['providerid'],
+                    'promo_code' => $value['promocode'],
+                    'marketing_opt_in1' => $value['marketingoptin1'],
+                    'marketing_opt_in2' => $value['marketingoptin2'],
+                    'created' => $created,
+                    'last_updated' => $last_updated,
+                    'promotion_name' => $value['promotion_name'],
+                    'price_level_name' => $value['price_level_name'],
+                    'ticket_quantity' => $value['ticketquantity'],
+                    'balance' => $value['balance'],
+                    'product_name' => $value['product_name'],
+                    'product_variant_name' => $value['product_variant_name'],
+                ];
+
+                TixtrackOrder::create($newData);
 
              
-    //         }
-    //         //dd($newData);
-    //         //dd($newData[624]);
-    //     }
-    //     // end testing
-    // }
+            }
+            //dd($newData);
+            //dd($newData[624]);
+        }
+        // end testing
+    }
 
     // public function downloadTransaction(Request $req){
 

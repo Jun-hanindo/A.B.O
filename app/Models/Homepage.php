@@ -29,6 +29,7 @@ class Homepage extends Model
             ->join('events', 'homepages.event_id','=','events.id')
             ->where('homepages.category', '=', $category)
             ->whereNull('events.deleted_at')
+            ->where('events.avaibility', true)
             ->orderBy('homepages.sort_order', 'asc');
     }
 
@@ -37,10 +38,20 @@ class Homepage extends Model
             ->join('events', 'events.id', '=', 'homepages.event_id')
             ->where('category', $category)
             ->whereNull('events.deleted_at')
+            ->where('events.avaibility', true)
             ->orderBy('homepages.sort_order', 'asc')->first();
     }
 
     public function getLastSort($category){
+        return Homepage::select('homepages.category as category', 'homepages.sort_order as sort_order')
+            ->join('events', 'events.id', '=', 'homepages.event_id')
+            ->where('category', $category)
+            ->whereNull('events.deleted_at')
+            ->where('events.avaibility', true)
+            ->orderBy('homepages.sort_order', 'desc')->first();
+    }
+
+    public function getLastSortWithoutAvailability($category){
         return Homepage::select('homepages.category as category', 'homepages.sort_order as sort_order')
             ->join('events', 'events.id', '=', 'homepages.event_id')
             ->where('category', $category)
@@ -63,6 +74,7 @@ class Homepage extends Model
                     ->where('homepages.sort_order', '<=', $sort_no)
                     ->where('homepages.category', '=', $category)
                     ->whereNull('events.deleted_at')
+                    ->where('events.avaibility', true)
                     ->orderBy('homepages.sort_order', 'desc')->orderBy('homepages.created_at', 'desc')->first();
                 }else{
                     $result = Homepage::select('homepages.id as id', 'homepages.sort_order as sort_order')
@@ -70,6 +82,7 @@ class Homepage extends Model
                     ->where('homepages.sort_order', '<', $sort_no)
                     ->where('homepages.category', '=', $category)
                     ->whereNull('events.deleted_at')
+                    ->where('events.avaibility', true)
                     ->orderBy('homepages.sort_order', 'desc')->orderBy('homepages.created_at', 'desc')->first();
                 }
             }else{
@@ -79,6 +92,7 @@ class Homepage extends Model
                     ->where('homepages.sort_order', '>=', $sort_no)
                     ->where('homepages.category', '=', $category)
                     ->whereNull('events.deleted_at')
+                    ->where('events.avaibility', true)
                     ->orderBy('homepages.sort_order', 'asc')->orderBy('homepages.created_at', 'desc')->first();
                 }else{
                     $result = Homepage::select('homepages.id as id', 'homepages.sort_order as sort_order')
@@ -86,6 +100,7 @@ class Homepage extends Model
                     ->where('homepages.sort_order', '>', $sort_no)
                     ->where('homepages.category', '=', $category)
                     ->whereNull('events.deleted_at')
+                    ->where('events.avaibility', true)
                     ->orderBy('homepages.sort_order', 'asc')->orderBy('homepages.created_at', 'desc')->first();
                 }
             }
@@ -164,7 +179,7 @@ class Homepage extends Model
     {
         $this->event_id = $data['event_id'];
         $this->category = $data['category'];
-        $last = $this->getLastSort($data['category']);
+        $last = $this->getLastSortWithoutAvailability($data['category']);
         $this->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
         if($this->save()) {
             return $this;

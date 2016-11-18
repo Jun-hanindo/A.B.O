@@ -55,17 +55,17 @@
             <form id="form">
                 <input type="hidden" name="id" class="form-control" id="id">
                 <div class="form-group title">
-                    <label for="event" class="control-label">{{ trans('general.title') }} :</label>
+                    <label for="event" class="control-label">{{ trans('general.title') }} *</label>
                     {!! Form::text('title', old('title'), array('id' => 'title', 'class' => 'form-control')) !!}
                     {!! Form::errorMsg('title') !!}
                 </div>
                 <div class="form-group code">
-                    <label for="event" class="control-label">{{ trans('general.code') }} :</label>
+                    <label for="event" class="control-label">{{ trans('general.code') }} *</label>
                     {!! Form::text('code', old('code'), array('id' => 'code', 'class' => 'form-control')) !!}
                     {!! Form::errorMsg('code') !!}
                 </div>
                 <div class="form-group symbol full-width pull-left">
-                    <label for="event" class="control-label full-width">{{ trans('general.symbol') }} :</label>
+                    <label for="event" class="control-label full-width">{{ trans('general.symbol') }} *</label>
                     {!! Form::checkbox('symbol_position', '1', true, ['class' => 'form-control pull-left symbol_position', 'data-animate' => 'false', 'data-on-text' => 'Left',  'data-off-color' => 'success', 'data-off-text' => 'Right']) !!}
                     <div class="col-md-3">
                         {!! Form::text('symbol', old('symbol'), array('id' => 'symbol', 'class' => 'form-control')) !!}

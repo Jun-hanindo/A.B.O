@@ -101,6 +101,8 @@
                                         </tr>
                                     </thead>
                                 </table>
+                            </div>
+                            <div class="form-group{{ Form::hasError('hide_schedule') }} hide_schedule">
                                 <div class="checkbox">
                                     <a class="actAdd add-underline" data-name="schedule" href="javascript:void(0)" title="{{ trans('general.add_more_schedules_and_prices') }}"><u>+ {{ trans('general.add_more_schedules_and_prices') }}</u></a>
                                     <label class="padding-left-50">
@@ -238,6 +240,8 @@
                                 {!! Form::label('buylink', trans('general.buylink').' *') !!}
                                 {!! Form::text('buylink', old('buylink'), ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.buylink')]) !!}
                                 {!! Form::errorMsg('buylink') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('buy_button_disabled') }} buy_button_disabled">
                                 <div class="checkbox">
                                     <label>
                                         {!! Form::checkbox('buy_button_disabled', true, false, ['id' => 'buy_button_disabled', 'class' => 'buy_button_disabled']) !!} {{ trans('general.buy_button_disabled') }}
@@ -272,10 +276,10 @@
                                 {!! Form::errorMsg('event_id_tixtrack') !!}
                             </div>
                             <div class="box-footer">
-                                <a href="{{ route('admin-index-event') }}" class="btn btn-default">{{ trans('general.button_back') }}</a>
-                                <button type="button" id="button_draft" class="btn btn-warning " title="{{ trans('general.button_draft') }}">{{ trans('general.button_draft') }}</button>
                                 <input class="btn btn-primary pull-right" title="{{ trans('general.button_save') }}" type="submit" value="{{ trans('general.button_publish') }}" id="button_submit">
-                                <a id="button_preview" class="btn btn-success btn-preview" title="{{ trans('general.button_preview') }}">{{ trans('general.button_preview') }}</a>
+                                <button type="button" id="button_draft" class="btn btn-warning pull-right" title="{{ trans('general.button_draft') }}">{{ trans('general.button_draft') }}</button>
+                                <a href="{{ route('admin-index-event') }}" class="btn btn-default pull-right">{{ trans('general.button_back') }}</a>
+                                <a id="button_preview" class="btn btn-success btn-preview pull-right btn-line2" title="{{ trans('general.button_preview') }}">{{ trans('general.button_preview') }}</a>
                             </div>
                         </div>
                         
@@ -354,20 +358,20 @@
                     <div class="error-modal"></div>
                     <form class="form-horizontal" id="form-event-category">
                         <input type="hidden" name="id" class="form-control" id="category_id">
-                        <div class="form-group">
+                        <div class="form-group additional_info">
                             {!! Form::label('additional_info', trans('general.price_name').' *', array('class' => 'col-sm-3 control-label pull-left')) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('additional_info', old('additional_info'), ['class' => 'form-control', 'rows'=> '5', 'placeholder' => trans('general.price_name')]) !!}
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group price">
                             {!! Form::label('price', trans('general.price').' *', array('class' => 'col-sm-3 control-label pull-left')) !!}
                             <div class="col-sm-9 input-group currency-value">
                                 {!! Form::select('currency_id', $data['currencies'], $data['currency_sel'], array('data-default' => $data['currency_sel'], 'id' => 'currency_id', 'class' => 'form-control','data-option' => old('currency_id'))) !!}
                                 {!! Form::text('price', old('price'), ['class' => 'form-control number-only','maxlength'=>'255']) !!}
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group seat_color">
                             {!! Form::label('seat_color', trans('general.seat_color'), array('class' => 'col-sm-3 control-label pull-left')) !!}
                             <div class="col-sm-4">
                                 {!! Form::text('seat_color', old('seat_color'), ['class' => 'form-control colorpicker', 'rows'=> '5', 'placeholder' => trans('general.seat_color')]) !!}
@@ -500,11 +504,11 @@
             <div class="error-modal-cat"></div>
             <form id="form-cat">
                 <input type="hidden" name="id" class="form-control" id="id-cat">
-                <div class="form-group name">
+                <div class="form-group name-cat">
                     <label for="event" class="control-label">{{ trans('general.name') }} *</label>
                     {!! Form::text('name-cat', old('name'), array('id' => 'name-cat', 'class' => 'form-control')) !!}
                 </div>
-                <div class="form-group icon">
+                <div class="form-group icon-cat">
                     <label for="event" class="control-label">{{ trans('general.icon') }} *</label>
                     <select name="icon" id="icon-cat" class="form-control selectpicker" data-live-search="true">
                         @if(!empty($data['icons']))
@@ -519,7 +523,7 @@
                         @endif
                     </select>
                 </div>
-                <div class="form-group description">
+                <div class="form-group description-cat">
                     <label for="event" class="control-label">{{ trans('general.description') }} *</label>
                     {!! Form::textarea('description-cat', old('description'), array('id' => 'description-cat', 'class' => 'form-control tinymce')) !!}
                 </div>

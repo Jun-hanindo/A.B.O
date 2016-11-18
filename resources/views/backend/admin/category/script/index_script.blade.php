@@ -123,6 +123,10 @@
 
             function save()
             {
+                $(".tooltip-field").remove();
+                $(".form-group").removeClass('has-error');
+                $('.error').removeClass('alert alert-danger');
+                $('.error').html('');
                 modal_loader();
                 var name = $("#name").val();
                 var icon = $("#icon").val();
@@ -143,7 +147,11 @@
                         if (response.status === 422) {
                             var data = response.responseJSON;
                             $.each(data,function(key,val){
-                                $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
+                                if(key == "description"){
+                                    $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#cke_'+key));
+                                }else{
+                                    $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
+                                }
                                 $('.form-group.'+key).addClass('has-error');
                             });
                         } else {
@@ -155,6 +163,10 @@
 
             function update()
             {
+                $(".tooltip-field").remove();
+                $(".form-group").removeClass('has-error');
+                $('.error').removeClass('alert alert-danger');
+                $('.error').html('');
                 
                 var name = $("#name").val();
                 var icon = $("#icon").val();
@@ -179,7 +191,11 @@
                         if (response.status === 422) {
                             var data = response.responseJSON;
                             $.each(data,function(key,val){
-                                $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
+                                if(key == "description"){
+                                    $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#cke_'+key));
+                                }else{
+                                    $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
+                                }
                                 $('.'+key).addClass('has-error');
                             });
                         } else {

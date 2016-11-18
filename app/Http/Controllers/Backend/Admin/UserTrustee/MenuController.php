@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Admin\UserTrustee;
 use App\Models\Menu;
 use App\Models\LogActivity;
 use App\Models\Trail;
+use App\Models\Icon;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\UserTrustee\MenuRequest as Request;
 
@@ -154,6 +155,8 @@ class MenuController extends BaseController
         }
 
         $dataToBind['dropdown'] = [0 => 'None'] + $dropdown;
+        $iconModel = new Icon();
+        $dataToBind['icons'] = $iconModel->getIcon(); 
 
         return view('backend.admin.user-trustee.menu.form', $this->prepareCreateEdit($dataToBind, $id));
     }

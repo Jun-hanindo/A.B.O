@@ -42,8 +42,32 @@ class CareersController extends BaseController
     public function datatables()
     {
         return datatables($this->model->datatables())
-            ->editColumn('id', function ($career) {
-                return '<input type="checkbox" name="checkboxid['.$career->id.']" class="item-checkbox">';
+            // ->editColumn('id', function ($career) {
+            //     return '<input type="checkbox" name="checkboxid['.$career->id.']" class="item-checkbox">';
+            // })
+            ->editColumn('job', function ($career) {
+                if($career->dep_avaibility == false){
+                    $job = '<span class="disabled">'.$career->job.'</span>';
+                }else{
+                    $job = $career->job;
+                }
+                return $job;
+            })
+            ->editColumn('name', function ($career) {
+                if($career->dep_avaibility == false){
+                    $name = '<span class="disabled">'.$career->name.'</span>';
+                }else{
+                    $name = $career->name;
+                }
+                return $name;
+            })
+            ->editColumn('type', function ($career) {
+                if($career->dep_avaibility == false){
+                    $type = '<span class="disabled">'.$career->type.'</span>';
+                }else{
+                    $type = $career->type;
+                }
+                return $type;
             })
             ->editColumn('avaibility', function ($career) {
                 if($career->avaibility == TRUE){
@@ -51,12 +75,25 @@ class CareersController extends BaseController
                 }else{
                     $checked = '';
                 }
-                return '<input type="checkbox" name="avaibility['.$career->id.']" class="avaibility-check" data-id="'.$career->id.'" '.$checked.'>';
+
+                if($career->dep_avaibility == false){
+                    $disabled = ' disabled';
+                }else{
+                    $disabled = '';
+                }
+
+                return '<input type="checkbox" name="avaibility['.$career->id.']" class="avaibility-check" data-id="'.$career->id.'" '.$checked.$disabled.'>';
             })
             ->addColumn('action', function ($career) {
+                if($career->dep_avaibility == false){
+                    $disabled = ' disabled';
+                }else{
+                    $disabled = '';
+                }
+
                 $url = route('admin-edit-career',$career->id);
-                return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
-                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$career->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"'.$disabled.'><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
+                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$career->id.'" data-button="delete"'.$disabled.'><i class="fa fa-trash-o fa-fw"></i></a>';
             })
             ->make(true);
     }

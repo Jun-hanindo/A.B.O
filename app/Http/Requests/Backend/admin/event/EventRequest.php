@@ -47,6 +47,7 @@ class EventRequest extends Request
                 'schedule_and_price_detail' => 'required',
                 'categories'        => 'required',
                 'background_color'  => 'required',
+                'event_id_tixtrack' => 'required',
             ];
 
             if ($event->notHavingImage1($req)){
@@ -103,6 +104,7 @@ class EventRequest extends Request
                 'schedule_and_price_detail' => 'required',
                 'categories'        => 'required',
                 'background_color'  => 'required',
+                'event_id_tixtrack' => 'required',
             ];
 
             //dd($req['event_type']);

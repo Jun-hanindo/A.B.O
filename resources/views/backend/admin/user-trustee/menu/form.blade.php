@@ -50,7 +50,18 @@
                         <div class="form-group{{ Form::hasError('icon') }}">
                             {!! Form::label('icon', 'Icon *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::text('icon', null, ['class' => 'form-control']) !!}
+                                <select name="icon" id="icon" class="form-control selectpicker" data-live-search="true">
+                                    @if(!empty($data['icons']))
+                                        @foreach ($data['icons'] as $icon)
+                                            <optgroup label="{!! $icon['name'] !!}">
+                                                @if (isset($icon['child']))
+                                                    @foreach($icon['child'] as $child)
+                                                        <option value="{!! $child['name'] !!}" data-icon="fa fa-{!! $child['name'] !!}" {{ $data['icon'] == $child['name'] ? 'selected' : '' }}>icon-{!! $child['name'] !!}</option>
+                                                    @endforeach
+                                                @endif
+                                        @endforeach
+                                    @endif
+                                </select>
                                 {!! Form::errorMsg('icon') !!}
                             </div>
                         </div>
@@ -70,7 +81,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        {!! link_to_action('Backend\Admin\UserTrustee\MenuController@index', trans('general.button_cancel'), [], ['class' => 'btn btn-default']).' '.Form::submit('Save', ['class' => 'btn btn-primary pull-right', 'title' => 'Save']) !!}
+                        {!! Form::submit('Save', ['class' => 'btn btn-primary pull-right', 'title' => 'Save']).' '.link_to_action('Backend\Admin\UserTrustee\MenuController@index', trans('general.button_cancel'), [], ['class' => 'btn btn-default pull-right']) !!}
                     </div>
                 {!! Form::close() !!}
             </div>

@@ -102,8 +102,9 @@
                         </div> --}}
                     </div>
                     <div class="box-footer">
+                        {!! Form::submit('Save', ['id' => 'button_save', 'class' => 'btn btn-primary pull-right', 'title' => 'Save']) !!}
                         <button type="submit" id="button_reactivate" class="btn btn-primary pull-right" style="display:none" title="{{ trans('general.button_reactivate') }}">{{ trans('general.button_reactivate') }}</button>
-                        {!! link_to_action('Backend\Admin\UserTrustee\UserController@index', trans('general.button_cancel'), [], ['class' => 'btn btn-default']).' '.Form::submit('Save', ['id' => 'button_save', 'class' => 'btn btn-primary pull-right', 'title' => 'Save']) !!}
+                        {!! link_to_action('Backend\Admin\UserTrustee\UserController@index', trans('general.button_cancel'), [], ['class' => 'btn btn-default pull-right']) !!}
                     </div>
                 {!! Form::close() !!}
             </div>

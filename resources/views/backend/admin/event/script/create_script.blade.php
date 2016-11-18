@@ -327,6 +327,10 @@
 
         function saveEventSchedule(event_id)
         {
+            $(".tooltip-field").remove();
+            $(".form-group").removeClass('has-error');
+            $('.error').removeClass('alert alert-danger');
+            $('.error').html('');
             modal_loader();
             $.ajax({
                 url: "{{ route('admin-post-event-schedule') }}",
@@ -358,6 +362,10 @@
 
         function updateEventSchedule(event_id)
         {
+            $(".tooltip-field").remove();
+            $(".form-group").removeClass('has-error');
+            $('.error').removeClass('alert alert-danger');
+            $('.error').html('');
             var id = $("#schedule_id").val();
             var uri = "{{ URL::route('admin-update-event-schedule', "::param") }}";
             uri = uri.replace('::param', id);
@@ -712,6 +720,8 @@
         {
             $(".tooltip-field").remove();
             $(".form-group").removeClass('has-error');
+            $('.error').removeClass('alert alert-danger');
+            $('.error').html('');
             var fd = new FormData();
             var promo_logo = $('#promotion_logo').prop('files')[0];
             if(promo_logo != undefined){
@@ -757,7 +767,11 @@
                     if (response.status === 422) {
                         var data = response.responseJSON;
                         $.each(data,function(key,val){
-                            $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
+                            if(key == "description_promo"){
+                                $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#cke_'+key));
+                            }else{
+                                $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
+                            }
                             $('.'+key).addClass('has-error');
                         });
                     } else {
@@ -771,6 +785,8 @@
         {
             $(".tooltip-field").remove();
             $(".form-group").removeClass('has-error');
+            $('.error').removeClass('alert alert-danger');
+            $('.error').html('');
             var fd = new FormData();
             var promo_logo = $('#promotion_logo').prop('files')[0];
             if(promo_logo != undefined){
@@ -819,7 +835,11 @@
                     if (response.status === 422) {
                         var data = response.responseJSON;
                         $.each(data,function(key,val){
-                            $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
+                            if(key == "description_promo"){
+                                $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#cke_'+key));
+                            }else{
+                                $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
+                            }
                             $('.form-group.'+key).addClass('has-error');
                         });
                     } else {
@@ -920,6 +940,11 @@
 
         function saveCat()
         {
+            $(".tooltip-field").remove();
+            $(".form-group").removeClass('has-error');
+            $('.error').removeClass('alert alert-danger');
+            $('.error').html('');
+
             modal_loader();
             var name = $("#name-cat").val();
             var icon = $("#icon-cat").val();
@@ -945,7 +970,12 @@
                         var data = response.responseJSON;
 
                         $.each(data,function(key,val){
-                            $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key+'-cat'));
+                            
+                            if(key == "description"){
+                                $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#cke_'+key+'-cat'));
+                            }else{
+                                $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key+'-cat'));
+                            }
                             $('.'+key+'-cat').addClass('has-error');
                         });
                     } else {

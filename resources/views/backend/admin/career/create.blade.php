@@ -68,8 +68,8 @@
                                 {!! Form::errorMsg('salary') !!}
                             </div>
                             <div class="box-footer">
-                                <a href="{{ route('admin-index-career') }}" class="btn btn-default">{{ trans('general.button_cancel') }}</a>
                                 <input class="btn btn-primary pull-right" title="{{ trans('general.button_save') }}" type="submit" value="{{ trans('general.button_publish') }}" id="button_submit">
+                                <a href="{{ route('admin-index-career') }}" class="btn btn-default pull-right">{{ trans('general.button_cancel') }}</a>
                             </div>
                         </div>
                         

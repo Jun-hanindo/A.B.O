@@ -103,6 +103,11 @@
 
     function saveDepartment()
     {
+        $(".tooltip-field").remove();
+        $(".form-group").removeClass('has-error');
+        $('.error').removeClass('alert alert-danger');
+        $('.error').html('');
+            
         modal_loader();
         var name = $("#name").val();
         $.ajax({

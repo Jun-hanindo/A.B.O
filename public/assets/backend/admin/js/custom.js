@@ -96,12 +96,12 @@ function loadTextEditor()
     $( 'textarea.tinymce' ).ckeditor();
 }
 
-function loadTextEditor2()
-{
-    CKEDITOR.replace( 'content', {
-        customConfig: '../ckeditor/config2.js'
-    });
-}
+// function loadTextEditor2()
+// {
+//     CKEDITOR.replace( 'content', {
+//         customConfig: '../ckeditor/config2.js'
+//     });
+// }
 
 function loadSwitchButton($class){
     $("."+$class).bootstrapSwitch();

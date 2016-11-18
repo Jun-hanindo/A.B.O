@@ -3,7 +3,7 @@
     <script>
     $(document).ready(function() {
         
-        loadTextEditor2();
+        // loadTextEditor2();
 
         $("#button_draft2, #button_preview").unbind('click').bind('click', function () {
             var status = $(this).attr('data-status');
@@ -19,7 +19,8 @@
     {
         
         var title = $("#title").val();
-        var content = CKEDITOR.instances['content'].getData();
+        //var content = CKEDITOR.instances['content'].getData();
+        var content = $("#content").val();
 
         var slug = $("#slug").val();
         var uri = "{{ URL::route('admin-post-update-manage-page', "::param") }}";

@@ -172,7 +172,7 @@ class ReportsController extends BaseController
             $dateCats = $modelOrder->getCategoryByEvent($event_id, $start_date, $end_date);
 
             foreach ($dateCats as $key => $value) {
-                $date = date('d-m-Y', strtotime($value->local_created))." | ".date('d-m-Y, g:ia', strtotime($value->event_date));
+                $date = date('d-m-y', strtotime($value->local_created))." | ".date('d-m-y, g:ia', strtotime($value->event_date));
                 $full_amount = 'Full Amount:';
                 $disc_amount = 'Discounted Amt:';
                 $quantity = 'Quantity:';

@@ -307,11 +307,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
     Route::get('region/combo', array('as' => 'list-combo-region', 'uses' => 'RegionsController@comboRegion'));
 });
 
-// Route::group(['prefix' => 'tixtrack','namespace' => 'Backend\Admin\TixTrack'], function () {
-//     Route::get('test-get-file2', array('as' => 'test-get-file2', 'uses' => 'DownloadController@tesimportTransaction'));
-// });
-
 Route::group(['prefix' => 'tixtrack','namespace' => 'Backend\Admin\TixTrack'], function () {
-    Route::get('test', array('as' => 'test-get-file2', 'uses' => 'ReportsController@tes_reportExcel'));
+    Route::get('test-get-file2', array('as' => 'test-get-file2', 'uses' => 'DownloadController@tesimportTransaction'));
 });
+
+// Route::group(['prefix' => 'tixtrack','namespace' => 'Backend\Admin\TixTrack'], function () {
+//     Route::get('test', array('as' => 'test-get-file2', 'uses' => 'ReportsController@tes_reportExcel'));
+// });
 

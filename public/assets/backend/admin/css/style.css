@@ -18,9 +18,9 @@
 .close{
 	opacity: 1;
 }
-#button_draft{
+/*#button_draft{
 	margin-left: 10px;
-}
+}*/
 .btn-preview{
 	margin-top: 10px;
 }
@@ -143,4 +143,55 @@
 /*autocomplete css*/
 .form-group .easy-autocomplete input{
     border-radius: 0;
+}
+.box-footer .btn-default,
+.box-footer .btn-warning,
+.box-footer .btn-success,
+.box-footer .btn-danger{
+    margin-right: 10px;
+}
+.box-footer .btn-success.btn-line2{
+    margin-right: 0;
+}
+
+.info-box-number{
+    font-size: 30px;
+    color: #737373;
+}
+.select2-container-multi .select2-choices .select2-search-choice{
+    margin: 6px 0 5px 5px;
+}
+.select2-container-multi .select2-search-choice-close{
+    top: 3px;
+}
+.has-error .cke{
+    border-color: #dd4b39;
+}
+.has-error .text-danger.tooltip-field{
+    color: #dd4b39;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.text-danger{
+    color: #dd4b39;
+}
+.has-error .bootstrap-select .text-danger.tooltip-field{
+    margin-bottom: 0px;
+}
+.error .bootstrap-select .dropdown-toggle, .has-error .bootstrap-select .dropdown-toggle {
+    border-color: #dd4b39 !important;
+}
+.bootstrap-select button{
+    border-radius:0; 
+    float: none !important;
+}
+.bootstrap-select{
+    height: inherit;
+}
+.btn[disabled]{
+    pointer-events: none;
+}
+span.disabled{
+    color: #b3b3b3;
 }

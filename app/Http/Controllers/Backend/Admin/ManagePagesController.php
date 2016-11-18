@@ -79,10 +79,10 @@ class ManagePagesController extends BaseController
         
         try{
             if($req->ajax() && $param['status'] == 'draft'){
-                $this->model->updateStatusToDraft($param, $slug);
 
                 $user_id = $this->currentUser->id;
                 $updateData = $this->model->updateManagePage($param, $slug, $user_id);
+                $this->model->updateStatusToDraft($param, $slug);
             //if(!empty($updateData)) {
 
                 $log['user_id'] = $this->currentUser->id;

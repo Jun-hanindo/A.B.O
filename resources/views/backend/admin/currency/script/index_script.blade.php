@@ -66,6 +66,11 @@
 
 
         $('#modal-form').on('show.bs.modal', function (e) {
+            $(".tooltip-field").remove();
+            $(".form-group").removeClass('has-error');
+            $('.error').removeClass('alert alert-danger');
+            $('.error').html('');
+            
             $("#button_save").unbind('click').bind('click', function () {
                 save();                
             });
@@ -77,6 +82,10 @@
 
             function save()
             {
+                $(".tooltip-field").remove();
+                $(".form-group").removeClass('has-error');
+                $('.error').removeClass('alert alert-danger');
+                $('.error').html('');
                 modal_loader();
                 var name = $("#name").val();
                 $.ajax({
@@ -107,6 +116,10 @@
 
             function update()
             {
+                $(".tooltip-field").remove();
+                $(".form-group").removeClass('has-error');
+                $('.error').removeClass('alert alert-danger');
+                $('.error').html('');
                 
                 var id = $("#id").val();
                 modal_loader();

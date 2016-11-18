@@ -177,7 +177,7 @@ return [
     'seated' => 'Seated',
     'event_categories' => 'Event Categories',
     'icon' => 'Icon',
-    'avaibility_on_discover' => 'Avaibility on Discover',
+    'avaibility_on_discover' => 'Availability on Discover',
     'action'    => 'Action',
     'limit_9' => 'Limit 9 Items',
     'promotion' => 'Promotion',
@@ -235,6 +235,7 @@ return [
     'mail_secret' => 'Mail Secret',
     'mail_key' => 'Mail Key',
     'mail_region' => 'Mail Region',
+    'mail_encryption' => 'Mail Encryption',
     'inbox' => 'Inbox',
     'subject' => 'Subject',
     'message' => 'Message',
@@ -292,6 +293,6 @@ return [
     'chart' => 'Chart',
     'promotion_banner' => 'Promotion Banner',
     'promotion_logo' => 'Promotion Logo',
-
+    'new_release' => 'New Release',
 
 ];

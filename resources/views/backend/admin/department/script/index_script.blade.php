@@ -102,6 +102,10 @@
 
             function save()
             {
+                $(".tooltip-field").remove();
+                $(".form-group").removeClass('has-error');
+                $('.error').removeClass('alert alert-danger');
+                $('.error').html('');
                 modal_loader();
                 var name = $("#name").val();
                 $.ajax({
@@ -132,6 +136,10 @@
 
             function update()
             {
+                $(".tooltip-field").remove();
+                $(".form-group").removeClass('has-error');
+                $('.error').removeClass('alert alert-danger');
+                $('.error').html('');
                 
                 var name = $("#name").val();
                 var id = $("#id").val();

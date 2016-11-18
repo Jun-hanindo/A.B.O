@@ -47,7 +47,7 @@
 
     <div class="box box-primary">
         <div class="box-header">
-            <h3 class="box-title">{{ trans('general.event') }}</h3>
+            <h3 class="box-title">{{ trans('general.new_release') }}</h3>
             <div class="pull-right">
                 <span class="error-add-event"></span>
                 <a class="btn btn-primary actAdd" href="javascript:void(0)" data-category="event" title="{{ trans('general.create_new') }}"><i class="fa fa-plus fa-fw"></i></a>
