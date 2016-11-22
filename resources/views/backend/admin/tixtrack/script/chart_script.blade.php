@@ -153,6 +153,7 @@
             frameDoc.document.write($('#category_table').html());
             frameDoc.document.write($('#payment_table').html());
             frameDoc.document.write($('#promotion_table').html());
+            frameDoc.document.write($('#allsale_table').html());
             //frameDoc.document.write(contents);
             frameDoc.document.write('</body></html>');
             frameDoc.document.close();

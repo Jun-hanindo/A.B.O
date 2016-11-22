@@ -391,6 +391,7 @@ Tixtrack
                                 @endif
 
                                 @if(!$allSale->isEmpty())
+                                <div id="allsale_table">
                                     <table>
                                         <thead>
                                             <tr>
@@ -445,6 +446,7 @@ Tixtrack
                                             @endforeach
                                         </tbody>
                                     </table>
+                                </div>
                                 @endif
                             </div>
                         </page>
