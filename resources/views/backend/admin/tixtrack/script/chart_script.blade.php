@@ -102,6 +102,7 @@
                 +'}'
                 +'table thead tr th, table tfoot tr td{'
                     +'background-color: #e7e6e6;'
+                    +'-webkit-print-color-adjust: exact;'
                 +'}'
                 +'table tbody tr td{'
                     +'text-align: right;'
@@ -140,6 +141,7 @@
                 +'}'
                 +'@media print {'
                     +'.page-break-print { display: block; page-break-before: always; }'
+                    +'tfoot { visibility: hidden; }'
                 +'}'
                 +'.width-70{'
                     +'width: 70px;'
@@ -147,8 +149,16 @@
                 +'.vertical-top{'
                     +'vertical-align: top;'
                 +'}'
+                +'#footer {'
+                    +'position: fixed;' 
+                    +'left: 30px;' 
+                    +'bottom: 40px;' 
+                    +'right: 30px;' 
+                    +'border-top: 1px solid #000;'
+                +'}'
             +'</style></head><body>');
             //Append the DIV contents.
+            // frameDoc.document.write($('#footer').html());
             frameDoc.document.write($('.report-header').html());
             frameDoc.document.write($('#category_table').html());
             frameDoc.document.write($('#payment_table').html());

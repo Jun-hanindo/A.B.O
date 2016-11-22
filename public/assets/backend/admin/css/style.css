@@ -208,7 +208,7 @@ span.disabled{
     /*height:297mm; */
     /*width:210mm; */
     width:210mm;
-    min-height:297mm;
+    /*height:297mm;*/
     margin-left:auto; 
     margin-right:auto;
     background: #fff;
@@ -311,4 +311,7 @@ page {
 .page-break { 
     display: block; 
     page-break-before: always; 
+}
+.report-box #footer{
+    display: none;
 }
