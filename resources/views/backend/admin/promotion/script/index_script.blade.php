@@ -33,7 +33,7 @@
                 columns: [
                     // {data: 'id', name: 'id', searchable: false, orderable: false},
                     {data: 'title', name: 'title'},
-                    {data: 'user_id', name: 'user_id'},
+                    {data: 'post_by', name: 'post_by'},
                     {data: 'avaibility', name: 'avaibility', class: 'center-align', searchable: false, orderable: false},
                     {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
                 ],

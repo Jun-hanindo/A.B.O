@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="form-group{{ Form::hasError('phone') }}">
-                                {!! Form::label('phone', 'Phone *', ['class' => 'col-sm-3 control-label']) !!}
+                                {!! Form::label('phone', 'Cellphone *', ['class' => 'col-sm-3 control-label']) !!}
                                 <div class="col-sm-9">
                                     {!! Form::text('phone', null, ['class' => 'form-control']) !!}
                                     {!! Form::errorMsg('phone') !!}

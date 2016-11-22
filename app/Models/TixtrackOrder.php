@@ -61,27 +61,27 @@ class TixtrackOrder extends Model
         return $data;
     }
 
-    function getLastUpdate(){
-        $data = TixtrackOrder::select(DB::raw('DATE(local_created) as local_created'))
-            ->orderBy(DB::raw('DATE(local_created)'), 'desc')->first();
+    // function getLastUpdate(){
+    //     $data = TixtrackOrder::select(DB::raw('DATE(local_created) as local_created'))
+    //         ->orderBy(DB::raw('DATE(local_created)'), 'desc')->first();
 
-        return $data;
-    }
+    //     return $data;
+    // }
 
-    function getLastOrder(){
-        $data = TixtrackOrder::select('order_id')
-            ->orderBy('order_id', 'desc')->first();
+    // function getLastOrder(){
+    //     $data = TixtrackOrder::select('order_id')
+    //         ->orderBy('order_id', 'desc')->first();
 
-        return $data;
-    }
+    //     return $data;
+    // }
 
-    function getLastOrderAccount($account_id){
-        $data = TixtrackOrder::select('order_id')
-            ->where('account_id', $account_id)
-            ->orderBy('order_id', 'desc')->first();
+    // function getLastOrderAccount($account_id){
+    //     $data = TixtrackOrder::select('order_id')
+    //         ->where('account_id', $account_id)
+    //         ->orderBy('order_id', 'desc')->first();
 
-        return $data;
-    }
+    //     return $data;
+    // }
 
     public function deleteByAccount($account_id){
         $data = TixtrackOrder::select('order_id')->where('account_id', $account_id)->delete();
@@ -93,34 +93,34 @@ class TixtrackOrder extends Model
         DB::table('tixtrack_orders')->truncate();
     }
 
-    public function findTixtrackOrder($order_id, $section, $row_section, $seat_id, $price_level_name)
-    {
-        $data = TixtrackOrder::where('order_id', $order_id)
-            //->where('order_item_type', 'Ticket')
-            ->where('section', $section)
-            ->where('row_section', $row_section)
-            ->where('seat_id', $seat_id)
-            ->where('price_level_name', $price_level_name)->first();
-        if (!empty($data)) {
+    // public function findTixtrackOrder($order_id, $section, $row_section, $seat_id, $price_level_name)
+    // {
+    //     $data = TixtrackOrder::where('order_id', $order_id)
+    //         //->where('order_item_type', 'Ticket')
+    //         ->where('section', $section)
+    //         ->where('row_section', $row_section)
+    //         ->where('seat_id', $seat_id)
+    //         ->where('price_level_name', $price_level_name)->first();
+    //     if (!empty($data)) {
         
-            return $data;
+    //         return $data;
         
-        } else {
+    //     } else {
         
-            return false;
+    //         return false;
 
-        }
-    }
+    //     }
+    // }
 
-    public function getGroupEvent($event_id, $group, $start_date, $end_date){
-        $datas = TixtrackOrder::where('event_id', $event_id)->groupBy($group)->get();
+    // public function getGroupEvent($event_id, $group, $start_date, $end_date){
+    //     $datas = TixtrackOrder::where('event_id', $event_id)->groupBy($group)->get();
 
-        if(!empty($datas)){
-            return $datas;
-        }else{
-            return false;
-        }
-    }
+    //     if(!empty($datas)){
+    //         return $datas;
+    //     }else{
+    //         return false;
+    //     }
+    // }
 
     public function getCategoryEvent($event_id, $start_date, $end_date){
         $categories = TixtrackOrder::select('price_level_name')

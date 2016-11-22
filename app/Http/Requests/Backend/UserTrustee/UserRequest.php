@@ -35,7 +35,7 @@ class UserRequest extends Request
             'email' => 'required|email|unique:users,email'.$id,
             'first_name' => 'required',
             'last_name' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|min: 7',
             'address' => 'required'
         ];
     }

@@ -37,10 +37,10 @@ class Venue extends Model
         return $this->hasMany('App\Event', 'venue_id');
     }
 
-    public function country()
-    {
-        return $this->belongsTo('App\Models\Country','country_id');
-    }
+    // public function country()
+    // {
+    //     return $this->belongsTo('App\Models\Country','country_id');
+    // }
 
     /**
      * Return venue's query for Datatables.

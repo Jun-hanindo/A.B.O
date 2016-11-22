@@ -33,10 +33,10 @@ class UserReactivateRequest extends Request
             'avatar' => 'image',
             // 'username' => 'required|unique:users,username'.$id,
             'email' => 'required|email',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'phone' => 'required',
-            'address' => 'required'
+            // 'first_name' => 'required',
+            // 'last_name' => 'required',
+            // 'phone' => 'required',
+            // 'address' => 'required'
         ];
     }
 }

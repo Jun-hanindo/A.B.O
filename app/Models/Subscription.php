@@ -151,4 +151,13 @@ class Subscription extends Model
     public function countSubscribers(){
         return Subscription::count();
     }
+
+    public function countSubscribersLastWeek(){
+        $date = date('Y-m-d');
+        $date = strtotime($date);
+        $date = strtotime("-1 week", $date);
+        $date2 = date('Y-m-d', $date);
+        
+        return Subscription::where(DB::raw('DATE(created_at)'), '>', $date2)->count();
+    }
 }

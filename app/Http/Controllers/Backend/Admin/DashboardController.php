@@ -40,7 +40,7 @@ class DashboardController extends Controller
         $promotionModel = new Promotion();
         $data['promotions'] = $promotionModel->countPromotions();
         $subscriptionModel = new Subscription();
-        $data['subscribers'] = $subscriptionModel->countSubscribers();
+        $data['subscribers'] = $subscriptionModel->countSubscribersLastWeek();
 
         //dd($data['events']);
 

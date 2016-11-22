@@ -52,12 +52,24 @@ class PromotionsController extends BaseController
             $datatables = $this->model->datatables();
         }
          return datatables($datatables)
-                ->editColumn('id', function ($promotion) {
-                    return '<input type="checkbox" name="checkboxid['.$promotion->id.']" class="item-checkbox">';
+                // ->editColumn('id', function ($promotion) {
+                //     return '<input type="checkbox" name="checkboxid['.$promotion->id.']" class="item-checkbox">';
+                // })
+                ->editColumn('title', function ($promotion) {
+                    if($promotion->event_avaibility == false){
+                        $title = '<span class="disabled">'.$promotion->title.'</span>';
+                    }else{
+                        $title = $promotion->title;
+                    }
+                    return $title;
                 })
-                ->editColumn('user_id', function ($promotion){
-                    $username = $promotion->user->first_name.' '.$promotion->user->last_name;
-                    return $username;
+                ->editColumn('post_by', function ($promotion) {
+                    if($promotion->event_avaibility == false){
+                        $post_by = '<span class="disabled">'.$promotion->post_by.'</span>';
+                    }else{
+                        $post_by = $promotion->post_by;
+                    }
+                    return $post_by;
                 })
                 ->editColumn('avaibility', function ($promotion) {
                     if($promotion->avaibility == TRUE){
@@ -65,12 +77,30 @@ class PromotionsController extends BaseController
                     }else{
                         $checked = '';
                     }
-                    return '<input type="checkbox" name="avaibility['.$promotion->id.']" class="avaibility-check" data-id="'.$promotion->id.'" '.$checked.'>';
+
+                    if($promotion->event_avaibility == false){
+                        $disabled = ' disabled';
+                    }else{
+                        $disabled = '';
+                    }
+
+                    return '<input type="checkbox" name="avaibility['.$promotion->id.']" class="avaibility-check" data-id="'.$promotion->id.'" '.$checked.$disabled.'>';
                 })
                 ->addColumn('action', function ($promotion) {
+                    if($promotion->event_avaibility == false){
+                        $disabled = ' disabled';
+                    }else{
+                        $disabled = '';
+                    }
                     $url = route('admin-edit-promotion',$promotion->id);
-                    return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
-                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$promotion->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                    return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"'.$disabled.'><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
+                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$promotion->id.'" data-button="delete"'.$disabled.'><i class="fa fa-trash-o fa-fw"></i></a>';
+                })
+                ->filterColumn('post_by', function($query, $keyword) {
+                    $query->whereRaw("LOWER(CAST(CONCAT(users.first_name, ' ', users.last_name) as TEXT)) ilike ?", ["%{$keyword}%"]);
+                })
+                ->filterColumn('title', function($query, $keyword) {
+                    $query->whereRaw("LOWER(CAST(promotions.title as TEXT)) ilike ?", ["%{$keyword}%"]);
                 })
                 ->make(true);
     }

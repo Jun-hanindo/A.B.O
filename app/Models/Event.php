@@ -1518,7 +1518,7 @@ class Event extends Model
     }
 
     public function getEventByTixtrack($event_id){
-        return Event::select('title')->where('event_id_tixtrack', $event_id)->first();
+        return Event::select('title', 'event_id_tixtrack')->where('event_id_tixtrack', $event_id)->first();
     }
 
     

@@ -27,7 +27,7 @@ class TixtrackAccount extends Model
     {
 
         return static::select('id', 'name', 'account_id')
-            ->orderBy('name', 'asc');
+            // ->orderBy('name', 'asc');
     
     }
 

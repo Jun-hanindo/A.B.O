@@ -195,19 +195,19 @@ class Career extends Model
         return $careers;
     }
 
-    public function autocompletePosition($param){
-        $q = $param['term'];
-        $query = Career::select('job')
-            ->where('job','ilike','%'.$q.'%')
-            ->groupBy('job')
-            ->take(10)->get();
+    // public function autocompletePosition($param){
+    //     $q = $param['term'];
+    //     $query = Career::select('job')
+    //         ->where('job','ilike','%'.$q.'%')
+    //         ->groupBy('job')
+    //         ->take(10)->get();
 
-        if(!empty($query)){
-            return $query;
-        }else{  
-            return false;
-        }
-    }
+    //     if(!empty($query)){
+    //         return $query;
+    //     }else{  
+    //         return false;
+    //     }
+    // }
 
     public function getPosition(){
         $query = Career::select('job')

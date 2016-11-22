@@ -294,5 +294,8 @@ return [
     'promotion_banner' => 'Promotion Banner',
     'promotion_logo' => 'Promotion Logo',
     'new_release' => 'New Release',
+    'export_to_excel' => 'Export to Excel',
+    'export_to_pdf' => 'Export to Pdf',
+    'print' => 'Print'
 
 ];

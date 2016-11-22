@@ -108,7 +108,7 @@
 .center-align {
     text-align: center;
 }
-#report-tixtrack-box table thead tr th{
+/*#report-tixtrack-box table thead tr th{
     text-align: center;
     background: #e7e6e6;
     border: 1px solid #000;
@@ -130,7 +130,7 @@
 }
 #report-tixtrack-box table tfoot tr td.text{
     font-weight: normal;
-}
+}*/
 
 /*.cke_chrome{
 	border-left: 1px solid #b6b6b6 !important;
@@ -194,4 +194,121 @@
 }
 span.disabled{
     color: #b3b3b3;
+}
+#report-box{
+    border-top: 0;
+}
+#report-box .box-body{
+    border: 1px solid #d9d9d9;
+    background: #cccccc;
+    height: 500px;
+    overflow: auto;
+}
+.report-page{
+    /*height:297mm; */
+    /*width:210mm; */
+    width:210mm;
+    min-height:297mm;
+    margin-left:auto; 
+    margin-right:auto;
+    background: #fff;
+}
+page {
+    background: white;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5cm;
+    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+    font-family: 'Source Sans Pro',Helvetica,Arial,sans-serif;
+    font-size: 11px;
+    color: #000;
+    padding: 30px;
+}
+.report-box{
+    padding: 30px 30px 33px 30px;
+}
+.report-page .logo-title{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.report-page .logo-title img{
+    width: 180px;
+}
+.report-page .title-report{
+    border-bottom: 1px solid #000;
+    font-size: 18px;
+    margin: 0;
+    padding:0;
+    clear: both;
+}
+.report-page .table-title tr td{
+    border: 0 !important;
+    text-align: left !important;
+}
+#report-tixtrack-box table tbody tr td.column-1 {
+    width: 120px;
+}
+.report-page table{
+    width: 100%;
+}
+.report-page .report-box table tbody tr td{
+    border: 0;
+}
+.report-page .report-box table tr th, .report-page .report-box table tr td{
+    vertical-align: bottom;
+    padding: 1px 2px;
+    line-height: normal;
+}
+.report-page .report-box table tr th{
+    text-align: center;
+    font-weight: bold;
+}
+.report-page .report-box table thead tr th,
+.report-page .report-box table tfoot tr td{
+    background: #e7e6e6;
+}
+.report-page .report-box table tbody tr td{
+    text-align: right;
+}
+.report-page .report-box table tfoot{
+    border-top: 1px solid #000;
+}
+.report-page .report-box table tfoot tr td{
+    text-align: right;
+}
+.chart-report{
+    margin-top: 5px;
+}
+.align-right{
+    text-align: right !important;
+}
+.bold{
+    font-weight: bold !important;
+}
+.border{
+    border: 1px solid #000 !important;
+}
+.border-top{
+    border-top: 1px solid #000 !important;
+}
+.border-bottom{
+    border-bottom: 1px solid #000 !important;
+}
+.report-page .report-box table{
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+}
+.chart_img{
+    display: none;
+}
+.width-70{
+    width: 70px;
+}
+.vertical-top{
+    vertical-align: top !important;
+}
+.page-break { 
+    display: block; 
+    page-break-before: always; 
 }

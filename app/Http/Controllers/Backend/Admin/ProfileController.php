@@ -85,7 +85,7 @@ class ProfileController extends Controller
                 'email' => 'required|email|unique:users,email,'.user_info('id'),
                 'first_name' => 'required',
                 'last_name' => 'required',
-                'phone' => 'required',
+                'phone' => 'required|min: 8',
                 'address' => 'required',
             ]);
 

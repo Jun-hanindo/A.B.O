@@ -50,7 +50,11 @@ class Promotion extends Model
     function datatables()
     {
 
-    	return static::select('id', 'title', 'user_id', 'avaibility')->orderBy('created_at', 'desc')/*->where('status', true)*/;
+    	return static::select('promotions.id as id', 'promotions.title as title', 'promotions.avaibility as avaibility', 
+            DB::RAW("CONCAT(users.first_name, ' ', users.last_name)  as post_by"), 'events.avaibility as event_avaibility')
+        ->leftJoin('users', 'users.id', '=', 'promotions.user_id')
+        ->leftJoin('event_promotions', 'event_promotions.promotion_id', '=', 'promotions.id')
+        ->leftJoin('events', 'events.id', '=', 'event_promotions.event_id');
     
     }
 
