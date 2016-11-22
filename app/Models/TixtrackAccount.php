@@ -26,7 +26,7 @@ class TixtrackAccount extends Model
     function datatables()
     {
 
-        return static::select('id', 'name', 'account_id')
+        return static::select('id', 'name', 'account_id');
             // ->orderBy('name', 'asc');
     
     }
