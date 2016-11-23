@@ -181,9 +181,26 @@
             chartCategory(event_id, start_date, end_date);
             chartPayment(event_id, start_date, end_date);
             chartPromotion(event_id, start_date, end_date);
+            savePdf(event_id, start_date, end_date);
         }
 
     });
+
+    function savePdf(event_id, start_date, end_date){
+        var uri = "{{ URL::route('admin-report-tixtrack-pdf-save') }}";
+        $.ajax({
+            url: uri,
+            type: "get",
+            dataType: 'json',
+            data:{'event':event_id, 'start_date':start_date, 'end_date':end_date},
+            success: function (response) {
+
+            },
+            error: function(response){
+                
+            }
+        });
+    }
 
     function bgChart(){
         Chart.plugins.register({

@@ -16,7 +16,6 @@ Tixtrack
             }
         </style>
 @endsection
-
 @section('content')
     <div class="row" id="report-tixtrack-box">
         <div class="col-md-12">
