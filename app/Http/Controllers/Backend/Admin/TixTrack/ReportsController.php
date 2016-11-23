@@ -684,7 +684,8 @@ class ReportsController extends BaseController
 
             //$pdf = PDF::loadView('backend.admin.tixtrack.export_report.pdf', $data)->save($pathDest.'/'.$filename);
             $pdf = PDF::loadView('backend.admin.tixtrack.export_report.pdf', $data);
-            file_put_contents($pathDest.'/'.$filename, $pdf->output());
+            //file_put_contents($pathDest.'/'.$filename, $pdf->output());
+            File::put($pathDest.'/'.$filename, $pdf->output());
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
