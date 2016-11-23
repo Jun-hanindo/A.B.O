@@ -195,7 +195,7 @@
             dataType: 'json',
             data:{'event':event_id, 'start_date':start_date, 'end_date':end_date},
             success: function (response) {
-                $('#pdf-frame').attr('src', response.data+'#view=Fit');
+                $('#pdf-frame').attr('src', response.data+'#zoom=80');
                 //$('#pdf-frame').attr('src', 'http://docs.google.com/gview?url='+response.data+'&embedded=true')
                 HoldOn.close();
             },
