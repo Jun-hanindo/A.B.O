@@ -143,6 +143,8 @@ class ReportsController extends BaseController
                 $data['event'] = $modelEvent->getEventByTixtrack($event_id);
 
                 $data['first_date'] = $modelOrder->getFirstDateEvent($event_id);
+                $user = \Sentinel::getUser()->first_name.'-'.\Sentinel::getUser()->last_name;
+                $data['filename'] = env('APP_NAME_INITIAL').'-Report-'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.pdf';
 
 
             }
@@ -552,68 +554,6 @@ class ReportsController extends BaseController
         }
     }
 
-    public function saveReportToPdf(Request $req){
-        //$param = $req->all();
-        //if(!empty($param)){
-            $param['event'] = 50748;
-            $param['start_date'] = '2016-11-01';
-            $param['end_date'] = '2016-11-11';
-            $event_id = $param['event'];
-            $start_date = $param['start_date'];
-            $end_date = $param['end_date'];
-            $pathDest = public_path( 'uploads/reports' );
-            if(!File::exists($pathDest)) {
-                File::makeDirectory($pathDest, $mode=0777,true,true);
-            }
-            $user = \Sentinel::getUser()->first_name.'-'.\Sentinel::getUser()->last_name;
-            $filename = env('APP_NAME_INITIAL').'-Report-'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.pdf';
-            if(file_exists($pathDest.'/'.$filename)){
-                File::delete($pathDest.'/'.$filename);
-            }
-            $modelOrder = new TixtrackOrder();
-            $modelEvent = new Event();
-            $data['categories'] = $modelOrder->getCategoryEvent($event_id, $start_date, $end_date);
-            $data['dateCats'] = $modelOrder->getCategoryByEvent($event_id, $start_date, $end_date);
-            $data['countCat'] = count($data['categories']);
-            $data['totalCats'] = $modelOrder->totalCategoryEvent($event_id, $start_date, $end_date);
-            $data['event'] = $modelEvent->getEventByTixtrack($event_id);
-            $data['start_date'] = $start_date;
-            $data['end_date'] = $end_date;
-            $data['event_id'] = $event_id;
-            $data['total'] = $modelOrder->total($event_id, $start_date, $end_date);
-
-            $data['payments'] = $modelOrder->getPaymentEvent($event_id, $start_date, $end_date);
-            $data['datePays'] = $modelOrder->getPaymentByEvent($event_id, $start_date, $end_date);
-            $data['countPay'] = count($data['payments']);
-            $data['totalPays'] = $modelOrder->totalPaymentEvent($event_id, $start_date, $end_date);
-
-            $data['promotions'] = $modelOrder->getPromotionEvent($event_id, $start_date, $end_date);
-            $data['datePros'] = $modelOrder->getDatePromotion($event_id, $start_date, $end_date);
-            $data['countPro'] = count($data['promotions']);
-            $data['totalPros'] = $modelOrder->totalPromotionEvent($event_id, $start_date, $end_date);
-            $data['allTotalPro'] = $modelOrder->allTotalPromotion($event_id, $start_date, $end_date);
-            $data['modelOrder'] = $modelOrder;
-
-            $data['allCategories'] = $modelOrder->getAllCategoryEvent($event_id, $end_date);
-            $data['allSale'] = $modelOrder->getAllSale($event_id, $end_date);
-            $data['countAllCat'] = count($data['allCategories']);
-
-            $user = \Sentinel::getUser()->first_name.'-'.\Sentinel::getUser()->last_name;
-            $data['first_date'] = $modelOrder->getFirstDateEvent($event_id);
-            $fileChartCat = 'ChartCategory'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
-            $data['chartCat'] = public_path().'/uploads/charts/'.$fileChartCat;
-            $fileChartPay = 'ChartPayment'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
-            $data['chartPay'] = public_path().'/uploads/charts/'.$fileChartPay;
-            $fileChartPro = 'ChartPromotion'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
-            $data['chartPro'] = public_path().'/uploads/charts/'.$fileChartPro;
-
-            $pdf = PDF::loadView('backend.admin.tixtrack.export_report.pdf', $data)->save($pathDest.'/'.$filename);
-            //return $pdf;
-            
-            // return view('backend.admin.tixtrack.export_report.pdf', $data);
-        //}
-    }
-
     public function truncateMember(){
         $model = new TixtrackCustomer();
         $model->truncate();
@@ -671,6 +611,7 @@ class ReportsController extends BaseController
                 // );
                 File::put($pathDest.'/'.$filename3, $img3);
             }
+            //$this->saveReportToPdf($req);
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
@@ -686,6 +627,68 @@ class ReportsController extends BaseController
             flash()->error(trans('general.data_not_found'));
             return redirect()->route('admin-report-tixtrack');
         
+        }
+    }
+
+    public function saveReportToPdf(Request $req){
+        $param = $req->all();
+        if(!empty($param)){
+            $event_id = $param['event'];
+            $start_date = $param['start_date'];
+            $end_date = $param['end_date'];
+            $pathDest = public_path( 'uploads/reports' );
+            if(!File::exists($pathDest)) {
+                File::makeDirectory($pathDest, $mode=0777,true,true);
+            }
+            $user = \Sentinel::getUser()->first_name.'-'.\Sentinel::getUser()->last_name;
+            $filename = env('APP_NAME_INITIAL').'-Report-'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.pdf';
+            if(file_exists($pathDest.'/'.$filename)){
+                File::delete($pathDest.'/'.$filename);
+            }
+            $modelOrder = new TixtrackOrder();
+            $modelEvent = new Event();
+            $data['categories'] = $modelOrder->getCategoryEvent($event_id, $start_date, $end_date);
+            $data['dateCats'] = $modelOrder->getCategoryByEvent($event_id, $start_date, $end_date);
+            $data['countCat'] = count($data['categories']);
+            $data['totalCats'] = $modelOrder->totalCategoryEvent($event_id, $start_date, $end_date);
+            $data['event'] = $modelEvent->getEventByTixtrack($event_id);
+            $data['start_date'] = $start_date;
+            $data['end_date'] = $end_date;
+            $data['event_id'] = $event_id;
+            $data['total'] = $modelOrder->total($event_id, $start_date, $end_date);
+
+            $data['payments'] = $modelOrder->getPaymentEvent($event_id, $start_date, $end_date);
+            $data['datePays'] = $modelOrder->getPaymentByEvent($event_id, $start_date, $end_date);
+            $data['countPay'] = count($data['payments']);
+            $data['totalPays'] = $modelOrder->totalPaymentEvent($event_id, $start_date, $end_date);
+
+            $data['promotions'] = $modelOrder->getPromotionEvent($event_id, $start_date, $end_date);
+            $data['datePros'] = $modelOrder->getDatePromotion($event_id, $start_date, $end_date);
+            $data['countPro'] = count($data['promotions']);
+            $data['totalPros'] = $modelOrder->totalPromotionEvent($event_id, $start_date, $end_date);
+            $data['allTotalPro'] = $modelOrder->allTotalPromotion($event_id, $start_date, $end_date);
+            $data['modelOrder'] = $modelOrder;
+
+            $data['allCategories'] = $modelOrder->getAllCategoryEvent($event_id, $end_date);
+            $data['allSale'] = $modelOrder->getAllSale($event_id, $end_date);
+            $data['countAllCat'] = count($data['allCategories']);
+
+            $user = \Sentinel::getUser()->first_name.'-'.\Sentinel::getUser()->last_name;
+            $data['first_date'] = $modelOrder->getFirstDateEvent($event_id);
+            $fileChartCat = 'ChartCategory'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
+            $data['chartCat'] = public_path().'/uploads/charts/'.$fileChartCat;
+            $fileChartPay = 'ChartPayment'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
+            $data['chartPay'] = public_path().'/uploads/charts/'.$fileChartPay;
+            $fileChartPro = 'ChartPromotion'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
+            $data['chartPro'] = public_path().'/uploads/charts/'.$fileChartPro;
+
+            $pdf = PDF::loadView('backend.admin.tixtrack.export_report.pdf', $data)->save($pathDest.'/'.$filename);
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'Success',
+                'data' => url( 'uploads/reports' ).'/'.$filename,
+            ],200);
         }
     }
 }

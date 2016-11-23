@@ -60,7 +60,8 @@ Tixtrack
                     <div class="box-header">
                         <h3 class="box-title"></h3>
                         <div class="pull-right">
-                            <a class="btn btn-primary" id="btn-print" title="{{ trans('general.print') }}"><i class="fa fa-print fa-fw"></i></a>
+                            <a class="btn btn-default" id="btn-preview" title="{{ trans('general.preview') }}"  data-toggle="modal" data-target="#modal-preview"><i class="fa fa-eye fa-fw"></i></a>
+                            {{-- <a class="btn btn-primary" id="btn-print" title="{{ trans('general.print') }}"><i class="fa fa-print fa-fw"></i></a> --}}
                             <a class="btn btn-success" href="{{ route('admin-report-tixtrack-excel', 'event='.$event_id.'&start_date='.$start_date.'&end_date='.$end_date) }}" title="{{ trans('general.export_to_excel') }}"><i class="fa fa-file-excel-o fa-fw"></i></a>
                             <a class="btn btn-danger" href="{{ route('admin-report-tixtrack-pdf', 'event='.$event_id.'&start_date='.$start_date.'&end_date='.$end_date) }}" title="{{ trans('general.export_to_pdf') }}"><i class="fa fa-file-pdf-o fa-fw"></i></a>
                         </div>
@@ -460,6 +461,16 @@ Tixtrack
                 </div>
             @endif
         </div>
+    </div>
+
+    <div class="modal fade" id="modal-preview" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <iframe id="pdf-frame" src="" style="width:800px; height:600px;" frameborder="0"></iframe>
+          </div>
+        </div>
+      </div>
     </div>
 @endsection
 @include('backend.admin.tixtrack.script.chart_script')

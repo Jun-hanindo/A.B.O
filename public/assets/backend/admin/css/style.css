@@ -108,6 +108,12 @@
 .center-align {
     text-align: center;
 }
+#modal-preview .modal-content{
+    width: 850px;
+}
+#modal-preview .modal-content .modal-body{
+    text-align: center;
+}
 /*#report-tixtrack-box table thead tr th{
     text-align: center;
     background: #e7e6e6;

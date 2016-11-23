@@ -181,12 +181,13 @@
             chartCategory(event_id, start_date, end_date);
             chartPayment(event_id, start_date, end_date);
             chartPromotion(event_id, start_date, end_date);
-            savePdf(event_id, start_date, end_date);
+            //savePdf(event_id, start_date, end_date);
         }
 
     });
 
     function savePdf(event_id, start_date, end_date){
+        modal_loader();
         var uri = "{{ URL::route('admin-report-tixtrack-pdf-save') }}";
         $.ajax({
             url: uri,
@@ -194,10 +195,11 @@
             dataType: 'json',
             data:{'event':event_id, 'start_date':start_date, 'end_date':end_date},
             success: function (response) {
-
+                $('#pdf-frame').attr('src', 'http://docs.google.com/gview?url='+response.data+'&embedded=true')
+                HoldOn.close();
             },
             error: function(response){
-                
+                HoldOn.close();
             }
         });
     }
@@ -325,9 +327,11 @@
                                     data:{'event':event_id, 'start_date':start, 'end_date':end, 'category': image},
                                     success: function (response) {
                                         response.message;
+                                        HoldOn.close();
                                     },
                                     error: function(response){
                                         $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
+                                        HoldOn.close();
                                     }
                                 });
                             }
@@ -335,7 +339,7 @@
 
                     }
                 });
-                HoldOn.close();
+                //HoldOn.close();
             },
             error: function(response){
                 HoldOn.close();
@@ -407,16 +411,19 @@
                                     data:{'event':event_id, 'start_date':start, 'end_date':end, 'payment': image},
                                     success: function (response) {
                                         response.message;
+                                        HoldOn.close();
                                     },
                                     error: function(response){
                                         $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
+                                        HoldOn.close();
                                     }
                                 });
+                                savePdf(event_id, start, end);
                             }
                         }
                     }
                 });
-                HoldOn.close();
+                //HoldOn.close();
             },
             error: function(response){
                 HoldOn.close();
@@ -489,17 +496,20 @@
                                         data:{'event':event_id, 'start_date':start, 'end_date':end, 'promotion': image},
                                         success: function (response) {
                                             response.message;
+                                            HoldOn.close();
                                         },
                                         error: function(response){
                                             $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
+                                            HoldOn.close();
                                         }
                                     });
+                                    savePdf(event_id, start, end);
                                 }
                             }
                         }
                     });
                 }
-                HoldOn.close();
+                //HoldOn.close();
             },
             error: function(response){
                 HoldOn.close();
