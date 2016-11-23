@@ -467,7 +467,7 @@ Tixtrack
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-body">
-            <iframe id="pdf-frame" src="" style="width:800px; height:600px;" frameborder="0"></iframe>
+            <iframe id="pdf-frame" src="" style="width:850px; height:600px;" frameborder="0"></iframe>
           </div>
         </div>
       </div>

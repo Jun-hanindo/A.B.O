@@ -682,7 +682,9 @@ class ReportsController extends BaseController
             $fileChartPro = 'ChartPromotion'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.png';
             $data['chartPro'] = public_path().'/uploads/charts/'.$fileChartPro;
 
-            $pdf = PDF::loadView('backend.admin.tixtrack.export_report.pdf', $data)->save($pathDest.'/'.$filename);
+            //$pdf = PDF::loadView('backend.admin.tixtrack.export_report.pdf', $data)->save($pathDest.'/'.$filename);
+            $pdf = PDF::loadView('backend.admin.tixtrack.export_report.pdf', $data);
+            file_put_contents($pathDest.'/'.$filename, $pdf->output());
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
