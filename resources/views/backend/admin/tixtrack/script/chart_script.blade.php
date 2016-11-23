@@ -196,12 +196,12 @@
             data:{'event':event_id, 'start_date':start_date, 'end_date':end_date},
             success: function (response) {
                 //$('#pdf-frame').attr('src', response.data);
-                //$('#pdf-frame').attr('src', response.data+'#zoom=100');
+                $('#pdf-frame').attr('src', response.data+'#zoom=100');
                 //$('#pdf-frame').attr('src', 'http://docs.google.com/gview?url='+response.data+'&embedded=true')
                 //$('#preview-body').html('<iframe id="pdf-frame" src="'+response.data+'#zoom=100'+'" style="width:850px; height:600px;" frameborder="0"></iframe>');
                 //$('#preview-body').html('<iframe id="pdf-frame" src="'+response.data+'#zoom=100'+'" style="width:850px; height:600px;" frameborder="0"></iframe>');
-                $('embed').attr('src', response.data+'#zoom=100');
-                $('object').attr('data', response.data+'#zoom=100');
+                //$('embed').attr('src', response.data+'#zoom=100');
+                //$('object').attr('data', response.data+'#zoom=100');
                 HoldOn.close();
             },
             error: function(response){
