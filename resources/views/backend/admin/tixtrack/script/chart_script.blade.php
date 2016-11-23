@@ -177,7 +177,6 @@
             }, 500);
         });
             
-        console.log(end_date);
         if(event_id > 0){
             chartCategory(event_id, start_date, end_date);
             chartPayment(event_id, start_date, end_date);
@@ -345,7 +344,7 @@
 
                         }
                     });
-                    //HoldOn.close();
+                    HoldOn.close();
                 }
             },
             error: function(response){
@@ -431,7 +430,7 @@
                             }
                         }
                     });
-                    //HoldOn.close();
+                    HoldOn.close();
                 }
             },
             error: function(response){
@@ -518,7 +517,7 @@
                         }
                     });
                 }
-                //HoldOn.close();
+                HoldOn.close();
             },
             error: function(response){
                 HoldOn.close();
