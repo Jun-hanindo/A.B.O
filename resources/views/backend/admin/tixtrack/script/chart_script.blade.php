@@ -156,14 +156,17 @@
                     +'right: 30px;' 
                     +'border-top: 1px solid #000;'
                 +'}'
+                +'#footer p {'
+                    +'font-size: 10px !important;'
+                +'}'
             +'</style></head><body>');
             //Append the DIV contents.
-            // frameDoc.document.write($('#footer').html());
             frameDoc.document.write($('.report-header').html());
             frameDoc.document.write($('#category_table').html());
             frameDoc.document.write($('#payment_table').html());
             frameDoc.document.write($('#promotion_table').html());
             frameDoc.document.write($('#allsale_table').html());
+            frameDoc.document.write($('#footer').html());
             //frameDoc.document.write(contents);
             frameDoc.document.write('</body></html>');
             frameDoc.document.close();

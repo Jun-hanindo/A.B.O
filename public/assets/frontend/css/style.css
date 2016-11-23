@@ -4019,3 +4019,31 @@ ol .a li:before{
 .box-release img {
   display: block;
 }
+
+#about h1,
+#about h2,
+#about h3,
+#about h4,
+#about h5,
+#venue h1,
+#venue h2,
+#venue h3,
+#venue h4,
+#venue h5,
+#rules h1,
+#rules h2,
+#rules h3,
+#rules h4,
+#rules h5{
+  font-family: 'proxima_nova_rgbold';
+}
+
+.main-content #venue ul li ul{
+  list-style-type: disc !important;
+  padding-left: 25px !important;
+  margin-bottom: 10px;
+}
+
+.main-content #venue ul li ul li{
+  padding: 5px;
+}

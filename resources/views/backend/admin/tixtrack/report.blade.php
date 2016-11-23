@@ -449,6 +449,13 @@ Tixtrack
                                 </div>
                                 @endif
                             </div>
+                            <div id="footer">
+                                <p class="page">
+                                    <i>Printed on {{ date('d F Y, g:ia') }} by {{ \Sentinel::getUser()->first_name.' '.\Sentinel::getUser()->last_name }}</i>
+                                    <br>
+                                    <i>{{ env('APP_NAME') }} - DailySummaryReport-Category-V1.0.0</i>
+                                </p>
+                            </div>
                         </page>
                     </div>
                 </div>
