@@ -4020,6 +4020,8 @@ ol .a li:before{
   display: block;
 }
 
+
+
 #about h1,
 #about h2,
 #about h3,
@@ -4034,8 +4036,14 @@ ol .a li:before{
 #rules h2,
 #rules h3,
 #rules h4,
-#rules h5{
-  font-family: 'proxima_nova_rgbold';
+#rules h5,
+#about strong,
+#venue strong,
+#rules strong,
+#about b,
+#venue b,
+#rules b{
+ font-family: 'proxima_nova_rgbold';
 }
 
 .main-content #venue ul li ul{
