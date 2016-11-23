@@ -177,6 +177,7 @@
             }, 500);
         });
             
+        console.log(end_date);
         if(event_id > 0){
             chartCategory(event_id, start_date, end_date);
             chartPayment(event_id, start_date, end_date);
@@ -276,74 +277,76 @@
             dataType: 'json',
             data:{'event':event_id, 'start_date':start, 'end_date':end},
             success: function (response) {
-                var cat = document.getElementById("category_chart").getContext("2d");
-                var data = response.data;
-                bgChart();
-                //showTooltips();
-                var catChart = new Chart(cat, {
-                    type: 'line',
-                    data: data,
-                    options: {
-                        responsive: true,
-                        // showAllTooltips: true,
-                        // tooltips: {
-                        //     callbacks: {
-                        //         title: function (tooltipItem, data) { 
-                        //             return ''; 
-                        //         },
-                        //         label: function(tooltipItem, data) {
-                        //             return tooltipItem.yLabel;
-                        //         }
-                        //     }
-                        // },
-                        layout:{
-                            padding: 20,
-                        },
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero:true,
-                                }
-                            }],
-                            xAxes: [{
-                                ticks: {
-                                    autoSkip: false,
-                                }
-                            }]
-                        },
-                        legend: {
-                            display: true,
-                            position: 'bottom',
-                            labels: {
-                                fontColor: 'rgb(0, 0, 0)'
-                            }
-                        },
-                        animation: {
-                            onComplete: function (animation) { 
-
-                                var image = this.toBase64Image();
-                                document.getElementById("category_chart_img").src=image;
-                                var uriChart = "{{ URL::route('admin-report-tixtrack-image') }}";
-                                $.ajax({
-                                    url: uriChart,
-                                    type: "post",
-                                    dataType: 'json',
-                                    data:{'event':event_id, 'start_date':start, 'end_date':end, 'category': image},
-                                    success: function (response) {
-                                        response.message;
-                                        HoldOn.close();
-                                    },
-                                    error: function(response){
-                                        $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
-                                        HoldOn.close();
+                if(response.data != ''){
+                    var cat = document.getElementById("category_chart").getContext("2d");
+                    var data = response.data;
+                    bgChart();
+                    //showTooltips();
+                    var catChart = new Chart(cat, {
+                        type: 'line',
+                        data: data,
+                        options: {
+                            responsive: true,
+                            // showAllTooltips: true,
+                            // tooltips: {
+                            //     callbacks: {
+                            //         title: function (tooltipItem, data) { 
+                            //             return ''; 
+                            //         },
+                            //         label: function(tooltipItem, data) {
+                            //             return tooltipItem.yLabel;
+                            //         }
+                            //     }
+                            // },
+                            layout:{
+                                padding: 20,
+                            },
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero:true,
                                     }
-                                });
-                            }
-                        }
+                                }],
+                                xAxes: [{
+                                    ticks: {
+                                        autoSkip: false,
+                                    }
+                                }]
+                            },
+                            legend: {
+                                display: true,
+                                position: 'bottom',
+                                labels: {
+                                    fontColor: 'rgb(0, 0, 0)'
+                                }
+                            },
+                            animation: {
+                                onComplete: function (animation) { 
 
-                    }
-                });
-                //HoldOn.close();
+                                    var image = this.toBase64Image();
+                                    document.getElementById("category_chart_img").src=image;
+                                    var uriChart = "{{ URL::route('admin-report-tixtrack-image') }}";
+                                    $.ajax({
+                                        url: uriChart,
+                                        type: "post",
+                                        dataType: 'json',
+                                        data:{'event':event_id, 'start_date':start, 'end_date':end, 'category': image},
+                                        success: function (response) {
+                                            response.message;
+                                            HoldOn.close();
+                                        },
+                                        error: function(response){
+                                            $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
+                                            HoldOn.close();
+                                        }
+                                    });
+                                }
+                            }
+
+                        }
+                    });
+                    //HoldOn.close();
+                }
             },
             error: function(response){
                 HoldOn.close();
@@ -361,73 +364,75 @@
             dataType: 'json',
             data:{'event':event_id, 'start_date':start, 'end_date':end},
             success: function (response) {
-                var cat = document.getElementById("payment_chart").getContext("2d");
-                var data = response.data;
-                bgChart();
-                //showTooltips();
-                var catChart = new Chart(cat, {
-                    type: 'line',
-                    data: data,
-                    options: {
-                        responsive: true,
-                        // showAllTooltips: true,
-                        // tooltips: {
-                        //     callbacks: {
-                        //         title: function (tooltipItem, data) { 
-                        //             return ''; 
-                        //         },
-                        //         label: function(tooltipItem, data) {
-                        //             return tooltipItem.yLabel;
-                        //         }
-                        //     }
-                        // },
-                        layout:{
-                            padding: 20,
-                        },
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero:true,
-                                }
-                            }],
-                            xAxes: [{
-                                ticks: {
-                                    autoSkip: false,
-                                }
-                            }]
-                        },
-                        legend: {
-                            display: true,
-                            position: 'bottom',
-                            labels: {
-                                fontColor: 'rgb(0, 0, 0)'
-                            }
-                        },
-                        animation: {
-                            onComplete: function (animation) { 
-                                var image = this.toBase64Image();
-                                document.getElementById("payment_chart_img").src=image;
-                                var uriChart = "{{ URL::route('admin-report-tixtrack-image') }}";
-                                $.ajax({
-                                    url: uriChart,
-                                    type: "post",
-                                    dataType: 'json',
-                                    data:{'event':event_id, 'start_date':start, 'end_date':end, 'payment': image},
-                                    success: function (response) {
-                                        response.message;
-                                        HoldOn.close();
-                                    },
-                                    error: function(response){
-                                        $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
-                                        HoldOn.close();
+                if(response.data != ''){
+                    var cat = document.getElementById("payment_chart").getContext("2d");
+                    var data = response.data;
+                    bgChart();
+                    //showTooltips();
+                    var catChart = new Chart(cat, {
+                        type: 'line',
+                        data: data,
+                        options: {
+                            responsive: true,
+                            // showAllTooltips: true,
+                            // tooltips: {
+                            //     callbacks: {
+                            //         title: function (tooltipItem, data) { 
+                            //             return ''; 
+                            //         },
+                            //         label: function(tooltipItem, data) {
+                            //             return tooltipItem.yLabel;
+                            //         }
+                            //     }
+                            // },
+                            layout:{
+                                padding: 20,
+                            },
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero:true,
                                     }
-                                });
-                                savePdf(event_id, start, end);
+                                }],
+                                xAxes: [{
+                                    ticks: {
+                                        autoSkip: false,
+                                    }
+                                }]
+                            },
+                            legend: {
+                                display: true,
+                                position: 'bottom',
+                                labels: {
+                                    fontColor: 'rgb(0, 0, 0)'
+                                }
+                            },
+                            animation: {
+                                onComplete: function (animation) { 
+                                    var image = this.toBase64Image();
+                                    document.getElementById("payment_chart_img").src=image;
+                                    var uriChart = "{{ URL::route('admin-report-tixtrack-image') }}";
+                                    $.ajax({
+                                        url: uriChart,
+                                        type: "post",
+                                        dataType: 'json',
+                                        data:{'event':event_id, 'start_date':start, 'end_date':end, 'payment': image},
+                                        success: function (response) {
+                                            response.message;
+                                            HoldOn.close();
+                                        },
+                                        error: function(response){
+                                            $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
+                                            HoldOn.close();
+                                        }
+                                    });
+                                    savePdf(event_id, start, end);
+                                }
                             }
                         }
-                    }
-                });
-                //HoldOn.close();
+                    });
+                    //HoldOn.close();
+                }
             },
             error: function(response){
                 HoldOn.close();
