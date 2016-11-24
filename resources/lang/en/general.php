@@ -296,6 +296,7 @@ return [
     'new_release' => 'New Release',
     'export_to_excel' => 'Export to Excel',
     'export_to_pdf' => 'Export to Pdf',
-    'print' => 'Print'
+    'print' => 'Print',
+    'preview' => 'Preview'.
 
 ];
