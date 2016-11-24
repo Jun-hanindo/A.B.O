@@ -199,7 +199,7 @@
                 //$('#pdf-frame').attr('src', response.data+'#zoom=100');
                 //$('#pdf-frame').attr('src', 'http://docs.google.com/gview?url='+response.data+'&embedded=true')
                 //$('#preview-body').html('<iframe id="pdf-frame" src="'+response.data+'#zoom=100'+'" style="width:850px; height:600px;" frameborder="0"></iframe>');
-                $('#preview-body').html('<iframe id="pdf-frame" src="http://docs.google.com/gview?url='+response.data+'&embedded=true&print=true" style="width:850px; height:600px;" frameborder="0"></iframe>');
+                $('#preview-body').html('<iframe id="pdf-frame" src="http://docs.google.com/gview?url='+response.data+'&embedded=true" style="width:850px; height:600px;" frameborder="0"></iframe>');
                 //$('#preview-body').html('<iframe id="pdf-frame" src="http://online.verypdf.com/app/reader/?url='+response.data+'&embedded=true" style="width:850px; height:600px;" frameborder="0"></iframe>');
                 HoldOn.close();
             },
