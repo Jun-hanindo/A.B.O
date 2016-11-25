@@ -110,7 +110,7 @@ class UpdateTixtrack extends Command
                                         $lastMember = $modelCustomer->getLastCustomerAccount($account_id);
                                         $filenameMember = 'Download_member_'.date('Y-m-d-H-i-s').'.csv';
                                         $file_member = $pathDest.'/'.$filenameMember;
-                                        $file_member = chmod($file_member, 777);
+                                        //$file_member = chmod(dirname(__DIR__)."/".$file_member, 777);
                                         if(!empty($lastMember)){
                                             $member = [
                                                 "ID" => 0,
@@ -158,7 +158,7 @@ class UpdateTixtrack extends Command
                                     //download transaction
                                         $filenameTransaction = 'Download_transaction_'.date('Y-m-d-H-i-s').'.csv';
                                         $file_transaction = $pathDest.'/'.$filenameTransaction;
-                                        $file_transaction = chmod($file_member, 777);
+                                        //$file_transaction = chmod(dirname(__DIR__)."/".$file_member, 777);
                                         $lastTransaction = $modelOrder->getLastOrderAccount($account_id);
                                         if(!empty($lastTransaction)){
                                             $transaction = [
