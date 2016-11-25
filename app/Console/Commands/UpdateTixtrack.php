@@ -233,6 +233,8 @@ class UpdateTixtrack extends Command
                                                 }
                                             }
                                             $this->info('Download and Import Member success!');
+
+                                            File::delete($pathDest.'/'.$filenameMember);
                                         }else{
                                             $this->error('Download and Import Member failed');
                                         }
@@ -318,6 +320,8 @@ class UpdateTixtrack extends Command
                                                 }
                                             }
                                             $this->info('Download and Import Transaction success!');
+
+                                            File::delete($pathDest.'/'.$filenameTransaction);
                                         }else{
                                             $this->error('Download and Import Transaction failed');
                                         }
