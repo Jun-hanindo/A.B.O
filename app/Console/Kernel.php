@@ -31,8 +31,8 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('tixtracks:update')
             //->everyFiveMinutes();
-            ->everyFiveMinutes()->withoutOverlapping();
-            //->cron('*/15 * * * * *')->withoutOverlapping();
+            //->everyFiveMinutes()->withoutOverlapping();
+            ->cron('*/15 * * * * *')->withoutOverlapping();
 
         // $schedule->command('command:log')
         //     ->everyFiveMinutes();
