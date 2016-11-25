@@ -16,8 +16,8 @@ class Kernel extends ConsoleKernel
         // Commands\Inspire::class,
 
         // Commands\SendBroadcastDirectory::class,
-        \App\Console\Commands\UpdateTixtrack::class,
-        \App\Console\Commands\LogCommand::class,
+        //\App\Console\Commands\UpdateTixtrack::class,
+        //\App\Console\Commands\LogCommand::class,
     ];
 
     /**
@@ -29,10 +29,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
-        $schedule->command('tixtracks:update')
-            //->everyFiveMinutes();
-            //->everyFiveMinutes()->withoutOverlapping();
-            ->cron('*/15 * * * * *')->withoutOverlapping();
+        // $schedule->command('tixtracks:update')
+        //     //->everyFiveMinutes();
+        //     //->everyFiveMinutes()->withoutOverlapping();
+        //     ->cron('*/15 * * * * *')->withoutOverlapping();
 
         // $schedule->command('command:log')
         //     ->everyFiveMinutes();
