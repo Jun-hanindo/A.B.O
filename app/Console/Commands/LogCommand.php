@@ -45,5 +45,6 @@ class LogCommand extends Command
         });
 
         \Log::info(\Request::all());
+        $this->info('Success!');
     }
 }

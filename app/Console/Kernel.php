@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
 
         // Commands\SendBroadcastDirectory::class,
         \App\Console\Commands\UpdateTixtrack::class,
-        //Commands\LogCommand::class,
+        \App\Console\Commands\LogCommand::class,
     ];
 
     /**
