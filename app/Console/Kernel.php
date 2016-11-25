@@ -31,7 +31,8 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('tixtracks:update')
             // ->everyTenMinutes();
-            ->cron('*/15 * * * * *')->withoutOverlapping();
+            ->everyFiveMinutes()->withoutOverlapping();
+            //->cron('*/15 * * * * *')->withoutOverlapping();
 
         $schedule->call(function () {
             \Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
