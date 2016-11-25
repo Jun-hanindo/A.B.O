@@ -5,16 +5,16 @@ namespace App\Http\Controllers\Backend\Admin\TixTrack;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Models\TixtrackAccount;
+use App\Models\TixtrackLoginAccount;
 use App\Models\LogActivity;
 use App\Models\Trail;
 use App\Http\Controllers\Backend\Admin\BaseController;
-use App\Http\Requests\Backend\admin\tixtrack\AccountRequest;
+use App\Http\Requests\Backend\admin\tixtrack\LoginAccountRequest;
 
-class AccountsController extends BaseController
+class LoginAccountsController extends BaseController
 {
 
-    public function __construct(TixtrackAccount $model)
+    public function __construct(TixtrackLoginAccount $model)
     {
         parent::__construct($model);
 
@@ -27,7 +27,7 @@ class AccountsController extends BaseController
     public function index()
     {
         try{
-            $trail = 'List Account';
+            $trail = 'List Login Account';
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
         } catch (\Exception $e) {
@@ -44,8 +44,8 @@ class AccountsController extends BaseController
     {
             return datatables($this->model->datatables())
                 ->addColumn('action', function ($account) {
-                    return '<a href="javascript:void(0)" data-id="'.$account->id.'" data-name="'.$account->name.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
-                        &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$account->id.'" data-name="'.$account->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                    return '<a href="javascript:void(0)" data-id="'.$account->id.'" data-name="'.$account->email.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
+                        &nbsp;<a href="#" class="btn btn-danger btn-xs actDeleteLogin" title="Delete" data-id="'.$account->id.'" data-name="'.$account->email.'"><i class="fa fa-trash-o fa-fw"></i></a>';
                 })
                 ->make(true);
     }
@@ -56,18 +56,18 @@ class AccountsController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AccountRequest $req)
+    public function store(LoginAccountRequest $req)
     {
         //
         $param = $req->all();
         
         try{
-            $saveData = $this->model->insertNewTixtrackAccount($param);
+            $saveData = $this->model->insertNewTixtrackLoginAccount($param);
         // if(!empty($saveData))
         // {
 
             $log['user_id'] = $this->currentUser->id;
-            $log['description'] = 'Tixtrack Account "'.$saveData->name.'" was created';
+            $log['description'] = 'Tixtrack Login Account "'.$saveData->email.'" was created';
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
@@ -75,7 +75,7 @@ class AccountsController extends BaseController
                 'code' => 200,
                 'status' => 'success',
                 'last_id' => $saveData->id,
-                'message' => '<strong>'.$saveData->name.'</strong> '.trans('general.save_success')
+                'message' => '<strong>'.$saveData->email.'</strong> '.trans('general.save_success')
             ],200);
         
         //} else {
@@ -104,12 +104,7 @@ class AccountsController extends BaseController
     public function edit($id)
     {
         try{
-            $data = $this->model->findTixtrackAccountByID($id);
-            if(!empty($data->loginAccount->email)) {
-                $data->email = $data->loginAccount->email;
-            } else {
-                $data->email = '';
-            }
+            $data = $this->model->findTixtrackLoginAccountByID($id);
 
             return response()->json([
                 'code' => 200,
@@ -141,16 +136,16 @@ class AccountsController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AccountRequest $req, $id)
+    public function update(LoginAccountRequest $req, $id)
     {
         $param = $req->all();
         try{
-            $updateData = $this->model->updateTixtrackAccount($param,$id);
+            $updateData = $this->model->updateTixtrackLoginAccount($param,$id);
         // if(!empty($updateData)) 
         // {
 
             $log['user_id'] = $this->currentUser->id;
-            $log['description'] = 'Tixtrack Account "'.$updateData->name.'" was updated';
+            $log['description'] = 'Tixtrack Login Account "'.$updateData->email.'" was updated';
             //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
@@ -158,7 +153,7 @@ class AccountsController extends BaseController
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
-                'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
+                'message' => '<strong>'.$updateData->email.'</strong> '.trans('general.update_success')
             ],200);
         
         //} else {
@@ -190,15 +185,20 @@ class AccountsController extends BaseController
             $data = $this->model->deleteByID($id);
         //if(!empty($data)) {
 
-            flash()->success(trans('general.delete_success'));
-
             $log['user_id'] = $this->currentUser->id;
-            $log['description'] = 'Tixtrack Account "'.$data->name.'" was deleted';
+            $log['description'] = 'Tixtrack Account "'.$data->email.'" was deleted';
             //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            return redirect()->route('admin-index-tixtrack-account');
+
+            \Session::flash('error-login_account', trans('general.delete_success'));
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => '<strong>'.$data->email.'</strong> '.trans('general.delete_success')
+            ],200);
 
         //} else {
         } catch (\Exception $e) {
@@ -210,9 +210,30 @@ class AccountsController extends BaseController
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            return redirect()->route('admin-index-tixtrack-account');
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.data_not_found')
+            ],400);
 
         }
+    }
+
+    public function combo(Request $request){
+        $term = $request->q;
+        
+        $results = TixtrackLoginAccount::where('email', 'ilike', '%'.$term.'%')/*->where('status', true)*/->get();
+
+        foreach ($results as $result) {
+            $data[] = array('id'=>$result->id,'text'=>$result->email);
+        }
+        
+        
+        $resData = array(
+            "success" => true,
+            "results" => $data);
+
+        return json_encode($resData);
     }
 
 }

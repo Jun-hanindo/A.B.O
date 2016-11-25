@@ -274,6 +274,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::post('account/{id}/update', array('as' => 'admin-update-tixtrack-account', 'uses' => 'AccountsController@update'));
         Route::delete('account/{id}/delete', array('as' => 'admin-delete-tixtrack-account', 'uses' => 'AccountsController@destroy'));
 
+        Route::get('login-account', array('as' => 'admin-index-tixtrack-login-account', 'uses' => 'LoginAccountsController@index'));
+        Route::get('login-account/create', array('as' => 'admin-create-tixtrack-login-account', 'uses' => 'LoginAccountsController@create'));
+        Route::post('login-account/store', array('as' => 'admin-post-tixtrack-login-account', 'uses' => 'LoginAccountsController@store'));
+        Route::get('login-account/{id}/edit', array('as' => 'admin-edit-tixtrack-login-account', 'uses' => 'LoginAccountsController@edit'));
+        Route::post('login-account/{id}/update', array('as' => 'admin-update-tixtrack-login-account', 'uses' => 'LoginAccountsController@update'));
+        Route::delete('login-account/{id}/delete', array('as' => 'admin-delete-tixtrack-login-account', 'uses' => 'LoginAccountsController@destroy'));
+        Route::get('login-account-combo', array('as' => 'admin-list-combo-tixtrack-login-account', 'uses' => 'LoginAccountsController@combo'));
+
         Route::get('list', array('as' => 'admin-index-tixtrack', 'uses' => 'ReportsController@index'));
         Route::get('report', array('as' => 'admin-report-tixtrack', 'uses' => 'ReportsController@report'));
         //Route::get('report-event', array('as' => 'admin-report-tixtrack-event', 'uses' => 'ReportsController@report'));

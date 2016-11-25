@@ -108,6 +108,9 @@
 .center-align {
     text-align: center;
 }
+.left-align {
+    text-align: left !important;
+}
 #modal-preview .modal-content{
     width: 880px;
 }
@@ -320,4 +323,7 @@ page {
 }
 .report-box #footer{
     display: none;
+}
+.width-percent-12{
+    width: 12% !important;
 }

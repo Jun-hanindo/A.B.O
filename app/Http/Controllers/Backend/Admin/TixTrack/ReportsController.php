@@ -69,11 +69,10 @@ class ReportsController extends BaseController
     {
         $modelMember = new TixtrackCustomer();
         $param = $req->all();
-        $account = $param['account_id'];
-        if($account == 0){
-            $model = $modelMember->datatables();
+        if(!empty($param)){
+            $model = $modelMember->datatablesFilter($param);
         }else{
-            $model = $modelMember->datatablesAccount($account);
+            $model = $modelMember->datatables();
         }
         return datatables($model)
             ->addColumn('action', function ($member) {
@@ -86,15 +85,15 @@ class ReportsController extends BaseController
     {
         $modelTransaction = new TixtrackOrder();
         $param = $req->all();
-        $account = $param['account_id'];
-        if($account == 0){
-            $model = $modelTransaction->datatables();
+        if(!empty($param)){
+            $model = $modelTransaction->datatablesFilter($param);
         }else{
-            $model = $modelTransaction->datatablesAccount($account);
+            $model = $modelTransaction->datatables();
         }
         return datatables($model)
-            ->addColumn('action', function ($transaction) {
-                
+            ->editColumn('local_created', function($data){
+                $date = short_text_date_time($data->local_created);
+                return $date;
             })
             ->filterColumn('customer', function($query, $keyword) {
                 $query->whereRaw("LOWER(CAST(CONCAT(tixtrack_orders.first_name, ' ', tixtrack_orders.last_name) as TEXT)) ilike ?", ["%{$keyword}%"]);
@@ -174,9 +173,9 @@ class ReportsController extends BaseController
             $dateCats = $modelOrder->getCategoryByEvent($event_id, $start_date, $end_date);
 
             foreach ($dateCats as $key => $value) {
-                $date = date('d-m-y', strtotime($value->local_created))." | ".date('d-m-y, g:ia', strtotime($value->event_date));
-                $full_amount = 'Full Amount:';
-                $disc_amount = 'Discounted Amt:';
+                $date = date('D, d-M-Y', strtotime($value->local_created));
+                // $full_amount = 'Full Amount:';
+                // $disc_amount = 'Discounted Amt:';
                 $quantity = 'Quantity:';
                 $labels[] = [
                     // $date." | ".$full_amount,
@@ -248,9 +247,9 @@ class ReportsController extends BaseController
             $datePays = $modelOrder->getPaymentByEvent($event_id, $start_date, $end_date);
 
             foreach ($datePays as $key => $value) {
-                $date = date('d-m-Y', strtotime($value->local_created))." | ".date('d-m-Y, g:ia', strtotime($value->event_date));
-                $full_amount = 'Full Amount:';
-                $disc_amount = 'Discounted Amt:';
+                $date = date('D, d-M-Y', strtotime($value->local_created));
+                // $full_amount = 'Full Amount:';
+                // $disc_amount = 'Discounted Amt:';
                 $quantity = 'Quantity:';
                 $labels[] = [
                     // $date." | ".$full_amount,
@@ -339,9 +338,9 @@ class ReportsController extends BaseController
             $data = array();
             if(!$datePros->isEmpty()){
                 foreach ($datePros as $key => $value) {
-                    $date = date('d-m-Y', strtotime($value->local_created))." | ".date('d-m-Y, g:ia', strtotime($value->event_date));
-                    $full_amount = 'Full Amount:';
-                    $disc_amount = 'Discounted Amt:';
+                    $date = date('D, d-M-Y', strtotime($value->local_created));
+                    // $full_amount = 'Full Amount:';
+                    // $disc_amount = 'Discounted Amt:';
                     $quantity = 'Quantity:';
                     $labels[] = [
                         // $date." | ".$full_amount,

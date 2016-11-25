@@ -298,5 +298,11 @@ return [
     'export_to_pdf' => 'Export to Pdf',
     'print' => 'Print',
     'preview' => 'Preview',
+    'local_created' => 'Local Created',
+    'order_status' => 'Order Status',
+    'order_item_type' => 'Order Item Type',
+    'login_account' => 'Login Account',
+    'login_accounts' => 'Login Accounts',
+    'password' => 'Password',
 
 ];

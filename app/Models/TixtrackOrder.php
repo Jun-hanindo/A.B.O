@@ -38,18 +38,40 @@ class TixtrackOrder extends Model
     {
 
         return static::select('id', 'order_id', 'first_name', 'last_name', 'event_name', 'price', 
-            DB::RAW("CONCAT(first_name, ' ', last_name)  as customer"))
+            DB::RAW("CONCAT(first_name, ' ', last_name)  as customer"), 'local_created', 'order_item_type', 'order_status')
             /*->orderBy('order_id', 'asc')*/;
     
     }
 
-    function datatablesAccount($account_id)
+    function datatablesFilter($param)
     {
 
-        return static::select('id', 'order_id', 'first_name', 'last_name', 'event_name', 'price', 
-            DB::RAW("CONCAT(first_name, ' ', last_name)  as customer"))
-            ->where('account_id', $account_id)
-            /*->orderBy('order_id', 'asc')*/;
+        $query = TixtrackOrder::select('id', 'order_id', 'first_name', 'last_name', 'event_name', 'price', 
+            DB::RAW("CONCAT(first_name, ' ', last_name)  as customer"), 'local_created', 'order_item_type', 'order_status');
+
+        if($param['account_id'] > 0){
+            $query->where('account_id', $param['account_id']);
+        }
+
+        if($param['order_status'] != 'all'){
+            $query->where('order_status', $param['order_status']);
+
+        }
+
+        if($param['order_item_type'] != 'all'){
+            $query->where('order_item_type', $param['order_item_type']);
+        }
+
+        if($param['local_created'] != '' && date('Y-m-d', strtotime($param['local_created'])) == $param['local_created']){
+            $query->where(DB::RAW('DATE(local_created)'), $param['local_created']);
+        }
+
+        $data = $query->get();
+        return $data;
+        // return static::select('id', 'order_id', 'first_name', 'last_name', 'event_name', 'price', 
+        //     DB::RAW("CONCAT(first_name, ' ', last_name)  as customer"))
+        //     ->where('account_id', $account_id)
+            /*->orderBy('order_id', 'asc');*/
     
     }
 
@@ -82,6 +104,19 @@ class TixtrackOrder extends Model
 
     //     return $data;
     // }
+
+    public function getLastOrderAccount($account_id){
+        $data = TixtrackOrder::where('account_id', $account_id)->orderBy('order_id', 'desc')->first();
+        if (!empty($data)) {
+        
+            return $data;
+        
+        } else {
+        
+            return false;
+
+        }
+    }
 
     public function deleteByAccount($account_id){
         $data = TixtrackOrder::select('order_id')->where('account_id', $account_id)->delete();

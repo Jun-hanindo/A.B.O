@@ -21,12 +21,19 @@ class TixtrackAccount extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
+
+    public function loginAccount()
+    {
+        return $this->belongsTo('App\Models\TixtrackLoginAccount', 'login_account_id');
+
+    }
     
 
     function datatables()
     {
 
-        return static::select('id', 'name', 'account_id');
+        return static::select('tixtrack_accounts.id as id', 'name', 'account_id', 'email')
+            ->leftJoin('tixtrack_login_accounts', 'tixtrack_accounts.login_account_id','=','tixtrack_login_accounts.id');
             // ->orderBy('name', 'asc');
     
     }
@@ -40,6 +47,7 @@ class TixtrackAccount extends Model
     {
         $this->name = $param['name'];
         $this->account_id = $param['account_id'];
+        $this->login_account_id = $param['login_account_id'];
 
         if($this->save()){
             return $this;
@@ -69,6 +77,7 @@ class TixtrackAccount extends Model
         if (!empty($data)) {
             $data->name = $param['name'];
             $data->account_id = $param['account_id'];
+            $data->login_account_id = $param['login_account_id'];
 
             if($data->save()){
 
@@ -124,5 +133,18 @@ class TixtrackAccount extends Model
     public static function dropdown()
     {
         return static::select('id', 'name')->orderBy('name')->get();
+    }
+
+    public function getTixtrack(){
+        $data = TixtrackAccount::get();
+        if (!empty($data)) {
+        
+            return $data;
+        
+        } else {
+        
+            return false;
+
+        }
     }
 }

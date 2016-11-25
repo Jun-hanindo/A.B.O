@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         // Commands\Inspire::class,
 
         // Commands\SendBroadcastDirectory::class,
+        Commands\UpdateTixtrack::class,
     ];
 
     /**
@@ -28,6 +29,9 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command('tixtracks:update')
+            // ->everyTenMinutes();
+            ->cron('*/15 * * * * *')->withoutOverlapping();
 
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Backend\admin\TixTrack;
 
 use App\Http\Requests\Request;
 
-class AccountRequest extends Request
+class LoginAccountRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class AccountRequest extends Request
     public function rules()
     {
         return [
-            'account_id' => 'required',
-            'name' => 'required',
-            'login_account_id' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
         ];
     }
 }

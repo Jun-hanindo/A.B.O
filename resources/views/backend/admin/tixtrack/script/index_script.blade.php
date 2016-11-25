@@ -11,8 +11,25 @@
             loadDataMember();
         });
 
-        $('#account_id_order').on('change', function () {
+        $('#account_id_order, #order_status, #order_item_type').on('change', function () {
             loadDataTransaction();
+        });
+
+        var current_date = "{{ date('Y-m-d') }}";
+
+        $('#local_created').datepicker({
+            format: "yyyy-mm-dd",
+            endDate: current_date,
+        }).on('changeDate', function(){
+            loadDataTransaction();
+        });
+
+        $('#local_created').on('keyup', function () {
+            loadDataTransaction();
+        });
+
+        $('#customer_id, #first_name, #last_name, #email').on('keyup', function () {
+            loadDataMember();
         });
 
     });
@@ -20,6 +37,10 @@
     function loadDataMember()
     {
         var account_id = $('select[name=account_id_member]').val();
+        var email = $('input[name=email]').val();
+        var first_name = $('input[name=first_name]').val();
+        var last_name = $('input[name=last_name]').val();
+        var customer_id = $('input[name=customer_id]').val();
         $.fn.dataTable.ext.errMode = 'none';
         $('#member-datatables').on('error.dt', function(e, settings, techNote, message) {
             $.ajax({
@@ -45,6 +66,10 @@
                 url: '{!! URL::route("datatables-tixtrack-member") !!}',
                 data: {
                     'account_id': account_id,
+                    'customer_id': customer_id,
+                    'first_name': first_name,
+                    'last_name': last_name,
+                    'email': email,
                 }
             },
             columns: [
@@ -62,6 +87,9 @@
     function loadDataTransaction()
     {
         var account_id = $('select[name=account_id_order]').val();
+        var order_status = $('select[name=order_status]').val();
+        var order_item_type = $('select[name=order_item_type]').val();
+        var local_created = $('input[name=local_created]').val();
 
         $.fn.dataTable.ext.errMode = 'none';
         $('#transaction-datatables').on('error.dt', function(e, settings, techNote, message) {
@@ -84,17 +112,24 @@
         $('#transaction-datatables').DataTable({
             processing: true,
             serverSide: true,
+            order: [[ 0, 'desc' ]],
             ajax: {
                 url: '{!! URL::route("datatables-tixtrack-transaction") !!}',
                 data: {
                     'account_id': account_id,
+                    'order_status': order_status,
+                    'order_item_type' : order_item_type,
+                    'local_created' : local_created,
                 }
             },
             columns: [
                 {data: 'order_id', name: 'order_id'},
+                {data: 'local_created', name: 'local_created'},
                 {data: 'event_name', name: 'event_name'},
                 {data: 'customer', name: 'customer'},
                 {data: 'price', name: 'price'},
+                {data: 'order_item_type', name: 'order_item_type'},
+                {data: 'order_status', name: 'order_status'},
                 // {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
             ],
         });
