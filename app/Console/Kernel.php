@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
         // Commands\Inspire::class,
 
         // Commands\SendBroadcastDirectory::class,
-        Commands\UpdateTixtrack::class,
+        \App\Console\Commands\UpdateTixtrack::class,
         //Commands\LogCommand::class,
     ];
 
@@ -32,9 +32,6 @@ class Kernel extends ConsoleKernel
         $schedule->command('tixtracks:update')
             // ->everyTenMinutes();
             ->cron('*/15 * * * * *')->withoutOverlapping();
-
-        $schedule->command('command:log')
-            ->everyMinute();
 
         $schedule->call(function () {
             \Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
