@@ -43,7 +43,7 @@ class Kernel extends ConsoleKernel
             });
 
             \Log::info(\Request::all());
-        })->cron('*/2 * * * * *');
+        })everyFiveMinutes();
 
     }
 }
