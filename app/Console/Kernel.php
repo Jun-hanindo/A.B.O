@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
 
         // Commands\SendBroadcastDirectory::class,
         Commands\UpdateTixtrack::class,
-        Commands\LogCommand::class,
+        //Commands\LogCommand::class,
     ];
 
     /**
@@ -35,6 +35,17 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('command:log')
             ->everyMinute();
+
+        $schedule->call(function () {
+            \Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
+               \Log::info([
+                'sql' => $query->sql,
+                'bindings' => $query->bindings,
+                'time' => $query->time]);
+            });
+
+            \Log::info(\Request::all());
+        })->everyMinute();
 
     }
 }
