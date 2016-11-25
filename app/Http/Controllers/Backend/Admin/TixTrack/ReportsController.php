@@ -162,50 +162,107 @@ class ReportsController extends BaseController
         }
     }
 
+    // public function chartCategory(Request $req){
+    //     $param = $req->all();
+    //     if(!empty($param)){
+    //         $event_id = $param['event'];
+    //         $start_date = $param['start_date'];
+    //         $end_date = $param['end_date'];
+    //         $modelOrder = new TixtrackOrder();
+    //         $cats = $modelOrder->getCategoryEvent($event_id, $start_date, $end_date);
+    //         $dateCats = $modelOrder->getCategoryByEvent($event_id, $start_date, $end_date);
+
+    //         foreach ($dateCats as $key => $value) {
+    //             $date = date('D,d-M-y', strtotime($value->local_created));
+    //             // $full_amount = 'Full Amount:';
+    //             // $disc_amount = 'Discounted Amt:';
+    //             //$quantity = 'Quantity:';
+    //             $labels[] = [
+    //                 // $date." | ".$full_amount,
+    //                 // $date." | ".$disc_amount,
+    //                 $date/*." | ".$quantity*/,
+    //             ];
+
+    //             $totals[] = [
+    //                 // $value->full_price,
+    //                 // $value->price,
+    //                 $value->ticket_quantity,
+    //             ];
+
+    //             // $categories[] = array_flatten($cat);
+
+    //         }  
+
+    //         //$totals = array_flatten($totals);
+    //         //$set['total'] = $totals; 
+
+    //         $data['labels'] = array_flatten($labels);     
+
+    //         foreach ($cats as $key => $value) {
+    //             $categories[] = $value->price_level_name;
+    //             foreach ($dateCats as $key2 => $value2) {
+    //                 $date = date('d-m-Y', strtotime($value2->local_created)).'|'.date('d-m-Y, g:ia', strtotime($value2->event_date));
+    //                 $amount = $modelOrder->amountByCategory($event_id, $value->price_level_name, $value2->local_created, $value2->event_date);
+    //                 $amounts[$date] = [
+    //                     // $amount->full_price, 
+    //                     // $amount->price,
+    //                     $amount->ticket_quantity
+    //                 ];
+    //             }
+    //             $data['datasets'][] = [
+    //                 'label' => $value->price_level_name,
+    //                 'borderColor' => rand_color(),
+    //                 'fill' => false,
+    //                 'fillColor' => "rgba(220,220,220,0)",
+    //                 'data' => array_flatten($amounts)
+    //             ];
+    //         } 
+
+    //         // $data['datasets'][] = [
+    //         //     'label' => 'Total',
+    //         //     'borderColor' => rand_color(),
+    //         //     'fill' => false,
+    //         //     'fillColor' => "rgba(220,220,220,0)",
+    //         //     'data' => array_flatten($totals),
+    //         // ];
+ 
+    //         return response()->json([
+    //             'code' => 200,
+    //             'status' => 'success',
+    //             'message' => 'Success',
+    //             'data' => $data
+    //         ],200);
+    //     }
+    // }
     public function chartCategory(Request $req){
         $param = $req->all();
         if(!empty($param)){
+            // $param['event'] = 50748;
+            // $param['start_date'] = '2016-11-18';
+            // $param['end_date'] = '2016-11-25';
             $event_id = $param['event'];
             $start_date = $param['start_date'];
             $end_date = $param['end_date'];
             $modelOrder = new TixtrackOrder();
             $cats = $modelOrder->getCategoryEvent($event_id, $start_date, $end_date);
-            $dateCats = $modelOrder->getCategoryByEvent($event_id, $start_date, $end_date);
+            $dates = $modelOrder->getDateGroupLocal($event_id, $start_date, $end_date);
 
-            foreach ($dateCats as $key => $value) {
-                $date = date('D, d-M-Y', strtotime($value->local_created));
-                // $full_amount = 'Full Amount:';
-                // $disc_amount = 'Discounted Amt:';
-                $quantity = 'Quantity:';
+            foreach ($dates as $key => $value) {
+                $date = date('D,d-M-y', strtotime($value->local_created));
                 $labels[] = [
-                    // $date." | ".$full_amount,
-                    // $date." | ".$disc_amount,
-                    $date." | ".$quantity,
+                    $date,
                 ];
-
-                $totals[] = [
-                    // $value->full_price,
-                    // $value->price,
-                    $value->ticket_quantity,
-                ];
-
-                // $categories[] = array_flatten($cat);
 
             }  
-
-            //$totals = array_flatten($totals);
-            //$set['total'] = $totals; 
 
             $data['labels'] = array_flatten($labels);     
 
             foreach ($cats as $key => $value) {
                 $categories[] = $value->price_level_name;
-                foreach ($dateCats as $key2 => $value2) {
-                    $date = date('d-m-Y', strtotime($value2->local_created)).'|'.date('d-m-Y, g:ia', strtotime($value2->event_date));
-                    $amount = $modelOrder->amountByCategory($event_id, $value->price_level_name, $value2->local_created, $value2->event_date);
+                foreach ($dates as $key2 => $value2) {
+                    $date = date('D,d-M-y', strtotime($value2->local_created));
+                    $amount = $modelOrder->amountByCategory($event_id, $value->price_level_name, $value2->local_created, '');
                     $amounts[$date] = [
-                        // $amount->full_price, 
-                        // $amount->price,
                         $amount->ticket_quantity
                     ];
                 }
@@ -217,14 +274,6 @@ class ReportsController extends BaseController
                     'data' => array_flatten($amounts)
                 ];
             } 
-
-            // $data['datasets'][] = [
-            //     'label' => 'Total',
-            //     'borderColor' => rand_color(),
-            //     'fill' => false,
-            //     'fillColor' => "rgba(220,220,220,0)",
-            //     'data' => array_flatten($totals),
-            // ];
  
             return response()->json([
                 'code' => 200,
@@ -235,7 +284,86 @@ class ReportsController extends BaseController
         }
     }
 
-    public function chartPayment(Request $req){
+    // public function chartPayment(Request $req){
+    //     $param = $req->all();
+    //     if(!empty($param)){
+    //         $event_id = $param['event'];
+    //         $start_date = $param['start_date'];
+    //         $end_date = $param['end_date'];
+    //         $modelOrder = new TixtrackOrder();
+    //         $modelEvent = new Event();
+    //         $pays = $modelOrder->getPaymentEvent($event_id, $start_date, $end_date);
+    //         $datePays = $modelOrder->getPaymentByEvent($event_id, $start_date, $end_date);
+
+    //         foreach ($datePays as $key => $value) {
+    //             $date = date('D,d-M-y', strtotime($value->local_created));
+    //             // $full_amount = 'Full Amount:';
+    //             // $disc_amount = 'Discounted Amt:';
+    //             //$quantity = 'Quantity:';
+    //             $labels[] = [
+    //                 // $date." | ".$full_amount,
+    //                 // $date." | ".$disc_amount,
+    //                 $date/*." | ".$quantity*/,
+    //             ];
+
+    //             $totals[] = [
+    //                 // $value->full_price,
+    //                 // $value->price,
+    //                 $value->ticket_quantity,
+    //             ];
+
+    //             // $a[] = $value->amounts;
+    //             // foreach ($value->amounts as $key2 => $value2) {
+    //             //     $cat[$key2] = [
+    //             //         $value2->full_price, $value2->price, $value2->ticket_quantity
+    //             //     ];
+    //             // }
+
+    //             // $categories[] = array_flatten($cat);
+
+    //         }  
+
+    //         $data['labels'] = array_flatten($labels);     
+
+    //         foreach ($pays as $key => $value) {
+    //             $categories[] = $value->payment_method_name;
+    //             foreach ($datePays as $key2 => $value2) {
+    //                 $date = date('d-M-Y', strtotime($value2->local_created)).'|'.date('d-M-Y, g:ia', strtotime($value2->event_date));
+    //                 $amount = $modelOrder->amountByPayment($event_id, $value->payment_method_name, $value2->local_created, $value2->event_date);
+    //                 $amounts[$date] = [
+    //                     // $amount->full_price, 
+    //                     // $amount->price,
+    //                     $amount->ticket_quantity
+    //                 ];
+    //             }
+    //             $data['datasets'][] = [
+    //                 'label' => $value->payment_method_name,
+    //                 'borderColor' => rand_color(),
+    //                 'fill' => false,
+    //                 'fillColor' => "rgba(220,220,220,0)",
+    //                 'data' => array_flatten($amounts)
+    //             ];
+    //         } 
+
+    //         // $data['datasets'][] = [
+    //         //     'label' => 'Total',
+    //         //     'borderColor' => rand_color(),
+    //         //     'fill' => false,
+    //         //     'fillColor' => "rgba(220,220,220,0)",
+    //         //     'data' => array_flatten($totals),
+    //         // ];
+
+    //         return response()->json([
+    //             'code' => 200,
+    //             'status' => 'success',
+    //             'message' => 'Success',
+    //             'data' => $data
+    //         ],200);
+    //     }
+    // }
+    
+    public function chartPayment(Request $req)
+    {
         $param = $req->all();
         if(!empty($param)){
             $event_id = $param['event'];
@@ -244,33 +372,13 @@ class ReportsController extends BaseController
             $modelOrder = new TixtrackOrder();
             $modelEvent = new Event();
             $pays = $modelOrder->getPaymentEvent($event_id, $start_date, $end_date);
-            $datePays = $modelOrder->getPaymentByEvent($event_id, $start_date, $end_date);
+            $dates = $modelOrder->getDateGroupLocal($event_id, $start_date, $end_date);
 
-            foreach ($datePays as $key => $value) {
-                $date = date('D, d-M-Y', strtotime($value->local_created));
-                // $full_amount = 'Full Amount:';
-                // $disc_amount = 'Discounted Amt:';
-                $quantity = 'Quantity:';
+            foreach ($dates as $key => $value) {
+                $date = date('D,d-M-y', strtotime($value->local_created));
                 $labels[] = [
-                    // $date." | ".$full_amount,
-                    // $date." | ".$disc_amount,
-                    $date." | ".$quantity,
+                    $date,
                 ];
-
-                $totals[] = [
-                    // $value->full_price,
-                    // $value->price,
-                    $value->ticket_quantity,
-                ];
-
-                // $a[] = $value->amounts;
-                // foreach ($value->amounts as $key2 => $value2) {
-                //     $cat[$key2] = [
-                //         $value2->full_price, $value2->price, $value2->ticket_quantity
-                //     ];
-                // }
-
-                // $categories[] = array_flatten($cat);
 
             }  
 
@@ -278,12 +386,10 @@ class ReportsController extends BaseController
 
             foreach ($pays as $key => $value) {
                 $categories[] = $value->payment_method_name;
-                foreach ($datePays as $key2 => $value2) {
-                    $date = date('d-M-Y', strtotime($value2->local_created)).'|'.date('d-M-Y, g:ia', strtotime($value2->event_date));
-                    $amount = $modelOrder->amountByPayment($event_id, $value->payment_method_name, $value2->local_created, $value2->event_date);
+                foreach ($dates as $key2 => $value2) {
+                    $date = date('D,d-M-y', strtotime($value2->local_created));
+                    $amount = $modelOrder->amountByPayment($event_id, $value->payment_method_name, $value2->local_created, '');
                     $amounts[$date] = [
-                        // $amount->full_price, 
-                        // $amount->price,
                         $amount->ticket_quantity
                     ];
                 }
@@ -296,14 +402,6 @@ class ReportsController extends BaseController
                 ];
             } 
 
-            // $data['datasets'][] = [
-            //     'label' => 'Total',
-            //     'borderColor' => rand_color(),
-            //     'fill' => false,
-            //     'fillColor' => "rgba(220,220,220,0)",
-            //     'data' => array_flatten($totals),
-            // ];
-
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
@@ -313,61 +411,126 @@ class ReportsController extends BaseController
         }
     }
 
+    // public function chartPromotion(Request $req){
+    //     $param = $req->all();
+    //     if(!empty($param)){
+    //         $event_id = $param['event'];
+    //         $start_date = $param['start_date'];
+    //         $end_date = $param['end_date'];
+    //         $modelOrder = new TixtrackOrder();
+    //         $modelEvent = new Event();
+    //         $pros = $modelOrder->getPromotionEvent($event_id, $start_date, $end_date);
+    //         $datePros = $modelOrder->getDatePromotion($event_id, $start_date, $end_date);
+    //         //$countCat = count($categories);
+    //         //$totalCats = $modelOrder->totalCategoryEvent($event_id, $start_date, $end_date);
+    //         //$event = $modelEvent->getEventByTixtrack($event_id);
+    //         // $start_date = $start_date;
+    //         // $end_date = $end_date;
+    //         // $event_id = $event_id;
+    //         //$total = $modelOrder->total($event_id, $start_date, $end_date);
+    //         $data = array();
+    //         if(!$datePros->isEmpty()){
+    //             foreach ($datePros as $key => $value) {
+    //                 $date = date('D,d-M-y', strtotime($value->local_created));
+    //                 // $full_amount = 'Full Amount:';
+    //                 // $disc_amount = 'Discounted Amt:';
+    //                 //$quantity = 'Quantity:';
+    //                 $labels[] = [
+    //                     // $date." | ".$full_amount,
+    //                     // $date." | ".$disc_amount,
+    //                     $date/*." | ".$quantity*/,
+    //                 ];
+    //                 $subtotal = $modelOrder->totalByDatePromotion($event_id, $value->local_created, $value->event_date);
 
+    //                 $totals[] = [
+    //                     // $subtotal->full_price,
+    //                     // $subtotal->price,
+    //                     $subtotal->ticket_quantity,
+    //                 ];
 
-    public function chartPromotion(Request $req){
+    //                 // $a[] = $value->amounts;
+    //                 // foreach ($value->amounts as $key2 => $value2) {
+    //                 //     $cat[$key2] = [
+    //                 //         $value2->full_price, $value2->price, $value2->ticket_quantity
+    //                 //     ];
+    //                 // }
+
+    //                 // $categories[] = array_flatten($cat);
+
+    //             }  
+
+    //             //$totals = array_flatten($totals);
+    //             //$set['total'] = $totals; 
+
+    //             $data['labels'] = array_flatten($labels);  
+    //         }   
+
+    //         if(!$pros->isEmpty()){
+    //             foreach ($pros as $key => $value) {
+    //                 $categories[] = $value->promo_code;
+    //                 foreach ($datePros as $key2 => $value2) {
+    //                     $date = date('d-M-Y', strtotime($value2->local_created)).'|'.date('d-M-Y, g:ia', strtotime($value2->event_date));
+    //                     $amount = $modelOrder->amountByPromotion($event_id, $value->promo_code, $value2->local_created, $value2->event_date);
+    //                     $amounts[$date] = [
+    //                         // $amount->full_price, 
+    //                         // $amount->price,
+    //                         $amount->ticket_quantity
+    //                     ];
+    //                 }
+    //                 $data['datasets'][] = [
+    //                     'label' => $value->promo_code,
+    //                     'borderColor' => rand_color(),
+    //                     'fill' => false,
+    //                     'fillColor' => "rgba(220,220,220,0)",
+    //                     'data' => array_flatten($amounts)
+    //                 ];
+    //             } 
+    //         }
+
+    //         // if(!$datePros->isEmpty()){
+    //         //     $data['datasets'][] = [
+    //         //         'label' => 'Total',
+    //         //         'borderColor' => rand_color(),
+    //         //         'fill' => false,
+    //         //         'fillColor' => "rgba(220,220,220,0)",
+    //         //         'data' => array_flatten($totals),
+    //         //     ];
+    //         // }
+
+    //         return response()->json([
+    //             'code' => 200,
+    //             'status' => 'success',
+    //             'message' => 'Success',
+    //             'data' => $data
+    //         ],200);
+    //     }
+    // }
+    
+
+    public function chartPromotion(Request $req)
+    {
+
         $param = $req->all();
+        // $param['event'] = 50748;
+        // $param['start_date'] = '2016-11-18';
+        // $param['end_date'] = '2016-11-25';
         if(!empty($param)){
-            // $param['event'] = 50748;
-            // $param['start_date'] = '2016-11-01';
-            // $param['end_date'] = '2016-11-11';
             $event_id = $param['event'];
             $start_date = $param['start_date'];
             $end_date = $param['end_date'];
             $modelOrder = new TixtrackOrder();
             $modelEvent = new Event();
             $pros = $modelOrder->getPromotionEvent($event_id, $start_date, $end_date);
-            $datePros = $modelOrder->getDatePromotion($event_id, $start_date, $end_date);
-            //$countCat = count($categories);
-            //$totalCats = $modelOrder->totalCategoryEvent($event_id, $start_date, $end_date);
-            //$event = $modelEvent->getEventByTixtrack($event_id);
-            // $start_date = $start_date;
-            // $end_date = $end_date;
-            // $event_id = $event_id;
-            //$total = $modelOrder->total($event_id, $start_date, $end_date);
+            $dates = $modelOrder->getDatePromotionGroupLocal($event_id, $start_date, $end_date);
             $data = array();
-            if(!$datePros->isEmpty()){
-                foreach ($datePros as $key => $value) {
-                    $date = date('D, d-M-Y', strtotime($value->local_created));
-                    // $full_amount = 'Full Amount:';
-                    // $disc_amount = 'Discounted Amt:';
-                    $quantity = 'Quantity:';
+            if(!$dates->isEmpty()){
+                foreach ($dates as $key => $value) {
+                    $date = date('D,d-M-y', strtotime($value->local_created));
                     $labels[] = [
-                        // $date." | ".$full_amount,
-                        // $date." | ".$disc_amount,
-                        $date." | ".$quantity,
+                        $date,
                     ];
-                    $subtotal = $modelOrder->totalByDatePromotion($event_id, $value->local_created, $value->event_date);
-
-                    $totals[] = [
-                        // $subtotal->full_price,
-                        // $subtotal->price,
-                        $subtotal->ticket_quantity,
-                    ];
-
-                    // $a[] = $value->amounts;
-                    // foreach ($value->amounts as $key2 => $value2) {
-                    //     $cat[$key2] = [
-                    //         $value2->full_price, $value2->price, $value2->ticket_quantity
-                    //     ];
-                    // }
-
-                    // $categories[] = array_flatten($cat);
 
                 }  
-
-                //$totals = array_flatten($totals);
-                //$set['total'] = $totals; 
 
                 $data['labels'] = array_flatten($labels);  
             }   
@@ -375,12 +538,10 @@ class ReportsController extends BaseController
             if(!$pros->isEmpty()){
                 foreach ($pros as $key => $value) {
                     $categories[] = $value->promo_code;
-                    foreach ($datePros as $key2 => $value2) {
-                        $date = date('d-M-Y', strtotime($value2->local_created)).'|'.date('d-M-Y, g:ia', strtotime($value2->event_date));
-                        $amount = $modelOrder->amountByPromotion($event_id, $value->promo_code, $value2->local_created, $value2->event_date);
+                    foreach ($dates as $key2 => $value2) {
+                    $date = date('D,d-M-y', strtotime($value2->local_created));
+                        $amount = $modelOrder->amountByPromotion($event_id, $value->promo_code, $value2->local_created, '');
                         $amounts[$date] = [
-                            // $amount->full_price, 
-                            // $amount->price,
                             $amount->ticket_quantity
                         ];
                     }
@@ -393,16 +554,6 @@ class ReportsController extends BaseController
                     ];
                 } 
             }
-
-            // if(!$datePros->isEmpty()){
-            //     $data['datasets'][] = [
-            //         'label' => 'Total',
-            //         'borderColor' => rand_color(),
-            //         'fill' => false,
-            //         'fillColor' => "rgba(220,220,220,0)",
-            //         'data' => array_flatten($totals),
-            //     ];
-            // }
 
             return response()->json([
                 'code' => 200,
