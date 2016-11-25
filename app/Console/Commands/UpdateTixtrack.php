@@ -101,7 +101,7 @@ class UpdateTixtrack extends Command
                                 if(!File::exists($pathDest)) {
                                     File::makeDirectory($pathDest, $mode=0777,true,true);
                                 }
-
+                                //chmod(__DIR__."/".$pathDest, 0777);
                                 $account = $modelAccount->findIdByAccountID($accountID);
                                 if(!empty($account)){
                                     $account_id = $account->id;
@@ -110,7 +110,6 @@ class UpdateTixtrack extends Command
                                         $lastMember = $modelCustomer->getLastCustomerAccount($account_id);
                                         $filenameMember = 'Download_member_'.date('Y-m-d-H-i-s').'.csv';
                                         $file_member = $pathDest.'/'.$filenameMember;
-                                        //$file_member = chmod(dirname(__DIR__)."/".$file_member, 777);
                                         if(!empty($lastMember)){
                                             $member = [
                                                 "ID" => 0,
@@ -158,7 +157,6 @@ class UpdateTixtrack extends Command
                                     //download transaction
                                         $filenameTransaction = 'Download_transaction_'.date('Y-m-d-H-i-s').'.csv';
                                         $file_transaction = $pathDest.'/'.$filenameTransaction;
-                                        //$file_transaction = chmod(dirname(__DIR__)."/".$file_member, 777);
                                         $lastTransaction = $modelOrder->getLastOrderAccount($account_id);
                                         if(!empty($lastTransaction)){
                                             $transaction = [
