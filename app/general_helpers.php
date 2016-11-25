@@ -513,7 +513,8 @@ if (! function_exists('parseCSV')) {
     function parseCSV($file, $enclosure, $delimiter, $input_encode, $output_encode)
     {
 
-        $file = $file = file_get_contents($file);
+        $file = chmod($file, 644);
+        $file = file_get_contents($file);
         $content = iconv($input_encode, $output_encode, $file);
         $content = preg_replace('/[\x00]/', '', $content);
         $row = array( "" );
