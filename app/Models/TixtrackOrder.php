@@ -63,7 +63,11 @@ class TixtrackOrder extends Model
         }
 
         if($param['local_created'] != '' && date('Y-m-d', strtotime($param['local_created'])) == $param['local_created']){
-            $query->where(DB::RAW('DATE(local_created)'), $param['local_created']);
+            $query->where(DB::RAW('DATE(local_created)'), '>=', $param['local_created']);
+        }
+
+        if($param['end_date'] != '' && date('Y-m-d', strtotime($param['end_date'])) == $param['end_date']){
+            $query->where(DB::RAW('DATE(local_created)'), '<=', $param['end_date']);
         }
 
         $data = $query->get();

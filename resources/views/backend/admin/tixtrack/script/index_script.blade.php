@@ -15,16 +15,29 @@
             loadDataTransaction();
         });
 
-        var current_date = "{{ date('Y-m-d') }}";
+        //var current_date = "{{ date('Y-m-d') }}";
+
+        var start_date = $('input[name=local_created]').val();
+        var end_date = $('input[name=end_date]').val();
 
         $('#local_created').datepicker({
             format: "yyyy-mm-dd",
-            endDate: current_date,
+            endDate: end_date,
         }).on('changeDate', function(){
+            $('#end_date').datepicker('setStartDate', new Date($('#local_created').val()));
             loadDataTransaction();
         });
 
-        $('#local_created').on('keyup', function () {
+        $('#end_date').datepicker({
+            format: "yyyy-mm-dd",
+            startDate: start_date,
+            endDate: end_date,
+        }).on('changeDate', function(){
+            $('#local_created').datepicker('setEndDate', new Date($('#end_date').val()));
+            loadDataTransaction();
+        });
+
+        $('#local_created, #end_date').on('keyup', function () {
             loadDataTransaction();
         });
 
@@ -90,6 +103,7 @@
         var order_status = $('select[name=order_status]').val();
         var order_item_type = $('select[name=order_item_type]').val();
         var local_created = $('input[name=local_created]').val();
+        var end_date = $('input[name=end_date]').val();
 
         $.fn.dataTable.ext.errMode = 'none';
         $('#transaction-datatables').on('error.dt', function(e, settings, techNote, message) {
@@ -120,6 +134,7 @@
                     'order_status': order_status,
                     'order_item_type' : order_item_type,
                     'local_created' : local_created,
+                    'end_date' : end_date,
                 }
             },
             columns: [

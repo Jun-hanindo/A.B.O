@@ -86,9 +86,13 @@ Tixtrack
                     <div class="col-sm-2">
                         {!! Form::select('order_item_type', array('all' => 'All', 'Ticket' => 'Ticket', 'Delivery' => 'Delivery', 'Fee' => 'Fee'), null, ['class' => 'form-control', 'id' => 'order_item_type']) !!}
                     </div>
-                    <label for="filter" class="col-sm-1 control-label width-percent-12 left-align">{{ trans('general.local_created') }} </label>
+                    <label for="filter" class="col-sm-1 control-label width-percent-12 left-align">{{ trans('general.from') }} </label>
                     <div class="col-sm-2">
-                        <input name="local_created" class="form-control datepicker" id="local_created" data-date-end-date="0d" value=>
+                        <input name="local_created" class="form-control datepicker" id="local_created" data-date-end-date="0d" value="{{ date('Y-m-d',strtotime('-7days')) }}">
+                    </div>
+                    <label for="filter" class="col-sm-1 control-label left-align width-percent-4">{{ trans('general.to') }} </label>
+                    <div class="col-sm-2">
+                        <input name="end_date" class="form-control datepicker" id="end_date" data-date-end-date="0d" value="{{ date('Y-m-d') }}">
                     </div>
                 </div>
             </div>
