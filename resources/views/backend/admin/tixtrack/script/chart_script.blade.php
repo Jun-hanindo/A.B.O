@@ -431,6 +431,7 @@
                                         data:{'event':event_id, 'start_date':start, 'end_date':end, 'payment': image},
                                         success: function (response) {
                                             response.message;
+                                            savePdf(event_id, start, end);
                                             HoldOn.close();
                                         },
                                         error: function(response){
@@ -438,7 +439,6 @@
                                             HoldOn.close();
                                         }
                                     });
-                                    savePdf(event_id, start, end);
                                 }
                             }
                         }
@@ -522,6 +522,7 @@
                                         data:{'event':event_id, 'start_date':start, 'end_date':end, 'promotion': image},
                                         success: function (response) {
                                             response.message;
+                                            savePdf(event_id, start, end);
                                             HoldOn.close();
                                         },
                                         error: function(response){
@@ -529,7 +530,6 @@
                                             HoldOn.close();
                                         }
                                     });
-                                    savePdf(event_id, start, end);
                                 }
                             }
                         }
