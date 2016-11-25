@@ -187,7 +187,7 @@
     });
 
     function savePdf(event_id, start_date, end_date){
-        modal_loader();
+        //modal_loader();
         var uri = "{{ URL::route('admin-report-tixtrack-pdf-save') }}";
         $.ajax({
             url: uri,
