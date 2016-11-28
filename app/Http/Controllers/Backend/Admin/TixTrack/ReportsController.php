@@ -623,7 +623,7 @@ class ReportsController extends BaseController
                         $cCat = (count($data['dateCats']) * 3) + 12;
                         $drawing->setCoordinates('A'.$cCat);
                         $drawing->setWorksheet($sheet);
-                        $sheet->getRowDimension($cCat)->setRowHeight(320);
+                        $sheet->getRowDimension($cCat)->setRowHeight(253);
                     }
 
                     if(!$data['datePays']->isEmpty()){
@@ -632,7 +632,7 @@ class ReportsController extends BaseController
                         $cPay = (count($data['datePays']) * 3) + $cCat + 7;
                         $drawingPay->setCoordinates('A'.$cPay);
                         $drawingPay->setWorksheet($sheet);
-                        $sheet->getRowDimension($cPay)->setRowHeight(320);
+                        $sheet->getRowDimension($cPay)->setRowHeight(253);
                     }
 
                     if(!$data['datePros']->isEmpty()){
@@ -641,7 +641,7 @@ class ReportsController extends BaseController
                         $cPro = (count($data['datePros']) * 3) + $cPay + 7;
                         $drawingPro->setCoordinates('A'.$cPro);
                         $drawingPro->setWorksheet($sheet);
-                        $sheet->getRowDimension($cPro)->setRowHeight(320);
+                        $sheet->getRowDimension($cPro)->setRowHeight(253);
                     }
                     //$sheet->setAutoSize(false);
 

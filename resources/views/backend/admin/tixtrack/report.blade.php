@@ -417,7 +417,10 @@ Tixtrack
                                                     <td>{{ date('d-M-Y,', strtotime($sale->event_date)) }}</td>
                                                     <td>Full Amount:</td>
                                                     @if($countAllCat > 0)
-                                                        @foreach($sale->amounts as $key3 => $amount) 
+                                                        @foreach($allCategories as $key1 => $subtotal) 
+                                                            @php
+                                                                $amount = $modelOrder->amountByAllSale($event_id, $sale->event_date, $end_date, $subtotal->price_level_name)
+                                                            @endphp
                                                             <td>{{ number_format_decimals($amount->full_price) }}</td>
                                                         @endforeach
                                                     @endif
@@ -427,7 +430,10 @@ Tixtrack
                                                     <td class="vertical-top">{{ date('g:ia', strtotime($sale->event_date)) }}</td>
                                                     <td>Discounted Amt:</td>
                                                     @if($countAllCat > 0)
-                                                        @foreach($sale->amounts as $key3 => $amount) 
+                                                        @foreach($allCategories as $key1 => $subtotal) 
+                                                            @php
+                                                                $amount = $modelOrder->amountByAllSale($event_id, $sale->event_date, $end_date, $subtotal->price_level_name)
+                                                            @endphp
                                                             <td>{{ number_format_decimals($amount->price) }}</td>
                                                         @endforeach
                                                     @endif
@@ -437,7 +443,10 @@ Tixtrack
                                                     <td class="border-bottom"></td>
                                                     <td class="border-bottom">Quantity:</td>
                                                     @if($countAllCat > 0)
-                                                        @foreach($sale->amounts as $key3 => $amount) 
+                                                        @foreach($allCategories as $key1 => $subtotal) 
+                                                            @php
+                                                                $amount = $modelOrder->amountByAllSale($event_id, $sale->event_date, $end_date, $subtotal->price_level_name)
+                                                            @endphp
                                                             <td class="border-bottom">{{ $amount->ticket_quantity }}</td>
                                                         @endforeach
                                                     @endif

@@ -455,7 +455,10 @@
                             <td align="right" class="column-2">{{ date('d-M-Y,', strtotime($sale->event_date)) }}</td>
                             <td align="right" >Full Amount:</td>
                             @if($countAllCat > 0)
-                                @foreach($sale->amounts as $key3 => $amount) 
+                                @foreach($allCategories as $key1 => $subtotal)  
+                                    @php
+                                        $amount = $modelOrder->amountByAllSale($event_id, $sale->event_date, $end_date, $subtotal->price_level_name)
+                                    @endphp 
                                     <td align="right" >{{ number_format_decimals($amount->full_price) }}</td>
                                 @endforeach
                             @endif
@@ -465,7 +468,10 @@
                             <td align="right" class="column-2">{{ date('g:ia', strtotime($sale->event_date)) }}</td>
                             <td align="right" >Discounted Amt:</td>
                             @if($countAllCat > 0)
-                                @foreach($sale->amounts as $key3 => $amount) 
+                                @foreach($allCategories as $key1 => $subtotal)  
+                                    @php
+                                        $amount = $modelOrder->amountByAllSale($event_id, $sale->event_date, $end_date, $subtotal->price_level_name)
+                                    @endphp 
                                     <td align="right" >{{ number_format_decimals($amount->price) }}</td>
                                 @endforeach
                             @endif
@@ -475,7 +481,10 @@
                             <td style="border-bottom:1px solid #000;"></td>
                             <td align="right" style="border-bottom:1px solid #000;" >Quantity:</td>
                             @if($countAllCat > 0)
-                                @foreach($sale->amounts as $key3 => $amount) 
+                                @foreach($allCategories as $key1 => $subtotal)  
+                                    @php
+                                        $amount = $modelOrder->amountByAllSale($event_id, $sale->event_date, $end_date, $subtotal->price_level_name)
+                                    @endphp 
                                     <td align="right" style="border-bottom:1px solid #000;" >{{ $amount->ticket_quantity }}</td>
                                 @endforeach
                             @endif
