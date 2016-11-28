@@ -88,7 +88,7 @@
         }else{
             $('#promotor_div').hide();
         }
-        $("#promoter_id").select2("val", "0");
+        $("#promoter_id").select2("val", "");
     }
 
     

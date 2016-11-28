@@ -202,7 +202,19 @@ class UserController extends BaseController
             $data['form']['method'] = 'PUT';
             $data['user'] = User::findOrFail($id);
             $data['user']['role'] = (!$data['user']->roles->isEmpty()) ? $data['user']->roles[0]->id : '';
-            $data['user']['promoter_name'] = (!empty($data['user']->promoter_id)) ? User::find($id)->promoter->name : '';
+            //if(!empty($data['user']->promoter_id)){
+                if(!empty(User::find($id)->promoter)){
+                    $promoter_id = $data['user']->promoter_id;
+                    $promoter_name = User::find($id)->promoter->name;
+                }else{
+                    $promoter_id = '';
+                    $promoter_name = '';
+                }
+            //}else{
+                //$promoter_name = '';
+            //}
+            $data['user']['promoter_id'] = $promoter_id;
+            $data['user']['promoter_name'] = $promoter_name;
             //$data['user']['branch'] = $data['user']->branch_id;
         }
 
@@ -231,11 +243,16 @@ class UserController extends BaseController
             }
         }
 
+
         //$data['branch_id'] = 1;
         if (! $id) {
             $data['password'] = str_random(8);
             $data['is_admin'] = true;
         }
+        if(empty($data['promoter_id'])){
+            $data['promoter_id'] = 0;
+        }
+
         // Saving to database...
         return $this->transaction(function ($model) use ($id, $request, $data) {
         
@@ -244,9 +261,12 @@ class UserController extends BaseController
                 if (isset($data['avatar'])) {
                     $this->deleteAvatar($user->avatar);
                 }
-
-                $role = Sentinel::findRoleById($user->roles[0]->id);
-                $role->users()->detach($user);
+                if(!$user->roles->isEmpty()){
+                    $role = Sentinel::findRoleById($user->roles[0]->id);
+                    $role->users()->detach($user);
+                }/*else{
+                    $user->roles()->attach($request->input('role'));
+                }*/
 
                 $user = Sentinel::update($user, $data);
                 //dd($data);

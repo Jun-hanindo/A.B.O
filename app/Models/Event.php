@@ -106,6 +106,13 @@ class Event extends Model
     
     }
 
+    function promoterRemoveDatatables(){
+        return static::select('id', 'title', 'venue_id', 'user_id', 'avaibility', 'sort_order')
+            ->where('promoter_id', '<', 0);
+            // ->orderBy('sort_order', 'desc')
+            // ->orderBy('created_at', 'desc');
+    }
+
     public function getFirstSort(){
         return Event::orderBy('sort_order', 'desc')
             ->orderBy('created_at', 'desc')->first();

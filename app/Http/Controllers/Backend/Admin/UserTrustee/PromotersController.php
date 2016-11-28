@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Promoter;
 use App\Models\LogActivity;
 use App\Models\Trail;
+use App\Models\User;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\UserTrustee\PromoterRequest;
 
@@ -188,6 +189,8 @@ class PromotersController extends BaseController
     {
         try{
             $data = $this->model->deleteByID($id);
+            $modelUser = new User();
+            $modelUser->updatePromoterRemove($id);
         //if(!empty($data)) {
 
             flash()->success(trans('general.delete_success'));

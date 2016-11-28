@@ -42,9 +42,11 @@ class EventsController extends BaseController
     public function datatables()
     {
         if(!empty($this->currentUser)){
-            if($this->currentUser->promoter_id > 0){
+            if($this->currentUser->promoter_id > 0 ){
                 $promoter_id = $this->currentUser->promoter_id;
                 $datatables = $this->model->promoterDatatables($promoter_id);
+            }elseif($this->currentUser->roles[0]->id == 2 && $this->currentUser->promoter_id == null){
+                $datatables = $this->model->promoterRemoveDatatables();
             }else{
                 $datatables = $this->model->datatables();
             }

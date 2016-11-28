@@ -723,5 +723,34 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     //     return $data;
     // }
+    // 
+    public function updatePromoterRemove($promoter_id){
+        $data = User::where('promoter_id', $promoter_id)
+            ->update(['promoter_id' => null]);
+        if (!empty($data)) {
+            return true;
+        }else{
+            return false;
+        }
+        // $datas = User::where('promoter_id', $promoter_id)->get();
+        // if (!empty($datas)) {
+        //     foreach ($datas as $key => $data) {
+        //         $data->promoter_id = 0;
+
+        //         if($data->save()){
+
+        //             return $data;
+
+        //         } else {
+        //             return false;    
+        //         }
+        //     }
+        
+        // } else {
+
+        //     return false;
+
+        // }
+    }
 
 }

@@ -43,8 +43,8 @@
                                 {!! Form::errorMsg('role') !!}
                             </div>
                         </div>
-                        <div class="form-group" id="promotor_div" style="display:none;">
-                            {!! Form::label('promoter', 'Promoter', ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="form-group{{ Form::hasError('promoter_id') }}" id="promotor_div" style="display:none;">
+                            {!! Form::label('promoter', 'Promoter *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('promoter_id', null, ['id' => 'promoter_id', 'class' => 'form-control', 'data-option' => old('promoter_id')]) !!}
                                 {!! Form::hidden('promoter_name', null, ['id' => 'promoter_name', 'class' => 'form-control']) !!}
