@@ -186,6 +186,12 @@
 
     });
 
+
+    $('#modal-preview').on('show.bs.modal', function (e) {
+        var pdf = $('#btn-preview').attr('data-pdf');
+        $('#preview-body').html('<iframe id="pdf-frame" src="'+pdf+'#zoom=100'+'" style="width:850px; height:600px;" frameborder="0"></iframe>');
+    });
+
     function savePdf(event_id, start_date, end_date){
         //modal_loader();
         var uri = "{{ URL::route('admin-report-tixtrack-pdf-save') }}";
@@ -195,10 +201,14 @@
             dataType: 'json',
             data:{'event':event_id, 'start_date':start_date, 'end_date':end_date},
             success: function (response) {
+
                 //$('#pdf-frame').attr('src', response.data);
                 //$('#pdf-frame').attr('src', response.data+'#zoom=100');
                 //$('#pdf-frame').attr('src', 'http://docs.google.com/gview?url='+response.data+'&embedded=true')
-                $('#preview-body').html('<iframe id="pdf-frame" src="'+response.data+'#zoom=100'+'" style="width:850px; height:600px;" frameborder="0"></iframe>');
+                
+                $('#btn-preview').attr('data-pdf', response.data);
+                //$('#preview-body').html('<iframe id="pdf-frame" src="'+response.data+'#zoom=100'+'" style="width:850px; height:600px;" frameborder="0"></iframe>');
+                
                 //$('#preview-body').html('<iframe id="pdf-frame" src="http://docs.google.com/gview?url='+response.data+'&embedded=true" style="width:850px; height:600px;" frameborder="0"></iframe>');
                 //$('#preview-body').html('<iframe id="pdf-frame" src="http://online.verypdf.com/app/reader/?url='+response.data+'&embedded=true" style="width:850px; height:600px;" frameborder="0"></iframe>');
                 //$('object').attr('data', response.data);

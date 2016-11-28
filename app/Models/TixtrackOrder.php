@@ -546,7 +546,7 @@ class TixtrackOrder extends Model
                 }
                 $date->amounts = (object) $amounts;
 
-                //dd($amounts);
+                
             }
             return $dates;
         }else{
