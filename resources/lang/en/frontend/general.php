@@ -111,5 +111,6 @@ return [
     'per_person' => '/person',
     'seat_map' => 'Seat Map',
     'discover_events' => 'Discover Events',
+    'sorry' => 'Sorry',
 
 ];

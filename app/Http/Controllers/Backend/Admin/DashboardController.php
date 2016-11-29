@@ -35,6 +35,7 @@ class DashboardController extends Controller
 
         $eventModel = new Event();
         $data['events'] = $eventModel->countEvents();
+        $data['total_events'] = $eventModel->countTotalEvents();
         $userModel = new User();
         $data['users'] = $userModel->countUsers();
         $promotionModel = new Promotion();

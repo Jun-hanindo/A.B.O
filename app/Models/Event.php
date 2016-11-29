@@ -1524,6 +1524,10 @@ class Event extends Model
         return Event::where('avaibility', true)->count();
     }
 
+    public function countTotalEvents(){
+        return Event::count();
+    }
+
     public function getEventByTixtrack($event_id){
         return Event::select('title', 'event_id_tixtrack')->where('event_id_tixtrack', $event_id)->first();
     }
