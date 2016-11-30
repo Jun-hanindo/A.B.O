@@ -1,6 +1,8 @@
 @extends('layout.backend.admin.master.master')
 
-@section('title', 'User Management')
+@section('title')
+{{ trans('backend/general.user_management') }}
+@endsection
 
 {{-- @section('breadcrumb')
     <ol class="breadcrumb">
@@ -24,20 +26,21 @@
 @section('content')
     <div class="box box-primary">
         <div class="box-header">
-            <h3 class="box-title">User Management</h3>
-            <a class="btn btn-primary pull-right" href="{{ action('Backend\Admin\UserTrustee\UserController@create') }}" title="Add"><i class="fa fa-plus fa-fw"></i></a>
+            <h3 class="box-title">{{ trans('backend/general.user_management') }}</h3>
+            <a class="btn btn-primary pull-right" href="{{ action('Backend\Admin\UserTrustee\UserController@create') }}" title="{{ trans('backend/general.create_new') }}"><i class="fa fa-plus fa-fw"></i></a>
         </div>
         <div class="box-body">
             @include('flash::message')
             <table id="trustees-table" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                 <thead>
                     <tr>
-                        <th class="center-align">Email</th>
-                        <th class="center-align">First Name</th>
-                        <th class="center-align">Last Name</th>
-                        <th class="center-align">Phone</th>
-                        <th class="center-align">Role</th>
-                        <th class="center-align">Last Login</th>
+                        <th class="center-align">{{ trans('backend/general.email') }}</th>
+                        <th class="center-align">{{ trans('backend/general.first_name') }}</th>
+                        <th class="center-align">{{ trans('backend/general.last_name') }}</th>
+                        <th class="center-align">{{ trans('backend/general.cellphone') }}</th>
+                        <th class="center-align">{{ trans('backend/general.role') }}</th>
+                        <th class="center-align">{{ trans('backend/general.last_login') }}</th>
+                        <th class="center-align">{{ trans('backend/general.created_at') }}</th>
                         <th width="12%">&nbsp;</th>
                     </tr>
                 </thead>
@@ -71,6 +74,7 @@
             $('#trustees-table').DataTable({
                 processing: true,
                 serverSide: true,
+                order: [[ 6, "desc" ]],
                 ajax: "{!! route('datatables-user-trustees') !!}",
                 columns: [
                     {data: 'email', name: 'email'},
@@ -79,6 +83,7 @@
                     {data: 'phone', name: 'phone'},
                     {data: 'role', name: 'role', searchable: false},
                     {data: 'last_login', name: 'last_login', class: 'center-align', searchable: false},
+                    {data: 'created_at', name: 'created_at', class: 'center-align', searchable: false},
                     {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false}
                 ]
             });

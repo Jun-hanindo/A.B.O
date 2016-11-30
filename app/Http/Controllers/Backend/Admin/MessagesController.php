@@ -57,7 +57,7 @@ class MessagesController extends BaseController
                 return $subject;
             })
             ->editColumn('created_at', function ($message){
-                $date = date('d M Y h:i A', strtotime($message->created_at));
+                $date = short_text_date_time($message->created_at);
                 return $date;
             })
             ->editColumn('action', function ($message) {

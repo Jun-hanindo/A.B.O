@@ -1,6 +1,6 @@
 @extends('layout.backend.admin.master.master')
 
-@section('title', 'Menu Management - '.$title)
+@section('title', trans('backend/general.menu_management').' - '.$title)
 
 {{-- @section('page-header', 'Menu Management <small>'.$title.'</small>')
 
@@ -17,38 +17,38 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">{{ $title }} {{ trans('general.menu_management') }} </h3>
+                    <h3 class="box-title">{{ $title }} {{ trans('backend/general.menu_management') }} </h3>
                 </div>
                 {!! Form::modelHorizontal($data, $form) !!}
                     <div class="box-body">
                         <div class="form-group">
-                            {!! Form::label('is_parent', 'Is Parent?', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('is_parent', trans('backend/general.is_parent'), ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::select('is_parent', [false => 'No', true => 'Yes'], null, ['class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="form-group">
-                            {!! Form::label('parent', 'Parent', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('parent', trans('backend/general.parent'), ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::select('parent', $data['dropdown'], null, ['class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('name') }}">
-                            {!! Form::label('name', 'Name *', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('name', trans('backend/general.name').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('name') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('display_name') }}">
-                            {!! Form::label('display_name', 'Display Name *', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('display_name', trans('backend/general.display_name').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('display_name', null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('display_name') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('icon') }}">
-                            {!! Form::label('icon', 'Icon *', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('icon', trans('backend/general.icon').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 <select name="icon" id="icon" class="form-control selectpicker" data-live-search="true">
                                     @if(!empty($data['icons']))
@@ -66,14 +66,14 @@
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('pattern') }}">
-                            {!! Form::label('pattern', 'Pattern *', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('pattern', trans('backend/general.pattern').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('pattern', null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('pattern') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('href') }}">
-                            {!! Form::label('href', 'Href *', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('href', trans('backend/general.href').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::text('href', null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('href') !!}
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        {!! Form::submit('Save', ['class' => 'btn btn-primary pull-right', 'title' => 'Save']).' '.link_to_action('Backend\Admin\UserTrustee\MenuController@index', trans('general.button_cancel'), [], ['class' => 'btn btn-default pull-right']) !!}
+                        {!! Form::submit(trans('backend/general.save'), ['class' => 'btn btn-primary pull-right', 'title' => 'Save']).' '.link_to_action('Backend\Admin\UserTrustee\MenuController@index', trans('backend/general.button_cancel'), [], ['class' => 'btn btn-default pull-right']) !!}
                     </div>
                 {!! Form::close() !!}
             </div>

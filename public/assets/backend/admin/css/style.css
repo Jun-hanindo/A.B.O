@@ -333,3 +333,9 @@ page {
 .width-percent-4{
     width: 4% !important;
 }
+.width-percent-6{
+    width: 6% !important;
+}
+.margin-left-50{
+    margin-left: 50px;
+}

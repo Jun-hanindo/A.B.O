@@ -1,6 +1,6 @@
 @extends('layout.backend.admin.master.master')
 
-@section('title', 'Profile Settings')
+@section('title', trans('backend/general.profile_settings'))
 
 {{-- @section('page-header', 'Profile <small>Settings</small>')
 
@@ -16,8 +16,8 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab-profile" data-toggle="tab">Profile</a></li>
-                    <li><a href="#tab-password" data-toggle="tab">Password</a></li>
+                    <li class="active"><a href="#tab-profile" data-toggle="tab">{{ trans('backend/general.profile') }}</a></li>
+                    <li><a href="#tab-password" data-toggle="tab">{{ trans('backend/general.password') }}</a></li>
                 </ul>
                 <div class="tab-content">
                     @include('flash::message')
@@ -31,56 +31,56 @@
                                 </div>
                             @endif
                             <div class="form-group{{ Form::hasError('avatar') }}">
-                                {!! Form::label('avatar', 'Avatar', ['class' => 'col-sm-3 control-label']) !!}
+                                {!! Form::label('avatar', trans('backend/general.avatar'), ['class' => 'col-sm-3 control-label']) !!}
                                 <div class="col-sm-9">
                                     {!! Form::file('avatar') !!}
                                     {!! Form::errorMsg('avatar') !!}
                                 </div>
                             </div>
                             <div class="form-group{{ Form::hasError('email') }}">
-                                {!! Form::label('email', 'Email *', ['class' => 'col-sm-3 control-label']) !!}
+                                {!! Form::label('email', trans('backend/general.email').' *', ['class' => 'col-sm-3 control-label']) !!}
                                 <div class="col-sm-9">
                                     {!! Form::text('email', null, ['class' => 'form-control']) !!}
                                     {!! Form::errorMsg('email') !!}
                                 </div>
                             </div>
                             <div class="form-group{{ Form::hasError('first_name') }}">
-                                {!! Form::label('first_name', 'First Name *', ['class' => 'col-sm-3 control-label']) !!}
+                                {!! Form::label('first_name', trans('backend/general.first_name').' *', ['class' => 'col-sm-3 control-label']) !!}
                                 <div class="col-sm-9">
                                     {!! Form::text('first_name', null, ['class' => 'form-control']) !!}
                                     {!! Form::errorMsg('first_name') !!}
                                 </div>
                             </div>
                             <div class="form-group{{ Form::hasError('last_name') }}">
-                                {!! Form::label('last_name', 'Last Name *', ['class' => 'col-sm-3 control-label']) !!}
+                                {!! Form::label('last_name', trans('backend/general.last_name').' *', ['class' => 'col-sm-3 control-label']) !!}
                                 <div class="col-sm-9">
                                     {!! Form::text('last_name', null, ['class' => 'form-control']) !!}
                                     {!! Form::errorMsg('last_name') !!}
                                 </div>
                             </div>
                             <div class="form-group{{ Form::hasError('phone') }}">
-                                {!! Form::label('phone', 'Cellphone *', ['class' => 'col-sm-3 control-label']) !!}
+                                {!! Form::label('phone', trans('backend/general.cellphone').' *', ['class' => 'col-sm-3 control-label']) !!}
                                 <div class="col-sm-9">
                                     {!! Form::text('phone', null, ['class' => 'form-control']) !!}
                                     {!! Form::errorMsg('phone') !!}
                                 </div>
                             </div>
                             <div class="form-group{{ Form::hasError('address') }}">
-                                {!! Form::label('address', 'Address *', ['class' => 'col-sm-3 control-label']) !!}
+                                {!! Form::label('address', trans('backend/general.address').' *', ['class' => 'col-sm-3 control-label']) !!}
                                 <div class="col-sm-9">
                                     {!! Form::textarea('address', null, ['class' => 'form-control']) !!}
                                     {!! Form::errorMsg('address') !!}
                                 </div>
                             </div>
                             <div class="form-group">
-                                {!! Form::label('skin', 'Layout Skin', ['class' => 'col-sm-3 control-label']) !!}
+                                {!! Form::label('skin', trans('backend/general.layout_skin'), ['class' => 'col-sm-3 control-label']) !!}
                                 <div class="col-sm-9">
                                     {!! Form::select('skin', $skins, null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    {!! Form::submit('Save', ['class' => 'btn btn-primary pull-right']) !!}
+                                    {!! Form::submit(trans('backend/general.save'), ['class' => 'btn btn-primary pull-right']) !!}
                                 </div>
                             </div>
                         {!! Form::close() !!}
@@ -88,21 +88,21 @@
                     <div class="tab-pane" id="tab-password">
                         {!! Form::modelHorizontal([], $formPassword) !!}
                             <div class="form-group{{ Form::hasError('old_password') }}">
-                                {!! Form::label('old_password', 'Old Password', ['class' => 'col-sm-4 control-label']) !!}
+                                {!! Form::label('old_password', trans('backend/general.old_password'), ['class' => 'col-sm-4 control-label']) !!}
                                 <div class="col-sm-8">
                                     {!! Form::password('old_password', ['class' => 'form-control']) !!}
                                     {!! Form::errorMsg('old_password') !!}
                                 </div>
                             </div>
                             <div class="form-group{{ Form::hasError('password') }}">
-                                {!! Form::label('password', 'New Password', ['class' => 'col-sm-4 control-label']) !!}
+                                {!! Form::label('password', trans('backend/general.new_password'), ['class' => 'col-sm-4 control-label']) !!}
                                 <div class="col-sm-8">
                                     {!! Form::password('password', ['class' => 'form-control']) !!}
                                     {!! Form::errorMsg('password') !!}
                                 </div>
                             </div>
                             <div class="form-group{{ Form::hasError('password_confirmation') }}">
-                                {!! Form::label('password_confirmation', 'Confirm Password', ['class' => 'col-sm-4 control-label']) !!}
+                                {!! Form::label('password_confirmation', trans('backend/general.confirm_password'), ['class' => 'col-sm-4 control-label']) !!}
                                 <div class="col-sm-8">
                                     {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                                     {!! Form::errorMsg('password_confirmation') !!}
@@ -110,7 +110,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    {!! Form::submit('Save', ['class' => 'btn btn-primary pull-right']) !!}
+                                    {!! Form::submit(trans('backend/general.save'), ['class' => 'btn btn-primary pull-right']) !!}
                                 </div>
                             </div>
                         {!! Form::close() !!}

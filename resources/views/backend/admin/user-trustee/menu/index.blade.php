@@ -1,6 +1,6 @@
 @extends('layout.backend.admin.master.master')
 
-@section('title', 'Menu Management')
+@section('title', trans('backend/general.menu_management'))
 
 @section('header')
     {!! Html::style('assets/plugins/datatables/dataTables.bootstrap.css') !!}
@@ -24,7 +24,7 @@
 @section('content')
     <div class="box box-primary">
         <div class="box-header">
-            <h3 class="box-title">Menu Management</h3>
+            <h3 class="box-title">{{ trans('backend/general.menu_management') }}</h3>
             <a class="btn btn-primary pull-right" href="{{ action('Backend\Admin\UserTrustee\MenuController@create') }}" title="Add"><i class="fa fa-plus fa-fw"></i></a>
         </div>
         <div class="box-body">
@@ -32,9 +32,9 @@
             <table id="menus-table" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                 <thead>
                     <tr>
-                        <th class="center-align">Name</th>
-                        <th class="center-align">Parent</th>
-                        <th class="center-align">Href</th>
+                        <th class="center-align">{{ trans('backend/general.name') }}</th>
+                        <th class="center-align">{{ trans('backend/general.parent') }}</th>
+                        <th class="center-align">{{ trans('backend/general.href') }}</th>
                         <th width="12%">&nbsp;</th>
                     </tr>
                 </thead>
@@ -68,6 +68,7 @@
             $('#menus-table').DataTable({
                 processing: true,
                 serverSide: true,
+                order: [[ 0, "asc" ]],
                 ajax: '{!! action('Backend\Admin\UserTrustee\MenuController@datatables') !!}',
                 columns: [
                     {data: 'display_name', name: 'display_name'},

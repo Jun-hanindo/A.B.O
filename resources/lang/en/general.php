@@ -304,5 +304,11 @@ return [
     'login_account' => 'Login Account',
     'login_accounts' => 'Login Accounts',
     'password' => 'Password',
+    'delete_from' => 'Delete From',
+    'user_management' => 'User Management',
+    'cellphone' => 'Cellphone',
+    'role' => 'Role',
+    'last_login' => 'Last Login',
+    'created_at' => 'Created at'
 
 ];

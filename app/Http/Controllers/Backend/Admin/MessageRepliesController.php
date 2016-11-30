@@ -59,7 +59,7 @@ class MessageRepliesController extends BaseController
                     ->setBody($param['message']);;
             });
             $saveData = $this->model->insertNewMessageReply($param, $this->currentUser->id);
-            $saveData->date = date('d M Y h:i A', strtotime($saveData->created_at));
+            $saveData->date = short_text_date_time($saveData->created_at);
             $saveData->user_name = $saveData->user->first_name.' '.$saveData->user->last_name;
             $saveData->reply_by_label = trans('general.reply_by');
             $saveData->message_label = trans('general.message');

@@ -1,7 +1,7 @@
 @extends('layout.backend.admin.master.master')
 
 @section('title')
-    {{trans('general.manage_page')}} - {{ $title }}
+    {{trans('backend/general.manage_page')}} - {{ $title }}
 @endsection
 
 
@@ -11,7 +11,7 @@
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">{{ $title }}</h3>
-                    <h5>{!! ($status != '') ? 'Status: <b>'.$status.'</b>' : '' !!}</h5>
+                    <h5>{!! ($status != '') ? trans('backend/general.status').': <b>'.$status.'</b>' : '' !!}</h5>
                 </div>
                 {!! Form::open(array('url' => route('admin-post-update-manage-page', $slug),'method'=>'POST','id'=>'form-manage-page')) !!}
                     <div class="box-body">
@@ -25,10 +25,10 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        <input class="btn btn-primary pull-right" title="{{ trans('general.button_save') }}" type="submit" value="{{ trans('general.button_publish') }}" id="button_submit">
-                        <a href="{{ URL::to('support/'.$slug.'?preview=true') }}" target="_blank" id="button_preview" class="btn btn-success pull-right" data-status='preview' title="{{ trans('general.button_preview') }}">{{ trans('general.button_preview') }}</a>
-                        <button type="button" id="button_draft2" class="btn btn-warning pull-right" data-status='draft' title="{{ trans('general.button_draft') }}">{{ trans('general.button_draft') }}</button>
-                        <a href="{{ route('admin-manage-page', $slug) }}" class="btn btn-default pull-right">{{ trans('general.button_cancel') }}</a>
+                        <input class="btn btn-primary pull-right" title="{{ trans('backend/general.button_save') }}" type="submit" value="{{ trans('backend/general.button_publish') }}" id="button_submit">
+                        <a href="{{ URL::to('support/'.$slug.'?preview=true') }}" target="_blank" id="button_preview" class="btn btn-success pull-right" data-status='preview' title="{{ trans('backend/general.button_preview') }}">{{ trans('backend/general.button_preview') }}</a>
+                        <button type="button" id="button_draft2" class="btn btn-warning pull-right" data-status='draft' title="{{ trans('backend/general.button_draft') }}">{{ trans('backend/general.button_draft') }}</button>
+                        <a href="{{ route('admin-manage-page', $slug) }}" class="btn btn-default pull-right">{{ trans('backend/general.button_cancel') }}</a>
                     </div>
                 {!! Form::close() !!}
             </div>

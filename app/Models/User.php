@@ -66,11 +66,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             'users.deleted',
             'roles.name as role',
             'users.last_login',
-            'users.phone'
+            'users.phone',
+            'users.created_at'
         )
         ->leftJoin('role_users', 'role_users.user_id', '=', 'users.id')
         ->leftJoin('roles', 'role_users.role_id', '=', 'roles.id')
-        ->orderBy('users.created_at', 'desc');
+        /*->orderBy('users.created_at', 'desc')*/;
 
         return $return;
     }

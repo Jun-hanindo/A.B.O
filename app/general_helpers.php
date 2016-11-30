@@ -634,6 +634,24 @@ if (! function_exists('rand_color')) {
 }
 
 
+if (! function_exists('rand_color2')) {
+
+    function rand_color2($number) {
+        // $color = ['#cdc0b0', '#458b74', '#838b8b', '#000000', '#00008b', '#8a2be2', '#a52a2a', '#5f9ea0', '#8ee5ee', '#458b00',
+        //           '#d2691e', '#00cdcd', '#ffb90f', '#006400', '#556b2f', '#9932cc', '#e9967a', '#2f4f4f', '#00688b', '#ff3030',
+        //           '#ffd700', '#8b7500', '#2e2e2e', '#00ff00', '#adff2f', '#838b83', '#ff69b4', '#cd5555', '#f0e68c', '#8b864e',
+        //           '#68838b', '#f08080', '#cd8c95', '#20b2aa', '#607b8b', '#8470ff', '#8b008b', '#66cdaa', '#7a378b', '#3cb371',
+        //           '#191970', '#6b8e23', '#b3ee3a', '#ee9a00', '#8b2500', '#da70d6', '#98fb98', '#96cdcd', '#cdaf95', '#8b668b'];
+        $color = ['#9acd32', '#ffff00', '#cdba96', '#cd3278', '#00c5cd', '#ff6347', '#d8bfd8', '#ffa54f', '#008b45', '#473c8b',
+                  '#8b0000', '#c0ff3e', '#66cdaa', '#ffd39b', '#b8860b', '#c1ffc1', '#cdad00', '#cdc1c5', '#00bfff', '#ff7f50',
+                  '#ff6347', '#d8bfd8', '#ffa54f', '#008b45', '#473c8b', '#c1ffc1', '#cdad00', '#cdc1c5', '#00bfff', '#ff7f50',
+                  '#9acd32', '#ffff00', '#cdba96', '#cd3278', '#00c5cd', '#8b0000', '#c0ff3e', '#66cdaa', '#ffd39b', '#b8860b',
+                  '#c1ffc1', '#cdad00', '#cdc1c5', '#00bfff', '#ff7f50', '#ff6347', '#d8bfd8', '#ffa54f', '#008b45', '#473c8b'];
+        return $color[$number];
+    }
+}
+
+
 
 // if (! function_exists('count_message_unread')) {
 

@@ -8,44 +8,6 @@
         loadData();
         loadTextEditor();
 
-        function loadData()
-        {
-            $.fn.dataTable.ext.errMode = 'none';
-            $('#promoters-table').on('error.dt', function(e, settings, techNote, message) {
-                $.ajax({
-                    url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
-                    type: "POST",
-                    dataType: 'json',
-                    data: "message= Promoter "+message,
-                    success: function (data) {
-                        data.message;
-                    },
-                    error: function(response){
-                        response.responseJSON.message
-                    }
-                });
-            });
-
-            var table = $('#promoters-table').DataTable();
-            table.destroy();
-            $('#promoters-table').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: '{!! URL::route("datatables-promoter") !!}',
-                columns: [
-                    {data: 'name', name: 'name'},
-                    {data: 'country', name: 'country'},
-                    {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
-                ],
-                "fnDrawCallback": function() {
-                    //Initialize checkbos for enable/disable user
-                    $(".avaibility-check").bootstrapSwitch({onText: "Show", offText:"Off", animate: false});
-                    $(".status-check").bootstrapSwitch({onText: "Active", offText:"Inactive", animate: false});
-                }
-            });
-            return table;
-        }
-
         $('.actAdd').on('click',function(){
             $('#modal-form').modal('show');
             $('#title-create').show();
@@ -68,6 +30,11 @@
 
 
         $('#modal-form').on('show.bs.modal', function (e) {
+            $(".tooltip-field").remove();
+            $(".form-group").removeClass('has-error');
+            $('.error').removeClass('alert alert-danger');
+            $('.error').html('');
+
             $("#button_save").unbind('click').bind('click', function () {
                 save();                
             });
@@ -76,74 +43,6 @@
             });
             clearInput();
             saveTrailModal('Promoter Form');
-
-            function save()
-            {
-                modal_loader();
-                var name = $("#name").val();
-                var country = $("#country").val();
-                var address = $("#address").val();
-                $.ajax({
-                    url: "{{ route('admin-post-promoter') }}",
-                    type: "POST",
-                    dataType: 'json',
-                    data: {'name':name,"address":address,"country":country},
-                    success: function (data) {
-                        HoldOn.close();
-                        loadData();
-                        $('#modal-form').modal('hide');
-                        $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
-                    },
-                    error: function(response){
-                        HoldOn.close();
-                        if (response.status === 422) {
-                            var data = response.responseJSON;
-                            $.each(data,function(key,val){
-                                $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
-                                $('.form-group.'+key).addClass('has-error');
-                            });
-                        } else {
-                            $('.error-modal').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
-                        }
-                    }
-                });
-            }
-
-            function update()
-            {
-                
-                var name = $("#name").val();
-                var country = $("#country").val();
-                var address = $("#address").val();
-                var id = $("#id").val();
-                modal_loader();
-                var uri = "{{ URL::route('admin-update-promoter', "::param") }}";
-                uri = uri.replace('::param', id);
-                $.ajax({
-                    url: uri,
-                    type: "POST",
-                    dataType: 'json',
-                    data: {'name':name,"address":address,"country":country},
-                    success: function (data) {
-                        HoldOn.close();
-                        loadData();
-                        $('#modal-form').modal('hide');
-                        $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');  
-                    },
-                    error: function(response){
-                        HoldOn.close();
-                        if (response.status === 422) {
-                            var data = response.responseJSON;
-                            $.each(data,function(key,val){
-                                $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
-                                $('.'+key).addClass('has-error');
-                            });
-                        } else {
-                            $('.error-modal').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
-                        }
-                    }
-                });
-            }
 
         });
 
@@ -178,6 +77,128 @@
 
     });
 
+    function loadData()
+    {
+        $.fn.dataTable.ext.errMode = 'none';
+        $('#promoters-table').on('error.dt', function(e, settings, techNote, message) {
+            $.ajax({
+                url: '{!! URL::route("admin-activity-log-post-ajax") !!}',
+                type: "POST",
+                dataType: 'json',
+                data: "message= Promoter "+message,
+                success: function (data) {
+                    data.message;
+                },
+                error: function(response){
+                    response.responseJSON.message
+                }
+            });
+        });
+
+        var table = $('#promoters-table').DataTable();
+        table.destroy();
+        $('#promoters-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! URL::route("datatables-promoter") !!}',
+            columns: [
+                {data: 'name', name: 'name'},
+                {data: 'country', name: 'country'},
+                {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
+            ],
+            "fnDrawCallback": function() {
+                //Initialize checkbos for enable/disable user
+                $(".avaibility-check").bootstrapSwitch({onText: "Show", offText:"Off", animate: false});
+                $(".status-check").bootstrapSwitch({onText: "Active", offText:"Inactive", animate: false});
+            }
+        });
+        return table;
+    }
+
+    function save()
+    {
+        $(".tooltip-field").remove();
+        $(".form-group").removeClass('has-error');
+        $('.error').removeClass('alert alert-danger');
+        $('.error').html('');
+        modal_loader();
+        var name = $("#name").val();
+        var country = $("#country").val();
+        var address = $("#address").val();
+        $.ajax({
+            url: "{{ route('admin-post-promoter') }}",
+            type: "POST",
+            dataType: 'json',
+            data: {'name':name,"address":address,"country":country},
+            success: function (data) {
+                HoldOn.close();
+                loadData();
+                $('#modal-form').modal('hide');
+                $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+            },
+            error: function(response){
+                HoldOn.close();
+                if (response.status === 422) {
+                    var data = response.responseJSON;
+                    $.each(data,function(key,val){
+                        if(key == "address"){
+                            $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#cke_'+key));
+                        }else{
+                            $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
+                        }
+                        $('.form-group.'+key).addClass('has-error');
+                    });
+                } else {
+                    $('.error-modal').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                }
+            }
+        });
+    }
+
+    function update()
+    {
+        $(".tooltip-field").remove();
+        $(".form-group").removeClass('has-error');
+        $('.error').removeClass('alert alert-danger');
+        $('.error').html('');
+        
+        var name = $("#name").val();
+        var country = $("#country").val();
+        var address = $("#address").val();
+        var id = $("#id").val();
+        modal_loader();
+        var uri = "{{ URL::route('admin-update-promoter', "::param") }}";
+        uri = uri.replace('::param', id);
+        $.ajax({
+            url: uri,
+            type: "POST",
+            dataType: 'json',
+            data: {'name':name,"address":address,"country":country},
+            success: function (data) {
+                HoldOn.close();
+                loadData();
+                $('#modal-form').modal('hide');
+                $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');  
+            },
+            error: function(response){
+                HoldOn.close();
+                if (response.status === 422) {
+                    var data = response.responseJSON;
+                    $.each(data,function(key,val){
+                        if(key == "address"){
+                            $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#cke_'+key));
+                        }else{
+                            $('<span class="text-danger tooltip-field"><span>'+val+'</span>').insertAfter($('#'+key));
+                        }
+                        $('.'+key).addClass('has-error');
+                    });
+                } else {
+                    $('.error-modal').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                }
+            }
+        });
+    }
+
 
     function getPromoter(id){
         var uri = "{{ URL::route('admin-edit-promoter', "::param") }}";
@@ -193,7 +214,6 @@
                     response.data.active = 'true';
                 }
                 var data = response.data;
-                console.log(data);
 
                 $("#id").val(data.id);
                 $("#name").val(data.name);

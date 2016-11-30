@@ -257,6 +257,7 @@ class ReportsController extends BaseController
 
             $data['labels'] = array_flatten($labels);     
 
+            $color = 0;
             foreach ($cats as $key => $value) {
                 $categories[] = $value->price_level_name;
                 foreach ($dates as $key2 => $value2) {
@@ -268,11 +269,12 @@ class ReportsController extends BaseController
                 }
                 $data['datasets'][] = [
                     'label' => $value->price_level_name,
-                    'borderColor' => rand_color(),
+                    'borderColor' => rand_color2($color),
                     'fill' => false,
                     'fillColor' => "rgba(220,220,220,0)",
                     'data' => array_flatten($amounts)
                 ];
+                $color++;
             } 
  
             return response()->json([
@@ -384,6 +386,7 @@ class ReportsController extends BaseController
 
             $data['labels'] = array_flatten($labels);     
 
+            $color = 11;
             foreach ($pays as $key => $value) {
                 $categories[] = $value->payment_method_name;
                 foreach ($dates as $key2 => $value2) {
@@ -395,11 +398,12 @@ class ReportsController extends BaseController
                 }
                 $data['datasets'][] = [
                     'label' => $value->payment_method_name,
-                    'borderColor' => rand_color(),
+                    'borderColor' => rand_color2($color),
                     'fill' => false,
                     'fillColor' => "rgba(220,220,220,0)",
                     'data' => array_flatten($amounts)
                 ];
+                $color++;
             } 
 
             return response()->json([
@@ -535,6 +539,7 @@ class ReportsController extends BaseController
                 $data['labels'] = array_flatten($labels);  
             }   
 
+            $color = 21;
             if(!$pros->isEmpty()){
                 foreach ($pros as $key => $value) {
                     $categories[] = $value->promo_code;
@@ -547,11 +552,12 @@ class ReportsController extends BaseController
                     }
                     $data['datasets'][] = [
                         'label' => $value->promo_code,
-                        'borderColor' => rand_color(),
+                        'borderColor' => rand_color2($color),
                         'fill' => false,
                         'fillColor' => "rgba(220,220,220,0)",
                         'data' => array_flatten($amounts)
                     ];
+                    $color++;
                 } 
             }
 

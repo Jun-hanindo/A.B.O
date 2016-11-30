@@ -48,6 +48,12 @@ class PromotersController extends BaseController
                     return '<a href="javascript:void(0)" data-id="'.$promoter->id.'" data-name="'.$promoter->name.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
                         &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$promoter->id.'" data-name="'.$promoter->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
                 })
+                ->filterColumn('name', function($query, $keyword) {
+                    $query->whereRaw("LOWER(CAST(promoters.name as TEXT)) ilike ?", ["%{$keyword}%"]);
+                })
+                ->filterColumn('country', function($query, $keyword) {
+                    $query->whereRaw("LOWER(CAST(countries.name as TEXT)) ilike ?", ["%{$keyword}%"]);
+                })
                 ->make(true);
     }
 

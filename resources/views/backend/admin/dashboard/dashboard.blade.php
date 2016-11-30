@@ -1,13 +1,13 @@
 @extends('layout.backend.admin.master.master')
 
-@section('title', 'Dashboard')
+@section('title', trans('backend/general.dashboard'))
 
-@section('page-header', 'Dashboard')
+@section('page-header', trans('backend/general.dashboard'))
 
 @section('breadcrumb')
         <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-tachometer"></i> Home</a></li>
-                <li class="active">Dashboard</li>
+                <li><a href="#"><i class="fa fa-tachometer"></i>{{ trans('backend/general.home') }}</a></li>
+                <li class="active">{{ trans('backend/general.dashboard') }}</li>
         </ol>
 @endsection
 
@@ -20,7 +20,7 @@
                 <span class="info-box-icon bg-aqua"><i class="fa fa-calendar-check-o"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">EVENTS</span>
+                    <span class="info-box-text">{{ trans('backend/general.events') }}</span>
                     <span class="info-box-number">{{ $events }}</span>
                 </div>
                 <!-- /.info-box-content -->
@@ -33,7 +33,7 @@
                     <span class="info-box-icon bg-red"><i class="fa fa-tags"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">PROMOTIONS</span>
+                    <span class="info-box-text">{{ trans('backend/general.promotions') }}</span>
                     <span class="info-box-number">{{ $promotions }}</span>
                 </div>
                 <!-- /.info-box-content -->
@@ -50,7 +50,7 @@
                 <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">USERS</span>
+                    <span class="info-box-text">{{ trans('backend/general.users') }}</span>
                     <span class="info-box-number">{{ $users }}</span>
                 </div>
             <!-- /.info-box-content -->
@@ -63,7 +63,7 @@
                 <span class="info-box-icon bg-yellow"><i class="fa fa-envelope-o"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">LAST WEEK SUBSCRIBERS</span>
+                    <span class="info-box-text">{{ trans('backend/general.last_week_subscribers') }}LAST WEEK SUBSCRIBERS</span>
                     <span class="info-box-number">{{ $subscribers }}</span>
                 </div>
                 <!-- /.info-box-content -->
@@ -94,8 +94,4 @@
             </div>
             <!-- /.row -->
         </section>
-        {{--<div class="col-md-6 col-md-offset-3" align="center">
-                <h2>Welcome to <b>{{ env('APP_WEB_ADMIN_NAME', 'AHLOO Web Admin') }}</b>!</h2>
-                <h3>~ share things that you love ~</h3>
-        </div>--}}
 @endsection

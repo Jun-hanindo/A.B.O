@@ -97,4 +97,30 @@ class ActivityLogController extends BaseController
         
         }
     }
+
+    public function deleteByDate(Request $req){
+        try{
+            $param = $req->all();
+            $data = $this->model->deleteByDate($param);
+            flash()->success(trans('general.delete_success'));
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'System log "'.$param['start_delete'].' until '.$param['end_delete'].'" was deleted';
+            $this->model->insertLogActivity($log);
+
+            return redirect()->route('admin-activity-log-index');
+
+        //} else {
+        } catch (\Exception $e) {
+
+            flash()->error(trans('general.data_not_found'));
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $this->model->insertLogActivity($log);
+
+            return redirect()->route('admin-activity-log-index');
+
+        }
+    }
 }

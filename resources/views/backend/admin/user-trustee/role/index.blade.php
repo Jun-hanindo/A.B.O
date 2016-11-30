@@ -1,6 +1,6 @@
 @extends('layout.backend.admin.master.master')
 
-@section('title', 'Role Management')
+@section('title', trans('backend/general.role_management'))
 
 @section('header')
     {!! Html::style('assets/plugins/datatables/dataTables.bootstrap.css') !!}
@@ -24,15 +24,15 @@
 @section('content')
     <div class="box box-primary">
         <div class="box-header">
-            <h3 class="box-title">Role Management</h3>
-            <a class="btn btn-primary pull-right" href="{{ action('Backend\Admin\UserTrustee\RoleController@create') }}" title="Add"><i class="fa fa-plus fa-fw"></i></a>
+            <h3 class="box-title">{{ trans('backend/general.role_management') }}</h3>
+            <a class="btn btn-primary pull-right" href="{{ action('Backend\Admin\UserTrustee\RoleController@create') }}" title="{{ trans('backend/general.create_new') }}"><i class="fa fa-plus fa-fw"></i></a>
         </div>
         <div class="box-body">
             @include('flash::message')
             <table id="roles-table" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                 <thead>
                     <tr>
-                        <th class="center-align">Name</th>
+                        <th class="center-align">{{ trans('backend/general.name') }}</th>
                         <th width="12%">&nbsp;</th>
                     </tr>
                 </thead>
@@ -66,6 +66,7 @@
             $('#roles-table').DataTable({
                 processing: true,
                 serverSide: true,
+                order: [[ 0, "asc" ]],
                 ajax: '{!! action('Backend\Admin\UserTrustee\RoleController@datatables') !!}',
                 columns: [
                     {data: 'name', name: 'name'},

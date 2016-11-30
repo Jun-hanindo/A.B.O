@@ -189,11 +189,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
     Route::group(['prefix' => 'trail'], function () {
         Route::get('', array('as' => 'admin-trail-index', 'uses' => 'TrailsController@index'));
         Route::post('save-trail-modal', array('as' => 'admin-trail-post-modal', 'uses' => 'TrailsController@saveTrailModal'));
+        Route::delete('delete', array('as' => 'admin-delete-trail', 'uses' => 'TrailsController@deleteByDate'));
     });
 
     Route::group(['prefix' => 'system-log'], function () {
         Route::get('', array('as' => 'admin-activity-log-index', 'uses' => 'ActivityLogController@index'));
         Route::post('create', array('as' => 'admin-activity-log-post-ajax', 'uses' => 'ActivityLogController@postAjaxLog'));
+        Route::delete('delete', array('as' => 'admin-delete-activity-log', 'uses' => 'ActivityLogController@deleteByDate'));
     });
 
     // Route::group(['prefix' => 'customer-report'], function () {

@@ -1,3 +1,4 @@
+@section('scripts')
 {!! Html::script('assets/plugins/datatables/jquery.dataTables.min.js') !!}
 {!! Html::script('assets/plugins/datatables/dataTables.bootstrap.min.js') !!}
 
@@ -33,6 +34,43 @@ $(document).ready(function() {
         var start_date = $('input[name=start_date]').val();
         var end_date = $('input[name=end_date]').val();
         loadData(start_date, end_date);
+    });
+
+
+    var start_delete = $('input[name=start_delete]').val();
+    var end_delete = $('input[name=end_delete]').val();
+
+    $('#start_delete').datepicker({
+        format: "yyyy-mm-dd",
+        endDate: end_delete,
+    }).on('changeDate', function(){
+        $('#end_delete').datepicker('setStartDate', new Date($('#start_delete').val()));
+        var start_delete = $('input[name=start_delete]').val();
+        var end_delete = $('input[name=end_delete]').val();
+    });
+
+    $('#end_delete').datepicker({
+        format: "yyyy-mm-dd",
+        startDate: start_delete,
+        endDate: end_delete,
+    }).on('changeDate', function(){
+        $('#start_delete').datepicker('setEndDate', new Date($('#end_delete').val()));
+        var start_delete = $('input[name=start_delete]').val();
+        var end_delete = $('input[name=end_delete]').val();
+    });
+
+    $('#btn_apply_delete').on('click', function (e) {
+        var id = $(this).attr('data-id');
+        var name = $(this).data('name');
+        var start_delete = $('input[name=start_delete]').val();
+        var end_delete = $('input[name=end_delete]').val(); 
+        $('#destroy').attr('action', '{{ Request::url() }}/delete');
+        var input = '<input type="hidden" name="start_delete" value="'+start_delete+'" />'
+            +'<input type="hidden" name="end_delete" value="'+end_delete+'" />';
+        $('#delete-modal #destroy').append(input);
+        $('#delete-modal').modal('show');
+        $("#name").html(name);
+        e.preventDefault();
     });
 
 });
@@ -80,3 +118,5 @@ function loadData(start_date, end_date)
 }
 
 </script>
+    @include('backend.delete-modal-datatables')
+@endsection

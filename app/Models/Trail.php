@@ -83,4 +83,15 @@ class Trail extends Model
         }
         return $data;
     }
+
+    public function deleteByDate($param)
+    {
+        $start = $param['start_delete'];
+        $end = $param['end_delete'];
+
+        $data = Trail::where(DB::raw('DATE(created_at)'), '>=', $start)
+            ->where(DB::raw('DATE(created_at)'), '<=', $end)->delete();
+
+        return $data;
+    }
 }

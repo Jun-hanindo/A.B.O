@@ -48,7 +48,7 @@ class Promoter extends Model
 
         return static::select('promoters.id as id', 'promoters.name as name', 'countries.name as country')
             ->leftJoin('countries', 'countries.id', '=', 'promoters.country_id')
-            ->orderBy('promoters.name', 'asc');
+            /*->orderBy('promoters.name', 'asc')*/;
     
     }
 

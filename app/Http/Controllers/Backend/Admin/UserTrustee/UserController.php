@@ -151,6 +151,13 @@ class UserController extends BaseController
 
                 return eform_datetime($user->last_login);
             })
+            ->editColumn('created_at', function ($user) {
+                if (is_null($user->created_at)) {
+                    return '--';
+                }
+
+                return eform_datetime($user->created_at);
+            })
             ->editColumn('name', function ($user) {
                 return $user->first_name.' '.$user->last_name;
             })

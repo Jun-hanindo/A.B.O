@@ -1,6 +1,6 @@
 @extends('layout.backend.admin.master.master')
 
-@section('title', 'User Management - '.$title)
+@section('title', trans('backend/general.user_management').' - '.$title)
 
 {{-- @section('page-header', 'User Management <small>'.$title.'</small>') --}}
 
@@ -30,23 +30,23 @@
                             </div>
                         @endif
                         <div class="form-group{{ Form::hasError('avatar') }}">
-                            {!! Form::label('avatar', 'Avatar', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('avatar', trans('backend/general.avatar'), ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::file('avatar') !!}
                                 {!! Form::errorMsg('avatar') !!}
                             </div>
                         </div>
                         <div class="form-group">
-                            {!! Form::label('role', 'Role', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('role', trans('backend/general.role'), ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
                                 {!! Form::select('role', $dropdown, null, ['class' => 'form-control']) !!}
                                 {!! Form::errorMsg('role') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('promoter_id') }}" id="promotor_div" style="display:none;">
-                            {!! Form::label('promoter', 'Promoter *', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('promoter', trans('backend/general.promoter').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::text('promoter_id', null, ['id' => 'promoter_id', 'class' => 'form-control', 'data-option' => old('promoter_id')]) !!}
+                                {!! Form::text('promoter_id', null, ['id' => 'promoter_id', 'class' => 'form-control', 'data-option' => old('promoter_id'), 'placeholder' => trans('backend/general.promoter')]) !!}
                                 {!! Form::hidden('promoter_name', null, ['id' => 'promoter_name', 'class' => 'form-control']) !!}
                                 {!! Form::errorMsg('promoter_id') !!}
                             </div>
@@ -54,42 +54,42 @@
                         {{-- <div class="form-group{{ Form::hasError('username') }}">
                             {!! Form::label('username', 'Username', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::text('username', null, ['class' => 'form-control']) !!}
+                                {!! Form::text('username', null, ['class' => 'form-control', 'placeholder' => trans('backend/general.username')]) !!}
                                 {!! Form::errorMsg('username') !!}
                             </div>
                         </div> --}}
                         <div class="form-group{{ Form::hasError('email') }}">
-                            {!! Form::label('email', 'Email *', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('email', trans('backend/general.email').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::text('email', null, ['class' => 'form-control']) !!}
+                                {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => trans('backend/general.email')]) !!}
                                 {!! Form::errorMsg('email') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('first_name') }}">
-                            {!! Form::label('first_name', 'First Name *', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('first_name', trans('backend/general.first_name').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::text('first_name', null, ['class' => 'form-control']) !!}
+                                {!! Form::text('first_name', null, ['class' => 'form-control', 'placeholder' => trans('backend/general.first_name')]) !!}
                                 {!! Form::errorMsg('first_name') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('last_name') }}">
-                            {!! Form::label('last_name', 'Last Name *', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('last_name', trans('backend/general.last_name').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::text('last_name', null, ['class' => 'form-control']) !!}
+                                {!! Form::text('last_name', null, ['class' => 'form-control', 'placeholder' => trans('backend/general.last_name')]) !!}
                                 {!! Form::errorMsg('last_name') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('phone') }}">
-                            {!! Form::label('phone', 'Cellphone *', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('phone', trans('backend/general.cellphone').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::text('phone', null, ['class' => 'form-control']) !!}
+                                {!! Form::text('phone', null, ['class' => 'form-control', 'placeholder' => trans('backend/general.cellphone')]) !!}
                                 {!! Form::errorMsg('phone') !!}
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('address') }}">
-                            {!! Form::label('address', 'Address *', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('address', trans('backend/general.address').' *', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::textarea('address', null, ['class' => 'form-control']) !!}
+                                {!! Form::textarea('address', null, ['class' => 'form-control', 'placeholder' => trans('backend/general.address')]) !!}
                                 {!! Form::errorMsg('address') !!}
                             </div>
                         </div>
@@ -103,8 +103,8 @@
                     </div>
                     <div class="box-footer">
                         {!! Form::submit('Save', ['id' => 'button_save', 'class' => 'btn btn-primary pull-right', 'title' => 'Save']) !!}
-                        <button type="submit" id="button_reactivate" class="btn btn-primary pull-right" style="display:none" title="{{ trans('general.button_reactivate') }}">{{ trans('general.button_reactivate') }}</button>
-                        {!! link_to_action('Backend\Admin\UserTrustee\UserController@index', trans('general.button_cancel'), [], ['class' => 'btn btn-default pull-right']) !!}
+                        <button type="submit" id="button_reactivate" class="btn btn-primary pull-right" style="display:none" title="{{ trans('backend/general.button_reactivate') }}">{{ trans('backend/general.button_reactivate') }}</button>
+                        {!! link_to_action('Backend\Admin\UserTrustee\UserController@index', trans('backend/general.button_cancel'), [], ['class' => 'btn btn-default pull-right']) !!}
                     </div>
                 {!! Form::close() !!}
             </div>

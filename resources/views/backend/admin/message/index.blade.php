@@ -1,7 +1,7 @@
 @extends('layout.backend.admin.master.master')
 
 @section('title')
-{{ trans('general.inbox') }}
+{{ trans('backend/general.inbox') }}
 @endsection
 
 @section('header')
@@ -17,7 +17,7 @@
 @section('content')
     <div class="box box-primary">
         <div class="box-header">
-            <h3 class="box-title">{{ trans('general.inbox') }}</h3>
+            <h3 class="box-title">{{ trans('backend/general.inbox') }}</h3>
         </div>
         <div class="box-body">
             <form id="form">
@@ -25,9 +25,9 @@
                     <thead>
                         <tr>
                             <!-- <th><input name="select_all" value="1" type="checkbox" class="select_all-checkbox"></th> -->
-                            <th class="center-align">{{ trans('general.name') }}</th>
-                            <th class="center-align">{{ trans('general.subject') }}</th>
-                            <th class="center-align" width="18%">{{ trans('general.date') }}</th>
+                            <th class="center-align">{{ trans('backend/general.name') }}</th>
+                            <th class="center-align">{{ trans('backend/general.subject') }}</th>
+                            <th class="center-align" width="18%">{{ trans('backend/general.date') }}</th>
                             <th width="12%">&nbsp;</th>
                         </tr>
                     </thead>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\User;
 use App\Models\Trail;
+use App\Models\LogActivity;
 use App\Http\Controllers\Backend\Admin\BaseController;
 
 class TrailsController extends BaseController
@@ -88,6 +89,34 @@ class TrailsController extends BaseController
                 'message' => trans('general.save_error')
             ],400);
         
+        }
+    }
+
+    public function deleteByDate(Request $req){
+        try{
+            $param = $req->all();
+            $data = $this->model->deleteByDate($param);
+            flash()->success(trans('general.delete_success'));
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = 'Trail "'.$param['start_delete'].' until '.$param['end_delete'].'" was deleted';
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return redirect()->route('admin-trail-index');
+
+        //} else {
+        } catch (\Exception $e) {
+
+            flash()->error(trans('general.data_not_found'));
+
+            $log['user_id'] = $this->currentUser->id;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return redirect()->route('admin-trail-index');
+
         }
     }
 }

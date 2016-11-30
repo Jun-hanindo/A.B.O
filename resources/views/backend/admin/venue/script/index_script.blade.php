@@ -6,32 +6,32 @@
     $(document).ready(function() {
         loadData();
         
-        $('.select_all-checkbox').on('click', function(){
-            datatablesSelectAll(loadData());
-        });
+        // $('.select_all-checkbox').on('click', function(){
+        //     datatablesSelectAll(loadData());
+        // });
 
-        $('.item-checkbox').on('click', function(){
-            datatablesCheckbox(loadData());
-        });
+        // $('.item-checkbox').on('click', function(){
+        //     datatablesCheckbox(loadData());
+        // });
 
-        $('#venue-datatables').on('switchChange.bootstrapSwitch', '.avaibility-check', function(event, state) {
-            var id = $(this).attr('data-id');
-            var uri = "{{ URL::route('admin-update-venue-avaibility', "::param") }}";
-            uri = uri.replace('::param', id);
-            var val = $(this).is(":checked") ? true : false;
-            $.ajax({
-                    url: uri,
-                    type: "POST",
-                    dataType: 'json',
-                    data: "avaibility="+val,
-                    success: function (data) {
-                        $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
-                    },
-                    error: function(response){
-                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
-                    }
-                });
-        });
+        // $('#venue-datatables').on('switchChange.bootstrapSwitch', '.avaibility-check', function(event, state) {
+        //     var id = $(this).attr('data-id');
+        //     var uri = "{{ URL::route('admin-update-venue-avaibility', "::param") }}";
+        //     uri = uri.replace('::param', id);
+        //     var val = $(this).is(":checked") ? true : false;
+        //     $.ajax({
+        //             url: uri,
+        //             type: "POST",
+        //             dataType: 'json',
+        //             data: "avaibility="+val,
+        //             success: function (data) {
+        //                 $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+        //             },
+        //             error: function(response){
+        //                 $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+        //             }
+        //         });
+        // });
 
     });
 
