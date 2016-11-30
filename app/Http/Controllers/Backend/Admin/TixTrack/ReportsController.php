@@ -386,7 +386,7 @@ class ReportsController extends BaseController
 
             $data['labels'] = array_flatten($labels);     
 
-            $color = 11;
+            $color = 10;
             foreach ($pays as $key => $value) {
                 $categories[] = $value->payment_method_name;
                 foreach ($dates as $key2 => $value2) {
@@ -539,7 +539,7 @@ class ReportsController extends BaseController
                 $data['labels'] = array_flatten($labels);  
             }   
 
-            $color = 21;
+            $color = 20;
             if(!$pros->isEmpty()){
                 foreach ($pros as $key => $value) {
                     $categories[] = $value->promo_code;
