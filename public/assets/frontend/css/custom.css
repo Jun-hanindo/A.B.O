@@ -103,7 +103,10 @@ iframe[name="google_conversion_frame"]{
     transition: height 1s;
     -webkit-transition: height 1s;
 }
-#promotion a{
+#aboutEvent #promotion a,
+#aboutEvent #about a,
+#aboutEvent #venue a,
+#aboutEvent #rules a{
   color: #000;
   text-decoration: underline;
 }
