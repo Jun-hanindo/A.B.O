@@ -412,14 +412,14 @@
                                 {!! Form::textarea('description_promo', old('description_promo'), ['id' => 'description_promo', 'class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.description')]) !!}
                                 {!! Form::errorMsg('description_promo') !!}
                             </div>
-                            
+
                             <div class="form-group{{ Form::hasError('link_title_more_description') }} link_title_more_description">
                                 {!! Form::label('link_title_more_description', trans('general.link_title_more_description')) !!}
                                 {!! Form::text('link_title_more_description', old('link_title_more_description'), ['id' => 'link_title_more_description', 'class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.link_title_more_description')]) !!}
                                 {!! Form::errorMsg('link_title_more_description') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('more_description') }} more_description">
-                                {!! Form::label('more_description', trans('general.more_description').' *') !!}
+                                {!! Form::label('more_description', trans('general.more_description')) !!}
                                 {!! Form::textarea('more_description', old('more_description'), ['id' => 'more_description', 'class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('general.more_description')]) !!}
                                 {!! Form::errorMsg('more_description') !!}
                             </div>

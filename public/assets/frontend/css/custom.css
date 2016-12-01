@@ -96,9 +96,8 @@ iframe[name="google_conversion_frame"]{
   width: 50px;
 }
 #link_title_more_promotion{
-  color: #000;
+  color: #333;
   font-style: italic;
-  text-decoration: underline;
   cursor: pointer;
 }
 #more_description {

@@ -43,6 +43,9 @@ class PromotionRequest extends Request
                 'image_link'   => 'url'
             ];
 
+            if(!empty($req['link_title_more_description'])){
+                $rules['more_description'] = 'required';
+            }
             if (isset($req['discount_type'])){
                 //$rules['discount'] = 'required|numeric|max:99|min:1';
                 $rules['discount'] = 'numeric|max:99|min:1';
@@ -68,6 +71,10 @@ class PromotionRequest extends Request
                 'category'          => 'required',
                 'image_link'   => 'url'
             ];
+
+            if(!empty($req['link_title_more_description'])){
+                $rules['more_description'] = 'required';
+            }
 
             if (isset($req['discount_type'])){
                 //$rules['discount'] = 'required|numeric|max:99|min:1';

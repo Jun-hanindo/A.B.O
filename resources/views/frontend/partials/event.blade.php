@@ -306,7 +306,7 @@
                                                                     <p>{{ trans('frontend/general.end_date') }}: {{ full_text_date($promotion->end_date) }}</p>
                                                                 @endif
                                                                 @if(!empty($promotion->link_title_more_description))
-                                                                    <a id="link_title_more_promotion" data-toggle="collapse" href="#more_description" aria-expanded="false"> {!! $promotion->link_title_more_description !!} </a>
+                                                                    <a id="link_title_more_promotion" data-toggle="collapse" href="#more_description" aria-expanded="false"><u> {!! $promotion->link_title_more_description !!} </u></a>
                                                                 @endif
                                                                 @if(!empty($promotion->more_description))
                                                                     <span class="collapse" id="more_description"> {!! $promotion->more_description !!} </span>
