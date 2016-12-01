@@ -907,7 +907,7 @@
                         $('#span-promotion_banner').html('<a href="javascript:void(0)" data-id="'+id+'" data-name="promotion_banner" data-value="'+data.banner_image +'" class="btn btn-danger btn-xs delete-promotion_banner" title="Delete Promotion Banner"><i class="fa fa-trash-o fa-fw"></i></a>');
                     }
                     $("#description_promo").val(data.description);
-                    $("#featured_image_link").val(data.featured_image_link);
+                    $("#image_link").val(data.featured_image_link);
                 },
                 error: function(response){
                     loadDataSchedule(event_id);
