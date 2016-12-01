@@ -95,4 +95,13 @@ iframe[name="google_conversion_frame"]{
 .box-promo .eventName img{
   width: 50px;
 }
-
+#link_title_more_promotion{
+  color: #000;
+  font-style: italic;
+  text-decoration: underline;
+  cursor: pointer;
+}
+#more_description {
+    transition: height 1s;
+    -webkit-transition: height 1s;
+}

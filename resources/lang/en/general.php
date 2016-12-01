@@ -310,6 +310,8 @@ return [
     'role' => 'Role',
     'last_login' => 'Last Login',
     'created_at' => 'Created at',
-    'image_link' => 'Image Link'
+    'image_link' => 'Image Link',
+    'link_title_more_description' => 'Link Title for More Description',
+    'more_description' => 'More Desciption',
 
 ];

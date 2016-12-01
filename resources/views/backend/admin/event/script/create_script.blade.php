@@ -737,7 +737,7 @@
             // }
 
             var title = $('#title_promo').val();
-            var description = $().val('#description_promo').val();
+            var description = $('#description_promo').val();
 
             fd.append('event_id', event_id);
             fd.append('title', title);
@@ -802,7 +802,7 @@
             // }
 
             var title = $('#title_promo').val();
-            var description = $().val('#description_promo').val();
+            var description = $('#description_promo').val();
 
             fd.append('event_id', event_id);
             fd.append('title', title);
@@ -907,6 +907,8 @@
                         $('#span-promotion_banner').html('<a href="javascript:void(0)" data-id="'+id+'" data-name="promotion_banner" data-value="'+data.banner_image +'" class="btn btn-danger btn-xs delete-promotion_banner" title="Delete Promotion Banner"><i class="fa fa-trash-o fa-fw"></i></a>');
                     }
                     $("#description_promo").val(data.description);
+                    $("#link_title_more_description").val(data.link_title_more_description);
+                    $("#more_description").val(data.more_description);
                     $("#image_link").val(data.featured_image_link);
                 },
                 error: function(response){
@@ -929,13 +931,15 @@
             $("#discount_nominal").val('');
             $(".discount_type-check").bootstrapSwitch('state', true); 
             $('#description_promo').val('');
-            $('#featured_image_link').val('');
+            $('#image_link').val('');
             var currency = $("#form-event-promotion #currency_id").attr('data-default');
             $("#form-event-promotion #currency_id").val(currency);
             $('#start_date').data('datepicker').setDate(null);
             $('#end_date').data('datepicker').setDate(null);
             $('#discount-percent').show();
             $('#discount-nominal').hide();
+            $("#link_title_more_description").val('');
+            $('#more_description').val('');
         }
 
         function saveCat()
