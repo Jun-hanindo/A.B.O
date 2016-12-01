@@ -40,7 +40,7 @@ class PromotionRequest extends Request
                 'start_date'        => 'date|after:'.$daysAgo,
                 'end_date'          => 'date|after:start_date|after:'.$today,
                 'category'          => 'required',
-                'featured_image_link'   => 'url'
+                'image_link'   => 'url'
             ];
 
             if (isset($req['discount_type'])){
@@ -66,7 +66,7 @@ class PromotionRequest extends Request
                 'start_date'        => 'date|after:'.$daysAgo,
                 'end_date'          => 'date|after:start_date|after:'.$today,
                 'category'          => 'required',
-                'featured_image_link'   => 'url'
+                'image_link'   => 'url'
             ];
 
             if (isset($req['discount_type'])){

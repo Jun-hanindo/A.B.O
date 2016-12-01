@@ -40,8 +40,8 @@
                 ],
                 "fnDrawCallback": function() {
                     //Initialize checkbos for enable/disable user
-                    $(".avaibility-check").bootstrapSwitch({onText: "Show", offText:"Off", animate: false});
-                    $(".status-check").bootstrapSwitch({onText: "Active", offText:"Inactive", animate: false});
+                    $(".avaibility-check").bootstrapSwitch({onText: "{{ trans('backend/general.show') }}", offText:"{{ trans('backend/general.off') }}", animate: false});
+                    $(".status-check").bootstrapSwitch({onText: "{{ trans('backend/general.active') }}", offText:"{{ trans('backend/general.inactive') }}", animate: false});
                 }
             });
             return table;

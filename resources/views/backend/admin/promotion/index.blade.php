@@ -1,7 +1,7 @@
 @extends('layout.backend.admin.master.master')
 
 @section('title')
-{{ trans('general.promotions') }}
+{{ trans('backend/general.promotions') }}
 @endsection
 
 @section('header')
@@ -17,9 +17,9 @@
 @section('content')
     <div class="box box-primary">
         <div class="box-header">
-            <h3 class="box-title">{{ trans('general.promotions') }}</h3>
+            <h3 class="box-title">{{ trans('backend/general.promotions') }}</h3>
             <div class="pull-right">
-                {{-- <a class="btn btn-primary" href="{{ route('admin-create-promotion') }}" title="{{ trans('general.create_new') }}"><i class="fa fa-plus fa-fw"></i></a> --}}
+                {{-- <a class="btn btn-primary" href="{{ route('admin-create-promotion') }}" title="{{ trans('backend/general.create_new') }}"><i class="fa fa-plus fa-fw"></i></a> --}}
             </div>
         </div>
         <div class="box-body">
@@ -32,7 +32,7 @@
                             {!! Form::select('bulk_action', array('' => 'Bulk Action', 'delete' => 'Delete', 'enable' => 'Enable', 'disable' => 'Disable'), old('bulk_action'), array('class' => 'form-control','data-option' => old('bulk_action'))) !!}
                         </div>
                         <div class=" col-md-2">
-                            <button type="button" id="{{ trans('general.button_apply') }}" class="btn btn-primary" title="{{ trans('general.button_apply') }}">{{ trans('general.button_apply') }}</button>
+                            <button type="button" id="{{ trans('backend/general.button_apply') }}" class="btn btn-primary" title="{{ trans('backend/general.button_apply') }}">{{ trans('backend/general.button_apply') }}</button>
                         </div>
                     </div>
                 </div> -->
@@ -40,9 +40,9 @@
                     <thead>
                         <tr>
                             <!-- <th><input name="select_all" value="1" type="checkbox" class="select_all-checkbox"></th> -->
-                            <th class="center-align">{{ trans('general.promotion_title') }}</th>
-                            <th class="center-align">{{ trans('general.post_by') }}</th>
-                            <th width="20%" class="center-align">{{ trans('general.avaibility') }}</th>
+                            <th class="center-align">{{ trans('backend/general.promotion_title') }}</th>
+                            <th class="center-align">{{ trans('backend/general.post_by') }}</th>
+                            <th width="20%" class="center-align">{{ trans('backend/general.avaibility') }}</th>
                             <th width="12%"></th>
                         </tr>
                     </thead>

@@ -100,7 +100,7 @@ class Promotion extends Model
         $this->code = $param['promotion_code'];
         $this->category = $param['category'];
         $this->currency_id = (!isset($param['discount_type'])) ? $param['currency_id'] : 0;
-        $this->featured_image_link = $param['featured_image_link'];
+        $this->featured_image_link = $param['image_link'];
 
         // $pathDest = public_path().'/uploads/promotions';
         // if(!File::exists($pathDest)) {
@@ -202,7 +202,7 @@ class Promotion extends Model
             $data->code = $param['promotion_code'];
             $data->category = $param['category'];
             $data->currency_id = (!isset($param['discount_type'])) ? $param['currency_id'] : 0;
-            $data->featured_image_link = $param['featured_image_link'];
+            $data->featured_image_link = $param['image_link'];
 
             // $pathDest = public_path().'/uploads/promotions';
             // if(!File::exists($pathDest)) {

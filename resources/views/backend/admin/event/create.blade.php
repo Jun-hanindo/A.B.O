@@ -471,10 +471,10 @@
                             <div class="form-group privew" id="div-preview_promo_banner" data-name="promo_banner" style="display:none">
                                 <img src="" name="preview" id="preview_promo_banner" height="20%" width="20%">
                             </div>
-                            <div class="form-group{{ Form::hasError('featured_image_link') }} featured_image_link">
-                                {!! Form::label('featured_image_link', trans('general.featured_image_link')) !!}
-                                {!! Form::text('featured_image_link', old('featured_image_link'), ['id' => 'featured_image_link', 'class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.featured_image_link')]) !!}
-                                {!! Form::errorMsg('featured_image_link') !!}
+                            <div class="form-group{{ Form::hasError('image_link') }} image_link">
+                                {!! Form::label('image_link', trans('general.image_link')) !!}
+                                {!! Form::text('image_link', old('image_link'), ['id' => 'image_link', 'class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('general.image_link')]) !!}
+                                {!! Form::errorMsg('image_link') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('category') }} category">
                                 {!! Form::label('category', trans('general.category')) !!}

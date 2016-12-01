@@ -3,14 +3,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Confirmation</h4>
+                <h4 class="modal-title">{{ trans('backend/general.confirmation') }}</h4>
             </div>
             <div class="modal-body">
-                <p>{{ trans('general.confirmation_delete') }} <strong id="name"></strong> ?</p>
+                <p>{{ trans('backend/general.confirmation_delete') }} <strong id="name"></strong> ?</p>
             </div>
             <div class="modal-footer">
                 {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
-                    <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;{!! Form::submit('Continue', ['class' => 'btn btn-default']) !!}
+                    <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('backend/general.button_cancel') }}</a>&nbsp;{!! Form::submit(trans('backend/general.button_continue'), ['class' => 'btn btn-default']) !!}
                 {!! Form::close() !!}
             </div>
         </div>

@@ -290,7 +290,9 @@
                                                         @foreach($event->promotions as $key => $promotion) 
                                                             <section id="promotion" class="sectionEvent">
                                                                 @if(!empty($promotion->banner_image))
-                                                                    <img class="promo-banner" src="{{ file_url('promotions/'.$promotion->banner_image, env('FILESYSTEM_DEFAULT')) }}">
+                                                                    <a {!! (!empty($promotion->featured_image_link)) ? 'href="'.$promotion->featured_image_link.'" target="_blank"' : '' !!}>
+                                                                        <img class="promo-banner" src="{{ file_url('promotions/'.$promotion->banner_image, env('FILESYSTEM_DEFAULT')) }}">
+                                                                    </a>
                                                                 @endif
                                                                 @if(!empty($promotion->featured_image))
                                                                     <a {!! (!empty($promotion->featured_image_link)) ? 'href="'.$promotion->featured_image_link.'" target="_blank"' : '' !!}>
