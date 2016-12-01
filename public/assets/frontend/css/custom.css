@@ -97,10 +97,13 @@ iframe[name="google_conversion_frame"]{
 }
 #link_title_more_promotion{
   color: #333;
-  font-style: italic;
   cursor: pointer;
 }
 #more_description {
     transition: height 1s;
     -webkit-transition: height 1s;
+}
+#promotion a{
+  color: #000;
+  text-decoration: underline;
 }
