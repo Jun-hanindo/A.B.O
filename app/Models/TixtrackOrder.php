@@ -38,7 +38,7 @@ class TixtrackOrder extends Model
     {
 
         return static::select('id', 'order_id', 'first_name', 'last_name', 'event_name', 'price', 
-            DB::RAW("CONCAT(first_name, ' ', last_name)  as customer"), 'local_created', 'order_item_type', 'order_status')
+            DB::RAW("CONCAT(first_name, ' ', last_name)  as customer"), 'local_created', 'order_item_type', 'order_status', 'seat_id')
             /*->orderBy('order_id', 'asc')*/;
     
     }
@@ -47,7 +47,7 @@ class TixtrackOrder extends Model
     {
 
         $query = TixtrackOrder::select('id', 'order_id', 'first_name', 'last_name', 'event_name', 'price', 
-            DB::RAW("CONCAT(first_name, ' ', last_name)  as customer"), 'local_created', 'order_item_type', 'order_status');
+            DB::RAW("CONCAT(first_name, ' ', last_name)  as customer"), 'local_created', 'order_item_type', 'order_status', 'seat_id');
 
         if($param['account_id'] > 0){
             $query->where('account_id', $param['account_id']);

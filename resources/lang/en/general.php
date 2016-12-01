@@ -313,5 +313,6 @@ return [
     'image_link' => 'Image Link',
     'link_title_more_description' => 'Link Title for More Description',
     'more_description' => 'More Desciption',
+    'seat_id' => 'Seat ID',
 
 ];

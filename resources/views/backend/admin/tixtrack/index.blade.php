@@ -105,8 +105,9 @@ Tixtrack
                         <th class="center-align">{{ trans('general.event') }}</th>
                         <th class="center-align">{{ trans('general.customer') }}</th>
                         <th class="center-align">{{ trans('general.price') }}</th>
-                        <th class="center-align">{{ trans('general.order_item_type') }}</th>
                         <th class="center-align">{{ trans('general.order_status') }}</th>
+                        <th class="center-align">{{ trans('general.order_item_type') }}</th>
+                        <th class="center-align">{{ trans('general.seat_id') }}</th>
                         {{-- <th width="12%"></th> --}}
                     </tr>
                 </thead>

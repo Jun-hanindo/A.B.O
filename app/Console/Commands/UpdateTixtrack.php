@@ -250,10 +250,10 @@ class UpdateTixtrack extends Command
                                                     $event_id = (!empty($value['eventid'])) ? $value['eventid'] : null;
                                                     $event_date = date('Y-m-d H:i:s', strtotime($value['eventdate']));
                                                     $user_id = (!empty($value['userid'])) ? $value['userid'] : null;
-                                                    $partner_id = (!empty($$value['partnerid'])) ? $$value['partnerid'] : null;
-                                                    $item_id = (!empty($$value['itemid'])) ? $$value['itemid'] : null;
-                                                    $fee_id = (!empty($$value['feeid'])) ? $$value['feeid'] : null;
-                                                    $seat_id = (!empty($$value['seatid'])) ? $$value['seatid'] : null;
+                                                    $partner_id = (!empty($value['partnerid'])) ? $value['partnerid'] : null;
+                                                    $item_id = (!empty($value['itemid'])) ? $value['itemid'] : null;
+                                                    $fee_id = (!empty($value['feeid'])) ? $value['feeid'] : null;
+                                                    $seat_id = (!empty($value['seatid'])) ? $value['seatid'] : null;
                                                     $created = date('Y-m-d H:i:s', strtotime($value['created']));
                                                     $last_updated = date('Y-m-d H:i:s', strtotime($value['lastupdated']));
 

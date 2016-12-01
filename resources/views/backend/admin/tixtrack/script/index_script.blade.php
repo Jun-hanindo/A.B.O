@@ -143,8 +143,9 @@
                 {data: 'event_name', name: 'event_name'},
                 {data: 'customer', name: 'customer'},
                 {data: 'price', name: 'price'},
-                {data: 'order_item_type', name: 'order_item_type'},
                 {data: 'order_status', name: 'order_status'},
+                {data: 'order_item_type', name: 'order_item_type'},
+                {data: 'seat_id', name: 'seat_id'},
                 // {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
             ],
         });
