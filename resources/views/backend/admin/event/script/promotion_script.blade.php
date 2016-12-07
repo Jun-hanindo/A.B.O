@@ -307,8 +307,6 @@
     }
 
     $(document).ready(function(){ 
-        loadDataPromotion(event_id);
-        
         $('#modal-form-promotion').on('click', '.delete-promotion_logo, .delete-promotion_banner', function () {
             $('#delete-modal-promotion-image').modal('show');
             $('#modal-form-promotion').modal('hide');

@@ -1310,9 +1310,9 @@
                 });
             }); 
 
-            // loadDataSchedule(event_id);
+            loadDataSchedule(event_id);
 
-            // loadDataPromotion(event_id);
+            loadDataPromotion(event_id);
 
             $('.actAdd, .addPromotion').on('click',function(){
                 var cat = $(this).attr('data-name');

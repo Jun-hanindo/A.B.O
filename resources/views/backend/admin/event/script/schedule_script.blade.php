@@ -270,7 +270,6 @@
     }
 
     $(document).ready(function(){ 
-        loadDataSchedule(event_id);
 
     });
     
