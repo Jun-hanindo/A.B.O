@@ -54,6 +54,7 @@ function loadData(start_date, end_date)
     $('#subscription-datatables').DataTable({
         processing: true,
         serverSide: true,
+        order: [[ 3, 'desc' ]],
         ajax:{
             url: '{!! URL::route("datatables-subscription") !!}',
             data: {

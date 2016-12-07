@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        {!! Form::submit(trans('backend/general.save'), ['class' => 'btn btn-primary pull-right', 'title' => 'Save']).' '.link_to_action('Backend\Admin\UserTrustee\MenuController@index', trans('backend/general.button_cancel'), [], ['class' => 'btn btn-default pull-right']) !!}
+                        {!! Form::submit(trans('backend/general.button_save'), ['class' => 'btn btn-primary pull-right', 'title' => 'Save']).' '.link_to_action('Backend\Admin\UserTrustee\MenuController@index', trans('backend/general.button_cancel'), [], ['class' => 'btn btn-default pull-right']) !!}
                     </div>
                 {!! Form::close() !!}
             </div>
@@ -91,14 +91,14 @@
 
 @section('scripts')
     <script>
-        $(document).ready(function () {
-            function enable_disable_parent() {
-                if (0 == $('#is_parent').val()) {
-                    $('#parent').removeAttr('disabled');
-                } else {
-                    $('#parent').attr('disabled', 'disabled');
-                }
+        function enable_disable_parent() {
+            if (0 == $('#is_parent').val()) {
+                $('#parent').removeAttr('disabled');
+            } else {
+                $('#parent').attr('disabled', 'disabled');
             }
+        }
+        $(document).ready(function () {
 
             enable_disable_parent();
 

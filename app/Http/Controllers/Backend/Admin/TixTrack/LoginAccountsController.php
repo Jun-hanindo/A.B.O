@@ -179,7 +179,7 @@ class LoginAccountsController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $req,  $id)
+    public function destroy($id)
     {
         try{
             $data = $this->model->deleteByID($id);
@@ -187,18 +187,13 @@ class LoginAccountsController extends BaseController
 
             $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Tixtrack Account "'.$data->email.'" was deleted';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
 
             \Session::flash('error-login_account', trans('general.delete_success'));
 
-            return response()->json([
-                'code' => 200,
-                'status' => 'success',
-                'message' => '<strong>'.$data->email.'</strong> '.trans('general.delete_success')
-            ],200);
+            return redirect()->route('admin-index-tixtrack-account');
 
         //} else {
         } catch (\Exception $e) {
@@ -210,11 +205,7 @@ class LoginAccountsController extends BaseController
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            return response()->json([
-                'code' => 400,
-                'status' => 'success',
-                'message' => trans('general.data_not_found')
-            ],400);
+            return redirect()->route('admin-index-tixtrack-account');
 
         }
     }

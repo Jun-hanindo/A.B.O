@@ -44,8 +44,8 @@ class DepartmentsController extends BaseController
     {
             return datatables($this->model->datatables())
                 ->addColumn('action', function ($department) {
-                    return '<a href="javascript:void(0)" data-id="'.$department->id.'" data-name="'.$department->name.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
-                        &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$department->id.'" data-name="'.$department->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                    return '<a href="javascript:void(0)" data-id="'.$department->id.'" data-name="'.$department->name.'" class="btn btn-warning btn-xs actEdit" title="'.trans('general.edit').'"><i class="fa fa-pencil-square-o fa-fw"></i></a>
+                        &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="'.trans('general.delete').'" data-id="'.$department->id.'" data-name="'.$department->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
                 })
                 ->editColumn('avaibility', function ($department) {
                     if($department->avaibility == TRUE){

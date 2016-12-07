@@ -92,8 +92,8 @@ class CareersController extends BaseController
                 }
 
                 $url = route('admin-edit-career',$career->id);
-                return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"'.$disabled.'><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
-                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$career->id.'" data-button="delete"'.$disabled.'><i class="fa fa-trash-o fa-fw"></i></a>';
+                return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="'.trans('general.edit').'"'.$disabled.'><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
+                    <a href="#" class="btn btn-danger btn-xs actDelete" title="'.trans('general.delete').'" data-id="'.$career->id.'" data-name="'.$career->job.'" data-button="delete"'.$disabled.'><i class="fa fa-trash-o fa-fw"></i></a>';
             })
             ->make(true);
     }

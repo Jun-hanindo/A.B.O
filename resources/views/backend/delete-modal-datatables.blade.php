@@ -20,10 +20,10 @@
     $(document).ready(function() {
         $('[data-tables=true]').on('click', '[data-button=delete]', function(e) {
             var id = $(this).attr('data-id');
-            var name = $(this).data('name');
+            var name = $(this).attr('data-name');
             $('#destroy').attr('action', '{{ Request::url() }}/'+id+'/delete');
             $('#delete-modal').modal('show');
-            $("#name").html(name);
+            $("#delete-modal #name").html(name);
             e.preventDefault();
         });
     });

@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        {!! Form::submit(trans('backend/general.save'), ['class' => 'btn btn-primary pull-right', 'title' => 'Save']).' '.link_to_action('Backend\Admin\UserTrustee\RoleController@index', trans('backend/general.button_cancel'), [], ['class' => 'btn btn-default pull-right']) !!}
+                        {!! Form::submit(trans('backend/general.button_save'), ['class' => 'btn btn-primary pull-right', 'title' => 'Save']).' '.link_to_action('Backend\Admin\UserTrustee\RoleController@index', trans('backend/general.button_cancel'), [], ['class' => 'btn btn-default pull-right']) !!}
                     </div>
                 {!! Form::close() !!}
             </div>

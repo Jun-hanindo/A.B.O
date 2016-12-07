@@ -315,4 +315,10 @@ return [
     'more_description' => 'More Desciption',
     'seat_id' => 'Seat ID',
 
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'restore' => 'Restore',
+    'show_detail' => 'Show Detail',
+    'banned' => 'Banned',
+
 ];

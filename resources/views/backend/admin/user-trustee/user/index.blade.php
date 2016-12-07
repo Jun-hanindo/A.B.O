@@ -81,7 +81,7 @@
                     {data: 'first_name', name: 'first_name'},
                     {data: 'last_name', name: 'last_name'},
                     {data: 'phone', name: 'phone'},
-                    {data: 'role', name: 'role', searchable: false},
+                    {data: 'role', name: 'role'},
                     {data: 'last_login', name: 'last_login', class: 'center-align', searchable: false},
                     {data: 'created_at', name: 'created_at', class: 'center-align', searchable: false},
                     {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false}

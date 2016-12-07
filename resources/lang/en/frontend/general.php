@@ -112,5 +112,7 @@ return [
     'seat_map' => 'Seat Map',
     'discover_events' => 'Discover Events',
     'sorry' => 'Sorry',
+    'title' => 'Title',
+    'close' => 'Close',
 
 ];

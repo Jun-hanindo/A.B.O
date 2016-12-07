@@ -61,15 +61,15 @@ $(document).ready(function() {
 
     $('#btn_apply_delete').on('click', function (e) {
         var id = $(this).attr('data-id');
-        var name = $(this).data('name');
         var start_delete = $('input[name=start_delete]').val();
         var end_delete = $('input[name=end_delete]').val(); 
+        var name = 'from '+start_delete+' until '+end_delete;
         $('#destroy').attr('action', '{{ Request::url() }}/delete');
         var input = '<input type="hidden" name="start_delete" value="'+start_delete+'" />'
             +'<input type="hidden" name="end_delete" value="'+end_delete+'" />';
         $('#delete-modal #destroy').append(input);
         $('#delete-modal').modal('show');
-        $("#name").html(name);
+        $("#delete-modal #name").html(name);
         e.preventDefault();
     });
 

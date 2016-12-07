@@ -8,6 +8,10 @@
 
         $('.addDepartment').on('click',function(){
             $('#modal-form').modal('show');
+            $('#title-create').show();
+            $('#title-update').hide();
+            $('#button_update').hide();
+            $('#button_save').show();
         });
 
         $('#modal-form').on('show.bs.modal', function (e) {
@@ -107,7 +111,6 @@
         $(".form-group").removeClass('has-error');
         $('.error').removeClass('alert alert-danger');
         $('.error').html('');
-            
         modal_loader();
         var name = $("#name").val();
         $.ajax({

@@ -72,7 +72,7 @@
                 ajax: '{!! action('Backend\Admin\UserTrustee\MenuController@datatables') !!}',
                 columns: [
                     {data: 'display_name', name: 'display_name'},
-                    {data: 'is_parent', name: 'is_parent'},
+                    {data: 'is_parent', name: 'is_parent', searchable: false},
                     {data: 'href', name: 'href'},
                     {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false}
                 ]

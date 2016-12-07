@@ -21,13 +21,13 @@ Tixtrack
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header">
-                        <h3 class="box-title">{{ trans('general.report_tixtrack') }}</h3>
+                        <h3 class="box-title">{{ trans('backend/general.report_tixtrack') }}</h3>
                 </div>
                 {!! Form::open(array('url' => route('admin-report-tixtrack'),'method'=>'GET','id'=>'form-account', 'class' => 'form-horizontal')) !!}
                     <div class="box-body">
                         @include('flash::message')
                         <div class="form-group">
-                            <label for="event" class="col-sm-1 control-label">{{ trans('general.event') }} :</label>
+                            <label for="event" class="col-sm-1 control-label">{{ trans('backend/general.event') }} :</label>
                             <div class="col-sm-5">
                                 <select name="event" id="event" class="form-control">
                                     @if(!empty($events))
@@ -39,18 +39,18 @@ Tixtrack
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="start_date" class="col-sm-1 control-label">{{ trans('general.from') }} :</label>
+                            <label for="start_date" class="col-sm-1 control-label">{{ trans('backend/general.from') }} :</label>
                             <div class="col-sm-3">
                                 <input name="start_date" class="form-control datepicker" id="start_date" data-date-end-date="0d" value={{ (!empty($start_date)) ? date('Y-m-d', strtotime($start_date)) : date('Y-m-d',strtotime('-7days')) }}>
                             </div>
-                            <label for="end_date" class="col-sm-1 control-label">{{ trans('general.to') }} :</label>
+                            <label for="end_date" class="col-sm-1 control-label">{{ trans('backend/general.to') }} :</label>
                             <div class="col-sm-3">
                                 <input name="end_date" class="form-control datepicker" id="end_date" data-date-end-date="0d" value={{ (!empty($end_date)) ? date('Y-m-d', strtotime($end_date)) : date('Y-m-d') }}>
                             </div>
                         </div>
                     </div>
                     <div class="box-footer">
-                        {!! Form::submit('Apply', ['class' => 'btn btn-primary pull-right', 'id' => 'btn_apply_report']) !!}
+                        {!! Form::submit(trans('backend/general.button_apply'), ['class' => 'btn btn-primary pull-right', 'id' => 'btn_apply_report']) !!}
                     </div>
                 {!! Form::close() !!}
             </div>
@@ -60,10 +60,10 @@ Tixtrack
                     <div class="box-header">
                         <h3 class="box-title"></h3>
                         <div class="pull-right">
-                            <a class="btn btn-default" id="btn-preview" title="{{ trans('general.preview') }}"  data-toggle="modal" data-target="#modal-preview"><i class="fa fa-eye fa-fw"></i></a>
-                            <a class="btn btn-primary" id="btn-print" title="{{ trans('general.print') }}"><i class="fa fa-print fa-fw"></i></a>
-                            <a class="btn btn-success" href="{{ route('admin-report-tixtrack-excel', 'event='.$event_id.'&start_date='.$start_date.'&end_date='.$end_date) }}" title="{{ trans('general.export_to_excel') }}"><i class="fa fa-file-excel-o fa-fw"></i></a>
-                            <a class="btn btn-danger" href="{{ route('admin-report-tixtrack-pdf', 'event='.$event_id.'&start_date='.$start_date.'&end_date='.$end_date) }}" title="{{ trans('general.export_to_pdf') }}"><i class="fa fa-file-pdf-o fa-fw"></i></a>
+                            <a class="btn btn-default" id="btn-preview" title="{{ trans('backend/general.preview') }}"  data-toggle="modal" data-target="#modal-preview"><i class="fa fa-eye fa-fw"></i></a>
+                            <a class="btn btn-primary" id="btn-print" title="{{ trans('backend/general.print') }}"><i class="fa fa-print fa-fw"></i></a>
+                            <a class="btn btn-success" href="{{ route('admin-report-tixtrack-excel', 'event='.$event_id.'&start_date='.$start_date.'&end_date='.$end_date) }}" title="{{ trans('backend/general.export_to_excel') }}"><i class="fa fa-file-excel-o fa-fw"></i></a>
+                            <a class="btn btn-danger" href="{{ route('admin-report-tixtrack-pdf', 'event='.$event_id.'&start_date='.$start_date.'&end_date='.$end_date) }}" title="{{ trans('backend/general.export_to_pdf') }}"><i class="fa fa-file-pdf-o fa-fw"></i></a>
                         </div>
                     </div>
                     <div class="box-body">

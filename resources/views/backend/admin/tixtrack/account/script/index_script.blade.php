@@ -83,36 +83,49 @@
 
         });
 
-        $('#login-accounts-table tbody').on( 'click', '.actDeleteLogin', function () {
-            $('#delete-modal2').modal('show');
-            var name = $(this).attr('data-id');
-            var val = $(this).attr('data-value');
-
-            $('#delete-modal2 .continue-delete').attr('data-id', name);
-            $('#delete-modal2 .continue-delete').attr('data-value', val);
-
-        });
-
-        $('#delete-modal2').on('click', '.continue-delete', function () {
+        $('#login-accounts-table tbody').on( 'click', '.actDeleteLogin', function (e) {
             var id = $(this).attr('data-id');
+            var name = $(this).attr('data-name');
             var uri = "{{ URL::route('admin-delete-tixtrack-login-account', "::param") }}";
             uri = uri.replace('::param', id);
-            $.ajax({
-                url: uri,
-                type: "DELETE",
-                success: function (data) {
-                    $('.error-login-account').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
-                    //loadLoginData();
-                    location.reload();
-                },
-                error: function(response){
-                    $('.error-login-account').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
-                    loadLoginData();
-                    // location.reload();
-                    
-                }
-            }); 
+            $('#destroy').attr('action', uri);
+            
+            $('#delete-modal').modal('show');
+            $("#delete-modal #name").html(name);
+            e.preventDefault();
+
         });
+
+        // $('#login-accounts-table tbody').on( 'click', '.actDeleteLogin', function () {
+        //     $('#delete-modal2').modal('show');
+        //     var name = $(this).attr('data-id');
+        //     var val = $(this).attr('data-value');
+
+        //     $('#delete-modal2 .continue-delete').attr('data-id', name);
+        //     $('#delete-modal2 .continue-delete').attr('data-value', val);
+
+        // });
+
+        // $('#delete-modal2').on('click', '.continue-delete', function () {
+        //     var id = $(this).attr('data-id');
+        //     var uri = "{{ URL::route('admin-delete-tixtrack-login-account', "::param") }}";
+        //     uri = uri.replace('::param', id);
+        //     $.ajax({
+        //         url: uri,
+        //         type: "DELETE",
+        //         success: function (data) {
+        //             $('.error-login-account').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+        //             //loadLoginData();
+        //             location.reload();
+        //         },
+        //         error: function(response){
+        //             $('.error-login-account').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+        //             loadLoginData();
+        //             // location.reload();
+                    
+        //         }
+        //     }); 
+        // });
 
     });
 
@@ -395,7 +408,6 @@
                 }
                 var data = response.data;
                 
-                console.log(data);
                 $("#id_login").val(data.id);
                 $("#email").val(data.email);
                 $("#password").val(data.password);

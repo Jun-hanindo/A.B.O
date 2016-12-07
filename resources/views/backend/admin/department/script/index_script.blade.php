@@ -155,17 +155,18 @@
             uri = uri.replace('::param', id);
             var val = $(this).is(":checked") ? true : false;
             $.ajax({
-                    url: uri,
-                    type: "POST",
-                    dataType: 'json',
-                    data: "avaibility="+val,
-                    success: function (data) {
-                        $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
-                    },
-                    error: function(response){
-                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
-                    }
-                });
+                url: uri,
+                type: "POST",
+                dataType: 'json',
+                data: "avaibility="+val,
+                success: function (data) {
+                    $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    loadData();
+                },
+                error: function(response){
+                    $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                }
+            });
         });
 
         $('.actAdd').on('click',function(){

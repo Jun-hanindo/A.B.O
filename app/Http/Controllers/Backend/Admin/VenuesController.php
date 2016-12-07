@@ -54,7 +54,7 @@ class VenuesController extends BaseController
             ->addColumn('action', function ($venue) {
                 $url = route('admin-edit-venue',$venue->id);
                 return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
-                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$venue->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$venue->id.'" data-name="'.$venue->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
             })
             ->filterColumn('address', function($query, $keyword) {
                 $query->whereRaw("LOWER(CAST(venues.address as TEXT)) ilike ?", ["%{$keyword}%"]);

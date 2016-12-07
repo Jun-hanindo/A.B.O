@@ -46,6 +46,16 @@
                                 {!! Form::textarea('description_promo', $data->description, ['class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('backend/general.description')]) !!}
                                 {!! Form::errorMsg('description_promo') !!}
                             </div>
+                            <div class="form-group{{ Form::hasError('link_title_more_description') }} link_title_more_description">
+                                {!! Form::label('link_title_more_description', trans('backend/general.link_title_more_description')) !!}
+                                {!! Form::text('link_title_more_description', $data->link_title_more_description, ['id' => 'link_title_more_description', 'class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('backend/general.link_title_more_description')]) !!}
+                                {!! Form::errorMsg('link_title_more_description') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('more_description') }} more_description">
+                                {!! Form::label('more_description', trans('backend/general.more_description')) !!}
+                                {!! Form::textarea('more_description', $data->more_description, ['id' => 'more_description', 'class' => 'form-control tinymce', 'rows'=> '5', 'placeholder' => trans('backend/general.more_description')]) !!}
+                                {!! Form::errorMsg('more_description') !!}
+                            </div>
                             <div class="form-group{{ Form::hasError('discount') }} discount {{ Form::hasError('discount_nominal') }} discount_nominal full-width">
                                 {!! Form::label('discount', trans('backend/general.discount'), array('class' => 'full-width ')) !!}
                                 <input type="checkbox" name="discount_type" class="form-control pull-left discount_type-check" data-animate="false" data-on-text="Percent" data-off-color="success" data-off-text="Nominal" {!! ($data->discount > 0) ? 'checked' : '' !!}>
@@ -88,7 +98,7 @@
 
                             <div class="form-group{{ Form::hasError('promotion_logo') }} promotion_logo">
                                 {!! Form::label('promotion_logo', trans('backend/general.promotion_logo').'(Max. 100px x 100px)') !!}
-                                (Max. size 1 mb) {!! (!empty($data->featured_image)) ? '<a href="javascript:void(0)" data-id="'.$data->id.'" data-name="promotion_logo" data-value="'.$data->featured_image.'" class="btn btn-danger btn-xs delete-promotion_logo" title="Delete Promotion Logo"><i class="fa fa-trash-o fa-fw"></i></a>' : '' !!}
+                                (Max. size 1 mb) {!! (!empty($data->featured_image)) ? '<a href="javascript:void(0)" data-id="'.$data->id.'" data-name="promotion_logo" data-title="Promotion Logo Image" data-value="'.$data->featured_image.'" class="btn btn-danger btn-xs delete-promotion_logo" title="Delete Promotion Logo"><i class="fa fa-trash-o fa-fw"></i></a>' : '' !!}
                                 <input id="promotion_logo" name="promotion_logo" class="form-control image" data-name="promo_logo" type="file" value="">
                                 {!! Form::errorMsg('promotion_logo') !!}
                             </div>
@@ -97,7 +107,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('promotion_banner') }} promotion_banner">
                                 {!! Form::label('promotion_banner', trans('backend/general.promotion_banner').'(Max. 1440px x 400px)') !!}
-                                (Max. size 1 mb) {!! (!empty($data->banner_image)) ? '<a href="javascript:void(0)" data-id="'.$data->id.'" data-name="promotion_banner" data-value="'.$data->banner_image.'" class="btn btn-danger btn-xs delete-promotion_banner" title="Delete Promotion Banner"><i class="fa fa-trash-o fa-fw"></i></a>' : '' !!}
+                                (Max. size 1 mb) {!! (!empty($data->banner_image)) ? '<a href="javascript:void(0)" data-id="'.$data->id.'" data-name="promotion_banner" data-title="Promotion Banner Image" data-value="'.$data->banner_image.'" class="btn btn-danger btn-xs delete-promotion_banner" title="Delete Promotion Banner"><i class="fa fa-trash-o fa-fw"></i></a>' : '' !!}
                                 <input id="promotion_banner" name="promotion_banner" class="form-control image" data-name="promo_banner" type="file" value="">
                                 {!! Form::errorMsg('promotion_banner') !!}
                             </div>
@@ -127,24 +137,6 @@
             </div>
         </div>
     </div>
-
-
-    <div id="delete-modal-promotion-image" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">{{ trans('backend/general.confirmation') }}</h4>
-                </div>
-                <div class="modal-body">
-                    <p>{{ trans('backend/general.confirmation_delete') }} <strong id="name"></strong> ?</p>
-                </div>
-                <div class="modal-footer">
-                    <a id="btn-modal-cancel" class="btn btn-primary" data-dismiss="modal">{{ trans('backend/general.button_cancel') }}</a>&nbsp;
-                    <a id="btn-modal-promotion-image" href="#" class="continue-delete btn btn-default" data-dismiss="modal">{{ trans('backend/general.button_continue') }}</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('backend.delete-modal')
 @endsection
 @include('backend.admin.promotion.script.create_script')

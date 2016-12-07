@@ -1,7 +1,7 @@
 @extends('layout.backend.admin.master.master')
 
 @section('title')
-{{ trans('general.accounts') }}
+{{ trans('backend/general.accounts') }}
 @endsection
 
 @section('header')
@@ -17,9 +17,9 @@
 @section('content')
     <div class="box box-primary">
         <div class="box-header">
-            <h3 class="box-title">{{ trans('general.login_accounts') }}</h3>
+            <h3 class="box-title">{{ trans('backend/general.login_accounts') }}</h3>
             <div class="pull-right">
-                <a class="btn btn-primary actAddLogin" href="javascript:void(0)" title="{{ trans('general.create_new') }}"><i class="fa fa-plus fa-fw"></i></a>
+                <a class="btn btn-primary actAddLogin" href="javascript:void(0)" title="{{ trans('backend/general.create_new') }}"><i class="fa fa-plus fa-fw"></i></a>
                 
             </div>
         </div>
@@ -34,7 +34,7 @@
             <table id="login-accounts-table" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                 <thead>
                     <tr>
-                        <th class="center-align">{{ trans('general.email') }}</th>
+                        <th class="center-align">{{ trans('backend/general.email') }}</th>
                         <th width="12%"></th>
                     </tr>
                 </thead>
@@ -43,9 +43,9 @@
     </div>
     <div class="box box-primary">
         <div class="box-header">
-            <h3 class="box-title">{{ trans('general.accounts') }}</h3>
+            <h3 class="box-title">{{ trans('backend/general.accounts') }}</h3>
             <div class="pull-right">
-                <a class="btn btn-primary actAdd" href="javascript:void(0)" title="{{ trans('general.create_new') }}"><i class="fa fa-plus fa-fw"></i></a>
+                <a class="btn btn-primary actAdd" href="javascript:void(0)" title="{{ trans('backend/general.create_new') }}"><i class="fa fa-plus fa-fw"></i></a>
                 
             </div>
         </div>
@@ -55,9 +55,9 @@
             <table id="accounts-table" class="table table-hover table-bordered table-condensed table-responsive" data-tables="true">
                 <thead>
                     <tr>
-                        <th class="center-align">{{ trans('general.account_id') }}</th>
-                        <th class="center-align">{{ trans('general.name') }}</th>
-                        <th class="center-align">{{ trans('general.email') }}</th>
+                        <th class="center-align">{{ trans('backend/general.account_id') }}</th>
+                        <th class="center-align">{{ trans('backend/general.name') }}</th>
+                        <th class="center-align">{{ trans('backend/general.email') }}</th>
                         <th width="12%"></th>
                     </tr>
                 </thead>
@@ -70,19 +70,19 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="ModalLabel"><span id="title-create" style="display:none">{{ trans('general.create_new') }}</span><span id="title-update" style="display:none">{{ trans('general.edit') }}</span></h4>
+            <h4 class="modal-title" id="ModalLabel"><span id="title-create" style="display:none">{{ trans('backend/general.create_new') }}</span><span id="title-update" style="display:none">{{ trans('backend/general.edit') }}</span></h4>
           </div>
           <div class="modal-body">
             <div class="error-modal"></div>
             <form id="form">
                 <input type="hidden" name="id_login" class="form-control" id="id_login">
                 <div class="form-group email">
-                    <label for="event" class="control-label">{{ trans('general.email') }} *</label>
+                    <label for="event" class="control-label">{{ trans('backend/general.email') }} *</label>
                     {!! Form::text('email', old('email'), array('id' => 'email', 'class' => 'form-control')) !!}
                     {!! Form::errorMsg('email') !!}
                 </div>
                 <div class="form-group password">
-                    <label for="event" class="control-label">{{ trans('general.password') }} *</label>
+                    <label for="event" class="control-label">{{ trans('backend/general.password') }} *</label>
                     {!! Form::password('password', array('id' => 'password', 'class' => 'form-control')) !!}
                     {!! Form::errorMsg('password') !!}
                 </div>
@@ -90,8 +90,8 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" id="button_save" class="btn btn-primary" title="{{ trans('general.button_save') }}">{{ trans('general.button_save') }}</button>
-            <button type="button" id="button_update" class="btn btn-primary" title="{{ trans('general.button_update') }}">{{ trans('general.button_update') }}</button>
+            <button type="button" id="button_save" class="btn btn-primary" title="{{ trans('backend/general.button_save') }}">{{ trans('backend/general.button_save') }}</button>
+            <button type="button" id="button_update" class="btn btn-primary" title="{{ trans('backend/general.button_update') }}">{{ trans('backend/general.button_update') }}</button>
           </div>
         </div>
       </div>
@@ -102,24 +102,24 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="ModalLabel"><span id="title-create" style="display:none">{{ trans('general.create_new') }}</span><span id="title-update" style="display:none">{{ trans('general.edit') }}</span></h4>
+            <h4 class="modal-title" id="ModalLabel"><span id="title-create" style="display:none">{{ trans('backend/general.create_new') }}</span><span id="title-update" style="display:none">{{ trans('backend/general.edit') }}</span></h4>
           </div>
           <div class="modal-body">
             <div class="error-modal"></div>
             <form id="form">
                 <input type="hidden" name="id" class="form-control" id="id">
                 <div class="form-group login_account_id">
-                    <label for="event" class="control-label">{{ trans('general.login_account') }} *</label>
+                    <label for="event" class="control-label">{{ trans('backend/general.login_account') }} *</label>
                     {!! Form::text('login_account_id', old('login_account_id'), array('id' => 'login_account_id', 'class' => 'form-control','data-option' => old('login_account_id'))) !!}
                     {!! Form::errorMsg('login_account_id') !!}
                 </div>
                 <div class="form-group account_id">
-                    <label for="event" class="control-label">{{ trans('general.account_id') }} *</label>
+                    <label for="event" class="control-label">{{ trans('backend/general.account_id') }} *</label>
                     {!! Form::text('account_id', old('account_id'), array('id' => 'account_id', 'class' => 'form-control')) !!}
                     {!! Form::errorMsg('account_id') !!}
                 </div>
                 <div class="form-group name">
-                    <label for="event" class="control-label">{{ trans('general.name') }} *</label>
+                    <label for="event" class="control-label">{{ trans('backend/general.name') }} *</label>
                     {!! Form::text('name', old('name'), array('id' => 'name', 'class' => 'form-control')) !!}
                     {!! Form::errorMsg('name') !!}
                 </div>
@@ -127,30 +127,30 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" id="button_save" class="btn btn-primary" title="{{ trans('general.button_save') }}">{{ trans('general.button_save') }}</button>
-            <button type="button" id="button_update" class="btn btn-primary" title="{{ trans('general.button_update') }}">{{ trans('general.button_update') }}</button>
+            <button type="button" id="button_save" class="btn btn-primary" title="{{ trans('backend/general.button_save') }}">{{ trans('backend/general.button_save') }}</button>
+            <button type="button" id="button_update" class="btn btn-primary" title="{{ trans('backend/general.button_update') }}">{{ trans('backend/general.button_update') }}</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div id="delete-modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+    {{-- <div id="delete-modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Confirmation</h4>
+                    <h4 class="modal-title">{{ trans('backend/general.confirmation') }}</h4>
                 </div>
                 <div class="modal-body">
-                    <p>{{ trans('general.confirmation_delete') }} <strong id="name"></strong> ?</p>
+                    <p>{{ trans('backend/general.confirmation_delete') }} <strong id="name"></strong> ?</p>
                 </div>
                 <div class="modal-footer">
-                    <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('general.button_cancel') }}</a>&nbsp;
-                    <a id="delete-modal-continue" href="#" class="continue-delete btn btn-default" data-dismiss="modal">Continue</a>
+                    <a id="delete-modal-cancel" href="#" class="btn btn-primary" data-dismiss="modal">{{ trans('backend/general.button_cancel') }}</a>&nbsp;
+                    <a id="delete-modal-continue" href="#" class="continue-delete btn btn-default" data-dismiss="modal">{{ trans('backend/general.button_continue') }}</a>
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 @endsection
 @include('backend.admin.tixtrack.account.script.index_script')

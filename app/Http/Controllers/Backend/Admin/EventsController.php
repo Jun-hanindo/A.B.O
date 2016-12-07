@@ -138,7 +138,7 @@ class EventsController extends BaseController
         
         }
 
-        return view('backend.admin.event.create')->withData($data);
+        return view('backend.admin.event.create', $data)/*->withData($data)*/;
     }
 
     /**
@@ -267,6 +267,7 @@ class EventsController extends BaseController
     {
         try{
             $data = $this->model->findEventByID($id);
+            $data['event'] = $data;
             if($data->promoter_id == \Sentinel::getUser()->promoter_id || \Sentinel::getUser()->promoter_id == 0 || \Sentinel::getUser()->promoter_id == null){
                 if($data->event_type == true){
                     $data->event_type = 1;
@@ -293,6 +294,7 @@ class EventsController extends BaseController
                 }else{
                     $data['checked'] = '';
                 }
+
             
                 //if(!empty($data)) {
             
@@ -300,7 +302,7 @@ class EventsController extends BaseController
                 $insertTrail = new Trail();
                 $insertTrail->insertTrail($trail);
 
-                return view('backend.admin.event.edit')->withData($data);
+                return view('backend.admin.event.edit', $data)/*->withData($data)*/;
             }else{
                 flash()->error(trans('general.access_forbiden'));
                 return redirect()->route('admin-index-event');

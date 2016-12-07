@@ -132,7 +132,7 @@ class MenuController extends BaseController
                 ->addColumn('action', function ($menu) {
                     $url = action('Backend\Admin\UserTrustee\MenuController@edit', $menu->id);
 
-                    return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs" title="Delete" data-id="'.$menu->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                    return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="'.trans('general.edit').'"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs" title="'.trans('general.delete').'" data-id="'.$menu->id.'" data-name="'.$menu->display_name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
                 })
                 ->make(true);
     }

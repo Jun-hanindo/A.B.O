@@ -45,8 +45,8 @@ class PromotersController extends BaseController
     {
             return datatables($this->model->datatables())
                 ->addColumn('action', function ($promoter) {
-                    return '<a href="javascript:void(0)" data-id="'.$promoter->id.'" data-name="'.$promoter->name.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
-                        &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$promoter->id.'" data-name="'.$promoter->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                    return '<a href="javascript:void(0)" data-id="'.$promoter->id.'" data-name="'.$promoter->name.'" class="btn btn-warning btn-xs actEdit" title="'.trans('general.edit').'"><i class="fa fa-pencil-square-o fa-fw"></i></a>
+                        &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="'.trans('general.delete').'" data-id="'.$promoter->id.'" data-name="'.$promoter->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
                 })
                 ->filterColumn('name', function($query, $keyword) {
                     $query->whereRaw("LOWER(CAST(promoters.name as TEXT)) ilike ?", ["%{$keyword}%"]);

@@ -132,13 +132,13 @@ class UserController extends BaseController
                 $showUrl = route('admin-show-users', $user->id);
 
                 if ($user->deleted == 1) {
-                    $action =  '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
-                        &nbsp;<a href="#" class="btn btn-success btn-xs actRestore" title="Restore" data-id="'.$user->id.'" data-name="'.$user->username.'" data-button="restore"><i class="fa fa-refresh fa-fw"></i></a>
-                        &nbsp;<a href="'.$showUrl.'" class="btn btn-info btn-xs actShow" title="Show Detail" data-id="'.$user->id.'" data-name="'.$user->username.'" data-button="show"><i class="fa fa-search fa-fw"></i></a>';
+                    $action =  '<a href="'.$url.'" class="btn btn-warning btn-xs" title="'.trans('general.edit').'"><i class="fa fa-pencil-square-o fa-fw"></i></a>
+                        &nbsp;<a href="#" class="btn btn-success btn-xs actRestore" title="'.trans('general.restore').'" data-id="'.$user->id.'" data-name="'.$user->email.'" data-button="restore"><i class="fa fa-refresh fa-fw"></i></a>
+                        &nbsp;<a href="'.$showUrl.'" class="btn btn-info btn-xs actShow" title="'.trans('general.show_detail').'" data-id="'.$user->id.'" data-name="'.$user->email.'" data-button="show"><i class="fa fa-search fa-fw"></i></a>';
                 } else {
-                    $action =  '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
-                        &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Banned" data-id="'.$user->id.'" data-name="'.$user->username.'" data-button="delete"><i class="fa fa-ban fa-fw"></i></a>
-                        &nbsp;<a href="'.$showUrl.'" class="btn btn-info btn-xs actShow" title="Show Detail" data-id="'.$user->id.'" data-name="'.$user->username.'" data-button="show"><i class="fa fa-search fa-fw"></i></a>';
+                    $action =  '<a href="'.$url.'" class="btn btn-warning btn-xs" title="'.trans('general.edit').'"><i class="fa fa-pencil-square-o fa-fw"></i></a>
+                        &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="'.trans('general.banned').'" data-id="'.$user->id.'" data-name="'.$user->email.'" data-button="delete"><i class="fa fa-ban fa-fw"></i></a>
+                        &nbsp;<a href="'.$showUrl.'" class="btn btn-info btn-xs actShow" title="'.trans('general.show_detail').'" data-id="'.$user->id.'" data-name="'.$user->email.'" data-button="show"><i class="fa fa-search fa-fw"></i></a>';
                 }
 
                 return $action;
@@ -167,6 +167,9 @@ class UserController extends BaseController
                 } else {
                     return '<span style="color:red">Banned</span>';
                 }
+            })
+            ->filterColumn('role', function($query, $keyword) {
+                $query->whereRaw("LOWER(CAST(roles.name as TEXT)) ilike ?", ["%{$keyword}%"]);
             })
             ->make(true);
     }

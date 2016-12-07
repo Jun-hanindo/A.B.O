@@ -146,8 +146,8 @@ class RoleController extends BaseController
         return datatables($this->model->datatables())
                 ->addColumn('action', function ($role) {
                     $url = action('Backend\Admin\UserTrustee\RoleController@edit', $role->id);
-                    $edit = '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;';
-                    $delete = '<a href="#" class="btn btn-danger btn-xs" title="Delete" data-id="'.$role->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                    $edit = '<a href="'.$url.'" class="btn btn-warning btn-xs" title="'.trans('general.edit').'"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;';
+                    $delete = '<a href="#" class="btn btn-danger btn-xs" title="'.trans('general.delete').'" data-id="'.$role->id.'" data-name="'.$role->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
 
                     
                     if($role->id == 1 || $role->id == 2){

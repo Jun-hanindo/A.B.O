@@ -139,7 +139,7 @@
             },
             columns: [
                 {data: 'order_id', name: 'order_id'},
-                {data: 'local_created', name: 'local_created'},
+                {data: 'local_created', name: 'local_created', searchable: false},
                 {data: 'event_name', name: 'event_name'},
                 {data: 'customer', name: 'customer'},
                 {data: 'price', name: 'price'},

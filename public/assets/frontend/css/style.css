@@ -1907,14 +1907,13 @@ footer .information-title{
 
 .main-content .contact-desc{
   padding-right: 55px;
-  padding-left: 55px;
 }
 
 .main-content .contact-desc .list-contact,
 .mobile-content .list-contact{
   position: relative;
   list-style: none;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 
 .main-content .contact-desc .list-contact .general:before,
@@ -1926,7 +1925,7 @@ footer .information-title{
     position: absolute;
     top: 0;
     left: 0;
-    margin-left: 10px;
+    margin-left: 0px;
 }
 
 .main-content .contact-desc .list-contact .customer:before,
@@ -1938,7 +1937,7 @@ footer .information-title{
     position: absolute;
     top: 63px;
     left: 0;
-    margin-left: 10px;
+    margin-left: 0px;
 }
 
 .main-content .contact-desc .list-contact .corporate:before,
@@ -1950,7 +1949,7 @@ footer .information-title{
     position: absolute;
     top: 125px;
     left: 0;
-    margin-left: 10px;
+    margin-left: 0px;
 }
 
 .main-content .contact-desc .list-contact .media:before,
@@ -1962,7 +1961,7 @@ footer .information-title{
     position: absolute;
     top: 188px;
     left: 0;
-    margin-left: 10px;
+    margin-left: 0px;
 }
 
 .main-content .contact-desc .list-contact .ticket:before,
@@ -1972,9 +1971,9 @@ footer .information-title{
     margin: 0 5px 0 -15px;
     color: #000;
     position: absolute;
-    top: 250px;
+    top: 254px;
     left: 0;
-    margin-left: 10px;
+    margin-left: 0px;
 }
 
 .main-content .contact-desc .list-contact .partner:before,
@@ -1984,9 +1983,9 @@ footer .information-title{
     margin: 0 5px 0 -15px;
     color: #000;
     position: absolute;
-    top: 316px;
+    top: 320px;
     left: 0;
-    margin-left: 10px;
+    margin-left: 0px;
 }
 
 .main-content .contact-desc .list-contact .marketing:before,
@@ -1996,13 +1995,14 @@ footer .information-title{
     margin: 0 5px 0 -15px;
     color: #000;
     position: absolute;
-    top: 377px;
+    top: 384px;
     left: 0;
-    margin-left: 10px;
+    margin-left: 0px;
 }
 
 .main-content .contact-desc .head-sub{
   font-size: 22px;
+  margin-top: 0;
 }
 
 .main-content .contact-desc .list-contact li,
@@ -2014,28 +2014,32 @@ footer .information-title{
 }
 
 .contact-desc .contact-hotline{
-  margin-top: 40px;
+  margin-top: 25px;
   background-color: #000;
   color: #fff;
   padding: 15px;
   border-radius: 5px;
 }
 
-.contact-desc .hotline-operating,
+.contact-desc .hotline-operating{
+  margin-top: 20px;
+}
+
 .contact-desc .office-address{
-  margin-top: 25px;
+  margin-top: 15px;
 }
 
 .contact-desc .hotline-operating .label-head,
 .mobile-content .hotline-operating-mobile .label-head{
-  font-weight: bold;
   color: #999999;
+  margin-bottom: 0;
 }
 
 .contact-desc .hotline-operating label,
 .mobile-content .hotline-operating-mobile label{
   font-weight: normal;
   color: #999999;
+  margin-bottom: 0;
 }
 
 .contact-desc .office-button button{
@@ -2044,9 +2048,7 @@ footer .information-title{
 }
 
 .contact-desc .office-button button:hover{
-  color: #000000;
-  background-color: #fff;
-  border: 1px solid #000000;
+  color: #a0a0a0;
 }
 
 .contact-hotline .fa-phone{
@@ -2056,6 +2058,10 @@ footer .information-title{
 
 .contact-hotline .label-small{
   padding-left: 10px;
+}
+
+.office-button{
+  margin-top: 20px;
 }
 
 .contact-hotline .label-small .label-top,
@@ -2071,8 +2077,9 @@ footer .information-title{
 }
 
 .career-desc p{
-  width: 60%;
+  width: 70%;
   padding-left: 15px;
+  font-size: 16px;
 }
 
 .career-desc{
@@ -2080,17 +2087,22 @@ footer .information-title{
 }
 
 .career-desc .job-head{
-  margin-top: 30px;
+  margin-top: 35px;
 }
 
 .career-desc .job-head h4{
   float: left;
   padding-left: 15px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 22px;
 }
 
 .career-desc .job-head select{
   float: right;
   width: 30%;
+  box-shadow: none;
+  border: 1px solid #dfdfdf;
 }
 
 .career-desc .job-list-head{
@@ -2181,7 +2193,7 @@ footer .information-title{
 }
 
 .career-desc .search-list-head{
-  margin-top: 118px !important;
+  margin-top: 95px !important;
 }
 
 .career-desc .search-list {
@@ -2403,20 +2415,13 @@ footer .information-title{
   border-right: 3px solid #000;
 }
 
-.eventBanner .btnPlayEvent {
-position: absolute;
-top: 50%;
-margin: 0 auto;
-left: 47%;
-transform: translateY(-50%);
-}
-
-/*.eventBanner .btnPlayEvent{
+.eventBanner .btnPlayEvent{
   position: absolute;
-  top: 32%;
+  top: 50%;
   margin: 0 auto;
   left: 47%;
-}*/
+  transform: translateY(-50%);
+}
 
 .eventBanner .btnPlayEvent a{
   color: #fff;
@@ -2453,12 +2458,6 @@ transform: translateY(-50%);
   color: #000;
 }
 
-.mobile-content .mobile-sidebar .mobile-sidebar-menu .collapsed::after{
-  content: "\f107" !important;
-  font-family: 'FontAwesome';
-  padding-left: 10px;
-}
-
 .mobile-content .mobile-sidebar .mobile-sidebar-menu .menu::after {
   content: "\f106";
   font-family: 'FontAwesome';
@@ -2478,11 +2477,15 @@ transform: translateY(-50%);
 }
 
 .office-address-mobile{
-  margin-top: 20px;
+  margin-top: 15px;
+}
+
+.office-address-mobile label{
+  margin-bottom: 0;
 }
 
 .office-address-mobile p{
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   font-size: 14px;
 }
 
@@ -2511,9 +2514,9 @@ transform: translateY(-50%);
   background-color: #000;
   color: #fff;
   padding: 15px;
-  margin-top: 10;
+  margin-top: 20px;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .mobile-page-desc,
@@ -2525,13 +2528,13 @@ transform: translateY(-50%);
 
 .mobile-job-list{
   margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 .mobile-job-head{
-  padding: 10px;
+  padding: 20px;
   background-color: #000;
   color: #fff;
+  font-size: 16px;
 }
 
 .mobile-job-desc,
@@ -2797,7 +2800,7 @@ transform: translateY(-50%);
   font-size: 30px;
   border: 1px solid #000;
   border-radius: 50%;
-  padding: 8px;
+  padding: 11px;
   width: 50px;
   height: 50px;
 }
@@ -2904,6 +2907,7 @@ transform: translateY(-50%);
   padding: 5px;
   height: auto;
   display: block;
+  line-height: normal;
 }
 
 .cd-dropdown-content .countryList ul li ul li {
@@ -3171,10 +3175,10 @@ transform: translateY(-50%);
   padding-bottom: 15px !important;
 }
 
-.mobile-collapse-body-top li:last-child a{
+/*.mobile-collapse-body-top li:last-child a{
   padding-top: 0 !important;
   padding-bottom: 40px !important;
-}
+}*/
 
 .eventTab .nav-tabs{
   border: none;
@@ -3218,11 +3222,11 @@ ul#getvenue li:before {
     left: -40px;
 }
 
-.car-route{
+/*.car-route{
   list-style-type: disc !important;
   padding-left: 25px !important;
   margin-bottom: 10px;
-}
+}*/
 
 .mobile-search-show{
   margin-top: -3px;
@@ -4007,21 +4011,6 @@ ol .a li:before{
   display: none;
 }
 
-.btnPlayEvent a i {
-  text-shadow: 2px 2px rgba(0,0,0, 0.1);
-}
-
-.imageBanner {
-  position: relative;
-}
-.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-.box-release img {
-  display: block;
-}
-
-
-
 #about h1,
 #about h2,
 #about h3,
@@ -4043,7 +4032,7 @@ ol .a li:before{
 #about b,
 #venue b,
 #rules b{
- font-family: 'proxima_nova_rgbold';
+  font-family: 'proxima_nova_rgbold';
 }
 
 .main-content #venue ul li ul{
@@ -4055,3 +4044,184 @@ ol .a li:before{
 .main-content #venue ul li ul li{
   padding: 5px;
 }
+
+.main-content .contact-desc .list-contact{
+  padding-left: 30px;
+}
+
+.list-contact .contact a:after{
+  content: "\f105";
+  font-family: 'fontAwesome';
+  margin-left: 10px;
+}
+
+.main-content .contact-desc .list-contact .marketing{
+  border-bottom: none;
+  margin-bottom: 175px;
+  padding-bottom: 0;
+}
+
+.contact-mobile .contactTab .nav-tabs>li.active>a{
+  font-family: 'proxima_nova_rgbold';
+  border-bottom: 3px solid #000;
+  color: #000;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+}
+
+.contact-mobile .contactTab .nav-tabs>li>a{
+  color: #000;
+}
+
+.contact-mobile .contactTab .nav-tabs>li>a:hover {
+  border-bottom: none;
+  border: 1px solid transparent;
+}
+
+.contact-mobile .contactTab .nav-tabs>li.active>a:hover{
+  border-bottom: 3px solid #000;
+}
+
+.head-career{
+  margin-bottom: 35px;
+}
+
+.career-desc .last-job{
+  margin-bottom: 85px;
+}
+
+.career-desc .job-head .head-search{
+  font-size: 26px;
+}
+
+.career-desc .search-head{
+  margin-top: 45px;
+}
+
+.result-content .main-content{
+  padding-bottom: 100px;
+}
+
+.result-content .sidebar a:after,
+.search-mobile .mobile-sidebar-menu a:after{
+  content: "\f106";
+  font-family: 'fontAwesome';
+  padding-left: 5px;
+}
+
+.result-content .sidebar .collapsed:after,
+.search-mobile .mobile-sidebar-menu .collapsed:after{
+  content: "\f107" !important;
+  font-family: 'fontAwesome';
+  padding-left: 5px;
+}
+
+.result-content .sidebar .filter-child ul li{
+  margin-top: 20px;
+}
+
+.result-content .sidebar .filter-child li input[type="checkbox"],
+.search-mobile .mobile-sidebar-menu .filter-child li input[type="checkbox"]{
+  margin-right: 10px;
+}
+
+.result-content .sidebar .filter-child li input[type="checkbox"]:not(:checked) + label:before,
+.result-content .sidebar .filter-child li input[type="checkbox"]:checked + label:before{
+  content: '';
+  position: absolute;
+  left:0; top: 2px;
+  width: 17px; height: 17px;
+  border: 1px solid #000;
+  background: #f8f8f8;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.3)
+}
+
+.result-content .sidebar ul .sidebar-menu-top,
+.result-content .sidebar ul .sidebar-menu,
+.search-mobile .mobile-sidebar-menu ul .sidebar-menu-top,
+.search-mobile .mobile-sidebar-menu ul .sidebar-menu{
+  padding-left: 0;
+  border-bottom: 1px solid #cacaca;
+  margin-right: 30px;
+  margin-left: 53px;
+  padding-bottom: 15px;
+  margin-top: 15px;
+}
+
+.result-content .sidebar ul .sidebar-menu-top{
+  margin-top: 40px;
+}
+
+.result-content .sidebar .filter-child select,
+.search-mobile .mobile-sidebar-menu .filter-child select{
+  margin-top: 15px;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.search-mobile .mobile-sidebar-menu .filter-categories-mobile ul{
+  text-align: left;
+}
+
+.search-mobile .mobile-sidebar-menu ul .sidebar-mobile{
+  margin-top: 40px !important;
+}
+
+.search-mobile .mobile-sidebar-menu ul .sidebar-menu-top,
+.search-mobile .mobile-sidebar-menu ul .sidebar-menu{
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.search-mobile .mobile-sidebar-menu ul li:first-child{
+  margin-top: 10px;
+}
+
+.search-mobile .mobile-sidebar-menu ul li:last-child{
+  margin-bottom: 25px;
+  border: none;
+}
+
+.btnFilterMobile{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.filter-search-mobile select{
+  box-shadow: none;
+  border-radius: 3px;
+}
+
+.filter-search-mobile select:focus{
+  box-shadow: none;
+  border-color: #cacaca;
+}
+
+.mobile-collapse-body-top li .mobile-flag.shown::after{
+  content: "\f106";
+  font-family: 'FontAwesome';
+  padding-left: 10px;
+}
+
+.mobile-collapse-body-top .last-menu{
+  padding-bottom: 45px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

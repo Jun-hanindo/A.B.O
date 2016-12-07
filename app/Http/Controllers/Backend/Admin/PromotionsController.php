@@ -94,7 +94,7 @@ class PromotionsController extends BaseController
                     }
                     $url = route('admin-edit-promotion',$promotion->id);
                     return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"'.$disabled.'><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
-                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$promotion->id.'" data-button="delete"'.$disabled.'><i class="fa fa-trash-o fa-fw"></i></a>';
+                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$promotion->id.'" data-name="'.$promotion->title.'" data-button="delete"'.$disabled.'><i class="fa fa-trash-o fa-fw"></i></a>';
                 })
                 ->filterColumn('post_by', function($query, $keyword) {
                     $query->whereRaw("LOWER(CAST(CONCAT(users.first_name, ' ', users.last_name) as TEXT)) ilike ?", ["%{$keyword}%"]);
@@ -135,7 +135,7 @@ class PromotionsController extends BaseController
                 })
                 ->addColumn('action', function ($promotion) {
                     return '<a href="javascript:void(0)" data-id="'.$promotion->id.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw">
-                    </i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDeletePromotion" title="Delete" data-id="'.$promotion->id.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+                    </i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDeletePromotion" title="Delete" data-id="'.$promotion->id.'" data-name="'.$promotion->title.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
                 })
                 ->editColumn('date', function ($promotion){
                     if(!empty($promotion->start_date) && !empty($promotion->end_date)){
