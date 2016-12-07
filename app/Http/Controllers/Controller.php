@@ -83,7 +83,7 @@ class Controller extends BaseController
         // 
         
         $lang = $this->switchLanguage();
-        \App::setLocale($lang['language']);
+        \App::setLocale($lang['lang']);
         $setting['lang_country'] = $lang['country'];
 
         \View::share ('user_login',$currentUserLogin);
@@ -119,30 +119,28 @@ class Controller extends BaseController
     }
 
     public function switchLanguage(){
-        dd(!\Session::has('locale'));
         if(!\Session::has('locale'))
         {
             if(isset($this->setting['language']) && !empty($this->setting['language'])){
                 $param['language'] = $this->setting['language'];
-                $param['country'] = 'Singapore';
-                 \Session::put('locale', $param);
+                \Session::put('locale', $param['language']);
             }else{
                 $param['language'] = \Config::get('app.fallback_locale');
-                $param['country'] = 'Singapore';
-                \Session::put('locale', $param);
+                \Session::put('locale', $param['language']);
             }
             //\Session::save();
-        }else{
-            if(isset($param['country']))
-            {
-                $param['language'] = \Session::get('locale');
-                $param['country'] = 'Singapore';
-                \Session::set('locale', $param);
-            }
         }
 
-        $lang = \Session::get('locale');
+        if(!\Session::has('locale'))
+        {
+            $param['country'] = 'Singapore';
+            \Session::put('locale_country', $param['country']);
+            //\Session::save();
+        }
 
-        return $lang;
+        $param['lang'] = \Session::get('locale');
+        $param['country'] = \Session::get('locale_country');
+
+        return $param;
     }
 }

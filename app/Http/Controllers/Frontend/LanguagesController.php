@@ -20,7 +20,8 @@ class LanguagesController extends Controller
         try{
             $param = $req->all();
             if(isset($param['language']) && !empty($param['language'])){
-                \Session::set('locale', $param);
+                \Session::set('locale', $param['language']);
+                \Session::set('locale_country', $param['country']);
             }else{
                 // if(!\Session::has('locale'))
                 // {
@@ -37,7 +38,8 @@ class LanguagesController extends Controller
                 $this->switchLanguage();
             }
             //\Session::save();
-            $data = \Session::get('locale');
+            $data['lang'] = \Session::get('locale');
+            $data['country'] = \Session::get('locale_country');
             //\App::setLocale($data['language']);
 
 
