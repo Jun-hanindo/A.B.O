@@ -132,7 +132,8 @@ class Controller extends BaseController
             }
             //\Session::save();
         }else{
-            isset($param['country']){
+            if(isset($param['country']))
+            {
                 $param['language'] = \Session::get('locale');
                 $param['country'] = 'Singapore';
                 \Session::set('locale', $param);
