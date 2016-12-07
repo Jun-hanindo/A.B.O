@@ -131,11 +131,15 @@ class Controller extends BaseController
                 \Session::put('locale', $param);
             }
             //\Session::save();
+        }else{
+            isset($param['country']){
+                $param['language'] = \Session::get('locale');
+                $param['country'] = 'Singapore';
+                \Session::set('locale', $param);
+            }
         }
 
         $lang = \Session::get('locale');
-        
-        dd($param);
 
         return $lang;
     }
