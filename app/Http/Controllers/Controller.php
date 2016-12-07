@@ -83,6 +83,7 @@ class Controller extends BaseController
         // 
         
         $lang = $this->switchLanguage();
+        dd($lang);
         \App::setLocale($lang['language']);
         $setting['lang_country'] = $lang['country'];
 
