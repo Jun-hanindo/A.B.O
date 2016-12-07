@@ -22,23 +22,23 @@ class LanguagesController extends Controller
             if(isset($param['language']) && !empty($param['language'])){
                 \Session::set('locale', $param);
             }else{
-                if(!\Session::has('locale'))
-                {
-                    if(isset($this->setting['language']) && !empty($this->setting['language'])){
-                        $param['language'] = $this->setting['language'];
-                        $param['country'] = 'Singapore';
-                         \Session::put('locale', $param);
-                    }else{
-                        $param['language'] = \Config::get('app.fallback_locale');
-                        $param['country'] = 'Singapore';
-                        \Session::put('locale', $param);
-                    }
-                }
+                // if(!\Session::has('locale'))
+                // {
+                //     if(isset($this->setting['language']) && !empty($this->setting['language'])){
+                //         $param['language'] = $this->setting['language'];
+                //         $param['country'] = 'Singapore';
+                //          \Session::put('locale', $param);
+                //     }else{
+                //         $param['language'] = \Config::get('app.fallback_locale');
+                //         $param['country'] = 'Singapore';
+                //         \Session::put('locale', $param);
+                //     }
+                // }
+                $this->switchLanguage();
             }
-            \Session::save();
-
+            //\Session::save();
             $data = \Session::get('locale');
-            \App::setLocale($data['language']);
+            //\App::setLocale($data['language']);
 
 
             return response()->json([
