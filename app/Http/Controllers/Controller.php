@@ -135,7 +135,7 @@ class Controller extends BaseController
 
         $lang = \Session::get('locale');
         
-        dd($lang);
+        dd($param);
 
         return $lang;
     }
