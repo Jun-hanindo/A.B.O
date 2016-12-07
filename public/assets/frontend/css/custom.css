@@ -110,3 +110,70 @@ iframe[name="google_conversion_frame"]{
   color: #000;
   text-decoration: underline;
 }
+
+/*Auto Search*/
+#ul-search,
+#ul-search-mobile{
+  min-width: 450px;
+  position: absolute;
+  top: 50px;
+  border-radius: 5px;
+  padding: 0px;
+  box-shadow: rgba(0, 0, 0, 0.498039) 0px 5px 15px;
+  background-color: rgb(255, 255, 255);
+}
+#ul-search #header-search,
+#ul-search-mobile #header-search{
+  height: 80px;
+  border-top: 0;
+}
+#ul-search a,
+#ul-search-mobile a{
+  display: block;
+  padding: 10px;
+  height: 100%;
+}
+#header-search a .img-search{
+  width: 88px;
+  height: 100%;
+  display: block;
+  float: left;
+  background: #4a4949;
+  text-align: center;
+  padding-top: 13px;
+}
+#ul-search a img,
+#ul-search-mobile a img{
+  height:100%;
+  float:left;
+}
+#header-search a div i{
+  font-size: 30px;
+  color: #fff;
+}
+#ul-search .content,
+#ul-search-mobile .content{
+  float: left;
+    padding-left: 20px;
+}
+#ul-search h5,
+#ul-search-mobile h5{
+  color:#000;
+}
+#ul-search .footer,
+#ul-search-mobile .footer{
+  color:#bdbdbd;
+  font-size: 13px;
+}
+#ul-search .drawer-item,
+#ul-search-mobile .drawer-item {
+  border-top: 1px solid #ddd;
+  height: 80px;
+}
+
+#ul-search .content .all-result,
+#ul-search-mobile .content .all-result {
+  margin: 0 auto;
+  position: absolute;
+  top: 30px;
+}

@@ -242,10 +242,10 @@
                                                                 <span class="input-group-addon" id="addon-search">
                                                                     <i class="fa fa-search icon-search-header"></i>
                                                                 </span>
-                                                                <input type="text" name="q" value="{{@$q}}" class="form-control input-search" placeholder="{{ trans('frontend/general.search') }}..." id="#input-search">
+                                                                <input type="text" name="q" value="{{@$q}}" class="form-control input-search input-search-mobile" placeholder="{{ trans('frontend/general.search') }}..." id="#input-search">
                                                                 <input type="hidden" id="sort-text" name="sort" value="date">
                                                             </div>
-                                                            <ul class="notification-drawer" data-type="inbox" id="ul-search" style="display:none">
+                                                            <ul class="notification-drawer" data-type="inbox" id="ul-search-mobile" style="display:none">
                                                                 <span class="append-search"></span>
                                                             </ul>
                                                         </form>
