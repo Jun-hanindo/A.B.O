@@ -1,5 +1,5 @@
 @extends('layout.frontend.master.master')
-@section('title', trans('frontend/general.subscribe_us').' - ')
+@section('title', trans('frontend/general.subscribe').' - ')
 @section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
 <div class="subscription-page">
