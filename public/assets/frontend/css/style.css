@@ -1291,8 +1291,15 @@ footer .information-title{
   padding-right: 15px;
 }
 
-.discoverCategory .tabCategory li a{
+.discoverCategory .tabCategory li a,
+.discoverCategory .tabCategory li a:hover{
   color: #000000;
+      border-bottom: 3px solid transparent;
+    cursor: pointer;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: transparent;
 }
 
 .discoverCategory .tabCategory li i{
@@ -3212,6 +3219,7 @@ footer .information-title{
 .nav>li>a:focus, .nav>li>a:hover {
     text-decoration: none;
     background-color: transparent;
+    border-bottom: 3px solid transparent;
 }
 
 ul#getvenue li {
@@ -4207,6 +4215,98 @@ ol .a li:before{
 .mobile-collapse-body-top .last-menu{
   padding-bottom: 45px !important;
 }
+
+.tabCategory .nav-tabs{
+  border-bottom: none;
+}
+
+.footer-promo{
+  margin-top: 50px;
+}
+
+.discover-content{
+  background-color: #e7e7e7;
+  margin-top: -1px;
+}
+
+.discover-content .box-release{
+  margin-top: 30px;
+}
+
+.discover-content .box-release .boxInfo ul{
+  margin-bottom: 0;
+}
+
+.discover-content .loadMore{
+  margin-top: 30px;
+}
+
+.discover-mobile{
+  display: none;
+}
+
+.discoverCategory .tabCategory li .discover-category-mobile:after{
+  content: "\f107";
+  font-family: 'fontAwesome';
+  padding-left: 5px;
+}
+
+.discover-mobile .list-category-mobile{
+  padding-left: 0;
+  margin-bottom: 0;
+  width: 100%;
+  position: relative;
+}
+
+.discover-mobile .list-category-mobile li{
+  list-style-type: none;
+  display: inline-block;
+  padding-bottom: 15px;
+  position: static;
+}
+
+.discover-mobile .list-category-mobile li a{
+  text-decoration: none;
+}
+
+.discover-mobile .list-category-mobile li.active{
+  border-bottom: 3px solid #000;
+}
+
+.list-category-mobile .dropdown-menu {
+  position: absolute;
+  width: 90%;
+  left: 5%;
+  padding-right: 25px;
+  padding-left: 25px;
+  z-index: 9;
+}
+
+.list-category-mobile .dropdown-menu .col-xs-4{
+  text-align: center;
+  padding: 15px;
+}
+
+.list-category-mobile .open .discover-category-mobile:after{
+  content: "\f106" !important;
+  font-family: 'fontAwesome';
+  padding-left: 5px;
+}
+
+.discover-mobile .tabCategory li .icat:after{
+  content: "\f13a";
+  font-family: 'fontAwesome';
+}
+
+.discover-mobile .tabCategory .open .icat:after{
+  content: "\f139" !important;
+  font-family: 'fontAwesome';
+}
+
+.discover-mobile .tabCategory{
+  width: 100%;
+}
+
 
 
 

@@ -317,9 +317,6 @@
     width: 100%;
     height: 60px;
   }
-  .mobile-content{
-    min-height: 413px;
-  }
   .mobile-logo img,
   .logo-footer img{
     width: 87px;
@@ -385,7 +382,7 @@
     display: block;
     background-color: #fff;
     padding-bottom: 45px;
-    min-height: 413px;
+    min-height: 375px;
   }
   .search-mobile .search-faq input{
     max-width: 100%;
@@ -395,36 +392,68 @@
   }
 }
 
+@media(min-width:992px){
+   .col-md-6.box-release {
+   width: 49%;
+   }
+}
+
 @media (max-width: 991px) {
-  .carousel-caption .eventDate i {
-     margin-right: 7px;
-  }
   .slider-home .carousel-caption{
     min-height: 210px;
   }
-  .information-title-mobile{
-    margin-left: -90px !important;
+  .discover-mobile{
+    display: block;
+  }
+  .discover-content .box-release{
+    margin-top: 20px !important;
+  }
+  .discover-content{
+    padding-bottom: 10px !important;
+  }
+  .discover-desktop{
+    display: none;
+  }
+  .career-mobile{
+    padding-bottom: 30px;
+  }
+  .mobile-content .list-contact{
+    margin-top: 25px;
+  }
+  .contentTab .list-contact .marketing{
+    margin-bottom: 0;
+  }
+  .contactTab{
+    display: block !important;
+  }
+  .career-mobile .mobile-page-desc p{
+    font-size: 16px;
+  }
+  .contactTab .nav-tabs>li>a{
+    font-size: 18px !important;
   }
   .box-release{
     display: block;
   }
-  .discoverCategory h2 {
-    font-size: 20px;
-    margin-top: 30px;
-  }
   .information-place{
-   margin-left: 5px !important;
- }
- .information-place:before{
-   margin: 0 5px 0 0px;
- }
- .place span {
-margin-left: 30px;
-display: block;
-}
-  /*.place p{
+    margin-left: 5px !important;
+  }
+  .information-place:before{
+    margin: 0 5px 0 0px;
+  }
+  .discoverCategory h2{
+    font-size: 20px;
+  }
+  .information-title-mobile{
+    margin-left: -90px !important;
+  }
+  .modal-hochi .modal-dialog {
+    min-width: auto;
+  }
+  .place span{
     margin-left: 30px;
-  }*/
+    display: block;
+  }
   .mobile-logo img,
   .logo-footer img{
     width: 87px;
@@ -764,9 +793,8 @@ display: block;
     font-size: 11px;
   }
   .eventBanner .btnPlayEvent{
-    /*top: 40%;
-    left: 45%;*/
-    left:44%;
+    top: 40%;
+    left: 45%;
   }
   .main-content section{
     margin-top: 0;
@@ -777,9 +805,6 @@ display: block;
   .contentTab .side-left h4{
     margin-top: 15px;
   }
-  .modal-hochi .modal-dialog {
-    min-width: auto;
-  }
 }
 
 @media (max-width: 768px){
@@ -789,6 +814,7 @@ display: block;
   }
   .nav-tabs.nav-justified>li>a{
     border-radius: 0;
+    border-bottom: none;
   }
   .nav-justified>li>a,
   .nav-tabs.nav-justified>li>a{
@@ -809,10 +835,10 @@ display: block;
 }
 
 @media (max-width: 650px){
-  /*.eventBanner .btnPlayEvent{
+  .eventBanner .btnPlayEvent{
     top: 20%;
     left: 44%;
-  }*/
+  }
   .eventBanner .btnPlayEvent a{
     font-size: 80px;
   }
@@ -829,16 +855,20 @@ display: block;
 
 @media (max-width: 500px){
   .eventBanner .btnPlayEvent{
-    left: 40%;
+    top: 18%;
+    left: 43%;
+  }
+  .contactTab .nav>li>a{
+    font-size: 18px !important;
   }
   .box-mobile-faq{
     width: 80%;
     margin: 0 auto;
     left: 10%;
   }
-  /*.eventBanner .btnPlayEvent a{
+  .eventBanner .btnPlayEvent a{
     font-size: 60px;
-  }*/
+  }
   .eventTab .nav-tabs>li>a{
     font-size: 12px !important;
   }
@@ -866,13 +896,13 @@ display: block;
 }
 
 @media (max-width: 420px){
-  /*.eventBanner .btnPlayEvent{
+  .eventBanner .btnPlayEvent{
     top: 25%;
     left: 43%;
-  }*/
-  /*.eventBanner .btnPlayEvent a{
+  }
+  .eventBanner .btnPlayEvent a{
     font-size: 50px;
-  }*/
+  }
   .back-menu-search a:before{
     content: "\f104";
     font-family: 'FontAwesome';
@@ -896,11 +926,5 @@ display: block;
   .nav-level>li>a{
     font-size: 10px;
     text-align: center;
-  }
-}
-
-@media (min-width: 992px){
-  .col-md-6.box-release {
-    width: 49%;
   }
 }

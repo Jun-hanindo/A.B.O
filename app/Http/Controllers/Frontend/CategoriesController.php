@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Event;
 use App\Models\LogActivity;
 use App\Models\Trail;
+use App\Models\Homepage;
 //use View;
 
 class CategoriesController extends Controller
@@ -24,13 +25,15 @@ class CategoriesController extends Controller
     {
 
         try{
+            $modelHomepage = new Homepage();
+            $result['sliders'] = $modelHomepage->getHomepage('slider');
             $result['category'] = $this->model->findCategoryBySlug($slug);
 
             if(!empty($result['category']) && $result['category']->status){
                 $id = $result['category']->id;
                 $result['categories'] = $this->model->getCategory();
                 $modelEvent = new Event();
-                $limit = 9;
+                $limit = 8;
                 $result['events'] = $modelEvent->getEventByCategory($id, $limit);
                 if($req->ajax()){
                     
