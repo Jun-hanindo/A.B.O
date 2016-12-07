@@ -119,7 +119,7 @@ class Controller extends BaseController
     }
 
     public function switchLanguage(){
-        d(!\Session::has('locale'));
+        dd(!\Session::has('locale'));
         if(!\Session::has('locale'))
         {
             if(isset($this->setting['language']) && !empty($this->setting['language'])){
