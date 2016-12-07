@@ -29,7 +29,8 @@ $(document).ready(function(){
 
     $('.language').on('click', function(){
         var lang = $(this).attr('data-lang');
-        setLanguage(lang);
+        var country = $(this).attr('data-country');
+        setLanguage(lang, country);
 
     });
 
@@ -38,13 +39,13 @@ $(document).ready(function(){
     });
 });
 
-function setLanguage(lang)
+function setLanguage(lang, country)
 {
     $.ajax({
         url: base_url+'/language',
         type: "GET",
         dataType: 'json',
-        data: {'language':lang},
+        data: {'language':lang, 'country':country},
         success: function (response) {
             //$(country).insertAfter('.cd-dropdown-trigger img');
             location.reload();

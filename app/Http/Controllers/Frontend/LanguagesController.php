@@ -20,21 +20,25 @@ class LanguagesController extends Controller
         try{
             $param = $req->all();
             if(isset($param['language']) && !empty($param['language'])){
-                \Session::set('locale', $param['language']);
+                \Session::set('locale', $param);
             }else{
                 if(!\Session::has('locale'))
                 {
                     if(isset($this->setting['language']) && !empty($this->setting['language'])){
-                         \Session::put('locale', $this->setting['language']);
+                        $param['language'] = $this->setting['language'];
+                        $param['country'] = 'Singapore';
+                         \Session::put('locale', $param);
                     }else{
-                        \Session::put('locale', \Config::get('app.fallback_locale'));
+                        $param['language'] = \Config::get('app.fallback_locale');
+                        $param['country'] = 'Singapore';
+                        \Session::put('locale', $param);
                     }
                 }
             }
             \Session::save();
 
             $data = \Session::get('locale');
-            \App::setLocale($data);
+            \App::setLocale($data['language']);
 
 
             return response()->json([

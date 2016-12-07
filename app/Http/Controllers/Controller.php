@@ -50,16 +50,20 @@ class Controller extends BaseController
         if(!\Session::has('locale'))
         {
             if(isset($this->setting['language']) && !empty($this->setting['language'])){
-                \Session::put('locale', $this->setting['language']);
+                $param['language'] = $this->setting['language'];
+                $param['country'] = 'Singapore';
+                 \Session::put('locale', $param);
             }else{
-                \Session::put('locale', \Config::get('app.fallback_locale'));
+                $param['language'] = \Config::get('app.fallback_locale');
+                $param['country'] = 'Singapore';
+                \Session::put('locale', $param);
             }
             \Session::save();
         }
 
         $lang = \Session::get('locale');
-        \App::setLocale($lang);
-        $setting['language_long'] = \Config::get('app.locales')[$lang];
+        \App::setLocale($lang['language']);
+        $setting['lang_country'] = $lang['country'];
         //dd($setting['language_long']);
         
         // if(!\Request::is('preview') && !\Request::is('getpost')){

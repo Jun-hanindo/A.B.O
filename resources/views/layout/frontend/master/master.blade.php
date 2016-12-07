@@ -54,7 +54,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <div class="cd-dropdown-wrapper">
-                                                <a class="cd-dropdown-trigger" href="#0"><img src="{{ asset('assets/frontend/images/singapore-flag.svg') }}"> Singapore</a>
+                                                <a class="cd-dropdown-trigger" href="#0"><img src="{{ asset('assets/frontend/images/singapore-flag.svg') }}"> {{ !empty($setting['lang_country']) ? $setting['lang_country'] : 'Singapore' }}</a>
                                                 <nav class="cd-dropdown">
                                                     <h2>{{ trans('frontend/general.title') }}</h2>
                                                     <a href="#0" class="cd-close">{{ trans('frontend/general.close') }}</a>
@@ -72,36 +72,36 @@
                                                                         </a>
                                                                     </li>
                                                                     <li class="lang-box">
-                                                                        <a href="#" class="lang-link language" data-lang="en">
+                                                                        <a href="#" class="lang-link">
                                                                             <img src="{{ asset('assets/frontend/images/singaporebig-flag.svg') }}"><br>
                                                                             Singapore
                                                                             <i class="fa fa-angle-down"></i>
                                                                         </a>
                                                                         <ul>
-                                                                            <li><a href="#">English</a></li>
-                                                                            <li><a href="#">简体中文</a></li>
+                                                                            <li><a href="#" class="language" data-lang="en" data-country="Singapore">English</a></li>
+                                                                            <li><a href="#" class="language" data-lang="zh" data-country="Singapore">简体中文</a></li>
                                                                         </ul>
                                                                     </li>
                                                                     <li class="lang-box">
-                                                                        <a href="#" class="lang-link language" data-lang="ms">
+                                                                        <a href="#" class="lang-link">
                                                                             <img src="{{ asset('assets/frontend/images/malaysiabig-flag.svg') }}"><br>
                                                                             Malaysia
                                                                             <i class="fa fa-angle-down"></i>
                                                                         </a>
                                                                         <ul>
-                                                                            <li><a href="#"></a>English</li>
-                                                                            <li><a href="#"></a>简体中文</li>
+                                                                            <li><a href="#" class="language" data-lang="en" data-country="Malaysia">English</a></li>
+                                                                            <li><a href="#" class="language" data-lang="zh" data-country="Malaysia">简体中文</a></li>
                                                                         </ul>
                                                                     </li>
                                                                     <li class="lang-box">
-                                                                        <a href="#" class="lang-link language" data-lang="id">
+                                                                        <a href="#" class="lang-link">
                                                                             <img src="{{ asset('assets/frontend/images/indonesiabig-flag.svg') }}"><br>
                                                                             Indonesia
                                                                             <i class="fa fa-angle-down"></i>
                                                                         </a>
                                                                         <ul>
-                                                                            <li><a href="#"></a>English</li>
-                                                                            <li><a href="#"></a>简体中文</li>
+                                                                            <li><a href="#" class="language" data-lang="id" data-country="Indonesia">Bahasa</a></li>
+                                                                            <li><a href="#" class="language" data-lang="zh" data-country="Indonesia">简体中文</a></li>
                                                                         </ul>
                                                                     </li>
                                                                 </ul>
@@ -181,36 +181,36 @@
                                                                     </a>
                                                                 </li>
                                                                 <li class="li-flag">
-                                                                    <a href="#" class="flag-expand language" data-lang="en">
+                                                                    <a href="#" class="flag-expand">
                                                                         <img src="{{ asset('assets/frontend/images/mobile-singapore-expand.svg') }}">
                                                                         Singapore
                                                                         <i class="fa fa-angle-down"></i>
                                                                     </a>
                                                                     <ul class="list-unstyled collapse-flag">
-                                                                        <li><a href="#">English</a></li>
-                                                                        <li><a href="#">简体中文</a></li>
+                                                                        <li><a href="#" class="language" data-lang="en" data-country="Singapore">English</a></li>
+                                                                        <li><a href="#" class="language" data-lang="zh" data-country="Singapore">简体中文</a></li>
                                                                     </ul>
                                                                 </li>
                                                                 <li class="li-flag">
-                                                                    <a href="#" class="flag-expand language" data-lang="ms">
+                                                                    <a href="#" class="flag-expand">
                                                                         <img src="{{ asset('assets/frontend/images/mobile-malay-expand.svg') }}">
                                                                         Malaysia
                                                                         <i class="fa fa-angle-down"></i>
                                                                     </a>
                                                                     <ul class="list-unstyled collapse-flag">
-                                                                        <li><a href="#">English</a></li>
-                                                                        <li><a href="#">简体中文</a></li>
+                                                                        <li><a href="#" class="language" data-lang="en" data-country="Malaysia">English</a></li>
+                                                                        <li><a href="#" class="language" data-lang="zh" data-country="Malaysia">简体中文</a></li>
                                                                     </ul>
                                                                 </li>
                                                                 <li class="li-flag">
-                                                                    <a href="#" class="flag-expand language" data-lang="id">
+                                                                    <a href="#" class="flag-expand">
                                                                         <img src="{{ asset('assets/frontend/images/mobile-indo-expand.svg') }}">
                                                                         Indonesia
                                                                         <i class="fa fa-angle-down"></i>
                                                                     </a>
                                                                     <ul class="list-unstyled collapse-flag">
-                                                                        <li><a href="#">English</a></li>
-                                                                        <li><a href="#">简体中文</a></li>
+                                                                        <li><a href="#" class="language" data-lang="id" data-country="Indonesia">Bahasa</a></li>
+                                                                        <li><a href="#" class="language" data-lang="zh" data-country="Indonesia">简体中文</a></li>
                                                                     </ul>
                                                                 </li>
                                                             </ul>
