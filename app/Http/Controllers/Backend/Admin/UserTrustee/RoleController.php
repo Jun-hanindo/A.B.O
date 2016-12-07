@@ -201,15 +201,22 @@ class RoleController extends BaseController
      */
     private function storeUpdate(Request $request, $id = 0)
     {
-        $data = $request->except('_token', '_method');
+
+        if($id == 1 || $id == 2){
+            $data = $request->except('_token', '_method', 'name');
+        }else{
+            $data = $request->except('_token', '_method');
+        }
+        //dd($data);
         $data['permissions'] = $this->preparePermissions($request->input('permissions'));
 
         return $this->transaction(function ($model) use ($data, $id, $request) {
             if ($id) {
+
                 $this->model->findOrFail($id)->update($data);
 
                 $log['user_id'] = $this->currentUser->id;
-                $log['description'] = 'Role "'.$data['name'].'" was updated';
+                $log['description'] = 'Role "'.$request->input('name').'" was updated';
                 //$log['ip_address'] = $request->ip();
                 $insertLog = new LogActivity();
                 $insertLog->insertLogActivity($log);

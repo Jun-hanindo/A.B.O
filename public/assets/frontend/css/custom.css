@@ -177,3 +177,6 @@ iframe[name="google_conversion_frame"]{
   position: absolute;
   top: 30px;
 }
+.slider-home .carousel-inner{
+  border-radius: 0 !important;
+}
