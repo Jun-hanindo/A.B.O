@@ -9,7 +9,7 @@
             <div class="tabCategory">
                 <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation">
-                    <a href="{{ URL::route('discover') }}" aria-controls="home" role="tab" data-toggle="tab">
+                    <a href="{{ URL::route('discover') }}" aria-controls="home" role="tab">
                         <i class="fa fa-certificate"></i><br>{{ trans('frontend/general.whats_new') }}
                     </a>
                 </li>

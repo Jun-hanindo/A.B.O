@@ -43,7 +43,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
     //
 
-    Route::get('discover', array('as' => 'discover', 'uses' => 'HomeController@discover'));
+    Route::get('discover/new', array('as' => 'discover', 'uses' => 'HomeController@discover'));
     Route::get('promotion', array('as' => 'promotion', 'uses' => 'HomeController@promotion'));
     Route::get('our-company/careers', array('as' => 'our-company-careers', 'uses' => 'HomeController@ourCompanyCareers'));
     Route::get('our-company/contact-us', array('as' => 'our-company-contact-us', 'uses' => 'HomeController@ourCompanyContactUs'));
@@ -57,7 +57,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('subscribe', array('as' => 'subscribe', 'uses' => 'HomeController@subscribeUs'));
     Route::post('subscribe-store', array('as' => 'subscribe-store', 'uses' => 'HomeController@subscribeUsStore'));
     Route::post('subscribe-event-store', array('as' => 'subscribe-event-store', 'uses' => 'EventsController@subscribeEventStore'));
-    Route::get('category/{slug}', array('as' => 'category-detail', 'uses' => 'CategoriesController@index'));
+    Route::get('discover/{slug}', array('as' => 'category-detail', 'uses' => 'CategoriesController@index'));
     Route::get('promotion/{slug}', array('as' => 'promotion-detail', 'uses' => 'PromotionsController@index'));
     Route::get('search/result', array('as' => 'event-search-get', 'uses' => 'EventsController@searchResult'));
     Route::get('search', array('as' => 'event-search', 'uses' => 'EventsController@search'));
