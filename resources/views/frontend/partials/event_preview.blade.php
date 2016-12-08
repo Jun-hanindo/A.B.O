@@ -301,7 +301,7 @@
                                                                 @endif
                                                                 <h3 class="font-bold">{{ $promotion->title }}</h3>
                                                                 {!! $promotion->description !!}
-                                                                if(!empty($promotion->link_title_more_description))
+                                                                @if(!empty($promotion->link_title_more_description))
                                                                     <a id="link_title_more_promotion" data-toggle="collapse" href="#more_description" aria-expanded="false"> {!! $promotion->link_title_more_description !!} </a>
                                                                 @endif
                                                                 @if(!empty($promotion->more_description))
