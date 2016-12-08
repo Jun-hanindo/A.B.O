@@ -30,7 +30,7 @@
             <div class="tabCategory">
                 <ul class="list-category-mobile">
                     <li class="active"><a href="{{ URL::route('discover') }}"><i class="fa fa-certificate"></i><br>{{ trans('frontend/general.whats_new') }}</a></li>
-                    <li class="dropdown" role="presentation"><a href="#" data-toggle="dropdown" class="discover-category-mobile dropdown-toggle" id="dropcat"><i class="fa icat"></i><br>Select Category</a>
+                    <li class="dropdown" role="presentation"><a href="#" data-toggle="dropdown" class="discover-category-mobile dropdown-toggle" id="dropcat"><i class="fa icat"></i><br>{{ trans('frontend/general.select_category') }}</a>
                         <ul class="dropdown-menu" aria-labelledby="dropcat" id="dropdown-menu-discover">
                             <div class="row">
                                 @if(!empty($categories))

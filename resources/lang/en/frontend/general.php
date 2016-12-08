@@ -114,5 +114,6 @@ return [
     'sorry' => 'Sorry',
     'title' => 'Title',
     'close' => 'Close',
+    'select_category' => 'Select Category',
 
 ];
