@@ -1133,6 +1133,13 @@ class Event extends Model
                         $i++;
                     }
                 }
+
+                if(!empty($event->schedule_title))
+                {
+                    $event->schedule = $event->schedule_title;
+                }else{
+                    $event->schedule = $event->schedule_range;
+                }
             }
             return $events;
         }else{
@@ -1197,13 +1204,14 @@ class Event extends Model
     {
 
         $events = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
-            'events.slug as slug', 'events.venue_id as venue_id', 'events.avaibility as avaibility', 
-            'events.background_color as background_color', 'events.event_type as event_type', 
-            'event_categories.category_id as category_id')
+            'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color',
+            'events.schedule_title', 'categories.name as category')
             ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
+            ->join('categories', 'event_categories.category_id', '=', 'categories.id')
             ->where('event_categories.category_id','=',$category)
             //->where('events.status', true)
             ->where('events.avaibility','=',true)
+            ->orderBy('events.sort_order', 'desc')
             ->orderBy('events.created_at', 'desc')
             ->paginate($limit);
 
@@ -1213,17 +1221,57 @@ class Event extends Model
         {
             foreach ($events as $key => $event) {
                 $event->title = string_limit($event->title);
-                $event->cat = Category::where('id', $category)->where('status', true)->first();
-                //if(!empty($event->cat)){
-                    $event->cat_name = strtoupper($event->cat->name);
-                //}
+                $event->cat_name = $event->category;
+                // $event->cat = Category::where('id', $category)->where('status', true)->first();
+                // //if(!empty($event->cat)){
+                //     $event->cat_name = strtoupper($event->cat->name);
+                // //}
                 $this->setImageUrl($event);
-                $event->schedule = $event->EventSchedule()->orderBy('date_at', 'asc')->first();
-                if(!empty($event->schedule)){
-                    $event->date_at = full_text_date($event->schedule->date_at);
+
+                $event->venue = $event->Venue()->where('avaibility', true)->first();
+                if(!empty($event->venue)){
+                    $event->venue_name = $event->venue->name;
+                    if(!empty($event->venue->city)){
+                        $event->city = ', '.$event->venue->city;
+                    }else{
+                        $event->city = '';
+                    }
+                }else{
+                    $event->venue_name = '';
+                    $event->city = '';
                 }
 
-                $event->venue = $event->Venue;
+                // $event->schedule = $event->EventSchedule()->orderBy('date_at', 'asc')->first();
+                // if(!empty($event->schedule)){
+                //     $event->date_at = full_text_date($event->schedule->date_at);
+                // }
+
+                $event->schedules = $event->EventSchedule()->orderBy('date_at', 'asc')->get();
+
+                $count = count($event->schedules);
+                if(!empty($event->schedules)){
+                    $i = 1;
+                    foreach ($event->schedules as $sc => $sch) {
+                        if($count == 1){
+                            $event->schedule_range = full_text_date($sch->date_at);
+                        }else{
+                            if($i == 1){
+                                $event->start_range = $sch->date_at;
+                            }elseif ($i == $count) {
+                                $event->end_range = $sch->date_at;
+                            }
+                            $event->schedule_range = date_from_to($event->start_range, $event->end_range);
+                        }
+                        $i++;
+                    }
+                }
+
+                if(!empty($event->schedule_title))
+                {
+                    $event->schedule = $event->schedule_title;
+                }else{
+                    $event->schedule = $event->schedule_range;
+                }
                 
                 //$array[] = $event;
                 

@@ -34,14 +34,14 @@
                         
                         var htmlTop = 
                             '<a href="'+uri2+'">'
-                                +'<div class="col-md-4 box-release">'
+                                +'<div class="col-md-6 box-release">'
                                     +'<img src="'+val.featured_image2_url+'">'
                                     +'<div class="boxInfo info1 bg-green" style="background-color:'+val.background_color+' !important">'
                                         +'<ul>'
                                             +'<li class="eventType">'+val.cat_name+'</li>'
                                             +'<li class="eventName">'+val.title+'</li>'
-                                            +'<li class="eventDate"><i class="fa fa-calendar-o"></i>'+val.date_at+'</li>'
-                                            +'<li class="eventPlace"><i class="fa fa-map-marker"></i>'+val.venue.name+'</li>'
+                                            +'<li class="eventDate"><i class="fa fa-calendar-o"></i>'+val.schedule+'</li>'
+                                            +'<li class="eventPlace"><i class="fa fa-map-marker"></i>'+val.venue_name+val.city+'</li>'
                                         +'</ul>'
                                     +'</div>'
                                 +'</div>'
