@@ -8,19 +8,39 @@
             <h2 class="font-light">{{ trans('frontend/general.discover_events') }}</h2>
             <div class="tabCategory">
                 <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation">
-                    <a href="{{ URL::route('discover') }}" aria-controls="home" role="tab">
-                        <i class="fa fa-certificate"></i><br>{{ trans('frontend/general.whats_new') }}
-                    </a>
-                </li>
-                @if(!empty($categories))
-                    @foreach($categories as $key => $cat) 
-                        <li role="presentation" class="{{ $category->slug == $cat->slug ? 'active' : '' }}"><a href="{{ URL::route('category-detail', $cat->slug) }}" aria-controls="{{$cat->slug}}" role="tab">
-                            <i class="fa fa-{{ $cat->icon }}"></i><br>{{ $cat->name }}</a>
-                        </li>
-                    @endforeach
-                @endif
+                    <li role="presentation">
+                        <a href="{{ URL::route('discover') }}" aria-controls="home" role="tab">
+                            <i class="fa fa-certificate"></i><br>{{ trans('frontend/general.whats_new') }}
+                        </a>
+                    </li>
+                    @if(!empty($categories))
+                        @foreach($categories as $key => $cat) 
+                            <li role="presentation" class="{{ $category->slug == $cat->slug ? 'active' : '' }}"><a href="{{ URL::route('category-detail', $cat->slug) }}" aria-controls="{{$cat->slug}}" role="tab">
+                                <i class="fa fa-{{ $cat->icon }}"></i><br>{{ $cat->name }}</a>
+                            </li>
+                        @endforeach
+                    @endif
                 </ul>
+            </div>
+        </div>
+        <div class="eventTabScroll tabCategories">
+            <div class="container">
+                <div class="tabCategory">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation">
+                            <a href="{{ URL::route('discover') }}" aria-controls="home" role="tab">
+                                <i class="fa fa-certificate"></i><br>{{ trans('frontend/general.whats_new') }}
+                            </a>
+                        </li>
+                        @if(!empty($categories))
+                            @foreach($categories as $key => $cat) 
+                                <li role="presentation" class="{{ $category->slug == $cat->slug ? 'active' : '' }}"><a href="{{ URL::route('category-detail', $cat->slug) }}" aria-controls="{{$cat->slug}}" role="tab">
+                                    <i class="fa fa-{{ $cat->icon }}"></i><br>{{ $cat->name }}</a>
+                                </li>
+                            @endforeach
+                        @endif
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -60,6 +80,44 @@
                         </ul>
                     </li>
                 </ul>
+            </div>
+        </div>
+        <div class="eventTabScroll-mobile tabCategories tabCategories-mobile">
+            <div class="container">
+                <div class="tabCategory">
+                    <ul class="list-category-mobile">
+                        <li class="active"><a href="{{ URL::route('category-detail', $category->slug) }}"><i class="fa fa-{{ $category->icon }}"></i><br>{{ $category->name }}</a></li>
+                        <li class="dropdown" role="presentation"><a href="#" data-toggle="dropdown" class="discover-category-mobile dropdown-toggle" id="dropcat"><i class="fa icat"></i><br>{{ trans('frontend/general.select_category') }}</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropcat" id="dropdown-menu-discover">
+                                @if(!empty($categories))
+                                @php 
+                                    $i = 1;
+                                @endphp
+                                    @foreach($categories as $key => $cat) 
+                                        @if($i % 3 == 1)
+                                            <div class="row">
+                                        @endif 
+                                        @if($cat->slug == $category->slug)
+                                            <div class="col-xs-4">
+                                                <a href="{{ URL::route('discover') }}" aria-controls="home" role="tab"><i class="fa fa-certificate"></i><br>{{ trans('frontend/general.whats_new') }}</a>
+                                            </div>
+                                        @else
+                                            <div class="col-xs-4">
+                                                <a href="{{ URL::route('category-detail', $cat->slug) }}" aria-controls="{{$cat->slug}}" role="tab"><i class="fa fa-{{ $cat->icon }}"></i><br>{{ $cat->name }}</a>
+                                            </div>
+                                        @endif
+                                        @if($i % 3 == 0)
+                                            </div>
+                                        @endif 
+                                        @php 
+                                            $i++;
+                                        @endphp
+                                    @endforeach
+                                @endif
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

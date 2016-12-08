@@ -151,3 +151,12 @@ $(".modal-backdrop, #eventVideo .close, #eventVideo .btn").on("click", function(
 $('#link_title_more_promotion').click(function(){
     $(this).hide();
 });
+
+$(document).scroll(function() {
+    var y = $(this).scrollTop();
+    if (y > 200) {
+        $('.tabCategories').fadeIn();
+    } else {
+        $('.tabCategories').fadeOut();
+    }
+});

@@ -148,8 +148,8 @@ body{
 }
 
 .nav-third{
-    margin-right: 30px;
-    padding-left: 20px;
+  margin-right: 30px;
+  padding-left: 20px;
 }
 
 .left-header .list-menu{
@@ -2573,8 +2573,8 @@ footer .information-title{
 
 .about-mobile .client-logo{
   text-align: center;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 
 .mobile-sidebar-menu .search-mobile .sidebar-search {
@@ -4359,6 +4359,19 @@ ol .a li:before{
 
 .head-about-update{
   margin-bottom: 35px;
+}
+.tabCategories {
+  height: auto;
+  background-color: #fff;
+  padding-bottom: 0;
+}
+
+.tabCategories ul li{
+  margin: 0;
+}
+
+.tabCategories-mobile .tabCategory{
+  padding-top: 20px;
 }
 
 
