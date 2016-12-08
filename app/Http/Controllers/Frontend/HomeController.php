@@ -160,6 +160,15 @@ class HomeController extends Controller
         return view('frontend.partials.static.support_privacy_policy_static');
     }
 
+    public function aboutUsStatic()
+    {
+        $trail = 'About Us Static front end';
+        $insertTrail = new Trail();
+        $insertTrail->insertTrail($trail);
+            
+        return view('frontend.partials.static.about_us_static');
+    }
+
     public function index()
     {
         try{

@@ -35,6 +35,8 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('terms-of-ticket-sales', array('as' => 'terms-ticket-sales', 'uses' => 'HomeController@supportTermsTicketSalesStatic'));
     Route::get('terms-of-website-use', array('as' => 'terms-website-use', 'uses' => 'HomeController@supportTermsWebsiteUseStatic'));
     Route::get('privacy-policy', array('as' => 'privacy-policy', 'uses' => 'HomeController@supportPrivacyPolicyStatic'));
+    Route::get('about-us', array('as' => 'about-us', 'uses' => 'HomeController@aboutUsStatic'));
+    Route::get('careers', array('as' => 'careers', 'uses' => 'HomeController@aboutUsStatic'));
     
     /*Dynamic*/
     //comment 161013
