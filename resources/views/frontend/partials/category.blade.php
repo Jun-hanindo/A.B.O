@@ -32,15 +32,25 @@
                     <li class="active"><a href="{{ URL::route('discover') }}"><i class="fa fa-certificate"></i><br>{{ trans('frontend/general.whats_new') }}</a></li>
                     <li class="dropdown" role="presentation"><a href="#" data-toggle="dropdown" class="discover-category-mobile dropdown-toggle" id="dropcat"><i class="fa icat"></i><br>{{ trans('frontend/general.select_category') }}</a>
                         <ul class="dropdown-menu" aria-labelledby="dropcat" id="dropdown-menu-discover">
-                            <div class="row">
-                                @if(!empty($categories))
-                                    @foreach($categories as $key => $cat) 
-                                        <div class="col-xs-4">
-                                            <a href="{{ URL::route('category-detail', $cat->slug) }}" aria-controls="{{$cat->slug}}" role="tab"><i class="fa fa-{{ $cat->icon }}"></i><br>{{ $cat->name }}</a>
+                            @if(!empty($categories))
+                            @php 
+                                $i = 1;
+                            @endphp
+                                @foreach($categories as $key => $cat) 
+                                    @if($i % 3 == 1)
+                                        <div class="row">
+                                    @endif 
+                                    <div class="col-xs-4">
+                                        <a href="{{ URL::route('category-detail', $cat->slug) }}" aria-controls="{{$cat->slug}}" role="tab"><i class="fa fa-{{ $cat->icon }}"></i><br>{{ $cat->name }}</a>
+                                    </div>
+                                    @if($i % 3 == 0)
                                         </div>
-                                    @endforeach
-                                @endif
-                            </div>
+                                    @endif 
+                                    @php 
+                                        $i++;
+                                    @endphp
+                                @endforeach
+                            @endif
                         </ul>
                     </li>
                 </ul>

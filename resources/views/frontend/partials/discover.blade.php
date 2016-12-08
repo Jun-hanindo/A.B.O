@@ -32,15 +32,25 @@
                     <li class="active"><a href="{{ URL::route('discover') }}"><i class="fa fa-certificate"></i><br>{{ trans('frontend/general.whats_new') }}</a></li>
                     <li class="dropdown" role="presentation"><a href="#" data-toggle="dropdown" class="discover-category-mobile dropdown-toggle" id="dropcat"><i class="fa icat"></i><br>{{ trans('frontend/general.select_category') }}</a>
                         <ul class="dropdown-menu" aria-labelledby="dropcat" id="dropdown-menu-discover">
-                            <div class="row">
-                                @if(!empty($categories))
-                                    @foreach($categories as $key => $category) 
+                            @if(!empty($categories))
+                            @php 
+                                $i = 1;
+                            @endphp
+                                @foreach($categories as $key => $category)
+                                    @if($i % 3 == 1)
+                                        <div class="row">
+                                    @endif 
                                         <div class="col-xs-4">
                                             <a href="{{ URL::route('category-detail', $category->slug) }}" aria-controls="{{$category->slug}}" role="tab"><i class="fa fa-{{ $category->icon }}"></i><br>{{ $category->name }}</a>
                                         </div>
-                                    @endforeach
-                                @endif
-                            </div>
+                                    @if($i % 3 == 0)
+                                        </div>
+                                    @endif 
+                                    @php 
+                                        $i++;
+                                    @endphp
+                                @endforeach
+                            @endif
                         </ul>
                     </li>
                 </ul>

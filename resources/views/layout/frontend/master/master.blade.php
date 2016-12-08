@@ -52,7 +52,7 @@
                                         <li class="nav-item">
                                             <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/ABO-logo.svg') }}" class="logo"></a>
                                         </li>
-                                        <li class="nav-item">
+                                        {{-- <li class="nav-item">
                                             <div class="cd-dropdown-wrapper">
                                                 <a class="cd-dropdown-trigger" href="#0"><img src="{{ asset('assets/frontend/images/singapore-flag.svg') }}"> {{ !empty($setting['lang_country']) ? $setting['lang_country'] : 'Singapore' }}</a>
                                                 <nav class="cd-dropdown">
@@ -110,7 +110,7 @@
                                                     </ul>
                                                 </nav>
                                             </div>
-                                        </li>
+                                        </li> --}}
                                         <li class="nav-item nav-third">
                                             <div class="nav-search">
                                                 <form action="{{route('event-search-get')}}" method="get">
@@ -168,7 +168,7 @@
                                                         <i class="fa fa-bars"></i>
                                                     </div>
                                                     <ul class="list-unstyled mobile-collapse-body-top">
-                                                        <li class="collapse-child clearfix">
+                                                        {{-- <li class="collapse-child clearfix">
                                                             <a href="#" class="mobile-flag">
                                                                 <img src="{{ asset('assets/frontend/images/singapore-flag.svg') }}">
                                                                 Singapore
@@ -214,7 +214,7 @@
                                                                     </ul>
                                                                 </li>
                                                             </ul>
-                                                        </li>
+                                                        </li> --}}
                                                         <li><a href="{{ URL::route('discover')}}">{{ trans('frontend/general.discover_events') }}</a></li>
                                                         <li><a class="support-mobile" href="{{ URL::route('promotion')}}">{{ trans('frontend/general.promotions') }}</a></li>
                                                         <li><a class="support-mobile" href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a></li>

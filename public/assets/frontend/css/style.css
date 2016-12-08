@@ -149,6 +149,7 @@ body{
 
 .nav-third{
   margin-right: 30px;
+  padding-left: 20px;
 }
 
 .left-header .list-menu{
@@ -1303,7 +1304,7 @@ footer .information-title{
 }
 
 .discoverCategory .tabCategory li i{
-  font-size: 26px;
+  font-size: 30px;
   color: #000000;
   padding-bottom: 10px;
 }
@@ -1841,15 +1842,6 @@ footer .information-title{
   margin-right: 25px;
 }
 
-.about-content .main-content .client-btn::after,
-.about-content .main-content .partner-btn::after,
-.about-mobile .mobile-about-categories .client-btn::after,
-.about-mobile .mobile-about-categories .partner-btn::after{
-  content: "\f078";
-  font-family: 'FontAwesome';
-  padding-left: 10px;
-}
-
 .main-content .about-desc .logo-about{
   text-align: center;
   top: -50%;
@@ -1865,7 +1857,7 @@ footer .information-title{
 }
 
 .main-content .partner-desc{
-  padding-bottom: 30px;
+  padding-bottom: 100px;
 }
 
 .main-content .client-desc .client-logo,
@@ -2570,7 +2562,7 @@ footer .information-title{
 .mobile-about-categories,
 .btnAboutMobile{
   margin-bottom: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 25px;
   border-bottom: 1px solid #CACACA;
 }
 
@@ -2581,8 +2573,8 @@ footer .information-title{
 
 .about-mobile .client-logo{
   text-align: center;
-  margin-bottom: 40px;
-  margin-top: 40px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .mobile-sidebar-menu .search-mobile .sidebar-search {
@@ -4305,6 +4297,68 @@ ol .a li:before{
 
 .discover-mobile .tabCategory{
   width: 100%;
+}
+
+.about-desc .desc-company p,
+.mobile-page-desc p{
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+.about-desc .company-info{
+  margin-top: 40px;
+}
+
+.about-desc .company-info a{
+  font-size: 16px;
+}
+
+.main-content .about-update{
+  padding-bottom: 45px;
+}
+
+.about-content .main-content .client-btn::after,
+.about-content .main-content .partner-btn::after,
+.about-mobile .mobile-about-categories .client-btn::after,
+.about-mobile .mobile-about-categories .partner-btn::after{
+  content: "\f107";
+  font-family: 'fontAwesome';
+  padding-left: 10px;
+}
+
+.client-desc h3,
+.partner-desc h3{
+  margin-top: 25px;
+  font-size: 22px;
+}
+
+.mobile-content .mobile-sidebar .mobile-sidebar-menu .collapsed::after {
+    content: "\f107";
+    font-family: 'FontAwesome';
+    padding-left: 10px;
+}
+
+.client-mobile h3{
+  font-size: 18px;
+}
+
+.btnAbout-mobile button{
+  margin-top: 20px !important;
+}
+
+.partner-mobile h3{
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.btnAbout-work{
+  border-bottom: none;
+  margin-bottom: 5px;
+  padding-bottom: 0;
+}
+
+.head-about-update{
+  margin-bottom: 35px;
 }
 
 
