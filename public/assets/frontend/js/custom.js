@@ -82,7 +82,7 @@ function autoSearch(q, sort)
                                         +'<img src="'+val.featured_image3_url+'">'
                                             +'<div class="content">'
                                                 +'<h5>'+val.title+'</h5>'
-                                            +'<span class="footer">'+val.date_set+', '+val.venue+'</span>'
+                                            +'<span class="footer">'+val.schedule+', '+val.venue_name+val.city+'</span>'
                                     +'</div></a>'
                                 +'</div>';
                             $(html).insertAfter('#header-search');
@@ -123,7 +123,7 @@ function autoSearchMobile(q, sort)
                                         +'<img src="'+val.featured_image3_url+'">'
                                             +'<div class="content">'
                                                 +'<h5>'+val.title+'</h5>'
-                                            +'<span class="footer">'+val.date_set+', '+val.venue+'</span>'
+                                            +'<span class="footer">'+val.schedule+', '+val.venue_name+val.city+'</span>'
                                     +'</div></a>'
                                 +'</div>';
                             $(html).insertAfter('#ul-search-mobile  #header-search');

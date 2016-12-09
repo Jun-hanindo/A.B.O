@@ -114,9 +114,9 @@
                             var html = '<tr class="bg-green tr-search" style="background-color:'+val.background_color+' !important">'
                                 +'<td class="searchpic"><a href="'+uri+'"><img src="'+val.featured_image3_url+'"></a></td>'
                                 +'<td class="jobs"><a href="'+uri+'">'+val.title+'</a></td>'
-                                +'<td class="date"><a href="'+uri+'">'+val.date_set+'</a></td>'
-                                +'<td class="place"><a href="'+uri+'">'+val.venue+'</a></td>'
-                                +'<td class="type"><a href="'+uri+'">'+val.category+'</a></td>'
+                                +'<td class="date"><a href="'+uri+'">'+val.schedule+'</a></td>'
+                                +'<td class="place"><a href="'+uri+'">'+val.venue_name+val.city+'</a></td>'
+                                +'<td class="type"><a href="'+uri+'">'+val.cat_name+'</a></td>'
                                 +'</tr>';
                             //console.log(html);
                             $('.search-list table').append(html);
@@ -139,9 +139,9 @@
                                             +'</div>'
                                             +'<div class="mobile-search-desc">'
                                                 +'<ul>'
-                                                    +'<li class="date">'+val.date_set+'</li>'
-                                                    +'<li class="place">'+val.venue+'</li>'
-                                                    +'<li class="type">'+val.category+'</li>'
+                                                    +'<li class="date">'+val.schedule+'</li>'
+                                                    +'<li class="place">'+val.venue_name+val.city+'</li>'
+                                                    +'<li class="type">'+val.cat_name+'</li>'
                                                 +'</ul>'
                                             +'</div>'
                                         +'</div>'
