@@ -8,7 +8,7 @@
 <section class="about-content contact-content ways-content">
     <div class="row">
         <div class="col-md-3">
-            <div class="sidebar">
+            <div class="sidebar sidebar-support">
                 @include('layout.frontend.partial.support_left_side')
             </div>
         </div>

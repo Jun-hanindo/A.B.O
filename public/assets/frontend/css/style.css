@@ -1321,6 +1321,7 @@ footer .information-title{
 
 .promotionList{
   background-color: #E7E7E7;
+  padding-bottom: 50px;
 }
 
 .eventBanner .imageBanner img{
@@ -2878,7 +2879,7 @@ footer .information-title{
 }
 
 .promotionList .box-promo{
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 #footer1 .footIcon .icon div{
@@ -4212,10 +4213,6 @@ ol .a li:before{
   border-bottom: none;
 }
 
-.footer-promo{
-  margin-top: 50px;
-}
-
 .discover-content{
   background-color: #e7e7e7;
   margin-top: -1px;
@@ -4360,6 +4357,7 @@ ol .a li:before{
 .head-about-update{
   margin-bottom: 35px;
 }
+
 .tabCategories {
   height: auto;
   background-color: #fff;
@@ -4372,6 +4370,18 @@ ol .a li:before{
 
 .tabCategories-mobile .tabCategory{
   padding-top: 20px;
+}
+
+.promo-category{
+  background-color: #E7E7E7;
+}
+
+.promo-category h2{
+  margin-bottom: 25px;
+}
+
+.box-promo .boxInfo ul{
+  margin-bottom: 0;
 }
 
 

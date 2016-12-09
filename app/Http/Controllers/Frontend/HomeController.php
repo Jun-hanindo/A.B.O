@@ -205,7 +205,7 @@ class HomeController extends Controller
             //$result['src'] = url('uploads/events').'/';
             $modelCategory = new Category();
             $result['categories'] = $modelCategory->getCategory();
-            $limit = 2;
+            $limit = 8;
             $modelEvent = new Event();
             $result['events'] = $modelEvent->getEvent($limit);
             $result['banner'] = $modelEvent->getEventBanner();

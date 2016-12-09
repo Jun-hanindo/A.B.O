@@ -135,9 +135,9 @@
           $('.mobile-collapse-header-top').click(function(){$(this).toggleClass('open')})
           $('#carouselHacked').carousel();
 
-    setInterval(function() {
-       $('.sidebar').height($('.main-content').outerHeight())
-    }, 10);
+    // setInterval(function() {
+    //    $('.sidebar').height($('.main-content').outerHeight())
+    // }, 10);
 
 
     $('#general-anchor').click(function(){

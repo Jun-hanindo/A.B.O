@@ -22,6 +22,7 @@
         {!! Html::style('assets/frontend/css/custom.css') !!}
         {!! Html::style('assets/frontend/css/color.css') !!}
         {!! Html::style('assets/frontend/css/responsive.css') !!}
+        {!! Html::style('assets/plugins/HoldOn/HoldOn.min.css') !!}
 
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,800,700,900' rel='stylesheet' type='text/css'>

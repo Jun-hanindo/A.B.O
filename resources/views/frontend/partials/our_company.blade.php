@@ -5,7 +5,7 @@
 <section class="about-content faq-content">
     <div class="row">
         <div class="col-md-3">
-            <div class="sidebar">
+            <div class="sidebar sidebar-support">
                 @include('layout.frontend.partial.our_company_left_side')
             </div>
         </div>

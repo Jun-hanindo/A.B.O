@@ -5,7 +5,7 @@
 <section class="about-content faq-content">
     <div class="row">
         <div class="col-md-3">
-            <div class="sidebar">
+            <div class="sidebar sidebar-support">
                 @if(Request::segment(1) == 'support')
                     @include('layout.frontend.partial.support_left_side')
                 @else

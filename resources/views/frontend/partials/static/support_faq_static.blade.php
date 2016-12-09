@@ -8,7 +8,7 @@ $tag = '<--mobile-->';
 <section class="about-content faq-content">
     <div class="row">
         <div class="col-md-3">
-            <div class="sidebar">
+            <div class="sidebar sidebar-support">
                 <ul>
                     <li class="sidebar-head">
                         <h4 class="font-light">Support</h4>

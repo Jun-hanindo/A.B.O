@@ -619,7 +619,10 @@
     margin-top: 5px;
   }
   .box-release .boxInfo ul, .box-promo .boxInfo ul{
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+  }
+  .promotionList{
+    padding-bottom: 10px;
   }
   .box-release .info3 ul, .box-promo .promo3 ul{
     margin-bottom: 20px;

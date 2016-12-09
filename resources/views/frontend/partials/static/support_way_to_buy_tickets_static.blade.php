@@ -8,7 +8,7 @@
           <section class="about-content ways-content">
               <div class="row">
                   <div class="col-md-3">
-                      <div class="sidebar">
+                      <div class="sidebar sidebar-support">
                           <ul>
                               <li class="sidebar-head">
                                   <h4>{{ trans('general.support') }}</h4>

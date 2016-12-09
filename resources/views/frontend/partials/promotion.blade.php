@@ -27,7 +27,7 @@
                             <div class="boxInfo promo1">
                                 <ul>
                                     <li class="eventType">{{ strtoupper($event->category) }}</li>
-                                    <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}"></li>
+                                    <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}" class="esplanade"></li>
                                     <br>
                                     <li class="eventPlace">{{ trans('frontend/general.valid_from') }} {{ $event->valid }}</li>
                                 </ul>
@@ -88,7 +88,7 @@
             @if($events->nextPageUrl() != null)
                 <div class="loadMore">
                     <a href="javascript:void(0)">
-                      <button class="btn btnLoad">{{ trans('frontend/general.load_more_promotions') }}</button>
+                      <button class="btn btnLoad font-bold">{{ trans('frontend/general.load_more_promotions') }}</button>
                     </a>
                 </div>
             @endif
