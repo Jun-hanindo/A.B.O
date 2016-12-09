@@ -33,7 +33,7 @@ class CategoriesController extends Controller
                 $id = $result['category']->id;
                 $result['categories'] = $this->model->getCategory();
                 $modelEvent = new Event();
-                $limit = 8;
+                $limit = 2;
                 $result['banner'] = $modelEvent->getEventBannerByCategory($id);
                 $result['events'] = $modelEvent->getEventByCategory($id, $limit);
                 if($req->ajax()){
