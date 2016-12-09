@@ -197,21 +197,9 @@ iframe[name="google_conversion_frame"]{
 }
 .result-content .sidebar-head a{
     float: right;
-    margin-right: 30px;
+    margin-right: 15px;
     margin-top: 4px;
 }
 .result-content .sidebar-head a:after{
   content: none;
-}
-/*.result-content .sidebar{
-  min-height: 600px;
-  float: left;
-    width: 100%;
-}*/
-.result-content .sidebar ul .sidebar-menu.filter-search-bottom{
-  border-bottom: 0;
-  /*margin-bottom: 35px;*/
-}
-.sidebar-search{
-  padding-bottom: 35px;
 }

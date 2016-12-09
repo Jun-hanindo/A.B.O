@@ -1769,7 +1769,8 @@ footer .information-title{
 
 .faq-content .sidebar{
   background-color: #E7E7E7;
- height:auto;
+  height:auto;
+  padding-bottom: 50px;
 }
 .faq-content .main-content{
   padding-bottom: 50px;
@@ -1892,7 +1893,7 @@ footer .information-title{
 }
 
 .head-about{
-  padding-left: 15px;
+  padding-left: 30px;
   margin-bottom: 40px;
   font-size: 26px;
   margin-top: 45px;
@@ -2092,7 +2093,7 @@ footer .information-title{
 
 .career-desc .job-head h4{
   float: left;
-  padding-left: 15px;
+  padding-left: 30px;
   margin-top: 0;
   margin-bottom: 0;
   font-size: 22px;
@@ -2199,7 +2200,7 @@ footer .information-title{
 .career-desc .search-list {
     margin-top: 20px;
     color: #fff;
-    margin-left: 15px;
+    margin-left: 30px;
 }
 
 .career-desc .search-list .tr-search{
@@ -4384,19 +4385,27 @@ ol .a li:before{
   margin-bottom: 0;
 }
 
+/*UPDATE HEIGHT - SIDEBAR*/
 
+.ways-content .sidebar {
+  height: auto;
+}
+.about-content .sidebar li {
+  padding-right: 15px;
+}
+.about-content .col-md-3 {
+  background-color: #E7E7E7;
+  height: 100%;
+  padding-right: 0;
+}
 
+.main-content .faq-content{
+  padding-left: 25px;
+}
 
-
-
-
-
-
-
-
-
-
-
+.result-content .sidebar ul .filter-last{
+  border: none;
+}
 
 
 

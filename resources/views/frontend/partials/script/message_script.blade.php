@@ -1,9 +1,9 @@
 @section('script')
 
 <script type="text/javascript">
-    setInterval(function() {
-       $('.sidebar').height($('.main-content').outerHeight())
-    }, 10);
+    // setInterval(function() {
+    //    $('.sidebar').height($('.main-content').outerHeight())
+    // }, 10);
 
         $(document).ready(function(){
 

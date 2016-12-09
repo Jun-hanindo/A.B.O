@@ -26,7 +26,7 @@
                                                         @endif
                                                     @endforeach
                                                 @endif
-                                                > All Category</label></li>
+                                                > All Categories</label></li>
                                         @foreach($categories as $key => $category) 
                                              <li class="checkbox"><label><input type="checkbox" name="cat[]" class="cat-filter" value="{{$category->slug}}"
                                                 @if(!empty($cats_sel))
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="sidebar-menu filter-search filter-search-bottom">
+                    <li class="sidebar-menu filter-search filter-last">
                         <a class="collapsed" role="button" data-toggle="collapse" href="#collapseVenue" aria-expanded="false" aria-controls="collapseExample">{{ trans('frontend/general.venues') }}</a>
                         <div class="collapse" id="collapseVenue">
                             <div class="filter-child filter-categories">
@@ -152,7 +152,7 @@
                                                                 @endif
                                                             @endforeach
                                                         @endif
-                                                        > All Category</label></li>
+                                                        > All Categories</label></li>
                                                     @foreach($categories as $key => $category) 
                                                          <li class="checkbox"><label><input type="checkbox" name="cat[]" class="cat-filter-mobile" value="{{$category->slug}}"
                                                             @if(!empty($cats_sel))
