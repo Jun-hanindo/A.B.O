@@ -1436,7 +1436,7 @@ class Event extends Model
         $sort = $param['sort'];
         
         $query = Event::select('events.id as id','events.title as title', 'events.featured_image3 as featured_image3',
-            'events.slug as slug', 'events.avaibility as avaibility', 'events.background_color as background_color', 
+            'events.slug as slug', 'events.background_color as background_color', 
              DB::RAW("array_to_string(array_agg(DISTINCT venues.name), ',')  as venue"), 
              DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',') as category"), 
              DB::RAW("min(DISTINCT event_schedules.date_at) as date"), 
@@ -1447,17 +1447,12 @@ class Event extends Model
             ->join('event_schedules', 'event_schedules.event_id', '=', 'events.id')
             ->join('event_schedule_categories', 'event_schedule_categories.event_schedule_id', '=', 'event_schedules.id')
             ->where('events.avaibility','=', true)
-            //->where('categories.avaibility','=', true)
             ->where('categories.status', true);
-            //->where('events.status','=', true);
-            //->where('categories.status','=', true)
-            /*->where('event_schedules.status','=', true)*/
-            //->where('event_schedule_categories.status','=', true);
-            //->where('date_at','>', date('Y-m-d'));
-            //->groupBy('events.id')
-            //->orderBy($sort)
-            //->get()
-            //;
+
+        if($q != 'all'){
+            $query->where('events.title','ilike','%'.$q.'%');
+        }
+
         if(isset($param['venue']) && $param['venue'] != 'all'){
             $venue = $param['venue'];
             $query->where('venues.slug', $venue);
@@ -1471,35 +1466,37 @@ class Event extends Model
             //$query->where(date('Y-m-d'),'>=', date('Y-m-d', strtotime(date('Y-m-d')." -".$period.'months')));
         }
 
-        if(isset($param['cat'])){
-            $cats = $param['cat'];
-            foreach ($cats as $key => $cat) {
-                if($cat != 'all'){
-                    if($key == 0){
-                        $query->where('categories.slug', $cat);
-                    }else{
-                        $query->orWhere('categories.slug', $cat);
+        $events = $query->where(function ($a) use ($param) {
+            if(isset($param['cat'])){
+                $cats = $param['cat'];
+                foreach ($cats as $key => $cat) {
+                    if($cat != 'all'){
+                        if($key == 0){
+                            $a->where('categories.slug', $cat);
+                        }else{
+                            $a->orWhere('categories.slug', $cat);
+                        }
                     }
                 }
             }
-        }
+        });
 
-        // $events = $query->where('events.title','ilike','%'.$q.'%')
-        //     ->orWhere('categories.name','ilike','%'.$q.'%')
-        //     ->groupBy('events.id')
-        //     ->orderBy($sort);
-        if($q != 'all'){
-            $events = $query->where(function ($a) use ($q) {
-                $a->where('events.title','ilike','%'.$q.'%')
-                      ->orWhere('categories.name','ilike','%'.$q.'%');
-            })
-            ->groupBy('events.id')
-                ->orderBy($sort);
-        }else{
-            $query->groupBy('events.id')
-                ->orderBy($sort);
-        }
+        // if(isset($param['cat'])){
+        //     $cats = $param['cat'];
+        //     foreach ($cats as $key => $cat) {
+        //         if($cat != 'all'){
+        //             if($key == 0){
+        //                 $query->where('categories.slug', $cat);
+        //             }else{
+        //                 $query->orWhere('categories.slug', $cat);
+        //             }
+        //         }
+        //     }
+        // }
         
+
+        $query->groupBy('events.id')
+            ->orderBy($sort);
 
         if($limit > 0){
             $query->take($limit);

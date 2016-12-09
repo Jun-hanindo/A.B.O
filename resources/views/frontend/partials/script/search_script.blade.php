@@ -56,7 +56,6 @@
                     //window.location.href = uri;
                     window.history.pushState("string", response.status, uri);
                     $('.search-list table').html('');
-                    $('.search-list-mobile').html('');
                     var events = response.data.events;
                     $.each(events,function(key, val){
                         var uri = "{{ URL::route('event-detail', "::param") }}";
@@ -68,15 +67,7 @@
                             +'<td class="place"><a href="'+uri+'">'+val.venue+'</a></td>'
                             +'<td class="type"><a href="'+uri+'">'+val.category+'</a></td>'
                             +'</tr>>';
-                        $('.search-list table').append(html);
-
-                        var html = '<tr class="bg-green tr-search" style="background-color:'+val.background_color+' !important">'
-                            +'<td class="searchpic"><a href="'+uri+'"><img src="'+val.featured_image3_url+'"></a></td>'
-                            +'<td class="jobs"><a href="'+uri+'">'+val.title+'</a></td>'
-                            +'<td class="date"><a href="'+uri+'">'+val.date_set+'</a></td>'
-                            +'<td class="place"><a href="'+uri+'">'+val.venue+'</a></td>'
-                            +'<td class="type"><a href="'+uri+'">'+val.category+'</a></td>'
-                            +'</tr>>';
+                        //console.log(html);
                         $('.search-list table').append(html);
                     });
                     HoldOn.close();
