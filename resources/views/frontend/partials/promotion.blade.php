@@ -27,7 +27,7 @@
                             <div class="boxInfo promo1">
                                 <ul>
                                     <li class="eventType">{{ strtoupper($event->category) }}</li>
-                                    <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}" class="esplanade"></li>
+                                    <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}"></li>
                                     <br>
                                     <li class="eventPlace">{{ trans('frontend/general.valid_from') }} {{ $event->valid }}</li>
                                 </ul>
