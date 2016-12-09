@@ -109,11 +109,11 @@
                                 @if(!empty($events) && !$events->isEmpty())
                                     @foreach($events as $key => $event) 
                                         <tr class="tr-search bg-green" style="background-color:{{ $event->background_color }} !important">
-                                            <td class="searchpic"><a href="{{ URL::route('event-detail', $event->slug) }}"><img src="{{ file_url('events/'.$event->featured_image3, env('FILESYSTEM_DEFAULT')) }}"></a></td>
+                                            <td class="searchpic"><a href="{{ URL::route('event-detail', $event->slug) }}"><img src="{{ $event->featured_image3_url }}"></a></td>
                                             <td class="jobs"><a href="{{ URL::route('event-detail', $event->slug) }}">{{ $event->title }}</a></td>
-                                            <td class="date"><a href="{{ URL::route('event-detail', $event->slug) }}">{{ $event->date_set }}</a></td>
-                                            <td class="place"><a href="{{ URL::route('event-detail', $event->slug) }}">{{ $event->venue }}</a></td>
-                                            <td class="type"><a href="{{ URL::route('event-detail', $event->slug) }}">{{ $event->category }}</a></td>
+                                            <td class="date"><a href="{{ URL::route('event-detail', $event->slug) }}">{{ $event->schedule }}</a></td>
+                                            <td class="place"><a href="{{ URL::route('event-detail', $event->slug) }}">{{$event->venue_name.$event->city}}</a></td>
+                                            <td class="type"><a href="{{ URL::route('event-detail', $event->slug) }}">{{ $event->cat_name }}</a></td>
                                         </tr>
                                     @endforeach
                                 @else
@@ -241,7 +241,7 @@
                                             <div class="mobile-search-head bg-green" style="background-color:{{ $event->background_color }} !important">
                                                 <div class="row">
                                                     <div class="col-xs-4">
-                                                        <img src="{{ file_url('events/'.$event->featured_image3, env('FILESYSTEM_DEFAULT')) }}">
+                                                        <img src="{{ $event->featured_image3_url }}">
                                                     </div>
                                                     <div class="col-xs-8">
                                                         <div class="mobile-search-title">
@@ -252,9 +252,9 @@
                                             </div>
                                             <div class="mobile-search-desc">
                                                 <ul>
-                                                    <li class="date">{{ $event->date_set }}</li>
-                                                    <li class="place">{{ $event->venue }}</li>
-                                                    <li class="type">{{ $event->category }}</li>
+                                                    <li class="date">{{ $event->schedule }}</li>
+                                                    <li class="place">{{ $event->venue_name.$event->city }}</li>
+                                                    <li class="type">{{ $event->cat_name }}</li>
                                                 </ul>
                                             </div>
                                         </div>

@@ -1436,14 +1436,14 @@ class Event extends Model
         $sort = $param['sort'];
         
         $query = Event::select('events.id as id','events.title as title', 'events.featured_image3 as featured_image3',
-            'events.slug as slug', 'events.background_color as background_color', 
-             DB::RAW("array_to_string(array_agg(DISTINCT venues.name), ',')  as venue"), 
+            'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color', 
+             /*DB::RAW("array_to_string(array_agg(DISTINCT venues.name), ',')  as venue"),*/ 
              DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',') as category"), 
              DB::RAW("min(DISTINCT event_schedules.date_at) as date"), 
              DB::RAW("min(DISTINCT event_schedule_categories.price) as price"))
             ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
             ->join('categories', 'categories.id', '=', 'event_categories.category_id')
-            ->join('venues', 'venues.id', '=', 'events.venue_id')
+            // ->join('venues', 'venues.id', '=', 'events.venue_id')
             ->join('event_schedules', 'event_schedules.event_id', '=', 'events.id')
             ->join('event_schedule_categories', 'event_schedule_categories.event_schedule_id', '=', 'event_schedules.id')
             ->where('events.avaibility','=', true)
@@ -1510,11 +1510,51 @@ class Event extends Model
         if(!empty($events))
         {
             foreach ($events as $key => $event) {
-                $this->setImageUrl($event);
-                $event->date_set = full_text_date($event->date);
-
                 $cats = explode(',', $event->category);
-                $event->category = $cats[0];
+                $event->cat_name = strtoupper($cats[0]);
+
+                $this->setImageUrl($event);
+
+                $event->venue = $event->Venue()->where('avaibility', true)->first();
+                if(!empty($event->venue)){
+                    $event->venue_name = $event->venue->name;
+                    if(!empty($event->venue->city)){
+                        $event->city = ', '.$event->venue->city;
+                    }else{
+                        $event->city = '';
+                    }
+                }else{
+                    $event->venue_name = '';
+                    $event->city = '';
+                }
+
+                $event->schedules = $event->EventSchedule()->orderBy('date_at', 'asc')->get();
+                $count = count($event->schedules);
+                if(!empty($event->schedules)){
+                    $i = 1;
+                    foreach ($event->schedules as $sc => $sch) {
+                        if($count == 1){
+                            $event->schedule_range = full_text_date($sch->date_at);
+                        }else{
+                            if($i == 1){
+                                $event->start_range = $sch->date_at;
+                            }elseif ($i == $count) {
+                                $event->end_range = $sch->date_at;
+                            }
+                            $event->schedule_range = date_from_to($event->start_range, $event->end_range);
+                        }
+                        $i++;
+                    }
+                }
+
+                if(!empty($event->schedule_title))
+                {
+                    $event->schedule = $event->schedule_title;
+                }else{
+                    $event->schedule = $event->schedule_range;
+                }
+
+                //$event->date_set = full_text_date($event->date);
             }
             return $events;
         }else{
