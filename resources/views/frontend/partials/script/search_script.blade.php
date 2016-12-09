@@ -3,7 +3,7 @@
 <script type="text/javascript">
        var q = $(".input-search").val(); 
        var sort = $('#sort-search').val();
-       var venue = $('#filter-venue').val();
+       var sort_mobile = $('#sort-search-mobile').val();
 
         $(document).ready(function(){
 
@@ -14,15 +14,32 @@
 
             $('#sort-search').on('change', function(){
                 var val = $(this).val();
+                $('#sort-search-mobile').val(val);
                 resetFilterSearch();
                 sortFilterResult(val);
             });
 
-            $('#filter-venue, #filter-period').on('change', function(){
+            $('#filter-venue').on('change', function(){
+                var val = $(this).val();
+                $('#filter-venue-mobile').val(val);
+                sortFilterResult(sort);
+            });
+
+            $('#filter-period').on('change', function(){
+                var val = $(this).val();
+                $('#filter-period-mobile').val(val);
                 sortFilterResult(sort);
             });
 
             $('.cat-filter').on('click', function(e){
+                $(".cat-filter:checked").each(function(){
+                    var val = $(this).val();
+                    $('.cat-filter-mobile[value="'+val+'"]').prop('checked', true);
+                });
+                $(".cat-filter:not(:checked)").each(function(){
+                    var val = $(this).val();
+                    $('.cat-filter-mobile[value="'+val+'"]').prop('checked', false);
+                });
                 sortFilterResult(sort);
             });
 
@@ -33,7 +50,39 @@
                 $('.collapse').attr('aria-expanded', false);
                 $('.filter-search a').addClass('collapsed');
                 $('.filter-search a').attr('aria-expanded', false);
-            })
+            });
+
+
+            $('#sort-search-mobile').on('change', function(){
+                var val = $(this).val();
+                $('#sort-search').val(val);
+                resetFilterSearch();
+                sortFilterResult(val);
+            });
+
+            $('#filter-venue-mobile').on('change', function(){
+                var val = $(this).val();
+                $('#filter-venue').val(val);
+                sortFilterResult(sort_mobile);
+            });
+
+            $('#filter-period-mobile').on('change', function(){
+                var val = $(this).val();
+                $('#filter-period').val(val);
+                sortFilterResult(sort_mobile);
+            });
+
+            $('.cat-filter-mobile').on('click', function(e){
+                $(".cat-filter-mobile:checked").each(function(){
+                    var val = $(this).val();
+                    $('.cat-filter[value="'+val+'"]').prop('checked', true);
+                });
+                $(".cat-filter-mobile:not(:checked)").each(function(){
+                    var val = $(this).val();
+                    $('.cat-filter[value="'+val+'"]').prop('checked', false);
+                });
+                sortFilterResult(sort_mobile);
+            });
 
         });
 
@@ -56,8 +105,8 @@
                     //window.location.href = uri;
                     window.history.pushState("string", response.status, uri);
                     $('.search-list table').html('');
+                    $('.search-list-mobile').html('');
                     var events = response.data.events;
-                    console.log(events);
                     if(events != ''){
                         $.each(events,function(key, val){
                             var uri = "{{ URL::route('event-detail', "::param") }}";
@@ -68,13 +117,43 @@
                                 +'<td class="date"><a href="'+uri+'">'+val.date_set+'</a></td>'
                                 +'<td class="place"><a href="'+uri+'">'+val.venue+'</a></td>'
                                 +'<td class="type"><a href="'+uri+'">'+val.category+'</a></td>'
-                                +'</tr>>';
+                                +'</tr>';
                             //console.log(html);
                             $('.search-list table').append(html);
+
+                            var html2 = '<div class="row">'
+                                +'<div class="col-md-12">'
+                                    +'<a href="'+uri+'" class="mobile-jobs-a">'
+                                        +'<div class="mobile-job-list">'
+                                            +'<div class="mobile-search-head bg-green" style="background-color:'+val.background_color+' !important">'
+                                                +'<div class="row">'
+                                                    +'<div class="col-xs-4">'
+                                                        +'<img src="'+val.featured_image3_url+'">'
+                                                    +'</div>'
+                                                    +'<div class="col-xs-8">'
+                                                        +'<div class="mobile-search-title">'
+                                                            +'<h4>'+val.title+'</h4>'
+                                                        +'</div>'
+                                                    +'</div>'
+                                                +'</div>'
+                                            +'</div>'
+                                            +'<div class="mobile-search-desc">'
+                                                +'<ul>'
+                                                    +'<li class="date">'+val.date_set+'</li>'
+                                                    +'<li class="place">'+val.venue+'</li>'
+                                                    +'<li class="type">'+val.category+'</li>'
+                                                +'</ul>'
+                                            +'</div>'
+                                        +'</div>'
+                                    +'</a>'
+                                +'</div>'
+                            +'</div>';
+                            $('.search-list-mobile').append(html2);
                         });
                     }else{
                         html = "<h3 class='text-center'>{{ trans('frontend/general.there_are_no_event') }}</h3>";
                         $('.search-list table').append(html);
+                        $('.search-list-mobile').append(html);
                     }
                     HoldOn.close();
 

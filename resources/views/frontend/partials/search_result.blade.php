@@ -137,14 +137,14 @@
                     <a class="menu collapsed" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">{{ trans('frontend/general.filters') }}</a>
                     <div class="collapse" id="mobile-sidebar-collapse">
                         <ul class="search-mobile">
-                            <form id="filter-form">
+                            <form id="filter-form-mobile">
                                 <li class="sidebar-menu-top sidebar-mobile filter-search">
                                     <a class="collapsed" role="button" data-toggle="collapse" href="#collapseCategories-mobile" aria-expanded="false" aria-controls="collapseExample">{{ trans('frontend/general.categories') }}</a>
                                     <div class="collapse" id="collapseCategories-mobile">
                                         <div class="filter-child filter-categories-mobile">
                                             <ul>
                                                 @if(!empty($categories))
-                                                    <li class="checkbox"><label><input type="checkbox" name="cat[]" class="cat-filter" value="all"
+                                                    <li class="checkbox"><label><input type="checkbox" name="cat[]" class="cat-filter-mobile" value="all"
                                                         @if(!empty($cats_sel))
                                                             @foreach($cats_sel as $k => $cat_sel) 
                                                                 @if($cat_sel == 'all')
@@ -154,7 +154,7 @@
                                                         @endif
                                                         > All Category</label></li>
                                                     @foreach($categories as $key => $category) 
-                                                         <li class="checkbox"><label><input type="checkbox" name="cat[]" class="cat-filter" value="{{$category->slug}}"
+                                                         <li class="checkbox"><label><input type="checkbox" name="cat[]" class="cat-filter-mobile" value="{{$category->slug}}"
                                                             @if(!empty($cats_sel))
                                                                 @foreach($cats_sel as $k => $cat_sel) 
                                                                     @if($cat_sel == $category->slug)
@@ -184,7 +184,7 @@
                                     <a class="collapsed" role="button" data-toggle="collapse" href="#collapseTime-mobile" aria-expanded="false" aria-controls="collapseExample">{{ trans('frontend/general.time_period') }}</a>
                                     <div class="collapse" id="collapseTime-mobile">
                                         <div class="filter-child filter-categories-mobile">
-                                            <select id="filter-period" name="period" class="form-control">
+                                            <select id="filter-period-mobile" name="period" class="form-control">
                                                 <option value="all" >All</option>
 
                                                 @for($x = 3; $x < 4; $x+=2) 
@@ -203,7 +203,7 @@
                                     <div class="collapse" id="collapseVenue-mobile">
                                         <div class="filter-child filter-categories-mobile">
                                             @if(!empty($venues))
-                                                <select id="filter-venue" name="venue" class="form-control">
+                                                <select id="filter-venue-mobile" name="venue" class="form-control">
                                                     <option value="all" >All</option>
 
                                                     @foreach($venues as $key => $venue) 
@@ -225,7 +225,7 @@
         <div class="col-md-12">
             <div class="container">
                 <div class="filter-search-mobile">
-                    <select id="sort-search" name="sort" class="form-control">
+                    <select id="sort-search-mobile" name="sort" class="form-control">
                         <option value="date" {{ $sort == 'date' ? 'selected' : '' }}>Sort By Date</option>
                         <option value="price" {{ $sort == 'price' ? 'selected' : '' }}>Sort By Price</option>
                         <!-- <option value="popularity" {{ $sort == 'popularity' ? 'selected' : '' }}>Sort By Popularity</option> -->
