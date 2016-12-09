@@ -1580,5 +1580,143 @@ class Event extends Model
         return Event::select('title', 'event_id_tixtrack')->where('event_id_tixtrack', $event_id)->first();
     }
 
+    public function getEventBannerByCategory($category){
+        $event = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
+            'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color',
+            'events.schedule_title', 'categories.name as category', 'events.featured_image1 as featured_image1')
+            ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
+            ->join('categories', 'event_categories.category_id', '=', 'categories.id')
+            ->join('event_schedules', 'event_schedules.event_id', '=', 'events.id')
+            ->where('event_categories.category_id','=',$category)
+            //->where('events.status', true)
+            ->where('events.avaibility','=',true)
+            ->where('event_schedules.date_at','>', date('Y-m-d'))
+            ->orderBy('date_at', 'asc')
+            ->first();
+
+        //dd($events);
+
+        if(!empty($event))
+        {
+            $event->title = string_limit($event->title);
+            $event->cat_name = $event->category;
+
+            $this->setImageUrl($event);
+
+            $event->venue = $event->Venue()->where('avaibility', true)->first();
+            if(!empty($event->venue)){
+                $event->venue_name = $event->venue->name;
+                if(!empty($event->venue->city)){
+                    $event->city = ', '.$event->venue->city;
+                }else{
+                    $event->city = '';
+                }
+            }else{
+                $event->venue_name = '';
+                $event->city = '';
+            }
+
+            $event->schedules = $event->EventSchedule()->orderBy('date_at', 'asc')->get();
+
+            $count = count($event->schedules);
+            if(!empty($event->schedules)){
+                $i = 1;
+                foreach ($event->schedules as $sc => $sch) {
+                    if($count == 1){
+                        $event->schedule_range = full_text_date($sch->date_at);
+                    }else{
+                        if($i == 1){
+                            $event->start_range = $sch->date_at;
+                        }elseif ($i == $count) {
+                            $event->end_range = $sch->date_at;
+                        }
+                        $event->schedule_range = date_from_to($event->start_range, $event->end_range);
+                    }
+                    $i++;
+                }
+            }
+
+            if(!empty($event->schedule_title))
+            {
+                $event->schedule = $event->schedule_title;
+            }else{
+                $event->schedule = $event->schedule_range;
+            }
+                
+                //$array[] = $event;
+                
+            return $event;
+        }else{
+            return false;
+        }
+    }
+
+    public function getEventBanner(){
+        $event = Event::select('events.id as id','events.title as title', 'events.featured_image2 as featured_image2',
+            'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color', 
+            'events.schedule_title', 'events.featured_image1 as featured_image1',
+            DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',')  as category"),
+            DB::RAW("array_to_string(array_agg(DISTINCT event_schedules.date_at), ',')  as date_at"))
+            ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
+            ->join('categories', 'event_categories.category_id', '=', 'categories.id')
+            ->join('event_schedules', 'event_schedules.event_id', '=', 'events.id')
+            ->where('categories.status', true)
+            ->where('events.avaibility','=',true)
+            ->where('event_schedules.date_at','>', date('Y-m-d'))
+            ->groupBy('events.id')
+            ->orderBy('date_at', 'asc')
+            ->first();
+
+        if(!empty($event)) {
+            $event->title = string_limit($event->title);
+            $cats = explode(',', $event->category);
+            $event->cat_name = strtoupper($cats[0]);
+
+            $this->setImageUrl($event);
+
+            $event->venue = $event->Venue()->where('avaibility', true)->first();
+            if(!empty($event->venue)){
+                $event->venue_name = $event->venue->name;
+                if(!empty($event->venue->city)){
+                    $event->city = ', '.$event->venue->city;
+                }else{
+                    $event->city = '';
+                }
+            }else{
+                $event->venue_name = '';
+                $event->city = '';
+            }
+            
+            $event->schedules = $event->EventSchedule()->orderBy('date_at', 'asc')->get();
+            $count = count($event->schedules);
+            if(!empty($event->schedules)){
+                $i = 1;
+                foreach ($event->schedules as $sc => $sch) {
+                    if($count == 1){
+                        $event->schedule_range = full_text_date($sch->date_at);
+                    }else{
+                        if($i == 1){
+                            $event->start_range = $sch->date_at;
+                        }elseif ($i == $count) {
+                            $event->end_range = $sch->date_at;
+                        }
+                        $event->schedule_range = date_from_to($event->start_range, $event->end_range);
+                    }
+                    $i++;
+                }
+            }
+
+            if(!empty($event->schedule_title))
+            {
+                $event->schedule = $event->schedule_title;
+            }else{
+                $event->schedule = $event->schedule_range;
+            }
+            return $event;
+        }else{
+            return false;
+        }
+    }
+
     
 }

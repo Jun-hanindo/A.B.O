@@ -26,7 +26,7 @@ class CategoriesController extends Controller
 
         try{
             $modelHomepage = new Homepage();
-            $result['sliders'] = $modelHomepage->getHomepage('slider');
+            //$result['sliders'] = $modelHomepage->getHomepage('slider');
             $result['category'] = $this->model->findCategoryBySlug($slug);
 
             if(!empty($result['category']) && $result['category']->status){
@@ -34,6 +34,7 @@ class CategoriesController extends Controller
                 $result['categories'] = $this->model->getCategory();
                 $modelEvent = new Event();
                 $limit = 8;
+                $result['banner'] = $modelEvent->getEventBannerByCategory($id);
                 $result['events'] = $modelEvent->getEventByCategory($id, $limit);
                 if($req->ajax()){
                     

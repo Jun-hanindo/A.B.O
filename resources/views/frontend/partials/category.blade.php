@@ -122,59 +122,35 @@
         </div>
     </div>
 </section>
-
-@if(!empty($sliders))
-<section class="slider-home">
-    <div id="carouselSlider" class="carousel slide carousel-fade" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            @foreach($sliders as $key => $slider)
-                <li data-target="#carouselSlider" data-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : ' '}}"></li> 
-            @endforeach
-        </ol>
-
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox"> 
-            @foreach($sliders as $key => $slider)
-                <div class="item {{ $key == 0 ? 'active' : ' '}}">
-                    <a href="{{ URL::route('event-detail', $slider->event->slug) }}">
-                        <img src="{{ file_url('events/'.$slider->event->featured_image1, env('FILESYSTEM_DEFAULT')) }}" class="hidden-xs" alt="...">
-                        <img src="{{ file_url('events/'.$slider->event->featured_image2, env('FILESYSTEM_DEFAULT')) }}" class="hidden-lg hidden-md hidden-sm" alt="...">
+@if(!empty($banner))
+    <section class="slider-home">
+        <div id="carouselSlider" class="carousel slide carousel-fade">
+            <div class="carousel-inner" role="listbox"> 
+                <div class="item active">
+                    <a href="{{ URL::route('event-detail', $banner->slug) }}">
+                        <img src="{{ $banner->featured_image1_url }}" class="hidden-xs">
+                        <img src="{{ $banner->featured_image2_url }}" class="hidden-lg hidden-md hidden-sm" alt="...">
                     </a>
-                    <div class="carousel-caption bg-green" style="background-color:{{ $slider->event->background_color }} !important">
+                    <div class="carousel-caption bg-green" style="background-color:{{ $banner->background_color }} !important">
                         <div class="container">
-                            <h5 class="categorySlide">{{ strtoupper($slider->cat_name) }}</h5>
-                            <h2 class="titleSlide font-light">{{ $slider->event->title }}</h2>
+                            <h5 class="categorySlide">{{ $banner->cat_name }}</h5>
+                            <h2 class="titleSlide font-light">{{ $banner->title }}</h2>
                             <ul>
-                                <li><div class="eventDate"><i class="fa fa-calendar-o"></i>{{ (!empty($slider->event->schedule_title)) ? $slider->event->schedule_title : $slider->schedule_range }}</div></li>
-                                <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $slider->venue_name.$slider->city }}</div></li>
+                                <li><div class="eventDate"><i class="fa fa-calendar-o"></i>{{ $banner->schedule }}</div></li>
+                                <li><div class="eventPlace"><i class="fa fa-map-marker"></i>{{ $banner->venue_name.$banner->city }}</div></li>
                             </ul>
                             <div class="moreDetail">
-                                <a href="{{ URL::route('event-detail', $slider->event->slug) }}">
+                                <a href="{{ URL::route('event-detail', $banner->slug) }}">
                                   <button class="btn btnDetail font-bold">{{ trans('frontend/general.more_details') }}</button>
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
-            @endforeach
+            </div>
         </div>
-        
-
-        <!-- Controls -->
-        <a class="left carousel-control" href="#carouselSlider" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#carouselSlider" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-</section>
+    </section>
 @endif
-
 @if(!$events->isEmpty())
     <section class="newRelease discover-content">
         <div class="container">

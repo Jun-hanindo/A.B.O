@@ -201,13 +201,14 @@ class HomeController extends Controller
     {
 
         try{
-            $result['sliders'] = $this->model->getHomepage('slider');
+            //$result['sliders'] = $this->model->getHomepage('slider');
             //$result['src'] = url('uploads/events').'/';
             $modelCategory = new Category();
             $result['categories'] = $modelCategory->getCategory();
             $limit = 8;
             $modelEvent = new Event();
             $result['events'] = $modelEvent->getEvent($limit);
+            $result['banner'] = $modelEvent->getEventBanner();
             if($req->ajax()){      
                 $events = $result['events'];
 
