@@ -1,27 +1,5 @@
 // Header Responsive
    $(document).ready(function(){
-      $('#general-anchor').click(function(){
-        $('.faq-general-show').show(); 
-        $('.main-faq-mobile').hide();
-      })
-      $('#top-anchor').click(function(){
-        $('.faq-top-show').show(); 
-        $('.main-faq-mobile').hide();
-      })
-      $('#seat-anchor').click(function(){
-        $('.faq-seat-show').show(); 
-        $('.main-faq-mobile').hide();
-      })
-      $('#payment-anchor').click(function(){
-        $('.faq-payment-show').show(); 
-        $('.main-faq-mobile').hide();
-      })
-
-      $('.back-faq').click(function(){
-        $('.mobile-content-show').hide(); 
-        $('.main-faq-mobile').show();
-      })
-
       $('.mobile-collapse-header').click(function() {
         if ($(window).width() < 960){
           $(this).next('ul').slideToggle();
@@ -157,6 +135,31 @@
           $('.mobile-collapse-header-top').click(function(){$(this).toggleClass('open')})
           $('#carouselHacked').carousel();
 
+    setInterval(function() {
+       $('.sidebar').height($('.main-content').outerHeight())
+    }, 10);
+
+
+    $('#general-anchor').click(function(){
+      $('.faq-general-show').show(); 
+      $('.main-faq-mobile').hide()
+    })
+    $('#top-anchor').click(function(){
+      $('.faq-top-show').show(); 
+      $('.main-faq-mobile').hide()
+    })
+    $('#seat-anchor').click(function(){
+      $('.faq-seat-show').show(); 
+      $('.main-faq-mobile').hide()
+    })
+    $('#payment-anchor').click(function(){
+      $('.faq-payment-show').show(); 
+      $('.main-faq-mobile').hide()
+    })
+    $('.back-faq').click(function(){
+      $('.mobile-content-show').hide(); 
+      $('.main-faq-mobile').show()
+    })
 // End Header
 
 
