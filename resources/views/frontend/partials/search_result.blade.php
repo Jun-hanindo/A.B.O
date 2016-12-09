@@ -106,7 +106,7 @@
                         </div>
                         <div class="search-list search-list-head">
                             <table>
-                                @if(!empty($events))
+                                @if(!empty($events) && !$events->isEmpty())
                                     @foreach($events as $key => $event) 
                                         <tr class="tr-search bg-green" style="background-color:{{ $event->background_color }} !important">
                                             <td class="searchpic"><a href="{{ URL::route('event-detail', $event->slug) }}"><img src="{{ file_url('events/'.$event->featured_image3, env('FILESYSTEM_DEFAULT')) }}"></a></td>
@@ -116,6 +116,8 @@
                                             <td class="type"><a href="{{ URL::route('event-detail', $event->slug) }}">{{ $event->category }}</a></td>
                                         </tr>
                                     @endforeach
+                                @else
+                                    <tr><td><h3 class='text-center' style="color:#000;">{{ trans('frontend/general.there_are_no_event') }}</h3></td></tr>
                                 @endif
                             </table>
                         </div>
@@ -260,6 +262,8 @@
                                 </div>
                             </div>
                         @endforeach
+                    @else
+                        <h3 class='text-center'>{{ trans('frontend/general.there_are_no_event') }}</h3>
                     @endif
                 </div>
             </div>

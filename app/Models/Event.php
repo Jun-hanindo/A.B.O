@@ -1507,11 +1507,11 @@ class Event extends Model
         //dd($events->toSql());
         //dd($events);
 
-        if(count($events) > 0)
+        if(!empty($events))
         {
             foreach ($events as $key => $event) {
                 $this->setImageUrl($event);
-                $event->date_set = date('d M Y', strtotime($event->date));
+                $event->date_set = full_text_date($event->date);
 
                 $cats = explode(',', $event->category);
                 $event->category = $cats[0];
@@ -1520,8 +1520,6 @@ class Event extends Model
         }else{
             return false;
         }
-
-        return $events;
     }
 
     public function getFeaturedEventByCategory($id, $category, $limit)
