@@ -154,7 +154,7 @@ $('#link_title_more_promotion').click(function(){
 
 $(document).scroll(function() {
     var y = $(this).scrollTop();
-    if (y > 200) {
+    if (y > 175) {
         $('.tabCategories').fadeIn();
     } else {
         $('.tabCategories').fadeOut();
