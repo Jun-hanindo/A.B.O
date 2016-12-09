@@ -185,3 +185,6 @@ iframe[name="google_conversion_frame"]{
   color: #000000;
   padding-bottom: 10px;
 }
+.promoModal .descPromoModal .promoLogo{
+  width: 50px;
+}
