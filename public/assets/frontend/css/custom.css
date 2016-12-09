@@ -114,7 +114,7 @@ iframe[name="google_conversion_frame"]{
 /*Auto Search*/
 #ul-search,
 #ul-search-mobile{
-  min-width: 450px;
+  min-width: 480px;
   position: absolute;
   top: 50px;
   border-radius: 5px;
