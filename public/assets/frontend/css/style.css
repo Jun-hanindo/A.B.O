@@ -4407,6 +4407,19 @@ ol .a li:before{
   border: none;
 }
 
+.result-content .sidebar .filter-search ul li .icheckbox_square.active{
+  width: 22px;
+  border-right: none;
+}
+
+.result-content .sidebar .filter-search ul li .icheckbox_square{
+  margin-right: 10px;
+}
+
+.filter-categories ul{
+  margin-bottom: 10px;
+}
+
 
 
 

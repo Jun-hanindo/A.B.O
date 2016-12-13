@@ -18,7 +18,7 @@
                             <div class="filter-child filter-categories">
                                 <ul>
                                     @if(!empty($categories))
-                                        <li class="checkbox"><label><input type="checkbox" name="cat[]" class="cat-filter" value="all"
+                                        <li><input type="checkbox" name="cat[]" class="cat-filter" value="all"
                                                 @if(!empty($cats_sel))
                                                     @foreach($cats_sel as $k => $cat_sel) 
                                                         @if($cat_sel == 'all')
@@ -26,9 +26,9 @@
                                                         @endif
                                                     @endforeach
                                                 @endif
-                                                > All Categories</label></li>
+                                                > All Categories</li>
                                         @foreach($categories as $key => $category) 
-                                             <li class="checkbox"><label><input type="checkbox" name="cat[]" class="cat-filter" value="{{$category->slug}}"
+                                             <li><input type="checkbox" name="cat[]" class="cat-filter" value="{{$category->slug}}"
                                                 @if(!empty($cats_sel))
                                                     @foreach($cats_sel as $k => $cat_sel) 
                                                         @if($cat_sel == $category->slug)
@@ -36,7 +36,7 @@
                                                         @endif
                                                     @endforeach
                                                 @endif
-                                                > {{ $category->name }}</label></li>
+                                                > {{ $category->name }}</li>
                                         @endforeach
                                     @endif
                                 </ul>

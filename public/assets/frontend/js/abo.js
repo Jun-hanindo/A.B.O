@@ -189,6 +189,14 @@
       $('.mobile-content-show').hide(); 
       $('.main-faq-mobile').show()
     })
+
+    $(document).ready(function(){
+      $('#collapseCategories input, #collapseCategories-mobile input').iCheck({
+        checkboxClass: 'icheckbox_square',
+        radioClass: 'iradio_square',
+        increaseArea: '20%' // optional
+      });
+    });
 // End Header
 
 
