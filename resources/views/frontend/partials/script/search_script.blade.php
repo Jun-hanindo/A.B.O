@@ -31,19 +31,20 @@
                 sortFilterResult(sort);
             });
 
-            $('.cat-filter').on('ifClicked', function(e){
+            $('.cat-filter').on('ifChanged', function(e){
                 $(this).on('ifChecked', function(event){
                     var val = $(this).val();
                     console.log('check:'+val);
                     $('.cat-filter-mobile[value="'+val+'"]').iCheck('check');
-                    sortFilterResult(sort);
+                    //sortFilterResult(sort);
                 });
                 $(this).on('ifUnchecked', function(event){
                     var val = $(this).val();
                     console.log('uncheck:'+val);
                     $('.cat-filter-mobile[value="'+val+'"]').iCheck('check');
-                    sortFilterResult(sort);
+                    //sortFilterResult(sort);
                 });
+                sortFilterResult(sort);
                 // $(".cat-filter:checked").each(function(){
                 //     var val = $(this).val();
                 //     //console.log(val);
@@ -84,16 +85,14 @@
                 sortFilterResult(sort_mobile);
             });
 
-            $('.cat-filter-mobile').on('ifClicked', function(e){
+            $('.cat-filter-mobile').on('ifChanged', function(e){
                 $(this).on('ifChecked', function(event){
                     var val = $(this).val();
                     $('.cat-filter[value="'+val+'"]').iCheck('check');
-                    sortFilterResult(sort_mobile);
                 });
                 $(this).on('ifUnchecked', function(event){
                     var val = $(this).val();
                     $('.cat-filter[value="'+val+'"]').iCheck('check');
-                    sortFilterResult(sort_mobile);
                 });
 
                 // $(".cat-filter-mobile:checked").each(function(){
@@ -104,6 +103,7 @@
                 //     var val = $(this).val();
                 //     $('.cat-filter[value="'+val+'"]').prop('checked', false);
                 // });
+                sortFilterResult(sort_mobile);
             });
 
         });
