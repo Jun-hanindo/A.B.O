@@ -29,7 +29,7 @@
                                     <li class="eventType">{{ strtoupper($event->category) }}</li>
                                     <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}"></li>
                                     <br>
-                                    <li class="eventPlace">{{ trans('frontend/general.valid_from') }} {{ $event->valid }}</li>
+                                    <li class="eventPlace">{{ (!empty($event->valid)) ? trans('frontend/general.valid_from').' '.$event->valid : '' }}</li>
                                 </ul>
                             </div>
                         </a>
@@ -49,7 +49,13 @@
                                             <div class="promoBannerDesc">
                                                 <div class="row">
                                                     <div class="col-md-9">
-                                                        <p>{!! $event->promo_desc !!}</p>
+                                                        {!! $event->promo_desc !!}
+                                                        @if(!empty($event->link_title_more_description))
+                                                            <a id="link_title_more_promotion" data-toggle="collapse" href="#more_description{{ $event->ep_id }}" aria-expanded="false"><u> {!! $event->link_title_more_description !!} </u></a>
+                                                        @endif
+                                                        @if(!empty($event->more_description))
+                                                            <span class="collapse" id="more_description{{ $event->ep_id }}"> {!! $event->more_description !!} </span>
+                                                        @endif
                                                     </div>
                                                     <div class="col-md-3">
                                                         <img src="{{ $event->featured_image_url }}" class="promoLogo">
@@ -59,11 +65,33 @@
                                             <!-- <h4>How to Participate </h4>
                                             <p>Show StarHub bill or subscription on any device such as mobile phone or tablet.</p> -->
                                             
-                                            <p>{{ $event->disc }}</p>
-                                            <h4>{{ trans('frontend/general.promotion_period') }}</h4>
-                                            <p>{{ trans('frontend/general.start_date') }}: {{ $event->start_date }}</p>
-                                            <br>
-                                            <p>{{ trans('frontend/general.end_date') }}: {{ $event->end_date }}</p>
+                                            @if($event->discount > 0 || $event->discount_nominal > 0)
+                                                <p>{{ trans('general.discount') }}: 
+                                                    @if($event->discount > 0)
+                                                        {{ number_format_drop_zero_decimals($event->discount).'%' }}
+                                                    @else
+                                                        @if($event->currency_id == 0)
+                                                            @php
+                                                                $code = '';
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $code = $event->currency->code;
+                                                            @endphp
+                                                        @endif
+                                                        {{ $code.' '.number_format_drop_zero_decimals($event->discount_nominal) }}
+                                                    @endif
+                                                </p>
+                                            @endif
+
+                                            @if(!empty($event->start_date))
+                                                <h4>{{ trans('frontend/event.promotion_period') }}</h4>
+                                                <p>{{ trans('frontend/general.start_date') }}: {{ $event->start_date }}</p>
+                                                <br>
+                                            @endif
+                                            @if(!empty($event->end_date))
+                                                <p>{{ trans('frontend/general.end_date') }}: {{ $event->end_date }}</p>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="modal-footer">

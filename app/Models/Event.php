@@ -1291,12 +1291,13 @@ class Event extends Model
             'promotions.description as promo_desc', 'promotions.start_date as start_date', 
             'promotions.end_date as end_date', 'promotions.category as category',
             'promotions.title as promo_title', 'promotions.discount as discount', 
-            'promotions.discount_nominal as discount_nominal', 
-            'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right',
-            'currencies.code as currency_code')
+            'promotions.discount_nominal as discount_nominal', 'promotions.link_title_more_description as link_title_more_description', 
+            'promotions.more_description as more_description'
+            /*'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right',
+            'currencies.code as currency_code'*/)
             ->join('event_promotions', 'event_promotions.event_id', '=', 'events.id')
             ->join('promotions', 'promotions.id', '=', 'event_promotions.promotion_id')
-            ->leftjoin('currencies', 'currencies.id', '=', 'promotions.currency_id')
+            /*->leftjoin('currencies', 'currencies.id', '=', 'promotions.currency_id')*/
             ->where('events.avaibility','=',true)
             ->where('promotions.avaibility','=',true)
             //->where('events.status','=',true)
@@ -1314,16 +1315,33 @@ class Event extends Model
                 $event->promo_title = string_limit($event->promo_title);
                 $this->setImageUrl($event);
                 $event->category = str_replace('-', ' ', strtoupper($event->category));
-                $event->valid = date_from_to($event->start_date, $event->end_date);
-
-                $event->start_date = full_text_date($event->start_date);
-                $event->end_date = full_text_date($event->end_date);
-                $event->featured_image_url = file_url('promotions/'.$event->featured_image, env('FILESYSTEM_DEFAULT'));
-                if($event->discount > 0){
-                    $event->disc = number_format_drop_zero_decimals($event->discount).'%';
+                if(!empty($event->start_date) && !empty($event->end_date)){
+                    $event->valid = date_from_to($event->start_date, $event->end_date);
+                }elseif(!empty($event->start_date) && empty($event->end_date)){
+                    $event->valid = full_text_date($event->start_date);
+                }elseif(empty($event->start_date) && !empty($event->end_date)){
+                    $event->valid = full_text_date($event->end_date);
                 }else{
-                    $event->disc = $event->currency_code.' '.number_format_drop_zero_decimals($event->discount_nominal);
+                    $event->valid = '';
                 }
+
+                if(!empty($event->start_date)){
+                    $event->start_date = full_text_date($event->start_date);
+                }else{
+                    $event->start_date = '';
+                }
+
+                if(!empty($event->end_date)){
+                    $event->end_date = full_text_date($event->end_date);
+                }else{
+                    $event->end_date = '';
+                }
+                $event->featured_image_url = file_url('promotions/'.$event->featured_image, env('FILESYSTEM_DEFAULT'));
+                // if($event->discount > 0){
+                //     $event->disc = number_format_drop_zero_decimals($event->discount).'%';
+                // }else{
+                //     $event->disc = $event->currency_code.' '.number_format_drop_zero_decimals($event->discount_nominal);
+                // }
             }
             return $events;
         }else{
@@ -1340,12 +1358,13 @@ class Event extends Model
             'promotions.description as promo_desc', 'promotions.start_date as start_date', 
             'promotions.end_date as end_date', 'promotions.category as category',
             'promotions.title as promo_title', 'promotions.discount as discount', 
-            'promotions.discount_nominal as discount_nominal', 
-            'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right',
-            'currencies.code as currency_code')
+            'promotions.discount_nominal as discount_nominal', 'promotions.link_title_more_description as link_title_more_description', 
+            'promotions.more_description as more_description'
+            /*'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right',
+            'currencies.code as currency_code'*/)
             ->join('event_promotions', 'event_promotions.event_id', '=', 'events.id')
             ->join('promotions', 'promotions.id', '=', 'event_promotions.promotion_id')
-            ->leftjoin('currencies', 'currencies.id', '=', 'promotions.currency_id')
+            /*->leftjoin('currencies', 'currencies.id', '=', 'promotions.currency_id')*/
             ->where('events.avaibility','=', true)
             ->where('promotions.avaibility','=', true)
             //->where('events.status','=',true)
@@ -1363,16 +1382,33 @@ class Event extends Model
                 $event->promo_title = string_limit($event->promo_title);
                 $this->setImageUrl($event);
                 $event->category = str_replace('-', ' ', strtoupper($event->category));
-                $event->valid = date_from_to($event->start_date, $event->end_date);
-
-                $event->start_date = full_text_date($event->start_date);
-                $event->end_date = full_text_date($event->end_date);
-                $event->featured_image_url = file_url('promotions/'.$event->featured_image, env('FILESYSTEM_DEFAULT'));
-                if($event->discount > 0){
-                    $event->disc = number_format_drop_zero_decimals($event->discount).'%';
+                if(!empty($event->start_date) && !empty($event->end_date)){
+                    $event->valid = date_from_to($event->start_date, $event->end_date);
+                }elseif(!empty($event->start_date) && empty($event->end_date)){
+                    $event->valid = full_text_date($event->start_date);
+                }elseif(empty($event->start_date) && !empty($event->end_date)){
+                    $event->valid = full_text_date($event->end_date);
                 }else{
-                    $event->disc = $event->currency_code.' '.number_format_drop_zero_decimals($event->discount_nominal);
+                    $event->valid = '';
                 }
+
+                if(!empty($event->start_date)){
+                    $event->start_date = full_text_date($event->start_date);
+                }else{
+                    $event->start_date = '';
+                }
+
+                if(!empty($event->end_date)){
+                    $event->end_date = full_text_date($event->end_date);
+                }else{
+                    $event->end_date = '';
+                }
+                $event->featured_image_url = file_url('promotions/'.$event->featured_image, env('FILESYSTEM_DEFAULT'));
+                // if($event->discount > 0){
+                //     $event->disc = number_format_drop_zero_decimals($event->discount).'%';
+                // }else{
+                //     $event->disc = $event->currency_code.' '.number_format_drop_zero_decimals($event->discount_nominal);
+                // }
             }
             return $events;
         }else{

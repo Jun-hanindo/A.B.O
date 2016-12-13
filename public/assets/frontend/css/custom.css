@@ -203,3 +203,7 @@ iframe[name="google_conversion_frame"]{
 .result-content .sidebar-head a:after{
   content: none;
 }
+.promoBannerDesc a{
+  color: #000;
+  text-decoration: underline;
+}
