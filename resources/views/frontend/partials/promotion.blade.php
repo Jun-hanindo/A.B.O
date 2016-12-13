@@ -2,7 +2,7 @@
 @section('title', trans('frontend/general.promotions').' - ')
 @section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
-    <section class="discoverCategory">
+    <section class="discoverCategory promo-category">
           <div class="container">
               <h2>{{ trans('frontend/general.promotions') }}</h2>
               {{-- <div class="tabCategory">
