@@ -4412,7 +4412,8 @@ ol .a li:before{
   border-right: none;
 }
 
-.result-content .sidebar .filter-search ul li .icheckbox_square{
+.result-content .sidebar .filter-search ul li .icheckbox_square,
+.filter-search .filter-categories-mobile ul li .icheckbox_square{
   margin-right: 10px;
 }
 
