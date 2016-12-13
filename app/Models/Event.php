@@ -1506,13 +1506,15 @@ class Event extends Model
         $events = $query->where(function ($a) use ($param) {
             if(isset($param['cat'])){
                 $cats = $param['cat'];
-                foreach ($cats as $key => $cat) {
-                    if($cat != 'all'){
-                        if($key == 0){
-                            $a->where('categories.slug', $cat);
-                        }else{
-                            $a->orWhere('categories.slug', $cat);
-                        }
+                if($param['cat'][0] != 'all'){
+                    foreach ($cats as $key => $cat) {
+                        //if($cat != 'all'){
+                            if($key == 0){
+                                $a->where('categories.slug', $cat);
+                            }else{
+                                $a->orWhere('categories.slug', $cat);
+                            }
+                        //}
                     }
                 }
             }
