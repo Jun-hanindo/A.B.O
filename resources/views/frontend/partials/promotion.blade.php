@@ -29,7 +29,7 @@
                                     <li class="eventType">{{ strtoupper($event->category) }}</li>
                                     <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}"></li>
                                     <br>
-                                    <li class="eventPlace">{{ (!empty($event->valid)) ? trans('frontend/general.valid_from').' '.$event->valid : '' }}</li>
+                                    <li class="eventPlace">{{ (!empty($event->valid)) ? trans('frontend/general.valid_from').' '.$event->valid : '&nbsp;' }}</li>
                                 </ul>
                           </div>
                         </a>
