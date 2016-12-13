@@ -905,6 +905,9 @@
   #ul-search-mobile .content{
     max-width: 55%;
   }
+  .filter-categories-mobile .checkbox{
+    margin-bottom: 25px;
+  }
 }
 
 @media (max-width: 420px){
