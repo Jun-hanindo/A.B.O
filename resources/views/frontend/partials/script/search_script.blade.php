@@ -32,15 +32,15 @@
             });
 
             // $('.cat-filter-all').on('ifChanged', function(e){
-            //     $(this).on('ifChecked', function(event){
+            //     $('.cat-filter-all').on('ifChecked', function(event){
             //         $('.cat-filter').iCheck('check');
             //         $('.cat-filter-mobile').iCheck('check');
             //     });
-            //     $(this).on('ifUnchecked', function(event){
+            //     $('.cat-filter-all').on('ifUnchecked', function(event){
             //         $('.cat-filter').iCheck('uncheck');
             //         $('.cat-filter-mobile').iCheck('uncheck');
             //     });
-            //     sortFilterResult(sort);
+            //     //sortFilterResult(sort);
             // });
 
             $('.cat-filter').on('ifChanged', function(e){
@@ -105,12 +105,12 @@
                 sortFilterResult(sort_mobile);
             });
 
-            // $('.cat-filter-mobile-all').on('ifChanged', function(e){
-            //     $(this).on('ifChecked', function(event){
+            // $('.cat-filter-mobile-all').on('ifClicked', function(e){
+            //     $('.cat-filter-all').on('ifChecked', function(event){
             //         $('.cat-filter').iCheck('check');
             //         $('.cat-filter-mobile').iCheck('check');
             //     });
-            //     $(this).on('ifUnchecked', function(event){
+            //     $('.cat-filter-all').on('ifUnchecked', function(event){
             //         $('.cat-filter').iCheck('uncheck');
             //         $('.cat-filter-mobile').iCheck('uncheck');
             //     });
@@ -154,6 +154,7 @@
         {
             modal_loader();
             var data = $('#filter-form').serializeArray();
+            console.log(data);
             data.push({name: 'q', value: q});
             data.push({name: 'sort', value: sort});
             $.ajax({
