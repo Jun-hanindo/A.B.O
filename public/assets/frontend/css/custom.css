@@ -207,3 +207,9 @@ iframe[name="google_conversion_frame"]{
   color: #000;
   text-decoration: underline;
 }
+#ul-search-mobile{
+  width: 100%;
+  left: 0;
+  border-radius: 0;
+  top: 48px;
+}

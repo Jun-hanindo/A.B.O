@@ -247,13 +247,13 @@
                                                                 <input type="text" name="q" value="{{@$q}}" class="form-control input-search input-search-mobile" placeholder="{{ trans('frontend/general.search') }}..." id="#input-search">
                                                                 <input type="hidden" id="sort-text" name="sort" value="date">
                                                             </div>
-                                                            <ul class="notification-drawer" data-type="inbox" id="ul-search-mobile" style="display:none">
-                                                                <span class="append-search"></span>
-                                                            </ul>
                                                         </form>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <ul class="notification-drawer" data-type="inbox" id="ul-search-mobile" style="display:none">
+                                                <span class="append-search"></span>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
