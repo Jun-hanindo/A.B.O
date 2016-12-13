@@ -899,6 +899,12 @@
   .featuredEvent .caption {
     padding-left: 85px;
   }
+  #ul-search-mobile h5{
+    margin-top: 0;
+  }
+  #ul-search-mobile .content{
+    max-width: 55%;
+  }
 }
 
 @media (max-width: 420px){
