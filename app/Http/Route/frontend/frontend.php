@@ -37,6 +37,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('privacy-policy', array('as' => 'privacy-policy', 'uses' => 'HomeController@supportPrivacyPolicyStatic'));
     Route::get('about-us', array('as' => 'about-us', 'uses' => 'HomeController@aboutUsStatic'));
     Route::get('careers', array('as' => 'careers', 'uses' => 'HomeController@aboutUsStatic'));
+    Route::get('ways-to-buy-tickets', array('as' => 'ways-to-buy-tickets', 'uses' => 'HomeController@supportWaysToBuyTicketsStatic'));
     
     /*Dynamic*/
     //comment 161013

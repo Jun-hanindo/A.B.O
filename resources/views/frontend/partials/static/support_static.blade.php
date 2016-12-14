@@ -15,6 +15,18 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="faq-support">
+                        <a href="{{URL::route('ways-to-buy-tickets')}}" class="font-light">
+                            <div class="iconWays">
+                                <i class="fa fa-ticket"></i>
+                            </div>
+                            How To Buy Tickets
+                        </a>
+                        <br>
+                        <span>Learn how our ticketing system works.</span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="faq-support">
                         <a href="{{URL::route('faq')}}" class="font-light">
                             <div class="iconWays">
                                 <i class="fa fa-comments"></i>

@@ -4421,6 +4421,125 @@ ol .a li:before{
   margin-bottom: 10px;
 }
 
+.right-header .second-child{
+  padding-right: 20px;
+}
+
+.tabs-left .tab-ticket{
+  border-left: none;
+  padding-left: 70px;
+  padding-bottom: 0;
+}
+
+.tabs-left .tab-ticket:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 24px;
+  height: 100%;
+  width: 2px;
+  background: #000;
+}
+
+.tabs-left .circle-ticket{
+  background-color: #fff;
+  border: 1px solid #000;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  left: -70px;
+  top: 25px;
+}
+
+.tabs-left .circle-ticket label{
+  margin: 0 auto;
+  top: 15%;
+  position: relative;
+  left: 35%;
+  font-size: 26px;
+}
+
+.ul-ticket-content li{
+  position: relative;
+}
+
+.ul-ticket-content li .collapse-filter{
+  font-size: 22px;
+}
+
+.ul-ticket-content li{
+  padding-bottom: 35px;
+  padding-top: 35px;
+}
+
+.ul-ticket-content li:first-child,
+.main-faq-mobile .ul-ticket-content li:first-child{
+  padding-top: 10px;
+}
+
+.tabs-left .step1-ticket,
+.main-faq-mobile .tabs-left .step1-ticket{
+  top: 0 !important;
+}
+
+.head-ticket{
+  margin-top: 40px;
+}
+
+.ul-ticket-content .ol-ticket{
+  list-style-type: none !important;
+  padding-left: 0 !important;
+}
+
+.ul-ticket-content .ol-ticket li{
+  padding-left: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.ul-ticket-content .ol-ticket li:first-child{
+  padding-top: 35px;
+}
+
+.tabs-left .step4-ticket{
+  top: 30px;
+}
+
+.ul-ticket-content li:last-child,
+.main-faq-mobile .ul-ticket-content li:last-child{
+  padding-bottom: 0 !important;
+}
+
+.main-faq-mobile .ul-ticket-content a{
+  text-decoration: none;
+  color: #000;
+}
+
+.main-faq-mobile .ul-ticket-content li .collapse-filter,
+.main-faq-mobile .tabs-left .circle-ticket label{
+  font-size: 18px;
+}
+
+.main-faq-mobile .tabs-left .circle-ticket label{
+  top: 25%;
+  left: 38%;
+}
+
+.main-faq-mobile .ul-ticket-content li{
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.main-faq-mobile .tabs-left .circle-ticket{
+  top: 15px;
+}
+
+.main-faq-mobile .ul-ticket-content .ol-ticket li{
+  padding-bottom: 10px;
+  padding-top: 10px;
+  word-break: break-word;
+}
 
 
 

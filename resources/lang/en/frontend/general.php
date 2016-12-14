@@ -115,5 +115,7 @@ return [
     'title' => 'Title',
     'close' => 'Close',
     'select_category' => 'Select Category',
+    'terms_of_ticket_sales' => 'Terms of Ticket Sales',
+    'terms_of_website_use' => 'Terms of Website Use',
 
 ];

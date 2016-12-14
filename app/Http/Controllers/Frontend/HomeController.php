@@ -169,6 +169,28 @@ class HomeController extends Controller
         return view('frontend.partials.static.about_us_static');
     }
 
+    public function supportWaysToBuyTicketsStatic()
+    {
+
+        try{
+            $trail = 'Way to buy tickets Static front end';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+
+            return view('frontend.partials.static.support_ways_to_buy_tickets_static');
+            
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return view('errors.404');
+        
+        }
+    }
+
     public function index()
     {
         try{

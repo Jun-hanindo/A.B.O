@@ -9,26 +9,7 @@ $tag = '<--mobile-->';
     <div class="row">
         <div class="col-md-3">
             <div class="sidebar sidebar-support">
-                <ul>
-                    <li class="sidebar-head">
-                        <h4 class="font-light">Support</h4>
-                    </li>
-                    <li class="sidebar-menu-top active">
-                        <a href="{{URL::route('faq')}}">Frequently Asked Questions</a>
-                    </li>
-                    <li class="sidebar-menu">
-                        <a href="{{URL::route('contact-us')}}">Contact Us</a>
-                    </li>
-                    <li class="sidebar-menu">
-                        <a href="{{URL::route('terms-ticket-sales')}}">Terms of Ticket Sales</a>
-                    </li>
-                    <li class="sidebar-menu">
-                        <a href="{{URL::route('terms-website-use')}}">Terms of Website Use</a>
-                    </li>
-                    <li class="sidebar-menu">
-                        <a href="{{URL::route('privacy-policy')}}">Privacy Policy</a>
-                    </li>
-                </ul>
+                @include('layout.frontend.partial.static.support_left_side_static')
             </div>
         </div>
         <div class="col-md-9">
@@ -177,16 +158,7 @@ $tag = '<--mobile-->';
         <div class="col-md-12 mobile-sidebar">
             <div class="container">
                 <div class="mobile-sidebar-menu">
-                    <a class="menu collapsed" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">Support</a>
-                    <div class="collapse" id="mobile-sidebar-collapse">
-                        <ul>
-                            <li><a href="{{URL::route('faq')}}">Frequently Asked Questions</a></li>
-                            <li><a href="{{URL::route('contact-us')}}">Contact Us</a></li>
-                            <li><a href="{{URL::route('terms-ticket-sales')}}">Terms of Ticket Sales</a></li>
-                            <li><a href="{{URL::route('terms-website-use')}}">Terms of Website Use</a></li>
-                            <li><a href="{{URL::route('privacy-policy')}}">Privacy Policy</a></li>
-                        </ul>
-                    </div>
+                    @include('layout.frontend.partial.static.support_top_mobile_static')
                 </div>
             </div>
         </div>
