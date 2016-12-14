@@ -28,9 +28,11 @@
     //         }
     //     });
     // }
-    
-    $(document).ready(function() {
 
+    $(document).ready(function() {
+        $('#button_update').click(function(){
+            modal_loader();
+        });
         // $('#swap-account').on('change', function(){
         //     var account = $(this).val();
         //     swapAccount(account);

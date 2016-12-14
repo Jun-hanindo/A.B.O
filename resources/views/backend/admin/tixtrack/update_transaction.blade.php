@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        {!! Form::submit('Update', ['class' => 'btn btn-primary pull-right']) !!}
+                        {!! Form::submit('Update', ['class' => 'btn btn-primary pull-right', 'id' => 'button_update']) !!}
                     </div>
                 </div>
             {!! Form::close() !!}
