@@ -147,4 +147,21 @@ class TixtrackAccount extends Model
 
         }
     }
+
+    public function getTixtrackByLogin($login_id){
+        $data = TixtrackAccount::where('login_account_id', $login_id)->get();
+        if (!empty($data)) {
+        
+            return $data;
+        
+        } else {
+        
+            return false;
+
+        }
+    }
+
+    public function dropdownByLogin($login_id){
+        return static::where('login_account_id', $login_id)->orderBy('name')->lists('name', 'account_id');
+    }
 }

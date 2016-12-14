@@ -44,8 +44,14 @@ class LoginAccountsController extends BaseController
     {
             return datatables($this->model->datatables())
                 ->addColumn('action', function ($account) {
-                    return '<a href="javascript:void(0)" data-id="'.$account->id.'" data-name="'.$account->email.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
-                        &nbsp;<a href="#" class="btn btn-danger btn-xs actDeleteLogin" title="Delete" data-id="'.$account->id.'" data-name="'.$account->email.'"><i class="fa fa-trash-o fa-fw"></i></a>';
+                    $edit = '<a href="javascript:void(0)" data-id="'.$account->id.'" data-name="'.$account->email.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>';
+                    $delete = '&nbsp;<a href="#" class="btn btn-danger btn-xs actDeleteLogin" title="Delete" data-id="'.$account->id.'" data-name="'.$account->email.'"><i class="fa fa-trash-o fa-fw"></i></a>';
+                    if($account->id == 1){
+                        $action = $edit;
+                    }else{
+                        $action = $edit.$delete;
+                    }
+                    return $action;
                 })
                 ->make(true);
     }

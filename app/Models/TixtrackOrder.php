@@ -639,5 +639,15 @@ class TixtrackOrder extends Model
     //         return false;
     //     }
     // }
+    // 
+    public function deleteByDate($start_date, $end_date, $account_id)
+    {
+
+        $data = TixtrackOrder::where(DB::raw('DATE(local_created)'), '>=', $start_date)
+            ->where(DB::raw('DATE(local_created)'), '<=', $end_date)
+            ->where('account_id', $account_id)->delete();
+
+        return $data;
+    }
 
 }

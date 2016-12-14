@@ -19,5 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(IconsTableSeeder::class);
         $this->call(CurrenciesTableSeeder::class);
         $this->call(SettingsTableSeeder::class);
+        //$this->call(EventsTableSeeder::class);
+        $this->call(TixtrackLoginAccountsTableSeeder::class);
+        $this->call(TixtrackAccountsTableSeeder::class);
     }
 }

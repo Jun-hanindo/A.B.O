@@ -43,38 +43,38 @@
             //     //sortFilterResult(sort);
             // });
 
-            $('.cat-filter').on('ifChanged', function(e){
-                $(this).on('ifChecked', function(event){
-                    var val = $(this).val();
-                    // if(val == 'all'){
-                    //     $('.cat-filter').iCheck('check');
-                    //     $('.cat-filter-mobile').iCheck('check');
-                    // }else{
-                        $('.cat-filter-mobile[value="'+val+'"]').iCheck('check');
-                    //}
-                    //sortFilterResult(sort);
-                });
-                $(this).on('ifUnchecked', function(event){
-                    var val = $(this).val();
-                    // if(val == 'all'){
-                    //     $('.cat-filter').iCheck('uncheck');
-                    //     $('.cat-filter-mobile').iCheck('uncheck');
-                    // }else{
-                        $('.cat-filter-mobile[value="'+val+'"]').iCheck('uncheck');
-                    //}
-                    //sortFilterResult(sort);
-                });
-                sortFilterResult(sort);
-                // $(".cat-filter:checked").each(function(){
-                //     var val = $(this).val();
-                //     //console.log(val);
-                //     $('.cat-filter-mobile[value="'+val+'"]').prop('checked', true);
-                // });
-                // $(".cat-filter:not(:checked)").each(function(){
-                //     var val = $(this).val();
-                //     $('.cat-filter-mobile[value="'+val+'"]').prop('checked', false);
-                // });
-            });
+            // $('.cat-filter').on('ifChanged', function(e){
+            //     $(this).on('ifChecked', function(event){
+            //         var val = $(this).val();
+            //         // if(val == 'all'){
+            //         //     $('.cat-filter').iCheck('check');
+            //         //     $('.cat-filter-mobile').iCheck('check');
+            //         // }else{
+            //             $('.cat-filter-mobile[value="'+val+'"]').iCheck('check');
+            //         //}
+            //         //sortFilterResult(sort);
+            //     });
+            //     $(this).on('ifUnchecked', function(event){
+            //         var val = $(this).val();
+            //         // if(val == 'all'){
+            //         //     $('.cat-filter').iCheck('uncheck');
+            //         //     $('.cat-filter-mobile').iCheck('uncheck');
+            //         // }else{
+            //             $('.cat-filter-mobile[value="'+val+'"]').iCheck('uncheck');
+            //         //}
+            //         //sortFilterResult(sort);
+            //     });
+            //     sortFilterResult(sort);
+            //     // $(".cat-filter:checked").each(function(){
+            //     //     var val = $(this).val();
+            //     //     //console.log(val);
+            //     //     $('.cat-filter-mobile[value="'+val+'"]').prop('checked', true);
+            //     // });
+            //     // $(".cat-filter:not(:checked)").each(function(){
+            //     //     var val = $(this).val();
+            //     //     $('.cat-filter-mobile[value="'+val+'"]').prop('checked', false);
+            //     // });
+            // });
 
             $('.reset-filter').on('click', function(e){
                 resetFilterSearch();
@@ -117,34 +117,54 @@
             //     sortFilterResult(sort);
             // });
 
-            $('.cat-filter-mobile').on('ifChanged', function(e){
-                $(this).on('ifChecked', function(event){
-                    var val = $(this).val();
-                    // if(val == 'all'){
-                    //     $('.cat-filter').iCheck('check');
-                    //     $('.cat-filter-mobile').iCheck('check');
-                    // }else{
-                        $('.cat-filter[value="'+val+'"]').iCheck('check');
-                    //}
-                });
-                $(this).on('ifUnchecked', function(event){
-                    var val = $(this).val();
-                    // if(val == 'all'){
-                    //     $('.cat-filter').iCheck('uncheck');
-                    //     $('.cat-filter-mobile').iCheck('uncheck');
-                    // }else{
-                        $('.cat-filter[value="'+val+'"]').iCheck('uncheck');
-                    //}
-                });
+            // $('.cat-filter-mobile').on('ifChanged', function(e){
+            //     $(this).on('ifChecked', function(event){
+            //         var val = $(this).val();
+            //         // if(val == 'all'){
+            //         //     $('.cat-filter').iCheck('check');
+            //         //     $('.cat-filter-mobile').iCheck('check');
+            //         // }else{
+            //             $('.cat-filter[value="'+val+'"]').iCheck('check');
+            //         //}
+            //     });
+            //     $(this).on('ifUnchecked', function(event){
+            //         var val = $(this).val();
+            //         // if(val == 'all'){
+            //         //     $('.cat-filter').iCheck('uncheck');
+            //         //     $('.cat-filter-mobile').iCheck('uncheck');
+            //         // }else{
+            //             $('.cat-filter[value="'+val+'"]').iCheck('uncheck');
+            //         //}
+            //     });
 
-                // $(".cat-filter-mobile:checked").each(function(){
-                //     var val = $(this).val();
-                //     $('.cat-filter[value="'+val+'"]').prop('checked', true);
-                // });
-                // $(".cat-filter-mobile:not(:checked)").each(function(){
-                //     var val = $(this).val();
-                //     $('.cat-filter[value="'+val+'"]').prop('checked', false);
-                // });
+            //     // $(".cat-filter-mobile:checked").each(function(){
+            //     //     var val = $(this).val();
+            //     //     $('.cat-filter[value="'+val+'"]').prop('checked', true);
+            //     // });
+            //     // $(".cat-filter-mobile:not(:checked)").each(function(){
+            //     //     var val = $(this).val();
+            //     //     $('.cat-filter[value="'+val+'"]').prop('checked', false);
+            //     // });
+            //     sortFilterResult(sort_mobile);
+            // });
+            // 
+            
+            $('.cat-filter').on('ifChecked', function(e){
+                var val = $(this).val();
+                $('.cat-filter-mobile[value="'+val+'"]').iCheck('check');
+                sortFilterResult(sort);
+            }).on('ifUnchecked', function(event){
+                var val = $(this).val();
+                $('.cat-filter-mobile[value="'+val+'"]').iCheck('uncheck');
+                sortFilterResult(sort);
+            });
+            $('.cat-filter-mobile').on('ifChecked', function(e){
+                var val = $(this).val();
+                $('.cat-filter[value="'+val+'"]').iCheck('check');
+                sortFilterResult(sort_mobile);
+            }).on('ifUnchecked', function(event){
+                var val = $(this).val();
+                $('.cat-filter[value="'+val+'"]').iCheck('uncheck');
                 sortFilterResult(sort_mobile);
             });
 

@@ -260,7 +260,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::post('post-login', array('as' => 'admin-tixtrack-login-post', 'uses' => 'LoginController@postLogin'));
         Route::get('logout', array('as' => 'admin-tixtrack-logout', 'uses' => 'LoginController@logout'));
         Route::get('edit-data', array('as' => 'admin-tixtrack-edit-data', 'uses' => 'DownloadController@account'));
-        Route::put('update-data', array('as' => 'admin-tixtrack-update-data', 'uses' => 'DownloadController@updateData'));
+
+        Route::get('transaction', array('as' => 'admin-tixtrack-change-account', 'uses' => 'TransactionsController@account'));
+        Route::put('swap-account', array('as' => 'admin-tixtrack-swap-account', 'uses' => 'TransactionsController@swapAccount'));
+        Route::post('update-data-transaction', array('as' => 'admin-tixtrack-update-data-transaction', 'uses' => 'TransactionsController@updateData'));
         //Route::get('download', array('as' => 'admin-tixtrack-download', 'uses' => 'DownloadController@download'));
         Route::get('download-member', array('as' => 'admin-tixtrack-download-member', 'uses' => 'DownloadController@downloadMember'));
         Route::post('download-transaction', array('as' => 'admin-tixtrack-download-transaction', 'uses' => 'DownloadController@downloadTransaction'));

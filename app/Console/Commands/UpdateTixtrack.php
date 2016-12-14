@@ -83,7 +83,8 @@ class UpdateTixtrack extends Command
                     $this->info('Login Tixtrack success!');
 
                     $ASPXAUTH = $response->getHeader('set-cookie')[1];
-                    $accounts = $modelAccount->getTixtrack();
+                    //$accounts = $modelAccount->getTixtrack();
+                    $accounts = $modelAccount->getTixtrackByLogin($val->id);
                     if(!empty($accounts)){
                         foreach ($accounts as $key => $value){
                             $accountID = $value->account_id;
