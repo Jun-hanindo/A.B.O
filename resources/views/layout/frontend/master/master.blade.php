@@ -112,7 +112,7 @@
                                                     </ul>
                                                 </nav>
                                             </div>
-                                        </li> --}}
+                                        </li>
                                         <li class="nav-item nav-third">
                                             <div class="nav-search">
                                                 <form action="{{route('event-search-get')}}" method="get">
@@ -137,13 +137,15 @@
                                         </li>
                                         <li class="nav-item list-menu">
                                             <a href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </nav>
                             </div>
                             <div class="pull-right right-header">
                                 <ul>
-                                    <li><a href="{{URL::route('subscribe')}}">{{ trans('frontend/general.subscribe') }}</a></li>
+                                    <li><a href="{{ URL::route('discover')}}">{{ trans('frontend/general.discover_events') }}</a></li>
+                                    <li class="second-child"><a href="{{URL::route('ways-to-buy-tickets')}}">How To Buy Tickets</a></li>
+                                    <li><a href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a></li>
                                 </ul>
                             </div> 
                         </div>
@@ -216,11 +218,14 @@
                                                                     </ul>
                                                                 </li>
                                                             </ul>
-                                                        </li> --}}
+                                                        </li>
                                                         <li><a href="{{ URL::route('discover')}}">{{ trans('frontend/general.discover_events') }}</a></li>
                                                         <li><a class="support-mobile" href="{{ URL::route('promotion')}}">{{ trans('frontend/general.promotions') }}</a></li>
                                                         <li><a class="support-mobile" href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a></li>
-                                                        <li><a href="{{URL::route('subscribe')}}" class="login-mobile last-menu">{{ trans('frontend/general.subscribe') }}</li>
+                                                        <li><a href="{{URL::route('subscribe')}}" class="login-mobile last-menu">{{ trans('frontend/general.subscribe') }}</li> --}}
+                                                        <li><a href="{{ URL::route('discover')}}">{{ trans('frontend/general.discover_events') }}</a></li>
+                                                        <li><a class="support-mobile" href="{{URL::route('ways-to-buy-tickets')}}">How To Buy Tickets</a></li>
+                                                        <li><a class="support-mobile" href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
