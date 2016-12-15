@@ -26,7 +26,7 @@
                                             <ul class="ul-faq-content ul-ticket-content">
                                                 <li>
                                                     <div class="circle-ticket step1-ticket">
-                                                        <label>A</label>
+                                                        <label>1</label>
                                                     </div>
                                                     <a data-toggle="collapse" href="#collapseone" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Select Event & Tickets</a>
                                                     <div class="collapse" id="collapseone">
@@ -39,7 +39,7 @@
                                                 </li>
                                                 <li>
                                                     <div class="circle-ticket step2-ticket">
-                                                        <label>B</label>
+                                                        <label>2</label>
                                                     </div>
                                                     <a data-toggle="collapse" href="#collapsetwo" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Make Payment</a>
                                                     <div class="collapse" id="collapsetwo">
@@ -53,7 +53,7 @@
                                                 </li>
                                                 <li>
                                                     <div class="circle-ticket step3-ticket">
-                                                        <label>C</label>
+                                                        <label>3</label>
                                                     </div>
                                                     <a data-toggle="collapse" href="#collapsethree" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Receive Your Tickets</a>
                                                     <div class="collapse" id="collapsethree">
@@ -66,7 +66,7 @@
                                                 </li>
                                                 <li>
                                                     <div class="circle-ticket step4-ticket">
-                                                        <label>D</label>
+                                                        <label>4</label>
                                                     </div>
                                                     <a data-toggle="collapse" href="#collapsefour" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Attend and Enjoy Your Event</a>
                                                     <div class="collapse" id="collapsefour">
@@ -111,7 +111,7 @@
                             <ul class="ul-faq-content ul-ticket-content">
                                 <li>
                                     <div class="circle-ticket step1-ticket">
-                                        <label>A</label>
+                                        <label>1</label>
                                     </div>
                                     <a data-toggle="collapse" href="#collapseone-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Select Event & Tickets</a>
                                     <div class="collapse" id="collapseone-mobile">
@@ -124,7 +124,7 @@
                                 </li>
                                 <li>
                                     <div class="circle-ticket step2-ticket">
-                                        <label>B</label>
+                                        <label>2</label>
                                     </div>
                                     <a data-toggle="collapse" href="#collapsetwo-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Make Payment</a>
                                     <div class="collapse" id="collapsetwo-mobile">
@@ -138,7 +138,7 @@
                                 </li>
                                 <li>
                                     <div class="circle-ticket step3-ticket">
-                                        <label>C</label>
+                                        <label>3</label>
                                     </div>
                                     <a data-toggle="collapse" href="#collapsethree-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Receive Your Tickets</a>
                                     <div class="collapse" id="collapsethree-mobile">
@@ -151,7 +151,7 @@
                                 </li>
                                 <li>
                                     <div class="circle-ticket step4-ticket">
-                                        <label>D</label>
+                                        <label>4</label>
                                     </div>
                                     <a data-toggle="collapse" href="#collapsefour-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Attend and Enjoy Your Event</a>
                                     <div class="collapse" id="collapsefour-mobile">

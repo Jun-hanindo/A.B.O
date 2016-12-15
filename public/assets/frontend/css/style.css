@@ -4437,7 +4437,7 @@ ol .a li:before{
   top: 0;
   left: 24px;
   height: 100%;
-  width: 2px;
+  width: 1px;
   background: #000;
 }
 
@@ -4458,6 +4458,11 @@ ol .a li:before{
   position: relative;
   left: 35%;
   font-size: 26px;
+  font-family: 'proxima_nova_ltlight';
+}
+
+.tabs-left .step1-ticket label{
+  left: 40%;
 }
 
 .ul-ticket-content li{
@@ -4488,12 +4493,12 @@ ol .a li:before{
 }
 
 .ul-ticket-content .ol-ticket{
-  list-style-type: none !important;
-  padding-left: 0 !important;
+  list-style-type: lower-alpha !important;
+  padding-left: 15px !important;
 }
 
 .ul-ticket-content .ol-ticket li{
-  padding-left: 20px;
+  padding-left: 10px;
   padding-bottom: 10px;
   padding-top: 10px;
 }
@@ -4524,6 +4529,10 @@ ol .a li:before{
 .main-faq-mobile .tabs-left .circle-ticket label{
   top: 25%;
   left: 38%;
+}
+
+.main-faq-mobile .tabs-left .step1-ticket label{
+  left: 45%;
 }
 
 .main-faq-mobile .ul-ticket-content li{
@@ -4568,6 +4577,14 @@ ol .a li:before{
   width:75%;
   float: none;
   padding-right: 0;
+}
+
+.ol-ticket li:before{
+  content: no-close-quote;
+}
+
+.ul-ticket-content{
+  margin-bottom: 0;
 }
 
 

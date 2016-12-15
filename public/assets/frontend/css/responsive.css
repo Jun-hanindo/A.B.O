@@ -399,11 +399,11 @@
 }
 
 @media (max-width: 991px) {
-  .slider-home .carousel-discover {
-    min-height: 194px !important;
-  }
   .slider-home .carousel-caption{
     min-height: 210px;
+  }
+  .slider-home .carousel-discover {
+    min-height: 194px !important;
   }
   .discoverCategory .tabCategory li i{
     font-size: 20px;
