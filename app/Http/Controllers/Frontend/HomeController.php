@@ -226,7 +226,7 @@ class HomeController extends Controller
             //$result['sliders'] = $this->model->getHomepage('slider');
             //$result['src'] = url('uploads/events').'/';
             $modelCategory = new Category();
-            $result['categories'] = $modelCategory->getCategory();
+            $result['categories'] = $modelCategory->getCategoryEventExist();
             $limit = 8;
             $modelEvent = new Event();
             $result['events'] = $modelEvent->getEvent($limit);

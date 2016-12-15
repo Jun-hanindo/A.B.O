@@ -184,4 +184,15 @@ class Category extends Model
     public function getCategoryAvaibility(){
         return Category::where('status', true)->orderBy('name', 'asc')->get();
     }
+
+    public function getCategoryEventExist(){
+        return Category::select('categories.slug', 'categories.name', 'categories.icon')
+            ->join('event_categories', 'event_categories.category_id', '=', 'categories.id')
+            ->join('events', 'events.id', '=', 'event_categories.event_id')
+            ->where('events.avaibility' , true)
+            ->where('categories.avaibility' , true)
+            ->where('categories.status', true)
+            ->groupBy('categories.id')
+            ->orderBy('name', 'asc')->get();
+    }
 }

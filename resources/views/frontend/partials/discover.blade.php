@@ -120,7 +120,7 @@
                         <img src="{{ $banner->featured_image1_url }}" class="hidden-xs">
                         <img src="{{ $banner->featured_image2_url }}" class="hidden-lg hidden-md hidden-sm" alt="...">
                     </a>
-                    <div class="carousel-caption bg-green" style="background-color:{{ $banner->background_color }} !important">
+                    <div class="carousel-caption bg-green carousel-discover" style="background-color:{{ $banner->background_color }} !important">
                         <div class="container">
                             <h5 class="categorySlide">{{ $banner->cat_name }}</h5>
                             <h2 class="titleSlide font-light">{{ $banner->title }}</h2>

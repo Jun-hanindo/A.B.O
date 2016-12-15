@@ -31,7 +31,7 @@ class CategoriesController extends Controller
 
             if(!empty($result['category']) && $result['category']->status){
                 $id = $result['category']->id;
-                $result['categories'] = $this->model->getCategory();
+                $result['categories'] = $this->model->getCategoryEventExist();
                 $modelEvent = new Event();
                 $limit = 8;
                 $result['banner'] = $modelEvent->getEventBannerByCategory($id);
