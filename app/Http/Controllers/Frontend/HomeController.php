@@ -623,6 +623,72 @@ class HomeController extends Controller
         }
     }
 
+    public function supportTermsTicketSales(Request $req)
+    {
+
+        try{
+            $param = $req->all();
+            if(!empty($param)){
+                if(isset($param['preview'])){
+                    $data['content'] = $this->string_replace($this->preview('terms-of-ticket-sales'));
+                }else{
+                    $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
+                }
+            }else{
+                $data['content'] = $this->string_replace($this->pageContent('terms-of-ticket-sales'));
+            }
+
+            $trail = 'Terms and conditions front end';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+
+            return view('frontend.partials.support_terms_and_conditions', $data);
+            
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return view('errors.404');
+        
+        }
+    }
+
+    public function supportTermsWebsiteUse(Request $req)
+    {
+
+        try{
+            $param = $req->all();
+            if(!empty($param)){
+                if(isset($param['preview'])){
+                    $data['content'] = $this->string_replace($this->preview('terms-of-website-use'));
+                }else{
+                    $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
+                }
+            }else{
+                $data['content'] = $this->string_replace($this->pageContent('terms-of-website-use'));
+            }
+
+            $trail = 'Terms and conditions front end';
+            $insertTrail = new Trail();
+            $insertTrail->insertTrail($trail);
+
+            return view('frontend.partials.support_terms_and_conditions', $data);
+            
+        } catch (\Exception $e) {
+
+            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertLogActivity($log);
+
+            return view('errors.404');
+        
+        }
+    }
+
     public function supportPrivacyPolicy(Request $req)
     {
 

@@ -48,21 +48,25 @@ class ManagePagesController extends BaseController
         }
         $data['slug'] = $slug;
         if($slug == 'contact-us'){
-            $data['title'] = trans('general.contact_us_page');
+            $data['title'] = trans('backend/general.contact_us_page');
         }elseif($slug == 'terms-and-conditions'){
-            $data['title'] = trans('general.terms_and_conditions_page');
+            $data['title'] = trans('backend/general.terms_and_conditions_page');
+        }elseif($slug == 'terms-of-website-use'){
+            $data['title'] = trans('backend/general.terms_of_website_use_page');
+        }elseif($slug == 'terms-of-ticket-sales'){
+            $data['title'] = trans('backend/general.terms_of_ticket_sales_page');
         }elseif($slug == 'privacy-policy'){
-            $data['title'] = trans('general.privacy_policy_page');
+            $data['title'] = trans('backend/general.privacy_policy_page');
         }elseif($slug == 'about-us'){
-            $data['title'] = trans('general.about_us_page');
+            $data['title'] = trans('backend/general.about_us_page');
         }elseif($slug == 'careers'){
-            $data['title'] = trans('general.career_page');
+            $data['title'] = trans('backend/general.career_page');
         }elseif($slug == 'faq'){
-            $data['title'] = trans('general.faq_page');
+            $data['title'] = trans('backend/general.faq_page');
         }elseif($slug == 'ways-to-buy-tickets'){
-            $data['title'] = trans('general.ways_to_buy_tickets_page');
+            $data['title'] = trans('backend/general.ways_to_buy_tickets_page');
         }else{
-            $data['title'] = trans('general.page_management');
+            $data['title'] = trans('backend/general.page_management');
         }
         
         $trail = $data['title'];
@@ -102,7 +106,7 @@ class ManagePagesController extends BaseController
                 return response()->json([
                     'code' => 200,
                     'status' => 'success',
-                    'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
+                    'message' => trans('general.update_success')
                 ],200);
             }else{
 

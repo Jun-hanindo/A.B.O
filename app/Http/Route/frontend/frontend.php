@@ -53,6 +53,8 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('support/faq', array('as' => 'support-faq', 'uses' => 'HomeController@supportFaq'));
     Route::get('support/contact-us', array('as' => 'support-contact-us', 'uses' => 'HomeController@ourCompanyContactUs'));
     Route::get('support/terms-and-conditions', array('as' => 'support-terms-and-conditions', 'uses' => 'HomeController@supportTermsAndConditions'));
+    Route::get('support/terms-of-ticket-sales', array('as' => 'support-terms-ticket-sales', 'uses' => 'HomeController@supportTermsTicketSales'));
+    Route::get('support/terms-of-website-use', array('as' => 'support-terms-website-use', 'uses' => 'HomeController@supportTermsWebsiteUse'));
     Route::get('support/privacy-policy', array('as' => 'support-privacy-policy', 'uses' => 'HomeController@supportPrivacyPolicy'));
     Route::get('supports', array('as' => 'supports', 'uses' => 'HomeController@supports'));
     Route::get('subscribe', array('as' => 'subscribe', 'uses' => 'HomeController@subscribeUs'));

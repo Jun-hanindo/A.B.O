@@ -79,63 +79,6 @@ class TransactionsController extends BaseController
         }
     }
 
-    // public function swapAccount(Request $req)
-    // {
-        
-    //     try{
-    //         $param = $req->all();
-    //         $accountID = $param['account'];
-
-    //         if(!empty($accountID))
-    //         {
-    //             //\Session::put('AccountID', $accountID);
-    //             $client = new Client();
-
-    //             $request = new GuzzleRequest('PUT', 'https://nliven.co/api/admin/userprofiles/swapaccounts/'.$accountID, [
-    //                 'Cookie' => $this->cookie(),
-    //             ]);
-    //             $response = $client->send($request);
-
-    //             $status = $response->getStatusCode();
-    //             if($status == 200){
-    //                 $modelAccount = new TixtrackAccount();
-    //                 $account = $modelAccount->findIdByAccountID($accountID);
-    //                 \Session::put('accountID', $accountID);
-    //                 return response()->json([
-    //                     'code' => 200,
-    //                     'status' => 'success',
-    //                     'message' => 'Change Account/Event to <strong>'.$account->name.'</strong> success!'
-    //                 ],200);
-    //             }else{
-    //                 return response()->json([
-    //                     'code' => 400,
-    //                     'status' => 'error',
-    //                     'message' => 'Change Account/Event failed'
-    //                 ],400);
-    //             }
-    //         }else{
-    //             return response()->json([
-    //                 'code' => 400,
-    //                 'status' => 'error',
-    //                 'message' => 'Please Choose Account/Event'
-    //             ],400);
-    //         }
-    //     } catch (\Exception $e) {
-
-    //         $log['user_id'] = $this->currentUser->id;
-    //         $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-    //         $insertLog = new LogActivity();
-    //         $insertLog->insertLogActivity($log);
-
-    //         return response()->json([
-    //             'code' => 400,
-    //             'status' => 'error',
-    //             'message' => 'Change Account/Event error'
-    //         ],400);
-        
-    //     }
-    // }
-
     public function updateData(TransactionRequest $req){
         try{
             $param = $req->all();

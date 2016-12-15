@@ -48,7 +48,9 @@ class MenusTableSeeder extends Seeder
             ]],
             ['is_parent' => true, 'name' => str_slug('Manage Pages'), 'display_name' => 'Manage Pages', 'icon' => 'files-o', 'href' => '#', 'pattern' => 'admin/manage-pages', 'child' => [
                 ['name' => str_slug('Contact Us'), 'display_name' => 'Contact Us', 'icon' => 'phone-square', 'href' => 'admin/manage-pages/contact-us', 'pattern' => 'admin/manage-pages'],
-                ['name' => str_slug('Terms and Conditions'), 'display_name' => 'Terms and Conditions', 'icon' => 'file-text', 'href' => 'admin/manage-pages/terms-and-conditions', 'pattern' => 'admin/manage-pages'],
+                // ['name' => str_slug('Terms and Conditions'), 'display_name' => 'Terms and Conditions', 'icon' => 'file-text', 'href' => 'admin/manage-pages/terms-and-conditions', 'pattern' => 'admin/manage-pages'],
+                ['name' => str_slug('Terms of Ticket Sales'), 'display_name' => 'Terms of Ticket Sales', 'icon' => 'file-text', 'href' => 'admin/manage-pages/terms-of-ticket-sales', 'pattern' => 'admin/manage-pages'],
+                ['name' => str_slug('Terms of Website Use'), 'display_name' => 'Terms of Website Use', 'icon' => 'file-text', 'href' => 'admin/manage-pages/terms-of-website-use', 'pattern' => 'admin/manage-pages'],
                 ['name' => str_slug('FAQ'), 'display_name' => 'FAQ', 'icon' => 'question-circle', 'href' => 'admin/manage-pages/faq', 'pattern' => 'admin/manage-pages'],
                 ['name' => str_slug('Career'), 'display_name' => 'Career', 'icon' => 'briefcase', 'href' => 'admin/manage-pages/careers', 'pattern' => 'admin/manage-pages'],
                 ['name' => str_slug('Privacy Policy'), 'display_name' => 'Privacy Policy', 'icon' => 'lock', 'href' => 'admin/manage-pages/privacy-policy', 'pattern' => 'admin/manage-pages'],

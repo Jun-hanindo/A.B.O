@@ -349,5 +349,7 @@ return [
     'restore' => 'Restore',
     'show_detail' => 'Show Detail',
     'banned' => 'Banned',
+    'terms_of_ticket_sales_page' => 'Terms of Ticket Sales Page',
+    'terms_of_website_use_page' => 'Terms of Website Use Page',
 
 ];

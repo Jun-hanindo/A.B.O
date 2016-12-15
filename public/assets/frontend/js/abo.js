@@ -146,22 +146,22 @@
       // $('.sidebar').height($('.main-content').outerHeight())
 
       
-      var content = $('.about-content > .row > .col-md-9');
-      var sidebar = $('.about-content > .row > .col-md-3 .sidebar');
+      // var content = $('.about-content > .row > .col-md-9');
+      // var sidebar = $('.about-content > .row > .col-md-3 .sidebar');
 
       
-      var getContentHeight = content.outerHeight();
-      var getSidebarHeight = sidebar.outerHeight();
+      // var getContentHeight = content.outerHeight();
+      // var getSidebarHeight = sidebar.outerHeight();
 
       
-      if ( getContentHeight > getSidebarHeight ) {
-        sidebar.css('min-height', getContentHeight);
-      }
+      // if ( getContentHeight > getSidebarHeight ) {
+      //   sidebar.css('min-height', getContentHeight);
+      // }
 
       
-      if ( getSidebarHeight > getContentHeight ) {
-        content.css('min-height', getSidebarHeight);
-      }
+      // if ( getSidebarHeight > getContentHeight ) {
+      //   content.css('min-height', getSidebarHeight);
+      // }
 
       /*UPDATE HEIGHT - SIDEBAR*/
 

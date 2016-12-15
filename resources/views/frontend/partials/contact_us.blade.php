@@ -2,7 +2,7 @@
 @section('title', trans('frontend/general.contact_us').' - ')
 @section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
-<section class="about-content faq-content">
+<section class="about-content contact-content ways-content">
     <div class="row">
         <div class="col-md-3">
             <div class="sidebar sidebar-support">
@@ -26,7 +26,7 @@
     </div>
 </section>
         
-<section class="contact-mobile mobile-content">
+<section class="ways-mobile contact-mobile mobile-content">
     <div class="row">
         <div class="col-md-12 mobile-sidebar">
             <div class="container">

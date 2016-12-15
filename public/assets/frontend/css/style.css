@@ -2139,11 +2139,11 @@ footer .information-title{
   margin-left: 50px;
 }
 
-.career-desc .job-list .jobs,
+/*.career-desc .job-list .jobs,
 .career-desc .search-list .jobs,
 .career-desc .search-list .place{
   width: 240px;
-}
+}*/
 
 .career-desc .job-list .divisions::before,
 .mobile-job-list .mobile-job-desc .divisions::before{
@@ -4539,6 +4539,35 @@ ol .a li:before{
   padding-bottom: 10px;
   padding-top: 10px;
   word-break: break-word;
+}
+
+.ways-content .sidebar {
+  height: auto;
+}
+.about-content .sidebar li {
+  padding-right: 15px;
+}
+.about-content .col-md-3 {
+  background-color: #E7E7E7;
+  height: 100%;
+  padding-right: 0;
+}
+.about-content > .row {
+  display: table;
+  width: 100%;
+  height: 600px;
+  margin: 0;
+}
+.about-content > .row > .col-md-3 {
+  display: table-cell;
+  width:25%;
+  float: none;
+} 
+.about-content > .row > .col-md-9 {
+  display: table-cell;
+  width:75%;
+  float: none;
+  padding-right: 0;
 }
 
 
