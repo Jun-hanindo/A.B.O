@@ -28,7 +28,7 @@
                                                     <div class="circle-ticket step1-ticket">
                                                         <label>1</label>
                                                     </div>
-                                                    <a data-toggle="collapse" href="#collapseone" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Select Event & Tickets</a>
+                                                    <a data-toggle="collapse" href="#collapseone" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed font-light">Select Event & Tickets</a>
                                                     <div class="collapse" id="collapseone">
                                                         <ol class="ul-inside ol-ticket">
                                                             <li>Select the date of event you would like to attend.</li>
@@ -41,7 +41,7 @@
                                                     <div class="circle-ticket step2-ticket">
                                                         <label>2</label>
                                                     </div>
-                                                    <a data-toggle="collapse" href="#collapsetwo" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Make Payment</a>
+                                                    <a data-toggle="collapse" href="#collapsetwo" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed font-light">Make Payment</a>
                                                     <div class="collapse" id="collapsetwo">
                                                         <ol class="ul-inside ol-ticket">
                                                             <li>Review your ticket selection and subtotal amount on the order summary page before proceeding to checkout.</li>
@@ -55,7 +55,7 @@
                                                     <div class="circle-ticket step3-ticket">
                                                         <label>3</label>
                                                     </div>
-                                                    <a data-toggle="collapse" href="#collapsethree" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Receive Your Tickets</a>
+                                                    <a data-toggle="collapse" href="#collapsethree" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed font-light">Receive Your Tickets</a>
                                                     <div class="collapse" id="collapsethree">
                                                         <ol class="ul-inside ol-ticket">
                                                             <li>Upon a successful purchase, you will receive an order confirmation number for your reference.</li>
@@ -68,7 +68,7 @@
                                                     <div class="circle-ticket step4-ticket">
                                                         <label>4</label>
                                                     </div>
-                                                    <a data-toggle="collapse" href="#collapsefour" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Attend and Enjoy Your Event</a>
+                                                    <a data-toggle="collapse" href="#collapsefour" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed font-light">Attend and Enjoy Your Event</a>
                                                     <div class="collapse" id="collapsefour">
                                                         <ol class="ul-inside ol-ticket">
                                                             <li>Go green and go light on the event day by saving your E-Ticket on your mobile for us to scan you in. Alternatively, you can also bring along your E-Ticket printout.</li>
@@ -113,7 +113,7 @@
                                     <div class="circle-ticket step1-ticket">
                                         <label>1</label>
                                     </div>
-                                    <a data-toggle="collapse" href="#collapseone-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Select Event & Tickets</a>
+                                    <a data-toggle="collapse" href="#collapseone-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed font-light">Select Event & Tickets</a>
                                     <div class="collapse" id="collapseone-mobile">
                                         <ol class="ul-inside ol-ticket">
                                             <li>Select the date of event you would like to attend.</li>
@@ -126,7 +126,7 @@
                                     <div class="circle-ticket step2-ticket">
                                         <label>2</label>
                                     </div>
-                                    <a data-toggle="collapse" href="#collapsetwo-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Make Payment</a>
+                                    <a data-toggle="collapse" href="#collapsetwo-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed font-light">Make Payment</a>
                                     <div class="collapse" id="collapsetwo-mobile">
                                         <ol class="ul-inside ol-ticket">
                                             <li>Review your ticket selection and subtotal amount on the order summary page before proceeding to checkout.</li>
@@ -140,7 +140,7 @@
                                     <div class="circle-ticket step3-ticket">
                                         <label>3</label>
                                     </div>
-                                    <a data-toggle="collapse" href="#collapsethree-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Receive Your Tickets</a>
+                                    <a data-toggle="collapse" href="#collapsethree-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed font-light">Receive Your Tickets</a>
                                     <div class="collapse" id="collapsethree-mobile">
                                         <ol class="ul-inside ol-ticket">
                                             <li>Upon a successful purchase, you will receive an order confirmation number for your reference.</li>
@@ -153,7 +153,7 @@
                                     <div class="circle-ticket step4-ticket">
                                         <label>4</label>
                                     </div>
-                                    <a data-toggle="collapse" href="#collapsefour-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed">Attend and Enjoy Your Event</a>
+                                    <a data-toggle="collapse" href="#collapsefour-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed font-light">Attend and Enjoy Your Event</a>
                                     <div class="collapse" id="collapsefour-mobile">
                                         <ol class="ul-inside ol-ticket">
                                             <li>Go green and go light on the event day by saving your E-Ticket on your mobile for us to scan you in. Alternatively, you can also bring along your E-Ticket printout.</li>
