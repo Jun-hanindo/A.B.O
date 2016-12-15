@@ -37,6 +37,22 @@ $(document).ready(function(){
     $(document).click(function(){
         $("#ul-search").hide();
     });
+
+    $('.discover-mobile .categoryTab-mobile .dropdown').on('show.bs.dropdown', function () {
+        $('.discover-mobile .categoryTab-mobile .dropdown').removeClass("active");
+    });
+
+    $('.discover-mobile .categoryTab-mobile .dropdown').on('hide.bs.dropdown', function () {
+        $('.discover-mobile .categoryTab-mobile .dropdown').addClass("active");
+    })
+
+    $('.discover-mobile .eventTabScroll-mobile .dropdown').on('show.bs.dropdown', function () {
+        $('.discover-mobile .eventTabScroll-mobile .dropdown').removeClass("active");
+    });
+
+    $('.discover-mobile .eventTabScroll-mobile .dropdown').on('hide.bs.dropdown', function () {
+        $('.discover-mobile .eventTabScroll-mobile .dropdown').addClass("active");
+    })
 });
 
 function setLanguage(lang, country)

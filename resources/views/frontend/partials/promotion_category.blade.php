@@ -97,7 +97,7 @@
                                     <div class="modal-footer">
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <h4>{{ trans('frontend/general.get_your_early_bird_tickets_now') }}</h4>
+                                                <h4>Enjoy This Promotion Now</h4>
                                             </div>
                                             <div class="col-md-4">
                                                 <a href="{{ $event->buylink }}">

@@ -45,7 +45,7 @@
         </div>
     </div>
     <div class="discover-mobile">
-        <div class="container">
+        <div class="container categoryTab-mobile">
             <h2 class="font-light">{{ trans('frontend/general.discover_events') }}</h2>
             <div class="tabCategory">
                 <ul class="list-category-mobile">
