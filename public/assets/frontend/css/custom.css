@@ -213,3 +213,9 @@ iframe[name="google_conversion_frame"]{
   border-radius: 0;
   top: 48px;
 }
+.tabCategory .list-category-mobile .dropdown.open #select-category{
+  display: inline-block !important;
+}
+.tabCategory .list-category-mobile .dropdown.open #selected-category{
+  display: none;
+}
