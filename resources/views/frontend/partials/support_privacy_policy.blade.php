@@ -2,6 +2,9 @@
 @section('title', trans('frontend/general.privacy_policy').' - ')
 @section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
+@php
+  $tag = '<--mobile-->';
+@endphp
 <section class="about-content ways-content">
     <div class="row">
         <div class="col-md-3">
@@ -16,7 +19,7 @@
                         <h3 class="head-support font-light">{{ trans('frontend/general.privacy_policy') }}</h3>
                         <div class="col-md-12">
                             <div class="privacy-content">
-                                 {!! $content !!} 
+                                {!! strstr($content, $tag, true) !!}
                             </div>
                         </div>
                     </div>
@@ -42,7 +45,7 @@
                     <h3 class="font-light">{{ trans('frontend/general.privacy_policy') }}</h3>
                 </div>
                 <div class="privacy-content">
-                    {!! $content !!} 
+                    {!! str_replace($tag, '', strstr($content, $tag)) !!}
                 </div>
             </div>
         </div>

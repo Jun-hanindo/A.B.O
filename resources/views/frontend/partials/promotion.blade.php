@@ -102,7 +102,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <a href="{{ $event->buylink }}">
-                                                    <button type="button" class="btn btn-primary">{{ trans('frontend/general.buy_now') }}</button>
+                                                    <button type="button" class="btn btn-primary font-bold">{{ trans('frontend/general.buy_now') }}</button>
                                                 </a>
                                                 
                                             </div>

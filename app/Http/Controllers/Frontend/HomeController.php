@@ -642,7 +642,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
 
-            return view('frontend.partials.support_terms_and_conditions', $data);
+            return view('frontend.partials.support_terms_ticket_sales', $data);
             
         } catch (\Exception $e) {
 
@@ -675,7 +675,7 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertTrail($trail);
 
-            return view('frontend.partials.support_terms_and_conditions', $data);
+            return view('frontend.partials.support_terms_website_use', $data);
             
         } catch (\Exception $e) {
 

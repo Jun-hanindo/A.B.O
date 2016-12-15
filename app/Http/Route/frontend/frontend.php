@@ -37,7 +37,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('privacy-policy', array('as' => 'privacy-policy', 'uses' => 'HomeController@supportPrivacyPolicyStatic'));
     Route::get('about-us', array('as' => 'about-us', 'uses' => 'HomeController@aboutUsStatic'));
     Route::get('careers', array('as' => 'careers', 'uses' => 'HomeController@aboutUsStatic'));
-    Route::get('ways-to-buy-tickets', array('as' => 'ways-to-buy-tickets', 'uses' => 'HomeController@supportWaysToBuyTicketsStatic'));
+    Route::get('how-to-buy-tickets', array('as' => 'ways-to-buy-tickets', 'uses' => 'HomeController@supportWaysToBuyTicketsStatic'));
     
     /*Dynamic*/
     //comment 161013
@@ -49,7 +49,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('our-company/careers', array('as' => 'our-company-careers', 'uses' => 'HomeController@ourCompanyCareers'));
     Route::get('our-company/contact-us', array('as' => 'our-company-contact-us', 'uses' => 'HomeController@ourCompanyContactUs'));
     Route::get('our-company/about-us', array('as' => 'our-company-about-us', 'uses' => 'HomeController@ourCompanyAboutUs'));
-    Route::get('support/ways-to-buy-tickets', array('as' => 'support-way-to-buy-tickets', 'uses' => 'HomeController@supportWaysToBuyTickets'));
+    Route::get('support/how-to-buy-tickets', array('as' => 'support-way-to-buy-tickets', 'uses' => 'HomeController@supportWaysToBuyTickets'));
     Route::get('support/faq', array('as' => 'support-faq', 'uses' => 'HomeController@supportFaq'));
     Route::get('support/contact-us', array('as' => 'support-contact-us', 'uses' => 'HomeController@ourCompanyContactUs'));
     Route::get('support/terms-and-conditions', array('as' => 'support-terms-and-conditions', 'uses' => 'HomeController@supportTermsAndConditions'));
