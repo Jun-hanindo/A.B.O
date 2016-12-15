@@ -89,7 +89,7 @@
                     <h3>Careers</h3>
                 </div>
                 <div class="mobile-page-desc">
-                    {!! $content !!}
+                    {!! $responsive_content !!}
                 </div>
                 <div class="mobile-jobs-available">
                     <h3>We Have <span id="count-job">{{ $count_job }}</span> Job Openings</h3>

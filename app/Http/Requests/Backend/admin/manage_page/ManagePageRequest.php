@@ -24,7 +24,8 @@ class ManagePageRequest extends Request
     public function rules()
     { 
         return [
-            'content'              => 'required'
+            'desktop_content'              => 'required',
+            'responsive_content'              => 'required'
         ];
     }
 }

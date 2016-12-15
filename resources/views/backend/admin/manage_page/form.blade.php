@@ -19,9 +19,13 @@
                         <div class="error"></div>
                         <input type="hidden" name="title" class="form-control" id="title" value="{{ $title }}">
                         <input type="hidden" name="slug" class="form-control" id="slug" value="{{ $slug }}">
-                        <div class="form-group{{ Form::hasError('content') }} content">
-                            {!! Form::textarea('content', $content, ['id' => 'content', 'class' => 'form-control page_content','rows'=>'15']) !!}
-                            {!! Form::errorMsg('content') !!}
+                        <div class="form-group{{ Form::hasError('desktop_content') }} desktop_content">
+                            {!! Form::textarea('desktop_content', $content, ['id' => 'desktop_content', 'class' => 'form-control page_content','rows'=>'15']) !!}
+                            {!! Form::errorMsg('desktop_content') !!}
+                        </div>
+                        <div class="form-group{{ Form::hasError('responsive_content') }} responsive_content">
+                            {!! Form::textarea('responsive_content', $responsive_content, ['id' => 'responsive_content', 'class' => 'form-control page_content','rows'=>'15']) !!}
+                            {!! Form::errorMsg('responsive_content') !!}
                         </div>
                     </div>
                     <div class="box-footer">

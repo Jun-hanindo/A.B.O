@@ -33,7 +33,8 @@ class ManagePage extends Model
             $data->user_id = $user_id;
             $data->title = $param['title'];
             $data->slug = $slug;
-            $data->content = $param['content'];
+            $data->content = $param['desktop_content'];
+            $data->responsive_content = $param['responsive_content'];
             $data->status = 'publish';
             if($data->save()) {
                 return $data;
@@ -45,7 +46,8 @@ class ManagePage extends Model
             $this->user_id = $user_id;
             $this->title = $param['title'];
             $this->slug = $slug;
-            $this->content = $param['content'];
+            $this->content = $param['desktop_content'];
+            $this->responsive_content = $param['responsive_content'];
             $this->status = 'publish';
             if($this->save()) {
                 return $this;

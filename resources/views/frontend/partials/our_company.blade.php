@@ -15,7 +15,8 @@
                 <div class="support-desc">
                     <div class="row">
                         <h3 class="head-about font-light">{{ trans('frontend/general.about_asiaboxoffice') }}</h3>
-                        {!! str_replace('[captcha]', Recaptcha::render(), $content); !!}
+                        {{-- str_replace('[captcha]', Recaptcha::render(), $content); --}}
+                        {!! $content !!}
                     </div>
                 </div>
             </div>

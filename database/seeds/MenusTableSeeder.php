@@ -55,7 +55,7 @@ class MenusTableSeeder extends Seeder
                 ['name' => str_slug('Career'), 'display_name' => 'Career', 'icon' => 'briefcase', 'href' => 'admin/manage-pages/careers', 'pattern' => 'admin/manage-pages'],
                 ['name' => str_slug('Privacy Policy'), 'display_name' => 'Privacy Policy', 'icon' => 'lock', 'href' => 'admin/manage-pages/privacy-policy', 'pattern' => 'admin/manage-pages'],
                 ['name' => str_slug('About Us'), 'display_name' => 'About Us', 'icon' => 'info-circle', 'href' => 'admin/manage-pages/about-us', 'pattern' => 'admin/manage-pages'],
-                ['name' => str_slug('Ways to Buy Tickets'), 'display_name' => 'Ways to Buy Tickets', 'icon' => 'ticket', 'href' => 'admin/manage-pages/ways-to-buy-tickets', 'pattern' => 'admin/manage-pages'],
+                ['name' => str_slug('How to Buy Tickets'), 'display_name' => 'How to Buy Tickets', 'icon' => 'ticket', 'href' => 'admin/manage-pages/how-to-buy-tickets', 'pattern' => 'admin/manage-pages'],
             ]],
             ['is_parent' => true, 'name' => str_slug('Careers'), 'display_name' => 'Careers', 'icon' => 'briefcase', 'href' => '#', 'pattern' => 'admin/career', 'child' => [
                 ['name' => str_slug('Add Career'), 'display_name' => 'Add Career', 'icon' => 'plus-circle', 'href' => 'admin/career/create', 'pattern' => 'admin/career'],

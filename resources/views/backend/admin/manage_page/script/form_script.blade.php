@@ -17,10 +17,11 @@
 
     function update(status)
     {
-        
+        modal_loader();
         var title = $("#title").val();
         //var content = CKEDITOR.instances['content'].getData();
-        var content = $("#content").val();
+        var desktop_content = $("#desktop_content").val();
+        var responsive_content = $("#responsive_content").val();
 
         var slug = $("#slug").val();
         var uri = "{{ URL::route('admin-post-update-manage-page', "::param") }}";
@@ -29,14 +30,21 @@
             url: uri,
             type: "POST",
             dataType: 'json',
-            data: {'title':title,"content":content, "status":status},
+            data: {'title':title,"desktop_content":desktop_content,"responsive_content":responsive_content, "status":status},
             success: function (data) {
+                        HoldOn.close();
                 if(status != 'preview'){
                     $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');  
                 	location.reload();
-                }
+                }/*else{
+                    HoldOn.close();
+                    var url = "{{ URL::to('support/'.$slug.'?preview=true') }}";
+                    newwindow.location = url;
+                    return false;
+                }*/
             },
             error: function(response){
+                        HoldOn.close();
                 if (response.status === 422) {
                     var data = response.responseJSON;
                     $.each(data,function(key,val){

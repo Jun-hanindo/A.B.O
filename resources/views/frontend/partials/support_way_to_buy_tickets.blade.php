@@ -19,7 +19,8 @@
                         <h3 class="head-about head-ticket font-light">How To Buy Tickets</h3>
                         <div class="col-md-12 faq-content">
                             <div class="faq-categories">
-                                {!! strstr($content, $tag, true) !!}
+                                {{-- strstr($content, $tag, true) --}}
+                                {!! $content !!}
                                 
                             </div>
                         </div>
@@ -45,7 +46,8 @@
                 <div class="mobile-page-title">
                     <h3 class="font-light">How To Buy Tickets</h3>
                 </div>
-                {!! str_replace($tag, '', strstr($content, $tag)) !!}
+                {{-- str_replace($tag, '', strstr($content, $tag)) --}}
+                {!! $responsive_content !!}
             </div>
         </div>
     </div>

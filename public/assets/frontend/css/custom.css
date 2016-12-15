@@ -219,3 +219,6 @@ iframe[name="google_conversion_frame"]{
 .tabCategory .list-category-mobile .dropdown.open #selected-category{
   display: none;
 }
+.full-modal .modal-content {
+  border-radius: 0;
+}

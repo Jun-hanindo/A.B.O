@@ -2869,12 +2869,6 @@ footer .information-title{
   margin-top: -15px;
 }
 
-.promoModal .modal-footer button:hover{
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #000;
-}
-
 .nav-search .input-group .form-control:focus{
   box-shadow: none;
 }
@@ -4587,6 +4581,18 @@ ol .a li:before{
   margin-bottom: 0;
 }
 
+.full-modal .promo-modal-mobile{
+  display: none;
+}
+
+.full-modal .descPromoModal h4{
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.full-modal .descPromoModal .period{
+  margin-top: 20px;
+}
 
 
 

@@ -33,7 +33,7 @@
                                 </ul>
                           </div>
                         </a>
-                        <div class="modal fade promoModal" id="promoModal{{ $event->ep_id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal fade promoModal full-modal" id="promoModal{{ $event->ep_id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -42,13 +42,14 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="promoBanner">
-                                            <img src="{{ $event->featured_image1_url }}">
+                                            <img src="{{ $event->featured_image1_url }}" class="promo-modal-web">
+                                            <img src="{{ $event->featured_image2_url }}" class="promo-modal-mobile">
                                         </div>
                                         <div class="descPromoModal">
                                             <h4>{{ trans('frontend/general.about_this_promotion') }}</h4>
                                             <div class="promoBannerDesc">
                                                 <div class="row">
-                                                    <div class="col-md-9">
+                                                    <div class="col-md-9 col-xs-9">
                                                         {!! $event->promo_desc !!}
                                                         @if(!empty($event->link_title_more_description))
                                                             <a id="link_title_more_promotion" data-toggle="collapse" href="#more_description{{ $event->ep_id }}" aria-expanded="false"><u> {!! $event->link_title_more_description !!} </u></a>
@@ -57,7 +58,7 @@
                                                             <span class="collapse" id="more_description{{ $event->ep_id }}"> {!! $event->more_description !!} </span>
                                                         @endif
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-3 col-xs-3">
                                                         <img src="{{ $event->featured_image_url }}" class="promoLogo">
                                                     </div>
                                                 </div>
@@ -102,7 +103,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <a href="{{ $event->buylink }}">
-                                                    <button type="button" class="btn btn-primary font-bold">{{ trans('frontend/general.buy_now') }}</button>
+                                                    <button type="button" class="btn btn-primary btnBlackDefault font-bold">{{ trans('frontend/general.buy_now') }}</button>
                                                 </a>
                                                 
                                             </div>

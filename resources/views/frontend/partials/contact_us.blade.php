@@ -2,9 +2,6 @@
 @section('title', trans('frontend/general.contact_us').' - ')
 @section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
-@php
-  $tag = '<--mobile-->';
-@endphp
 <section class="about-content contact-content ways-content">
     <div class="row">
         <div class="col-md-3">
@@ -21,7 +18,7 @@
                 <div class="support-desc">
                     <div class="row">
                         <h3 class="head-about font-light">{{ trans('frontend/general.contact_us') }}</h3>
-                        {!! strstr($content, $tag, true) !!}
+                        {!! $content !!}
                     </div>
                 </div>
             </div>
@@ -49,7 +46,7 @@
                 <div class="mobile-page-title">
                     <h3 class="font-light">{{ trans('frontend/general.contact_us') }}</h3>
                 </div>
-                {!! str_replace($tag, '', strstr($content, $tag)) !!}
+                {!! $responsive_content !!}
                   
             </div>
         </div>

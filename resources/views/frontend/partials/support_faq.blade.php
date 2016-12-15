@@ -17,7 +17,8 @@
                 <div class="support-desc">
                     <div class="row">
                         <h3 class="head-about font-light">{{ trans('frontend/general.frequently_asked_questions') }}</h3>
-                        {!! str_replace('[captcha]', Recaptcha::render(), strstr($content, $tag, true)); !!}
+                        {{-- str_replace('[captcha]', Recaptcha::render(), strstr($content, $tag, true)); --}}
+                                {!! $content !!}
                     </div>
                 </div>
             </div>
@@ -44,7 +45,8 @@
                     $mobile = str_replace($tag, '', strstr($content, $tag));
                     $mobile = str_replace('@back_support', URL::route('support-faq'), $mobile);
                 @endphp
-              {!! str_replace('[captcha]', Recaptcha::render(), $mobile); !!}
+                {{-- str_replace('[captcha]', Recaptcha::render(), $mobile); --}}
+                {!! $responsive_content !!}
             </div>
         </div>
     </div>

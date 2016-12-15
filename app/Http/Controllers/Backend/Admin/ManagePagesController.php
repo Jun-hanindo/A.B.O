@@ -41,9 +41,11 @@ class ManagePagesController extends BaseController
         
         if(!empty($page)){
             $data['content'] = $page->content;
+            $data['responsive_content'] = $page->responsive_content;
             $data['status'] = $page->status;
         }else{
             $data['content'] = '';
+            $data['responsive_content'] = '';
             $data['status'] = '';
         }
         $data['slug'] = $slug;
@@ -63,7 +65,7 @@ class ManagePagesController extends BaseController
             $data['title'] = trans('backend/general.career_page');
         }elseif($slug == 'faq'){
             $data['title'] = trans('backend/general.faq_page');
-        }elseif($slug == 'ways-to-buy-tickets'){
+        }elseif($slug == 'how-to-buy-tickets'){
             $data['title'] = trans('backend/general.ways_to_buy_tickets_page');
         }else{
             $data['title'] = trans('backend/general.page_management');
