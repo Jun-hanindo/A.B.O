@@ -26,6 +26,7 @@
         var slug = $("#slug").val();
         var uri = "{{ URL::route('admin-post-update-manage-page', "::param") }}";
         uri = uri.replace('::param', slug);
+        var newwindow = window.open('', '_blank');
         $.ajax({
             url: uri,
             type: "POST",
@@ -36,12 +37,12 @@
                 if(status != 'preview'){
                     $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');  
                 	location.reload();
-                }/*else{
-                    HoldOn.close();
-                    var url = "{{ URL::to('support/'.$slug.'?preview=true') }}";
+                }else{
+                    var url = "{{ URL::to('support/::slug?preview=true') }}";
+                    url = url.replace('::slug', slug);
                     newwindow.location = url;
                     return false;
-                }*/
+                }
             },
             error: function(response){
                         HoldOn.close();

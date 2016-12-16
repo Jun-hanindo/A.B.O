@@ -42,7 +42,7 @@
                     </div>
                     <div class="box-footer">
                         <input class="btn btn-primary pull-right" title="{{ trans('backend/general.button_save') }}" type="submit" value="{{ trans('backend/general.button_publish') }}" id="button_submit">
-                        <a href="{{ URL::to('support/'.$slug.'?preview=true') }}" target="_blank" id="button_preview" class="btn btn-success pull-right" data-status='preview' title="{{ trans('backend/general.button_preview') }}">{{ trans('backend/general.button_preview') }}</a>
+                        <a href="{{-- URL::to('support/'.$slug.'?preview=true') --}}" target="_blank" id="button_preview" class="btn btn-success pull-right" data-status='preview' title="{{ trans('backend/general.button_preview') }}">{{ trans('backend/general.button_preview') }}</a>
                         <button type="button" id="button_draft2" class="btn btn-warning pull-right" data-status='draft' title="{{ trans('backend/general.button_draft') }}">{{ trans('backend/general.button_draft') }}</button>
                         <a href="{{ route('admin-manage-page', $slug) }}" class="btn btn-default pull-right">{{ trans('backend/general.button_cancel') }}</a>
                     </div>
