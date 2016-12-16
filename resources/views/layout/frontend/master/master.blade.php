@@ -156,9 +156,9 @@
                                 <div class="mobile-header-show">
                                     <div class="row">
                                         <div class="col-xs-3">
-                                            <div class="mobile-search">
+                                            {{-- <div class="mobile-search">
                                                 <a href="#"><i class="fa fa-search"></i></a>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div class="col-xs-6">
                                             <div class="mobile-logo">
@@ -233,7 +233,7 @@
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
-                                <div class="mobile-search-show">
+                                {{-- <div class="mobile-search-show">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-xs-1">
@@ -261,7 +261,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
