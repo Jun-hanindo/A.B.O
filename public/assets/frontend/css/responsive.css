@@ -402,6 +402,19 @@
   .slider-home .carousel-caption{
     min-height: 210px;
   }
+  .tabs-left .tab-ticket:before{
+    left: 30px;
+  }
+  .tabs-left .circle-ticket{
+    height: 40px;
+    width: 40px;
+  }
+  .tabs-left .circle-ticket{
+    left: -60px;
+  }
+  .main-faq-mobile .tabs-left .circle-ticket label{
+    top: 20%;
+  }
   .full-modal .promo-modal-web{
     display: none;
   }
