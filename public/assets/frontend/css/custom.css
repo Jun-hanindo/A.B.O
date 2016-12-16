@@ -236,6 +236,9 @@ iframe[name="google_conversion_frame"]{
 .full-modal{
   padding-right: 0 !important;
 }
+.promoModal .promoBannerDesc h3{
+  font-size: 16px;
+}
 /*.box-promo .eventName img{
   width: 50px;
 }*/
