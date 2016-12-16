@@ -171,23 +171,28 @@
 
     $('#general-anchor').click(function(){
       $('.faq-general-show').show(); 
-      $('.main-faq-mobile').hide()
+      // $('.main-faq-mobile').hide()
+      $('.menu-faq-mobile').hide()
     })
     $('#top-anchor').click(function(){
       $('.faq-top-show').show(); 
-      $('.main-faq-mobile').hide()
+      // $('.main-faq-mobile').hide()
+      $('.menu-faq-mobile').hide()
     })
     $('#seat-anchor').click(function(){
       $('.faq-seat-show').show(); 
-      $('.main-faq-mobile').hide()
+      // $('.main-faq-mobile').hide()
+      $('.menu-faq-mobile').hide()
     })
     $('#payment-anchor').click(function(){
       $('.faq-payment-show').show(); 
-      $('.main-faq-mobile').hide()
+      // $('.main-faq-mobile').hide()
+      $('.menu-faq-mobile').hide()
     })
     $('.back-faq').click(function(){
       $('.mobile-content-show').hide(); 
-      $('.main-faq-mobile').show()
+      //$('.main-faq-mobile').show()
+      $('.menu-faq-mobile').show()
     })
 
     $(document).ready(function(){

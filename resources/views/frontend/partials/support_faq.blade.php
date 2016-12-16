@@ -17,8 +17,13 @@
                 <div class="support-desc">
                     <div class="row">
                         <h3 class="head-about font-light">{{ trans('frontend/general.frequently_asked_questions') }}</h3>
-                        {{-- str_replace('[captcha]', Recaptcha::render(), strstr($content, $tag, true)); --}}
+                                
+                        <div class="col-md-12 faq-content">
+                            <div class="faq-categories">
+                                {{-- str_replace('[captcha]', Recaptcha::render(), strstr($content, $tag, true)); --}}
                                 {!! $content !!}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -36,7 +41,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 main-faq-mobile">
             <div class="container">
                 <div class="mobile-page-title">
                     <h3 class="font-light">{{ trans('frontend/general.frequently_asked_questions') }}</h3>

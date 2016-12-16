@@ -19,13 +19,25 @@
                         <div class="error"></div>
                         <input type="hidden" name="title" class="form-control" id="title" value="{{ $title }}">
                         <input type="hidden" name="slug" class="form-control" id="slug" value="{{ $slug }}">
-                        <div class="form-group{{ Form::hasError('desktop_content') }} desktop_content">
-                            {!! Form::textarea('desktop_content', $content, ['id' => 'desktop_content', 'class' => 'form-control page_content','rows'=>'15']) !!}
-                            {!! Form::errorMsg('desktop_content') !!}
-                        </div>
-                        <div class="form-group{{ Form::hasError('responsive_content') }} responsive_content">
-                            {!! Form::textarea('responsive_content', $responsive_content, ['id' => 'responsive_content', 'class' => 'form-control page_content','rows'=>'15']) !!}
-                            {!! Form::errorMsg('responsive_content') !!}
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab-desktop-content" data-toggle="tab">{{ trans('backend/general.desktop') }}</a></li>
+                                <li><a href="#tab-responsive-content" data-toggle="tab">{{ trans('backend/general.mobile') }}</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="tab-desktop-content">
+                                    <div class="form-group{{ Form::hasError('desktop_content') }} desktop_content">
+                                        {!! Form::textarea('desktop_content', $content, ['id' => 'desktop_content', 'class' => 'form-control page_content','rows'=>'15']) !!}
+                                        {!! Form::errorMsg('desktop_content') !!}
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="tab-responsive-content">
+                                    <div class="form-group{{ Form::hasError('responsive_content') }} responsive_content">
+                                        {!! Form::textarea('responsive_content', $responsive_content, ['id' => 'responsive_content', 'class' => 'form-control page_content','rows'=>'15']) !!}
+                                        {!! Form::errorMsg('responsive_content') !!}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="box-footer">
