@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         //$this->call(EventsTableSeeder::class);
         $this->call(TixtrackLoginAccountsTableSeeder::class);
         $this->call(TixtrackAccountsTableSeeder::class);
+        $this->call(PagesTableSeeder::class);
     }
 }

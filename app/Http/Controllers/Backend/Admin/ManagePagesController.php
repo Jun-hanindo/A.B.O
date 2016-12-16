@@ -66,7 +66,7 @@ class ManagePagesController extends BaseController
         }elseif($slug == 'faq'){
             $data['title'] = trans('backend/general.faq_page');
         }elseif($slug == 'how-to-buy-tickets'){
-            $data['title'] = trans('backend/general.ways_to_buy_tickets_page');
+            $data['title'] = trans('backend/general.how_to_buy_tickets_page');
         }else{
             $data['title'] = trans('backend/general.page_management');
         }

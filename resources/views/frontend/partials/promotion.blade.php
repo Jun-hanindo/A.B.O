@@ -27,9 +27,12 @@
                             <div class="boxInfo promo1">
                                 <ul>
                                     <li class="eventType">{{ strtoupper($event->category) }}</li>
-                                    <li class="eventName">{{ $event->promo_title }} <img src="{{ $event->featured_image_url }}"></li>
-                                    <br>
-                                    <li class="eventPlace">{{ (!empty($event->valid)) ? trans('frontend/general.valid_from').' '.$event->valid : '&nbsp;' }}</li>
+                                    <li class="eventName">
+                                        <div class="col-md-9 col-xs-9 promoNameThumb" >{{ $event->promo_title }}</div> 
+                                        <div class="col-md-3 col-xs-3 promoLogoThumb" ><img src="{{ $event->featured_image_url }}" onload="this.width/=2;this.onload=null;"></div> 
+                                    </li>
+                                    
+                                    {{-- <br><li class="eventPlace">{{ (!empty($event->valid)) ? trans('frontend/general.valid_from').' '.$event->valid : '&nbsp;' }}</li> --}}
                                 </ul>
                           </div>
                         </a>
@@ -59,7 +62,7 @@
                                                         @endif
                                                     </div>
                                                     <div class="col-md-3 col-xs-3">
-                                                        <img src="{{ $event->featured_image_url }}" class="promoLogo">
+                                                        <img src="{{ $event->featured_image_url }}" class="promoLogo" onload="this.width/=2;this.onload=null;">
                                                     </div>
                                                 </div>
                                             </div>

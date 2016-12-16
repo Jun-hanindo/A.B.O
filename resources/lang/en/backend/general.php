@@ -170,6 +170,7 @@ return [
     'page' => 'Page',
     'faq_page' => 'FAQ Page',
     'ways_to_buy_tickets_page' => 'Ways to Buy Tickets Page',
+    'how_to_buy_tickets_page' => 'How to Buy Tickets Page',
     'page_management'   => 'Page Management',
 
     'homepages' => 'Homepages',

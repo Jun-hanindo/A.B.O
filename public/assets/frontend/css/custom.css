@@ -92,9 +92,6 @@ iframe[name="google_conversion_frame"]{
   max-width: 100%;
   margin-top: 10px;
 }
-.box-promo .eventName img{
-  width: 50px;
-}
 /*#link_title_more_promotion{
   color: #333;
   cursor: pointer;
@@ -222,3 +219,20 @@ iframe[name="google_conversion_frame"]{
 .full-modal .modal-content {
   border-radius: 0;
 }
+.box-promo .boxInfo .eventName{
+  white-space: normal;
+}
+.box-promo .boxInfo .eventName .promoNameThumb{
+  padding-left: 0;
+  padding-right: 5px;
+}
+.box-promo .boxInfo .eventName .promoLogoThumb{
+  padding-right: 0;
+  padding-left: 5px;
+}
+.box-promo .boxInfo{
+  height: 120px;
+}
+/*.box-promo .eventName img{
+  width: 50px;
+}*/
