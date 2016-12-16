@@ -2874,7 +2874,7 @@ footer .information-title{
 }
 
 .promotionList .box-promo{
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 #footer1 .footIcon .icon div{
@@ -3786,6 +3786,7 @@ ul#getvenue li:before {
 
 .ul-faq-content li:last-child {
   border-bottom: none;
+  padding-top: 40px;
 }
 
 .tabs-left .nav>li>a {
@@ -4368,11 +4369,11 @@ ol .a li:before{
 }
 
 .promo-category{
-  background-color: #E7E7E7;
+  background-color: #fff;
 }
 
 .promo-category h2{
-  margin-bottom: 25px;
+  margin-bottom: 45px;
 }
 
 .box-promo .boxInfo ul{
@@ -4591,6 +4592,26 @@ ol .a li:before{
 
 .full-modal .descPromoModal .period{
   margin-top: 20px;
+}
+
+.ul-ticket-content .li-ticket-content:last-child::before{
+  content: "";
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  background-color: #fff;
+  top: 30px;
+  left: -46px;
+}
+
+.ul-ticket-content .li-ticket-content-mobile:last-child::before {
+  content: "";
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  background-color: #fff;
+  top: 20px;
+  left: -40px;
 }
 
 

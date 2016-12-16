@@ -24,7 +24,7 @@
                                         <div class="tab-pane active" id="topquestion">
                                        
                                             <ul class="ul-faq-content ul-ticket-content">
-                                                <li>
+                                                <li class="li-ticket-content">
                                                     <div class="circle-ticket step1-ticket">
                                                         <label class="font-light">1</label>
                                                     </div>
@@ -37,7 +37,7 @@
                                                         </ol>
                                                     </div>
                                                 </li>
-                                                <li>
+                                                <li class="li-ticket-content">
                                                     <div class="circle-ticket step2-ticket">
                                                         <label class="font-light">2</label>
                                                     </div>
@@ -51,7 +51,7 @@
                                                         </ol>
                                                     </div>
                                                 </li>
-                                                <li>
+                                                <li class="li-ticket-content">
                                                     <div class="circle-ticket step3-ticket">
                                                         <label class="font-light">3</label>
                                                     </div>
@@ -64,7 +64,7 @@
                                                         </ol>
                                                     </div>
                                                 </li>
-                                                <li>
+                                                <li class="li-ticket-content">
                                                     <div class="circle-ticket step4-ticket">
                                                         <label class="font-light">4</label>
                                                     </div>
@@ -109,7 +109,7 @@
                         <div class="tab-pane active" id="topquestion">
                        
                             <ul class="ul-faq-content ul-ticket-content">
-                                <li>
+                                <li class="li-ticket-content-mobile">
                                     <div class="circle-ticket step1-ticket">
                                         <label class="font-light">1</label>
                                     </div>
@@ -122,7 +122,7 @@
                                         </ol>
                                     </div>
                                 </li>
-                                <li>
+                                <li class="li-ticket-content-mobile">
                                     <div class="circle-ticket step2-ticket">
                                         <label class="font-light">2</label>
                                     </div>
@@ -136,7 +136,7 @@
                                         </ol>
                                     </div>
                                 </li>
-                                <li>
+                                <li class="li-ticket-content-mobile">
                                     <div class="circle-ticket step3-ticket">
                                         <label class="font-light">3</label>
                                     </div>
@@ -149,7 +149,7 @@
                                         </ol>
                                     </div>
                                 </li>
-                                <li>
+                                <li class="li-ticket-content-mobile">
                                     <div class="circle-ticket step4-ticket">
                                         <label class="font-light">4</label>
                                     </div>

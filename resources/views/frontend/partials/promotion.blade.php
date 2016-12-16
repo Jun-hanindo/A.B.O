@@ -4,7 +4,7 @@
 @section('content')
     <section class="discoverCategory promo-category">
           <div class="container">
-              <h2>{{ trans('frontend/general.promotions') }}</h2>
+              <h2 class="font-light">{{ trans('frontend/general.promotions') }}</h2>
               {{-- <div class="tabCategory">
                   <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#new" aria-controls="home" role="tab" data-toggle="tab"><img src="{{ asset('assets/frontend/images/catNew.png') }}"><br>{{ trans('frontend/general.whats_new') }}</a></li>
