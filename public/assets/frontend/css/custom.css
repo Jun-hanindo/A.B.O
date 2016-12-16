@@ -233,6 +233,9 @@ iframe[name="google_conversion_frame"]{
 .box-promo .boxInfo{
   height: 120px;
 }
+.full-modal{
+  padding-right: 0 !important;
+}
 /*.box-promo .eventName img{
   width: 50px;
 }*/
