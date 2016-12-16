@@ -78,10 +78,10 @@ iframe[name="google_conversion_frame"]{
 .place p span {
   line-height: 160% !important;
 }
-.discoverCategory h2 {
+/*.discoverCategory h2 {
   font-size: 26px;
   margin-bottom: 20px;
-}
+}*/
 .moreDetail button[disabled],
 .btnABO[disabled]{
   background-color: #CACACA;

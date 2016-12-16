@@ -2,17 +2,17 @@
 @section('title', trans('frontend/general.promotions').' - ')
 @section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
-    <section class="discoverCategory">
+    <section class="discoverCategory promo-category">
           <div class="container">
                 <h2 class="font-light">{{ trans('frontend/general.promotions') }}</h2>
-              <div class="tabCategory">
-                  <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation"><a href="{{ URL::route('promotion') }}"><img src="{{ asset('assets/frontend/images/catNew.png') }}"><br>{{ trans('frontend/general.whats_new') }}</a></li>
-                    <li role="presentation" class="{{ $slug == 'discounts' ? 'active' : '' }}"><a href="{{ URL::route('promotion-detail', 'discounts') }}"><i class="fa fa-tag"></i><br>{{ trans('frontend/general.discounts') }}</a></li>
-                    <li role="presentation" class="{{ $slug == 'lucky-draws' ? 'active' : '' }}"><a href="{{ URL::route('promotion-detail', 'lucky-draws') }}"><i class="fa fa-gift"></i><br>{{ trans('frontend/general.lucky_draws') }}</a></li>
-                    <li role="presentation" class="{{ $slug == 'early-bird' ? 'active' : '' }}"><a href="{{ URL::route('promotion-detail', 'early-bird') }}"><i class="fa fa-ticket"></i><br>{{ trans('frontend/general.early_bird') }}</a></li>
-                  </ul>
-              </div>
+                <div class="tabCategory">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation"><a href="{{ URL::route('promotion') }}"><img src="{{ asset('assets/frontend/images/catNew.png') }}"><br>{{ trans('frontend/general.whats_new') }}</a></li>
+                        <li role="presentation" class="{{ $slug == 'discounts' ? 'active' : '' }}"><a href="{{ URL::route('promotion-detail', 'discounts') }}"><i class="fa fa-tag"></i><br>{{ trans('frontend/general.discounts') }}</a></li>
+                        <li role="presentation" class="{{ $slug == 'lucky-draws' ? 'active' : '' }}"><a href="{{ URL::route('promotion-detail', 'lucky-draws') }}"><i class="fa fa-gift"></i><br>{{ trans('frontend/general.lucky_draws') }}</a></li>
+                        <li role="presentation" class="{{ $slug == 'early-bird' ? 'active' : '' }}"><a href="{{ URL::route('promotion-detail', 'early-bird') }}"><i class="fa fa-ticket"></i><br>{{ trans('frontend/general.early_bird') }}</a></li>
+                    </ul>
+                </div>
           </div>
     </section>
 
