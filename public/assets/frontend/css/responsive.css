@@ -504,6 +504,8 @@
   }
   .discoverCategory h2{
     font-size: 20px;
+    margin-bottom: 25px;
+    margin-top: 0;
   }
   .information-title-mobile{
     margin-left: -90px !important;
