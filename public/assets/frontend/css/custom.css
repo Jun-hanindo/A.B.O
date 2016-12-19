@@ -254,11 +254,13 @@ iframe[name="google_conversion_frame"]{
 .mobile-header.mobile-header-xmas .mobile-menu{
   height: 100%;
 }
-.mobile-header.mobile-header-xmas .mobile-logo,
+.mobile-header.mobile-header-xmas .mobile-logo{
+  display: table;
+  margin: 0 auto;
+}
 .mobile-header.mobile-header-xmas .mobile-menu{
   display: table;
-  /*width: 100%;*/
-  margin: 0 auto;
+  width: 100%;
 }
 .mobile-header.mobile-header-xmas .mobile-menu{
   margin-top: 0;
