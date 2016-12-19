@@ -242,3 +242,34 @@ iframe[name="google_conversion_frame"]{
 /*.box-promo .eventName img{
   width: 50px;
 }*/
+
+.mobile-header.mobile-header-xmas {
+    transform:none;
+    height: 100%;
+}
+.mobile-header.mobile-header-xmas .container,
+.mobile-header.mobile-header-xmas .mobile-header-show,
+.mobile-header.mobile-header-xmas .mobile-header-show .row,
+.mobile-header.mobile-header-xmas .mobile-logo,
+.mobile-header.mobile-header-xmas .mobile-menu{
+  height: 100%;
+}
+.mobile-header.mobile-header-xmas .mobile-logo,
+.mobile-header.mobile-header-xmas .mobile-menu{
+  display: table;
+  width: 100%;
+}
+.mobile-header.mobile-header-xmas .mobile-menu{
+  margin-top: 0;
+}
+.mobile-header.mobile-header-xmas .mobile-logo a,
+.mobile-header.mobile-header-xmas .mobile-menu .mobile-collapse-top{
+  display: table-cell;
+  vertical-align: middle;
+}
+.mobile-header.mobile-header-xmas .mobile-menu .mobile-collapse-header-top{
+  float: right;
+}
+.mobile-header.mobile-header-xmas .mobile-collapse-body-top{
+  top: 60px;
+}
