@@ -6,7 +6,7 @@
     <div class="discover-desktop">
         <div class="container">
             <h2 class="font-light">{{ trans('frontend/general.discover_events') }}</h2>
-            <div class="tabCategory">
+            {{-- <div class="tabCategory">
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active">
                         <a href="{{ URL::route('discover') }}" aria-controls="home" role="tab">
@@ -21,9 +21,9 @@
                         @endforeach
                     @endif
                 </ul>
-            </div>
+            </div> --}}
         </div>
-        <div class="eventTabScroll tabCategories">
+        {{-- <div class="eventTabScroll tabCategories">
             <div class="container">
                 <div class="tabCategory">
                     <ul class="nav nav-tabs" role="tablist">
@@ -42,12 +42,12 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="discover-mobile">
         <div class="container">
             <h2 class="font-light">{{ trans('frontend/general.discover_events') }}</h2>
-            <div class="tabCategory">
+            {{-- <div class="tabCategory">
                 <ul class="list-category-mobile">
                     <li class="active"><a href="{{ URL::route('discover') }}"><i class="fa fa-certificate"></i><br>{{ trans('frontend/general.whats_new') }}</a></li>
                     <li class="dropdown" role="presentation"><a href="#" data-toggle="dropdown" class="discover-category-mobile dropdown-toggle" id="dropcat"><i class="fa icat"></i><br>{{ trans('frontend/general.select_category') }}</a>
@@ -74,9 +74,9 @@
                         </ul>
                     </li>
                 </ul>
-            </div>
+            </div> --}}
         </div>
-        <div class="eventTabScroll-mobile tabCategories tabCategories-mobile">
+        {{-- <div class="eventTabScroll-mobile tabCategories tabCategories-mobile">
             <div class="container">
                 <div class="tabCategory">
                     <ul class="list-category-mobile">
@@ -107,7 +107,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </section>
 
