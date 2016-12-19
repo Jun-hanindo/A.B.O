@@ -144,7 +144,7 @@
                             <div class="pull-right right-header">
                                 <ul>
                                     <li><a href="{{ URL::route('discover')}}">{{ trans('frontend/general.discover_events') }}</a></li>
-                                    <li class="second-child"><a href="{{URL::route('ways-to-buy-tickets')}}">How To Buy Tickets</a></li>
+                                    <li class="second-child"><a href="{{URL::route('ways-to-buy-tickets')}}">How to Buy Tickets</a></li>
                                     <li><a href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a></li>
                                 </ul>
                             </div> 
@@ -224,7 +224,7 @@
                                                         <li><a class="support-mobile" href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a></li>
                                                         <li><a href="{{URL::route('subscribe')}}" class="login-mobile last-menu">{{ trans('frontend/general.subscribe') }}</li> --}}
                                                         <li><a href="{{ URL::route('discover')}}">{{ trans('frontend/general.discover_events') }}</a></li>
-                                                        <li><a class="support-mobile" href="{{URL::route('ways-to-buy-tickets')}}">How To Buy Tickets</a></li>
+                                                        <li><a class="support-mobile" href="{{URL::route('ways-to-buy-tickets')}}">How to Buy Tickets</a></li>
                                                         <li><a class="support-mobile" href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a></li>
                                                     </ul>
                                                 </div>

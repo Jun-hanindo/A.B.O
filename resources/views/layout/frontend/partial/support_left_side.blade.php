@@ -3,7 +3,7 @@
         <h4 class="font-light">{{ trans('frontend/general.support') }}</h4>
     </li>
     <li class="sidebar-menu-top  {{ (Request::url() == URL::route('support-way-to-buy-tickets')) ? 'active' : '' }}">
-        <a href="{{URL::route('support-way-to-buy-tickets')}}">How To Buy Tickets</a>
+        <a href="{{URL::route('support-way-to-buy-tickets')}}">How to Buy Tickets</a>
     </li>
     <li class="sidebar-menu {{ (Request::url() == URL::route('support-faq')) ? 'active' : '' }}">
         <a href="{{URL::route('support-faq')}}">{{ trans('frontend/general.frequently_asked_questions') }}</a>

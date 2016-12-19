@@ -16,7 +16,7 @@
             <div class="main-content">
                 <div class="support-desc">
                     <div class="row">
-                        <h3 class="head-about head-ticket font-light">How To Buy Tickets</h3>
+                        <h3 class="head-about head-ticket font-light">How to Buy Tickets</h3>
                         <div class="col-md-12 faq-content">
                             <div class="faq-categories">
                                 {{-- strstr($content, $tag, true) --}}
@@ -44,7 +44,7 @@
         <div class="col-md-12 main-faq-mobile">
             <div class="container">
                 <div class="mobile-page-title">
-                    <h3 class="font-light">How To Buy Tickets</h3>
+                    <h3 class="font-light">How to Buy Tickets</h3>
                 </div>
                 {{-- str_replace($tag, '', strstr($content, $tag)) --}}
                 {!! $responsive_content !!}
