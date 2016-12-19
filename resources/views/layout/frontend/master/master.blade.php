@@ -162,7 +162,7 @@
                                         </div>
                                         <div class="col-xs-6">
                                             <div class="mobile-logo">
-                                                <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/footer-logo.svg') }}"></a>
+                                                <a href="{{URL::route('home')}}"><img src="{{-- asset('assets/frontend/images/footer-logo.svg') --}}{{ asset('assets/frontend/images/abo-xmas.png') }}"></a>
                                             </div>
                                         </div>
                                         <div class="col-xs-3">
