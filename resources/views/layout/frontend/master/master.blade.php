@@ -52,7 +52,8 @@
                                 <nav class="main-menu" role="navigation">
                                     <ul class="nav-menu">
                                         <li class="nav-item">
-                                            <a href="{{URL::route('home')}}"><img src="{{-- asset('assets/frontend/images/ABO-logo.svg') --}} {{ asset('assets/frontend/images/abo-xmas.png') }}" class="logo"></a>
+                                            {{-- <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/ABO-logo.svg') }}" class="logo"></a> --}}
+                                            <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/abo-xmas.png') }}" class="logo"></a>
                                         </li>
                                         {{-- <li class="nav-item">
                                             <div class="cd-dropdown-wrapper">
@@ -151,7 +152,7 @@
                         </div>
                     </div>
                     <div id="mobile-header">
-                        <div class="mobile-header">
+                        <div class="mobile-header mobile-header-xmas">
                             <div class="container">
                                 <div class="mobile-header-show">
                                     <div class="row">
@@ -162,7 +163,8 @@
                                         </div>
                                         <div class="col-xs-6">
                                             <div class="mobile-logo">
-                                                <a href="{{URL::route('home')}}"><img src="{{-- asset('assets/frontend/images/footer-logo.svg') --}}{{ asset('assets/frontend/images/abo-xmas.png') }}"></a>
+                                                {{-- <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/footer-logo.svg') }}"></a> --}}
+                                                <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/abo-xmas.png') }}"></a>
                                             </div>
                                         </div>
                                         <div class="col-xs-3">
@@ -280,7 +282,8 @@
                     <div class="row footer-bottom">
                         <div class="col-md-12 foot-bottom">
                             <div class="col-md-2 logo-footer">
-                                <img src="{{-- asset('assets/frontend/images/footer-logo.svg') --}} {{ asset('assets/frontend/images/abo-xmas.png') }}">
+                                {{-- <img src="{{ asset('assets/frontend/images/footer-logo.svg') }}"> --}}
+                                <img src="{{ asset('assets/frontend/images/abo-xmas.png') }}">
                             </div>
                             <div class="col-md-10">
                                 <p>&copy; 2016 Asia Box Office Pte Ltd. All rights reserved. All trademarks, pictures and brands are property of their respective owners. Use of this Website constitutes acceptance of our <a href="{{URL::route('terms-website-use')}}">Terms of Website Use</a> and <a href="{{URL::route('privacy-policy')}}">Privacy Policy</a>. For more information or enquiries, please contact us at <a href="mailto:connect@asiaboxoffice.com">connect@asiaboxoffice.com</a></p>

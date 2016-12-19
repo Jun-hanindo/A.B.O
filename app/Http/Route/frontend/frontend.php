@@ -46,9 +46,9 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     Route::get('discover/new', array('as' => 'discover', 'uses' => 'HomeController@discover'));
     Route::get('promotions', array('as' => 'promotion', 'uses' => 'HomeController@promotion'));
-    Route::get('our-company/careers', array('as' => 'our-company-careers', 'uses' => 'HomeController@ourCompanyCareers'));
+    Route::get('support/careers', array('as' => 'our-company-careers', 'uses' => 'HomeController@ourCompanyCareers'));
     Route::get('our-company/contact-us', array('as' => 'our-company-contact-us', 'uses' => 'HomeController@ourCompanyContactUs'));
-    Route::get('our-company/about-us', array('as' => 'our-company-about-us', 'uses' => 'HomeController@ourCompanyAboutUs'));
+    Route::get('support/about-us', array('as' => 'our-company-about-us', 'uses' => 'HomeController@ourCompanyAboutUs'));
     Route::get('support/how-to-buy-tickets', array('as' => 'support-way-to-buy-tickets', 'uses' => 'HomeController@supportWaysToBuyTickets'));
     Route::get('support/faq', array('as' => 'support-faq', 'uses' => 'HomeController@supportFaq'));
     Route::get('support/contact-us', array('as' => 'support-contact-us', 'uses' => 'HomeController@ourCompanyContactUs'));
