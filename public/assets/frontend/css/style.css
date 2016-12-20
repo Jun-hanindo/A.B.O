@@ -3786,7 +3786,7 @@ ul#getvenue li:before {
 
 .ul-faq-content li:last-child {
   border-bottom: none;
-  padding-top: 40px;
+  /*padding-top: 40px;*/
 }
 
 .tabs-left .nav>li>a {
