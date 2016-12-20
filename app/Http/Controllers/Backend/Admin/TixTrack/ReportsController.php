@@ -790,7 +790,7 @@ class ReportsController extends BaseController
     public function saveReportToPdf(Request $req){
         $param = $req->all();
         if(!empty($param)){
-            $event_id = str_replace('"', "", $param['event']);
+            $event_id = $param['event'];
             $start_date = $param['start_date'];
             $end_date = $param['end_date'];
             $pathDest = public_path( 'uploads/reports' );
@@ -798,7 +798,7 @@ class ReportsController extends BaseController
                 File::makeDirectory($pathDest, $mode=0777,true,true);
             }
             $user = \Sentinel::getUser()->first_name.'-'.\Sentinel::getUser()->last_name;
-            $filename = env('APP_NAME_INITIAL').'-Report-'.$event_id.'-'.$start_date.'-'.$end_date.'-'.$user.'.pdf';
+            $filename = env('APP_NAME_INITIAL').'-Report-'.str_replace('"', "", $event_id).'-'.$start_date.'-'.$end_date.'-'.$user.'.pdf';
             if(file_exists($pathDest.'/'.$filename)){
                 File::delete($pathDest.'/'.$filename);
             }
