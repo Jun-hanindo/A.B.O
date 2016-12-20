@@ -790,7 +790,7 @@ class ReportsController extends BaseController
     public function saveReportToPdf(Request $req){
         $param = $req->all();
         if(!empty($param)){
-            $event_id = $param['event'];
+            $event_id = str_replace('"', "", $param['event']);
             $start_date = $param['start_date'];
             $end_date = $param['end_date'];
             $pathDest = public_path( 'uploads/reports' );

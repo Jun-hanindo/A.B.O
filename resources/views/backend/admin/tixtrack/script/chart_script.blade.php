@@ -198,8 +198,7 @@
 
     $('#modal-preview').on('show.bs.modal', function (e) {
         var pdf = $('#btn-preview').attr('data-pdf');
-        console.log(pdf);
-        $('#preview-body').html('<iframe id="pdf-frame" src=''+pdf+'#zoom=100'+'' style="width:850px; height:600px;" frameborder="0"></iframe>');
+        $('#preview-body').html('<iframe id="pdf-frame" src="'+pdf+'#zoom=100'+'" style="width:850px; height:600px;" frameborder="0"></iframe>');
     });
 
     function savePdf(event_id, start_date, end_date){
