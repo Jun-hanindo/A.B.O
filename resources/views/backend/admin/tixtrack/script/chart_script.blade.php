@@ -186,7 +186,7 @@
             }, 500);
         });
             
-        if(event_id > 0){
+        if(event_id != ''){
             chartCategory(event_id, start_date, end_date);
             chartPayment(event_id, start_date, end_date);
             chartPromotion(event_id, start_date, end_date);

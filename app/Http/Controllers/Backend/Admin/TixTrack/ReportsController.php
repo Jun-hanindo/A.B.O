@@ -27,14 +27,14 @@ class ReportsController extends BaseController
     //     parent::__construct($model);
     // }
 
-    public function cookie(){
-        if (\Session::has('ASPXAUTH')) {
-            $cookie = \Session::get('ASPXAUTH'); 
-            return $cookie;
-        }else{
-            return redirect()->route('admin-tixtrack-login');
-        }
-    }
+    // public function cookie(){
+    //     if (\Session::has('ASPXAUTH')) {
+    //         $cookie = \Session::get('ASPXAUTH'); 
+    //         return $cookie;
+    //     }else{
+    //         return redirect()->route('admin-tixtrack-login');
+    //     }
+    // }
     
     /**
      * @return Response
@@ -139,7 +139,7 @@ class ReportsController extends BaseController
                 $data['end_date'] = $end_date;
                 $data['event_id'] = $event_id;
                 $data['modelOrder'] = $modelOrder;
-                $data['event'] = $modelEvent->getEventByTixtrack($event_id);
+                $data['event'] = $modelOrder->getEventByName($event_id);
 
                 $data['first_date'] = $modelOrder->getFirstDateEvent($event_id);
                 $user = \Sentinel::getUser()->first_name.'-'.\Sentinel::getUser()->last_name;
@@ -147,7 +147,8 @@ class ReportsController extends BaseController
 
 
             }
-            $data['events'] = Event::select('id', 'event_id_tixtrack', 'title')->orderBy('title', 'asc')->get();
+            //$data['events'] = Event::select('id', 'event_id_tixtrack', 'title')->orderBy('title', 'asc')->get();
+            $data['events'] = $modelOrder->getEvent();
             return view('backend.admin.tixtrack.report', $data);
 
         } catch (\Exception $e) {
@@ -427,7 +428,7 @@ class ReportsController extends BaseController
     //         $datePros = $modelOrder->getDatePromotion($event_id, $start_date, $end_date);
     //         //$countCat = count($categories);
     //         //$totalCats = $modelOrder->totalCategoryEvent($event_id, $start_date, $end_date);
-    //         //$event = $modelEvent->getEventByTixtrack($event_id);
+    //         //$event = $modelOrder->getEventByName($event_id);
     //         // $start_date = $start_date;
     //         // $end_date = $end_date;
     //         // $event_id = $event_id;
@@ -590,7 +591,7 @@ class ReportsController extends BaseController
                     $data['dateCats'] = $modelOrder->getCategoryByEvent($event_id, $start_date, $end_date);
                     $data['countCat'] = count($data['categories']);
                     $data['totalCats'] = $modelOrder->totalCategoryEvent($event_id, $start_date, $end_date);
-                    $data['event'] = $modelEvent->getEventByTixtrack($event_id);
+                    $data['event'] = $modelOrder->getEventByName($event_id);
                     $data['start_date'] = $start_date;
                     $data['end_date'] = $end_date;
                     $data['event_id'] = $event_id;
@@ -672,7 +673,7 @@ class ReportsController extends BaseController
             $data['dateCats'] = $modelOrder->getCategoryByEvent($event_id, $start_date, $end_date);
             $data['countCat'] = count($data['categories']);
             $data['totalCats'] = $modelOrder->totalCategoryEvent($event_id, $start_date, $end_date);
-            $data['event'] = $modelEvent->getEventByTixtrack($event_id);
+            $data['event'] = $modelOrder->getEventByName($event_id);
             $data['start_date'] = $start_date;
             $data['end_date'] = $end_date;
             $data['event_id'] = $event_id;
@@ -807,7 +808,7 @@ class ReportsController extends BaseController
             $data['dateCats'] = $modelOrder->getCategoryByEvent($event_id, $start_date, $end_date);
             $data['countCat'] = count($data['categories']);
             $data['totalCats'] = $modelOrder->totalCategoryEvent($event_id, $start_date, $end_date);
-            $data['event'] = $modelEvent->getEventByTixtrack($event_id);
+            $data['event'] = $modelOrder->getEventByName($event_id);
             $data['start_date'] = $start_date;
             $data['end_date'] = $end_date;
             $data['event_id'] = $event_id;

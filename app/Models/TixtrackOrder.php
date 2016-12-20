@@ -81,7 +81,8 @@ class TixtrackOrder extends Model
 
     public function getFirstDateEvent($event_id){
         $data = TixtrackOrder::select(DB::raw('DATE(local_created) as local_created'))
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->orderBy(DB::raw('DATE(local_created)'), 'asc')->first();
 
         return $data;
@@ -163,7 +164,8 @@ class TixtrackOrder extends Model
 
     public function getCategoryEvent($event_id, $start_date, $end_date){
         $categories = TixtrackOrder::select('price_level_name')
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where('order_item_type', 'Ticket')
             ->where('order_status', 'Accepted')
             ->where(DB::raw('DATE(local_created)'), '>=', $start_date)
@@ -180,7 +182,8 @@ class TixtrackOrder extends Model
 
     public function getPaymentEvent($event_id, $start_date, $end_date){
         $payments = TixtrackOrder::select('payment_method_name')
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where('order_item_type', 'Ticket')
             ->where('order_status', 'Accepted')
             ->where(DB::raw('DATE(local_created)'), '>=', $start_date)
@@ -197,7 +200,8 @@ class TixtrackOrder extends Model
 
     public function getPromotionEvent($event_id, $start_date, $end_date){
         $promotions = TixtrackOrder::select('promo_code')
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where('order_item_type', 'Ticket')
             ->where('order_status', 'Accepted')
             ->where(DB::raw('DATE(local_created)'), '>=', $start_date)
@@ -215,7 +219,8 @@ class TixtrackOrder extends Model
 
     public function getDate($event_id, $start_date, $end_date){
         $dates = TixtrackOrder::select(DB::raw('DATE(local_created) as local_created'), 'event_date')
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where('order_item_type', 'Ticket')
             ->where('order_status', 'Accepted')
             ->where(DB::raw('DATE(local_created)'), '>=', $start_date)
@@ -234,7 +239,8 @@ class TixtrackOrder extends Model
 
     public function getDatePromotion($event_id, $start_date, $end_date){
         $dates = TixtrackOrder::select(DB::raw('DATE(local_created) as local_created'), 'event_date')
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where('order_item_type', 'Ticket')
             ->where('order_status', 'Accepted')
             ->where(DB::raw('DATE(local_created)'), '>=', $start_date)
@@ -255,7 +261,8 @@ class TixtrackOrder extends Model
     public function amountByCategory($event_id, $price_level_name, $date, $event_date){
         $query = TixtrackOrder::select(DB::raw('sum(full_price) as full_price'), 
             DB::raw('sum(price) as price'), DB::raw('count(ticket_quantity) as ticket_quantity'))
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where(DB::raw('DATE(local_created)'), '=', $date)
             ->where('price_level_name', $price_level_name)
             ->where('order_item_type', 'Ticket')
@@ -274,7 +281,8 @@ class TixtrackOrder extends Model
     public function amountByPayment($event_id, $payment_method_name, $date, $event_date){
         $query = TixtrackOrder::select(DB::raw('sum(full_price) as full_price'), 
             DB::raw('sum(price) as price'), DB::raw('count(ticket_quantity) as ticket_quantity'))
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where(DB::raw('DATE(local_created)'), '=', $date)
             ->where('payment_method_name', $payment_method_name)
             ->where('order_item_type', 'Ticket')
@@ -293,7 +301,8 @@ class TixtrackOrder extends Model
     public function amountByPromotion($event_id, $promo_code, $date, $event_date){
         $query = TixtrackOrder::select(DB::raw('sum(full_price) as full_price'), 
             DB::raw('sum(price) as price'), DB::raw('count(ticket_quantity) as ticket_quantity'))
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where(DB::raw('DATE(local_created)'), '=', $date)
             ->where('promo_code', $promo_code)
             ->where('order_item_type', 'Ticket')
@@ -313,7 +322,8 @@ class TixtrackOrder extends Model
     public function totalByDate($event_id, $date, $event_date){
         $datas = TixtrackOrder::select(DB::raw('sum(full_price) as full_price'), 
             DB::raw('sum(price) as price'), DB::raw('count(ticket_quantity) as ticket_quantity'))
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where(DB::raw('DATE(local_created)'), '=', $date)
             ->where('event_date', '=', $event_date)
             ->where('order_item_type', 'Ticket')
@@ -329,7 +339,8 @@ class TixtrackOrder extends Model
     public function totalByDatePromotion($event_id, $date, $event_date){
         $datas = TixtrackOrder::select(DB::raw('sum(full_price) as full_price'), 
             DB::raw('sum(price) as price'), DB::raw('count(ticket_quantity) as ticket_quantity'))
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where(DB::raw('DATE(local_created)'), '=', $date)
             ->where('event_date', '=', $event_date)
             ->where('order_item_type', 'Ticket')
@@ -394,7 +405,8 @@ class TixtrackOrder extends Model
     public function totalCategoryEvent($event_id, $start_date, $end_date){
         $categories = TixtrackOrder::select(DB::raw('sum(full_price) as full_price'), 
             DB::raw('sum(price) as price'), DB::raw('count(ticket_quantity) as ticket_quantity'))
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where(DB::raw('DATE(local_created)'), '>=', $start_date)
             ->where(DB::raw('DATE(local_created)'), '<=', $end_date)
             ->where('order_item_type', 'Ticket')
@@ -412,7 +424,8 @@ class TixtrackOrder extends Model
     public function totalPaymentEvent($event_id, $start_date, $end_date){
         $payments = TixtrackOrder::select(DB::raw('sum(full_price) as full_price'), 
             DB::raw('sum(price) as price'), DB::raw('count(ticket_quantity) as ticket_quantity'))
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where(DB::raw('DATE(local_created)'), '>=', $start_date)
             ->where(DB::raw('DATE(local_created)'), '<=', $end_date)
             ->where('order_item_type', 'Ticket')
@@ -430,7 +443,8 @@ class TixtrackOrder extends Model
     public function totalPromotionEvent($event_id, $start_date, $end_date){
         $payments = TixtrackOrder::select(DB::raw('sum(full_price) as full_price'), 
             DB::raw('sum(price) as price'), DB::raw('count(ticket_quantity) as ticket_quantity'))
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where(DB::raw('DATE(local_created)'), '>=', $start_date)
             ->where(DB::raw('DATE(local_created)'), '<=', $end_date)
             ->where('order_item_type', 'Ticket')
@@ -449,7 +463,8 @@ class TixtrackOrder extends Model
     public function total($event_id, $start_date, $end_date){
         $categories = TixtrackOrder::select(DB::raw('sum(full_price) as full_price'), 
             DB::raw('sum(price) as price'), DB::raw('count(ticket_quantity) as ticket_quantity'))
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where(DB::raw('DATE(local_created)'), '>=', $start_date)
             ->where(DB::raw('DATE(local_created)'), '<=', $end_date)
             ->where('order_item_type', 'Ticket')
@@ -465,7 +480,8 @@ class TixtrackOrder extends Model
     public function allTotalPromotion($event_id, $start_date, $end_date){
         $categories = TixtrackOrder::select(DB::raw('sum(full_price) as full_price'), 
             DB::raw('sum(price) as price'), DB::raw('count(ticket_quantity) as ticket_quantity'))
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where(DB::raw('DATE(local_created)'), '>=', $start_date)
             ->where(DB::raw('DATE(local_created)'), '<=', $end_date)
             ->where('order_item_type', 'Ticket')
@@ -481,7 +497,8 @@ class TixtrackOrder extends Model
 
     public function getAllCategoryEvent($event_id, $end_date){
         $categories = TixtrackOrder::select('price_level_name')
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where(DB::raw('DATE(local_created)'), '<=', $end_date)
             ->where('order_item_type', 'Ticket')
             ->where('order_status', 'Accepted')
@@ -497,7 +514,8 @@ class TixtrackOrder extends Model
 
     public function getAllSale($event_id, $end_date){
         $dates = TixtrackOrder::select('event_date')
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where(DB::raw('DATE(local_created)'), '<=', $end_date)
             ->where('order_item_type', 'Ticket')
             ->where('order_status', 'Accepted')
@@ -508,7 +526,8 @@ class TixtrackOrder extends Model
             foreach ($dates as $key => $date) {
                 $total = TixtrackOrder::select(DB::raw('sum(full_price) as full_price'), 
                     DB::raw('sum(price) as price'), DB::raw('count(ticket_quantity) as ticket_quantity'))
-                    ->where('event_id', $event_id)
+                    // ->where('event_id', $event_id)
+                    ->where('event_name', $event_id)
                     ->where('event_date', '=', $date->event_date)
                     ->where(DB::raw('DATE(local_created)'), '<=', $end_date)
                     ->where('order_item_type', 'Ticket')
@@ -526,7 +545,8 @@ class TixtrackOrder extends Model
                 }
 
                 // $categories = TixtrackOrder::select('price_level_name')
-                //     ->where('event_id', $event_id)
+                    //->where('event_id', $event_id)
+                    //->where('event_name', $event_id)
                 //     ->where('event_date', '=', $date->event_date)
                 //     ->where(DB::raw('DATE(local_created)'), '<=', $end_date)
                 //     ->where('order_item_type', 'Ticket')
@@ -536,7 +556,8 @@ class TixtrackOrder extends Model
                 // foreach ($categories as $key => $cat) {
                 //     $amounts[$cat->price_level_name] = TixtrackOrder::select(DB::raw('sum(full_price) as full_price'), 
                 //             DB::raw('sum(price) as price'), DB::raw('count(ticket_quantity) as ticket_quantity'))
-                //             ->where('event_id', $event_id)
+                            //->where('event_id', $event_id)
+                            //->where('event_name', $event_id)
                 //             ->where('event_date', '=', $date->event_date)
                 //             ->where(DB::raw('DATE(local_created)'), '<=', $end_date)
                 //             ->where('price_level_name', $cat->price_level_name)
@@ -557,7 +578,8 @@ class TixtrackOrder extends Model
     public function amountByAllSale($event_id, $event_date, $end_date, $price_level_name){
         $data = TixtrackOrder::select(DB::raw('sum(full_price) as full_price'), 
             DB::raw('sum(price) as price'), DB::raw('count(ticket_quantity) as ticket_quantity'))
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where('event_date', '=', $event_date)
             ->where(DB::raw('DATE(local_created)'), '<=', $end_date)
             ->where('price_level_name', $price_level_name)
@@ -570,7 +592,8 @@ class TixtrackOrder extends Model
 
     public function getDateGroupLocal($event_id, $start_date, $end_date){
         $dates = TixtrackOrder::select(DB::raw('DATE(local_created) as local_created'))
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where('order_item_type', 'Ticket')
             ->where('order_status', 'Accepted')
             ->where(DB::raw('DATE(local_created)'), '>=', $start_date)
@@ -588,7 +611,8 @@ class TixtrackOrder extends Model
 
     public function getDatePromotionGroupLocal($event_id, $start_date, $end_date){
         $dates = TixtrackOrder::select(DB::raw('DATE(local_created) as local_created'))
-            ->where('event_id', $event_id)
+            // ->where('event_id', $event_id)
+            ->where('event_name', $event_id)
             ->where('order_item_type', 'Ticket')
             ->where('order_status', 'Accepted')
             ->where(DB::raw('DATE(local_created)'), '>=', $start_date)
@@ -619,7 +643,8 @@ class TixtrackOrder extends Model
     //             foreach ($promotions as $key => $pro) {
     //                 $amounts[$pro->promo_code] = TixtrackOrder::select(DB::raw('sum(full_price) as full_price'), 
     //                     DB::raw('sum(price) as price'), DB::raw('count(ticket_quantity) as ticket_quantity'))
-    //                     ->where('event_id', $event_id)
+                        //->where('event_id', $event_id)
+                        //->where('event_name', $event_id)
     //                     ->where(DB::raw('DATE(local_created)'), '=', $date->local_created)
     //                     ->where('event_date', '=', $date->event_date)
     //                     ->where('promo_code', $pro->promo_code)
@@ -648,6 +673,16 @@ class TixtrackOrder extends Model
             ->where('account_id', $account_id)->delete();
 
         return $data;
+    }
+
+    public function getEvent(){
+        $data = TixtrackOrder::select('event_name')->groupBy('event_name')->orderBy('event_name')->get();
+
+        return $data;
+    }
+
+    public function getEventByName($event_id){
+        return TixtrackOrder::select('event_name as title')->where('event_name', $event_id)->first();
     }
 
 }

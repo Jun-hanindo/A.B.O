@@ -32,7 +32,8 @@ Tixtrack
                                 <select name="event" id="event" class="form-control">
                                     @if(!empty($events))
                                         @foreach($events as $key => $value)
-                                            <option value="{{ $value->event_id_tixtrack }}" {{ !empty($event_id) ? ($value->event_id_tixtrack == $event_id) ? 'selected' : '' : '' }}>{{ $value->event_id_tixtrack }} - {{ $value->title }}</option>
+                                            {{-- <option value="{{ $value->event_id_tixtrack }}" {{ !empty($event_id) ? ($value->event_id_tixtrack == $event_id) ? 'selected' : '' : '' }}>{{ $value->event_id_tixtrack }} - {{ $value->title }}</option> --}}
+                                            <option value="{{ $value->event_name }}" {{ !empty($event_id) ? ($value->event_name == $event_id) ? 'selected' : '' : '' }}>{{ $value->event_name }}</option>
                                         @endforeach
                                     @endif
                                 </select>

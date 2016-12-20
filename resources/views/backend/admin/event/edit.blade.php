@@ -270,11 +270,11 @@
                                 {!! Form::text('background_color', $event->background_color, ['id' => 'background_color', 'class' => 'form-control colorpicker','maxlength'=>'255', 'placeholder' => trans('backend/general.background_color')]) !!}
                                 {!! Form::errorMsg('background_color') !!}
                             </div>
-                            <div class="form-group{{ Form::hasError('event_id_tixtrack') }} event_id_tixtrack">
+                            {{-- <div class="form-group{{ Form::hasError('event_id_tixtrack') }} event_id_tixtrack">
                                 {!! Form::label('event_id_tixtrack', trans('backend/general.event_id_tixtrack').' *') !!} 
                                 {!! Form::text('event_id_tixtrack', $event->event_id_tixtrack, ['id' => 'event_id_tixtrack', 'class' => 'form-control number-only','maxlength'=>'255', 'placeholder' => trans('backend/general.event_id_tixtrack')]) !!}
                                 {!! Form::errorMsg('event_id_tixtrack') !!}
-                            </div>
+                            </div> --}}
                             <div class="box-footer">
                                 <input class="btn btn-primary pull-right pull-right" title="{{ trans('backend/general.button_save') }}" type="submit" value="{{ trans('backend/general.button_publish') }}" id="button_submit">
                                 <button type="button" id="button_draft" class="btn btn-warning pull-right" title="{{ trans('backend/general.button_draft') }}">{{ trans('backend/general.button_draft') }}</button>
