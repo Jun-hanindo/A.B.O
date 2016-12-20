@@ -520,6 +520,7 @@ if (! function_exists('parseCSV')) {
         $row = array( "" );
         $idx = 0;
         $quoted = false;
+        $upload = array();
         // $enter = "\r\n";
         // $content .= $enter;
         // $input_encode = 'ISO-8859-1';
