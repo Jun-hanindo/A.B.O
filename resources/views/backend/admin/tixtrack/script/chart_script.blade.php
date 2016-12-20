@@ -202,7 +202,7 @@
     });
 
     function savePdf(event_id, start_date, end_date){
-        //modal_loader();
+        modal_loader();
         var uri = "{{ URL::route('admin-report-tixtrack-pdf-save') }}";
         $.ajax({
             url: uri,
@@ -359,11 +359,11 @@
                                         data:{'event':event_id, 'start_date':start, 'end_date':end, 'category': image},
                                         success: function (response) {
                                             response.message;
-                                            HoldOn.close();
+                                            //HoldOn.close();
                                         },
                                         error: function(response){
                                             $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
-                                            HoldOn.close();
+                                            //HoldOn.close();
                                         }
                                     });
                                 }
@@ -371,7 +371,7 @@
 
                         }
                     });
-                    HoldOn.close();
+                    //HoldOn.close();
                 }
             },
             error: function(response){
@@ -451,18 +451,18 @@
                                         success: function (response) {
                                             response.message;
                                             savePdf(event_id, start, end);
-                                            HoldOn.close();
+                                            //HoldOn.close();
                                         },
                                         error: function(response){
                                             $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
-                                            HoldOn.close();
+                                            //HoldOn.close();
                                         }
                                     });
                                 }
                             }
                         }
                     });
-                    HoldOn.close();
+                    //HoldOn.close();
                 }
             },
             error: function(response){
@@ -542,11 +542,11 @@
                                         success: function (response) {
                                             response.message;
                                             savePdf(event_id, start, end);
-                                            HoldOn.close();
+                                            //HoldOn.close();
                                         },
                                         error: function(response){
                                             $('.error-category').addClass('alert alert-danger').html(response.responseJSON.message);
-                                            HoldOn.close();
+                                            //HoldOn.close();
                                         }
                                     });
                                 }
@@ -554,7 +554,7 @@
                         }
                     });
                 }
-                HoldOn.close();
+                //HoldOn.close();
             },
             error: function(response){
                 HoldOn.close();
