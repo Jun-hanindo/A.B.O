@@ -286,3 +286,7 @@ iframe[name="google_conversion_frame"]{
 .main-terms .support-desc .col-md-12 {
     padding-left: 30px;
 }
+.box-release img, .box-promo .image-promo, .box-release .boxInfo, .box-promo .boxInfo {
+    display: block;
+}
+
