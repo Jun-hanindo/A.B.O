@@ -282,3 +282,7 @@ iframe[name="google_conversion_frame"]{
 .hotline .iconWays i {
     padding: 8px !important;
 }
+.main-terms .head-support,
+.main-terms .support-desc .col-md-12 {
+    padding-left: 30px;
+}
