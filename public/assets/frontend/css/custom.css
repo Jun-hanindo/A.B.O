@@ -279,3 +279,6 @@ iframe[name="google_conversion_frame"]{
 .ul-ticket-content .li-ticket-content:last-child {
     padding-top: 40px;
 }
+.hotline .iconWays i {
+    padding: 8px !important;
+}

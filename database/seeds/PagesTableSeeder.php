@@ -198,7 +198,7 @@ class PagesTableSeeder extends Seeder
         $tixtrack->slug = 'privacy-policy';
         $tixtrack->content = "<h5>Overview</h5>
                             <p>We, Asia Box Office Pte Ltd, are committed to protecting and respecting your privacy.</p>
-                            <p>This policy (together with our <a href='{{URL::route('terms-website-use')}}'>terms of use</a> and any other documents referred to on it) sets out the basis on which any personal data we collect from you, or that you provide to us, will be processed by us.  Please read the following carefully to understand our practices regarding your personal data and how we will treat it. By visiting www.asiaboxoffice.com (“our site”), you are accepting and consenting to the practices described in this policy. </p>
+                            <p>This policy (together with our <a href='/terms-of-website-use'>terms of use</a> and any other documents referred to on it) sets out the basis on which any personal data we collect from you, or that you provide to us, will be processed by us.  Please read the following carefully to understand our practices regarding your personal data and how we will treat it. By visiting www.asiaboxoffice.com (“our site”), you are accepting and consenting to the practices described in this policy. </p>
                             <h5>Privacy Policy</h5>
                             <ol>
                               <li><label class='font-bold'>Information we may collect from you</label><br>
@@ -245,7 +245,7 @@ class PagesTableSeeder extends Seeder
                                         <ul class='a'>
                                           <li>In the event that we sell any business or assets, in which case we may disclose your personal data to the prospective buyer of such business or assets.</li>
                                           <li>If Asia Box Office Pte Ltd or substantially all of its assets are acquired by a third party, in which case personal data held by it about its customers will be one of the transferred assets.</li>
-                                          <li>If we are under a duty to disclose or share your personal data in order to comply with any legal obligation, or in order to enforce or apply our <a href='{{URL::route('terms-website-use')}}'>terms of use</a> or Terms and Conditions of <a href='{{URL::route('terms-ticket-sales')}}'>Ticket Sales</a> and other agreements; or to protect the rights, property, or safety of Asia Box Office Pte Ltd, our customers, or others. This includes exchanging information with other companies and organisations for the purposes of fraud protection.</li>
+                                          <li>If we are under a duty to disclose or share your personal data in order to comply with any legal obligation, or in order to enforce or apply our <a href='/terms-of-website-use'>terms of use</a> or Terms and Conditions of <a href='/terms-of-ticket-sales'>Ticket Sales</a> and other agreements; or to protect the rights, property, or safety of Asia Box Office Pte Ltd, our customers, or others. This includes exchanging information with other companies and organisations for the purposes of fraud protection.</li>
                                         </ul>
                                       </li>
                                     </ol>
@@ -289,7 +289,7 @@ class PagesTableSeeder extends Seeder
         $tixtrack->status = 'publish';
         $tixtrack->responsive_content = "<h5>Overview</h5>
                     <p>We, Asia Box Office Pte Ltd, are committed to protecting and respecting your privacy.</p>
-                    <p>This policy (together with our <a href='{{URL::route('terms-website-use')}}'>terms of use</a> and any other documents referred to on it) sets out the basis on which any personal data we collect from you, or that you provide to us, will be processed by us.  Please read the following carefully to understand our practices regarding your personal data and how we will treat it. By visiting www.asiaboxoffice.com (“our site”), you are accepting and consenting to the practices described in this policy. </p>
+                    <p>This policy (together with our <a href='/terms-of-website-use'>terms of use</a> and any other documents referred to on it) sets out the basis on which any personal data we collect from you, or that you provide to us, will be processed by us.  Please read the following carefully to understand our practices regarding your personal data and how we will treat it. By visiting www.asiaboxoffice.com (“our site”), you are accepting and consenting to the practices described in this policy. </p>
                     <h5>Privacy Policy</h5>
                     <ol>
                       <li><label class='font-bold'>Information we may collect from you</label><br>
@@ -336,7 +336,7 @@ class PagesTableSeeder extends Seeder
                                 <ul class='a'>
                                   <li>In the event that we sell any business or assets, in which case we may disclose your personal data to the prospective buyer of such business or assets.</li>
                                   <li>If Asia Box Office Pte Ltd or substantially all of its assets are acquired by a third party, in which case personal data held by it about its customers will be one of the transferred assets.</li>
-                                  <li>If we are under a duty to disclose or share your personal data in order to comply with any legal obligation, or in order to enforce or apply our <a href='{{URL::route('terms-website-use')}}'>terms of use</a> or Terms and Conditions of <a href='{{URL::route('terms-ticket-sales')}}'>Ticket Sales</a> and other agreements; or to protect the rights, property, or safety of Asia Box Office Pte Ltd, our customers, or others. This includes exchanging information with other companies and organisations for the purposes of fraud protection.</li>
+                                  <li>If we are under a duty to disclose or share your personal data in order to comply with any legal obligation, or in order to enforce or apply our <a href='/terms-of-website-use'>terms of use</a> or Terms and Conditions of <a href='/terms-of-ticket-sales'>Ticket Sales</a> and other agreements; or to protect the rights, property, or safety of Asia Box Office Pte Ltd, our customers, or others. This includes exchanging information with other companies and organisations for the purposes of fraud protection.</li>
                                 </ul>
                               </li>
                             </ol>
@@ -412,7 +412,7 @@ class PagesTableSeeder extends Seeder
                                 <ol>
                                   <li>All tickets to events are sold by us as agent for the respective event’s venue management or owner (collectively, “Venue Owner”) and/or promoter (“Promoter”).</li>
                                   <li>Tickets for any event may be subject to additional terms and conditions as the Venue Owner or Promoter may impose, provided that in the event of any inconsistency with these terms and conditions and those of the Venue Owner or Promoter, these terms and conditions shall prevail.</li>
-                                  <li>Please refer to our <a href='{{URL::route('privacy-policy')}}'>Privacy Policy</a> for more details on how we use and protect your personal information.</li>
+                                  <li>Please refer to our <a href='/privacy-policy'>Privacy Policy</a> for more details on how we use and protect your personal information.</li>
                                   <li>You may need a username and password to access certain areas of our site, including the booking facility on our site. You are responsible for maintaining the security of your username and password and you are responsible for any action taken under your username or password.</li>
                                   <li>All ticket bookings are subject to availability and our acceptance.  We reserve the right to accept or reject any booking in whole or in part and we shall not be required to provide any reason for doing so.</li>
                                   <li>Ticket prices listed on our site are may be subject to good and services tax (“GST”).  You may be charged processing and other fees which will be displayed on screen, together with applicable GST, prior to your binding commitment to purchase being made.</li>
@@ -523,7 +523,7 @@ class PagesTableSeeder extends Seeder
                         <ol>
                           <li>All tickets to events are sold by us as agent for the respective event’s venue management or owner (collectively, “Venue Owner”) and/or promoter (“Promoter”).</li>
                           <li>Tickets for any event may be subject to additional terms and conditions as the Venue Owner or Promoter may impose, provided that in the event of any inconsistency with these terms and conditions and those of the Venue Owner or Promoter, these terms and conditions shall prevail.</li>
-                          <li>Please refer to our <a href='{{URL::route('privacy-policy')}}'>Privacy Policy</a> for more details on how we use and protect your personal information.</li>
+                          <li>Please refer to our <a href='/privacy-policy'>Privacy Policy</a> for more details on how we use and protect your personal information.</li>
                           <li>You may need a username and password to access certain areas of our site, including the booking facility on our site. You are responsible for maintaining the security of your username and password and you are responsible for any action taken under your username or password.</li>
                           <li>All ticket bookings are subject to availability and our acceptance.  We reserve the right to accept or reject any booking in whole or in part and we shall not be required to provide any reason for doing so.</li>
                           <li>Ticket prices listed on our site are may be subject to good and services tax (“GST”).  You may be charged processing and other fees which will be displayed on screen, together with applicable GST, prior to your binding commitment to purchase being made.</li>
@@ -636,10 +636,10 @@ class PagesTableSeeder extends Seeder
                                         <ol>
                                           <li>These terms of use include the following additional terms, which also apply to your use of our site:
                                             <ul class='a'>
-                                              <li>Our <a href='{{URL::route('privacy-policy')}}'>Privacy Policy</a>, which sets out the terms on which we process any personal data we collect from you, or that you provide to us. By using our site, you consent to such processing and you warrant that all data provided by you is accurate.</li>
+                                              <li>Our <a href='/privacy-policy'>Privacy Policy</a>, which sets out the terms on which we process any personal data we collect from you, or that you provide to us. By using our site, you consent to such processing and you warrant that all data provided by you is accurate.</li>
                                             </ul>
                                           </li>
-                                          <li>If you purchase tickets from our site, our Terms and Conditions of <a href='{{URL::route('terms-ticket-sales')}}'>Ticket Sales</a> will apply to the sale and purchase. </li>
+                                          <li>If you purchase tickets from our site, our Terms and Conditions of <a href='/terms-of-ticket-sales'>Ticket Sales</a> will apply to the sale and purchase. </li>
                                         </ol>
                                       </li>
                                       <li><label class='font-bold'>Changes to these terms</label>
@@ -755,10 +755,10 @@ class PagesTableSeeder extends Seeder
                         <ol>
                           <li>These terms of use include the following additional terms, which also apply to your use of our site:
                             <ul class='a'>
-                              <li>Our <a href='{{URL::route('privacy-policy')}}'>Privacy Policy</a>, which sets out the terms on which we process any personal data we collect from you, or that you provide to us. By using our site, you consent to such processing and you warrant that all data provided by you is accurate.</li>
+                              <li>Our <a href='/privacy-policy'>Privacy Policy</a>, which sets out the terms on which we process any personal data we collect from you, or that you provide to us. By using our site, you consent to such processing and you warrant that all data provided by you is accurate.</li>
                             </ul>
                           </li>
-                          <li>If you purchase tickets from our site, our Terms and Conditions of <a href='{{URL::route('terms-ticket-sales')}}'>Ticket Sales</a> will apply to the sale and purchase. </li>
+                          <li>If you purchase tickets from our site, our Terms and Conditions of <a href='/terms-of-ticket-sales'>Ticket Sales</a> will apply to the sale and purchase. </li>
                         </ol>
                       </li>
                       <li><label class='font-bold'>Changes to these terms</label>
