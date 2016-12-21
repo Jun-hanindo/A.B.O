@@ -399,6 +399,9 @@
 }
 
 @media (max-width: 991px) {
+  .terms-content ol li, .privacy-content ol li{
+    width: 100%;
+  }
   .promo-category h2 {
       margin-bottom: 25px;
       margin-top: 0;
