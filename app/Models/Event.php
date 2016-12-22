@@ -1673,7 +1673,7 @@ class Event extends Model
         if(!empty($event))
         {
             $event->title = string_limit($event->title);
-            $event->cat_name = $event->category;
+            $event->cat_name = strtoupper($event->category);
 
             $this->setImageUrl($event);
 
