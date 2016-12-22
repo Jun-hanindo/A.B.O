@@ -289,4 +289,7 @@ iframe[name="google_conversion_frame"]{
 .box-release img, .box-promo .image-promo, .box-release .boxInfo, .box-promo .boxInfo {
     display: block;
 }
+.box-promo .boxInfo ul li img{
+  max-width: 50px;
+}
 
