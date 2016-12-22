@@ -339,3 +339,6 @@ page {
 .margin-left-50{
     margin-left: 50px;
 }
+.btn-switch .bootstrap-switch{
+    float: left;
+}

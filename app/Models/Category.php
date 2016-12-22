@@ -55,7 +55,8 @@ class Category extends Model
     {
         $this->name = $param['name'];
         $this->description = $param['description'];
-        $this->icon = $param['icon'];
+        $this->icon = (isset($param['switch_icon'])) ? $param['icon'] : null;
+        $this->icon_image = (!isset($param['switch_icon'])) ? $param['icon_image'] : null;
 
         $count_avaibility = $this->getCategory();
 
@@ -93,7 +94,8 @@ class Category extends Model
         if (!empty($data)) {
             $data->name = $param['name'];
             $data->description = $param['description'];
-            $data->icon = $param['icon'];
+            $data->icon = (isset($param['switch_icon'])) ? $param['icon'] : null;
+            $data->icon_image = (!isset($param['switch_icon'])) ? $param['icon_image'] : null;
 
             if($data->save()){
 
@@ -186,7 +188,7 @@ class Category extends Model
     }
 
     public function getCategoryEventExist(){
-        return Category::select('categories.slug', 'categories.name', 'categories.icon')
+        return Category::select('categories.slug', 'categories.name', 'categories.icon', 'categories.icon_image')
             ->join('event_categories', 'event_categories.category_id', '=', 'categories.id')
             ->join('events', 'events.id', '=', 'event_categories.event_id')
             ->where('events.avaibility' , true)
