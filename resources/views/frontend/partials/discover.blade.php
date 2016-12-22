@@ -112,7 +112,7 @@
 </section>
 
 @if(!empty($banner))
-    {{-- <section class="slider-home">
+    <section class="slider-home">
         <div id="carouselSlider" class="carousel slide carousel-fade">
             <div class="carousel-inner" role="listbox"> 
                 <div class="item active">
@@ -138,7 +138,7 @@
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
 @endif
 
 @if(!$events->isEmpty())
