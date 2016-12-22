@@ -208,31 +208,43 @@
                 }
                 if(data.discount > 0){
                     $("#discount").val(data.discount);
-                }else{
-                    $("#discount").val('');
-                }
-
-                if(data.discount > 0){
-                    $("#discount_nominal").val(data.discount_nominal);
-                }else{
                     $("#discount_nominal").val('');
-                }  
-                if(data.discount > 0){
                     $(".discount_type-check").bootstrapSwitch('state', true); 
                     $('#discount-percent').show();
                     $('#discount-nominal').hide();
-                }else{ 
+                }else{
+                    $("#discount").val('');
+                    $("#discount_nominal").val(data.discount_nominal);
                     $(".discount_type-check").bootstrapSwitch('state', false); 
                     $('#discount-percent').hide();
                     $('#discount-nominal').show();
                 }
+
+                // if(data.discount > 0){
+                //     $("#discount_nominal").val(data.discount_nominal);
+                // }else{
+                //     $("#discount_nominal").val('');
+                // }  
+                // if(data.discount > 0){
+                //     $(".discount_type-check").bootstrapSwitch('state', true); 
+                //     $('#discount-percent').show();
+                //     $('#discount-nominal').hide();
+                // }else{ 
+                //     $(".discount_type-check").bootstrapSwitch('state', false); 
+                //     $('#discount-percent').hide();
+                //     $('#discount-nominal').show();
+                // }
                 $('#preview_promo_logo').attr('src', data.src_featured_image);  
                 $('#preview_promo_banner').attr('src', data.src_banner_image);  
                 if(data.featured_image != null){
                     $('#span-promotion_logo').html('<a href="javascript:void(0)" data-id="'+id+'" data-name="promotion_logo" data-value="'+data.featured_image +'" class="btn btn-danger btn-xs delete-promotion_logo" title="Delete Promotion Logo"><i class="fa fa-trash-o fa-fw"></i></a>');
-                } 
+                }else{
+                     $('#span-promotion_logo').html('');
+                }
                 if(data.banner_image != null){
                     $('#span-promotion_banner').html('<a href="javascript:void(0)" data-id="'+id+'" data-name="promotion_banner" data-value="'+data.banner_image +'" class="btn btn-danger btn-xs delete-promotion_banner" title="Delete Promotion Banner"><i class="fa fa-trash-o fa-fw"></i></a>');
+                }else{
+                    $('#span-promotion_banner').html('');
                 }
                 $("#description_promo").val(data.description);
                 $("#link_title_more_description").val(data.link_title_more_description);

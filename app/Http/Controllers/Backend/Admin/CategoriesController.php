@@ -79,6 +79,7 @@ class CategoriesController extends BaseController
     {
         //
         $param = $req->all();
+        dd($param);
         
         try{
             $saveData = $this->model->insertNewCategory($param);
@@ -124,6 +125,9 @@ class CategoriesController extends BaseController
     {
         try{
             $data = $this->model->findCategoryByID($id);
+            if(isset($data->icon_image)){
+                $data->src_icon_image = file_url('categories/'.$data->icon_image, env('FILESYSTEM_DEFAULT')); 
+            }
 
             return response()->json([
                 'code' => 200,
@@ -158,6 +162,7 @@ class CategoriesController extends BaseController
     public function update(CategoryRequest $req, $id)
     {
         $param = $req->all();
+
         try{
             $updateData = $this->model->updateCategory($param,$id);
         // if(!empty($updateData)) 

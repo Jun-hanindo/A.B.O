@@ -920,6 +920,12 @@
 }
 
 @media (max-width: 500px){
+  .list-category-mobile .dropdown-menu .col-xs-4{
+    padding: 10px;
+  }
+  .discover-mobile .list-category-mobile li a{
+    word-break: break-word;
+  }
   .eventBanner .btnPlayEvent{
     top: 18%;
     left: 43%;

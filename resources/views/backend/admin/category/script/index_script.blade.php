@@ -4,9 +4,17 @@
 
     <script>
     $(document).ready(function() {
+
+        $('.image').change(function(){
+            var name = $(this).attr('data-name');
+            $("#div-preview_"+name).show();
+            preview(this,$(this).data('type'),name);
+        });
         
         loadData();
         loadTextEditor();
+        loadSwitchButton('switch_icon');
+        iconSwitch();
 
         $('#categories-table').on('switchChange.bootstrapSwitch', '.avaibility-check', function(event, state) {
             var id = $(this).attr('data-id');
@@ -51,7 +59,7 @@
             $('#title-create').show();
             $('#title-update').hide();
             $('#button_update').hide();
-            $('#button_save').show();
+            $('#button_save-cat').show();
         });
 
         $('#categories-table tbody').on( 'click', '.actEdit', function () {
@@ -59,7 +67,7 @@
             $('#title-create').hide();
             $('#title-update').show();
             $('#button_update').show();
-            $('#button_save').hide();
+            $('#button_save-cat').hide();
 
             var id = $(this).data('id');
             getDataEventCategory(id);
@@ -81,6 +89,10 @@
             });
             clearInputCat();
             saveTrailModal('Category Form');
+
+            $('#modal-form-cat').on('switchChange.bootstrapSwitch', '.switch_icon', function(event, state) {
+                iconSwitch();
+            });
 
         });
 
@@ -131,19 +143,35 @@
         $(".form-group").removeClass('has-error');
         $('.error').removeClass('alert alert-danger');
         $('.error').html('');
-        
+        modal_loader();
+
+        var id = $("#id-cat").val();
         var name = $("#name-cat").val();
         var icon = $("#icon-cat").val();
         var description = $("#description-cat").val();
-        var id = $("#id-cat").val();
-        modal_loader();
+
+        var fd = new FormData();
+        var icon_image = $('#icon_image-cat').prop('files')[0];
+        if(icon_image != undefined){
+            fd.append('icon_image',icon_image);
+        }
+        fd.append('name', name);
+        fd.append('icon', icon);
+        fd.append('description', description);
+        fd.append('id', id);
+        var other_data = $('#form-cat').serializeArray();
+        $.each(other_data,function(key,input){
+            fd.append(input.name,input.value);
+        });
         var uri = "{{ URL::route('admin-update-event-category', "::param") }}";
         uri = uri.replace('::param', id);
         $.ajax({
             url: uri,
             type: "POST",
             dataType: 'json',
-            data: {'name':name,"description":description,"icon":icon},
+            processData: false,
+            contentType: false,
+            data: fd,
             success: function (data) {
                 HoldOn.close();
                 loadData();
@@ -186,8 +214,19 @@
 
                 $("#id-cat").val(data.id);
                 $("#name-cat").val(data.name);
-                $("#icon-cat").val(data.icon);
-                $('#icon-cat').selectpicker('val', data.icon);
+                if(data.icon != null){
+                    $("#icon-cat").val(data.icon);
+                    $('#icon-cat').selectpicker('val', data.icon);
+                    $('#preview_icon_image').attr('src', '');
+                    $('#div-preview_icon_image').hide();
+                    $(".switch_icon").bootstrapSwitch('state', true); 
+                }else{
+                    $('#preview_icon_image').attr('src', data.src_icon_image); 
+                    $('#div-preview_icon_image').show();
+                    $("#icon-cat").val('');
+                    $('#icon-cat').selectpicker('val', '');
+                    $(".switch_icon").bootstrapSwitch('state', false); 
+                }
                 $("#description-cat").val(data.description);
             },
             error: function(response){

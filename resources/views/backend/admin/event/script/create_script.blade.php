@@ -1328,6 +1328,7 @@
             });  
             //loadSwitchButton('event_type-check');
             loadSwitchButton('discount_type-check');
+            loadSwitchButton('switch_icon');
             discountSwitch();
             //$('#button_submit').hide();
             //$('#button_draft').show();  
@@ -1491,6 +1492,10 @@
                     saveCat();                
                 });
                 clearInputCat();
+
+                $('#modal-form-cat').on('switchChange.bootstrapSwitch', '.switch_icon', function(event, state) {
+                    iconSwitch();
+                });
 
             });
 

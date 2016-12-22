@@ -1,4 +1,16 @@
 <script type="text/javascript">
+    
+    function iconSwitch(){
+        var val = $('.switch_icon').is(":checked") ? true : false;
+        if(val){
+            $('#icon-div').show();
+            $('#icon_image-div, #icon_image-height, #icon_image-size').hide();
+        }else{
+            $('#icon-div').hide();
+            $('#icon_image-div, #icon_image-height, #icon_image-size').show();
+        }
+    }
+
     function saveCat()
     {
         $(".tooltip-field").remove();
@@ -9,11 +21,26 @@
         var name = $("#name-cat").val();
         var icon = $("#icon-cat").val();
         var description = $("#description-cat").val();
+
+        var fd = new FormData();
+        var icon_image = $('#icon_image-cat').prop('files')[0];
+        if(icon_image != undefined){
+            fd.append('icon_image',icon_image);
+        }
+        fd.append('name', name);
+        fd.append('icon', icon);
+        fd.append('description', description);
+        var other_data = $('#form-cat').serializeArray();
+        $.each(other_data,function(key,input){
+            fd.append(input.name,input.value);
+        });
         $.ajax({
             url: "{{ route('admin-post-event-category') }}",
             type: "POST",
             dataType: 'json',
-            data: {'name':name,"description":description,"icon":icon},
+            processData: false,
+            contentType: false,
+            data: fd,
             success: function (data) {
                 HoldOn.close();
                 var segment = "{{ Request::segment(3) }}";
@@ -52,5 +79,7 @@
         $("#icon-cat").val('');
         $("#id-cat").val('');
         $("#description-cat").val('');
+        $("#icon_image").val('');
+        $('#preview_icon_image').attr('src', '');
     }
 </script>

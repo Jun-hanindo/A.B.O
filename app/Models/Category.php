@@ -6,6 +6,10 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\LogActivity;
+use Illuminate\Support\Facades\Storage;
+use DB;
+use File;
+use Image;
 
 class Category extends Model
 {
@@ -56,7 +60,19 @@ class Category extends Model
         $this->name = $param['name'];
         $this->description = $param['description'];
         $this->icon = (isset($param['switch_icon'])) ? $param['icon'] : null;
-        $this->icon_image = (!isset($param['switch_icon'])) ? $param['icon_image'] : null;
+        if(!isset($param['switch_icon']))
+        {
+            if (isset($param['icon_image'])) 
+            {
+                $icon_image = $param['icon_image'];
+                $extension = $icon_image->getClientOriginalExtension();
+                $filename_icon = "caticon".time().'.'.$extension;
+                $this->icon_image = $filename_icon;
+            }
+
+        }else{
+            $this->icon_image = null;
+        }
 
         $count_avaibility = $this->getCategory();
 
@@ -67,6 +83,13 @@ class Category extends Model
         }
 
         if($this->save()){
+            if (isset($icon_image)) {
+                $img = Image::make($icon_image);
+                $img_tmp = $img->stream();
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                    'categories/'.$filename_icon, $img_tmp->__toString(), 'public'
+                );
+            }
             return $this;
         } else {
             return false;
@@ -95,9 +118,32 @@ class Category extends Model
             $data->name = $param['name'];
             $data->description = $param['description'];
             $data->icon = (isset($param['switch_icon'])) ? $param['icon'] : null;
-            $data->icon_image = (!isset($param['switch_icon'])) ? $param['icon_image'] : null;
+            if(!isset($param['switch_icon']))
+            {
+                if (isset($param['icon_image'])) 
+                {
+                    $oldImage = $data->icon_image;
+                    if(!empty($oldImage)){
+                        file_delete('categories/'.$oldImage, env('FILESYSTEM_DEFAULT'));
+                    }
+                    $icon_image = $param['icon_image'];
+                    $extension = $icon_image->getClientOriginalExtension();
+                    $filename_icon = "caticon".time().'.'.$extension;
+                    $data->icon_image = $filename_icon;
+                }
+
+            }else{
+                $data->icon_image = null;
+            }
 
             if($data->save()){
+                if (isset($icon_image)) {
+                    $img = Image::make($icon_image);
+                    $img_tmp = $img->stream();
+                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                        'categories/'.$filename_icon, $img_tmp->__toString(), 'public'
+                    );
+                }
 
                 return $data;
 
