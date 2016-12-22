@@ -1,5 +1,5 @@
 @extends('layout.frontend.master.master')
-@section('title', 'Event Asia Box Office')
+@section('title', 'How to Buy Tickets - ')
 @section('content')
 @php
   $tag = '<--mobile-->';
