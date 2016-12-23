@@ -38,7 +38,7 @@
                                         <input id="icon_image-cat" name="icon_image" class="form-control image" data-name="icon_image" type="file" value="">
                                         {!! Form::errorMsg('icon_image') !!}
                                         <div class="form-group privew" id="div-preview_icon_image" data-name="icon_image" style="display:none">
-                                            <img src="" name="preview" id="preview_icon_image" height="50%" width="50%">
+                                            <img src="" name="preview" id="preview_icon_image" height="20%" width="20%">
                                         </div>
                                     </div>
                                 </div>
