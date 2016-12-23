@@ -41,7 +41,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">{{$event->promo_title}}</h4>
+                                        <h4 class="modal-title" id="myModalLabel">{{ ucwords(strtolower($event->category)).' - '.$event->title}}</h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="promoBanner">
@@ -49,7 +49,7 @@
                                             <img src="{{ $event->featured_image2_url }}" class="promo-modal-mobile">
                                         </div>
                                         <div class="descPromoModal">
-                                            <h4>{{ trans('frontend/general.about_this_promotion') }}</h4>
+                                            {{-- <h4>{{ trans('frontend/general.about_this_promotion') }}</h4> --}}
                                             <div class="promoBannerDesc">
                                                 <div class="row">
                                                     <div class="col-md-12 col-xs-12">
@@ -64,6 +64,7 @@
                                                                 </a>
                                                             @endif
                                                         @endif
+                                                        <h3 class="font-bold">{{ $event->promo_title }}</h3>
                                                         {!! $event->promo_desc !!}
                                                         @if(!empty($event->link_title_more_description))
                                                             <a id="link_title_more_promotion" data-toggle="collapse" href="#more_description{{ $event->ep_id }}" aria-expanded="false"><u> {!! $event->link_title_more_description !!} </u></a>
