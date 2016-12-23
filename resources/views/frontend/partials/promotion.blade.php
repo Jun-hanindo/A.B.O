@@ -100,15 +100,17 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <h4>Enjoy This Promotion Now</h4>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <a href="{{ $event->buylink }}">
-                                                    <button type="button" class="btn btn-primary btnBlackDefault font-bold">{{ trans('frontend/general.buy_now') }}</button>
-                                                </a>
-                                                
+                                        <div class="content-footer-modal">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <h4>Enjoy This Promotion Now</h4>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <a href="{{ $event->buylink }}">
+                                                        <button type="button" class="btn btn-primary btnBlackDefault font-bold">{{ trans('frontend/general.buy_now') }}</button>
+                                                    </a>
+                                                    
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -299,4 +299,12 @@ iframe[name="google_conversion_frame"]{
 .eventTabScroll-mobile{
   z-index: 2;
 }
+.promoModal .modal-footer {
+    text-align: initial;
+    background-color: #E7E7E7;
+    min-height: 80px;
+}
+.content-footer-modal{
+  margin-top: 5px;
+}
 

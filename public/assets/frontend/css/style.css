@@ -2657,6 +2657,7 @@ footer .information-title{
 .promoModal .modal-footer button{
   float: right;
   width: 150px;
+  height: 40px;
   background-color: #000000;
   border-color: #000000;
 }
