@@ -16,7 +16,12 @@
                     @if(!empty($categories))
                         @foreach($categories as $key => $category) 
                             <li role="presentation"><a href="{{ URL::route('category-detail', $category->slug) }}" aria-controls="{{$category->slug}}" role="tab">
-                                <i class="fa fa-{{ $category->icon }}"></i><br>{{ $category->name }}</a>
+                                @if(!empty($category->icon))
+                                    <i class="fa fa-{{ $category->icon }}"></i>
+                                @else
+                                    <img src="{{ $category->icon_image_url }}">
+                                @endif
+                                <br>{{ $category->name }}</a>
                             </li>
                         @endforeach
                     @endif
@@ -35,7 +40,12 @@
                         @if(!empty($categories))
                             @foreach($categories as $key => $category) 
                                 <li role="presentation"><a href="{{ URL::route('category-detail', $category->slug) }}" aria-controls="{{$category->slug}}" role="tab">
-                                    <i class="fa fa-{{ $category->icon }}"></i><br>{{ $category->name }}</a>
+                                    @if(!empty($category->icon))
+                                        <i class="fa fa-{{ $category->icon }}"></i>
+                                    @else
+                                        <img src="{{ $category->icon_image_url }}">
+                                    @endif
+                                    <br>{{ $category->name }}</a>
                                 </li>
                             @endforeach
                         @endif
@@ -61,7 +71,14 @@
                                         <div class="row">
                                     @endif 
                                         <div class="col-xs-4">
-                                            <a href="{{ URL::route('category-detail', $category->slug) }}" aria-controls="{{$category->slug}}" role="tab"><i class="fa fa-{{ $category->icon }}"></i><br>{{ $category->name }}</a>
+                                            <a href="{{ URL::route('category-detail', $category->slug) }}" aria-controls="{{$category->slug}}" role="tab">
+                                                @if(!empty($category->icon))
+                                                    <i class="fa fa-{{ $category->icon }}"></i>
+                                                @else
+                                                    <img src="{{ $category->icon_image_url }}">
+                                                @endif
+                                                <br>{{ $category->name }}
+                                            </a>
                                         </div>
                                     @if($i % 3 == 0)
                                         </div>
@@ -92,7 +109,14 @@
                                             <div class="row">
                                         @endif 
                                             <div class="col-xs-4">
-                                                <a href="{{ URL::route('category-detail', $category->slug) }}" aria-controls="{{$category->slug}}" role="tab"><i class="fa fa-{{ $category->icon }}"></i><br>{{ $category->name }}</a>
+                                                <a href="{{ URL::route('category-detail', $category->slug) }}" aria-controls="{{$category->slug}}" role="tab">
+                                                    @if(!empty($category->icon))
+                                                        <i class="fa fa-{{ $category->icon }}"></i>
+                                                    @else
+                                                        <img src="{{ $category->icon_image_url }}">
+                                                    @endif
+                                                    <br>{{ $category->name }}
+                                                </a>
                                             </div>
                                         @if($i % 3 == 0)
                                             </div>

@@ -84,10 +84,13 @@ class Category extends Model
 
         if($this->save()){
             if (isset($icon_image)) {
-                $img = Image::make($icon_image);
-                $img_tmp = $img->stream();
+                // $img = Image::make($icon_image);
+                // $img_tmp = $img->stream();
+                // Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                //     'categories/'.$filename_icon, $img_tmp->__toString(), 'public'
+                // );
                 Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                    'categories/'.$filename_icon, $img_tmp->__toString(), 'public'
+                    'categories/'.$filename_icon, File::get($icon_image), 'public'
                 );
             }
             return $this;
@@ -113,6 +116,7 @@ class Category extends Model
 
     public function updateCategory($param, $id)
     {
+
         $data = $this->find($id);
         if (!empty($data)) {
             $data->name = $param['name'];
@@ -138,10 +142,13 @@ class Category extends Model
 
             if($data->save()){
                 if (isset($icon_image)) {
-                    $img = Image::make($icon_image);
-                    $img_tmp = $img->stream();
+                    // $img = Image::make($icon_image);
+                    // $img_tmp = $img->stream();
+                    // Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                    //     'categories/'.$filename_icon, $img_tmp->__toString(), 'public'
+                    // );
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                        'categories/'.$filename_icon, $img_tmp->__toString(), 'public'
+                        'categories/'.$filename_icon, File::get($icon_image), 'public'
                     );
                 }
 
@@ -234,7 +241,7 @@ class Category extends Model
     }
 
     public function getCategoryEventExist(){
-        return Category::select('categories.slug', 'categories.name', 'categories.icon', 'categories.icon_image')
+        $datas = Category::select('categories.slug', 'categories.name', 'categories.icon', 'categories.icon_image')
             ->join('event_categories', 'event_categories.category_id', '=', 'categories.id')
             ->join('events', 'events.id', '=', 'event_categories.event_id')
             ->where('events.avaibility' , true)
@@ -242,5 +249,14 @@ class Category extends Model
             ->where('categories.status', true)
             ->groupBy('categories.id')
             ->orderBy('name', 'asc')->get();
+
+        if(!empty($datas)){
+            foreach ($datas as $key => $data) {
+                $data->icon_image_url = file_url('categories/'.$data->icon_image, env('FILESYSTEM_DEFAULT'));
+            }
+            return $datas;
+        }else{
+            return false;
+        }
     }
 }

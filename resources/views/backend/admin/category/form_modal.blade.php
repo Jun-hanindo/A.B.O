@@ -15,7 +15,7 @@
                             {!! Form::errorMsg('name') !!}
                         </div>
                         <div class="form-group icon-cat icon_image-cat btn-switch full-width pull-left">
-                            <label for="event" class="control-label">{{ trans('backend/general.icon') }}<span id="icon_image-height" style="display:none;">(Height 80px)</span>*</label><span id="icon_image-size" style="display:none;"> (Max. size 1 mb)</span>
+                            <label for="event" class="control-label">{{ trans('backend/general.icon') }}{{-- <span id="icon_image-height" style="display:none;">(Height 80px)</span> --}}*</label><span id="icon_image-size" style="display:none;"> (Max. size 1 mb)</span>
                             <div class="col-md-12 no-padding">
                                 {!! Form::checkbox('switch_icon', '1', true, ['class' => 'form-control pull-left switch_icon', 'data-animate' => 'false', 'data-on-text' => 'Icon',  'data-off-color' => 'success', 'data-off-text' => 'Image']) !!}
                                 <div class="col-md-6">

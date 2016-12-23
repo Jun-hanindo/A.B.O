@@ -79,7 +79,7 @@
         $("#icon-cat").val('');
         $("#id-cat").val('');
         $("#description-cat").val('');
-        $("#icon_image").val('');
+        $("#icon_image-cat").val('');
         $('#preview_icon_image').attr('src', '');
     }
 </script>

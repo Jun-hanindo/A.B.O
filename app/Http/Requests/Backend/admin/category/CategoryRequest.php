@@ -31,11 +31,10 @@ class CategoryRequest extends Request
             ];
 
             if (isset($req['switch_icon'])){
-                    //$rules['discount'] = 'required|numeric|max:99|min:1';
                 $rules['icon'] = 'required';
             }else{
-                //$rules['discount_nominal'] = 'required|numeric|min:1';
-                $rules['icon_image'] = 'required|image|mimes:jpg,jpeg,png|dimensions:height=80|max:1024';
+                //$rules['icon_image'] = 'required|image|mimes:jpg,jpeg,png|dimensions:height=80|max:1024';
+                $rules['icon_image'] = 'required|max:1024';
             }
             return $rules;
         } else {
@@ -45,11 +44,10 @@ class CategoryRequest extends Request
             ];
 
             if (isset($req['switch_icon'])){
-                    //$rules['discount'] = 'required|numeric|max:99|min:1';
                 $rules['icon'] = 'required';
             }else{
-                //$rules['discount_nominal'] = 'required|numeric|min:1';
-                $rules['icon_image'] = 'image|mimes:jpg,jpeg,png|dimensions:height=80|max:1024';
+                // $rules['icon_image'] = 'image|mimes:jpg,jpeg,png|dimensions:height=80|max:1024';
+                $rules['icon_image'] = 'max:1024';
             }
             return $rules;
         }
