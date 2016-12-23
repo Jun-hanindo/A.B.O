@@ -79,7 +79,6 @@ class CategoriesController extends BaseController
     {
         //
         $param = $req->all();
-        dd($param);
         
         try{
             $saveData = $this->model->insertNewCategory($param);
