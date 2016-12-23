@@ -34,7 +34,7 @@ class CategoryRequest extends Request
                 $rules['icon'] = 'required';
             }else{
                 //$rules['icon_image'] = 'required|image|mimes:jpg,jpeg,png|dimensions:height=80|max:1024';
-                $rules['icon_image'] = 'required|max:1024';
+                $rules['icon_image'] = 'required|mimes:svg|max:1024';
             }
             return $rules;
         } else {
@@ -47,7 +47,7 @@ class CategoryRequest extends Request
                 $rules['icon'] = 'required';
             }else{
                 // $rules['icon_image'] = 'image|mimes:jpg,jpeg,png|dimensions:height=80|max:1024';
-                $rules['icon_image'] = 'max:1024';
+                $rules['icon_image'] = 'mimes:svg|max:1024';
             }
             return $rules;
         }
