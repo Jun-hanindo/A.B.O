@@ -52,7 +52,18 @@
                                             <h4>{{ trans('frontend/general.about_this_promotion') }}</h4>
                                             <div class="promoBannerDesc">
                                                 <div class="row">
-                                                    <div class="col-md-9 col-xs-9">
+                                                    <div class="col-md-12 col-xs-12">
+                                                        @if(!empty($event->banner_image))
+                                                            <a {!! (!empty($event->featured_image_link)) ? 'href="'.$event->featured_image_link.'" target="_blank"' : '' !!}>
+                                                                <img class="promoBanner" src="{{ $event->banner_image_url }}">
+                                                            </a>
+                                                        @else
+                                                            @if(!empty($event->featured_image))
+                                                                <a {!! (!empty($event->featured_image_link)) ? 'href="'.$event->featured_image_link.'" target="_blank"' : '' !!}>
+                                                                    <img class="promoLogo" src="{{ $event->featured_image_url }}" onload="this.width/=2;this.onload=null;">
+                                                                </a>
+                                                            @endif
+                                                        @endif
                                                         {!! $event->promo_desc !!}
                                                         @if(!empty($event->link_title_more_description))
                                                             <a id="link_title_more_promotion" data-toggle="collapse" href="#more_description{{ $event->ep_id }}" aria-expanded="false"><u> {!! $event->link_title_more_description !!} </u></a>
@@ -60,9 +71,6 @@
                                                         @if(!empty($event->more_description))
                                                             <span class="collapse" id="more_description{{ $event->ep_id }}"> {!! $event->more_description !!} </span>
                                                         @endif
-                                                    </div>
-                                                    <div class="col-md-3 col-xs-3">
-                                                        <img src="{{ $event->featured_image_url }}" class="promoLogo" onload="this.width/=2;this.onload=null;">
                                                     </div>
                                                 </div>
                                             </div>

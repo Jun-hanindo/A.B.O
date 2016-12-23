@@ -307,4 +307,13 @@ iframe[name="google_conversion_frame"]{
 .content-footer-modal{
   margin-top: 5px;
 }
+.promoModal .descPromoModal .promoLogo,
+.promoModal .descPromoModal .promoBanner{
+  float: none;
+  margin-bottom: 10px;
+}
+
+.promoModal .descPromoModal .promoBanner{
+    max-width: 100%;
+}
 

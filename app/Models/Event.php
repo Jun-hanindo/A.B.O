@@ -1288,9 +1288,9 @@ class Event extends Model
             'events.featured_image2 as featured_image2', 'events.slug as slug', 'events.venue_id as venue_id', 
             'events.buylink as buylink', 'events.avaibility as avaibility', 'event_promotions.id as ep_id', 
             'promotions.id as promotion_id', 'promotions.featured_image as featured_image', 
-            'promotions.description as promo_desc', 'promotions.start_date as start_date', 
-            'promotions.end_date as end_date', 'promotions.category as category',
-            'promotions.title as promo_title', 'promotions.discount as discount', 
+            'promotions.banner_image as banner_image', 'promotions.description as promo_desc', 
+            'promotions.start_date as start_date', 'promotions.end_date as end_date', 'promotions.category as category',
+            'promotions.title as promo_title', 'promotions.discount as discount', 'promotions.featured_image_link as featured_image_link',
             'promotions.discount_nominal as discount_nominal', 'promotions.link_title_more_description as link_title_more_description', 
             'promotions.more_description as more_description'
             /*'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right',
@@ -1337,6 +1337,7 @@ class Event extends Model
                     $event->end_date = '';
                 }
                 $event->featured_image_url = file_url('promotions/'.$event->featured_image, env('FILESYSTEM_DEFAULT'));
+                $event->banner_image_url = file_url('promotions/'.$event->banner_image, env('FILESYSTEM_DEFAULT'));
                 // if($event->discount > 0){
                 //     $event->disc = number_format_drop_zero_decimals($event->discount).'%';
                 // }else{
@@ -1354,10 +1355,10 @@ class Event extends Model
         $events = Event::select('events.id as id','events.title as title', 'events.featured_image1 as featured_image1', 
             'events.featured_image2 as featured_image2', 'events.slug as slug', 'events.venue_id as venue_id', 
             'events.buylink as buylink', 'events.avaibility as avaibility', 'event_promotions.id as ep_id',
-            'promotions.id as promotion_id', 'promotions.featured_image as featured_image',  
-            'promotions.description as promo_desc', 'promotions.start_date as start_date', 
-            'promotions.end_date as end_date', 'promotions.category as category',
-            'promotions.title as promo_title', 'promotions.discount as discount', 
+            'promotions.id as promotion_id', 'promotions.featured_image as featured_image', 
+            'promotions.banner_image as banner_image', 'promotions.description as promo_desc', 
+            'promotions.start_date as start_date', 'promotions.end_date as end_date', 'promotions.category as category',
+            'promotions.title as promo_title', 'promotions.discount as discount', 'promotions.featured_image_link as featured_image_link',
             'promotions.discount_nominal as discount_nominal', 'promotions.link_title_more_description as link_title_more_description', 
             'promotions.more_description as more_description'
             /*'currencies.symbol_left as symbol_left', 'currencies.symbol_right as symbol_right',
@@ -1404,6 +1405,7 @@ class Event extends Model
                     $event->end_date = '';
                 }
                 $event->featured_image_url = file_url('promotions/'.$event->featured_image, env('FILESYSTEM_DEFAULT'));
+                $event->banner_image_url = file_url('promotions/'.$event->banner_image, env('FILESYSTEM_DEFAULT'));
                 // if($event->discount > 0){
                 //     $event->disc = number_format_drop_zero_decimals($event->discount).'%';
                 // }else{
