@@ -293,4 +293,10 @@ iframe[name="google_conversion_frame"]{
 .box-promo .boxInfo ul li img{
   max-width: 100px;
 }
+.discoverCategory .tabCategory li img{
+  height: 40px;
+}
+.eventTabScroll-mobile{
+  z-index: 2;
+}
 
