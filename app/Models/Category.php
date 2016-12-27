@@ -222,7 +222,7 @@ class Category extends Model
     {
         $data = Category::where('slug' , '=', $slug)->first();
         if (!empty($data)) {
-        
+            $data->icon_image_url = file_url('categories/'.$data->icon_image, env('FILESYSTEM_DEFAULT'));
             return $data;
         
         } else {
