@@ -325,11 +325,11 @@ iframe[name="google_conversion_frame"]{
     margin: 0;
     width: 100%;
   }
-  #modalSeatMap .modal-body{
+  /*#modalSeatMap .modal-body{
     height: calc(100% - 56px);
     overflow: auto;
-  }
-  /*#modalSeatMap .modal-header .close{
+  }*/
+  #modalSeatMap .modal-header .close{
       z-index: 2;
       position: relative;
   }
@@ -344,6 +344,6 @@ iframe[name="google_conversion_frame"]{
   .seat-map-modal{
     height: 100%;
     overflow: auto;
-  }*/
+  }
 }
 
