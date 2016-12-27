@@ -325,5 +325,16 @@ iframe[name="google_conversion_frame"]{
     margin: 0;
     width: 100%;
   }
+  #modalSeatMap .modal-body{
+    height: 100%;
+    /*margin-top: -56px;
+    padding: 56px 0 0 0;
+    overflow: hidden;
+    width: 100%;*/
+  }
+  .seat-map-modal{
+    height: 100%;
+    /*overflow: auto;*/
+  }
 }
 
