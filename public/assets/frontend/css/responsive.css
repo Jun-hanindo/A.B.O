@@ -859,7 +859,7 @@
     font-size: 11px;
   }
   .eventBanner .btnPlayEvent{
-    top: 40%;
+    top: 50%;
     left: 45%;
   }
   .main-content section{
@@ -902,7 +902,7 @@
 
 @media (max-width: 650px){
   .eventBanner .btnPlayEvent{
-    top: 20%;
+    top: 50%;
     left: 44%;
   }
   .eventBanner .btnPlayEvent a{
@@ -927,7 +927,7 @@
     word-break: break-word;
   }
   .eventBanner .btnPlayEvent{
-    top: 18%;
+    top: 50%;
     left: 43%;
   }
   .contactTab .nav>li>a{
@@ -978,8 +978,8 @@
 
 @media (max-width: 420px){
   .eventBanner .btnPlayEvent{
-    top: 25%;
-    left: 43%;
+    top: 50%;
+    left: 45%;
   }
   .eventBanner .btnPlayEvent a{
     font-size: 50px;
