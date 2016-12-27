@@ -321,5 +321,9 @@ iframe[name="google_conversion_frame"]{
       height: 30px;
       width: auto !important;
   }
+  .full-modal .modal-dialog{
+    margin: 0;
+    width: 100%;
+  }
 }
 

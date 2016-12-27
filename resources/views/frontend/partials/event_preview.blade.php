@@ -482,7 +482,7 @@
 </section>
 @if(isset($event->event_type))
     @if($event->event_type == 0)
-        <div class="modal fade modal-hochi" id="modalSeatMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade modal-hochi full-modal" id="modalSeatMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

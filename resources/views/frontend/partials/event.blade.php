@@ -467,7 +467,7 @@
     </div>
 </section>
 @if($event->event_type == false)
-    <div class="modal fade modal-hochi" id="modalSeatMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade modal-hochi full-modal" id="modalSeatMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
