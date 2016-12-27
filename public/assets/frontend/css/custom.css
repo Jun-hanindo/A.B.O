@@ -316,6 +316,9 @@ iframe[name="google_conversion_frame"]{
 .promoModal .descPromoModal .promoBanner{
     max-width: 100%;
 }
+.imageBanner{
+  position: relative;
+}
 @media (max-width: 991px) {
   .discoverCategory .tabCategory li img {
       height: 30px;
