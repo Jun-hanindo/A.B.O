@@ -44,68 +44,70 @@
                                         <h4 class="modal-title" id="myModalLabel">{{ucwords(strtolower($event->category)).' - '.$event->title}}</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="promoBanner">
-                                            <img src="{{ $event->featured_image1_url }}" class="promo-modal-web">
-                                            <img src="{{ $event->featured_image2_url }}" class="promo-modal-mobile">
-                                        </div>
-                                        <div class="descPromoModal">
-                                            {{-- <h4>{{ trans('frontend/general.about_this_promotion') }}</h4> --}}
-                                            <div class="promoBannerDesc">
-                                                <div class="row">
-                                                    <div class="col-md-12 col-xs-12">
-                                                        @if(!empty($event->banner_image))
-                                                            <a {!! (!empty($event->featured_image_link)) ? 'href="'.$event->featured_image_link.'" target="_blank"' : '' !!}>
-                                                                <img class="promoBanner" src="{{ $event->banner_image_url }}">
-                                                            </a>
-                                                        @else
-                                                            @if(!empty($event->featured_image))
+                                        <div class="desc-promo-modal">
+                                            <div class="promoBanner">
+                                                <img src="{{ $event->featured_image1_url }}" class="promo-modal-web">
+                                                <img src="{{ $event->featured_image2_url }}" class="promo-modal-mobile">
+                                            </div>
+                                            <div class="descPromoModal">
+                                                {{-- <h4>{{ trans('frontend/general.about_this_promotion') }}</h4> --}}
+                                                <div class="promoBannerDesc">
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-xs-12">
+                                                            @if(!empty($event->banner_image))
                                                                 <a {!! (!empty($event->featured_image_link)) ? 'href="'.$event->featured_image_link.'" target="_blank"' : '' !!}>
-                                                                    <img class="promoLogo" src="{{ $event->featured_image_url }}" onload="this.width/=2;this.onload=null;">
+                                                                    <img class="promoBanner" src="{{ $event->banner_image_url }}">
                                                                 </a>
+                                                            @else
+                                                                @if(!empty($event->featured_image))
+                                                                    <a {!! (!empty($event->featured_image_link)) ? 'href="'.$event->featured_image_link.'" target="_blank"' : '' !!}>
+                                                                        <img class="promoLogo" src="{{ $event->featured_image_url }}" onload="this.width/=2;this.onload=null;">
+                                                                    </a>
+                                                                @endif
                                                             @endif
-                                                        @endif
-                                                        <h3 class="font-bold">{{ $event->promo_title }}</h3>
-                                                        {!! $event->promo_desc !!}
-                                                        @if(!empty($event->link_title_more_description))
-                                                            <a id="link_title_more_promotion" data-toggle="collapse" href="#more_description{{ $event->ep_id }}" aria-expanded="false"><u> {!! $event->link_title_more_description !!} </u></a>
-                                                        @endif
-                                                        @if(!empty($event->more_description))
-                                                            <span class="collapse" id="more_description{{ $event->ep_id }}"> {!! $event->more_description !!} </span>
-                                                        @endif
+                                                            <h3 class="font-bold">{{ $event->promo_title }}</h3>
+                                                            {!! $event->promo_desc !!}
+                                                            @if(!empty($event->link_title_more_description))
+                                                                <a id="link_title_more_promotion" data-toggle="collapse" href="#more_description{{ $event->ep_id }}" aria-expanded="false"><u> {!! $event->link_title_more_description !!} </u></a>
+                                                            @endif
+                                                            @if(!empty($event->more_description))
+                                                                <span class="collapse" id="more_description{{ $event->ep_id }}"> {!! $event->more_description !!} </span>
+                                                            @endif
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- <h4>How to Participate </h4>
-                                            <p>Show StarHub bill or subscription on any device such as mobile phone or tablet.</p> -->
+                                                <!-- <h4>How to Participate </h4>
+                                                <p>Show StarHub bill or subscription on any device such as mobile phone or tablet.</p> -->
 
-                                            
-                                            @if($event->discount > 0 || $event->discount_nominal > 0)
-                                                <p>{{ trans('general.discount') }}: 
-                                                    @if($event->discount > 0)
-                                                        {{ number_format_drop_zero_decimals($event->discount).'%' }}
-                                                    @else
-                                                        @if($event->currency_id == 0)
-                                                            @php
-                                                                $code = '';
-                                                            @endphp
+                                                
+                                                @if($event->discount > 0 || $event->discount_nominal > 0)
+                                                    <p>{{ trans('general.discount') }}: 
+                                                        @if($event->discount > 0)
+                                                            {{ number_format_drop_zero_decimals($event->discount).'%' }}
                                                         @else
-                                                            @php
-                                                                $code = $event->currency->code;
-                                                            @endphp
+                                                            @if($event->currency_id == 0)
+                                                                @php
+                                                                    $code = '';
+                                                                @endphp
+                                                            @else
+                                                                @php
+                                                                    $code = $event->currency->code;
+                                                                @endphp
+                                                            @endif
+                                                            {{ $code.' '.number_format_drop_zero_decimals($event->discount_nominal) }}
                                                         @endif
-                                                        {{ $code.' '.number_format_drop_zero_decimals($event->discount_nominal) }}
-                                                    @endif
-                                                </p>
-                                            @endif
+                                                    </p>
+                                                @endif
 
-                                            @if(!empty($event->start_date))
-                                                <h4>{{ trans('frontend/event.promotion_period') }}</h4>
-                                                <p>{{ trans('frontend/general.start_date') }}: {{ $event->start_date }}</p>
-                                                <br>
-                                            @endif
-                                            @if(!empty($event->end_date))
-                                                <p>{{ trans('frontend/general.end_date') }}: {{ $event->end_date }}</p>
-                                            @endif
+                                                @if(!empty($event->start_date))
+                                                    <h4>{{ trans('frontend/event.promotion_period') }}</h4>
+                                                    <p>{{ trans('frontend/general.start_date') }}: {{ $event->start_date }}</p>
+                                                    <br>
+                                                @endif
+                                                @if(!empty($event->end_date))
+                                                    <p>{{ trans('frontend/general.end_date') }}: {{ $event->end_date }}</p>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">

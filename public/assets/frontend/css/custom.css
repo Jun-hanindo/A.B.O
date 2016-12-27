@@ -329,7 +329,8 @@ iframe[name="google_conversion_frame"]{
     height: calc(100% - 56px);
     overflow: auto;
   }*/
-  #modalSeatMap .modal-header .close{
+  #modalSeatMap .modal-header .close,
+  .full-modal.promoModal .modal-header .close{
       z-index: 2;
       position: relative;
   }
@@ -341,9 +342,26 @@ iframe[name="google_conversion_frame"]{
     overflow: hidden;
     width: 100%;
   }
-  .seat-map-modal{
+  .seat-map-modal,
+  .desc-promo-modal{
     height: 100%;
     overflow: auto;
+  }
+
+  .full-modal.promoModal .modal-body{
+    height: 100%;
+    margin-top: -56px;
+    padding-top: 56px;
+    margin-bottom: -110px;
+    padding-bottom: 110px;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+  }
+  .full-modal.promoModal .modal-footer{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
   }
 }
 
