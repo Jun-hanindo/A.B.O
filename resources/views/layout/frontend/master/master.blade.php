@@ -113,7 +113,7 @@
                                                     </ul>
                                                 </nav>
                                             </div>
-                                        </li>
+                                        </li> --}}
                                         <li class="nav-item nav-third">
                                             <div class="nav-search">
                                                 <form action="{{route('event-search-get')}}" method="get">
@@ -130,7 +130,7 @@
                                                 </form>
                                             </div>
                                         </li>
-                                        <li class="nav-item list-menu">
+                                        {{-- <li class="nav-item list-menu">
                                             <a href="{{ URL::route('discover')}}">{{ trans('frontend/general.discover_events') }}</a>
                                         </li>
                                         <li class="nav-item list-menu">
@@ -158,9 +158,9 @@
                                 <div class="mobile-header-show">
                                     <div class="row">
                                         <div class="col-xs-3">
-                                            {{-- <div class="mobile-search">
+                                            <div class="mobile-search">
                                                 <a href="#"><i class="fa fa-search"></i></a>
-                                            </div> --}}
+                                            </div>
                                         </div>
                                         <div class="col-xs-6">
                                             <div class="mobile-logo">
@@ -237,7 +237,7 @@
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
-                                {{-- <div class="mobile-search-show">
+                                <div class="mobile-search-show">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-xs-1">
@@ -265,7 +265,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
                             </div>
                         </div>
                     </div>

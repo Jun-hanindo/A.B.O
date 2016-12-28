@@ -252,22 +252,40 @@ iframe[name="google_conversion_frame"]{
 .mobile-header.mobile-header-xmas .mobile-header-show,
 .mobile-header.mobile-header-xmas .mobile-header-show .row,
 .mobile-header.mobile-header-xmas .mobile-logo,
-.mobile-header.mobile-header-xmas .mobile-menu{
+.mobile-header.mobile-header-xmas .mobile-menu,
+.mobile-header.mobile-header-xmas .mobile-search{
   height: 100%;
+}
+.mobile-search-show,
+.mobile-search-show.open{
+  height: 60px;
+}
+.mobile-search-show .container,
+.mobile-search-show.open .container{
+    height: 100%;
+    display: table;
+    padding-left: 0;
+    padding-right: 0;
+}
+.mobile-search-show .container .row,
+.mobile-search-show.open .container .row{
+  display: table-cell;
+  vertical-align: middle;
 }
 .mobile-header.mobile-header-xmas .mobile-logo{
   display: table;
   margin: 0 auto;
 }
-.mobile-header.mobile-header-xmas .mobile-menu{
+.mobile-header.mobile-header-xmas .mobile-menu,
+.mobile-header.mobile-header-xmas .mobile-search,
+.mobile-search-show.open{
   display: table;
   width: 100%;
-}
-.mobile-header.mobile-header-xmas .mobile-menu{
   margin-top: 0;
 }
 .mobile-header.mobile-header-xmas .mobile-logo a,
-.mobile-header.mobile-header-xmas .mobile-menu .mobile-collapse-top{
+.mobile-header.mobile-header-xmas .mobile-menu .mobile-collapse-top,
+.mobile-header.mobile-header-xmas .mobile-search a{
   display: table-cell;
   vertical-align: middle;
 }
@@ -321,6 +339,12 @@ iframe[name="google_conversion_frame"]{
 }
 .btnPlayEvent a i {
   text-shadow: 2px 2px rgba(0,0,0, 0.1);
+}
+@media (max-width: 770px){
+  .mobile-search-show .container,
+  .mobile-search-show.open .container{
+    width: 100%;
+  }
 }
 @media (max-width: 991px) {
   .discoverCategory .tabCategory li img {
