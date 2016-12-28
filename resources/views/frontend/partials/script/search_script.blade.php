@@ -31,51 +31,6 @@
                 sortFilterResult(sort);
             });
 
-            // $('.cat-filter-all').on('ifChanged', function(e){
-            //     $('.cat-filter-all').on('ifChecked', function(event){
-            //         $('.cat-filter').iCheck('check');
-            //         $('.cat-filter-mobile').iCheck('check');
-            //     });
-            //     $('.cat-filter-all').on('ifUnchecked', function(event){
-            //         $('.cat-filter').iCheck('uncheck');
-            //         $('.cat-filter-mobile').iCheck('uncheck');
-            //     });
-            //     //sortFilterResult(sort);
-            // });
-
-            // $('.cat-filter').on('ifChanged', function(e){
-            //     $(this).on('ifChecked', function(event){
-            //         var val = $(this).val();
-            //         // if(val == 'all'){
-            //         //     $('.cat-filter').iCheck('check');
-            //         //     $('.cat-filter-mobile').iCheck('check');
-            //         // }else{
-            //             $('.cat-filter-mobile[value="'+val+'"]').iCheck('check');
-            //         //}
-            //         //sortFilterResult(sort);
-            //     });
-            //     $(this).on('ifUnchecked', function(event){
-            //         var val = $(this).val();
-            //         // if(val == 'all'){
-            //         //     $('.cat-filter').iCheck('uncheck');
-            //         //     $('.cat-filter-mobile').iCheck('uncheck');
-            //         // }else{
-            //             $('.cat-filter-mobile[value="'+val+'"]').iCheck('uncheck');
-            //         //}
-            //         //sortFilterResult(sort);
-            //     });
-            //     sortFilterResult(sort);
-            //     // $(".cat-filter:checked").each(function(){
-            //     //     var val = $(this).val();
-            //     //     //console.log(val);
-            //     //     $('.cat-filter-mobile[value="'+val+'"]').prop('checked', true);
-            //     // });
-            //     // $(".cat-filter:not(:checked)").each(function(){
-            //     //     var val = $(this).val();
-            //     //     $('.cat-filter-mobile[value="'+val+'"]').prop('checked', false);
-            //     // });
-            // });
-
             $('.reset-filter').on('click', function(e){
                 resetFilterSearch();
                 sortFilterResult(sort);
@@ -105,68 +60,89 @@
                 sortFilterResult(sort_mobile);
             });
 
-            // $('.cat-filter-mobile-all').on('ifClicked', function(e){
-            //     $('.cat-filter-all').on('ifChecked', function(event){
-            //         $('.cat-filter').iCheck('check');
-            //         $('.cat-filter-mobile').iCheck('check');
-            //     });
-            //     $('.cat-filter-all').on('ifUnchecked', function(event){
-            //         $('.cat-filter').iCheck('uncheck');
-            //         $('.cat-filter-mobile').iCheck('uncheck');
-            //     });
-            //     sortFilterResult(sort);
-            // });
 
-            // $('.cat-filter-mobile').on('ifChanged', function(e){
-            //     $(this).on('ifChecked', function(event){
-            //         var val = $(this).val();
-            //         // if(val == 'all'){
-            //         //     $('.cat-filter').iCheck('check');
-            //         //     $('.cat-filter-mobile').iCheck('check');
-            //         // }else{
-            //             $('.cat-filter[value="'+val+'"]').iCheck('check');
-            //         //}
-            //     });
-            //     $(this).on('ifUnchecked', function(event){
-            //         var val = $(this).val();
-            //         // if(val == 'all'){
-            //         //     $('.cat-filter').iCheck('uncheck');
-            //         //     $('.cat-filter-mobile').iCheck('uncheck');
-            //         // }else{
-            //             $('.cat-filter[value="'+val+'"]').iCheck('uncheck');
-            //         //}
-            //     });
+            $('.cat-filter-all').on('ifClicked', function(e){
+                var val = $(this).val();
+                var check = $('.cat-filter-all').iCheck('toggle')[0].checked;
 
-            //     // $(".cat-filter-mobile:checked").each(function(){
-            //     //     var val = $(this).val();
-            //     //     $('.cat-filter[value="'+val+'"]').prop('checked', true);
-            //     // });
-            //     // $(".cat-filter-mobile:not(:checked)").each(function(){
-            //     //     var val = $(this).val();
-            //     //     $('.cat-filter[value="'+val+'"]').prop('checked', false);
-            //     // });
-            //     sortFilterResult(sort_mobile);
-            // });
-            // 
+                if(check){
+                    $('.cat-filter, .cat-filter-mobile, .cat-filter-mobile-all').iCheck('check');
+                    sortFilterResult(sort);
+                }else{
+                    $('.cat-filter, .cat-filter-mobile, .cat-filter-mobile-all').iCheck('uncheck');
+                    sortFilterResult(sort);
+                }
+            });
+
+            $('.cat-filter-mobile-all').on('ifClicked', function(e){
+                var val = $(this).val();
+                var check = $('.cat-filter-all').iCheck('toggle')[0].checked;
+
+                if(check){
+                    $('.cat-filter, .cat-filter-mobile, .cat-filter-all').iCheck('check');
+                    sortFilterResult(sort_mobile);
+                }else{
+                    $('.cat-filter, .cat-filter-mobile, .cat-filter-all').iCheck('uncheck');
+                    sortFilterResult(sort_mobile);
+                }
+            });
+
+            $('.cat-filter').on('ifClicked', function(e){
+                var val = $(this).val();
+                var check = $('.cat-filter[value="'+val+'"]').iCheck('toggle')[0].checked;
+                if(check){
+                    $('.cat-filter[value="'+val+'"], .cat-filter-mobile[value="'+val+'"]').iCheck('check');
+                    sortFilterResult(sort);
+                }else{
+                    $('.cat-filter[value="'+val+'"], .cat-filter-mobile[value="'+val+'"], .cat-filter-all, .cat-filter-mobile-all').iCheck('uncheck');
+                    sortFilterResult(sort);
+
+                }
+            });
+
+            $('.cat-filter-mobile').on('ifClicked', function(e){
+                var val = $(this).val();
+                var check = $('.cat-filter-mobile[value="'+val+'"]').iCheck('toggle')[0].checked;
+                if(check){
+                    $('.cat-filter[value="'+val+'"], .cat-filter-mobile[value="'+val+'"]').iCheck('check');
+                    sortFilterResult(sort);
+                }else{
+                    $('.cat-filter[value="'+val+'"], .cat-filter-mobile[value="'+val+'"], .cat-filter-all, .cat-filter-mobile-all').iCheck('uncheck');
+                    sortFilterResult(sort);
+
+                }
+            });
             
-            $('.cat-filter').on('ifChecked', function(e){
-                var val = $(this).val();
-                $('.cat-filter-mobile[value="'+val+'"]').iCheck('check');
-                sortFilterResult(sort);
-            }).on('ifUnchecked', function(event){
-                var val = $(this).val();
-                $('.cat-filter-mobile[value="'+val+'"]').iCheck('uncheck');
-                sortFilterResult(sort);
-            });
-            $('.cat-filter-mobile').on('ifChecked', function(e){
-                var val = $(this).val();
-                $('.cat-filter[value="'+val+'"]').iCheck('check');
-                sortFilterResult(sort_mobile);
-            }).on('ifUnchecked', function(event){
-                var val = $(this).val();
-                $('.cat-filter[value="'+val+'"]').iCheck('uncheck');
-                sortFilterResult(sort_mobile);
-            });
+            // $('.cat-filter').on('ifChecked', function(e){
+            //     sortFilterResult(sort);
+            //     var val = $(this).val();
+            //     $('.cat-filter-mobile[value="'+val+'"]').iCheck('check');
+            //     // if(val == 'all'){
+            //     //     $('.cat-filter, .cat-filter-mobile').iCheck('check');
+            //     // }
+            // }).on('ifUnchecked', function(event){
+            //     sortFilterResult(sort);
+            //     var val = $(this).val();
+            //     $('.cat-filter-mobile[value="'+val+'"]').iCheck('uncheck');
+            //     // if(val == 'all'){
+            //     //     $('.cat-filter, .cat-filter-mobile').iCheck('uncheck');
+            //     // }
+            // });
+            // $('.cat-filter-mobile').on('ifChecked', function(e){
+            //     sortFilterResult(sort_mobile);
+            //     var val = $(this).val();
+            //     $('.cat-filter[value="'+val+'"]').iCheck('check');
+            //     // if(val == 'all'){
+            //     //     $('.cat-filter, .cat-filter-mobile').iCheck('check');
+            //     // }
+            // }).on('ifUnchecked', function(event){
+            //     sortFilterResult(sort_mobile);
+            //     var val = $(this).val();
+            //     $('.cat-filter[value="'+val+'"]').iCheck('uncheck');
+            //     // if(val == 'all'){
+            //     //     $('.cat-filter, .cat-filter-mobile').iCheck('uncheck');
+            //     // }
+            // });
 
         });
 
@@ -174,9 +150,9 @@
         {
             modal_loader();
             var data = $('#filter-form').serializeArray();
-            console.log(data);
             data.push({name: 'q', value: q});
             data.push({name: 'sort', value: sort});
+            console.log(data);
             $.ajax({
                 url: "{{ route('event-search-get') }}",
                 type: "GET",

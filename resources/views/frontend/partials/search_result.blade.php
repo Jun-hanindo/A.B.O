@@ -18,7 +18,7 @@
                             <div class="filter-child filter-categories">
                                 <ul>
                                     @if(!empty($categories))
-                                        <li><input type="checkbox" name="cat[]" class="cat-filter" value="all"
+                                        <li><input type="checkbox" name="cat[]" class="cat-filter-all" value="all"
                                                 @if(!empty($cats_sel))
                                                     @foreach($cats_sel as $k => $cat_sel) 
                                                         @if($cat_sel == 'all')
@@ -144,7 +144,7 @@
                                         <div class="filter-child filter-categories-mobile">
                                             <ul>
                                                 @if(!empty($categories))
-                                                    <li class="checkbox"><label><input type="checkbox" name="cat[]" class="cat-filter-mobile" value="all"
+                                                    <li class="checkbox"><label><input type="checkbox" name="cat[]" class="cat-filter-mobile-all" value="all"
                                                         @if(!empty($cats_sel))
                                                             @foreach($cats_sel as $k => $cat_sel) 
                                                                 @if($cat_sel == 'all')
