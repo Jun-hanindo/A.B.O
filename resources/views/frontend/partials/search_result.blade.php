@@ -54,7 +54,7 @@
                             </div>
                         </div>
                     </li> --}}
-                    <li class="sidebar-menu filter-search">
+                    {{-- <li class="sidebar-menu filter-search">
                         <a class="collapsed" role="button" data-toggle="collapse" href="#collapseTime" aria-expanded="false" aria-controls="collapseExample">{{ trans('frontend/general.time_period') }}</a>
                         <div class="collapse" id="collapseTime">
                             <div class="filter-child filter-categories">
@@ -71,7 +71,7 @@
                                 </select>
                             </div>
                         </div>
-                    </li>
+                    </li> --}}
                     <li class="sidebar-menu filter-search filter-last">
                         <a class="collapsed" role="button" data-toggle="collapse" href="#collapseVenue" aria-expanded="false" aria-controls="collapseExample">{{ trans('frontend/general.venues') }}</a>
                         <div class="collapse" id="collapseVenue">
@@ -180,7 +180,7 @@
                                         </div>
                                     </div>
                                 </li> --}}
-                                <li class="sidebar-menu filter-search">
+                                {{-- <li class="sidebar-menu filter-search">
                                     <a class="collapsed" role="button" data-toggle="collapse" href="#collapseTime-mobile" aria-expanded="false" aria-controls="collapseExample">{{ trans('frontend/general.time_period') }}</a>
                                     <div class="collapse" id="collapseTime-mobile">
                                         <div class="filter-child filter-categories-mobile">
@@ -197,7 +197,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                </li>
+                                </li> --}}
                                 <li class="sidebar-menu filter-search">
                                     <a class="collapsed" role="button" data-toggle="collapse" href="#collapseVenue-mobile" aria-expanded="false" aria-controls="collapseExample">{{ trans('frontend/general.venues') }}</a>
                                     <div class="collapse" id="collapseVenue-mobile">
