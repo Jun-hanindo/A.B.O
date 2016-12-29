@@ -1471,7 +1471,7 @@ class Event extends Model
     public function search($param, $limit)
     {
         $q = $param['q'];
-        $sort = $param['sort'];
+        //$sort = $param['sort'];
         
         $query = Event::select('events.id as id','events.title as title', 'events.featured_image3 as featured_image3',
             'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color',  
@@ -1536,8 +1536,11 @@ class Event extends Model
         // }
         
 
-        $query->groupBy('events.id')
-            ->orderBy($sort);
+        $query->groupBy('events.id');
+        if(isset($param['sort'])){
+            $query->orderBy($param['sort']);
+        }
+            
 
         if($limit > 0){
             $query->take($limit);

@@ -356,11 +356,12 @@ class EventsController extends Controller
             $limit = 0;
             $results['events'] = $this->model->search($param, $limit);
             $modelCategory = new Category();
-            $results['categories'] = $modelCategory->getCategoryAvaibility();
+            // $results['categories'] = $modelCategory->getCategoryAvaibility();
+            $results['categories'] = $modelCategory->getCategoryEventExist();
             $modelVenue = new Venue();
             $results['venues'] = $modelVenue->getVenue();
             $results['q'] = $param['q'];
-            $results['sort'] = $param['sort'];
+            //$results['sort'] = $param['sort'];
 
             
             if(isset($param['venue'])){

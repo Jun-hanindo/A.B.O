@@ -2,8 +2,10 @@
 
 <script type="text/javascript">
        var q = $(".input-search").val(); 
-       var sort = $('#sort-search').val();
-       var sort_mobile = $('#sort-search-mobile').val();
+       //var sort = $('#sort-search').val();
+       //var sort_mobile = $('#sort-search-mobile').val();
+        var sort = '';
+        var sort_mobile = '';
 
         $(document).ready(function(){
 
@@ -151,7 +153,7 @@
             modal_loader();
             var data = $('#filter-form').serializeArray();
             data.push({name: 'q', value: q});
-            data.push({name: 'sort', value: sort});
+            //data.push({name: 'sort', value: sort});
             console.log(data);
             $.ajax({
                 url: "{{ route('event-search-get') }}",

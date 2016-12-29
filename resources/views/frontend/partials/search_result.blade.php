@@ -98,11 +98,11 @@
                     <div class="row">
                         <div class="job-head search-head">
                             <h4 class="head-about head-search font-light">{{ trans('frontend/general.search_result_for') }} <span>"{{$q}}"</span></h4>
-                            <select id="sort-search" name="sort" class="form-control">
+                            {{-- <select id="sort-search" name="sort" class="form-control">
                                 <option value="date" {{ $sort == 'date' ? 'selected' : '' }}>Sort By Date</option>
                                 <option value="price" {{ $sort == 'price' ? 'selected' : '' }}>Sort By Price</option>
                                 <!-- <option value="popularity" {{ $sort == 'popularity' ? 'selected' : '' }}>Sort By Popularity</option> -->
-                            </select>
+                            </select> --}}
                         </div>
                         <div class="search-list search-list-head">
                             <table>
@@ -224,13 +224,13 @@
     <div class="row">
         <div class="col-md-12">
             <div class="container">
-                <div class="filter-search-mobile">
+                {{-- <div class="filter-search-mobile">
                     <select id="sort-search-mobile" name="sort" class="form-control">
                         <option value="date" {{ $sort == 'date' ? 'selected' : '' }}>Sort By Date</option>
                         <option value="price" {{ $sort == 'price' ? 'selected' : '' }}>Sort By Price</option>
                         <!-- <option value="popularity" {{ $sort == 'popularity' ? 'selected' : '' }}>Sort By Popularity</option> -->
-                    </select>
-                </div>
+                    </select> 
+                </div> --}}
                 <div class="search-list-mobile">
                     @if(!empty($events))
                         @foreach($events as $key => $event) 
