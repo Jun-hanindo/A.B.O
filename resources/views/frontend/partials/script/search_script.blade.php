@@ -162,7 +162,8 @@
                 data: data,
                 success: function (response) {
                     var val = $('#filter-form').serialize();
-                    var uri = 'q='+q+'&sort='+sort+'&'+val;
+                    //var uri = 'q='+q+'&sort='+sort+'&'+val;
+                    var uri = 'q='+q+'&'+val;
                     uri = "{{ URL::to('search/result')}}?"+uri;
                     //console.log(uri);
                     //window.location.href = uri;

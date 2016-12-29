@@ -1475,7 +1475,7 @@ class Event extends Model
         
         $query = Event::select('events.id as id','events.title as title', 'events.featured_image3 as featured_image3',
             'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color',  
-            'events.schedule_title',
+            'events.schedule_title', 'events.sort_order as sort_order',
              /*DB::RAW("array_to_string(array_agg(DISTINCT venues.name), ',')  as venue"),*/ 
              DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',') as category"), 
              DB::RAW("min(DISTINCT event_schedules.date_at) as date"), 
@@ -1537,8 +1537,11 @@ class Event extends Model
         
 
         $query->groupBy('events.id');
+        //dd($param['sort']);
         if(isset($param['sort'])){
             $query->orderBy($param['sort']);
+        }else{
+            $query->orderBy('sort_order', 'desc');
         }
             
 
