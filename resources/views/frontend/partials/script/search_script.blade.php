@@ -154,7 +154,7 @@
             var data = $('#filter-form').serializeArray();
             data.push({name: 'q', value: q});
             //data.push({name: 'sort', value: sort});
-            console.log(data);
+            //console.log(data);
             $.ajax({
                 url: "{{ route('event-search-get') }}",
                 type: "GET",

@@ -1476,13 +1476,13 @@ class Event extends Model
         $query = Event::select('events.id as id','events.title as title', 'events.featured_image3 as featured_image3',
             'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color',  
             'events.schedule_title', 'events.sort_order as sort_order',
-             /*DB::RAW("array_to_string(array_agg(DISTINCT venues.name), ',')  as venue"),*/ 
+             DB::RAW("array_to_string(array_agg(DISTINCT venues.name), ',')  as venue"), 
              DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',') as category"), 
              DB::RAW("min(DISTINCT event_schedules.date_at) as date"), 
              DB::RAW("min(DISTINCT event_schedule_categories.price) as price"))
             ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
             ->join('categories', 'categories.id', '=', 'event_categories.category_id')
-            // ->join('venues', 'venues.id', '=', 'events.venue_id')
+            ->join('venues', 'venues.id', '=', 'events.venue_id')
             ->join('event_schedules', 'event_schedules.event_id', '=', 'events.id')
             ->join('event_schedule_categories', 'event_schedule_categories.event_schedule_id', '=', 'event_schedules.id')
             ->where('events.avaibility','=', true)
