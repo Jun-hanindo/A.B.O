@@ -5,13 +5,13 @@ modal_loader = function(){
     });
 };
 
-var sort = $('#sort-text').val();
+//var sort = $('#sort-text').val();
 $(document).ready(function(){
     $(".input-search").on('keyup', function(){
         var q = $(this).val();
 
         if(q.length >=3 ) {
-            autoSearch(q, sort);
+            autoSearch(q/*, sort*/);
         } else {
             $("#ul-search").hide();
         }
@@ -21,7 +21,7 @@ $(document).ready(function(){
         var q = $(this).val();
 
         if(q.length >=3 ) {
-            autoSearchMobile(q, sort);
+            autoSearchMobile(q/*, sort*/);
         } else {
             $("#ul-search-mobile").hide();
         }
@@ -73,14 +73,15 @@ function setLanguage(lang, country)
 }
 
 
-
-function autoSearch(q, sort)
+//function autoSearch(q, sort)
+function autoSearch(q)
 {
     $.ajax({
         url: base_url+'/search',
         type: "GET",
         dataType: 'json',
-        data: {'q':q,'sort':sort},
+        //data: {'q':q,'sort':sort},
+        data: {'q':q},
         success: function (response) {
                 setTimeout(function() {
                     $(".append-search").html('');
@@ -89,7 +90,8 @@ function autoSearch(q, sort)
                     var results = response.data;
                     if(results.events.length > 0){
                         $("#ul-search").append('<div class="inbox-message drawer-item" id="header-search">'
-                            +'<a href="'+base_url+'/search/result?q='+q+'&sort='+sort+'" class="btn-see-all">'
+                            //+'<a href="'+base_url+'/search/result?q='+q+'&sort='+sort+'" class="btn-see-all">'
+                            +'<a href="'+base_url+'/search/result?q='+q+'" class="btn-see-all">'
                                 +'<div class="img-search"><i class="fa fa-search"></i></div><div class="content">'
                                     + '<h5 class="all-result">All Result for "'+q+'"</h5></div></a></div>');
                         $.each(results.events,function(key,val){
@@ -115,13 +117,15 @@ function autoSearch(q, sort)
     });
 }
 
-function autoSearchMobile(q, sort)
+//function autoSearchMobile(q, sort)
+function autoSearchMobile(q)
 {
     $.ajax({
         url: base_url+'/search',
         type: "GET",
         dataType: 'json',
-        data: {'q':q,'sort':sort},
+        // data: {'q':q,'sort':sort},
+        data: {'q':q},
         success: function (response) {
                 setTimeout(function() {
                     $("#ul-search-mobile .append-search").html('');
@@ -130,7 +134,8 @@ function autoSearchMobile(q, sort)
                     var results = response.data;
                     if(results.events.length > 0){
                         $("#ul-search-mobile").append('<div class="inbox-message drawer-item" id="header-search">'
-                            +'<a href="'+base_url+'/search/result?q='+q+'&sort='+sort+'" class="btn-see-all">'
+                            // +'<a href="'+base_url+'/search/result?q='+q+'&sort='+sort+'" class="btn-see-all">'
+                            +'<a href="'+base_url+'/search/result?q='+q+'" class="btn-see-all">'
                                 +'<div class="img-search"><i class="fa fa-search"></i></div><div class="content">'
                                     + '<h5 class="all-result">All Result for "'+q+'"</h5></div></a></div>');
                         $.each(results.events,function(key,val){

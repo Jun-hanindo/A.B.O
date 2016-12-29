@@ -230,7 +230,7 @@
         }
 
         function resetFilterSearch(){
-            $('.cat-filter').prop('checked', false);
+            $('.cat-filter, .cat-filter-all, .cat-filter-mobile, .cat-filter-mobile-all').iCheck('uncheck');
             $('#filter-venue').val('all');
             $('#filter-period').val('all');
         }
