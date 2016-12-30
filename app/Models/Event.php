@@ -1538,7 +1538,7 @@ class Event extends Model
 
         $query->groupBy('events.id');
         //dd($param['sort']);
-        if(isset($param['sort'])){
+        if(isset($param['sort']) || !empty($param['sort'])){
             $query->orderBy($param['sort']);
         }else{
             $query->orderBy('sort_order', 'desc');
