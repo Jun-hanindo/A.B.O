@@ -96,7 +96,7 @@ function autoSearch(q)
                                     + '<h5 class="all-result">All Result for "'+q+'"</h5></div></a></div>');
                         $.each(results.events,function(key,val){
                             var html = '<div class="inbox-message drawer-item">'
-                                    +'<a href="'+base_url+'/event/'+val.slug+'" data-id="'+val.id+'" class="li-notif" data-id="'+val.id+'">'
+                                    +'<a href="'+base_url+'/'+val.slug+'" data-id="'+val.id+'" class="li-notif" data-id="'+val.id+'">'
                                         +'<img src="'+val.featured_image3_url+'">'
                                             +'<div class="content">'
                                                 +'<h5>'+val.title+'</h5>'
@@ -140,7 +140,7 @@ function autoSearchMobile(q)
                                     + '<h5 class="all-result">All Result for "'+q+'"</h5></div></a></div>');
                         $.each(results.events,function(key,val){
                             var html = '<div class="inbox-message drawer-item">'
-                                    +'<a href="'+base_url+'/event/'+val.slug+'" data-id="'+val.id+'" class="li-notif" data-id="'+val.id+'">'
+                                    +'<a href="'+base_url+'/'+val.slug+'" data-id="'+val.id+'" class="li-notif" data-id="'+val.id+'">'
                                         +'<img src="'+val.featured_image3_url+'">'
                                             +'<div class="content">'
                                                 +'<h5>'+val.title+'</h5>'
