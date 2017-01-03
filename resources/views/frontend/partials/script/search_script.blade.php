@@ -9,10 +9,10 @@
 
         $(document).ready(function(){
 
-            $(".btnLoad").on('click', function(){
-                var slug = $(this).attr('data-slug');
-                loadCategory(slug);
-            });
+            // $(".btnLoad").on('click', function(){
+            //     var slug = $(this).attr('data-slug');
+            //     loadCategory(slug);
+            // });
 
             $('#sort-search').on('change', function(){
                 var val = $(this).val();
@@ -53,13 +53,13 @@
             $('#filter-venue-mobile').on('change', function(){
                 var val = $(this).val();
                 $('#filter-venue').val(val);
-                sortFilterResult(sort_mobile);
+                //sortFilterResult(sort_mobile);
             });
 
             $('#filter-period-mobile').on('change', function(){
                 var val = $(this).val();
                 $('#filter-period').val(val);
-                sortFilterResult(sort_mobile);
+                //sortFilterResult(sort_mobile);
             });
 
 
@@ -82,10 +82,10 @@
 
                 if(check){
                     $('.cat-filter, .cat-filter-mobile, .cat-filter-all').iCheck('check');
-                    sortFilterResult(sort_mobile);
+                    //sortFilterResult(sort_mobile);
                 }else{
                     $('.cat-filter, .cat-filter-mobile, .cat-filter-all').iCheck('uncheck');
-                    sortFilterResult(sort_mobile);
+                    //sortFilterResult(sort_mobile);
                 }
             });
 
@@ -107,44 +107,17 @@
                 var check = $('.cat-filter-mobile[value="'+val+'"]').iCheck('toggle')[0].checked;
                 if(check){
                     $('.cat-filter[value="'+val+'"], .cat-filter-mobile[value="'+val+'"]').iCheck('check');
-                    sortFilterResult(sort);
+                    //sortFilterResult(sort_mobile);
                 }else{
                     $('.cat-filter[value="'+val+'"], .cat-filter-mobile[value="'+val+'"], .cat-filter-all, .cat-filter-mobile-all').iCheck('uncheck');
-                    sortFilterResult(sort);
+                    //sortFilterResult(sort_mobile);
 
                 }
             });
-            
-            // $('.cat-filter').on('ifChecked', function(e){
-            //     sortFilterResult(sort);
-            //     var val = $(this).val();
-            //     $('.cat-filter-mobile[value="'+val+'"]').iCheck('check');
-            //     // if(val == 'all'){
-            //     //     $('.cat-filter, .cat-filter-mobile').iCheck('check');
-            //     // }
-            // }).on('ifUnchecked', function(event){
-            //     sortFilterResult(sort);
-            //     var val = $(this).val();
-            //     $('.cat-filter-mobile[value="'+val+'"]').iCheck('uncheck');
-            //     // if(val == 'all'){
-            //     //     $('.cat-filter, .cat-filter-mobile').iCheck('uncheck');
-            //     // }
-            // });
-            // $('.cat-filter-mobile').on('ifChecked', function(e){
-            //     sortFilterResult(sort_mobile);
-            //     var val = $(this).val();
-            //     $('.cat-filter[value="'+val+'"]').iCheck('check');
-            //     // if(val == 'all'){
-            //     //     $('.cat-filter, .cat-filter-mobile').iCheck('check');
-            //     // }
-            // }).on('ifUnchecked', function(event){
-            //     sortFilterResult(sort_mobile);
-            //     var val = $(this).val();
-            //     $('.cat-filter[value="'+val+'"]').iCheck('uncheck');
-            //     // if(val == 'all'){
-            //     //     $('.cat-filter, .cat-filter-mobile').iCheck('uncheck');
-            //     // }
-            // });
+
+            $('#btn-apply-mobile').click(function(){
+                sortFilterResult(sort_mobile);
+            });
 
         });
 
@@ -175,12 +148,17 @@
                         $.each(events,function(key, val){
                             var uri = "{{ URL::route('event-detail', "::param") }}";
                             uri = uri.replace('::param', val.slug);
+                            if(val.cat_icon != null){
+                                var cat = '<i class="fa fa-'+val.cat_icon+'"></i>'+val.cat_name;
+                            }else{
+                                var cat = '<img src="'+val.cat_icon_image_url+'">'+val.cat_name;
+                            }
                             var html = '<tr class="bg-green tr-search" style="background-color:'+val.background_color+' !important">'
                                 +'<td class="searchpic"><a href="'+uri+'"><img src="'+val.featured_image3_url+'"></a></td>'
                                 +'<td class="jobs"><a href="'+uri+'">'+val.title+'</a></td>'
                                 +'<td class="date"><a href="'+uri+'">'+val.schedule+'</a></td>'
                                 +'<td class="place"><a href="'+uri+'">'+val.venue_name+val.city+'</a></td>'
-                                +'<td class="type"><a href="'+uri+'">'+val.cat_name+'</a></td>'
+                                +'<td class="type"><a href="'+uri+'">'+cat+'</a></td>'
                                 +'</tr>';
                             //console.log(html);
                             $('.search-list table').append(html);
@@ -205,7 +183,7 @@
                                                 +'<ul>'
                                                     +'<li class="date">'+val.schedule+'</li>'
                                                     +'<li class="place">'+val.venue_name+val.city+'</li>'
-                                                    +'<li class="type">'+val.cat_name+'</li>'
+                                                    +'<li class="type">'+cat+'</li>'
                                                 +'</ul>'
                                             +'</div>'
                                         +'</div>'

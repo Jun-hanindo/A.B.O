@@ -113,7 +113,15 @@
                                             <td class="jobs"><a href="{{ URL::route('event-detail', $event->slug) }}">{{ $event->title }}</a></td>
                                             <td class="date"><a href="{{ URL::route('event-detail', $event->slug) }}">{{ $event->schedule }}</a></td>
                                             <td class="place"><a href="{{ URL::route('event-detail', $event->slug) }}">{{$event->venue_name.$event->city}}</a></td>
-                                            <td class="type"><a href="{{ URL::route('event-detail', $event->slug) }}">{{ $event->cat_name }}</a></td>
+                                            <td class="type">
+                                                <a href="{{ URL::route('event-detail', $event->slug) }}">
+                                                    @if(!empty($event->cat_icon))
+                                                        <i class="fa fa-{{ $event->cat_icon }}"></i>{{$event->cat_name}}
+                                                    @else
+                                                        <img src="{{ $event->cat_icon_image_url }}">{{$event->cat_name}}
+                                                    @endif 
+                                                </a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 @else
@@ -198,7 +206,7 @@
                                         </div>
                                     </div>
                                 </li> --}}
-                                <li class="sidebar-menu filter-search">
+                                <li class="sidebar-menu filter-search filter-last">
                                     <a class="collapsed" role="button" data-toggle="collapse" href="#collapseVenue-mobile" aria-expanded="false" aria-controls="collapseExample">{{ trans('frontend/general.venues') }}</a>
                                     <div class="collapse" id="collapseVenue-mobile">
                                         <div class="filter-child filter-categories-mobile">
@@ -216,6 +224,7 @@
                                 </li>
                             </form>
                         </ul>
+                      <button class="btnFilterMobile btnBlackDefault btn font-bold" id="btn-apply-mobile">Apply</button>
                     </div>
                 </div>
             </div>
@@ -224,13 +233,13 @@
     <div class="row">
         <div class="col-md-12">
             <div class="container">
-                {{-- <div class="filter-search-mobile">
-                    <select id="sort-search-mobile" name="sort" class="form-control selectpicker">
+                <div class="filter-search-mobile">
+                    {{-- <select id="sort-search-mobile" name="sort" class="form-control selectpicker">
                         <option value="date" {{ $sort == 'date' ? 'selected' : '' }}>Sort By Date</option>
                         <option value="price" {{ $sort == 'price' ? 'selected' : '' }}>Sort By Price</option>
                         <!-- <option value="popularity" {{ $sort == 'popularity' ? 'selected' : '' }}>Sort By Popularity</option> -->
-                    </select> 
-                </div> --}}
+                    </select> --}} 
+                </div>
                 <div class="search-list-mobile">
                     @if(!empty($events))
                         @foreach($events as $key => $event) 
@@ -254,7 +263,13 @@
                                                 <ul>
                                                     <li class="date">{{ $event->schedule }}</li>
                                                     <li class="place">{{ $event->venue_name.$event->city }}</li>
-                                                    <li class="type">{{ $event->cat_name }}</li>
+                                                    <li class="type">
+                                                        @if(!empty($event->cat_icon))
+                                                            <i class="fa fa-{{ $event->cat_icon }}"></i>{{$event->cat_name}}
+                                                        @else
+                                                            <img src="{{ $event->cat_icon_image_url }}">{{$event->cat_name}}
+                                                        @endif
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>

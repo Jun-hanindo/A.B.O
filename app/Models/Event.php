@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\EventSchedule;
 use App\Models\EventScheduleCategory;
+use App\Models\Category;
 use DB;
 use File;
 use Image;
@@ -1492,10 +1493,11 @@ class Event extends Model
         $query = Event::select('events.id as id','events.title as title', 'events.featured_image3 as featured_image3',
             'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color',  
             'events.schedule_title', 'events.sort_order as sort_order',
-             DB::RAW("array_to_string(array_agg(DISTINCT venues.name), ',')  as venue"), 
-             DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',') as category"), 
-             DB::RAW("min(DISTINCT event_schedules.date_at) as date"), 
-             DB::RAW("min(DISTINCT event_schedule_categories.price) as price"))
+            DB::RAW("array_to_string(array_agg(DISTINCT venues.name), ',')  as venue"), 
+            // DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',') as category"),
+            DB::RAW("array_to_string(array_agg(DISTINCT categories.slug), ',') as cat_slug"),
+            DB::RAW("min(DISTINCT event_schedules.date_at) as date"), 
+            DB::RAW("min(DISTINCT event_schedule_categories.price) as price"))
             ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
             ->join('categories', 'categories.id', '=', 'event_categories.category_id')
             ->join('venues', 'venues.id', '=', 'events.venue_id')
@@ -1573,8 +1575,14 @@ class Event extends Model
         if(!empty($events))
         {
             foreach ($events as $key => $event) {
-                $cats = explode(',', $event->category);
-                $event->cat_name = strtoupper($cats[0]);
+                // $cats = explode(',', $event->category);
+                // $event->cat_name = strtoupper($cats[0]);
+                $cats = explode(',', $event->cat_slug);
+                $cat = $cats[0];
+                $cat_event = Category::where('slug', $cat)->first();
+                $event->cat_name = ucwords(strtolower($cat_event->name));
+                $event->cat_icon = $cat_event->icon;
+                $event->cat_icon_image_url = file_url('categories/'.$cat_event->icon_image, env('FILESYSTEM_DEFAULT'));
 
                 $this->setImageUrl($event);
 
