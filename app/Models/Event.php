@@ -1507,7 +1507,8 @@ class Event extends Model
             ->where('categories.status', true);
 
         if($q != 'all'){
-            $query->where('events.title','ilike','%'.$q.'%');
+            $query->where('events.title','ilike','%'.$q.'%')
+                ->orWhere('categories.name','ilike','%'.$q.'%');
         }
 
         if(isset($param['venue']) && $param['venue'] != 'all'){
