@@ -31,10 +31,14 @@
                                              <li><input type="checkbox" name="cat[]" class="cat-filter" value="{{$category->slug}}"
                                                 @if(!empty($cats_sel))
                                                     @foreach($cats_sel as $k => $cat_sel) 
-                                                        @if($cat_sel == $category->slug)
+                                                        @if($cat_sel == $category->slug || strtolower($category->name) == strtolower($q))
                                                             checked
                                                         @endif
                                                     @endforeach
+                                                @else
+                                                    @if(strtolower($category->name) == strtolower($q))
+                                                        checked
+                                                    @endif
                                                 @endif
                                                 > {{ $category->name }}</li>
                                         @endforeach
@@ -169,6 +173,10 @@
                                                                         checked
                                                                     @endif
                                                                 @endforeach
+                                                            @else
+                                                                @if(strtolower($category->name) == strtolower($q))
+                                                                    checked
+                                                                @endif
                                                             @endif
                                                             > {{ $category->name }}</label></li>
                                                     @endforeach
