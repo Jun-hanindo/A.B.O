@@ -188,7 +188,7 @@
             @if($events->nextPageUrl() != null)
                 <div class="loadMore">
                     <a href="javascript:void(0)">
-                        <button class="btn btnLoad">{{ trans('frontend/general.load_more_events') }}</button>
+                        <button class="btn btnLoad font-bold">{{ trans('frontend/general.load_more_events') }}</button>
                     </a>
                 </div>
             @endif

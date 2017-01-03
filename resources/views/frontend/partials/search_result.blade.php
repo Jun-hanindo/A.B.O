@@ -48,8 +48,8 @@
                         <div class="collapse" id="collapseLanguages">
                             <div class="filter-child filter-categories">
                                 <ul>
-                                    <li><a href="#">Language 1</a></li>
-                                    <li><a href="#">Language 2</a></li>
+                                    <li><input type="checkbox">Language 1</li>
+                                    <li><input type="checkbox">Language 2</li>
                                 </ul>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                     <div class="row">
                         <div class="job-head search-head">
                             <h4 class="head-about head-search font-light">{!! (!empty($q)) ? trans('frontend/general.search_result_for').' <span>"'.$q.'"</span>' : 'Search results' !!}</h4>
-                            {{-- <select id="sort-search" name="sort" class="form-control">
+                            {{-- <select id="sort-search" name="sort" class="form-control selectpicker">
                                 <option value="date" {{ $sort == 'date' ? 'selected' : '' }}>Sort By Date</option>
                                 <option value="price" {{ $sort == 'price' ? 'selected' : '' }}>Sort By Price</option>
                                 <!-- <option value="popularity" {{ $sort == 'popularity' ? 'selected' : '' }}>Sort By Popularity</option> -->
@@ -225,7 +225,7 @@
         <div class="col-md-12">
             <div class="container">
                 {{-- <div class="filter-search-mobile">
-                    <select id="sort-search-mobile" name="sort" class="form-control">
+                    <select id="sort-search-mobile" name="sort" class="form-control selectpicker">
                         <option value="date" {{ $sort == 'date' ? 'selected' : '' }}>Sort By Date</option>
                         <option value="price" {{ $sort == 'price' ? 'selected' : '' }}>Sort By Price</option>
                         <!-- <option value="popularity" {{ $sort == 'popularity' ? 'selected' : '' }}>Sort By Popularity</option> -->
