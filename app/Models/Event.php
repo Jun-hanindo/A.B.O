@@ -1314,7 +1314,15 @@ class Event extends Model
             foreach ($events as $key => $event) {
                 $event->promo_title = string_limit($event->promo_title);
                 $this->setImageUrl($event);
-                $event->category = str_replace('-', ' ', strtoupper($event->category));
+                //$event->category = str_replace('-', ' ', strtoupper($event->category));
+                if($event->category == 'discounts'){
+                    $event->category = strtoupper(trans('frontend/general.discount'));
+                }elseif($event->category == 'lucky-draws'){
+                    $event->category = strtoupper(trans('frontend/general.lucky_draw'));
+                }else{
+                    $event->category = strtoupper(trans('frontend/general.early_bird'));
+                }
+
                 if(!empty($event->start_date) && !empty($event->end_date)){
                     $event->valid = date_from_to($event->start_date, $event->end_date);
                 }elseif(!empty($event->start_date) && empty($event->end_date)){
@@ -1382,7 +1390,15 @@ class Event extends Model
             foreach ($events as $key => $event) {
                 $event->promo_title = string_limit($event->promo_title);
                 $this->setImageUrl($event);
-                $event->category = str_replace('-', ' ', strtoupper($event->category));
+                //$event->category = str_replace('-', ' ', strtoupper($event->category));
+                if($event->category == 'discounts'){
+                    $event->category = strtoupper(trans('frontend/general.discount'));
+                }elseif($event->category == 'lucky-draws'){
+                    $event->category = strtoupper(trans('frontend/general.lucky_draw'));
+                }else{
+                    $event->category = strtoupper(trans('frontend/general.early_bird'));
+                }
+
                 if(!empty($event->start_date) && !empty($event->end_date)){
                     $event->valid = date_from_to($event->start_date, $event->end_date);
                 }elseif(!empty($event->start_date) && empty($event->end_date)){

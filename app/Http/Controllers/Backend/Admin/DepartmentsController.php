@@ -20,64 +20,66 @@ class DepartmentsController extends BaseController
 
     }
     /**
-     * Display a listing of the resource.
+     * Display a listing of Department.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         try{
-            $trail = 'List Department';
+            $trail['desc'] = 'List Department';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
+
         } catch (\Exception $e) {
-            $log['user_id'] = $this->currentUser->id;
+
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
         }
         
         return view('backend.admin.department.index');
     }
 
+    /**
+     * Show list for department
+     * 
+     * @return Response
+     */
     public function datatables()
     {
-            return datatables($this->model->datatables())
-                ->addColumn('action', function ($department) {
-                    return '<a href="javascript:void(0)" data-id="'.$department->id.'" data-name="'.$department->name.'" class="btn btn-warning btn-xs actEdit" title="'.trans('general.edit').'"><i class="fa fa-pencil-square-o fa-fw"></i></a>
-                        &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="'.trans('general.delete').'" data-id="'.$department->id.'" data-name="'.$department->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
-                })
-                ->editColumn('avaibility', function ($department) {
-                    if($department->avaibility == TRUE){
-                        $checked = 'checked';
-                    }else{
-                        $checked = '';
-                    }
-                    return '<input type="checkbox" name="avaibility['.$department->id.']" class="avaibility-check" data-id="'.$department->id.'" '.$checked.'>';
-                })
-                ->make(true);
+        return datatables($this->model->datatables())
+            ->addColumn('action', function ($department) {
+                return '<a href="javascript:void(0)" data-id="'.$department->id.'" data-name="'.$department->name.'" class="btn btn-warning btn-xs actEdit" title="'.trans('general.edit').'"><i class="fa fa-pencil-square-o fa-fw"></i></a>
+                    &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="'.trans('general.delete').'" data-id="'.$department->id.'" data-name="'.$department->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+            })
+            ->editColumn('avaibility', function ($department) {
+                if($department->avaibility == TRUE){
+                    $checked = 'checked';
+                }else{
+                    $checked = '';
+                }
+                return '<input type="checkbox" name="avaibility['.$department->id.']" class="avaibility-check" data-id="'.$department->id.'" '.$checked.'>';
+            })
+            ->make(true);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Save data department.
+     * methode      : POST
+     * @param  DepartmentRequest $req name for Dapertment name
+     * @return Response
      */
     public function store(DepartmentRequest $req)
     {
-        //
-        $param = $req->all();
         
         try{
+            $param = $req->all();
             $saveData = $this->model->insertNewDepartment($param);
-        // if(!empty($saveData))
-        // {
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Department "'.$saveData->name.'" was created';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -86,13 +88,11 @@ class DepartmentsController extends BaseController
                 'message' => '<strong>'.$saveData->name.'</strong> '.trans('general.save_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -104,10 +104,10 @@ class DepartmentsController extends BaseController
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Get a data and show in form for edit department.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -121,13 +121,11 @@ class DepartmentsController extends BaseController
                 'data' => $data
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -138,24 +136,21 @@ class DepartmentsController extends BaseController
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update data department.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  DepartmentRequest  $req name for Department name
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(DepartmentRequest $req, $id)
     {
-        $param = $req->all();
         try{
+            $param = $req->all();
             $updateData = $this->model->updateDepartment($param,$id);
-        // if(!empty($updateData)) 
-        // {
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Department "'.$updateData->name.'" was updated';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -163,13 +158,11 @@ class DepartmentsController extends BaseController
                 'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -181,52 +174,54 @@ class DepartmentsController extends BaseController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete data department.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function destroy(Request $req,  $id)
+    public function destroy($id)
     {
         try{
             $data = $this->model->deleteByID($id);
-        //if(!empty($data)) {
 
             flash()->success(trans('general.delete_success'));
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Department "'.$data->name.'" was deleted';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-index-department');
 
-        //} else {
         } catch (\Exception $e) {
 
             flash()->error(trans('general.data_not_found'));
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-index-department');
 
         }
     }
 
+    /**
+     * Change availability of department
+     * @param  Request $req  availability for availabity Deapartment
+     * @param  int  $id  Department id
+     * @return Response 
+     */
     public function avaibilityUpdate(Request $req, $id)
     {
-        $param = $req->all();
 
         try{
+            $param = $req->all();
             $updateData = $this->model->changeAvaibility($param, $id);
 
-            $log['user_id'] = $this->currentUser->id;
+
             $log['description'] = 'Department "'.$updateData->name.'" avaibility was updated';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -236,10 +231,10 @@ class DepartmentsController extends BaseController
 
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -250,7 +245,13 @@ class DepartmentsController extends BaseController
         }
     }
 
-    public function comboDepartment(Request $request){
+    /**
+     * show combo Department
+     * @param  Request $request 
+     * @return Response
+     */
+    public function comboDepartment(Request $request)
+    {
         $term = $request->q;
         
         $results = Department::where('avaibility', true)->where('name', 'ilike', '%'.$term.'%')->get();
@@ -265,7 +266,6 @@ class DepartmentsController extends BaseController
             "results" => $data);
 
         return json_encode($resData);
-        exit;
     }
 
 }

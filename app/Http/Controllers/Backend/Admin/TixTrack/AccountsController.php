@@ -20,56 +20,56 @@ class AccountsController extends BaseController
 
     }
     /**
-     * Display a listing of the resource.
+     * Display account list page.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
         try{
-            $trail = 'List Account';
+            $trail['desc'] = 'List Account';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
+
         } catch (\Exception $e) {
-            $log['user_id'] = $this->currentUser->id;
+
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
         }
         
         return view('backend.admin.tixtrack.account.index');
     }
 
+    /**
+     * Show list for account tixtrack
+     * @return Response
+     */
     public function datatables()
     {
-            return datatables($this->model->datatables())
-                ->addColumn('action', function ($account) {
-                    return '<a href="javascript:void(0)" data-id="'.$account->id.'" data-name="'.$account->name.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
-                        &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$account->id.'" data-name="'.$account->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
-                })
-                ->make(true);
+        return datatables($this->model->datatables())
+            ->addColumn('action', function ($account) {
+                return '<a href="javascript:void(0)" data-id="'.$account->id.'" data-name="'.$account->name.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>
+                    &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$account->id.'" data-name="'.$account->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+            })
+            ->make(true);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Save data account.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  AccountRequest $req
+     * @return Response
      */
     public function store(AccountRequest $req)
     {
-        //
-        $param = $req->all();
-        
         try{
+            $param = $req->all();
             $saveData = $this->model->insertNewTixtrackAccount($param);
-        // if(!empty($saveData))
-        // {
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Tixtrack Account "'.$saveData->name.'" was created';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -81,10 +81,9 @@ class AccountsController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -96,7 +95,7 @@ class AccountsController extends BaseController
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for edit Account.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -121,10 +120,9 @@ class AccountsController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -143,17 +141,15 @@ class AccountsController extends BaseController
      */
     public function update(AccountRequest $req, $id)
     {
-        $param = $req->all();
+        
         try{
+            $param = $req->all();
             $updateData = $this->model->updateTixtrackAccount($param,$id);
-        // if(!empty($updateData)) 
-        // {
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Tixtrack Account "'.$updateData->name.'" was updated';
             //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -164,10 +160,9 @@ class AccountsController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -192,11 +187,10 @@ class AccountsController extends BaseController
 
             flash()->success(trans('general.delete_success'));
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Tixtrack Account "'.$data->name.'" was deleted';
             //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-index-tixtrack-account');
 
@@ -205,10 +199,9 @@ class AccountsController extends BaseController
 
             flash()->error(trans('general.data_not_found'));
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-index-tixtrack-account');
 

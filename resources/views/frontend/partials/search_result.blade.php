@@ -97,7 +97,7 @@
                 <div class="career-desc">
                     <div class="row">
                         <div class="job-head search-head">
-                            <h4 class="head-about head-search font-light">{!! (!empty($q)) ? trans('frontend/general.search_result_for').' <span>"'.$q.'"</span>' : 'Search results' !!}</h4>
+                            <h4 class="head-about head-search font-light">{!! (!empty($q)) ? trans('frontend/general.search_results_for').' <span>"'.$q.'"</span>' : trans('frontend/general.search_results')!!}</h4>
                             {{-- <select id="sort-search" name="sort" class="form-control selectpicker">
                                 <option value="date" {{ $sort == 'date' ? 'selected' : '' }}>Sort By Date</option>
                                 <option value="price" {{ $sort == 'price' ? 'selected' : '' }}>Sort By Price</option>

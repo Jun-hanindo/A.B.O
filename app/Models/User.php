@@ -317,10 +317,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
                                 'activation_code' => '',
                                 'text_message'=>trans('general.text_update_password'));
 
-                $data['user_id'] = $findUser->id;
+
                 $data['description'] = 'Have change password';
                 $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($data);
+                $insertLog->insertNewLogActivity($data);
 
                 $this->sendEmailVerifcation($data_email);
 

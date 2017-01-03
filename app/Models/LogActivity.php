@@ -29,6 +29,17 @@ class LogActivity extends Model
         return $this;
     }
 
+    public function insertNewLogActivity($param)
+    {
+        $user_id = !empty(\Sentinel::getUser()) ? \Sentinel::getUser()->id : null;
+        $this->user_id = $user_id;
+        $this->description = $param['description'];
+        $this->ip_address = Request::ip();
+        $this->save();
+
+        return $this;
+    }
+
     public function datatables($start, $end, $limit)
     {
         $data = LogActivity::select('log_activities.id', 'log_activities.description', 

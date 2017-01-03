@@ -46,9 +46,9 @@ class UserController extends BaseController
      */
     public function index()
     {
-        $trail = 'List User';
+        $trail['desc'] = 'List User';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
         return view('backend.admin.user-trustee.user.index');
     }
 
@@ -110,11 +110,9 @@ class UserController extends BaseController
             $userModel = new User();
             $userModel->deleteByID($id);
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'User "'.$user->email.'" was deleted';
-            //$log['ip_address'] = '';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
         }, true);
     }
 
@@ -228,9 +226,9 @@ class UserController extends BaseController
             //$data['user']['branch'] = $data['user']->branch_id;
         }
 
-        $trail = 'Form User';
+        $trail['desc'] = 'Form User';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
 
         return view('backend.admin.user-trustee.user.form', $data);
     }
@@ -281,11 +279,11 @@ class UserController extends BaseController
                 $user = Sentinel::update($user, $data);
                 //dd($data);
 
-                $log['user_id'] = $this->currentUser->id;
+
                 $log['description'] = 'User "'.$data['email'].'" was updated';
                 //$log['ip_address'] = $request->ip();
                 $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
+                $insertLog->insertNewLogActivity($log);
             } else {
 
                 //dd($data);
@@ -298,11 +296,11 @@ class UserController extends BaseController
                     //$message->from('no-reply@asiaboxoffice.com', 'No Reply Asia Box Office');
                     $message->to($data['email'], $data['full_name'])->subject('Your account has registered.');
 
-                    $log['user_id'] = $this->currentUser->id;
+ 
                     $log['description'] = 'User "'.$data['email'].'" was created';
                     //$log['ip_address'] = $request->ip();
                     $insertLog = new LogActivity();
-                    $insertLog->insertLogActivity($log);
+                    $insertLog->insertNewLogActivity($log);
                 });
             }
 
@@ -387,10 +385,10 @@ class UserController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+
             $log['description'] = $e->getMessage();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -430,10 +428,9 @@ class UserController extends BaseController
                 Mail::send('backend.emails.registration', $data, function ($message) use ($data, $request) {
                     $message->to($data['email'], $data['full_name'])->subject('Your account has reactivated.');
 
-                    $log['user_id'] = $this->currentUser->id;
                     $log['description'] = 'User "'.$data['email'].'" was reactivated';
                     $insertLog = new LogActivity();
-                    $insertLog->insertLogActivity($log);
+                    $insertLog->insertNewLogActivity($log);
                 });
 
                 $role = Sentinel::findRoleById($request->input('role'));
@@ -449,7 +446,7 @@ class UserController extends BaseController
         //     $log['user_id'] = $this->currentUser->id;
         //     $log['description'] = $e->getMessage();
         //     $insertLog = new LogActivity();
-        //     $insertLog->insertLogActivity($log);
+        //     $insertLog->insertNewLogActivity($log);
 
             
         //     flash()->error(trans('general.save_error'));
@@ -493,7 +490,7 @@ class UserController extends BaseController
     //         $log['user_id'] = $this->currentUser->id;
     //         $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
     //         $insertLog = new LogActivity();
-    //         $insertLog->insertLogActivity($log);
+    //         $insertLog->insertNewLogActivity($log);
 
     //         return response()->json([
     //             'code' => 400,

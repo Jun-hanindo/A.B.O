@@ -28,9 +28,9 @@ class CareersController extends BaseController
      */
     public function index()
     {
-        $trail = 'List Career';
+        $trail['desc'] = 'List Career';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
         return view('backend.admin.career.index');
     }
 
@@ -42,9 +42,6 @@ class CareersController extends BaseController
     public function datatables()
     {
         return datatables($this->model->datatables())
-            // ->editColumn('id', function ($career) {
-            //     return '<input type="checkbox" name="checkboxid['.$career->id.']" class="item-checkbox">';
-            // })
             ->editColumn('job', function ($career) {
                 if($career->dep_avaibility == false){
                     $job = '<span class="disabled">'.$career->job.'</span>';
@@ -108,19 +105,18 @@ class CareersController extends BaseController
     {
         try{
             
-            $trail = 'Career Form';
+            $trail['desc'] = 'Career Form';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
             $data['departments'] = Department::dropdown();
             $data['currencies'] = Currency::dropdownCode();
             $data['currency_sel'] = $this->setting['currency'];
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
         
         }
 
@@ -143,31 +139,25 @@ class CareersController extends BaseController
      */
     public function store(CareerRequest $req)
     {
-        $param = $req->all();
         
         try{
+            $param = $req->all();
             $user_id = $this->currentUser->id;
             $saveData = $this->model->insertNewCareer($param, $user_id);
-        //if(!empty($saveData))
-        //{
         
             flash()->success($saveData->name.' '.trans('general.save_success'));
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Career "'.$saveData->name.'" was created';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-index-career');
         } catch (\Exception $e) {
-        //} else {
             flash()->error(trans('general.save_error'));
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-create-career')->withInput();
         
@@ -195,23 +185,19 @@ class CareersController extends BaseController
             }else{
                 $data->department_name = '';
             }
-        //if(!empty($data)) {
             
-            $trail = 'Career Form';
+            $trail['desc'] = 'Career Form';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
 
             return view('backend.admin.career.edit')->withData($data);
-
-        //} else {
         } catch (\Exception $e) {
 
             flash()->error(trans('general.data_not_found'));
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
             
             return redirect()->route('admin-index-career');
 
@@ -235,30 +221,23 @@ class CareersController extends BaseController
      */
     public function update(CareerRequest $req, $id)
     {
-        //
-        $param = $req->all();
-
         try{
+            $param = $req->all();
             $updateData = $this->model->updateCareer($param,$id);
-        //if(!empty($updateData)) {
 
             flash()->success($updateData->name.' '.trans('general.update_success'));
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Career "'.$updateData->name.'" was updated';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-index-career');
-
-        //} else {
         } catch (\Exception $e) {
             flash()->error(trans('general.update_error'));
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-edit-career', $id)->withInput();
 
@@ -276,25 +255,20 @@ class CareersController extends BaseController
     {
         try{
             $data = $this->model->deleteByID($id);
-        //if(!empty($data)) {
             flash()->success(trans('general.delete_success'));
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Career "'.$data->name.'" was deleted';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-index-career');
-
-        //} else {
         } catch (\Exception $e) {
 
             flash()->error(trans('general.data_not_found'));
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-index-career');
 
@@ -303,16 +277,14 @@ class CareersController extends BaseController
 
     public function avaibilityUpdate(Request $req, $id)
     {
-        $param = $req->all();
 
         try{
+            $param = $req->all();
             $updateData = $this->model->changeAvaibility($param, $id);
-        //if(!empty($updateData)) {
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Career "'.$updateData->name.'" avaibility was updated';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -320,13 +292,11 @@ class CareersController extends BaseController
                 'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
             ],200);
 
-        //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -337,28 +307,26 @@ class CareersController extends BaseController
         }
     }
 
-    public function autocompletePosition(/*Request $req*/){
+    public function autocompletePosition()
+    {
         try{
-            // $param = $req->all();
-            // $results = $this->model->autocompletePosition($param);
             $results = $this->model->getPosition();
 
             if(!empty($results)){
                 foreach ($results as $value){
                     $datas[] = ['value' => $value->job];
                 }
-                //if($req->ajax()) {
-                    return response()->json($datas);
+                
+                return response()->json($datas);
 
-                //}
             }
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             if($req->ajax()) {
                 return response()->json([

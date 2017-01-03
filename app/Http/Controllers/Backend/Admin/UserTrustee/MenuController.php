@@ -27,9 +27,11 @@ class MenuController extends BaseController
      */
     public function index()
     {
-        $trail = 'List Menu';
+
+        $trail['desc'] = 'List Menu';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
+
         return view('backend.admin.user-trustee.menu.index');
     }
 
@@ -106,11 +108,9 @@ class MenuController extends BaseController
         return $this->transaction(function ($model) use ($id) {
             //$this->model->findOrFail($id)->delete();
             $data = $this->model->deleteByID($id);
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Menu "'.$data->name.'" was deleted';
-            //$log['ip_address'] = '';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
         }, true);
     }
 
@@ -146,9 +146,10 @@ class MenuController extends BaseController
      */
     protected function createEdit($dataToBind, $id = 0)
     {
-        $trail = 'Menu form';
+        $trail['desc'] = 'Menu form';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
+        
         $dropdown = $this->model->dropdownSelect(true)->toArray();
         if ($id > 0) {
             $dropdown = $this->model->dropdownSelect(true, $id)->toArray();
@@ -184,19 +185,16 @@ class MenuController extends BaseController
             if ($id) {
                 $this->model->findOrFail($id)->update($data);
 
-                $log['user_id'] = $this->currentUser->id;
+                
                 $log['description'] = 'Menu "'.$data['name'].'" was updated';
-                //$log['ip_address'] = $request->ip();
                 $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
+                $insertLog->insertNewLogActivity($log);
             } else {
                 $this->model->create($data);
                 
-                $log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Menu "'.$data['name'].'" was created';
-                //$log['ip_address'] = $request->ip();
                 $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
+                $insertLog->insertNewLogActivity($log);
             }
         });
     }

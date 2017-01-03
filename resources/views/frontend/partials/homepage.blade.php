@@ -56,7 +56,7 @@
     @if(!empty($events))
     <section class="newRelease">
         <div class="container">
-            <h2 class="font-light">{{ trans('frontend/general.new_release') }}</h2>
+            <h2 class="font-light">{{ trans('frontend/general.new_releases') }}</h2>
             <div class="row">
                 @foreach($events as $key => $event)  
                     <a href="{{ URL::route('event-detail', $event->event->slug) }}">

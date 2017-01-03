@@ -46,9 +46,9 @@ class RoleController extends BaseController
      */
     public function index()
     {
-        $trail = 'List Role';
+        $trail['desc'] = 'List Role';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
         return view('backend.admin.user-trustee.role.index');
     }
 
@@ -131,7 +131,7 @@ class RoleController extends BaseController
             $log['description'] = 'Role "'.$data->name.'" was deleted';
             //$log['ip_address'] = '';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
             
         }, true);
     }
@@ -178,9 +178,9 @@ class RoleController extends BaseController
      */
     protected function createEdit($dataToBind, $id = 0)
     {
-        $trail = 'Role form';
+        $trail['desc'] = 'Role form';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
 
         $dataToBind['dropdown'] = $this->menu->dropdown();
         if ($id > 0) {
@@ -219,7 +219,7 @@ class RoleController extends BaseController
                 $log['description'] = 'Role "'.$request->input('name').'" was updated';
                 //$log['ip_address'] = $request->ip();
                 $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
+                $insertLog->insertNewLogActivity($log);
             } else {
                 $this->model->create($data);
                 
@@ -227,7 +227,7 @@ class RoleController extends BaseController
                 $log['description'] = 'Role "'.$data['name'].'" was created';
                 //$log['ip_address'] = $request->ip();
                 $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
+                $insertLog->insertNewLogActivity($log);
             }
         });
     }

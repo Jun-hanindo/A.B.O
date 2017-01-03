@@ -135,10 +135,9 @@ abstract class BaseController extends Controller
                 flash()->error(trans('papermark.save_fail'));
             }
 
-            $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
         }
 
         return redirect()->action($this->getClassAndMethodRoute('index'));
