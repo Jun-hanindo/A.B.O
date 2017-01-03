@@ -116,9 +116,9 @@
                                             <td class="type">
                                                 <a href="{{ URL::route('event-detail', $event->slug) }}">
                                                     @if(!empty($event->cat_icon))
-                                                        <i class="fa fa-{{ $event->cat_icon }}"></i>{{$event->cat_name}}
+                                                        <i class="fa fa-{{ $event->cat_icon }}"></i><span>{{$event->cat_name}}</span>
                                                     @else
-                                                        <img src="{{ $event->cat_icon_image_url }}">{{$event->cat_name}}
+                                                        <img src="{{ $event->cat_icon_image_url }}"><span>{{$event->cat_name}}</span>
                                                     @endif 
                                                 </a>
                                             </td>
@@ -265,9 +265,9 @@
                                                     <li class="place">{{ $event->venue_name.$event->city }}</li>
                                                     <li class="type">
                                                         @if(!empty($event->cat_icon))
-                                                            <i class="fa fa-{{ $event->cat_icon }}"></i>{{$event->cat_name}}
+                                                            <i class="fa fa-{{ $event->cat_icon }}"></i><span>{{$event->cat_name}}</span>
                                                         @else
-                                                            <img src="{{ $event->cat_icon_image_url }}">{{$event->cat_name}}
+                                                            <img src="{{ $event->cat_icon_image_url }}"><span>{{$event->cat_name}}</span>
                                                         @endif
                                                     </li>
                                                 </ul>

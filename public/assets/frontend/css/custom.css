@@ -357,11 +357,25 @@ iframe[name="google_conversion_frame"]{
 .search-list .type img, .mobile-search-desc .type img{
   width: 19px;
   padding-right: 4px;
+  margin-right: 3px;
 }
 .search-list .type i, .mobile-search-desc .type i{
   font-size: 16px;
   padding-right: 8px;
 }
+.search-list .date{
+  padding-left: 20px;
+}
+.search-list .date:before{
+  margin-left:-20px; 
+}
+.search-list .place{
+  padding-left: 15px;
+}
+.search-list .place:before{
+  margin-left:-15px; 
+}
+/* end 03-01-2017*/
 
 @media (max-width: 770px){
   .mobile-search-show .container,
@@ -423,5 +437,6 @@ iframe[name="google_conversion_frame"]{
   .search-list-mobile .row .row{
     margin: 0 !important;
   }
+  /* end 03-01-2017*/
 }
 
