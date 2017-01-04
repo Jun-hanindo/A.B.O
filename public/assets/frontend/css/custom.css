@@ -166,7 +166,12 @@ iframe[name="google_conversion_frame"]{
 #ul-search-mobile .drawer-item {
   border-top: 1px solid #ddd;
   height: 80px;
+  display: block;
 }
+#ul-search .drawer-item.selected,
+#ul-search-mobile .drawer-item.selected{
+  background: #ccc;
+} 
 
 #ul-search .content .all-result,
 #ul-search-mobile .content .all-result {
@@ -374,6 +379,10 @@ iframe[name="google_conversion_frame"]{
 }
 .search-list .place:before{
   margin-left:-15px; 
+}
+#ul-search a:focus,
+#ul-search-mobile a:focus{
+  background: #f2f2f2;
 }
 /* end 03-01-2017*/
 
