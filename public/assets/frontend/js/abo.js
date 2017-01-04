@@ -118,12 +118,12 @@
    //        $('.eventTabScroll').fadeOut();
    //      }
    //    });
-     $('input[name=keyword]').keyup(function(){
-      if($(this).val().length)
-        $('#ul-search').show();
-      else
-        $('#ul-search').hide();
-    });
+    //  $('input[name=keyword]').keyup(function(){
+    //   if($(this).val().length)
+    //     $('#ul-search').show();
+    //   else
+    //     $('#ul-search').hide();
+    // });
      $(".input-search").focusin(function() {
               $(".input-group-addon").css("background-color","white");
               $(".icon-search-header").css("color","black");

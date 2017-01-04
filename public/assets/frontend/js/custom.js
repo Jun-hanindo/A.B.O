@@ -93,7 +93,7 @@ function autoSearch(q)
                             //+'<a href="'+base_url+'/search/result?q='+q+'&sort='+sort+'" class="btn-see-all">'
                             +'<a href="'+base_url+'/search/result?q='+q+'" class="btn-see-all">'
                                 +'<div class="img-search"><i class="fa fa-search"></i></div><div class="content">'
-                                    + '<h5 class="all-result">All Result for "'+q+'"</h5></div></a></div>');
+                                    + '<h5 class="all-result">All Results for "'+q+'"</h5></div></a></div>');
                         $.each(results.events,function(key,val){
                             var html = '<div class="inbox-message drawer-item">'
                                     +'<a href="'+base_url+'/'+val.slug+'" data-id="'+val.id+'" class="li-notif" data-id="'+val.id+'">'
@@ -137,7 +137,7 @@ function autoSearchMobile(q)
                             // +'<a href="'+base_url+'/search/result?q='+q+'&sort='+sort+'" class="btn-see-all">'
                             +'<a href="'+base_url+'/search/result?q='+q+'" class="btn-see-all">'
                                 +'<div class="img-search"><i class="fa fa-search"></i></div><div class="content">'
-                                    + '<h5 class="all-result">All Result for "'+q+'"</h5></div></a></div>');
+                                    + '<h5 class="all-result">All Results for "'+q+'"</h5></div></a></div>');
                         $.each(results.events,function(key,val){
                             var html = '<div class="inbox-message drawer-item">'
                                     +'<a href="'+base_url+'/'+val.slug+'" data-id="'+val.id+'" class="li-notif" data-id="'+val.id+'">'
