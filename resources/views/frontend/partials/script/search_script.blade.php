@@ -117,6 +117,8 @@
 
             $('#btn-apply-mobile').click(function(){
                 sortFilterResult(sort_mobile);
+                $('#mobile-sidebar-collapse').collapse('hide');
+                $('.search-mobile .mobile-sidebar').css('height', 'auto');
             });
 
         });
