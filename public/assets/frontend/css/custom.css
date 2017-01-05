@@ -449,3 +449,9 @@ iframe[name="google_conversion_frame"]{
   /* end 03-01-2017*/
 }
 
+/*05-01-2017*/
+.mobile-header.mobile-header-xmas .col-xs-3,
+.mobile-header.mobile-header-xmas .col-xs-6{
+  height: 100%;
+} 
+
