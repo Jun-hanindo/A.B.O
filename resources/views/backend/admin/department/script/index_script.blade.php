@@ -165,6 +165,7 @@
                 },
                 error: function(response){
                     $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    loadData();
                 }
             });
         });

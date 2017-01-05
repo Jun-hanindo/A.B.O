@@ -28,9 +28,11 @@
                 data: "avaibility="+val,
                 success: function (data) {
                     $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    loadData();
                 },
                 error: function(response){
                     $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    loadData();
                 }
             });
         });
@@ -47,9 +49,11 @@
                 data: "status="+val,
                 success: function (data) {
                     $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    loadData();
                 },
                 error: function(response){
                     $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    loadData();
                 }
             });
         });
