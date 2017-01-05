@@ -1,3 +1,83 @@
+@media (max-width: 1250px) and (min-width: 1149px) {
+  .career-desc .job-list table tr td, .career-desc .search-list table tr td {
+    color: #fff;
+    padding-right: 10px;
+    position: relative;
+  }
+  .career-desc .search-list .place::before, .mobile-search-desc .place::before {
+    content: "\f041";
+    font-family: 'FontAwesome';
+    padding-right: 0;
+    position: absolute;
+    left: 0;
+  }
+  .career-desc .search-list .date::before, .mobile-search-desc .date::before {
+    content: "\f133";
+    font-family: 'FontAwesome';
+    padding-right: 0;
+    position: absolute;
+    left: 0;
+  }
+  td.date {
+    padding-left: 20px;
+  }
+  td.place {
+    padding-left: 15px
+  }
+}
+@media (max-width: 1148px) and (min-width: 1025px) {
+  .career-desc .job-list table tr td, .career-desc .search-list table tr td {
+    color: #fff;
+    padding-right: 10px;
+    position: relative;
+  }
+  .career-desc .search-list .place::before, .mobile-search-desc .place::before {
+    content: "\f041";
+    font-family: 'FontAwesome';
+    padding-right: 0;
+    position: absolute;
+    left: 0;
+  }
+  .career-desc .search-list .date::before, .mobile-search-desc .date::before {
+    content: "\f133";
+    font-family: 'FontAwesome';
+    padding-right: 0;
+    position: absolute;
+    left: 0;
+  }
+  td.type {
+    vertical-align: top;
+    top: 30px;
+    padding-left: 0
+  }
+  td.date {
+    padding-left: 20px;
+  }
+  td.place {
+    padding-left: 15px
+  }
+  td.jobs {
+    vertical-align: top;
+    top: 30px;
+  }
+}
+@media (max-width: 1148px) and (min-width: 1065px) {
+  td.jobs {
+    vertical-align: middle;
+    top: 0;
+  }
+  td.type {
+    vertical-align: middle;
+    top: 0;
+    padding-left: 0
+  }
+}
+@media (max-width: 1064px) and (min-width: 1025px) {
+  td.type img {
+    position: absolute;
+    left: -20px;
+  }
+}
 @media only screen and (min-width: 1024px) {
   .cd-dropdown-content {
     /* reset mobile style */
@@ -393,8 +473,11 @@
 }
 
 @media(min-width:992px){
-   .col-md-6.box-release {
-   width: 49%;
+  .col-md-6.box-release {
+    width: 49%;
+   }
+   .nav-mobile {
+    padding-right: 25px
    }
 }
 
@@ -406,6 +489,17 @@
     height: calc(100% - 56px);
     overflow: auto;
   }*/
+  .overflow-hide{
+    overflow: hidden;
+  }
+  .apply-filter {
+   /* position:absolute;
+    bottom: 0px;
+    width: 100%;
+    left: 0px;
+    padding: 20px 25px 0px;
+    background: rgb(231, 231, 231);*/
+}
   #modalSeatMap .modal-header .close{
       z-index: 2;
       position: relative;
@@ -886,6 +980,8 @@
     position: fixed;
     width: 100%;
     z-index: 9;
+    overflow-y: auto;
+    top:60px;
   }
   .search-mobile.mobile-content .row:first-child {
     margin: 0
@@ -927,8 +1023,8 @@
   }
   .mobile-content .mobile-sidebar .mobile-sidebar-menu {
     padding-top: 15px;
-    max-height: 400px;
-    overflow-y: auto;
+  /*  max-height: 400px;
+    overflow-y: auto;*/
   }
 }
 

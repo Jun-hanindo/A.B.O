@@ -2180,11 +2180,18 @@ footer .information-title{
   padding-right: 5px;
 }
 
-.career-desc .search-list .type::before,
+/*.career-desc .search-list .type::before,
 .mobile-search-desc .type::before{
   content: "\f130";
   font-family: 'FontAwesome';
   padding-right: 5px;
+}*/
+
+.career-desc .search-list .type i {
+  margin-right: 5px
+}
+.mobile-search-desc .type i {
+  margin-right: 2px
 }
 
 .career-desc .job-list table,
@@ -2462,7 +2469,7 @@ footer .information-title{
 .mobile-content .mobile-sidebar .mobile-sidebar-menu .menu::after {
   content: "\f106";
   font-family: 'FontAwesome';
-  padding-left: 10px;
+  padding-left: 5px;
 }
 
 .mobile-page-title,
@@ -4334,7 +4341,7 @@ ol .a li:before{
 .mobile-content .mobile-sidebar .mobile-sidebar-menu .collapsed::after {
     content: "\f107";
     font-family: 'FontAwesome';
-    padding-left: 10px;
+    padding-left: 5px;
 }
 
 .client-mobile h3{
@@ -4695,8 +4702,4 @@ ol .a li:before{
 .content-footer-modal{
   margin-top: 5px;
 }
-
-
-
-
 

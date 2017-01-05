@@ -156,7 +156,7 @@
                                         <div class="filter-child filter-categories-mobile">
                                             <ul>
                                                 @if(!empty($categories))
-                                                    <li class="checkbox"><label><input type="checkbox" name="cat[]" class="cat-filter-mobile-all" value="all"
+                                                    <li><input type="checkbox" name="cat[]" class="cat-filter-mobile-all" value="all"
                                                         @if(!empty($cats_sel))
                                                             @foreach($cats_sel as $k => $cat_sel) 
                                                                 @if($cat_sel == 'all')
@@ -164,9 +164,9 @@
                                                                 @endif
                                                             @endforeach
                                                         @endif
-                                                        > All Categories</label></li>
+                                                        > All Categories</li>
                                                     @foreach($categories as $key => $category) 
-                                                         <li class="checkbox"><label><input type="checkbox" name="cat[]" class="cat-filter-mobile" value="{{$category->slug}}"
+                                                         <li><input type="checkbox" name="cat[]" class="cat-filter-mobile" value="{{$category->slug}}"
                                                             @if(!empty($cats_sel))
                                                                 @foreach($cats_sel as $k => $cat_sel) 
                                                                     @if($cat_sel == $category->slug)
@@ -178,7 +178,7 @@
                                                                     checked
                                                                 @endif
                                                             @endif
-                                                            > {{ $category->name }}</label></li>
+                                                            > {{ $category->name }}</li>
                                                     @endforeach
                                                 @endif
                                             </ul>
