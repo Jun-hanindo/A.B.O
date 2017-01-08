@@ -342,3 +342,18 @@ page {
 .btn-switch .bootstrap-switch{
     float: left;
 }
+#icon_image-div span{
+    float: left;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+#icon_image-div input{
+    width: 80%;
+    float: left;
+}
+#icon_image-div #icon_image2-cat{
+    margin-top: 10px;
+}
+#icon_image-div .ket-span{
+    padding-top: 15px;
+}

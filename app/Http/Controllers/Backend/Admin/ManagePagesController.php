@@ -32,10 +32,10 @@ class ManagePagesController extends BaseController
 
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
         }
         
@@ -71,9 +71,9 @@ class ManagePagesController extends BaseController
             $data['title'] = trans('backend/general.page_management');
         }
         
-        $trail = $data['title'];
+        $trail['desc'] = $data['title'];
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
         $data['setting'] = $this->setting;
 
         return view('backend.admin.manage_page.form', $data);
@@ -91,10 +91,10 @@ class ManagePagesController extends BaseController
                 $this->model->updateStatusToDraft($param, $slug);
             //if(!empty($updateData)) {
 
-                $log['user_id'] = $this->currentUser->id;
+                //$log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Page "'.$updateData->title.'" was updated';
                 $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
+                $insertLog->insertNewLogActivity($log);
 
 
                 return response()->json([
@@ -116,10 +116,10 @@ class ManagePagesController extends BaseController
                 $updateData = $this->model->updateManagePage($param, $slug, $user_id);
             //if(!empty($updateData)) {
 
-                $log['user_id'] = $this->currentUser->id;
+                //$log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Page "'.$updateData->title.'" was updated';
                 $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
+                $insertLog->insertNewLogActivity($log);
 
                 flash()->success($updateData->title.' '.trans('general.update_success'));
 
@@ -131,10 +131,10 @@ class ManagePagesController extends BaseController
         } catch (\Exception $e) {
             flash()->error(trans('general.update_error'));
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             if($req->ajax()){
                 

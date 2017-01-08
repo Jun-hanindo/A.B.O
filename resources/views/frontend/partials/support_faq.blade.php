@@ -46,10 +46,10 @@
                 <div class="mobile-page-title">
                     <h3 class="font-light">{{ trans('frontend/general.frequently_asked_questions') }}</h3>
                 </div>
-                @php 
+                {{-- @php 
                     $mobile = str_replace($tag, '', strstr($content, $tag));
-                    $mobile = str_replace('@back_support', URL::route('support-faq'), $mobile);
-                @endphp
+                    $mobile = str_replace('@back_support', URL::route('support-faq'), $mobile); 
+                @endphp --}}
                 {{-- str_replace('[captcha]', Recaptcha::render(), $mobile); --}}
                 {!! $responsive_content !!}
             </div>

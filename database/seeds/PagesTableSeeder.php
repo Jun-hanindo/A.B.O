@@ -866,11 +866,10 @@ class PagesTableSeeder extends Seeder
         $tixtrack->content = '<div class="tabbable tabs-left list-faq">
                                     <div class="tab-content tab-ticket col-md-8">
                                         <div class="tab-pane active" id="topquestion">
-                                       
                                             <ul class="ul-faq-content ul-ticket-content">
-                                                <li>
+                                                <li class="li-ticket-content">
                                                     <div class="circle-ticket step1-ticket">
-                                                        <label>1</label>
+                                                        <label class="font-light">1</label>
                                                     </div>
                                                     <a data-toggle="collapse" href="#collapseone" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed font-light">Select Event & Tickets</a>
                                                     <div class="collapse" id="collapseone">
@@ -881,9 +880,9 @@ class PagesTableSeeder extends Seeder
                                                         </ol>
                                                     </div>
                                                 </li>
-                                                <li>
+                                                <li class="li-ticket-content">
                                                     <div class="circle-ticket step2-ticket">
-                                                        <label>2</label>
+                                                        <label class="font-light">2</label>
                                                     </div>
                                                     <a data-toggle="collapse" href="#collapsetwo" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed font-light">Make Payment</a>
                                                     <div class="collapse" id="collapsetwo">
@@ -895,9 +894,9 @@ class PagesTableSeeder extends Seeder
                                                         </ol>
                                                     </div>
                                                 </li>
-                                                <li>
+                                                <li class="li-ticket-content">
                                                     <div class="circle-ticket step3-ticket">
-                                                        <label>3</label>
+                                                        <label class="font-light">3</label>
                                                     </div>
                                                     <a data-toggle="collapse" href="#collapsethree" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed font-light">Receive Your Tickets</a>
                                                     <div class="collapse" id="collapsethree">
@@ -908,9 +907,9 @@ class PagesTableSeeder extends Seeder
                                                         </ol>
                                                     </div>
                                                 </li>
-                                                <li>
+                                                <li class="li-ticket-content">
                                                     <div class="circle-ticket step4-ticket">
-                                                        <label>4</label>
+                                                        <label class="font-light">4</label>
                                                     </div>
                                                     <a data-toggle="collapse" href="#collapsefour" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed font-light">Attend and Enjoy Your Event</a>
                                                     <div class="collapse" id="collapsefour">
@@ -930,9 +929,9 @@ class PagesTableSeeder extends Seeder
                         <div class="tab-pane active" id="topquestion">
                        
                             <ul class="ul-faq-content ul-ticket-content">
-                                <li>
+                                <li class="li-ticket-content-mobile">
                                     <div class="circle-ticket step1-ticket">
-                                        <label>1</label>
+                                        <label class="font-light">1</label>
                                     </div>
                                     <a data-toggle="collapse" href="#collapseone-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed font-light">Select Event & Tickets</a>
                                     <div class="collapse" id="collapseone-mobile">
@@ -943,9 +942,9 @@ class PagesTableSeeder extends Seeder
                                         </ol>
                                     </div>
                                 </li>
-                                <li>
+                                <li class="li-ticket-content-mobile">
                                     <div class="circle-ticket step2-ticket">
-                                        <label>2</label>
+                                        <label class="font-light">2</label>
                                     </div>
                                     <a data-toggle="collapse" href="#collapsetwo-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed font-light">Make Payment</a>
                                     <div class="collapse" id="collapsetwo-mobile">
@@ -957,9 +956,9 @@ class PagesTableSeeder extends Seeder
                                         </ol>
                                     </div>
                                 </li>
-                                <li>
+                                <li class="li-ticket-content-mobile">
                                     <div class="circle-ticket step3-ticket">
-                                        <label>3</label>
+                                        <label class="font-light">3</label>
                                     </div>
                                     <a data-toggle="collapse" href="#collapsethree-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed font-light">Receive Your Tickets</a>
                                     <div class="collapse" id="collapsethree-mobile">
@@ -970,9 +969,9 @@ class PagesTableSeeder extends Seeder
                                         </ol>
                                     </div>
                                 </li>
-                                <li>
+                                <li class="li-ticket-content-mobile">
                                     <div class="circle-ticket step4-ticket">
-                                        <label>4</label>
+                                        <label class="font-light">4</label>
                                     </div>
                                     <a data-toggle="collapse" href="#collapsefour-mobile" aria-expanded="false" aria-controls="collapseExample" class="collapse-filter collapsed font-light">Attend and Enjoy Your Event</a>
                                     <div class="collapse" id="collapsefour-mobile">

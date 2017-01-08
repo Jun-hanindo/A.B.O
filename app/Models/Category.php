@@ -70,6 +70,14 @@ class Category extends Model
                 $this->icon_image = $filename_icon;
             }
 
+            if (isset($param['icon_image2'])) 
+            {
+                $icon_image2 = $param['icon_image2'];
+                $extension2 = $icon_image2->getClientOriginalExtension();
+                $filename_icon2 = "caticon2".time().'.'.$extension2;
+                $this->icon_image2 = $filename_icon2;
+            }
+
         }else{
             $this->icon_image = null;
         }
@@ -84,13 +92,14 @@ class Category extends Model
 
         if($this->save()){
             if (isset($icon_image)) {
-                // $img = Image::make($icon_image);
-                // $img_tmp = $img->stream();
-                // Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                //     'categories/'.$filename_icon, $img_tmp->__toString(), 'public'
-                // );
                 Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
                     'categories/'.$filename_icon, File::get($icon_image), 'public'
+                );
+            }
+
+            if (isset($icon_image2)) {
+                Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                    'categories/'.$filename_icon2, File::get($icon_image2), 'public'
                 );
             }
             return $this;
@@ -136,19 +145,32 @@ class Category extends Model
                     $data->icon_image = $filename_icon;
                 }
 
+                if (isset($param['icon_image2'])) 
+                {
+                    $oldImage2 = $data->icon_image2;
+                    if(!empty($oldImage2)){
+                        file_delete('categories/'.$oldImage2, env('FILESYSTEM_DEFAULT'));
+                    }
+                    $icon_image2 = $param['icon_image2'];
+                    $extension2 = $icon_image2->getClientOriginalExtension();
+                    $filename_icon2 = "caticon2".time().'.'.$extension2;
+                    $data->icon_image2 = $filename_icon2;
+                }
+
             }else{
                 $data->icon_image = null;
             }
 
             if($data->save()){
                 if (isset($icon_image)) {
-                    // $img = Image::make($icon_image);
-                    // $img_tmp = $img->stream();
-                    // Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
-                    //     'categories/'.$filename_icon, $img_tmp->__toString(), 'public'
-                    // );
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
                         'categories/'.$filename_icon, File::get($icon_image), 'public'
+                    );
+                }
+
+                if (isset($icon_image2)) {
+                    Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
+                        'categories/'.$filename_icon2, File::get($icon_image2), 'public'
                     );
                 }
 

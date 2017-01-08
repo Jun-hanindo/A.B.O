@@ -513,11 +513,11 @@ class AuthController extends Controller
         Sentinel::logout();
         \Session::forget('ASPXAUTH');
 
-        $log['user_id'] = $this->currentUser->id;
+        //$log['user_id'] = $this->currentUser->id;
         $log['description'] = 'A user log out';
         //$log['ip_address'] = '';
         $insertLog = new LogActivity();
-        $insertLog->insertLogActivity($log);
+        $insertLog->insertNewLogActivity($log);
 
 
         return redirect()->route('admin-login');

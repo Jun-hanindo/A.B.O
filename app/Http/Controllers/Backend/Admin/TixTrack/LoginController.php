@@ -34,9 +34,9 @@ class LoginController extends BaseController
             return redirect()->route('admin-tixtrack-edit-data');
             
         }else{
-            $trail = 'Tixtrack login';
+            $trail['desc'] = 'Tixtrack login';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
 
             return view('backend.admin.tixtrack.login');
         }

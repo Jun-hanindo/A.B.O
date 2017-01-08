@@ -27,6 +27,10 @@
         if(icon_image != undefined){
             fd.append('icon_image',icon_image);
         }
+        var icon_image2 = $('#icon_image2-cat').prop('files')[0];
+        if(icon_image2 != undefined){
+            fd.append('icon_image2',icon_image2);
+        }
         fd.append('name', name);
         fd.append('icon', icon);
         fd.append('description', description);
@@ -81,5 +85,7 @@
         $("#description-cat").val('');
         $("#icon_image-cat").val('');
         $('#preview_icon_image').attr('src', '');
+        $("#icon_image2-cat").val('');
+        $('#preview_icon_image2').attr('src', '');
     }
 </script>

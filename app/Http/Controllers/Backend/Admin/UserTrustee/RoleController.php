@@ -127,7 +127,7 @@ class RoleController extends BaseController
             //$this->model->findOrFail($id)->delete();
             $data = $this->model->deleteByID($id);
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Role "'.$data->name.'" was deleted';
             //$log['ip_address'] = '';
             $insertLog = new LogActivity();
@@ -215,7 +215,7 @@ class RoleController extends BaseController
 
                 $this->model->findOrFail($id)->update($data);
 
-                $log['user_id'] = $this->currentUser->id;
+                //$log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Role "'.$request->input('name').'" was updated';
                 //$log['ip_address'] = $request->ip();
                 $insertLog = new LogActivity();
@@ -223,7 +223,7 @@ class RoleController extends BaseController
             } else {
                 $this->model->create($data);
                 
-                $log['user_id'] = $this->currentUser->id;
+                //$log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Role "'.$data['name'].'" was created';
                 //$log['ip_address'] = $request->ip();
                 $insertLog = new LogActivity();

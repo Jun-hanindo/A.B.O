@@ -159,6 +159,10 @@
         if(icon_image != undefined){
             fd.append('icon_image',icon_image);
         }
+        var icon_image2 = $('#icon_image2-cat').prop('files')[0];
+        if(icon_image2 != undefined){
+            fd.append('icon_image2',icon_image2);
+        }
         fd.append('name', name);
         fd.append('icon', icon);
         fd.append('description', description);
@@ -221,12 +225,16 @@
                 if(data.icon != null){
                     $("#icon-cat").val(data.icon);
                     $('#icon-cat').selectpicker('val', data.icon);
+                    $(".switch_icon").bootstrapSwitch('state', true); 
                     $('#preview_icon_image').attr('src', '');
                     $('#div-preview_icon_image').hide();
-                    $(".switch_icon").bootstrapSwitch('state', true); 
+                    $('#preview_icon_image2').attr('src', '');
+                    $('#div-preview_icon_image2').hide();
                 }else{
                     $('#preview_icon_image').attr('src', data.src_icon_image); 
+                    $('#preview_icon_image2').attr('src', data.src_icon_image2); 
                     $('#div-preview_icon_image').show();
+                    $('#div-preview_icon_image2').show();
                     $("#icon-cat").val('');
                     $('#icon-cat').selectpicker('val', '');
                     $(".switch_icon").bootstrapSwitch('state', false); 

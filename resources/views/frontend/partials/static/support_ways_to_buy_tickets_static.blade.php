@@ -22,7 +22,6 @@
                                 <div class="tabbable tabs-left list-faq">
                                     <div class="tab-content tab-ticket col-md-8">
                                         <div class="tab-pane active" id="topquestion">
-                                       
                                             <ul class="ul-faq-content ul-ticket-content">
                                                 <li class="li-ticket-content">
                                                     <div class="circle-ticket step1-ticket">

@@ -128,6 +128,10 @@ class CategoriesController extends BaseController
                 $data->src_icon_image = file_url('categories/'.$data->icon_image, env('FILESYSTEM_DEFAULT')); 
             }
 
+            if(isset($data->icon_image2)){
+                $data->src_icon_image2 = file_url('categories/'.$data->icon_image2, env('FILESYSTEM_DEFAULT')); 
+            }
+
             return response()->json([
                 'code' => 200,
                 'status' => 'success',

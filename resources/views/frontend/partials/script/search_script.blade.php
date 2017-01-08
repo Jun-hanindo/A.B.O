@@ -153,7 +153,7 @@
                             if(val.cat_icon != null){
                                 var cat = '<i class="fa fa-'+val.cat_icon+'"></i>'+val.cat_name;
                             }else{
-                                var cat = '<img src="'+val.cat_icon_image_url+'">'+val.cat_name;
+                                var cat = '<img src="'+val.cat_icon_image2_url+'">'+val.cat_name;
                             }
                             var html = '<tr class="bg-green tr-search" style="background-color:'+val.background_color+' !important">'
                                 +'<td class="searchpic"><a href="'+uri+'"><img src="'+val.featured_image3_url+'"></a></td>'

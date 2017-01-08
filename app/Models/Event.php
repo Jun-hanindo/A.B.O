@@ -1584,6 +1584,7 @@ class Event extends Model
                 $event->cat_name = ucwords(strtolower($cat_event->name));
                 $event->cat_icon = $cat_event->icon;
                 $event->cat_icon_image_url = file_url('categories/'.$cat_event->icon_image, env('FILESYSTEM_DEFAULT'));
+                $event->cat_icon_image2_url = file_url('categories/'.$cat_event->icon_image2, env('FILESYSTEM_DEFAULT'));
 
                 $this->setImageUrl($event);
 

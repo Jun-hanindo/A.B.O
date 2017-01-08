@@ -38,7 +38,7 @@
                     $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');  
                 	location.reload();
                 }else{
-                    var url = "{{ URL::to('support/::slug?preview=true') }}";
+                    var url = "{{ URL::to('::slug?preview=true') }}";
                     url = url.replace('::slug', slug);
                     newwindow.location = url;
                     return false;

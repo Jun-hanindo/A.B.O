@@ -390,7 +390,7 @@
                                     </div>
                                 @endif
                         </div>
-                        {{-- <div class="col-md-4">
+                        <div class="col-md-4">
                             <div class="formPromo">
                                 <form class="form-group" id="form-subscribe" action="{{URL::route('subscribe-event-store')}}" method="POST">
                                     <label class="labelHead">{{ trans('frontend/general.get_the_latest_news_promotions') }} {{ $event->title }}</label>
@@ -399,7 +399,7 @@
                                     <div class="row">
                                         <input type="hidden" class="form-control" name="event" id="event" value="{{ $event->id }}">
                                         <div class="col-xs-6 col-1 first_name">
-                                            <input type="text" class="form-control first" name="first_name" id="first_name" placeholder="{ trans('frontend/general.first_name') }}">
+                                            <input type="text" class="form-control first" name="first_name" id="first_name" placeholder="{{ trans('frontend/general.first_name') }}">
                                         </div>
                                         <div class="col-xs-6 col-2 last_name">
                                             <input type="text" class="form-control last" name="last_name" id="last_name" placeholder="{{ trans('frontend/general.last_name') }}">
@@ -431,7 +431,7 @@
                                 </form>
                             </div>
                             @if(!empty($category_events))
-                            <div class="featuredEvent">
+                            {{-- <div class="featuredEvent">
                                 <div class="featuredLabel">
                                     <label>{{ trans('frontend/general.featured_events') }}</label>
                                 </div>
@@ -456,9 +456,9 @@
                                         <button class="btn btnBrowse font-bold">{{ trans('frontend/general.browse_more_events') }}</button>
                                     </a>
                                 </div>
-                            </div>
+                            </div> --}}
                             @endif
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>

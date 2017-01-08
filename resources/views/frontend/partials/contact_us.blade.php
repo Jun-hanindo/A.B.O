@@ -7,9 +7,9 @@
         <div class="col-md-3">
             <div class="sidebar sidebar-support">
                 @if(Request::segment(1) == 'support')
-                    @include('layout.frontend.partial.support_left_side')
-                @else
                     @include('layout.frontend.partial.our_company_left_side')
+                @else
+                    @include('layout.frontend.partial.support_left_side')
                 @endif
             </div>
         </div>
@@ -32,9 +32,9 @@
             <div class="container">
                 <div class="mobile-sidebar-menu">
                     @if(Request::segment(1) == 'support')
-                        @include('layout.frontend.partial.support_top_mobile')
-                    @else
                         @include('layout.frontend.partial.our_company_top_mobile')
+                    @else
+                        @include('layout.frontend.partial.support_top_mobile')
                     @endif
                 </div>
             </div>

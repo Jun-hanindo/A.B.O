@@ -33,8 +33,9 @@ class CategoryRequest extends Request
             if (isset($req['switch_icon'])){
                 $rules['icon'] = 'required';
             }else{
-                //$rules['icon_image'] = 'required|image|mimes:jpg,jpeg,png|dimensions:height=80|max:1024';
-                $rules['icon_image'] = 'required|mimes:svg|max:1024';
+                // $rules['icon_image'] = 'image|mimes:jpg,jpeg,png|dimensions:height=80|max:1024';
+                $rules['icon_image'] = 'mimes:svg|max:1024';
+                $rules['icon_image2'] = 'mimes:svg|max:1024';
             }
             return $rules;
         } else {
@@ -46,8 +47,9 @@ class CategoryRequest extends Request
             if (isset($req['switch_icon'])){
                 $rules['icon'] = 'required';
             }else{
-                // $rules['icon_image'] = 'image|mimes:jpg,jpeg,png|dimensions:height=80|max:1024';
-                $rules['icon_image'] = 'mimes:svg|max:1024';
+                //$rules['icon_image'] = 'required|image|mimes:jpg,jpeg,png|dimensions:height=80|max:1024';
+                $rules['icon_image'] = 'required|mimes:svg|max:1024';
+                $rules['icon_image2'] = 'required|mimes:svg|max:1024';
             }
             return $rules;
         }
