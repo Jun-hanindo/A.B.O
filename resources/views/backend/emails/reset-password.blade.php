@@ -7,7 +7,7 @@
     <body>
         <h3>Hi {{ $name }},</h3>
 
-        <p>We got request to reset your AHLOO Web Admin password.</p>
+        <p>We got request to reset your AsiaBoxOffice Web Admin password.</p>
         <p align="center">{!! link_to_action('Auth\AuthController@getChangePassword', 'Reset Password', ['id' => $id, 'code' => $code]) !!}</p>
         <p>If you ignore this message, your password won't be changed.</p>
     </body>
