@@ -96,7 +96,7 @@ class SettingsController extends BaseController
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
 
-            return redirect()->route('admin-index-setting');
+            return redirect()->back();
 
         //} else {
         } catch (\Exception $e) {
@@ -108,7 +108,7 @@ class SettingsController extends BaseController
             $insertLog = new LogActivity();
             $insertLog->insertLogActivity($log);
             
-            return redirect()->route('admin-index-setting')->withInput();
+            return redirect()->back();
 
         }
     }
