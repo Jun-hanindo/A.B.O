@@ -58,6 +58,11 @@ class SettingsTableSeeder extends Seeder
             ['name' => 'mail_username', 'value' => 'emaild67@gmail.com'],
             ['name' => 'mail_password', 'value' => 'emaildummy67'],
             ['name' => 'mail_name', 'value' => 'Asia Box Ofiice'],
+            ['name' => 'mail_encryption', 'value' => 'tls'],
+            ['name' => 'mail_domain', 'value' => ''],
+            ['name' => 'mail_secret', 'value' => ''],
+            ['name' => 'mail_key', 'value' => ''],
+            ['name' => 'mail_region', 'value' => ''],
        	];
     }
 }
