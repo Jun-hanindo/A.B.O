@@ -559,22 +559,22 @@ class AuthController extends Controller
                 return $backToLogin;
             }
 
-            $log['user_id'] = $findUser->id;
+            //$log['user_id'] = $findUser->id;
             $log['description'] = 'A user log in';
             //$log['ip_address'] = $request->ip();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             flash()->success('Login success!');
             //return redirect()->route('admin-dashboard');
             return redirect()->route('admin-index-event');
         } catch (ThrottlingException $e) {
 
-            $log['user_id'] = $findUser->id;
+            //$log['user_id'] = $findUser->id;
             $log['description'] = 'A user login failed because too many attempts';
             //$log['ip_address'] = $request->ip();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             flash()->error('Too many attempts!');
         } catch (NotActivatedException $e) {
@@ -690,11 +690,11 @@ class AuthController extends Controller
         Reminder::complete($user, $request->input('code'), $request->input('password'));
 
         flash()->success('Password successfully changed!');
-        $log['user_id'] = $user->id;
+        //$log['user_id'] = $user->id;
         $log['description'] = 'A user have changed password';
         //$log['ip_address'] = $request->ip();
         $insertLog = new LogActivity();
-        $insertLog->insertLogActivity($log);
+        $insertLog->insertNewLogActivity($log);
 
         return redirect()->action('Auth\AuthController@getLogin');
     }

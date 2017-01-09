@@ -3289,7 +3289,7 @@ ul#getvenue li:before {
 }
 .mobile-search-show.open {
     right: 0;
-      top: 3px;
+    top: 0px;
     padding-top: 13px;
     padding-bottom: 13px;
 }
