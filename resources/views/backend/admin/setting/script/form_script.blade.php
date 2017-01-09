@@ -13,6 +13,12 @@
             hideShowField(driver);
         });
 
+        $('.image').change(function(){
+            var name = $(this).attr('data-name');
+            $("#div-preview_"+name).show();
+            preview(this,$(this).data('type'),name);
+        });
+
     });
 
     function hideShowField(driver){

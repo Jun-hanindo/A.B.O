@@ -84,7 +84,6 @@ class SettingsController extends BaseController
     {
         //
         $param = $req->all();
-        
         try{
             $updateData = $this->model->updateSetting($param);
         //if(!empty($updateData)) {

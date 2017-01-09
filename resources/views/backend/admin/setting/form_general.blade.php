@@ -13,9 +13,23 @@
                     <h3 class="box-title">{{ trans('backend/general.setting') }}</h3>
                 </div>
 
-                {!! Form::open(array('url' => route('admin-update-setting'),'method'=>'POST','id'=>'form-setting', 'class' => "form-horizontal")) !!}
+                {!! Form::open(array('url' => route('admin-update-setting'),'files'=>'true','method'=>'POST','id'=>'form-setting', 'class' => "form-horizontal")) !!}
                     <div class="box-body">
                         @include('flash::message')
+                        <div class="form-group{{ Form::hasError('header_logo') }} header_logo">
+                            <label for="header_logo" class="col-sm-3 control-label">{{ trans('backend/general.header_logo') }} <br>(Height max. 120px) *</label>
+                            <div class="col-sm-5">
+                                <input id="header_logo" name="setting[header_logo]" class="form-control image" data-name="header_logo" type="file" value="{{ isset($data['header_logo']) ? $data['header_logo'] : null }}">
+                                {!! Form::errorMsg('header_logo') !!}
+                            </div>
+                            (Max. size 1 mb)
+                        </div>
+                        <div class="form-group privew" id="div-preview_header_logo" data-name="header_logo">
+                            <label for="header_logo" class="col-sm-3 control-label"></label>
+                            <div class="col-sm-5">
+                                <img src="{{ isset($data['header_logo']) ? file_url('settings/'.$data['header_logo'], env('FILESYSTEM_DEFAULT')) : null }}" name="preview" id="preview_header_logo" height="50%" width="50%" style="background:#ddd;">
+                            </div>
+                        </div>
                         <div class="form-group">
                             {!! Form::label('language', trans('backend/general.language'), ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-9">
