@@ -392,8 +392,8 @@
                         </div>
                         <div class="col-md-4">
                             <div class="formPromo">
-                                <form class="form-group" id="form-subscribe" action="{{URL::route('subscribe-event-store')}}" method="POST">
-                                    <label class="labelHead">{{ trans('frontend/general.get_the_latest_news_promotions') }} {{ $event->title }}</label>
+                                <form class="form-group" id="form-subscribe" action="{{URL::route('subscribe-store')}}" method="POST">
+                                    <label class="labelHead">{{ trans('frontend/general.sign_up_latest_updates') }}</label>
                                     <div class="error"></div>
                                     @include('flash::message')
                                     <div class="row">

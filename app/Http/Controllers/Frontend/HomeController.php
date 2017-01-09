@@ -808,12 +808,12 @@ class HomeController extends Controller
         try{
             $param = $req->all();
 
-            $data['mail_driver'] = $this->setting['mail_driver'];
-            $data['mail_host'] = $this->setting['mail_host'];
-            $data['mail_port'] = $this->setting['mail_port'];
-            $data['mail_username'] = $this->setting['mail_username'];
-            $data['mail_password'] = $this->setting['mail_password'];
-            $data['mail_name'] = $this->setting['mail_name'];
+            // $data['mail_driver'] = $this->setting['mail_driver'];
+            // $data['mail_host'] = $this->setting['mail_host'];
+            // $data['mail_port'] = $this->setting['mail_port'];
+            // $data['mail_username'] = $this->setting['mail_username'];
+            // $data['mail_password'] = $this->setting['mail_password'];
+            // $data['mail_name'] = $this->setting['mail_name'];
 
             $modelSubscription = new Subscription();
             $findSubscriber = $modelSubscription->findByEmail($param['email']);
@@ -821,10 +821,11 @@ class HomeController extends Controller
                 $subscribe = $modelSubscription->updateSubscription($param, $param['email']);
                 $text = 'update';
             }else{
-                Mail::send('frontend.emails.subscribe_reply', $param, function ($message) use ($data, $param) {
-                    $message->from($data['mail_username'], $data['mail_name'])
-                        ->to($param['email'], $param['first_name'].' '.$param['last_name'])->subject('Thanks for Your Subscription')
-                        ->replyTo($data['mail_username'], $data['mail_name']);
+                Mail::send('frontend.emails.subscribe_reply', $param, function ($message) use (/*$data, */$param) {
+                    // $message->from($data['mail_username'], $data['mail_name'])
+                    //     ->to($param['email'], $param['first_name'].' '.$param['last_name'])->subject('Thanks for Your Subscription')
+                    //     ->replyTo($data['mail_username'], $data['mail_name']);
+                    $message->to($param['email'], $param['first_name'].' '.$param['last_name'])->subject('Thanks for Your Subscription');
 
                     $modelSubscription = new Subscription();
                     $subscribe = $modelSubscription->insertNewSubscription($param);
@@ -832,12 +833,22 @@ class HomeController extends Controller
                 $text = 'new';
             }
 
-            return response()->json([
-                'code' => 200,
-                'status' => 'success',
-                'message' => trans('general.subscribe_success'),
-                'data'  => $text,
-            ],200);
+            if($req->ajax()){
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => trans('general.subscribe_success'),
+                    'data'  => $text,
+                ],200);
+            }else{
+                if($text == 'new'){
+                    flash()->success(trans('frontend/general.you_are_part_mailing_list'));
+                }else{
+                    flash()->error(trans('frontend/general.already_sucribed_us'));
+                }
+                
+                return \Redirect::back();
+            }
         
         } catch (\Exception $e) {
 
@@ -846,11 +857,16 @@ class HomeController extends Controller
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
 
-            return response()->json([
-                'code' => 400,
-                'status' => 'success',
-                'message' => trans('general.subscribe_error')
-            ],400);
+            if($req->ajax()){
+                return response()->json([
+                    'code' => 400,
+                    'status' => 'success',
+                    'message' => trans('general.subscribe_error')
+                ],400);
+            }else{
+                flash()->error(trans('general.subscribe_error'));
+                return \Redirect::back();
+            }
         
         }
     }
