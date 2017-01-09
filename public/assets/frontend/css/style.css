@@ -3289,6 +3289,9 @@ ul#getvenue li:before {
 }
 .mobile-search-show.open {
     right: 0;
+      top: 3px;
+    padding-top: 13px;
+    padding-bottom: 13px;
 }
 
 .eventTab-mobile{

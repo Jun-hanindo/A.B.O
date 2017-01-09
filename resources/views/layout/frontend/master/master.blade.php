@@ -53,8 +53,13 @@
                                 <nav class="main-menu" role="navigation">
                                     <ul class="nav-menu">
                                         <li class="nav-item">
+                                            @if(isset($setting['header_logo']))
+                                                <a href="{{URL::route('home')}}"><img src="{{ file_url('settings/'.$setting['header_logo'], env('FILESYSTEM_DEFAULT')) }}" class="logo"></a>
+                                            @else
+                                                <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/ABO-logo.svg') }}" class="logo"></a>
+                                            @endif
                                             {{-- <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/ABO-logo.svg') }}" class="logo"></a> --}}
-                                            <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/abo-xmas.png') }}" class="logo"></a>
+                                            {{-- <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/abo-xmas.png') }}" class="logo"></a> --}}
                                         </li>
                                         {{-- <li class="nav-item">
                                             <div class="cd-dropdown-wrapper">
@@ -165,8 +170,13 @@
                                         </div>
                                         <div class="col-xs-6">
                                             <div class="mobile-logo">
+                                                @if(isset($setting['header_logo']))
+                                                    <a href="{{URL::route('home')}}"><img src="{{ file_url('settings/'.$setting['header_logo'], env('FILESYSTEM_DEFAULT')) }}"></a>
+                                                @else
+                                                    <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/ABO-logo.svg') }}" class="logo"></a>
+                                                @endif
                                                 {{-- <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/footer-logo.svg') }}"></a> --}}
-                                                <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/abo-xmas.png') }}"></a>
+                                                {{-- <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/abo-xmas.png') }}"></a> --}}
                                             </div>
                                         </div>
                                         <div class="col-xs-3">

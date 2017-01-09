@@ -353,6 +353,7 @@ return [
     'terms_of_ticket_sales_page' => 'Terms of Ticket Sales Page',
     'terms_of_website_use_page' => 'Terms of Website Use Page',
     'desktop' => 'Desktop',
-    'mobile' => 'Mobile'
+    'mobile' => 'Mobile',
+    'header_logo' => 'Header Logo'
 
 ];
