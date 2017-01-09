@@ -27,9 +27,9 @@ class TrailsController extends BaseController
 
         $data['dropdown'] = $drop;
 
-        $trail = 'Trail';
+        $trail['desc'] = 'Trail';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
         
 
         return view('backend.admin.trail.index', $data);
@@ -69,8 +69,8 @@ class TrailsController extends BaseController
 
     public function saveTrailModal(Request $req){
         $param = $req->all();
-        $desc = $param['desc'];
-        $saveData = $this->model->insertTrail($desc);
+        $desc['desc'] = $param['desc'];
+        $saveData = $this->model->insertNewTrail($desc);
 
         if(!empty($saveData))
         {
@@ -98,10 +98,10 @@ class TrailsController extends BaseController
             $data = $this->model->deleteByDate($param);
             flash()->success(trans('general.delete_success'));
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Trail "'.$param['start_delete'].' until '.$param['end_delete'].'" was deleted';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-trail-index');
 
@@ -110,10 +110,10 @@ class TrailsController extends BaseController
 
             flash()->error(trans('general.data_not_found'));
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-trail-index');
 

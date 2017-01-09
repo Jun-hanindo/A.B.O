@@ -27,9 +27,9 @@ class MessageRepliesController extends BaseController
      */
     public function index()
     {
-        $trail = 'List Message';
+        $trail['desc'] = 'List Message';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
         return view('backend.admin.message.index');
     }
 
@@ -64,10 +64,10 @@ class MessageRepliesController extends BaseController
             $saveData->reply_by_label = trans('general.reply_by');
             $saveData->message_label = trans('general.message');
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Reply message was sent';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -79,10 +79,10 @@ class MessageRepliesController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,

@@ -54,9 +54,9 @@ class SettingsController extends BaseController
         }
         $result['data'] = $data;
 
-        $trail = 'Setting Mail';
+        $trail['desc'] = 'Setting Mail';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
         
         return view('backend.admin.setting.form_mail', $result);
     }
@@ -73,9 +73,9 @@ class SettingsController extends BaseController
         $modelCurrency = new Currency();
         $result['currencies'] = $modelCurrency->dropdown();
 
-        $trail = 'Setting';
+        $trail['desc'] = 'Setting';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
         
         return view('backend.admin.setting.form_general', $result);
     }
@@ -90,11 +90,11 @@ class SettingsController extends BaseController
         //if(!empty($updateData)) {
             flash()->success(trans('general.update_success'));
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Setting was updated';
             //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return redirect()->back();
 
@@ -103,10 +103,10 @@ class SettingsController extends BaseController
 
             flash()->error(trans('general.update_error'));
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
             
             return redirect()->back();
 

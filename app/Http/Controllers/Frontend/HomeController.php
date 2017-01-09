@@ -45,44 +45,44 @@ class HomeController extends Controller
 
     public function indexStatic()
     {
-        $trail = 'Homepage Static front end';
+        $trail['desc'] = 'Homepage Static front end';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
         return view('frontend.partials.static.homepage_static'); 
     }
 
     public function bryanAdams()
     {
-        $trail = 'Event Bryan Adams Static front end';
+        $trail['desc'] = 'Event Bryan Adams Static front end';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
 
         return view('frontend.partials.static.event_bryan_adams'); 
     }
 
     public function jessicaJungSingapore()
     {
-        $trail = 'Event Jessica Jung Singapore Static front end';
+        $trail['desc'] = 'Event Jessica Jung Singapore Static front end';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
 
         return view('frontend.partials.static.event_jessica_jung_singapore'); 
     }
 
     public function jessicaJungHochiminh()
     {
-        $trail = 'Event Jessica Jung Hochiminh Static front end';
+        $trail['desc'] = 'Event Jessica Jung Hochiminh Static front end';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
 
         return view('frontend.partials.static.event_jessica_jung_hochiminh'); 
     }
 
     public function jessicaJungManila()
     {
-        $trail = 'Event Jessica Jung Manila Static front end';
+        $trail['desc'] = 'Event Jessica Jung Manila Static front end';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
 
         return view('frontend.partials.static.event_jessica_jung_manila'); 
     }
@@ -90,27 +90,27 @@ class HomeController extends Controller
     public function supportStatic()
     {
 
-        $trail = 'Support Static front end';
+        $trail['desc'] = 'Support Static front end';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
 
         return view('frontend.partials.static.support_static'); 
     }
 
     public function supportFaqStatic(Request $req)
     {
-        $trail = 'FAQ Static front end';
+        $trail['desc'] = 'FAQ Static front end';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
             
         return view('frontend.partials.static.support_faq_static');
     }
 
     public function supportFaqCategoryStatic($category)
     {
-        $trail = 'FAQ Static front end';
+        $trail['desc'] = 'FAQ Static front end';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
 
         if($category == 'top'){
             return view('frontend.partials.static.support_faq_top_static');
@@ -125,27 +125,27 @@ class HomeController extends Controller
 
     public function contactUsStatic()
     {
-        $trail = 'Contact Us Static front end';
+        $trail['desc'] = 'Contact Us Static front end';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
             
         return view('frontend.partials.static.contact_us_static');
     }
 
     public function supportTermsTicketSalesStatic()
     {
-        $trail = 'Terms Tickets Sales Static front end';
+        $trail['desc'] = 'Terms Tickets Sales Static front end';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
 
         return view('frontend.partials.static.support_terms_ticket_sales_static'); 
     }
 
     public function supportTermsWebsiteUseStatic()
     {
-        $trail = 'Terms Website Use Static front end';
+        $trail['desc'] = 'Terms Website Use Static front end';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
 
         return view('frontend.partials.static.support_terms_website_use_static'); 
     }
@@ -153,18 +153,18 @@ class HomeController extends Controller
     public function supportPrivacyPolicyStatic(Request $req)
     {
 
-        $trail = 'Privacy Policy Static front end';
+        $trail['desc'] = 'Privacy Policy Static front end';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
 
         return view('frontend.partials.static.support_privacy_policy_static');
     }
 
     public function aboutUsStatic()
     {
-        $trail = 'About Us Static front end';
+        $trail['desc'] = 'About Us Static front end';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
             
         return view('frontend.partials.static.about_us_static');
     }
@@ -173,18 +173,18 @@ class HomeController extends Controller
     {
 
         try{
-            $trail = 'Way to buy tickets Static front end';
+            $trail['desc'] = 'Way to buy tickets Static front end';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
 
             return view('frontend.partials.static.support_ways_to_buy_tickets_static');
             
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return view('errors.404');
         
@@ -198,9 +198,9 @@ class HomeController extends Controller
             $result['events'] = $this->model->getHomepage('event');
             $result['promotions'] = $this->model->getHomepage('promotion');
 
-            $trail = 'Homepage front end';
+            $trail['desc'] = 'Homepage front end';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
 
             // echo ini_get('post_max_size');
             // echo ini_get('upload_max_filesize');
@@ -209,10 +209,10 @@ class HomeController extends Controller
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             //return view('errors.404');
         
@@ -256,18 +256,18 @@ class HomeController extends Controller
                 
             }else{
 
-                $trail = 'Discover front end';
+                $trail['desc'] = 'Discover front end';
                 $insertTrail = new Trail();
-                $insertTrail->insertTrail($trail);
+                $insertTrail->insertNewTrail($trail);
 
                 return view('frontend.partials.discover', $result);
             }
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return view('errors.404');
         
@@ -309,9 +309,9 @@ class HomeController extends Controller
                 
             }else{
 
-                $trail = 'Promotion front end';
+                $trail['desc'] = 'Promotion front end';
                 $insertTrail = new Trail();
-                $insertTrail->insertTrail($trail);
+                $insertTrail->insertNewTrail($trail);
 
                 return view('frontend.partials.promotion', $result);
             } 
@@ -320,7 +320,7 @@ class HomeController extends Controller
         //     $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
         //     $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
         //     $insertLog = new LogActivity();
-        //     $insertLog->insertLogActivity($log);
+        //     $insertLog->insertNewLogActivity($log);
 
         //     //return view('errors.404');
         
@@ -332,18 +332,18 @@ class HomeController extends Controller
 
         try{
 
-            $trail = 'Support front end';
+            $trail['desc'] = 'Support front end';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
 
             return view('frontend.partials.support'); 
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             //return view('errors.404');
         
@@ -420,19 +420,19 @@ class HomeController extends Controller
                 ],200);
 
             }else{
-                $trail = 'Careers front end';
+                $trail['desc'] = 'Careers front end';
                 $insertTrail = new Trail();
-                $insertTrail->insertTrail($trail);
+                $insertTrail->insertNewTrail($trail);
         
                 return view('frontend.partials.careers', $data);
             }
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            // $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return view('errors.404');
         
@@ -459,18 +459,18 @@ class HomeController extends Controller
                 $data['responsive_content'] = $page['responsive_content'];
             }
 
-            $trail = 'Contact Us front end';
+            $trail['desc'] = 'Contact Us front end';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
             
             return view('frontend.partials.contact_us', $data);
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            // $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return view('errors.404');
         
@@ -499,18 +499,18 @@ class HomeController extends Controller
                 $data['responsive_content'] = $page['responsive_content'];
             }
 
-            $trail = 'Our company front end';
+            $trail['desc'] = 'Our company front end';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
 
             return view('frontend.partials.our_company', $data);
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            // $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return view('errors.404');
         
@@ -539,18 +539,18 @@ class HomeController extends Controller
                 $data['responsive_content'] = $page['responsive_content'];
             }
 
-            $trail = 'FAQ front end';
+            $trail['desc'] = 'FAQ front end';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
             
             return view('frontend.partials.support_faq', $data);
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            // $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return view('errors.404');
         
@@ -561,9 +561,9 @@ class HomeController extends Controller
     // {
     //     try{
 
-    //         $trail = 'FAQ front end';
+    //         $trail['desc'] = 'FAQ front end';
     //         $insertTrail = new Trail();
-    //         $insertTrail->insertTrail($trail);
+    //         $insertTrail->insertNewTrail($trail);
 
     //         if($category == 'top'){
     //             return view('frontend.partials.static.support_faq_top_static');
@@ -580,7 +580,7 @@ class HomeController extends Controller
     //         $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
     //         $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
     //         $insertLog = new LogActivity();
-    //         $insertLog->insertLogActivity($log);
+    //         $insertLog->insertNewLogActivity($log);
 
     //         return view('errors.404');
         
@@ -609,18 +609,18 @@ class HomeController extends Controller
                 $data['responsive_content'] = $page['responsive_content'];
             }
 
-            $trail = 'Way to buy tickets front end';
+            $trail['desc'] = 'Way to buy tickets front end';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
 
             return view('frontend.partials.support_way_to_buy_tickets', $data);
             
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return view('errors.404');
         
@@ -642,9 +642,9 @@ class HomeController extends Controller
     //             $data['content'] = $this->string_replace($this->pageContent('terms-and-conditions'));
     //         }
 
-    //         $trail = 'Terms and conditions front end';
+    //         $trail['desc'] = 'Terms and conditions front end';
     //         $insertTrail = new Trail();
-    //         $insertTrail->insertTrail($trail);
+    //         $insertTrail->insertNewTrail($trail);
 
     //         return view('frontend.partials.support_terms_and_conditions', $data);
             
@@ -653,7 +653,7 @@ class HomeController extends Controller
     //         $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
     //         $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
     //         $insertLog = new LogActivity();
-    //         $insertLog->insertLogActivity($log);
+    //         $insertLog->insertNewLogActivity($log);
 
     //         return view('errors.404');
         
@@ -682,18 +682,18 @@ class HomeController extends Controller
                 $data['responsive_content'] = $page['responsive_content'];
             }
 
-            $trail = 'Terms and conditions front end';
+            $trail['desc'] = 'Terms and conditions front end';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
 
             return view('frontend.partials.support_terms_ticket_sales', $data);
             
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return view('errors.404');
         
@@ -722,18 +722,18 @@ class HomeController extends Controller
                 $data['responsive_content'] = $page['responsive_content'];
             }
 
-            $trail = 'Terms and conditions front end';
+            $trail['desc'] = 'Terms and conditions front end';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
 
             return view('frontend.partials.support_terms_website_use', $data);
             
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return view('errors.404');
         
@@ -762,18 +762,18 @@ class HomeController extends Controller
                 $data['responsive_content'] = $page['responsive_content'];
             }
 
-            $trail = 'Privacy Policy front end';
+            $trail['desc'] = 'Privacy Policy front end';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
 
             return view('frontend.partials.support_privacy_policy', $data);
             
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return view('errors.404');
         
@@ -785,18 +785,18 @@ class HomeController extends Controller
 
         try{
 
-            $trail = 'Subscribe front end';
+            $trail['desc'] = 'Subscribe front end';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
 
             return view('frontend.partials.subscribe'); 
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             //return view('errors.404');
         
@@ -841,10 +841,10 @@ class HomeController extends Controller
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -891,10 +891,10 @@ class HomeController extends Controller
             ],200);
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -941,10 +941,10 @@ class HomeController extends Controller
             ],200);
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,

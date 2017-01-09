@@ -30,14 +30,14 @@ class CategoriesController extends BaseController
         try{
             $iconModel = new Icon();
             $data['icons'] = $iconModel->getIcon(); 
-            $trail = 'List Category';
+            $trail['desc'] = 'List Category';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
         } catch (\Exception $e) {
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
         }
         
         return view('backend.admin.category.index', $data);
@@ -85,10 +85,10 @@ class CategoriesController extends BaseController
         // if(!empty($saveData))
         // {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Category "'.$saveData->name.'" was created';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -100,10 +100,10 @@ class CategoriesController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -142,10 +142,10 @@ class CategoriesController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -171,11 +171,11 @@ class CategoriesController extends BaseController
         // if(!empty($updateData)) 
         // {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Category "'.$updateData->name.'" was updated';
             //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -186,10 +186,10 @@ class CategoriesController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -214,11 +214,11 @@ class CategoriesController extends BaseController
 
             flash()->success(trans('general.delete_success'));
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Category "'.$data->name.'" was deleted';
             //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-index-event-category');
 
@@ -227,10 +227,10 @@ class CategoriesController extends BaseController
 
             flash()->error(trans('general.data_not_found'));
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-index-event-category');
 
@@ -266,11 +266,11 @@ class CategoriesController extends BaseController
                 $updateData = $this->model->changeAvaibility($param, $id);
                 if(!empty($updateData)) {
 
-                    $log['user_id'] = $this->currentUser->id;
+                    //$log['user_id'] = $this->currentUser->id;
                     $log['description'] = 'Category "'.$updateData->name.'" avaibility was updated';
                     //$log['ip_address'] = $req->ip();
                     $insertLog = new LogActivity();
-                    $insertLog->insertLogActivity($log);
+                    $insertLog->insertNewLogActivity($log);
 
                     return response()->json([
                         'code' => 200,
@@ -297,10 +297,10 @@ class CategoriesController extends BaseController
             
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -319,10 +319,10 @@ class CategoriesController extends BaseController
             $updateData = $this->model->changeStatus($param, $id);
         //if(!empty($updateData)) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Category "'.$updateData->name.'" status was updated';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -333,10 +333,10 @@ class CategoriesController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,

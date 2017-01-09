@@ -114,10 +114,10 @@ class UsersController extends BaseController
 
             $updateUser = $this->model->updateDataUser($param,$id);
 
-            $data['user_id'] = $this->currentUser->id;
+            //$data['user_id'] = $this->currentUser->id;
             $data['description'] = 'Create user id '.$id;
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($data);
+            $insertLog->insertNewLogActivity($data);
 
             return response()->json([
                 'code' => 200,
@@ -230,10 +230,10 @@ class UsersController extends BaseController
         $data = $this->model->bannedByid($id);
         if(!empty($data)) {
 
-            $data['user_id'] = $this->currentUser->id;
+            //$data['user_id'] = $this->currentUser->id;
             $data['description'] = 'Banned user id '.$id;
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($data);
+            $insertLog->insertNewLogActivity($data);
 
             flash()->success($data->username.' '.trans('general.banned_success'));
             return redirect()->route('admin-index-users');
@@ -259,10 +259,10 @@ class UsersController extends BaseController
         $data = $this->model->restoreUserbyId($id);
         if(!empty($data)) {
 
-            $data['user_id'] = $this->currentUser->id;
+            //$data['user_id'] = $this->currentUser->id;
             $data['description'] = 'Restore user id '.$id;
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($data);
+            $insertLog->insertNewLogActivity($data);
 
             flash()->success($data->username.' '.trans('general.restore_success'));
             return redirect()->route('admin-index-users');
@@ -278,9 +278,9 @@ class UsersController extends BaseController
     public function show($id)
     {
 
-        $trail = 'View User';
+        $trail['desc'] = 'View User';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
 
         $user = $this->model->find($id);
         if(!empty($user)) {

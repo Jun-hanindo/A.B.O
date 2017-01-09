@@ -27,9 +27,9 @@ class ActivityLogController extends BaseController
 
         $data['dropdown'] = $drop;
 
-        $trail = 'System Log';
+        $trail['desc'] = 'System Log';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
         
 
         return view('backend.admin.activity_log.index', $data);
@@ -72,9 +72,9 @@ class ActivityLogController extends BaseController
         $param = $req->all();
         
         try{
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $param['message'];
-            $saveData = $this->model->insertLogActivity($log);
+            $saveData = $this->model->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -85,9 +85,9 @@ class ActivityLogController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-            $saveData = $this->model->insertLogActivity($log);
+            $saveData = $this->model->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -104,9 +104,9 @@ class ActivityLogController extends BaseController
             $data = $this->model->deleteByDate($param);
             flash()->success(trans('general.delete_success'));
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'System log "'.$param['start_delete'].' until '.$param['end_delete'].'" was deleted';
-            $this->model->insertLogActivity($log);
+            $this->model->insertNewLogActivity($log);
 
             return redirect()->route('admin-activity-log-index');
 
@@ -115,9 +115,9 @@ class ActivityLogController extends BaseController
 
             flash()->error(trans('general.data_not_found'));
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-            $this->model->insertLogActivity($log);
+            $this->model->insertNewLogActivity($log);
 
             return redirect()->route('admin-activity-log-index');
 

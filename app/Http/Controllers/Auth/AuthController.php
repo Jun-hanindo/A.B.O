@@ -510,14 +510,15 @@ class AuthController extends Controller
      */
     public function getLogout()
     {
-        Sentinel::logout();
-        \Session::forget('ASPXAUTH');
 
         //$log['user_id'] = $this->currentUser->id;
         $log['description'] = 'A user log out';
         //$log['ip_address'] = '';
         $insertLog = new LogActivity();
         $insertLog->insertNewLogActivity($log);
+        
+        Sentinel::logout();
+        \Session::forget('ASPXAUTH');
 
 
         return redirect()->route('admin-login');

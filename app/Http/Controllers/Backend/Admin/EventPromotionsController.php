@@ -34,10 +34,10 @@ class EventPromotionsController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,

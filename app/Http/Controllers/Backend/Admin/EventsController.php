@@ -33,9 +33,9 @@ class EventsController extends BaseController
      */
     public function index()
     {
-        $trail = 'List Event';
+        $trail['desc'] = 'List Event';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
         return view('backend.admin.event.index');
     }
 
@@ -125,16 +125,16 @@ class EventsController extends BaseController
             $data['currencies'] = Currency::dropdownCode();
             $data['currency_sel'] = $this->setting['currency'];
 
-            $trail = 'Regiser Event';
+            $trail['desc'] = 'Regiser Event';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
 
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
         
         }
 
@@ -158,21 +158,21 @@ class EventsController extends BaseController
             // if(!empty($saveData))
             // {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Event "'.$saveData->title.'" was created';
             //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
         
             flash()->success($saveData->title.' '.trans('general.save_success'));
             return redirect()->route('admin-index-event');
         
         //} else {
         } catch (\Exception $e) {
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             flash()->error(trans('general.save_error'));
             return redirect()->route('admin-create-event')->withInput();
@@ -202,10 +202,10 @@ class EventsController extends BaseController
                 $saveData = $this->model->insertNewEvent($param, $user_id);
                 $this->model->updateAvaibilityFalse($saveData->id);
 
-                $log['user_id'] = $this->currentUser->id;
+                //$log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Event "'.$saveData->title.'" draft was created';
                 $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
+                $insertLog->insertNewLogActivity($log);
 
                 return response()->json([
                     'code' => 200,
@@ -218,10 +218,10 @@ class EventsController extends BaseController
                 $updateData = $this->model->updateData($param,$id);
                 //$this->model->updateAvaibilityFalse($id);
 
-                $log['user_id'] = $this->currentUser->id;
+                //$log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Event "'.$updateData->title.'" draft was updated';
                 $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
+                $insertLog->insertNewLogActivity($log);
 
                 return response()->json([
                     'code' => 200,
@@ -232,10 +232,10 @@ class EventsController extends BaseController
 
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             if($id == ''){
 
@@ -298,9 +298,9 @@ class EventsController extends BaseController
             
                 //if(!empty($data)) {
             
-                $trail = 'Regiser Event';
+                $trail['desc'] = 'Regiser Event';
                 $insertTrail = new Trail();
-                $insertTrail->insertTrail($trail);
+                $insertTrail->insertNewTrail($trail);
 
                 return view('backend.admin.event.edit', $data)/*->withData($data)*/;
             }else{
@@ -311,10 +311,10 @@ class EventsController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             flash()->error(trans('general.data_not_found'));
             return redirect()->route('admin-index-event');
@@ -337,11 +337,11 @@ class EventsController extends BaseController
             $updateData = $this->model->updateEvent($param,$id);
             //if(!empty($updateData)) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Event "'.$updateData->title.'" was updated';
             //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             flash()->success($updateData->title.' '.trans('general.update_success'));
             return redirect()->route('admin-index-event');
@@ -349,10 +349,10 @@ class EventsController extends BaseController
         //} else {
         } catch (\Exception $e) {
             \Log::info($e->getFile().' Line:'.$e->getLine());
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             flash()->error(trans('general.update_error'));
             return redirect()->route('admin-edit-event', $id)->withInput();
@@ -372,11 +372,11 @@ class EventsController extends BaseController
             $data = $this->model->deleteByID($id);
         //if(!empty($data)) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Event "'.$data->title.'" was deleted';
             //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             flash()->success(trans('general.delete_success'));
             return redirect()->route('admin-index-event');
@@ -384,10 +384,10 @@ class EventsController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             flash()->success(trans('general.data_not_found'));
             return redirect()->route('admin-index-event');
@@ -402,11 +402,11 @@ class EventsController extends BaseController
             $updateData = $this->model->changeAvaibility($param, $id);
         //if(!empty($updateData)) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Event "'.$updateData->title.'" avaibility was updated';
             //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -417,10 +417,10 @@ class EventsController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -454,10 +454,10 @@ class EventsController extends BaseController
                 $saveData = $this->model->insertNewEvent($param, $user_id);
                 $this->model->updateAvaibilityFalse($saveData->id);
 
-                $log['user_id'] = $this->currentUser->id;
+                //$log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Event "'.$saveData->title.'" draft was created';
                 $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
+                $insertLog->insertNewLogActivity($log);
 
                 return response()->json([
                     'code' => 200,
@@ -469,10 +469,10 @@ class EventsController extends BaseController
                 $updateData = $this->model->updateEvent($param,$id);
                 $this->model->updateAvaibilityFalse($id);
 
-                $log['user_id'] = $this->currentUser->id;
+                //$log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Event "'.$updateData->title.'" draft was updated';
                 $insertLog = new LogActivity();
-                $insertLog->insertLogActivity($log);
+                $insertLog->insertNewLogActivity($log);
 
                 return response()->json([
                     'code' => 200,
@@ -483,10 +483,10 @@ class EventsController extends BaseController
 
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             if($id == ''){
 
@@ -570,10 +570,10 @@ class EventsController extends BaseController
 
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -599,10 +599,10 @@ class EventsController extends BaseController
 
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -627,10 +627,10 @@ class EventsController extends BaseController
 
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -648,10 +648,10 @@ class EventsController extends BaseController
             $param = $req->all();
             $updateData = $this->model->updateCurrentSortOrder($param);
 
-            // $log['user_id'] = $this->currentUser->id;
+            // //$log['user_id'] = $this->currentUser->id;
             // $log['description'] = 'Homepage Sort Order was updated';
             // $insertLog = new LogActivity();
-            // $insertLog->insertLogActivity($log);
+            // $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -662,10 +662,10 @@ class EventsController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,

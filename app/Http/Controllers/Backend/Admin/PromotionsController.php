@@ -28,9 +28,9 @@ class PromotionsController extends BaseController
      */
     public function index()
     {
-        $trail = 'List Promotion';
+        $trail['desc'] = 'List Promotion';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
         return view('backend.admin.promotion.index');
     }
 
@@ -162,18 +162,18 @@ class PromotionsController extends BaseController
     {
         try{
 
-            $trail = 'Promotion Form';
+            $trail['desc'] = 'Promotion Form';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
             $data['currencies'] = Currency::dropdownCode();
             $data['currency_sel'] = $this->setting['currency'];
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
         
         }
 
@@ -202,10 +202,10 @@ class PromotionsController extends BaseController
             $user_id = $this->currentUser->id;
             $saveData = $this->model->insertNewPromotion($param, $user_id);
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Promotion "'.$saveData->title.'" was created';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             if($req->ajax()){
                 return response()->json([
@@ -220,10 +220,10 @@ class PromotionsController extends BaseController
             }
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
             
             if($req->ajax()){
                 return response()->json([
@@ -258,9 +258,9 @@ class PromotionsController extends BaseController
             }
             $data['currencies'] = Currency::dropdownCode();
             
-            $trail = 'Promotion Form';
+            $trail['desc'] = 'Promotion Form';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
             if($req->ajax()){
                 return response()->json([
                     'code' => 200,
@@ -273,10 +273,10 @@ class PromotionsController extends BaseController
             }
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             if($req->ajax()){
                 return response()->json([
@@ -313,10 +313,10 @@ class PromotionsController extends BaseController
         try{
             $updateData = $this->model->updatePromotion($param,$id);
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Promotion "'.$updateData->title.'" was updated';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             if($req->ajax()){
                 return response()->json([
@@ -330,10 +330,10 @@ class PromotionsController extends BaseController
             }
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             if($req->ajax()){
 
@@ -366,10 +366,10 @@ class PromotionsController extends BaseController
         try{
             $data = $this->model->deleteByID($id);
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Promotion "'.$data->title.'" was deleted';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             if($req->ajax()){
 
@@ -388,10 +388,10 @@ class PromotionsController extends BaseController
 
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             if($req->ajax()){
 
@@ -419,10 +419,10 @@ class PromotionsController extends BaseController
             $updateData = $this->model->changeAvaibility($param, $id);
             //if(!empty($updateData)) {
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Promotion "'.$data->title.'" avaibility was updated';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -433,10 +433,10 @@ class PromotionsController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -460,10 +460,10 @@ class PromotionsController extends BaseController
 
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,

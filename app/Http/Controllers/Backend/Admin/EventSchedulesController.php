@@ -52,11 +52,11 @@ class EventSchedulesController extends BaseController
             // if(!empty($saveData))
             // {
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule "'.$saveData->date_at.'" of '.$saveData->Event->title.' was created';
             //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -68,10 +68,10 @@ class EventSchedulesController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -99,10 +99,10 @@ class EventSchedulesController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -121,10 +121,10 @@ class EventSchedulesController extends BaseController
             // if(!empty($updateData)) 
             // {
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule "'.$updateData->date_at.'" of '.$updateData->Event->title.' was updated';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -135,10 +135,10 @@ class EventSchedulesController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -156,10 +156,10 @@ class EventSchedulesController extends BaseController
             $data = $this->model->deleteByID($id);
             //if(!empty($data)) {
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule "'.$data->date_at.'" of '.$data->Event->title.' was deleted';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -170,10 +170,10 @@ class EventSchedulesController extends BaseController
         //} else {
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,

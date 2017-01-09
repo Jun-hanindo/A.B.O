@@ -53,19 +53,19 @@ class PromotionsController extends Controller
                 }
                 
             }else{
-                $trail = 'Promotion category front end';
+                $trail['desc'] = 'Promotion category front end';
                 $insertTrail = new Trail();
-                $insertTrail->insertTrail($trail);
+                $insertTrail->insertNewTrail($trail);
 
                 return view('frontend.partials.promotion_category', $result); 
             }
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return view('errors.404');
         

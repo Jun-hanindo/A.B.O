@@ -28,9 +28,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $trail = 'Dashboard';
+        $trail['desc'] = 'Dashboard';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
 
 
         $eventModel = new Event();

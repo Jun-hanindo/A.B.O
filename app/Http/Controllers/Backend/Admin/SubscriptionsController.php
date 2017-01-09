@@ -24,9 +24,9 @@ class SubscriptionsController extends BaseController
      */
     public function index()
     {
-        $trail = 'List Subscription';
+        $trail['desc'] = 'List Subscription';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
         return view('backend.admin.subscription.index');
     }
 
@@ -80,9 +80,9 @@ class SubscriptionsController extends BaseController
         try{
             $result['data'] = $this->model->findSubscriptionByID($id);
             
-            $trail = 'Subscription view';
+            $trail['desc'] = 'Subscription view';
             $insertTrail = new Trail();
-            $insertTrail->insertTrail($trail);
+            $insertTrail->insertNewTrail($trail);
 
             return view('backend.admin.subscription.view', $result);
 
@@ -91,10 +91,10 @@ class SubscriptionsController extends BaseController
 
             flash()->error(trans('general.data_not_found'));
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
             
             return redirect()->route('admin-index-subscription');
 

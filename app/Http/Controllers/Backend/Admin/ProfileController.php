@@ -45,9 +45,9 @@ class ProfileController extends Controller
         ];
 
 
-        $trail = 'Profile';
+        $trail['desc'] = 'Profile';
         $insertTrail = new Trail();
-        $insertTrail->insertTrail($trail);
+        $insertTrail->insertNewTrail($trail);
 
         return view('backend.profile', $data);
     }
@@ -128,18 +128,18 @@ class ProfileController extends Controller
 
             Sentinel::update($user, $data);
 
-            $log['user_id'] = user_info()->id;
+            // $log['user_id'] = user_info()->id;
             $log['description'] = 'Profile was updated';
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
         } catch (\Exception $e) {
 
             flash()->error(trans('general.update_error'));
 
-            $log['user_id'] = \Sentinel::getUser()->id;
+            // $log['user_id'] = \Sentinel::getUser()->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
         }
     }
@@ -171,20 +171,20 @@ class ProfileController extends Controller
 
             flash()->success(trans('general.save_success'));
 
-            $log['user_id'] = user_info()->id;
+            // $log['user_id'] = user_info()->id;
             $log['description'] = 'Password was updated';
             //$log['ip_address'] = $request->ip();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
             
         } catch (\Exception $e) {
 
             flash()->error(trans('general.update_error'));
 
-            $log['user_id'] = $this->currentUser->id;
+            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
         }
     }

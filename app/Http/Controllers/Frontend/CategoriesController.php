@@ -62,9 +62,9 @@ class CategoriesController extends Controller
                     
                 }else{
 
-                    $trail = 'Category front end';
+                    $trail['desc'] = 'Category front end';
                     $insertTrail = new Trail();
-                    $insertTrail->insertTrail($trail);
+                    $insertTrail->insertNewTrail($trail);
 
                     return view('frontend.partials.category', $result); 
                 }
@@ -75,10 +75,10 @@ class CategoriesController extends Controller
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = $this->currentUser->id;
+            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return view('errors.404');
         

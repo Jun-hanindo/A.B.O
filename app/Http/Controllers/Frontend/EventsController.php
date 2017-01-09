@@ -39,9 +39,9 @@ class EventsController extends Controller
                 $limit = 5;
                 //$result['category_events'] = $this->model->getFeaturedEventByCategory($result['event']->id, $result['event']->category->id, $limit);
 
-                $trail = $result['event']->title. ' front end';
+                $trail['desc'] = $result['event']->title. ' front end';
                 $insertTrail = new Trail();
-                $insertTrail->insertTrail($trail);
+                $insertTrail->insertNewTrail($trail);
 
                 //if($result['event']->event_type == 'true'){
                     return view('frontend.partials.event', $result); 
@@ -54,10 +54,10 @@ class EventsController extends Controller
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return view('errors.404');
         
@@ -149,10 +149,10 @@ class EventsController extends Controller
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 400,
@@ -298,10 +298,10 @@ class EventsController extends Controller
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return view('errors.404');
         
@@ -330,10 +330,10 @@ class EventsController extends Controller
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             if($req->ajax()) {
                 return response()->json([
@@ -392,19 +392,19 @@ class EventsController extends Controller
 
             }else{
 
-                $trail = 'Search result front end';
+                $trail['desc'] = 'Search result front end';
                 $insertTrail = new Trail();
-                $insertTrail->insertTrail($trail);
+                $insertTrail->insertNewTrail($trail);
 
                 return view('frontend.partials.search_result', $results);
             }
         
         } catch (\Exception $e) {
 
-            $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
-            $insertLog->insertLogActivity($log);
+            $insertLog->insertNewLogActivity($log);
 
             return view('errors.404');
         
@@ -458,7 +458,7 @@ class EventsController extends Controller
         //     $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
         //     $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
         //     $insertLog = new LogActivity();
-        //     $insertLog->insertLogActivity($log);
+        //     $insertLog->insertNewLogActivity($log);
 
         //     if($req->ajax()){
         //         return response()->json([
