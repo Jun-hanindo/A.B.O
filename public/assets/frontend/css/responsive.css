@@ -856,9 +856,9 @@
   .mobile-collapse-body, .mobile-collapse-body-top,.facebookLike, .mobileApp {
     display: none;
   }
-  .list-unstyled{
+  /*.list-unstyled{
     margin-top: 0;
-  }
+  }*/
   #footer2 li {
     margin: 0px 12px 10px;
     font-size: 14px;
