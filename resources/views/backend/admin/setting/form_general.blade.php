@@ -17,7 +17,7 @@
                     <div class="box-body">
                         @include('flash::message')
                         <div class="form-group{{ Form::hasError('header_logo') }} header_logo">
-                            <label for="header_logo" class="col-sm-3 control-label">{{ trans('backend/general.header_logo') }} <br>(Height max. 120px) *</label>
+                            <label for="header_logo" class="col-sm-3 control-label">{{ trans('backend/general.header_logo') }} <br>(Height max. 120px)</label>
                             <div class="col-sm-5">
                                 <input id="header_logo" name="setting[header_logo]" class="form-control image" data-name="header_logo" type="file" value="{{ isset($data['header_logo']) ? $data['header_logo'] : null }}">
                                 {!! Form::errorMsg('header_logo') !!}

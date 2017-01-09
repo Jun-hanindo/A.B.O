@@ -45,6 +45,10 @@ class SettingRequest extends Request
                 if($key == 'mail_username'){
                     $rules['setting.'.$key] = 'required|email';
                 }
+
+                if($key == 'header_logo'){
+                    $rules['setting.'.$key] = 'max:1024';
+                }
             }
         }
         //dd($rules);
