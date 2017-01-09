@@ -4694,9 +4694,9 @@ ol .a li:before{
 .mobile-header.mobile-header-xmas .mobile-menu .mobile-collapse-header-top{
   float: right;
 }
-.mobile-header.mobile-header-xmas .mobile-collapse-body-top{
+/*.mobile-header.mobile-header-xmas .mobile-collapse-body-top{
   top: 60px;
-}
+}*/
 
 .main-terms .head-support,
 .main-terms .support-desc .col-md-12 {
