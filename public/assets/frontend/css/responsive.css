@@ -986,6 +986,9 @@
   .search-mobile.mobile-content .row:first-child {
     margin: 0
   }
+  .faq-mobile.mobile-content .row:first-child {
+    margin: 0
+  }
   .filter-search-mobile {
     margin-top: 70px;
   }
