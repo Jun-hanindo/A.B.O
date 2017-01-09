@@ -455,3 +455,23 @@ iframe[name="google_conversion_frame"]{
   height: 100%;
 } 
 
+/*07-02-2017*/
+/*search auto suggest*/
+#ul-search a:focus,
+#ul-search-mobile a:focus{
+  outline: none;
+  outline-width: 0;
+}
+
+#ul-search li:first-of-type a:focus,
+#ul-search-mobile li:first-of-type a:focus{
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px; 
+}
+
+#ul-search li:last-child a:focus,
+#ul-search-mobile li:last-child a:focus{
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
