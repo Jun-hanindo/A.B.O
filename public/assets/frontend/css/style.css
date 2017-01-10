@@ -3295,7 +3295,7 @@ ul#getvenue li:before {
 }
 .mobile-search-show.open {
     right: 0;
-      top: 0;
+    top: 0px;
     padding-top: 13px;
     padding-bottom: 13px;
 }
@@ -4700,9 +4700,6 @@ ol .a li:before{
 .mobile-header.mobile-header-xmas .mobile-menu .mobile-collapse-header-top{
   float: right;
 }
-/*.mobile-header.mobile-header-xmas .mobile-collapse-body-top{
-  top: 60px;
-}*/
 
 .main-terms .head-support,
 .main-terms .support-desc .col-md-12 {
@@ -4726,5 +4723,10 @@ ol .a li:before{
    width:33.33%;
    float:none;
 }
-
+#mobile-header .mobile-header-show [class^="col-"]:first-child {
+    padding-left: 0
+}
+#mobile-header .mobile-header-show [class^="col-"]:nth-child(3) {
+    padding-right: 0
+}
 /*SVG*/

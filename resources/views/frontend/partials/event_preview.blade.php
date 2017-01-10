@@ -405,7 +405,7 @@
                                 @endif
                         </div>
                         <div class="col-md-4">
-                            <div class="formPromo">
+                            {{-- <div class="formPromo">
                                 <form class="form-group" id="form-subscribe" action="{{URL::route('subscribe-store')}}" method="POST">
                                     <label class="labelHead">{{ trans('frontend/general.sign_up_latest_updates') }}</label>
                                     <div class="error"></div>
@@ -443,7 +443,7 @@
                                         </div>
                                     </div>
                                 </form>
-                            </div>
+                            </div> --}}
                             @if(!empty($category_events))
                             {{-- <div class="featuredEvent">
                                 <div class="featuredLabel">

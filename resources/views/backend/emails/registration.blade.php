@@ -11,6 +11,6 @@
     </p>
 @else
     <p>
-        Please login at {!! link_to_action('Auth\AuthController@getLogin', 'eform') !!} using password : <b>{{$password}}</b> for login.
+        Please login at {!! link_to_action('Auth\AuthController@getLogin', 'AsiaBoxOffice') !!} using password : <b>{{$password}}</b> for login.
     </p>
 @endif

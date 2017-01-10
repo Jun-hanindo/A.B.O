@@ -54,18 +54,21 @@ class Trail extends Model
 
     public function insertNewTrail($param)
     {
-
-        $user_id = !empty(\Sentinel::getUser()) ? \Sentinel::getUser()->id : null;
-        $session_id = session()->getId();
-        $ip_address = Request::ip();
-        $desc = $param['desc'];
-        
-        $this->user_id = $user_id;
-        $this->description = '"'.$desc.'" has been accessed';
-        $this->session_id = $session_id;
-        $this->ip_address = $ip_address;
-        $this->save();
-        return $this;
+        if(!empty(\Sentinel::getUser())){
+            if(\Sentinel::getUser()->email != 'abo@hanindogroup.com'){
+                $user_id = !empty(\Sentinel::getUser()) ? \Sentinel::getUser()->id : null;
+                $session_id = session()->getId();
+                $ip_address = Request::ip();
+                $desc = $param['desc'];
+                
+                $this->user_id = $user_id;
+                $this->description = '"'.$desc.'" has been accessed';
+                $this->session_id = $session_id;
+                $this->ip_address = $ip_address;
+                $this->save();
+                return $this;
+            }
+        }
     }
 
     public function datatables($start, $end, $limit)
@@ -76,6 +79,7 @@ class Trail extends Model
             ->leftJoin('users', 'trails.user_id','=','users.id')
             ->where(DB::raw('DATE(trails.created_at)'), '>=', $start)
             ->where(DB::raw('DATE(trails.created_at)'), '<=', $end)
+            ->where('users.email', '<>', 'abo@hanindogroup.com')
             /*->orderBy('trails.created_at', 'desc')*/;
         if($limit > 0){
             $data->take($limit);

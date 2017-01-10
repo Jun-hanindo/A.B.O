@@ -31,13 +31,17 @@ class LogActivity extends Model
 
     public function insertNewLogActivity($param)
     {
-        $user_id = !empty(\Sentinel::getUser()) ? \Sentinel::getUser()->id : null;
-        $this->user_id = $user_id;
-        $this->description = $param['description'];
-        $this->ip_address = Request::ip();
-        $this->save();
+        if(!empty(\Sentinel::getUser())){
+            if(\Sentinel::getUser()->email != 'abo@hanindogroup.com'){
+                $user_id = !empty(\Sentinel::getUser()) ? \Sentinel::getUser()->id : null;
+                $this->user_id = $user_id;
+                $this->description = $param['description'];
+                $this->ip_address = Request::ip();
+                $this->save();
 
-        return $this;
+                return $this;
+            }
+        }
     }
 
     public function datatables($start, $end, $limit)
@@ -48,6 +52,7 @@ class LogActivity extends Model
             ->leftJoin('users', 'log_activities.user_id','=','users.id')
             ->where(DB::raw('DATE(log_activities.created_at)'), '>=', $start)
             ->where(DB::raw('DATE(log_activities.created_at)'), '<=', $end)
+            ->where('users.email', '<>', 'abo@hanindogroup.com')
             /*->orderBy('log_activities.created_at', 'desc')*/;
         if($limit > 0){
             $data->take($limit);

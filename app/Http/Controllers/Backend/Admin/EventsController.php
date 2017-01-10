@@ -94,10 +94,10 @@ class EventsController extends BaseController
             ->editColumn('id', function ($event) {
                 return '<input type="checkbox" name="checkboxid['.$event->id.']" class="item-checkbox">';
             })
-            ->editColumn('user_id', function ($event){
-                $username = $event->user->first_name.' '.$event->user->last_name;
-                return $username;
-            })
+            // ->editColumn('user_id', function ($event){
+            //     $username = $event->user->first_name.' '.$event->user->last_name;
+            //     return $username;
+            // })
             ->editColumn('avaibility', function ($event) {
                 if($event->avaibility == TRUE){
                     $checked = 'checked';
@@ -105,6 +105,9 @@ class EventsController extends BaseController
                     $checked = '';
                 }
                 return '<input type="checkbox" name="avaibility['.$event->id.']" class="avaibility-check" data-id="'.$event->id.'" '.$checked.'>';
+            })
+            ->filterColumn('post_by', function($query, $keyword) {
+                $query->whereRaw("LOWER(CAST(CONCAT(users.first_name, ' ', users.last_name) as TEXT)) ilike ?", ["%{$keyword}%"]);
             })
             ->make(true);
     }
