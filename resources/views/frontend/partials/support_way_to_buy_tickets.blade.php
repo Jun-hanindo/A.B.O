@@ -1,5 +1,5 @@
 @extends('layout.frontend.master.master')
-@section('title', trans('frontend/general.ways_to_buy_tickets').' - ')
+@section('title', 'How to Buy Tickets - ')
 @section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
 @php

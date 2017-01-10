@@ -464,6 +464,10 @@
     padding-bottom: 45px;
     min-height: 475px;
   }
+  .mobile-content .row:nth-child(2) {
+   position: relative;
+    top: 50px
+  }
   .search-mobile .search-faq input{
     max-width: 100%;
   }
@@ -983,10 +987,7 @@
     overflow-y: auto;
     top:60px;
   }
-  .search-mobile.mobile-content .row:first-child {
-    margin: 0
-  }
-  .faq-mobile.mobile-content .row:first-child {
+  .mobile-content .row:first-child {
     margin: 0
   }
   .filter-search-mobile {
@@ -1028,6 +1029,11 @@
     padding-top: 15px;
   /*  max-height: 400px;
     overflow-y: auto;*/
+  }
+  .close-subscription {
+    padding-top: 20px;
+    overflow: auto;
+    zoom: 1;
   }
 }
 

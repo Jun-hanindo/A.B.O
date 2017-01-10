@@ -120,7 +120,7 @@
                                                 </nav>
                                             </div>
                                         </li> --}}
-                                        <li class="nav-item nav-third">
+                                        {{-- <li class="nav-item nav-third">
                                             <div class="nav-search">
                                                 <form action="{{route('event-search-get')}}" method="get">
                                                     <div class="input-group">
@@ -128,7 +128,7 @@
                                                             <i class="fa fa-search icon-search-header"></i>
                                                         </span>
                                                         <input type="text" name="q" autocomplete="off" value="{{@$q}}" class="form-control input-search" placeholder="{{ trans('frontend/general.search') }}..." id="input-search">
-                                                        {{-- <input type="hidden" id="sort-text" name="sort" value="date"> --}}
+                                                        <input type="hidden" id="sort-text" name="sort" value="date">
                                                     </div>
                                                     <ul class="notification-drawer" data-type="inbox" id="ul-search" style="display:none">
                                                         <span class="append-search"></span>
@@ -144,15 +144,14 @@
                                         </li>
                                         <li class="nav-item list-menu">
                                             <a href="{{URL::route('ways-to-buy-tickets')}}">How to Buy Tickets</a>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </nav>
                             </div>
                             <div class="pull-right right-header">
                                 <ul>
-                                    {{-- <li><a href="{{ URL::route('discover')}}">{{ trans('frontend/general.discover_events') }}</a></li>
-                                    <li class="second-child"><a href="{{ URL::route('promotion')}}">{{ trans('frontend/general.promotions') }}</a></li>
-                                    <li class="second-child"><a href="{{URL::route('ways-to-buy-tickets')}}">How to Buy Tickets</a></li> --}}
+                                    <li><a href="{{ URL::route('discover')}}">{{ trans('frontend/general.discover_events') }}</a></li>
+                                    <li class="second-child"><a href="{{URL::route('ways-to-buy-tickets')}}">How to Buy Tickets</a></li>
                                     <li><a href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a></li>
                                 </ul>
                             </div> 
@@ -164,9 +163,9 @@
                                 <div class="mobile-header-show">
                                     <div class="row">
                                         <div class="col-xs-3">
-                                            <div class="mobile-search">
+                                            {{-- <div class="mobile-search">
                                                 <a href="#"><i class="fa fa-search"></i></a>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div class="col-xs-6">
                                             <div class="mobile-logo">
@@ -234,11 +233,10 @@
                                                             </ul>
                                                         </li>
                                                         <li><a href="{{ URL::route('discover')}}">{{ trans('frontend/general.discover_events') }}</a></li>
-                                                        <li><a class="support-mobile" href="{{ URL::route('promotion')}}">{{ trans('frontend/general.promotions') }}</a></li>
                                                         <li><a class="support-mobile" href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a></li>
                                                         <li><a href="{{URL::route('subscribe')}}" class="login-mobile last-menu">{{ trans('frontend/general.subscribe') }}</li> --}}
                                                         <li><a href="{{ URL::route('discover')}}">{{ trans('frontend/general.discover_events') }}</a></li>
-                                                        <li><a class="support-mobile" href="{{ URL::route('promotion')}}">{{ trans('frontend/general.promotions') }}</a></li>
+                                                        {{-- <li><a class="support-mobile" href="{{ URL::route('promotion')}}">{{ trans('frontend/general.promotions') }}</a></li> --}}
                                                         <li><a class="support-mobile" href="{{URL::route('ways-to-buy-tickets')}}">How to Buy Tickets</a></li>
                                                         <li><a class="support-mobile" href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a></li>
                                                     </ul>
