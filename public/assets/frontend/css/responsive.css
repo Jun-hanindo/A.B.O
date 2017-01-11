@@ -5,7 +5,8 @@
     position: relative;
   }
   .career-desc .search-list .place::before, .mobile-search-desc .place::before,
-  .type img {
+  .type img,
+  .type i  {
     padding-right: 0;
     position: absolute;
     left: 0;
@@ -42,7 +43,8 @@
   }
   .career-desc .search-list .date::before, 
   .mobile-search-desc .date::before,
-  .type img {
+  .type img,
+  .type i {
     padding-right: 0;
     position: absolute;
     left: 0;
@@ -999,7 +1001,8 @@
   }
   .career-desc .search-list .place::before, .mobile-search-desc .place::before,
   .career-desc .search-list .date::before, .mobile-search-desc .date::before,
-  .type img {
+  .type img,
+  .type i {
     position: absolute;
     left: 0;
     padding-right: 0;
