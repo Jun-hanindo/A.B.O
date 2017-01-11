@@ -23,19 +23,25 @@
   td.place {
     padding-left: 15px
   }
+  td.type {
+    padding-left: 20px
+  }
 }
 @media (max-width: 1148px) and (min-width: 1025px) {
-  .career-desc .job-list table tr td, .career-desc .search-list table tr td {
+  .career-desc .job-list table tr td, 
+  .career-desc .search-list table tr td {
     color: #fff;
     padding-right: 10px;
     position: relative;
   }
-  .career-desc .search-list .place::before, .mobile-search-desc .place::before {
+  .career-desc .search-list .place::before, 
+  .mobile-search-desc .place::before {
     padding-right: 0;
     position: absolute;
     left: 0;
   }
-  .career-desc .search-list .date::before, .mobile-search-desc .date::before,
+  .career-desc .search-list .date::before, 
+  .mobile-search-desc .date::before,
   .type img {
     padding-right: 0;
     position: absolute;
@@ -44,7 +50,7 @@
   td.type {
     vertical-align: top;
     top: 30px;
-    padding-left: 0
+    padding-left: 20px
   }
   td.date {
     padding-left: 20px;
@@ -65,14 +71,14 @@
   td.type {
     vertical-align: middle;
     top: 0;
-    padding-left: 0
+    padding-left: 20px
   }
 }
 @media (max-width: 1064px) and (min-width: 1025px) {
-  td.type img {
+ /* td.type img {
     position: absolute;
     left: -20px;
-  }
+  }*/
 }
 @media only screen and (min-width: 1024px) {
   .cd-dropdown-content {
