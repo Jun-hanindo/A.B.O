@@ -276,7 +276,7 @@
                                                         @if(!empty($event->cat_icon))
                                                             <i class="fa fa-{{ $event->cat_icon }}"></i><span>{{$event->cat_name}}</span>
                                                         @else
-                                                            <img src="{{ $event->cat_icon_image2_url }}" class="img-svg"><span>{{$event->cat_name}}</span>
+                                                            <img src="{{ $event->cat_icon_image_url }}" class="img-svg"><span>{{$event->cat_name}}</span>
                                                         @endif
                                                     </li>
                                                 </ul>
