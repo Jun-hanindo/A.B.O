@@ -4124,13 +4124,14 @@ ol .a li:before{
   padding-bottom: 100px;
 }
 
-.result-content .sidebar a:after,
-.search-mobile .mobile-sidebar-menu a:after{
+.result-content .sidebar a:after{
   content: "\f106";
   font-family: 'fontAwesome';
   padding-left: 5px;
 }
-
+.result-content .sidebar .reset-filter:after{
+  display: none;
+}
 .result-content .sidebar .collapsed:after,
 .search-mobile .mobile-sidebar-menu .collapsed:after{
   content: "\f107" !important;
