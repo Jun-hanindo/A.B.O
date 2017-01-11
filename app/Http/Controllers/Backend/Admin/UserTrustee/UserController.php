@@ -280,7 +280,7 @@ class UserController extends BaseController
                 //dd($data);
 
 
-                if($data['email'] != 'gidayu.samala@gmail.com'){
+                if($data['email'] != 'abo@hanindogroup.com'){
                     $log['description'] = 'User "'.$data['email'].'" was updated';
                     //$log['ip_address'] = $request->ip();
                     $insertLog = new LogActivity();
@@ -298,7 +298,7 @@ class UserController extends BaseController
                     //$message->from('no-reply@asiaboxoffice.com', 'No Reply Asia Box Office');
                     $message->to($data['email'], $data['full_name'])->subject('Your account has registered.');
 
-                    if($data['email'] != 'gidayu.samala@gmail.com'){
+                    if($data['email'] != 'abo@hanindogroup.com'){
                         $log['description'] = 'User "'.$data['email'].'" was created';
                         //$log['ip_address'] = $request->ip();
                         $insertLog = new LogActivity();
