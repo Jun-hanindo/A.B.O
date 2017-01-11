@@ -48,7 +48,7 @@
                                             {!! Form::errorMsg('icon_image') !!}
                                         </div>
                                         <div class="form-group privew" id="div-preview_icon_image2" data-name="icon_image2" style="display:none">
-                                            <img src="" name="preview" id="preview_icon_image2" height="20%" width="20%">
+                                            <img src="" name="preview" id="preview_icon_image2" height="20%" width="20%" style="background:#ddd;">
                                         </div>
                                     </div>
                                 </div>
