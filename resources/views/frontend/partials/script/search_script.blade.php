@@ -39,6 +39,7 @@
                 $('.collapse').removeClass('in');
                 $('.collapse').attr('aria-expanded', false);
                 $('.filter-search a').addClass('collapsed');
+                $('.mobile-sidebar-menu a.menu').addClass('collapsed');
                 $('.filter-search a').attr('aria-expanded', false);
                 $('#mobile-sidebar-collapse').collapse('hide');
                 $('.search-mobile .mobile-sidebar').css('height', 'auto');

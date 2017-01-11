@@ -4,9 +4,8 @@
     padding-right: 10px;
     position: relative;
   }
-  .career-desc .search-list .place::before, .mobile-search-desc .place::before {
-    content: "\f041";
-    font-family: 'FontAwesome';
+  .career-desc .search-list .place::before, .mobile-search-desc .place::before,
+  .type img {
     padding-right: 0;
     position: absolute;
     left: 0;
@@ -32,15 +31,12 @@
     position: relative;
   }
   .career-desc .search-list .place::before, .mobile-search-desc .place::before {
-    content: "\f041";
-    font-family: 'FontAwesome';
     padding-right: 0;
     position: absolute;
     left: 0;
   }
-  .career-desc .search-list .date::before, .mobile-search-desc .date::before {
-    content: "\f133";
-    font-family: 'FontAwesome';
+  .career-desc .search-list .date::before, .mobile-search-desc .date::before,
+  .type img {
     padding-right: 0;
     position: absolute;
     left: 0;
@@ -995,13 +991,11 @@
   }
   .mobile-search-desc ul li {
     position: relative;
-    padding: 2px 15px;
+    padding: 2px 25px;
   }
- /* .career-desc .search-list .date::before, .mobile-search-desc .date::before {
-    padding-right: 10px;
-  }*/
   .career-desc .search-list .place::before, .mobile-search-desc .place::before,
-  .career-desc .search-list .date::before, .mobile-search-desc .date::before {
+  .career-desc .search-list .date::before, .mobile-search-desc .date::before,
+  .type img {
     position: absolute;
     left: 0;
     padding-right: 0;
@@ -1010,6 +1004,9 @@
   .career-desc .search-list .type::before, .mobile-search-desc .type::before {
     padding-right: 12px;
     padding-left: 2px;
+  }
+  .career-desc .search-list .place::before, .mobile-search-desc .place::before {
+    padding-left: 2px
   }
   .mobile-search-desc ul {
     padding: 5px 10px;
