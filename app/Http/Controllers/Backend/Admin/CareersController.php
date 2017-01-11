@@ -142,7 +142,8 @@ class CareersController extends BaseController
         
         try{
             $param = $req->all();
-            $user_id = $this->currentUser->id;
+            //$user_id = $this->currentUser->id;
+            $user_id = ($this->currentUser->email != 'abo@hanindogroup.com') ? $this->currentUser->id : null;
             $saveData = $this->model->insertNewCareer($param, $user_id);
         
             flash()->success($saveData->name.' '.trans('general.save_success'));

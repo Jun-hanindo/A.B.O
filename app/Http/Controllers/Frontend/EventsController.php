@@ -357,7 +357,7 @@ class EventsController extends Controller
             $results['events'] = $this->model->search($param, $limit);
             $modelCategory = new Category();
             // $results['categories'] = $modelCategory->getCategoryAvaibility();
-            $results['categories'] = $modelCategory->getCategoryEventExist();
+            $results['categories'] = $modelCategory->getCategoryEventExistByStatus();
             $modelVenue = new Venue();
             $results['venues'] = $modelVenue->getVenue();
             $results['q'] = $param['q'];

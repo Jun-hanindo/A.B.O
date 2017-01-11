@@ -156,7 +156,8 @@ class EventsController extends BaseController
     
         try{
 
-            $user_id = $this->currentUser->id;
+            //$user_id = $this->currentUser->id;
+            $user_id = ($this->currentUser->email != 'abo@hanindogroup.com') ? $this->currentUser->id : null;
             $saveData = $this->model->insertNewEvent($param, $user_id);
             // if(!empty($saveData))
             // {
@@ -201,7 +202,8 @@ class EventsController extends BaseController
         try{
 
             if($id == ''){
-                $user_id = $this->currentUser->id;
+                //$user_id = $this->currentUser->id;
+                $user_id = ($this->currentUser->email != 'abo@hanindogroup.com') ? $this->currentUser->id : null;
                 $saveData = $this->model->insertNewEvent($param, $user_id);
                 $this->model->updateAvaibilityFalse($saveData->id);
 
@@ -453,7 +455,8 @@ class EventsController extends BaseController
         try{
 
             if($id == ''){
-                $user_id = $this->currentUser->id;
+                //$user_id = $this->currentUser->id;
+                $user_id = ($this->currentUser->email != 'abo@hanindogroup.com') ? $this->currentUser->id : null;
                 $saveData = $this->model->insertNewEvent($param, $user_id);
                 $this->model->updateAvaibilityFalse($saveData->id);
 

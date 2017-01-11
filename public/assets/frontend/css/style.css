@@ -1322,6 +1322,7 @@ footer .information-title{
 .promotionList{
   background-color: #E7E7E7;
   padding-bottom: 50px;
+  text-align: center;
 }
 
 .eventBanner .imageBanner img{
@@ -2886,6 +2887,11 @@ footer .information-title{
 
 .promotionList .box-promo{
   margin-top: 30px;
+  float: none;
+  display: inline-flex;
+  box-sizing: border-box;
+  text-align: left;
+  width: 30%;
 }
 input[type="text"], input[type="password"], input[type="date"],
 input[type="datetime"], input[type="datetime-local"], input[type="month"],
@@ -3295,7 +3301,7 @@ ul#getvenue li:before {
 }
 .mobile-search-show.open {
     right: 0;
-    top: 0px;
+    top: 3px;
     padding-top: 13px;
     padding-bottom: 13px;
 }
@@ -3435,11 +3441,10 @@ ul#getvenue li:before {
 
 .form-subscribe{
   width: 770px;
-  min-height: 80px;
-  height: auto;
+  height: 100%;
   background-color: #fff;
   margin: 0 auto;
-  padding: 20px;
+  padding: 15px 20px;
   margin-top: 25px;
 }
 
@@ -4729,4 +4734,13 @@ ol .a li:before{
 #mobile-header .mobile-header-show [class^="col-"]:nth-child(3) {
     padding-right: 0
 }
-/*SVG*/
+
+/*RESET*/
+.result-content .sidebar-head a{
+    float: right;
+    margin-right: 15px;
+    margin-top: 4px;
+}
+.result-content .sidebar-head h4{
+  display: inline-block;
+}

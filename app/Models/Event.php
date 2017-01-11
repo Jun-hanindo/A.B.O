@@ -433,7 +433,8 @@ class Event extends Model
                 $param['event_type'] = false;
             }
             $promoter_id = \Sentinel::getUser()->promoter_id;
-            $data->user_id = \Sentinel::getUser()->id;
+            $user_id = (\Sentinel::getUser()->email != 'abo@hanindogroup.com') ? \Sentinel::getUser()->id : null;
+            $data->user_id = $user_id;
             //$data->promoter_id = ($promoter_id > 0) ? $promoter_id : 0;
             $data->title = $param['title'];
             $data->slug = $param['slug'];
@@ -1042,7 +1043,8 @@ class Event extends Model
             $last = $this->getFirstSort();
             $newdata->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
             $newdata->avaibility = false;
-            $newdata->user_id = \Sentinel::getUser()->id;
+            $user_id = (\Sentinel::getUser()->email != 'abo@hanindogroup.com') ? \Sentinel::getUser()->id : null;
+            $newdata->user_id = $user_id;
             if($newdata->save()){
                 if(!$data->categories->isEmpty()){
                     foreach ($data->categories as $cat => $category) {
@@ -1509,9 +1511,9 @@ class Event extends Model
             ->where('events.avaibility','=', true)
             ->where('categories.status', true);
 
-        if($q != 'all'){
+        if($q != 'all' && $q != ''){
             $query->where('events.title','ilike','%'.$q.'%')
-                ->orWhere('categories.name','ilike','%'.$q.'%');
+                /*->orWhere('categories.name','ilike','%'.$q.'%')*/;
         }
 
         if(isset($param['venue']) && $param['venue'] != 'all'){
@@ -1570,6 +1572,8 @@ class Event extends Model
         if($limit > 0){
             $query->take($limit);
         }
+
+        //dd($query->toSql());
 
         $events = $query->get();
 

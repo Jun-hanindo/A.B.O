@@ -199,7 +199,8 @@ class PromotionsController extends BaseController
         //
         $param = $req->all();
         try{
-            $user_id = $this->currentUser->id;
+            //$user_id = $this->currentUser->id;
+            $user_id = ($this->currentUser->email != 'abo@hanindogroup.com') ? $this->currentUser->id : null;
             $saveData = $this->model->insertNewPromotion($param, $user_id);
 
             // $log['user_id'] = $this->currentUser->id;

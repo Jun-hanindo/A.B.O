@@ -46,6 +46,8 @@ class Department extends Model
      */
     function insertNewDepartment($param)
     {
+        $user_id = (\Sentinel::getUser()->email != 'abo@hanindogroup.com') ? \Sentinel::getUser()->id : null;
+        $this->user_id = $user_id;
         $this->name = $param['name'];
 
         if($this->save()){
@@ -74,6 +76,8 @@ class Department extends Model
     {
         $data = $this->find($id);
         if (!empty($data)) {
+            $user_id = (\Sentinel::getUser()->email != 'abo@hanindogroup.com') ? \Sentinel::getUser()->id : null;
+            $data->user_id = $user_id;
             $data->name = $param['name'];
 
             if($data->save()){

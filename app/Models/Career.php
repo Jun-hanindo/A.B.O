@@ -103,6 +103,8 @@ class Career extends Model
     {
         $data = $this->find($id);
         if (!empty($data)) {
+            $user_id = (\Sentinel::getUser()->email != 'abo@hanindogroup.com') ? \Sentinel::getUser()->id : null;
+            $data->user_id = $user_id;
             $data->job = $param['position'];
             $data->department_id = $param['department'];
             $data->type = $param['job_type'];

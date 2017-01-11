@@ -195,6 +195,8 @@ class Promotion extends Model
     {
         $data = $this->find($id);
         if (!empty($data)) {
+            $user_id = (\Sentinel::getUser()->email != 'abo@hanindogroup.com') ? \Sentinel::getUser()->id : null;
+            $data->user_id = $user_id;
             $data->title = $param['title_promo'];
             $data->description = $param['description_promo'];
             $data->discount = (isset($param['discount_type'])) ? (!empty($param['discount'])) ? $param['discount'] : 0 : 0;

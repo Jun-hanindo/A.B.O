@@ -40,6 +40,8 @@
                 $('.collapse').attr('aria-expanded', false);
                 $('.filter-search a').addClass('collapsed');
                 $('.filter-search a').attr('aria-expanded', false);
+                $('#mobile-sidebar-collapse').collapse('hide');
+                $('.search-mobile .mobile-sidebar').css('height', 'auto');
             });
 
 

@@ -281,4 +281,24 @@ class Category extends Model
             return false;
         }
     }
+
+    public function getCategoryEventExistByStatus(){
+        $datas = Category::select('categories.slug', 'categories.name', 'categories.icon', 'categories.icon_image')
+            ->join('event_categories', 'event_categories.category_id', '=', 'categories.id')
+            ->join('events', 'events.id', '=', 'event_categories.event_id')
+            ->where('events.avaibility' , true)
+            //->where('categories.avaibility' , true)
+            ->where('categories.status', true)
+            ->groupBy('categories.id')
+            ->orderBy('name', 'asc')->get();
+
+        if(!empty($datas)){
+            foreach ($datas as $key => $data) {
+                $data->icon_image_url = file_url('categories/'.$data->icon_image, env('FILESYSTEM_DEFAULT'));
+            }
+            return $datas;
+        }else{
+            return false;
+        }
+    }
 }

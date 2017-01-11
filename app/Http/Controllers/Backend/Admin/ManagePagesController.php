@@ -86,7 +86,8 @@ class ManagePagesController extends BaseController
         try{
             if($req->ajax() && $param['status'] == 'draft'){
 
-                $user_id = $this->currentUser->id;
+                //$user_id = $this->currentUser->id;
+                $user_id = ($this->currentUser->email != 'abo@hanindogroup.com') ? $this->currentUser->id : null;
                 $updateData = $this->model->updateManagePage($param, $slug, $user_id);
                 $this->model->updateStatusToDraft($param, $slug);
             //if(!empty($updateData)) {
@@ -112,7 +113,8 @@ class ManagePagesController extends BaseController
                 ],200);
             }else{
 
-                $user_id = $this->currentUser->id;
+                //$user_id = $this->currentUser->id;
+                $user_id = ($this->currentUser->email != 'abo@hanindogroup.com') ? $this->currentUser->id : null;
                 $updateData = $this->model->updateManagePage($param, $slug, $user_id);
             //if(!empty($updateData)) {
 
