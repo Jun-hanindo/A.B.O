@@ -1,9 +1,3 @@
-@media (min-width: 1251px) {
-  .career-desc .job-list table tr td, .career-desc .search-list table tr td {
-    color: #fff;
-    padding-right: 0;
-  }
-}
 @media (max-width: 1250px) and (min-width: 1149px) {
   .career-desc .job-list table tr td, .career-desc .search-list table tr td {
     color: #fff;

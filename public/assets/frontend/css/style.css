@@ -2131,7 +2131,8 @@ footer .information-title{
 .career-desc .job-list table tr td,
 .career-desc .search-list table tr td{
   color: #fff;
-  padding-right: 25px;
+  padding: 0 20px;
+  position: relative;
 }
 
 .career-desc .job-list ul li,
@@ -2173,6 +2174,18 @@ footer .information-title{
   content: "\f133";
   font-family: 'FontAwesome';
   padding-right: 5px;
+  position: absolute;
+  left: 0;
+}
+td.searchpic {
+  padding-left: 0 !important
+}
+td.jobs {
+  padding-left: 0 !important
+}
+td.type img {
+    position: absolute;
+    left: 0;
 }
 
 .career-desc .search-list .place::before,
@@ -2180,6 +2193,8 @@ footer .information-title{
   content: "\f041";
   font-family: 'FontAwesome';
   padding-right: 5px;
+  position: absolute;
+  left: 0;
 }
 
 /*.career-desc .search-list .type::before,
