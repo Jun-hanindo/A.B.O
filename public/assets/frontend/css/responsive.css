@@ -54,8 +54,6 @@
     left: 0;
   }
   td.type {
-    vertical-align: top;
-    top: 30px;
     padding-left: 20px
   }
   td.date {
