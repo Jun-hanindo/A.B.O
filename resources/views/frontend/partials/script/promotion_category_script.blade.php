@@ -53,31 +53,31 @@
                             }
                         }
 
-                        if(val.disc != null){
+                        if(val.disc != ''){
                             var disc = '<p>{{ trans("general.discount") }}:' 
                                 +val.disc+'</p>';
                         }else{
                             var disc = '';
                         }
 
-                        if(val.link_title_more_description != null){
+                        if(val.link_title_more_description != ''){
                             var link_more = '<a id="link_title_more_promotion" class="collapsed" data-toggle="collapse" href="#more_description'+val.ep_id+'" aria-expanded="false"><u>'+val.link_title_more_description+'</u></a>';
                         }else{
                             var link_more = '';
                         }
-                        if(val.more_description != null){
+                        if(val.more_description != ''){
                             var more_desc = '<span class="collapse" id="more_description'+val.ep_id+'">'+val.more_description+'</span>';
                         }else{
                             var more_desc = '';
                         }
-                        if(val.start_date != null){
+                        if(val.start_date != ''){
                             var start = '<h4>{{ trans("frontend/general.promotion_period") }}</h4>'
                                 +'<p>{{ trans("frontend/general.start_date") }}: '+val.start_date+'</p>'
                                 + '<br>'
                         }else{
                             var start = '';
                         }
-                        if(val.end_date != null){
+                        if(val.end_date != ''){
                             var end = '<p>{{ trans("frontend/general.end_date") }}: '+val.end_date+'</p>';
                         }else{
                             var end = '';

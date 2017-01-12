@@ -116,7 +116,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('image_link') }} image_link">
                                 {!! Form::label('image_link', trans('backend/general.image_link')) !!}
-                                {!! Form::text('image_link', $data->image_link, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('backend/general.image_link')]) !!}
+                                {!! Form::text('image_link', $data->featured_image_link, ['class' => 'form-control','maxlength'=>'255', 'placeholder' => trans('backend/general.image_link')]) !!}
                                 {!! Form::errorMsg('image_link') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('category') }} category">
