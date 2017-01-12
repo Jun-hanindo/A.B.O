@@ -68,7 +68,7 @@
                                                             <h3 class="font-bold">{{ $event->promo_title }}</h3>
                                                             {!! $event->promo_desc !!}
                                                             @if(!empty($event->link_title_more_description))
-                                                                <a id="link_title_more_promotion" data-toggle="collapse" href="#more_description{{ $event->ep_id }}" aria-expanded="false"><u> {!! $event->link_title_more_description !!} </u></a>
+                                                                <a id="link_title_more_promotion" class="collapsed data-toggle="collapse" href="#more_description{{ $event->ep_id }}" aria-expanded="false"><u> {!! $event->link_title_more_description !!} </u></a>
                                                             @endif
                                                             @if(!empty($event->more_description))
                                                                 <span class="collapse" id="more_description{{ $event->ep_id }}"> {!! $event->more_description !!} </span>
@@ -80,22 +80,9 @@
                                                 <p>Show StarHub bill or subscription on any device such as mobile phone or tablet.</p> -->
                                                 
                                                 
-                                                @if($event->discount > 0 || $event->discount_nominal > 0)
+                                                @if(!empty($event->disc))
                                                     <p>{{ trans('general.discount') }}: 
-                                                        @if($event->discount > 0)
-                                                            {{ number_format_drop_zero_decimals($event->discount).'%' }}
-                                                        @else
-                                                            @if($event->currency_id == 0)
-                                                                @php
-                                                                    $code = '';
-                                                                @endphp
-                                                            @else
-                                                                @php
-                                                                    $code = $event->currency->code;
-                                                                @endphp
-                                                            @endif
-                                                            {{ $code.' '.number_format_drop_zero_decimals($event->discount_nominal) }}
-                                                        @endif
+                                                            {{ $event->disc }}
                                                     </p>
                                                 @endif
 

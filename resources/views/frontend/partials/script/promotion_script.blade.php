@@ -26,6 +26,60 @@
                     }
                     var events = response.data.data;
                     $.each(events,function(key,val){
+                        if(val.banner_image != null){
+                            if(val.featured_image_link != null){
+                                var img = '<a href="'+val.featured_image_link+'" target="_blank">'
+                                    +'<img class="promoBanner" src="'+val.banner_image_url+'">'
+                                +'</a>'; 
+                            }else{
+                                var img = '<a>'
+                                    +'<img class="promoBanner" src="'+val.banner_image_url+'">'
+                                +'</a>';
+                            } 
+                        }else{
+                            if(val.featured_image != null){
+                                if(val.featured_image_link != null){
+                                    var img = '<a href="'+val.featured_image_link+'" target="_blank">'
+                                        +'<img class="promoBanner" src="'+val.featured_image_url+'" onload="this.width/=2;this.onload=null;">'
+                                    +'</a>'; 
+                                }else{
+                                    var img = '<a>'
+                                        +'<img class="promoBanner" src="'+val.featured_image_url+'" onload="this.width/=2;this.onload=null;">'
+                                    +'</a>';
+                                } 
+                            }
+                        }
+
+                        if(val.disc != null){
+                            var disc = '<p>{{ trans("general.discount") }}:' 
+                                +val.disc+'</p>';
+                        }else{
+                            var disc = '';
+                        }
+
+                        if(val.link_title_more_description != null){
+                            var link_more = '<a id="link_title_more_promotion" class="collapsed" data-toggle="collapse" href="#more_description'+val.ep_id+'" aria-expanded="false"><u>'+val.link_title_more_description+'</u></a>';
+                        }else{
+                            var link_more = '';
+                        }
+                        if(val.more_description != null){
+                            var more_desc = '<span class="collapse" id="more_description'+val.ep_id+'">'+val.more_description+'</span>';
+                        }else{
+                            var more_desc = '';
+                        }
+                        if(val.start_date != null){
+                            var start = '<h4>{{ trans("frontend/general.promotion_period") }}</h4>'
+                                +'<p>{{ trans("frontend/general.start_date") }}: '+val.start_date+'</p>'
+                                + '<br>'
+                        }else{
+                            var start = '';
+                        }
+                        if(val.end_date != null){
+                            var end = '<p>{{ trans("frontend/general.end_date") }}: '+val.end_date+'</p>';
+                        }else{
+                            var end = '';
+                        }
+
                         var htmlTop = 
                             '<div class="col-md-4 box-promo">'
                                 +'<a href="#promoModal'+val.ep_id+'" data-toggle="modal">'
@@ -33,46 +87,48 @@
                                     +'<div class="boxInfo promo1">'
                                         +'<ul>'
                                             +'<li class="eventType">'+val.category+'</li>'
-                                            +'<li class="eventName">'+val.promo_title+'<img src="'+val.featured_image_url+'"></li>'
-                                            +'<br>'
-                                            +'<li class="eventPlace">Valid from '+val.valid+'</li>'
+                                            +'<li class="eventName">'
+                                                +'<div class="col-md-9 col-xs-9 promoNameThumb" >'+val.promo_title+'</div> '
+                                                +'<div class="col-md-3 col-xs-3 promoLogoThumb" >'+'<img src="'+val.featured_image_url+'" onload="this.width/=2;this.onload=null;"></div> '
+                                            +'</li>'
                                         +'</ul>'
                                     +'</div>'
                                 +'</a>'
-                                +'<div class="modal fade promoModal" id="promoModal'+val.ep_id+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">'
+                                +'<div class="modal fade promoModal full-modal" id="promoModal'+val.ep_id+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">'
                                     +'<div class="modal-dialog" role="document">'
                                         +'<div class="modal-content">'
                                             +'<div class="modal-header">'
                                                 +'<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
-                                                +'<h4 class="modal-title" id="myModalLabel">'+val.promo_title+'</h4>'
+                                                +'<h4 class="modal-title" id="myModalLabel">'+val.category+' - '+val.title+'</h4>'
                                             +'</div>'
                                             +'<div class="modal-body">'
-                                                +'<div class="promoBanner">'
-                                                    +'<img src="'+val.featured_image1_url+'">'
-                                                +'</div>'
-                                                +'<div class="descPromoModal">'
-                                                    +'<h4>About This Promotion</h4>'
-                                                    +'<div class="promoBannerDesc">'
-                                                        +'<div class="row">'
-                                                            +'<div class="col-md-9">'
-                                                                +'<p>'+val.promo_desc+'</p>'
-                                                            +'</div>'
-                                                            +'<div class="col-md-3">'
-                                                                +'<img src="'+val.featured_image_url+'" class="promoLogo">'
+                                                +'<div class="desc-promo-modal">'
+                                                    +'<div class="promoBanner">'
+                                                        +'<img src="'+val.featured_image1_url+'" class="promo-modal-web">'
+                                                        +'<img src="'+val.featured_image2_url+'" class="promo-modal-mobile">'
+                                                    +'</div>'
+                                                    +'<div class="descPromoModal">'
+                                                        +'<div class="promoBannerDesc">'
+                                                            +'<div class="row">'
+                                                                +'<div class="col-md-12 col-xs-12">'
+                                                                    +img
+                                                                    +'<h3 class="font-bold">'+val.promo_title+'</h3>'
+                                                                    +val.promo_desc
+                                                                    +link_more
+                                                                    +more_desc
+                                                                +'</div>'
                                                             +'</div>'
                                                         +'</div>'
+                                                        +disc
+                                                        +start
+                                                        +end
                                                     +'</div>'
-                                                    +'<p>Discount: '+val.disc+'</p>'
-                                                    +'<h4>Promotion Period</h4>'
-                                                    +'<p>Start Date:'+val.start_date+'</p>'
-                                                    +'<br>'
-                                                    +'<p>End Date:'+val.end_date+'</p>'
                                                 +'</div>'
                                             +'</div>'
                                             +'<div class="modal-footer">'
                                                 +'<div class="row">'
                                                     +'<div class="col-md-8">'
-                                                        +'<h4>Get Your Early Bird Tickets Now!</h4>'
+                                                        +'<h4>Enjoy This Promotion Now</h4>'
                                                     +'</div>'
                                                     +'<div class="col-md-4">'
                                                         +'<form action="'+val.buylink+'">'

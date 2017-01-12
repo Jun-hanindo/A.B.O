@@ -469,3 +469,11 @@ iframe[name="google_conversion_frame"]{
 .nav-search .input-search{
   font-size: 14px;
 }
+/*promotion modal*/
+#link_title_more_promotion.collapsed{
+  display: block;
+  padding-bottom: 10px;
+}
+#link_title_more_promotion{
+  display: none;
+}
