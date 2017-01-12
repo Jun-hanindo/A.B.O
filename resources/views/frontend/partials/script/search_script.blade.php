@@ -56,7 +56,7 @@
             $('#filter-venue-mobile').on('change', function(){
                 var val = $(this).val();
                 $('#filter-venue').val(val);
-                //sortFilterResult(sort_mobile);
+                sortFilterResult(sort_mobile);
             });
 
             $('#filter-period-mobile').on('change', function(){
