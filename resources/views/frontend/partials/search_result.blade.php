@@ -233,7 +233,7 @@
                                 </li>
                             </form>
                         </ul>
-                      <button class="btnFilterMobile btnBlackDefault btn font-bold" id="btn-apply-mobile">Apply</button>
+                        {{-- <button class="btnFilterMobile btnBlackDefault btn font-bold" id="btn-apply-mobile">Apply</button> --}}
                     </div>
                 </div>
             </div>

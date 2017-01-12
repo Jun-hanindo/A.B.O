@@ -1049,8 +1049,8 @@
   }
   .reset-filter {
     position: absolute;
-    top: 6vh;
-    right: 9vw;
+    top: 17px;
+    right: 30px;
   }
   .collapsed + .reset-filter {
     display: none;

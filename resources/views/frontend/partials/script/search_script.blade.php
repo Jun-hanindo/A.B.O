@@ -85,10 +85,10 @@
 
                 if(check){
                     $('.cat-filter, .cat-filter-mobile, .cat-filter-all').iCheck('check');
-                    //sortFilterResult(sort_mobile);
+                    sortFilterResult(sort_mobile);
                 }else{
                     $('.cat-filter, .cat-filter-mobile, .cat-filter-all').iCheck('uncheck');
-                    //sortFilterResult(sort_mobile);
+                    sortFilterResult(sort_mobile);
                 }
             });
 
@@ -110,19 +110,19 @@
                 var check = $('.cat-filter-mobile[value="'+val+'"]').iCheck('toggle')[0].checked;
                 if(check){
                     $('.cat-filter[value="'+val+'"], .cat-filter-mobile[value="'+val+'"]').iCheck('check');
-                    //sortFilterResult(sort_mobile);
+                    sortFilterResult(sort_mobile);
                 }else{
                     $('.cat-filter[value="'+val+'"], .cat-filter-mobile[value="'+val+'"], .cat-filter-all, .cat-filter-mobile-all').iCheck('uncheck');
-                    //sortFilterResult(sort_mobile);
+                    sortFilterResult(sort_mobile);
 
                 }
             });
 
-            $('#btn-apply-mobile').click(function(){
-                sortFilterResult(sort_mobile);
-                $('#mobile-sidebar-collapse').collapse('hide');
-                $('.search-mobile .mobile-sidebar').css('height', 'auto');
-            });
+            // $('#btn-apply-mobile').click(function(){
+            //     sortFilterResult(sort_mobile);
+            //     $('#mobile-sidebar-collapse').collapse('hide');
+            //     $('.search-mobile .mobile-sidebar').css('height', 'auto');
+            // });
 
         });
 
@@ -196,6 +196,8 @@
                                 +'</div>'
                             +'</div>';
                             $('.search-list-mobile').append(html2);
+                            $('#mobile-sidebar-collapse').collapse('hide');
+                            $('.search-mobile .mobile-sidebar').css('height', 'auto');
                         });
                     }else{
                         html = "<h3 class='text-center'>{{ trans('frontend/general.there_are_no_event') }}</h3>";

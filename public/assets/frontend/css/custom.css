@@ -253,10 +253,10 @@ iframe[name="google_conversion_frame"]{
 .mobile-header.mobile-header-xmas .mobile-search{
   height: 100%;
 }
-.mobile-search-show,
+/*.mobile-search-show,
 .mobile-search-show.open{
   height: 60px;
-}
+}*/
 .mobile-search-show .container,
 .mobile-search-show.open .container{
     height: 100%;
@@ -289,9 +289,9 @@ iframe[name="google_conversion_frame"]{
 .mobile-header.mobile-header-xmas .mobile-menu .mobile-collapse-header-top{
   float: right;
 }
-.mobile-header.mobile-header-xmas .mobile-collapse-body-top{
+/*.mobile-header.mobile-header-xmas .mobile-collapse-body-top{
   top: 60px;
-}
+}*/
 .ul-ticket-content .li-ticket-content:last-child {
     padding-top: 40px;
 }
