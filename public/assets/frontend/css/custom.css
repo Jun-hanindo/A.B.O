@@ -466,3 +466,6 @@ iframe[name="google_conversion_frame"]{
 .mobile-search-show.open{
   top: 0 !important;
 }
+.nav-search .input-search{
+  font-size: 14px;
+}
