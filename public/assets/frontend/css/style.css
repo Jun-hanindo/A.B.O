@@ -4760,3 +4760,10 @@ ol .a li:before{
 .result-content .sidebar-head h4{
   display: inline-block;
 }
+
+.search-list .type img, .mobile-search-desc .type img{
+  width: 19px;
+  padding-right: 4px;
+  margin-top: 5px;
+  margin-right: 3px;
+}

@@ -213,8 +213,11 @@ $('.mobile-sidebar-menu .menu').click(function(){
   $('body').toggleClass('overflow-hide')
   $('html').toggleClass('overflow-hide')
   if ($('.search-mobile .mobile-sidebar').height() === 50 ){
-    var heights = $(window).height()
-    $('.search-mobile .mobile-sidebar').height(heights - $('#mobile-header').height() )
+    // var heights = $(window).innerHeight()
+    var calcHead = $('#top-vp').offset(); // essentially gets the viewport top
+var calcFoot = $('#bottom-vp').offset(); // essentially gets the viewport bottom
+var wHeight = calcFoot.top - calcHead.top; // provides the true visible window height 
+    $('.search-mobile .mobile-sidebar').height(wHeight - $('#mobile-header').height() )
   }else {
     $('.search-mobile .mobile-sidebar').css('height', 'auto');
   }

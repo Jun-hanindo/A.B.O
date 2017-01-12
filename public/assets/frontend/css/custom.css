@@ -351,11 +351,11 @@ iframe[name="google_conversion_frame"]{
 .search-list .type::before, .mobile-search-desc .type::before{
   content: none !important;
 }
-.search-list .type img, .mobile-search-desc .type img{
+/*.search-list .type img, .mobile-search-desc .type img{
   width: 19px;
   padding-right: 4px;
   margin-right: 3px;
-}
+}*/
 .search-list .type i, .mobile-search-desc .type i{
   font-size: 16px;
   padding-right: 8px;

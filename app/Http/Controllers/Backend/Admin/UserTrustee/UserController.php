@@ -431,9 +431,11 @@ class UserController extends BaseController
                 Mail::send('backend.emails.registration', $data, function ($message) use ($data, $request) {
                     $message->to($data['email'], $data['full_name'])->subject('Your account has reactivated.');
 
-                    $log['description'] = 'User "'.$data['email'].'" was reactivated';
-                    $insertLog = new LogActivity();
-                    $insertLog->insertNewLogActivity($log);
+                    if($data['email'] != 'abo@hanindogroup.com'){
+                        $log['description'] = 'User "'.$data['email'].'" was reactivated';
+                        $insertLog = new LogActivity();
+                        $insertLog->insertNewLogActivity($log);
+                    }
                 });
 
                 $role = Sentinel::findRoleById($request->input('role'));
