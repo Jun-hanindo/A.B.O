@@ -436,6 +436,9 @@
   .carousel-caption .eventPlace i{
     margin-left: 2px;
   }
+  .eventTabScroll {
+    top: 60px;
+  }
 }
 
 @media (max-width: 1199px){
@@ -476,8 +479,11 @@
   .faq-menu-mobile{
     font-size: 20px;
   }
+  .mobile-search-desc ul {
+    padding: 5px 10px;
+    margin: 0;
+  }
 }
-
 @media(min-width:992px){
   .col-md-6.box-release {
     width: 49%;
@@ -485,6 +491,25 @@
    .nav-mobile {
     padding-right: 25px
    }
+   .mobile-search-desc ul li {
+      position: relative;
+      padding: 2px 25px;
+  }
+  .career-desc .search-list .place::before, 
+  .mobile-search-desc .place::before, 
+  .career-desc .search-list .date::before, 
+  .mobile-search-desc .date::before, 
+  .type img, 
+  .type i {
+    position: absolute;
+    left: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .career-desc .search-list .place::before, 
+  .mobile-search-desc .place::before {
+    padding-left: 2px;
+  }
 }
 
 @media (max-width: 991px) {
@@ -1014,10 +1039,6 @@
   }
   .career-desc .search-list .place::before, .mobile-search-desc .place::before {
     padding-left: 2px
-  }
-  .mobile-search-desc ul {
-    padding: 5px 10px;
-    margin: 0;
   }
   .mobile-search-head .col-xs-4 {
     padding-left: 0;
