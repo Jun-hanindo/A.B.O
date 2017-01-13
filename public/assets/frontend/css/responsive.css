@@ -1083,11 +1083,9 @@
   #modalSeatMap {
     padding-right: 0!important;
   }
-  .modal-open {
-    padding-right: 0!important
-  }
+  
   .modal-hochi .modal-dialog {
-    min-width: auto;
+    min-width: 0px;
     width: 100%;
   }
 }
