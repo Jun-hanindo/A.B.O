@@ -439,6 +439,9 @@
   .eventTabScroll {
     top: 60px;
   }
+.mobile-collapse-body, .mobile-collapse-body-top,.facebookLike, .mobileApp {
+    display: none;
+  }
 }
 
 @media (max-width: 1199px){
@@ -536,10 +539,9 @@
       position: relative;
   }
   #modalSeatMap .modal-body{
-    height: 100%;
+    height: 94vh;
     margin-top: -56px;
     padding-top: 56px;
-    position: absolute;
     overflow: hidden;
     width: 100%;
   }
@@ -654,6 +656,7 @@
   }
   .modal-hochi .modal-dialog {
     min-width: auto;
+    margin: 0 auto
   }
   .place span{
     margin-left: 30px;
@@ -884,9 +887,6 @@
     right: 0;
     color: #fff;
   }
-  .mobile-collapse-body, .mobile-collapse-body-top,.facebookLike, .mobileApp {
-    display: none;
-  }
   /*.list-unstyled{
     margin-top: 0;
   }*/
@@ -1076,8 +1076,18 @@
   .collapsed + .reset-filter {
     display: none;
   }
-  body .promoModal.in {
+  body .promoModal.in,
+  body .modal-hochi.in {
     overflow: hidden;
+  }
+  #modalSeatMap {
+    padding-right: 0!important;
+  }
+  .modal-open {
+    padding-right: 0!important
+  }
+  .modal-hochi .modal-dialog {
+    min-width: auto
   }
 }
 
