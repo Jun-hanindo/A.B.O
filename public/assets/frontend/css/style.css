@@ -2653,6 +2653,10 @@ td.type img {
   color: #000000;
 }
 
+.promoModal {
+  padding: 0 !important;
+}
+
 .promoModal .promoBanner img{
   width: 100%;
 }
@@ -2667,6 +2671,8 @@ td.type img {
 
 .promoModal .descPromoModal .promoLogo{
   float: right;
+  margin-left: 15px;
+  margin-bottom: 10px;
 }
 
 .promoModal .modal-body .view{

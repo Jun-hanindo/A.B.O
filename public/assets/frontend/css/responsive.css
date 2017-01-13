@@ -578,7 +578,7 @@
   }
   .full-modal .modal-body{
     padding: 0;
-    overflow: scroll;
+    overflow: auto;
     height: calc(100vh - 160px);
   }
   .full-modal .modal-content{
@@ -1075,6 +1075,9 @@
   }
   .collapsed + .reset-filter {
     display: none;
+  }
+  body .promoModal.in {
+    overflow: hidden;
   }
 }
 
