@@ -38,7 +38,7 @@
                                                     <input type="text" name="email" id="email" placeholder="{{ trans('frontend/general.email') }}" class="input-subscribe form-control">
                                                 </div>
                                                 <div class="col-md-5 button">
-                                                    <button type="button" class="btn btnBlackDefault font-bold" id="btnSubscribe">{{ trans('frontend/general.subscribe') }}</button>
+                                                    <button type="button" class="btn btnBlackDefault font-bold" id="btnSubscribe">{{ trans('frontend/general.send_me_updates') }}</button>
                                                 </div>
                                             </div>
                                         </div>

@@ -88,7 +88,7 @@ return [
     'how_to_buy_tickets_from_us' => 'How to buy tickets from us.',
     'cancel' => 'Cancel',
     'subscribe' => 'Subscribe',
-    'sign_up_latest_updates' => 'Sign-up for the latest updates to the hottest events near you!',
+    'sign_up_latest_updates' => 'Sign up for the latest updates to the hottest events near you!',
     'thanks_subscription' => 'Thanks for Your Subscription',
     'you_are_part_mailing_list' => 'You are now part of our mailing list!',
     'dismiss' => 'Dismiss',

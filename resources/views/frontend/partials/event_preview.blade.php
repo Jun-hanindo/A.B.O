@@ -411,7 +411,6 @@
                                     <div class="error"></div>
                                     @include('flash::message')
                                     <div class="row">
-                                        <input type="hidden" class="form-control" name="event" id="event" value="{{ $event->id }}">
                                         <div class="col-xs-6 col-1 first_name">
                                             <input type="text" class="form-control first" name="first_name" id="first_name" placeholder="{{ trans('frontend/general.first_name') }}">
                                         </div>
@@ -424,14 +423,14 @@
                                             <input type="email" placeholder="{{ trans('frontend/general.email') }}" name="email" id="email" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         <div class="col-xs-3 col-1">
                                             <input type="text" class="form-control" name="country_code" id="country_code" placeholder="+62">
                                         </div>
                                         <div class="col-xs-9 col-2">
                                             <input type="text" class="form-control" name="contact_number" id="contact_number" placeholder="{{ trans('frontend/general.mobile_number_optional') }}">
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <button class="btn btn-primary btnSend font-bold" type="submit">{{ trans('frontend/general.send_me_updates') }}</button>
