@@ -2914,12 +2914,12 @@ td.type img {
   text-align: left;
   width: 30%;
 }
-input[type="text"], input[type="password"], input[type="date"],
+/*input[type="text"], input[type="password"], input[type="date"],
 input[type="datetime"], input[type="datetime-local"], input[type="month"],
 input[type="week"], input[type="email"], input[type="number"],
 input[type="search"], input[type="tel"], input[type="time"],
 input[type="url"], textarea
-    { font-size: 16px; }
+    { font-size: 16px; }*/
 
 #footer1 .footIcon .icon div{
   border: 1px solid #fff;
@@ -3472,6 +3472,7 @@ ul#getvenue li:before {
 .form-subscribe input,
 .form-subscribe .btn{
   height: 100%;
+  text-transform: capitalize;
 }
 
 .content p{
@@ -3484,7 +3485,8 @@ ul#getvenue li:before {
 }
 
 .form-subscribe button{
-  width: 120px;
+  width: 100%;
+  padding: 5px
 }
 
 .content .logo-mobile{
