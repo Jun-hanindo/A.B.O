@@ -486,6 +486,14 @@
     padding: 5px 10px;
     margin: 0;
   }
+  .collapsed + .reset-filter {
+    display: none;
+  }
+   .reset-filter {
+    position: absolute;
+    top: 17px;
+    right: 30px;
+  }
 }
 @media(min-width:992px){
   .col-md-6.box-release {
@@ -1067,14 +1075,6 @@
   .promotionList .box-promo{
     display: block;
     width: 100%;
-  }
-  .reset-filter {
-    position: absolute;
-    top: 17px;
-    right: 30px;
-  }
-  .collapsed + .reset-filter {
-    display: none;
   }
   body .promoModal.in,
   body .modal-hochi.in {

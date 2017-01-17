@@ -79,6 +79,11 @@
                         }else{
                             var end = '';
                         }
+                        if(val.featured_image != null){   
+                            var logo = '<div class="col-md-3 col-xs-3 promoLogoThumb" >'+'<img src="'+val.featured_image_url+'" onload="this.width/=2;this.onload=null;"></div> '
+                        }else{
+                            var logo = '';
+                        }
 
                         var htmlTop = 
                             '<div class="col-md-4 box-promo">'
@@ -89,7 +94,7 @@
                                             +'<li class="eventType">'+val.category+'</li>'
                                             +'<li class="eventName">'
                                                 +'<div class="col-md-9 col-xs-9 promoNameThumb" >'+val.promo_title+'</div> '
-                                                +'<div class="col-md-3 col-xs-3 promoLogoThumb" >'+'<img src="'+val.featured_image_url+'" onload="this.width/=2;this.onload=null;"></div> '
+                                                +logo
                                             +'</li>'
                                         +'</ul>'
                                     +'</div>'

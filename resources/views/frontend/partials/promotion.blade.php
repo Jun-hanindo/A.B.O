@@ -29,7 +29,9 @@
                                     <li class="eventType">{{ $event->category }}</li>
                                     <li class="eventName">
                                         <div class="col-md-9 col-xs-9 promoNameThumb" >{{ $event->promo_title }}</div> 
-                                        <div class="col-md-3 col-xs-3 promoLogoThumb" ><img src="{{ $event->featured_image_url }}" onload="this.width/=2;this.onload=null;"></div> 
+                                        @if(!empty($event->featured_image))
+                                            <div class="col-md-3 col-xs-3 promoLogoThumb" ><img src="{{ $event->featured_image_url }}" onload="this.width/=2;this.onload=null;"></div> 
+                                        @endif
                                     </li>
                                     
                                     {{-- <br><li class="eventPlace">{{ (!empty($event->valid)) ? trans('frontend/general.valid_from').' '.$event->valid : '&nbsp;' }}</li> --}}
