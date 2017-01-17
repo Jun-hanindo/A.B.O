@@ -1546,6 +1546,7 @@ footer .information-title{
   border-radius: 3px;
   border-color: #e7e7e7;
   box-shadow: none;
+  text-transform: capitalize;
 }
 
 .formPromo .row{
