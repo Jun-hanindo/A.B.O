@@ -1301,6 +1301,7 @@ footer .information-title{
     border-left: none;
     border-right: none;
     background-color: transparent;
+    display: block;
 }
 
 .discoverCategory .tabCategory li i{
