@@ -38,7 +38,7 @@
                             <div class="col-sm-2">
                                 <input name="end_delete" class="form-control datepicker" id="end_delete" data-date-end-date="0d" value={{ date('Y-m-d') }}>
                             </div>
-                            <button class="btn btn-primary" id="btn_apply_delete" >{{ trans('backend/general.button_apply') }}</button>
+                            <button class="btn btn-primary" id="btn_apply_delete" >{{ trans('backend/general.button_delete') }}</button>
                         </div>
                     </div>
 

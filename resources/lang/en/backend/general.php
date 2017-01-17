@@ -354,6 +354,6 @@ return [
     'terms_of_website_use_page' => 'Terms of Website Use Page',
     'desktop' => 'Desktop',
     'mobile' => 'Mobile',
-    'header_logo' => 'Header Logo'
+    'header_logo' => 'Header Logo',
 
 ];

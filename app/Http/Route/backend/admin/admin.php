@@ -176,6 +176,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::get('currency/{id}/edit', array('as' => 'admin-edit-currency', 'uses' => 'CurrenciesController@edit'));
         Route::post('currency/{id}/update', array('as' => 'admin-update-currency', 'uses' => 'CurrenciesController@update'));
         Route::delete('currency/{id}/delete', array('as' => 'admin-delete-currency', 'uses' => 'CurrenciesController@destroy'));
+        Route::delete('delete-logo', array('as' => 'admin-delete-header-logo', 'uses' => 'SettingsController@deleteLogo'));
     });
 
     Route::group(['prefix' => 'subscription'], function () {

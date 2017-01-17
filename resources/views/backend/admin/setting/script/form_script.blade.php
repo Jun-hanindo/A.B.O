@@ -19,6 +19,42 @@
             preview(this,$(this).data('type'),name);
         });
 
+        $('.delete-header_logo').on('click', function () {
+            $('#delete-modal2').modal('show');
+            var name = $(this).attr('data-name');
+            var value = $(this).attr('data-value');
+            var title = $(this).attr('data-title');
+
+            $('#delete-modal2 .continue-delete').attr('data-name', name);
+            $('#delete-modal2 .continue-delete').attr('data-value', value);
+            $('#delete-modal2 #name').html(title);
+        });
+
+        $('#delete-modal2').on('click', '.continue-delete', function () {
+            var name = $(this).attr('data-name');
+            var value = $(this).attr('data-value');
+            var uri = "{{ URL::route('admin-delete-header-logo') }}";
+            modal_loader();
+            $.ajax({
+                url: uri,
+                type: "DELETE",
+                dataType: 'json',
+                success: function (data) {
+                    $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    
+                    $('#'+name).val('');
+                    $('#div-preview_header_logo img').attr('src', '');
+                    $('.delete-'+name).remove();
+                    HoldOn.close();
+
+                },
+                error: function(response){
+                    HoldOn.close();
+                    $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                }
+            });
+        });
+
     });
 
     function hideShowField(driver){

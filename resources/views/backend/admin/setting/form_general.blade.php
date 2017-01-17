@@ -16,6 +16,7 @@
                 {!! Form::open(array('url' => route('admin-update-setting'),'files'=>'true','method'=>'POST','id'=>'form-setting', 'class' => "form-horizontal")) !!}
                     <div class="box-body">
                         @include('flash::message')
+                        <div class="error"></div>
                         <div class="form-group{{ Form::hasError('header_logo') }} header_logo">
                             <label for="header_logo" class="col-sm-3 control-label">{{ trans('backend/general.header_logo') }} <br>(Height max. 120px)</label>
                             <div class="col-sm-5">
@@ -28,6 +29,9 @@
                             <label for="header_logo" class="col-sm-3 control-label"></label>
                             <div class="col-sm-5">
                                 <img src="{{ isset($data['header_logo']) ? file_url('settings/'.$data['header_logo'], env('FILESYSTEM_DEFAULT')) : null }}" name="preview" id="preview_header_logo" height="50%" width="50%" style="background:#ddd;">
+                                @if(isset($data['header_logo']))
+                                    <a href="javascript:void(0)" data-name="header_logo" data-title="Header Logo Image" data-value="$data['header_logo']" class="btn btn-danger btn-xs delete-header_logo" title="Delete Header Logo" style="margin-left:20px;"><i class="fa fa-trash-o fa-fw"></i></a>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
@@ -148,5 +152,6 @@
             </div>
         </div>
     </div>
+    @include('backend.delete-modal')
 @endsection
 @include('backend.admin.setting.script.form_script')

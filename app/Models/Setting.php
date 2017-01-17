@@ -87,4 +87,14 @@ class Setting extends Model
         }
 
     }
+
+    public function deleteLogo(){
+        $data = Setting::where('name', 'header_logo')->first();
+        if(!empty($data)) {
+            $data->delete();
+            return $data;
+        } else {
+            return false;
+        }
+    }
 }
