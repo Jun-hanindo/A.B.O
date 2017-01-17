@@ -68,7 +68,7 @@
                             @endphp
                                 @foreach($categories as $key => $category)
                                     @if($i % 3 == 1)
-                                        <li class="row">
+                                        <li>
                                     @endif 
                                         
                                             <a href="{{ URL::route('category-detail', $category->slug) }}">
