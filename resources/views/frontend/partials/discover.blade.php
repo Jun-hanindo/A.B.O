@@ -71,7 +71,7 @@
                                         <div class="row">
                                     @endif 
                                         <div class="col-xs-4">
-                                            <a href="{{ URL::route('category-detail', $category->slug) }}" aria-controls="{{$category->slug}}" role="tab">
+                                            <a href="{{ URL::route('category-detail', $category->slug) }}">
                                                 @if(!empty($category->icon))
                                                     <i class="fa fa-{{ $category->icon }}"></i>
                                                 @else
@@ -109,7 +109,7 @@
                                             <div class="row">
                                         @endif 
                                             <div class="col-xs-4">
-                                                <a href="{{ URL::route('category-detail', $category->slug) }}" aria-controls="{{$category->slug}}" role="tab">
+                                                <a href="{{ URL::route('category-detail', $category->slug) }}">
                                                     @if(!empty($category->icon))
                                                         <i class="fa fa-{{ $category->icon }}"></i>
                                                     @else
