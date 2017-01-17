@@ -1294,8 +1294,8 @@ footer .information-title{
 
 .discoverCategory .tabCategory li a,
 .discoverCategory .tabCategory li a:hover{
-  color: #000000;
-      border-bottom: 3px solid transparent;
+    color: #000000;
+    border-bottom: 3px solid transparent;
     cursor: pointer;
     border-top: none;
     border-left: none;
