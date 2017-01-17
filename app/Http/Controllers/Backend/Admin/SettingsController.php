@@ -21,29 +21,6 @@ class SettingsController extends BaseController
         parent::__construct($model);
 
     }
-    
-    /**
-     * @return Response
-     */
-    // public function index()
-    // {
-    //     $settings = Setting::all();
-    //     $data = [];
-    //     foreach ($settings as $key => $value) {
-    //         $data[$value->name] = $value->value;
-    //     }
-    //     $result['data'] = $data;
-    //     $result['language'] = \Config::get('app.locales');
-
-    //     $modelCurrency = new Currency();
-    //     $result['currencies'] = $modelCurrency->dropdown();
-
-    //     $trail = 'Setting';
-    //     $insertTrail = new Trail();
-    //     $insertTrail->insertTrail($trail);
-        
-    //     return view('backend.admin.setting.form', $result);
-    // }
 
     public function mail()
     {
@@ -61,7 +38,8 @@ class SettingsController extends BaseController
         return view('backend.admin.setting.form_mail', $result);
     }
 
-    public function general(){
+    public function general()
+    {
         $settings = Setting::all();
         $data = [];
         foreach ($settings as $key => $value) {
@@ -82,32 +60,51 @@ class SettingsController extends BaseController
 
     public function storeUpdate(SettingRequest $req)
     {
-        //
-        $param = $req->all();
         try{
+            $param = $req->all();
             $updateData = $this->model->updateSetting($param);
-        //if(!empty($updateData)) {
             flash()->success(trans('general.update_success'));
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Setting was updated';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
 
             return redirect()->back();
 
-        //} else {
         } catch (\Exception $e) {
 
             flash()->error(trans('general.update_error'));
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
             
             return redirect()->back();
+
+        }
+    }
+
+    public function deleteLogo()
+    {
+        try{
+            $data = $this->model->deleteLogo();
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => trans('general.delete_success')
+                ],200);
+
+        } catch (\Exception $e) {
+
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertNewLogActivity($log);
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'error',
+                'message' => trans('general.data_not_found')
+            ],400);
 
         }
     }
