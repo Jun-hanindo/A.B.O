@@ -58,8 +58,6 @@
                                             @else
                                                 <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/ABO-logo.svg') }}" class="logo"></a>
                                             @endif
-                                            {{-- <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/ABO-logo.svg') }}" class="logo"></a> --}}
-                                            {{-- <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/abo-xmas.png') }}" class="logo"></a> --}}
                                         </li>
                                         {{-- <li class="nav-item">
                                             <div class="cd-dropdown-wrapper">
@@ -154,6 +152,7 @@
                                     <li class="second-child"><a href="{{ URL::route('promotion')}}">{{ trans('frontend/general.promotions') }}</a></li>
                                     <li class="second-child"><a href="{{URL::route('ways-to-buy-tickets')}}">How to Buy Tickets</a></li> --}}
                                     <li><a href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a></li>
+                                    <li class="second-child"><a href="{{ URL::route('subscribe')}}">{{ trans('frontend/general.subscribe') }}</a></li>
                                 </ul>
                             </div> 
                         </div>
@@ -235,12 +234,12 @@
                                                         </li>
                                                         <li><a href="{{ URL::route('discover')}}">{{ trans('frontend/general.discover_events') }}</a></li>
                                                         <li><a class="support-mobile" href="{{ URL::route('promotion')}}">{{ trans('frontend/general.promotions') }}</a></li>
-                                                        <li><a class="support-mobile" href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a></li>
-                                                        <li><a href="{{URL::route('subscribe')}}" class="login-mobile last-menu">{{ trans('frontend/general.subscribe') }}</li> --}}
+                                                        <li><a class="support-mobile" href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a></li> --}}
                                                         <li><a href="{{ URL::route('discover')}}">{{ trans('frontend/general.discover_events') }}</a></li>
                                                         <li><a class="support-mobile" href="{{ URL::route('promotion')}}">{{ trans('frontend/general.promotions') }}</a></li>
                                                         <li><a class="support-mobile" href="{{URL::route('ways-to-buy-tickets')}}">How to Buy Tickets</a></li>
                                                         <li><a class="support-mobile" href="{{URL::route('support')}}">{{ trans('frontend/general.support') }}</a></li>
+                                                        <li><a class="support-mobile" href="{{URL::route('subscribe')}}" >{{ trans('frontend/general.subscribe') }}</li>
                                                     </ul>
                                                 </div>
                                             </div>
