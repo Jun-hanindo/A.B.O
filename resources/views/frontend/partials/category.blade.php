@@ -71,52 +71,7 @@
                         </span>
                         <span id="select-category" style="display:none"><i class="fa icat"></i><br>{{ trans('frontend/general.select_category') }}</span></a>
                         <ul class="dropdown-menu" aria-labelledby="dropcat" id="dropdown-menu-discover">
-                            @if(!empty($categories))
-                            @php 
-                                $i = 1;
-                            @endphp
-                                @foreach($categories as $key => $cat) 
-                                    @if($i % 3 == 1)
-                                        <div class="row">
-                                    @endif 
-                                        <div class="col-xs-4">
-                                            <a href="{{ URL::route('category-detail', $cat->slug) }}">
-                                                @if(!empty($cat->icon))
-                                                    <i class="fa fa-{{ $cat->icon }}"></i>
-                                                @else
-                                                    <img src="{{ $cat->icon_image_url }}">
-                                                @endif
-                                                <i class="fa fa-{{ $cat->icon }}"></i><br>{{ $cat->name }}</a>
-                                        </div>
-                                    @if($i % 3 == 0)
-                                        </div>
-                                    @endif 
-                                    @php 
-                                        $i++;
-                                    @endphp
-                                @endforeach
-                            @endif
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="eventTabScroll-mobile tabCategories tabCategories-mobile">
-            <div class="container">
-                <div class="tabCategory">
-                    <ul class="list-category-mobile">
-                        <li><a href="{{ URL::route('discover') }}"><i class="fa fa-certificate"></i><br>{{ trans('frontend/general.whats_new') }}</a></li>
-                        <li class="dropdown active" role="presentation"><a href="#" data-toggle="dropdown" class="discover-category-mobile dropdown-toggle" id="dropcat">
-                            <span id="selected-category">
-                                @if(!empty($category->icon))
-                                    <i class="fa fa-{{ $category->icon }}"></i>
-                                @else
-                                    <img src="{{ $category->icon_image_url }}">
-                                @endif
-                                <br>{{ $category->name }}
-                            </span>
-                            <span id="select-category" style="display:none"><i class="fa icat"></i><br>{{ trans('frontend/general.select_category') }}</span></a>
-                            <ul class="dropdown-menu" aria-labelledby="dropcat" id="dropdown-menu-discover">
+                            <li>
                                 @if(!empty($categories))
                                 @php 
                                     $i = 1;
@@ -142,6 +97,55 @@
                                         @endphp
                                     @endforeach
                                 @endif
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="eventTabScroll-mobile tabCategories tabCategories-mobile">
+            <div class="container">
+                <div class="tabCategory">
+                    <ul class="list-category-mobile">
+                        <li><a href="{{ URL::route('discover') }}"><i class="fa fa-certificate"></i><br>{{ trans('frontend/general.whats_new') }}</a></li>
+                        <li class="dropdown active" role="presentation"><a href="#" data-toggle="dropdown" class="discover-category-mobile dropdown-toggle" id="dropcat">
+                            <span id="selected-category">
+                                @if(!empty($category->icon))
+                                    <i class="fa fa-{{ $category->icon }}"></i>
+                                @else
+                                    <img src="{{ $category->icon_image_url }}">
+                                @endif
+                                <br>{{ $category->name }}
+                            </span>
+                            <span id="select-category" style="display:none"><i class="fa icat"></i><br>{{ trans('frontend/general.select_category') }}</span></a>
+                            <ul class="dropdown-menu" aria-labelledby="dropcat" id="dropdown-menu-discover">
+                                <li>
+                                    @if(!empty($categories))
+                                    @php 
+                                        $i = 1;
+                                    @endphp
+                                        @foreach($categories as $key => $cat) 
+                                            @if($i % 3 == 1)
+                                                <div class="row">
+                                            @endif 
+                                                <div class="col-xs-4">
+                                                    <a href="{{ URL::route('category-detail', $cat->slug) }}">
+                                                        @if(!empty($cat->icon))
+                                                            <i class="fa fa-{{ $cat->icon }}"></i>
+                                                        @else
+                                                            <img src="{{ $cat->icon_image_url }}">
+                                                        @endif
+                                                        <br>{{ $cat->name }}</a>
+                                                </div>
+                                            @if($i % 3 == 0)
+                                                </div>
+                                            @endif 
+                                            @php 
+                                                $i++;
+                                            @endphp
+                                        @endforeach
+                                    @endif
+                                </li>
                             </ul>
                         </li>
                     </ul>
