@@ -477,3 +477,6 @@ iframe[name="google_conversion_frame"]{
 #link_title_more_promotion{
   display: none;
 }
+.dropdown-backdrop{
+    position: static;
+}
