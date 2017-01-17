@@ -126,6 +126,14 @@
 
         });
 
+        function hideShowReset(val){
+            if(val != ''){
+                $('.reset-filter').show();
+            }else{
+                $('.reset-filter').hide();
+            }
+        }
+
         function sortFilterResult(sort)
         {
             modal_loader();
@@ -196,8 +204,8 @@
                                 +'</div>'
                             +'</div>';
                             $('.search-list-mobile').append(html2);
-                            $('#mobile-sidebar-collapse').collapse('hide');
-                            $('.search-mobile .mobile-sidebar').css('height', 'auto');
+                            // $('#mobile-sidebar-collapse').collapse('hide');
+                            // $('.search-mobile .mobile-sidebar').css('height', 'auto');
                         });
                     }else{
                         html = "<h3 class='text-center'>{{ trans('frontend/general.there_are_no_event') }}</h3>";

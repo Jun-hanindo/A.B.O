@@ -10,7 +10,7 @@
                     <form id="filter-form">
                     <li class="sidebar-head">
                         <h4 class="font-light">{{ trans('frontend/general.filters') }}</h4>
-                        <a href="javascript:void(0)" class="reset-filter"><i class="fa fa-undo"></i> {{ trans('frontend/general.reset') }} </a>
+                        <a href="javascript:void(0)" class="reset-filter" style="display:none;"><i class="fa fa-undo"></i> {{ trans('frontend/general.reset') }} </a>
                     </li>
                     <li class="sidebar-menu-top filter-search">
                         <a class="collapsed" role="button" data-toggle="collapse" href="#collapseCategories" aria-expanded="false" aria-controls="collapseExample">{{ trans('frontend/general.categories') }}</a>
@@ -147,7 +147,7 @@
             <div class="container">
                 <div class="mobile-sidebar-menu">
                     <a class="menu collapsed" role="button" data-toggle="collapse" href="#mobile-sidebar-collapse" aria-expanded="false" aria-controls="collapseExample">{{ trans('frontend/general.filters') }}</a>
-                    <a href="javascript:void(0)" class="reset-filter"><i class="fa fa-undo"></i> Reset </a>
+                    <a href="javascript:void(0)" class="reset-filter" style="display:none;"><i class="fa fa-undo"></i> Reset </a>
                     <div class="collapse" id="mobile-sidebar-collapse">
                         <ul class="search-mobile">
                             <form id="filter-form-mobile">

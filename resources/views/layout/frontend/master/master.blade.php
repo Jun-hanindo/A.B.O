@@ -247,7 +247,7 @@
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
-                                <div class="mobile-search-show">
+                                <div class="mobile-search-show {{ (Request::segment(1) == 'search') ? 'open' : '' }}">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-xs-1">
