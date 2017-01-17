@@ -68,7 +68,7 @@
                             @endphp
                                 @foreach($categories as $key => $category)
                                     @if($i % 3 == 1)
-                                        <div class="row">
+                                        <li class="row">
                                     @endif 
                                         <div class="col-xs-4">
                                             <a href="{{ URL::route('category-detail', $category->slug) }}">
@@ -81,7 +81,7 @@
                                             </a>
                                         </div>
                                     @if($i % 3 == 0)
-                                        </div>
+                                        </li>
                                     @endif 
                                     @php 
                                         $i++;
@@ -106,7 +106,7 @@
                                 @endphp
                                     @foreach($categories as $key => $category)
                                         @if($i % 3 == 1)
-                                            <div class="row">
+                                            <li class="row">
                                         @endif 
                                             <div class="col-xs-4">
                                                 <a href="{{ URL::route('category-detail', $category->slug) }}">
@@ -119,7 +119,7 @@
                                                 </a>
                                             </div>
                                         @if($i % 3 == 0)
-                                            </div>
+                                            </li>
                                         @endif 
                                         @php 
                                             $i++;
