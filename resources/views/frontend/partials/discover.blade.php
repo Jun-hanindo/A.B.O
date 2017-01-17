@@ -70,7 +70,7 @@
                                     @if($i % 3 == 1)
                                         <li class="row">
                                     @endif 
-                                        <div class="col-xs-4">
+                                        
                                             <a href="{{ URL::route('category-detail', $category->slug) }}">
                                                 @if(!empty($category->icon))
                                                     <i class="fa fa-{{ $category->icon }}"></i>
@@ -79,7 +79,7 @@
                                                 @endif
                                                 <br>{{ $category->name }}
                                             </a>
-                                        </div>
+                                        
                                     @if($i % 3 == 0)
                                         </li>
                                     @endif 
