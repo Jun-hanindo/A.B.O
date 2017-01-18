@@ -1088,6 +1088,9 @@
     min-width: 0px;
     width: 100%;
   }
+  .form-subscribe {
+    padding: 25px 20px 25px;
+  }
 }
 
 @media (max-width: 768px){
@@ -1114,6 +1117,9 @@
   }
   .information-title-mobile{
     margin-left: -90px !important;
+  }
+  .embed-container iframe {
+    width: 100%;
   }
 }
 
@@ -1225,5 +1231,10 @@
   .nav-level>li>a{
     font-size: 10px;
     text-align: center;
+  }
+  .full-modal .modal-body{
+    padding: 0;
+    overflow: auto;
+    height: calc(100vh - 190px);
   }
 }

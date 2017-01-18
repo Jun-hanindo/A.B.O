@@ -3463,11 +3463,11 @@ ul#getvenue li:before {
 }
 
 .form-subscribe{
-  width: 770px;
+  width: 850px;
   height: 100%;
   background-color: #fff;
   margin: 0 auto;
-  padding: 15px 20px;
+  padding: 20px 15px;
   margin-top: 25px;
 }
 
@@ -4384,6 +4384,11 @@ ol .a li:before{
     font-family: 'FontAwesome';
     padding-left: 5px;
 }
+.mobile-content .mobile-sidebar .mobile-sidebar-menu a::after {
+    content: "\f106";
+    font-family: 'FontAwesome';
+    padding-left: 5px;
+}
 
 .client-mobile h3{
   font-size: 18px;
@@ -4790,4 +4795,8 @@ a.reset-filter i {
 }
 li.inbox-message.drawer-item .content h5 {
     margin-bottom: 5px;
+}
+
+.mobile-collapse-body-top li:nth-child(5) {
+    padding-bottom: 15px;
 }
