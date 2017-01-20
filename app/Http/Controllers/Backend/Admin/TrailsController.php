@@ -16,7 +16,8 @@ class TrailsController extends BaseController
         parent::__construct($model);
     }
 
-    public function index(){
+    public function index()
+    {
         $userModel = new User();
         $dropdown = $userModel->dropdown();
         $drop = [];
@@ -61,13 +62,11 @@ class TrailsController extends BaseController
                 ->filterColumn('user', function($query, $keyword) {
                     $query->whereRaw("LOWER(CAST(CONCAT(users.first_name, ' ', users.last_name) as TEXT)) ilike ?", ["%{$keyword}%"]);
                 })
-                // ->filterColumn('created_at', function($query, $keyword) {
-                //     $query->whereRaw("LOWER(CAST(trails.created_at as TEXT)) ilike ?", ["%{$keyword}%"]);
-                // })
                 ->make(true);
     }
 
-    public function saveTrailModal(Request $req){
+    public function saveTrailModal(Request $req)
+    {
         $param = $req->all();
         $desc['desc'] = $param['desc'];
         $saveData = $this->model->insertNewTrail($desc);
@@ -92,25 +91,23 @@ class TrailsController extends BaseController
         }
     }
 
-    public function deleteByDate(Request $req){
+    public function deleteByDate(Request $req)
+    {
         try{
             $param = $req->all();
             $data = $this->model->deleteByDate($param);
             flash()->success(trans('general.delete_success'));
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Trail "'.$param['start_delete'].' until '.$param['end_delete'].'" was deleted';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-trail-index');
 
-        //} else {
         } catch (\Exception $e) {
 
             flash()->error(trans('general.data_not_found'));
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);

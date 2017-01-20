@@ -45,16 +45,12 @@ class EventSchedulesController extends BaseController
 
     public function store(EventScheduleRequest $req)
     {
-        $param = $req->all();
     
         try{
-            $saveData = $this->model->insertNewEventSchedule($param);
-            // if(!empty($saveData))
-            // {
+            $param = $req->all();
+            $saveData = $this->model->insertNewEventSchedule($param); 
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule "'.$saveData->date_at.'" of '.$saveData->Event->title.' was created';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
 
@@ -65,10 +61,8 @@ class EventSchedulesController extends BaseController
                 'message' => '<strong>'.trans('general.schedule').'</strong> '.trans('general.save_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -87,7 +81,6 @@ class EventSchedulesController extends BaseController
     
         try{
             $data = $this->model->findEventScheduleByID($id);
-        //if(!empty($data)) {
 
             return response()->json([
                 'code' => 200,
@@ -96,10 +89,8 @@ class EventSchedulesController extends BaseController
                 'data' => $data
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -117,11 +108,7 @@ class EventSchedulesController extends BaseController
         $param = $req->all();
 
         try{
-            $updateData = $this->model->updateEventSchedule($param,$id);
-            // if(!empty($updateData)) 
-            // {
-
-            // $log['user_id'] = $this->currentUser->id;
+            $updateData = $this->model->updateEventSchedule($param,$id); 
             $log['description'] = 'Schedule "'.$updateData->date_at.'" of '.$updateData->Event->title.' was updated';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -132,10 +119,8 @@ class EventSchedulesController extends BaseController
                 'message' => '<strong>'.trans('general.schedule').'</strong> '.trans('general.update_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -153,10 +138,7 @@ class EventSchedulesController extends BaseController
     {
 
         try{
-            $data = $this->model->deleteByID($id);
-            //if(!empty($data)) {
-
-            // $log['user_id'] = $this->currentUser->id;
+            $data = $this->model->deleteByID($id); 
             $log['description'] = 'Schedule "'.$data->date_at.'" of '.$data->Event->title.' was deleted';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -167,10 +149,8 @@ class EventSchedulesController extends BaseController
                 'message' => '<strong>'.trans('general.schedule').'</strong> '.trans('general.delete_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -196,13 +176,7 @@ class EventSchedulesController extends BaseController
                 'data' => $data
             ],200);
 
-        } /*else {
-            return response()->json([
-                'code' => 400,
-                'status' => 'error',
-                'message' => trans('general.data_not_found'),
-            ],400);
-        }*/
+        }
     }
 
 }

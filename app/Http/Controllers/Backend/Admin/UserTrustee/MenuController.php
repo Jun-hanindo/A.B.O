@@ -106,7 +106,6 @@ class MenuController extends BaseController
     public function destroy($id)
     {
         return $this->transaction(function ($model) use ($id) {
-            //$this->model->findOrFail($id)->delete();
             $data = $this->model->deleteByID($id);
             $log['description'] = 'Menu "'.$data->name.'" was deleted';
             $insertLog = new LogActivity();

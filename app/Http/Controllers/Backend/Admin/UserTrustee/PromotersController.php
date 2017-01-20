@@ -66,13 +66,10 @@ class PromotersController extends BaseController
      */
     public function store(PromoterRequest $req)
     {
-        //
         $param = $req->all();
         
         try{
             $saveData = $this->model->insertNewPromoter($param);
-        // if(!empty($saveData))
-        // {
 
             $log['description'] = 'Promoter "'.$saveData->name.'" was created';
             $insertLog = new LogActivity();
@@ -85,7 +82,6 @@ class PromotersController extends BaseController
                 'message' => '<strong>'.$saveData->name.'</strong> '.trans('general.save_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
@@ -124,7 +120,6 @@ class PromotersController extends BaseController
                 'data' => $data
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
@@ -151,8 +146,6 @@ class PromotersController extends BaseController
         $param = $req->all();
         try{
             $updateData = $this->model->updatePromoter($param,$id);
-        // if(!empty($updateData)) 
-        // {
 
             $log['description'] = 'Promoter "'.$updateData->name.'" was updated';
             $insertLog = new LogActivity();
@@ -164,7 +157,6 @@ class PromotersController extends BaseController
                 'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
 
@@ -193,7 +185,6 @@ class PromotersController extends BaseController
             $data = $this->model->deleteByID($id);
             $modelUser = new User();
             $modelUser->updatePromoterRemove($id);
-        //if(!empty($data)) {
 
             flash()->success(trans('general.delete_success'));
 
@@ -204,7 +195,6 @@ class PromotersController extends BaseController
 
             return redirect()->route('admin-index-promoter');
 
-        //} else {
         } catch (\Exception $e) {
 
             flash()->error(trans('general.data_not_found'));
@@ -226,7 +216,6 @@ class PromotersController extends BaseController
         foreach ($results as $result) {
             $data[] = array('id'=>$result->id,'text'=>$result->name);
         }
-        
         
         $resData = array(
             "success" => true,

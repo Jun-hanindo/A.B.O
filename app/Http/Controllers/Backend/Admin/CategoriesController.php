@@ -34,7 +34,7 @@ class CategoriesController extends BaseController
             $insertTrail = new Trail();
             $insertTrail->insertNewTrail($trail);
         } catch (\Exception $e) {
-            //$log['user_id'] = $this->currentUser->id;
+
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -77,15 +77,10 @@ class CategoriesController extends BaseController
      */
     public function store(CategoryRequest $req)
     {
-        //
-        $param = $req->all();
-        
         try{
+            $param = $req->all();
             $saveData = $this->model->insertNewCategory($param);
-        // if(!empty($saveData))
-        // {
-
-            //$log['user_id'] = $this->currentUser->id;
+        
             $log['description'] = 'Category "'.$saveData->name.'" was created';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -97,10 +92,8 @@ class CategoriesController extends BaseController
                 'message' => '<strong>'.$saveData->name.'</strong> '.trans('general.save_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -139,10 +132,8 @@ class CategoriesController extends BaseController
                 'data' => $data
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -168,12 +159,8 @@ class CategoriesController extends BaseController
 
         try{
             $updateData = $this->model->updateCategory($param,$id);
-        // if(!empty($updateData)) 
-        // {
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Category "'.$updateData->name.'" was updated';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
 
@@ -183,10 +170,8 @@ class CategoriesController extends BaseController
                 'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -210,24 +195,19 @@ class CategoriesController extends BaseController
     {
         try{
             $data = $this->model->deleteByID($id);
-        //if(!empty($data)) {
 
             flash()->success(trans('general.delete_success'));
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Category "'.$data->name.'" was deleted';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-index-event-category');
 
-        //} else {
         } catch (\Exception $e) {
 
             flash()->error(trans('general.data_not_found'));
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -236,24 +216,6 @@ class CategoriesController extends BaseController
 
         }
     }
-
-    // public function comboCategory(Request $request){
-    //     $term = $request->q;
-        
-    //     $results = Category::where('name', 'ilike', '%'.$term.'%')->where('status', true)->get();
-
-    //     foreach ($results as $result) {
-    //         $data[] = array('id'=>$result->id,'text'=>$result->name);
-    //     }
-        
-        
-    //     $resData = array(
-    //         "success" => true,
-    //         "results" => $data);
-
-    //     return json_encode($resData);
-    //     exit;
-    // }
 
     public function avaibilityUpdate(Request $req, $id)
     {
@@ -266,9 +228,7 @@ class CategoriesController extends BaseController
                 $updateData = $this->model->changeAvaibility($param, $id);
                 if(!empty($updateData)) {
 
-                    //$log['user_id'] = $this->currentUser->id;
                     $log['description'] = 'Category "'.$updateData->name.'" avaibility was updated';
-                    //$log['ip_address'] = $req->ip();
                     $insertLog = new LogActivity();
                     $insertLog->insertNewLogActivity($log);
 
@@ -297,7 +257,6 @@ class CategoriesController extends BaseController
             
         } catch (\Exception $e) {
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -315,11 +274,8 @@ class CategoriesController extends BaseController
     {
         $param = $req->all();
         try{
-            //$count = count($this->model->getCategory());
             $updateData = $this->model->changeStatus($param, $id);
-        //if(!empty($updateData)) {
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Category "'.$updateData->name.'" status was updated';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -330,7 +286,6 @@ class CategoriesController extends BaseController
                 'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
             ],200);
 
-        //} else {
         } catch (\Exception $e) {
 
             //$log['user_id'] = $this->currentUser->id;

@@ -95,7 +95,6 @@ class ProfileController extends Controller
             if ($request->hasFile('avatar')) {
                 $avatar = $request->file('avatar');
                 $param = $request->all();
-                //$avatar = $data['avatar'];
 
                 if ($avatar->isValid()) {
                     if ($user->avatar){
@@ -105,20 +104,12 @@ class ProfileController extends Controller
                     $extension = $avatar->getClientOriginalExtension();
                     $fileName = date('Y_m_d_His').'.'.$extension;
                     $img = Image::make($avatar);
-                    //$img->resize(128, 128);
                     $img_tmp = $img->stream();
-                    //dd($avatar);
 
-                //
                     Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
                         'avatars/'.$fileName,
                         $img_tmp->__toString(), 'public'
                     );
-
-                    // $avatar->move(avatar_path(), $fileName);
-                    // if ($user->avatar && file_exists(avatar_path($user->avatar))) {
-                    //     unlink(avatar_path($user->avatar));
-                    //}
 
                     $data['avatar'] = $fileName;
                 }
@@ -128,15 +119,14 @@ class ProfileController extends Controller
 
             Sentinel::update($user, $data);
 
-            // $log['user_id'] = user_info()->id;
             $log['description'] = 'Profile was updated';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
+
         } catch (\Exception $e) {
 
             flash()->error(trans('general.update_error'));
 
-            // $log['user_id'] = \Sentinel::getUser()->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -171,9 +161,7 @@ class ProfileController extends Controller
 
             flash()->success(trans('general.save_success'));
 
-            // $log['user_id'] = user_info()->id;
             $log['description'] = 'Password was updated';
-            //$log['ip_address'] = $request->ip();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
             
@@ -181,7 +169,6 @@ class ProfileController extends Controller
 
             flash()->error(trans('general.update_error'));
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);

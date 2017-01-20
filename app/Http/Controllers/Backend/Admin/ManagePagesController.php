@@ -32,7 +32,6 @@ class ManagePagesController extends BaseController
 
         } catch (\Exception $e) {
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -81,18 +80,15 @@ class ManagePagesController extends BaseController
 
     public function storeUpdate(ManagePageRequest $req, $slug)
     {
-        $param = $req->all();
         
         try{
+            $param = $req->all();
             if($req->ajax() && $param['status'] == 'draft'){
 
-                //$user_id = $this->currentUser->id;
                 $user_id = ($this->currentUser->email != 'abo@hanindogroup.com') ? $this->currentUser->id : null;
                 $updateData = $this->model->updateManagePage($param, $slug, $user_id);
                 $this->model->updateStatusToDraft($param, $slug);
-            //if(!empty($updateData)) {
 
-                //$log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Page "'.$updateData->title.'" was updated';
                 $insertLog = new LogActivity();
                 $insertLog->insertNewLogActivity($log);
@@ -113,12 +109,9 @@ class ManagePagesController extends BaseController
                 ],200);
             }else{
 
-                //$user_id = $this->currentUser->id;
                 $user_id = ($this->currentUser->email != 'abo@hanindogroup.com') ? $this->currentUser->id : null;
                 $updateData = $this->model->updateManagePage($param, $slug, $user_id);
-            //if(!empty($updateData)) {
 
-                //$log['user_id'] = $this->currentUser->id;
                 $log['description'] = 'Page "'.$updateData->title.'" was updated';
                 $insertLog = new LogActivity();
                 $insertLog->insertNewLogActivity($log);
@@ -129,11 +122,9 @@ class ManagePagesController extends BaseController
 
             }
 
-        //} else {
         } catch (\Exception $e) {
             flash()->error(trans('general.update_error'));
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);

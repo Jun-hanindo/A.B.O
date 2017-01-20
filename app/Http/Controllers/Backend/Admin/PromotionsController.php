@@ -51,105 +51,102 @@ class PromotionsController extends BaseController
         }else{
             $datatables = $this->model->datatables();
         }
-         return datatables($datatables)
-                // ->editColumn('id', function ($promotion) {
-                //     return '<input type="checkbox" name="checkboxid['.$promotion->id.']" class="item-checkbox">';
-                // })
-                ->editColumn('title', function ($promotion) {
-                    if($promotion->event_avaibility == false){
-                        $title = '<span class="disabled">'.$promotion->title.'</span>';
-                    }else{
-                        $title = $promotion->title;
-                    }
-                    return $title;
-                })
-                ->editColumn('post_by', function ($promotion) {
-                    if($promotion->event_avaibility == false){
-                        $post_by = '<span class="disabled">'.$promotion->post_by.'</span>';
-                    }else{
-                        $post_by = $promotion->post_by;
-                    }
-                    return $post_by;
-                })
-                ->editColumn('avaibility', function ($promotion) {
-                    if($promotion->avaibility == TRUE){
-                        $checked = 'checked';
-                    }else{
-                        $checked = '';
-                    }
+        return datatables($datatables)
+            ->editColumn('title', function ($promotion) {
+                if($promotion->event_avaibility == false){
+                    $title = '<span class="disabled">'.$promotion->title.'</span>';
+                }else{
+                    $title = $promotion->title;
+                }
+                return $title;
+            })
+            ->editColumn('post_by', function ($promotion) {
+                if($promotion->event_avaibility == false){
+                    $post_by = '<span class="disabled">'.$promotion->post_by.'</span>';
+                }else{
+                    $post_by = $promotion->post_by;
+                }
+                return $post_by;
+            })
+            ->editColumn('avaibility', function ($promotion) {
+                if($promotion->avaibility == TRUE){
+                    $checked = 'checked';
+                }else{
+                    $checked = '';
+                }
 
-                    if($promotion->event_avaibility == false){
-                        $disabled = ' disabled';
-                    }else{
-                        $disabled = '';
-                    }
+                if($promotion->event_avaibility == false){
+                    $disabled = ' disabled';
+                }else{
+                    $disabled = '';
+                }
 
-                    return '<input type="checkbox" name="avaibility['.$promotion->id.']" class="avaibility-check" data-id="'.$promotion->id.'" '.$checked.$disabled.'>';
-                })
-                ->addColumn('action', function ($promotion) {
-                    if($promotion->event_avaibility == false){
-                        $disabled = ' disabled';
-                    }else{
-                        $disabled = '';
-                    }
-                    $url = route('admin-edit-promotion',$promotion->id);
-                    return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"'.$disabled.'><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
-                    <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$promotion->id.'" data-name="'.$promotion->title.'" data-button="delete"'.$disabled.'><i class="fa fa-trash-o fa-fw"></i></a>';
-                })
-                ->filterColumn('post_by', function($query, $keyword) {
-                    $query->whereRaw("LOWER(CAST(CONCAT(users.first_name, ' ', users.last_name) as TEXT)) ilike ?", ["%{$keyword}%"]);
-                })
-                ->filterColumn('title', function($query, $keyword) {
-                    $query->whereRaw("LOWER(CAST(promotions.title as TEXT)) ilike ?", ["%{$keyword}%"]);
-                })
-                ->make(true);
+                return '<input type="checkbox" name="avaibility['.$promotion->id.']" class="avaibility-check" data-id="'.$promotion->id.'" '.$checked.$disabled.'>';
+            })
+            ->addColumn('action', function ($promotion) {
+                if($promotion->event_avaibility == false){
+                    $disabled = ' disabled';
+                }else{
+                    $disabled = '';
+                }
+                $url = route('admin-edit-promotion',$promotion->id);
+                return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"'.$disabled.'><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
+                <a href="#" class="btn btn-danger btn-xs actDelete" title="Delete" data-id="'.$promotion->id.'" data-name="'.$promotion->title.'" data-button="delete"'.$disabled.'><i class="fa fa-trash-o fa-fw"></i></a>';
+            })
+            ->filterColumn('post_by', function($query, $keyword) {
+                $query->whereRaw("LOWER(CAST(CONCAT(users.first_name, ' ', users.last_name) as TEXT)) ilike ?", ["%{$keyword}%"]);
+            })
+            ->filterColumn('title', function($query, $keyword) {
+                $query->whereRaw("LOWER(CAST(promotions.title as TEXT)) ilike ?", ["%{$keyword}%"]);
+            })
+            ->make(true);
     }
 
     public function datatablesByEvent(Request $req)
     {
         $param = $req->all();
         $event_id = $param['event_id'];
-         return datatables($this->model->datatablesByEvent($event_id))
-                ->addColumn('sort_order', function ($promotion) {
-                    $modelEventPromotion = new EventPromotion;
-                    $first = $modelEventPromotion->getFirstSort($promotion->event_id)->sort_order;
-                    $last = $modelEventPromotion->getLastSort($promotion->event_id)->sort_order;
-                    $style = 'style="display:inline-block"';
-                    $style2 = 'style="display:none"';
-                    if($promotion->sort_order == 0){
-                        $sort = '<a href="javascript:void(0)" class="sort_asc_promo btn btn-xs btn-default" '.$style2.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
-                                <a href="javascript:void(0)" class="sort_desc_promo btn btn-xs btn-default" '.$style.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+        return datatables($this->model->datatablesByEvent($event_id))
+            ->addColumn('sort_order', function ($promotion) {
+                $modelEventPromotion = new EventPromotion;
+                $first = $modelEventPromotion->getFirstSort($promotion->event_id)->sort_order;
+                $last = $modelEventPromotion->getLastSort($promotion->event_id)->sort_order;
+                $style = 'style="display:inline-block"';
+                $style2 = 'style="display:none"';
+                if($promotion->sort_order == 0){
+                    $sort = '<a href="javascript:void(0)" class="sort_asc_promo btn btn-xs btn-default" '.$style2.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                            <a href="javascript:void(0)" class="sort_desc_promo btn btn-xs btn-default" '.$style.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
 
-                    }elseif($promotion->sort_order == $first){
-                        $sort = '<a href="javascript:void(0)" class="sort_asc_promo btn btn-xs btn-default" '.$style2.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
-                                <a href="javascript:void(0)" class="sort_desc_promo btn btn-xs btn-default" '.$style.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
-                    }elseif($promotion->sort_order == $last){
-                        $sort = '<a href="javascript:void(0)" class="sort_asc_promo btn btn-xs btn-default" '.$style.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
-                                <a href="javascript:void(0)" class="sort_desc_promo btn btn-xs btn-default" '.$style2.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
-                    }else{
-                        $sort = '<a href="javascript:void(0)" class="sort_asc_promo btn btn-xs btn-default" '.$style.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
-                                <a href="javascript:void(0)" class="sort_desc_promo btn btn-xs btn-default" '.$style.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
-                    }
+                }elseif($promotion->sort_order == $first){
+                    $sort = '<a href="javascript:void(0)" class="sort_asc_promo btn btn-xs btn-default" '.$style2.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                            <a href="javascript:void(0)" class="sort_desc_promo btn btn-xs btn-default" '.$style.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                }elseif($promotion->sort_order == $last){
+                    $sort = '<a href="javascript:void(0)" class="sort_asc_promo btn btn-xs btn-default" '.$style.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                            <a href="javascript:void(0)" class="sort_desc_promo btn btn-xs btn-default" '.$style2.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                }else{
+                    $sort = '<a href="javascript:void(0)" class="sort_asc_promo btn btn-xs btn-default" '.$style.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                            <a href="javascript:void(0)" class="sort_desc_promo btn btn-xs btn-default" '.$style.' data-event="'.$promotion->event_id.'"  data-id="'.$promotion->event_promotion_id.'" data-sort="'.$promotion->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                }
 
-                    return $sort;
-                })
-                ->addColumn('action', function ($promotion) {
-                    return '<a href="javascript:void(0)" data-id="'.$promotion->id.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw">
-                    </i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDeletePromotion" title="Delete" data-id="'.$promotion->id.'" data-name="'.$promotion->title.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
-                })
-                ->editColumn('date', function ($promotion){
-                    if(!empty($promotion->start_date) && !empty($promotion->end_date)){
-                        $time_period = date('j F Y', strtotime($promotion->start_date)).' - '.date('j F Y', strtotime($promotion->end_date));
-                    }elseif(empty($promotion->start_date) && !empty($promotion->end_date)){
-                        $time_period = 'until '.date('j F Y', strtotime($promotion->end_date));
-                    }elseif(!empty($promotion->start_date) && empty($promotion->end_date)){
-                        $time_period = 'from '.date('j F Y', strtotime($promotion->start_date));
-                    }else{
-                        $time_period = '';
-                    }
-                    return $time_period;
-                })
-                ->make(true);
+                return $sort;
+            })
+            ->addColumn('action', function ($promotion) {
+                return '<a href="javascript:void(0)" data-id="'.$promotion->id.'" class="btn btn-warning btn-xs actEdit" title="Edit"><i class="fa fa-pencil-square-o fa-fw">
+                </i></a>&nbsp;<a href="#" class="btn btn-danger btn-xs actDeletePromotion" title="Delete" data-id="'.$promotion->id.'" data-name="'.$promotion->title.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+            })
+            ->editColumn('date', function ($promotion){
+                if(!empty($promotion->start_date) && !empty($promotion->end_date)){
+                    $time_period = date('j F Y', strtotime($promotion->start_date)).' - '.date('j F Y', strtotime($promotion->end_date));
+                }elseif(empty($promotion->start_date) && !empty($promotion->end_date)){
+                    $time_period = 'until '.date('j F Y', strtotime($promotion->end_date));
+                }elseif(!empty($promotion->start_date) && empty($promotion->end_date)){
+                    $time_period = 'from '.date('j F Y', strtotime($promotion->start_date));
+                }else{
+                    $time_period = '';
+                }
+                return $time_period;
+            })
+            ->make(true);
     }
 
     /**
@@ -170,7 +167,6 @@ class PromotionsController extends BaseController
         
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -196,14 +192,13 @@ class PromotionsController extends BaseController
      */
     public function store(PromotionRequest $req)
     {
-        //
-        $param = $req->all();
+        
         try{
-            //$user_id = $this->currentUser->id;
+            $param = $req->all();
+
             $user_id = ($this->currentUser->email != 'abo@hanindogroup.com') ? $this->currentUser->id : null;
             $saveData = $this->model->insertNewPromotion($param, $user_id);
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Promotion "'.$saveData->title.'" was created';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -221,7 +216,6 @@ class PromotionsController extends BaseController
             }
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -274,7 +268,6 @@ class PromotionsController extends BaseController
             }
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -309,12 +302,10 @@ class PromotionsController extends BaseController
      */
     public function update(PromotionRequest $req, $id)
     {
-        //
-        $param = $req->all();
         try{
+            $param = $req->all();
             $updateData = $this->model->updatePromotion($param,$id);
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Promotion "'.$updateData->title.'" was updated';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -331,7 +322,6 @@ class PromotionsController extends BaseController
             }
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -367,7 +357,6 @@ class PromotionsController extends BaseController
         try{
             $data = $this->model->deleteByID($id);
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Promotion "'.$data->title.'" was deleted';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -389,7 +378,6 @@ class PromotionsController extends BaseController
 
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -414,13 +402,11 @@ class PromotionsController extends BaseController
 
     public function avaibilityUpdate(Request $req, $id)
     {
-        $param = $req->all();
 
         try{
+            $param = $req->all();
             $updateData = $this->model->changeAvaibility($param, $id);
-            //if(!empty($updateData)) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Promotion "'.$data->title.'" avaibility was updated';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -431,10 +417,8 @@ class PromotionsController extends BaseController
                 'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
             ],200);
 
-        //} else {
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -448,7 +432,8 @@ class PromotionsController extends BaseController
         }
     }
 
-    public function deletePromotionImage($id, Request $req){
+    public function deletePromotionImage($id, Request $req)
+    {
 
         try{
             $param = $req->all();
@@ -461,7 +446,6 @@ class PromotionsController extends BaseController
 
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);

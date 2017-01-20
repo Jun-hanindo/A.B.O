@@ -16,7 +16,12 @@ class ActivityLogController extends BaseController
         parent::__construct($model);
     }
 
-    public function index(){
+    /**
+     * Show system log page
+     * @return Response
+     */
+    public function index()
+    {
         $userModel = new User();
         $dropdown = $userModel->dropdown();
         $drop = [];
@@ -30,11 +35,15 @@ class ActivityLogController extends BaseController
         $trail['desc'] = 'System Log';
         $insertTrail = new Trail();
         $insertTrail->insertNewTrail($trail);
-        
 
         return view('backend.admin.activity_log.index', $data);
     }
 
+    /**
+     * Show list for system log
+     * @param  Request $req user_id for for id user, start_date for Start date to delete, end_date for Until date to delete 
+     * @return Response
+     */
     public function datatables(Request $req)
     {
         $param = $req->all();
@@ -48,31 +57,32 @@ class ActivityLogController extends BaseController
             $limit = 0;
         }
 
-
         if($user == 0){
             $model = $this->model->datatables($start, $end, $limit);
         }else{
             $model = $this->model->getDataByUser($user, $start, $end, $limit);
         }
         return datatables($model)
-                ->editColumn('created_at', function($data){
-                    $date = short_text_date_time($data->created_at);
-                    return $date;
-                })
-                ->filterColumn('user', function($query, $keyword) {
-                    $query->whereRaw("LOWER(CAST(CONCAT(users.first_name, ' ', users.last_name) as TEXT)) ilike ?", ["%{$keyword}%"]);
-                })
-                // ->filterColumn('created_at', function($query, $keyword) {
-                //     $query->whereRaw("LOWER(CAST(log_activities.created_at as TEXT)) ilike ?", ["%{$keyword}%"]);
-                // })
-                ->make(true);
+            ->editColumn('created_at', function($data){
+                $date = short_text_date_time($data->created_at);
+                return $date;
+            })
+            ->filterColumn('user', function($query, $keyword) {
+                $query->whereRaw("LOWER(CAST(CONCAT(users.first_name, ' ', users.last_name) as TEXT)) ilike ?", ["%{$keyword}%"]);
+            })
+            ->make(true);
     }
 
-    public function postAjaxLog(Request $req){
-        $param = $req->all();
+    /**
+     * Save sata system log from ajax
+     * @param  Request $req message for message content
+     * @return Response
+     */
+    public function postAjaxLog(Request $req)
+    {
         
         try{
-            //$log['user_id'] = $this->currentUser->id;
+            $param = $req->all();
             $log['description'] = $param['message'];
             $saveData = $this->model->insertNewLogActivity($log);
 
@@ -82,10 +92,8 @@ class ActivityLogController extends BaseController
                 'message' => trans('general.save_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $saveData = $this->model->insertNewLogActivity($log);
 
@@ -98,24 +106,27 @@ class ActivityLogController extends BaseController
         }
     }
 
-    public function deleteByDate(Request $req){
+    /**
+     * Delete data by start date until end date
+     * @param  Request $req start_delete, end_delete
+     * @return Response
+     */
+    public function deleteByDate(Request $req)
+    {
         try{
             $param = $req->all();
             $data = $this->model->deleteByDate($param);
             flash()->success(trans('general.delete_success'));
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'System log "'.$param['start_delete'].' until '.$param['end_delete'].'" was deleted';
             $this->model->insertNewLogActivity($log);
 
             return redirect()->route('admin-activity-log-index');
 
-        //} else {
         } catch (\Exception $e) {
 
             flash()->error(trans('general.data_not_found'));
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $this->model->insertNewLogActivity($log);
 

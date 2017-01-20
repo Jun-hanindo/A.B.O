@@ -64,7 +64,6 @@ class MessageRepliesController extends BaseController
             $saveData->reply_by_label = trans('general.reply_by');
             $saveData->message_label = trans('general.message');
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Reply message was sent';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -76,10 +75,8 @@ class MessageRepliesController extends BaseController
                 'data' => $saveData,
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);

@@ -719,16 +719,4 @@ class ReportsController extends BaseController
         
         }
     }
-
-    public function truncateMember(){
-        $model = new TixtrackCustomer();
-        $model->truncate();
-        return redirect()->route('admin-index-tixtrack');
-    }
-
-    public function truncateTransaction(){
-        $model = new TixtrackOrder();
-        $model->truncate();
-        return redirect()->route('admin-index-tixtrack');
-    }
 }

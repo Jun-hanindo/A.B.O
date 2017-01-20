@@ -31,7 +31,7 @@ class CurrenciesController extends BaseController
             $insertTrail = new Trail();
             $insertTrail->insertNewTrail($trail);
         } catch (\Exception $e) {
-            //$log['user_id'] = $this->currentUser->id;
+
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -64,7 +64,7 @@ class CurrenciesController extends BaseController
         try{
             $saveData = $this->model->insertNewCurrency($param);
 
-            //$log['user_id'] = $this->currentUser->id;
+
             $log['description'] = 'Currency "'.$saveData->title.'" was created';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -76,10 +76,10 @@ class CurrenciesController extends BaseController
                 'message' => '<strong>'.$saveData->title.'</strong> '.trans('general.save_success')
             ],200);
         
-        //} else {
+
         } catch (\Exception $e) {
 
-            //$log['user_id'] = $this->currentUser->id;
+
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -111,10 +111,10 @@ class CurrenciesController extends BaseController
                 'data' => $data
             ],200);
         
-        //} else {
+
         } catch (\Exception $e) {
 
-            //$log['user_id'] = $this->currentUser->id;
+
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -136,13 +136,10 @@ class CurrenciesController extends BaseController
      */
     public function update(CurrencyRequest $req, $id)
     {
-        $param = $req->all();
         try{
+            $param = $req->all();
             $updateData = $this->model->updateCurrency($param,$id);
-        // if(!empty($updateData)) 
-        // {
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Currency "'.$updateData->title.'" was updated';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -153,10 +150,8 @@ class CurrenciesController extends BaseController
                 'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -180,23 +175,19 @@ class CurrenciesController extends BaseController
     {
         try{
             $data = $this->model->deleteByID($id);
-        //if(!empty($data)) {
 
             flash()->success(trans('general.delete_success'));
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Department "'.$data->name.'" was deleted';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-index-currency');
 
-        //} else {
         } catch (\Exception $e) {
 
             flash()->error(trans('general.data_not_found'));
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -208,12 +199,11 @@ class CurrenciesController extends BaseController
 
     public function avaibilityUpdate(Request $req, $id)
     {
-        $param = $req->all();
 
         try{
+            $param = $req->all();
             $updateData = $this->model->changeAvaibility($param, $id);
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Department "'.$updateData->name.'" avaibility was updated';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -226,7 +216,6 @@ class CurrenciesController extends BaseController
 
         } catch (\Exception $e) {
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);

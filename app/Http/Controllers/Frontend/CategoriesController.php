@@ -26,7 +26,6 @@ class CategoriesController extends Controller
 
         try{
             $modelHomepage = new Homepage();
-            //$result['sliders'] = $modelHomepage->getHomepage('slider');
             $result['category'] = $this->model->findCategoryBySlug($slug);
 
             if(!empty($result['category']) && $result['category']->status){
@@ -75,7 +74,6 @@ class CategoriesController extends Controller
         
         } catch (\Exception $e) {
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);

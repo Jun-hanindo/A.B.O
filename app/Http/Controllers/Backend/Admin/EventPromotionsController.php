@@ -19,10 +19,11 @@ class EventPromotionsController extends BaseController
 
     }
 
-    public function updateSortOrder(Request $req){
-        $param = $req->all();
+    public function updateSortOrder(Request $req)
+    {
 
         try{
+            $param = $req->all();
             $updateData = $this->model->updateCurrentSortOrder($param);
 
             return response()->json([
@@ -30,11 +31,8 @@ class EventPromotionsController extends BaseController
                 'status' => 'success',
                 'message' => 'Sort Order '.trans('general.update_success')
             ],200);
-        
-        //} else {
         } catch (\Exception $e) {
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);

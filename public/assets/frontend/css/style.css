@@ -3476,7 +3476,9 @@ ul#getvenue li:before {
   height: 100%;
   text-transform: capitalize;
 }
-
+.form-subscribe input#email {
+    text-transform: none;
+}
 .content p{
   font-size: 12px;
   padding-top: 20px;

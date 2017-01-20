@@ -48,7 +48,6 @@ abstract class BaseController extends Controller
         }
         $this->setting = $setting;
 
-        //$lang = env('APP_LANG');
         
         if(!\Session::has('locale'))
         {

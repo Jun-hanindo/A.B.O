@@ -125,7 +125,6 @@ class UserController extends BaseController
     {
         return datatables(User::datatables(true))
             ->addColumn('action', function ($user) {
-                /*$url = route('admin-edit-users', $user->id);*/
                 $url = action('Backend\Admin\UserTrustee\UserController@edit', $user->id);
                 $showUrl = route('admin-show-users', $user->id);
 
@@ -199,10 +198,8 @@ class UserController extends BaseController
                 'branch' => null,
                 'promoter_id' => 0,
                 'promotor_name' => null,
-                //'username' =>null
             ],
             'dropdown' => Role::dropdown(),
-            //'dropdown_branch' => $this->branchLocation->dropdown(),
         ];
 
         if ($id > 0) {
@@ -210,7 +207,7 @@ class UserController extends BaseController
             $data['form']['method'] = 'PUT';
             $data['user'] = User::findOrFail($id);
             $data['user']['role'] = (!$data['user']->roles->isEmpty()) ? $data['user']->roles[0]->id : '';
-            //if(!empty($data['user']->promoter_id)){
+
                 if(!empty(User::find($id)->promoter)){
                     $promoter_id = $data['user']->promoter_id;
                     $promoter_name = User::find($id)->promoter->name;
@@ -218,12 +215,10 @@ class UserController extends BaseController
                     $promoter_id = '';
                     $promoter_name = '';
                 }
-            //}else{
-                //$promoter_name = '';
-            //}
+
             $data['user']['promoter_id'] = $promoter_id;
             $data['user']['promoter_name'] = $promoter_name;
-            //$data['user']['branch'] = $data['user']->branch_id;
+
         }
 
         $trail['desc'] = 'Form User';
@@ -252,7 +247,7 @@ class UserController extends BaseController
         }
 
 
-        //$data['branch_id'] = 1;
+
         if (! $id) {
             $data['password'] = str_random(8);
             $data['is_admin'] = true;
@@ -272,35 +267,34 @@ class UserController extends BaseController
                 if(!$user->roles->isEmpty()){
                     $role = Sentinel::findRoleById($user->roles[0]->id);
                     $role->users()->detach($user);
-                }/*else{
-                    $user->roles()->attach($request->input('role'));
-                }*/
+                }
+
 
                 $user = Sentinel::update($user, $data);
-                //dd($data);
+
 
 
                 if($data['email'] != 'abo@hanindogroup.com'){
                     $log['description'] = 'User "'.$data['email'].'" was updated';
-                    //$log['ip_address'] = $request->ip();
+
                     $insertLog = new LogActivity();
                     $insertLog->insertNewLogActivity($log);
                 }
             } else {
 
-                //dd($data);
+
                 $user = Sentinel::registerAndActivate($data);
                 $roleSlug = strtolower(Role::find($request->input('role'))->slug);
                 $data['full_name'] = $data['first_name'].' '.$data['last_name'];
                 $data['role_slug'] = $roleSlug;
 
                 Mail::send('backend.emails.registration', $data, function ($message) use ($data, $request) {
-                    //$message->from('no-reply@asiaboxoffice.com', 'No Reply Asia Box Office');
+
                     $message->to($data['email'], $data['full_name'])->subject('Your account has registered.');
 
                     if($data['email'] != 'abo@hanindogroup.com'){
                         $log['description'] = 'User "'.$data['email'].'" was created';
-                        //$log['ip_address'] = $request->ip();
+
                         $insertLog = new LogActivity();
                         $insertLog->insertNewLogActivity($log);
                     }
@@ -329,10 +323,7 @@ class UserController extends BaseController
         $fileName = date('Y_m_d_His').'_'.$file->getClientOriginalName();
         $img = Image::make($file);
         $img_tmp = $img->stream();
-        //dd($img_tmp->__toString());
 
-        // Move, move, move!!
-        //$file->move(avatar_path(), $fileName);
         Storage::disk(env('FILESYSTEM_DEFAULT'))->put(
             'avatars/'.$fileName,
             $img_tmp->__toString(), 'public'
@@ -354,16 +345,6 @@ class UserController extends BaseController
             return true;
         }
 
-        //dd($path);
-
-        // $path = avatar_path($path);
-        // if (! file_exists($path)) {
-        //     return true;
-        // }
-
-        // if (! unlink($path)) {
-        //     return false;
-        // }
         file_delete('avatars/'.$path, env('FILESYSTEM_DEFAULT'));
 
         return true;
@@ -385,7 +366,6 @@ class UserController extends BaseController
                 'data' => $data
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
 
@@ -401,8 +381,8 @@ class UserController extends BaseController
         }
     }
 
-    public function reactivate(RequestReactivate $request){
-        //try{
+    public function reactivate(RequestReactivate $request)
+    {
             $data = $request->except('_token', 'avatar', 'role');
             if ($request->hasFile('avatar')) {
                 $file = $request->file('avatar');
@@ -444,65 +424,5 @@ class UserController extends BaseController
 
             
             flash()->success($saveData->name.' '.trans('general.save_success'));
-        
-        //} else {
-        // } catch (\Exception $e) {
-
-        //     $log['user_id'] = $this->currentUser->id;
-        //     $log['description'] = $e->getMessage();
-        //     $insertLog = new LogActivity();
-        //     $insertLog->insertNewLogActivity($log);
-
-            
-        //     flash()->error(trans('general.save_error'));
-        // }
-            
-        //return redirect()->route('admin.user-trustees.users.index');
     }
-
-    // function getPromotorID(Req $req){
-
-    //     $param = $req->all();
-    //     $id = $param['id'];
-    //     try
-    //     {
-    //         $data = $this->model->getPromotorLastID();
-    //         if(empty($data)){
-    //             $pm = 1;
-    //         }else{
-    //             $pm = $data->promotor_number + 1;
-    //         }
-            
-    //         if($id > 0){
-    //             $user = $this->model->find($id);
-    //             if($user->promotor_number > 0){
-    //                 $promotor_number = $user->promotor_number;
-    //             }else{
-    //                 $promotor_number = $pm;
-    //             }
-    //         }else{
-    //             $promotor_number = $pm;
-    //         }
-
-    //         return response()->json([
-    //             'code' => 200,
-    //             'status' => 'success',
-    //             'message' => 'Success',
-    //             'data' => $promotor_number,
-    //         ],200);
-    //     } catch (\Exception $e) {
-
-    //         $log['user_id'] = $this->currentUser->id;
-    //         $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-    //         $insertLog = new LogActivity();
-    //         $insertLog->insertNewLogActivity($log);
-
-    //         return response()->json([
-    //             'code' => 400,
-    //             'status' => 'error',
-    //             'message' => trans('general.data_not_found'),
-    //         ],400);
-        
-    //     }
-    // }
 }

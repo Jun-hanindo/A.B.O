@@ -22,6 +22,7 @@ class VenuesController extends BaseController
     }
     
     /**
+     * Show venue page
      * @return Response
      */
     public function index()
@@ -185,7 +186,6 @@ class VenuesController extends BaseController
      */
     public function update(VenueRequest $req, $id)
     {
-        //
         $param = $req->all();
 
         try{
@@ -202,7 +202,6 @@ class VenuesController extends BaseController
         } catch (\Exception $e) {
             flash()->error(trans('general.update_error'));
 
-            //$log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);

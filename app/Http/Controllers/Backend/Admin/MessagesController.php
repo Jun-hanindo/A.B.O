@@ -89,12 +89,10 @@ class MessagesController extends BaseController
 
             return view('backend.admin.message.view', $result);
 
-        //} else {
         } catch (\Exception $e) {
 
             flash()->error(trans('general.data_not_found'));
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -104,7 +102,8 @@ class MessagesController extends BaseController
         }
     }
 
-    public function countUnread(){
+    public function countUnread()
+    {
         try{
             $data = $this->model->getCountUnread();
 
@@ -117,7 +116,6 @@ class MessagesController extends BaseController
         
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);

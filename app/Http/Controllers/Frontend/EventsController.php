@@ -37,24 +37,18 @@ class EventsController extends Controller
                 $result['src2'] = url('uploads/promotions').'/';
                 $result['currency_default'] = $this->setting['currency'];
                 $limit = 5;
-                //$result['category_events'] = $this->model->getFeaturedEventByCategory($result['event']->id, $result['event']->category->id, $limit);
-
+                
                 $trail['desc'] = $result['event']->title. ' front end';
                 $insertTrail = new Trail();
                 $insertTrail->insertNewTrail($trail);
 
-                //if($result['event']->event_type == 'true'){
                     return view('frontend.partials.event', $result); 
-                //}else{
-                    //return view('frontend.partials.event_seated', $result); 
-                //}
             }else{
                 return view('errors.404');
             }
         
         } catch (\Exception $e) {
 
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -95,8 +89,7 @@ class EventsController extends Controller
                 $extension1 = $featured_image1->getClientOriginalExtension();
                 $filename1 = "image1".time().'.'.$extension1;
                 $img1 = \Image::make($featured_image1);
-                //$img1->resize(1440, 444);
-                // $img1_tmp = (string) $img1->encode('data-url');
+
                 $img1->save($pathDest.'/'.$filename1);
                 $param['featured_image1'] = $filename1;
             }
@@ -105,8 +98,7 @@ class EventsController extends Controller
                 $extension2 = $featured_image2->getClientOriginalExtension();
                 $filename2 = "image2".time().'.'.$extension2;
                 $img2 = \Image::make($featured_image2);
-                //$img2->resize(370, 250);
-                // $img2_tmp =  (string) $img2->encode('data-url');
+
                 $img2->save($pathDest.'/'.$filename2);
                 $param['featured_image2'] =  $filename2;
             }
@@ -115,7 +107,7 @@ class EventsController extends Controller
                 $extensionseat = $seat_image->getClientOriginalExtension();
                 $filenameseat = "imageseat".time().'.'.$extensionseat;
                 $simg = \Image::make($seat_image);
-                // $simg_tmp =  (string) $simg->encode('data-url');
+
                 $simg->save($pathDest.'/'.$filenameseat);
                 $param['seat_image'] = $filenameseat;
             }
@@ -124,7 +116,7 @@ class EventsController extends Controller
                 $extensionseat2 = $seat_image2->getClientOriginalExtension();
                 $filenameseat2 = "imageseat2".time().'.'.$extensionseat2;
                 $simg2 = \Image::make($seat_image2);
-                // $simg_tmp =  (string) $simg->encode('data-url');
+
                 $simg2->save($pathDest.'/'.$filenameseat2);
                 $param['seat_image2'] = $filenameseat2;
             }
@@ -133,14 +125,14 @@ class EventsController extends Controller
                 $extensionseat3 = $seat_image3->getClientOriginalExtension();
                 $filenameseat3 = "imageseat3".time().'.'.$extensionseat3;
                 $simg3 = \Image::make($seat_image3);
-                // $simg_tmp =  (string) $simg->encode('data-url');
+
                 $simg3->save($pathDest.'/'.$filenameseat3);
                 $param['seat_image3'] = $filenameseat3;
             }
 
             \Session::put('preview_event', $param);
             \Session::save();
-            // $this->preview();
+
             return response()->json([
                 'code' => 200,
                 'status' => 'success',
@@ -149,7 +141,7 @@ class EventsController extends Controller
         
         } catch (\Exception $e) {
 
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -183,7 +175,7 @@ class EventsController extends Controller
                             }elseif ($i == $count) {
                                 $event->end_range = $value->date_at;
                             }
-                            //$event->schedule_range = date_from_to($event->start_range, $event->end_range);
+
                         }
                         $i++;
                     }
@@ -219,7 +211,7 @@ class EventsController extends Controller
                                 $event->symbol_left = $val->symbol_left;
                                 $event->symbol_right = $val->symbol_right;
                                 $event->code = $val->code;
-                                //$event->price_range = $val->symbol_left.$event->max_range.'-'.$event->min_range.$val->symbol_right;
+                                
                             }
                             $i++;
                         }
@@ -237,7 +229,7 @@ class EventsController extends Controller
                 $event->promotions = $ev->promotions()->where('avaibility', true)
                 ->orderBy('sort_order', 'asc')
                 ->orderBy('event_promotions.created_at', 'asc')->get();
-                //dd($event['promotions']);
+
             }
 
             if(!empty($event->venue_id)){
@@ -298,7 +290,6 @@ class EventsController extends Controller
         
         } catch (\Exception $e) {
 
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -330,7 +321,6 @@ class EventsController extends Controller
         
         } catch (\Exception $e) {
 
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -356,12 +346,10 @@ class EventsController extends Controller
             $limit = 0;
             $results['events'] = $this->model->search($param, $limit);
             $modelCategory = new Category();
-            // $results['categories'] = $modelCategory->getCategoryAvaibility();
             $results['categories'] = $modelCategory->getCategoryEventExistByStatus();
             $modelVenue = new Venue();
             $results['venues'] = $modelVenue->getVenue();
             $results['q'] = $param['q'];
-            //$results['sort'] = $param['sort'];
 
             
             if(isset($param['venue'])){
@@ -401,7 +389,6 @@ class EventsController extends Controller
         
         } catch (\Exception $e) {
 
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);

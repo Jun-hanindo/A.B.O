@@ -11,15 +11,6 @@ use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        // $this->middleware('sentinel_access:dashboard');
-    }
 
     /**
      * Display a listing of the resource.
@@ -42,8 +33,6 @@ class DashboardController extends Controller
         $data['promotions'] = $promotionModel->countPromotions();
         $subscriptionModel = new Subscription();
         $data['subscribers'] = $subscriptionModel->countSubscribersLastWeek();
-
-        //dd($data['events']);
 
         return view('backend.admin.dashboard.dashboard', $data);
     }

@@ -17,7 +17,6 @@ class Kernel extends ConsoleKernel
 
         // Commands\SendBroadcastDirectory::class,
         \App\Console\Commands\UpdateTixtrack::class,
-        //\App\Console\Commands\LogCommand::class,
     ];
 
     /**
@@ -30,23 +29,7 @@ class Kernel extends ConsoleKernel
     {
 
         $schedule->command('tixtracks:update')
-            //->everyFiveMinutes();
-            //->everyFiveMinutes()->withoutOverlapping();
             ->cron('*/15 * * * * *')->withoutOverlapping();
-
-        // $schedule->command('command:log')
-        //     ->everyFiveMinutes();
-
-        // $schedule->call(function () {
-        //     \Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
-        //        \Log::info([
-        //         'sql' => $query->sql,
-        //         'bindings' => $query->bindings,
-        //         'time' => $query->time]);
-        //     });
-
-        //     \Log::info(\Request::all());
-        // })->everyFiveMinutes();
 
     }
 }

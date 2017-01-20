@@ -68,10 +68,7 @@ class EventScheduleCategoriesController extends BaseController
         $param = $req->all();
         try{
             $saveData = $this->model->insertNewEventScheduleCategory($param);
-        // if(!empty($saveData))
-        // {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule Category "'.$saveData->additional_info.'" was created';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -82,10 +79,8 @@ class EventScheduleCategoriesController extends BaseController
                 'message' => '<strong>'.trans('general.price_info').'</strong> '.trans('general.save_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -103,7 +98,6 @@ class EventScheduleCategoriesController extends BaseController
     {
         try{
             $data = $this->model->findEventScheduleCategoryByID($id);
-        //if(!empty($data)) {
 
             return response()->json([
                 'code' => 200,
@@ -112,10 +106,8 @@ class EventScheduleCategoriesController extends BaseController
                 'data' => $data
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -139,9 +131,7 @@ class EventScheduleCategoriesController extends BaseController
         $param = $req->all();
         try{
             $updateData = $this->model->updateEventScheduleCategory($param, $id);
-            //if(!empty($updateData)) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule Category "'.$updateData->additional_info.'" was updated';
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -152,10 +142,8 @@ class EventScheduleCategoriesController extends BaseController
                 'message' => '<strong>'.trans('general.price_info').'</strong> '.trans('general.update_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -180,11 +168,8 @@ class EventScheduleCategoriesController extends BaseController
     
         try{
             $data = $this->model->deleteByID($id);
-            //if(!empty($data)) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = 'Schedule Category "'.$data->additional_info.'" was deleted';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
 
@@ -194,10 +179,8 @@ class EventScheduleCategoriesController extends BaseController
                 'message' => '<strong>'.trans('general.price_info').'</strong> '.trans('general.delete_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -258,13 +241,7 @@ class EventScheduleCategoriesController extends BaseController
         $param = $req->all();
 
         try{
-            // $updateData = $this->model->updateSortEmpty($param['category']);
             $updateData = $this->model->updateCurrentSortOrder($param);
-
-            //$log['user_id'] = $this->currentUser->id;
-            // $log['description'] = 'Homepage Sort Order was updated';
-            // $insertLog = new LogActivity();
-            // $insertLog->insertNewLogActivity($log);
 
             return response()->json([
                 'code' => 200,
@@ -272,10 +249,8 @@ class EventScheduleCategoriesController extends BaseController
                 'message' => 'Sort Order '.trans('general.update_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
-            // $log['user_id'] = $this->currentUser->id;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);

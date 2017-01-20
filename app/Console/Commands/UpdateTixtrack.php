@@ -62,14 +62,11 @@ class UpdateTixtrack extends Command
             foreach ($loginAccounts as $k => $val) {
                 $username = $val->email;
                 $password = $val->password;
-                // $username = "asiaboxoffice@hanindogroup.com";
-                // $password = "AsiaBoxOffice#55";
                 $remember = "false";
 
                 $client = new Client();
                 $response = $client->post('https://nliven.co/admin/Account/Login', [
                     'allow_redirects' => false,
-                    //'headers'  => ['content-type' => 'application/x-www-form-urlencoded', 'Accept' => '*/*',],
                     'form_params' => [
                         'UserName' => $username,
                         'Password' => $password,
@@ -83,7 +80,6 @@ class UpdateTixtrack extends Command
                     $this->info('Login Tixtrack success!');
 
                     $ASPXAUTH = $response->getHeader('set-cookie')[1];
-                    //$accounts = $modelAccount->getTixtrack();
                     $accounts = $modelAccount->getTixtrackByLogin($val->id);
                     if(!empty($accounts)){
                         foreach ($accounts as $key => $value){
@@ -102,7 +98,7 @@ class UpdateTixtrack extends Command
                                 if(!File::exists($pathDest)) {
                                     File::makeDirectory($pathDest, $mode=0777,true,true);
                                 }
-                                //chmod(__DIR__."/".$pathDest, 0777);
+                                
                                 $account = $modelAccount->findIdByAccountID($accountID);
                                 if(!empty($account)){
                                     $account_id = $account->id;

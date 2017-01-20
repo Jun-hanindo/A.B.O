@@ -181,7 +181,6 @@ class HomeController extends Controller
             
         } catch (\Exception $e) {
 
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -202,19 +201,14 @@ class HomeController extends Controller
             $insertTrail = new Trail();
             $insertTrail->insertNewTrail($trail);
 
-            // echo ini_get('post_max_size');
-            // echo ini_get('upload_max_filesize');
 
             return view('frontend.partials.homepage', $result); 
         
         } catch (\Exception $e) {
 
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
-
-            //return view('errors.404');
         
         }
     }
@@ -223,8 +217,6 @@ class HomeController extends Controller
     {
 
         try{
-            //$result['sliders'] = $this->model->getHomepage('slider');
-            //$result['src'] = url('uploads/events').'/';
             $modelCategory = new Category();
             $result['categories'] = $modelCategory->getCategoryEventExist();
             $limit = 8;
@@ -264,7 +256,6 @@ class HomeController extends Controller
             }
         } catch (\Exception $e) {
 
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -278,7 +269,6 @@ class HomeController extends Controller
     public function promotion(Request $req)
     {
 
-        //try{
             $modelEvent = new Event();
             $limit = 9;
             $result['events'] = $modelEvent->getEventByPromotion($limit);
@@ -315,16 +305,6 @@ class HomeController extends Controller
 
                 return view('frontend.partials.promotion', $result);
             } 
-        // } catch (\Exception $e) {
-
-        //     $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
-        //     $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-        //     $insertLog = new LogActivity();
-        //     $insertLog->insertNewLogActivity($log);
-
-        //     //return view('errors.404');
-        
-        // }
     }
 
     public function supports()
@@ -340,12 +320,9 @@ class HomeController extends Controller
         
         } catch (\Exception $e) {
 
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
-
-            //return view('errors.404');
         
         }
     }
@@ -364,9 +341,8 @@ class HomeController extends Controller
         return $data;
     }
 
-    function preview($slug){
-        //$modelPage = new ManagePage();
-        //$page = $modelPage->findPageBySlug($slug);
+    function preview($slug)
+    {
         $page = (object) \Session::get('preview_'.$slug);
         if(!empty($page)){
             $data['content'] = $page->desktop_content;
@@ -387,7 +363,6 @@ class HomeController extends Controller
             $param['currency_default'] = $this->setting['currency'];
             if(!empty($param)){
                 if(isset($param['preview'])){
-                    //$data['content'] = $this->string_replace($this->preview('careers'));
                     $preview = $this->preview('careers');
                     $data['content'] = $preview['content'];
                     $data['responsive_content'] = $preview['responsive_content'];
@@ -396,7 +371,6 @@ class HomeController extends Controller
                     $data['responsive_content'] = '<p>'.trans('general.data_not_found').'</p>';
                 }
             }else{
-                //$data['content'] = $this->string_replace($this->pageContent('careers'));
                 $page = $this->pageContent('careers');
                 $data['content'] = $page['content'];
                 $data['responsive_content'] = $page['responsive_content'];
@@ -429,7 +403,6 @@ class HomeController extends Controller
         
         } catch (\Exception $e) {
 
-            // $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -467,7 +440,6 @@ class HomeController extends Controller
         
         } catch (\Exception $e) {
 
-            // $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -484,7 +456,6 @@ class HomeController extends Controller
             $param = $req->all();
             if(!empty($param)){
                 if(isset($param['preview'])){
-                    //$data['content'] = $this->string_replace($this->preview('about-us'));
                     $preview = $this->preview('about-us');
                     $data['content'] = $preview['content'];
                     $data['responsive_content'] = $preview['responsive_content'];
@@ -493,7 +464,6 @@ class HomeController extends Controller
                     $data['responsive_content'] = '<p>'.trans('general.data_not_found').'</p>';
                 }
             }else{
-                //$data['content'] = $this->string_replace($this->pageContent('about-us'));
                 $page = $this->pageContent('about-us');
                 $data['content'] = $page['content'];
                 $data['responsive_content'] = $page['responsive_content'];
@@ -507,7 +477,6 @@ class HomeController extends Controller
         
         } catch (\Exception $e) {
 
-            // $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -524,7 +493,6 @@ class HomeController extends Controller
             $param = $req->all();
             if(!empty($param)){
                 if(isset($param['preview'])){
-                    //$data['content'] = $this->string_replace($this->preview('faq'));
                     $preview = $this->preview('faq');
                     $data['content'] = $preview['content'];
                     $data['responsive_content'] = $preview['responsive_content'];
@@ -533,7 +501,6 @@ class HomeController extends Controller
                     $data['responsive_content'] = '<p>'.trans('general.data_not_found').'</p>';
                 }
             }else{
-                //$data['content'] = $this->string_replace($this->pageContent('faq'));
                 $page = $this->pageContent('faq');
                 $data['content'] = $page['content'];
                 $data['responsive_content'] = $page['responsive_content'];
@@ -547,7 +514,6 @@ class HomeController extends Controller
         
         } catch (\Exception $e) {
 
-            // $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -557,36 +523,6 @@ class HomeController extends Controller
         }
     }
 
-    // public function supportFaqCategory($category)
-    // {
-    //     try{
-
-    //         $trail['desc'] = 'FAQ front end';
-    //         $insertTrail = new Trail();
-    //         $insertTrail->insertNewTrail($trail);
-
-    //         if($category == 'top'){
-    //             return view('frontend.partials.static.support_faq_top_static');
-    //         }elseif ($category == 'general') {
-    //             return view('frontend.partials.static.support_faq_general_static');
-    //         }elseif ($category == 'payment') {
-    //              return view('frontend.partials.static.support_faq_payment_static');
-    //         }elseif ($category == 'seat') {
-    //              return view('frontend.partials.static.support_faq_seat_static');
-    //         }
-        
-    //     } catch (\Exception $e) {
-
-    //         $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
-    //         $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-    //         $insertLog = new LogActivity();
-    //         $insertLog->insertNewLogActivity($log);
-
-    //         return view('errors.404');
-        
-    //     }
-    // }
-
     public function supportWaysToBuyTickets(Request $req)
     {
 
@@ -594,7 +530,6 @@ class HomeController extends Controller
             $param = $req->all();
             if(!empty($param)){
                 if(isset($param['preview'])){
-                    //$data['content'] = $this->string_replace($this->preview('how-to-buy-tickets'));
                     $preview = $this->preview('how-to-buy-tickets');
                     $data['content'] = $preview['content'];
                     $data['responsive_content'] = $preview['responsive_content'];
@@ -603,7 +538,6 @@ class HomeController extends Controller
                     $data['responsive_content'] = '<p>'.trans('general.data_not_found').'</p>';
                 }
             }else{
-                //$data['content'] = $this->string_replace($this->pageContent('how-to-buy-tickets'));
                 $page = $this->pageContent('how-to-buy-tickets');
                 $data['content'] = $page['content'];
                 $data['responsive_content'] = $page['responsive_content'];
@@ -617,7 +551,6 @@ class HomeController extends Controller
             
         } catch (\Exception $e) {
 
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -627,39 +560,6 @@ class HomeController extends Controller
         }
     }
 
-    // public function supportTermsAndConditions(Request $req)
-    // {
-
-    //     try{
-    //         $param = $req->all();
-    //         if(!empty($param)){
-    //             if(isset($param['preview'])){
-    //                 $data['content'] = $this->string_replace($this->preview('terms-and-conditions'));
-    //             }else{
-    //                 $data['content'] = '<p>'.trans('general.data_not_found').'</p>';
-    //             }
-    //         }else{
-    //             $data['content'] = $this->string_replace($this->pageContent('terms-and-conditions'));
-    //         }
-
-    //         $trail['desc'] = 'Terms and conditions front end';
-    //         $insertTrail = new Trail();
-    //         $insertTrail->insertNewTrail($trail);
-
-    //         return view('frontend.partials.support_terms_and_conditions', $data);
-            
-    //     } catch (\Exception $e) {
-
-    //         $log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
-    //         $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-    //         $insertLog = new LogActivity();
-    //         $insertLog->insertNewLogActivity($log);
-
-    //         return view('errors.404');
-        
-    //     }
-    // }
-
     public function supportTermsTicketSales(Request $req)
     {
 
@@ -667,7 +567,6 @@ class HomeController extends Controller
             $param = $req->all();
             if(!empty($param)){
                 if(isset($param['preview'])){
-                    //$data['content'] = $this->string_replace($this->preview('terms-of-ticket-sales'));
                     $preview = $this->preview('terms-of-ticket-sales');
                     $data['content'] = $preview['content'];
                     $data['responsive_content'] = $preview['responsive_content'];
@@ -676,7 +575,6 @@ class HomeController extends Controller
                     $data['responsive_content'] = '<p>'.trans('general.data_not_found').'</p>';
                 }
             }else{
-                //$data['content'] = $this->string_replace($this->pageContent('terms-of-ticket-sales'));
                 $page = $this->pageContent('terms-of-ticket-sales');
                 $data['content'] = $page['content'];
                 $data['responsive_content'] = $page['responsive_content'];
@@ -690,7 +588,6 @@ class HomeController extends Controller
             
         } catch (\Exception $e) {
 
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -707,7 +604,6 @@ class HomeController extends Controller
             $param = $req->all();
             if(!empty($param)){
                 if(isset($param['preview'])){
-                    //$data['content'] = $this->string_replace($this->preview('terms-of-website-use'));
                     $preview = $this->preview('terms-of-website-use');
                     $data['content'] = $preview['content'];
                     $data['responsive_content'] = $preview['responsive_content'];
@@ -716,7 +612,6 @@ class HomeController extends Controller
                     $data['responsive_content'] = '<p>'.trans('general.data_not_found').'</p>';
                 }
             }else{
-                //$data['content'] = $this->string_replace($this->pageContent('terms-of-website-use'));
                 $page = $this->pageContent('terms-of-website-use');
                 $data['content'] = $page['content'];
                 $data['responsive_content'] = $page['responsive_content'];
@@ -730,7 +625,6 @@ class HomeController extends Controller
             
         } catch (\Exception $e) {
 
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -747,7 +641,6 @@ class HomeController extends Controller
             $param = $req->all();
             if(!empty($param)){
                 if(isset($param['preview'])){
-                    //$data['content'] = $this->string_replace($this->preview('privacy-policy'));
                     $preview = $this->preview('privacy-policy');
                     $data['content'] = $preview['content'];
                     $data['responsive_content'] = $preview['responsive_content'];
@@ -756,7 +649,6 @@ class HomeController extends Controller
                     $data['responsive_content'] = '<p>'.trans('general.data_not_found').'</p>';
                 }
             }else{
-                //$data['content'] = $this->string_replace($this->pageContent('privacy-policy'));
                 $page = $this->pageContent('privacy-policy');
                 $data['content'] = $page['content'];
                 $data['responsive_content'] = $page['responsive_content'];
@@ -770,7 +662,6 @@ class HomeController extends Controller
             
         } catch (\Exception $e) {
 
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -793,12 +684,10 @@ class HomeController extends Controller
         
         } catch (\Exception $e) {
 
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
 
-            //return view('errors.404');
         
         }
     }
@@ -808,12 +697,7 @@ class HomeController extends Controller
         try{
             $param = $req->all();
 
-            // $data['mail_driver'] = $this->setting['mail_driver'];
-            // $data['mail_host'] = $this->setting['mail_host'];
-            // $data['mail_port'] = $this->setting['mail_port'];
-            // $data['mail_username'] = $this->setting['mail_username'];
-            // $data['mail_password'] = $this->setting['mail_password'];
-            // $data['mail_name'] = $this->setting['mail_name'];
+            
 
             $modelSubscription = new Subscription();
             $findSubscriber = $modelSubscription->findByEmail($param['email']);
@@ -821,10 +705,7 @@ class HomeController extends Controller
                 $subscribe = $modelSubscription->updateSubscription($param, $param['email']);
                 $text = 'update';
             }else{
-                Mail::send('frontend.emails.subscribe_reply', $param, function ($message) use (/*$data, */$param) {
-                    // $message->from($data['mail_username'], $data['mail_name'])
-                    //     ->to($param['email'], $param['first_name'].' '.$param['last_name'])->subject('Thanks for Your Subscription')
-                    //     ->replyTo($data['mail_username'], $data['mail_name']);
+                Mail::send('frontend.emails.subscribe_reply', $param, function ($message) use ($param) {
                     $message->to($param['email'], $param['first_name'].' '.$param['last_name'])->subject('Thanks for Your Subscription');
 
                     $modelSubscription = new Subscription();
@@ -851,8 +732,7 @@ class HomeController extends Controller
             }
         
         } catch (\Exception $e) {
-
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+ 
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -871,7 +751,8 @@ class HomeController extends Controller
         }
     }
 
-    public function sendMessage(SendMessageRequest $req){
+    public function sendMessage(SendMessageRequest $req)
+    {
 
         try{
             $param = $req->all();
@@ -906,8 +787,7 @@ class HomeController extends Controller
                 'message' => trans('general.message_success')
             ],200);
         } catch (\Exception $e) {
-
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+ 
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
@@ -921,7 +801,8 @@ class HomeController extends Controller
         }
     }
 
-    public function feedBack(FeedbackRequest $req){
+    public function feedBack(FeedbackRequest $req)
+    {
 
         try{
             $param = $req->all();
@@ -956,8 +837,7 @@ class HomeController extends Controller
                 'message' => trans('general.message_success')
             ],200);
         } catch (\Exception $e) {
-
-            //$log['user_id'] = !empty($this->currentUser) ? $this->currentUser->id : 0;
+ 
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);

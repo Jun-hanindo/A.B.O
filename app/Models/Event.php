@@ -1649,157 +1649,157 @@ class Event extends Model
         }
     }
 
-    public function searchEventAndCategory($param, $limit)
-    {
-        $q = $param['q'];
-        //$sort = $param['sort'];
+    // public function searchEventAndCategory($param, $limit)
+    // {
+    //     $q = $param['q'];
+    //     //$sort = $param['sort'];
         
-        $query = Event::select('events.id as id','events.title as title', 'events.featured_image3 as featured_image3',
-            'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color',  
-            'events.schedule_title', 'events.sort_order as sort_order',
-            DB::RAW("array_to_string(array_agg(DISTINCT venues.name), ',')  as venue"), 
-            // DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',') as category"),
-            DB::RAW("array_to_string(array_agg(DISTINCT categories.slug), ',') as cat_slug"),
-            DB::RAW("min(DISTINCT event_schedules.date_at) as date"), 
-            DB::RAW("min(DISTINCT event_schedule_categories.price) as price"))
-            ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
-            ->join('categories', 'categories.id', '=', 'event_categories.category_id')
-            ->join('venues', 'venues.id', '=', 'events.venue_id')
-            ->join('event_schedules', 'event_schedules.event_id', '=', 'events.id')
-            ->join('event_schedule_categories', 'event_schedule_categories.event_schedule_id', '=', 'event_schedules.id')
-            ->where('events.avaibility','=', true)
-            ->where('categories.status', true);
+    //     $query = Event::select('events.id as id','events.title as title', 'events.featured_image3 as featured_image3',
+    //         'events.slug as slug', 'events.venue_id as venue_id', 'events.background_color as background_color',  
+    //         'events.schedule_title', 'events.sort_order as sort_order',
+    //         DB::RAW("array_to_string(array_agg(DISTINCT venues.name), ',')  as venue"), 
+    //         // DB::RAW("array_to_string(array_agg(DISTINCT categories.name), ',') as category"),
+    //         DB::RAW("array_to_string(array_agg(DISTINCT categories.slug), ',') as cat_slug"),
+    //         DB::RAW("min(DISTINCT event_schedules.date_at) as date"), 
+    //         DB::RAW("min(DISTINCT event_schedule_categories.price) as price"))
+    //         ->join('event_categories', 'event_categories.event_id', '=', 'events.id')
+    //         ->join('categories', 'categories.id', '=', 'event_categories.category_id')
+    //         ->join('venues', 'venues.id', '=', 'events.venue_id')
+    //         ->join('event_schedules', 'event_schedules.event_id', '=', 'events.id')
+    //         ->join('event_schedule_categories', 'event_schedule_categories.event_schedule_id', '=', 'event_schedules.id')
+    //         ->where('events.avaibility','=', true)
+    //         ->where('categories.status', true);
 
-        if($q != 'all' && $q != ''){
-            $query->where('events.title','ilike','%'.$q.'%')
-                ->orWhere('categories.name','ilike','%'.$q.'%');
-        }
+    //     if($q != 'all' && $q != ''){
+    //         $query->where('events.title','ilike','%'.$q.'%')
+    //             ->orWhere('categories.name','ilike','%'.$q.'%');
+    //     }
 
-        if(isset($param['venue']) && $param['venue'] != 'all'){
-            $venue = $param['venue'];
-            $query->where('venues.slug', $venue);
-        }
+    //     if(isset($param['venue']) && $param['venue'] != 'all'){
+    //         $venue = $param['venue'];
+    //         $query->where('venues.slug', $venue);
+    //     }
 
 
 
-        if(isset($param['period']) && $param['period'] != 'all'){
-            $period = $param['period'];
-            $query->whereBetween('event_schedules.date_at', array(date('Y-m-d'), date('Y-m-d', strtotime(date('Y-m-d')." +".$period.'months'))));
-            //$query->where(date('Y-m-d'),'>=', date('Y-m-d', strtotime(date('Y-m-d')." -".$period.'months')));
-        }
+    //     if(isset($param['period']) && $param['period'] != 'all'){
+    //         $period = $param['period'];
+    //         $query->whereBetween('event_schedules.date_at', array(date('Y-m-d'), date('Y-m-d', strtotime(date('Y-m-d')." +".$period.'months'))));
+    //         //$query->where(date('Y-m-d'),'>=', date('Y-m-d', strtotime(date('Y-m-d')." -".$period.'months')));
+    //     }
 
-        $events = $query->where(function ($a) use ($param) {
-            if(isset($param['cat'])){
-                $cats = $param['cat'];
-                if($param['cat'][0] != 'all'){
-                    foreach ($cats as $key => $cat) {
-                        //if($cat != 'all'){
-                            if($key == 0){
-                                $a->where('categories.slug', $cat);
-                            }else{
-                                $a->orWhere('categories.slug', $cat);
-                            }
-                        //}
-                    }
-                }
-            }
-        });
+    //     $events = $query->where(function ($a) use ($param) {
+    //         if(isset($param['cat'])){
+    //             $cats = $param['cat'];
+    //             if($param['cat'][0] != 'all'){
+    //                 foreach ($cats as $key => $cat) {
+    //                     //if($cat != 'all'){
+    //                         if($key == 0){
+    //                             $a->where('categories.slug', $cat);
+    //                         }else{
+    //                             $a->orWhere('categories.slug', $cat);
+    //                         }
+    //                     //}
+    //                 }
+    //             }
+    //         }
+    //     });
 
-        // if(isset($param['cat'])){
-        //     $cats = $param['cat'];
-        //     foreach ($cats as $key => $cat) {
-        //         if($cat != 'all'){
-        //             if($key == 0){
-        //                 $query->where('categories.slug', $cat);
-        //             }else{
-        //                 $query->orWhere('categories.slug', $cat);
-        //             }
-        //         }
-        //     }
-        // }
+    //     // if(isset($param['cat'])){
+    //     //     $cats = $param['cat'];
+    //     //     foreach ($cats as $key => $cat) {
+    //     //         if($cat != 'all'){
+    //     //             if($key == 0){
+    //     //                 $query->where('categories.slug', $cat);
+    //     //             }else{
+    //     //                 $query->orWhere('categories.slug', $cat);
+    //     //             }
+    //     //         }
+    //     //     }
+    //     // }
         
 
-        $query->groupBy('events.id');
-        //dd($param['sort']);
-        if(isset($param['sort']) || !empty($param['sort'])){
-            $query->orderBy($param['sort']);
-        }else{
-            $query->orderBy('sort_order', 'desc');
-        }
+    //     $query->groupBy('events.id');
+    //     //dd($param['sort']);
+    //     if(isset($param['sort']) || !empty($param['sort'])){
+    //         $query->orderBy($param['sort']);
+    //     }else{
+    //         $query->orderBy('sort_order', 'desc');
+    //     }
             
 
-        if($limit > 0){
-            $query->take($limit);
-        }
+    //     if($limit > 0){
+    //         $query->take($limit);
+    //     }
 
-        //dd($query->toSql());
+    //     //dd($query->toSql());
 
-        $events = $query->get();
+    //     $events = $query->get();
 
-        //dd($events->toSql());
-        //dd($events);
+    //     //dd($events->toSql());
+    //     //dd($events);
 
-        if(!empty($events))
-        {
-            foreach ($events as $key => $event) {
-                // $cats = explode(',', $event->category);
-                // $event->cat_name = strtoupper($cats[0]);
-                $cats = explode(',', $event->cat_slug);
-                $cat = $cats[0];
-                $cat_event = Category::where('slug', $cat)->first();
-                $event->cat_name = ucwords(strtolower($cat_event->name));
-                $event->cat_icon = $cat_event->icon;
-                $event->cat_icon_image_url = file_url('categories/'.$cat_event->icon_image, env('FILESYSTEM_DEFAULT'));
-                $event->cat_icon_image2_url = file_url('categories/'.$cat_event->icon_image2, env('FILESYSTEM_DEFAULT'));
+    //     if(!empty($events))
+    //     {
+    //         foreach ($events as $key => $event) {
+    //             // $cats = explode(',', $event->category);
+    //             // $event->cat_name = strtoupper($cats[0]);
+    //             $cats = explode(',', $event->cat_slug);
+    //             $cat = $cats[0];
+    //             $cat_event = Category::where('slug', $cat)->first();
+    //             $event->cat_name = ucwords(strtolower($cat_event->name));
+    //             $event->cat_icon = $cat_event->icon;
+    //             $event->cat_icon_image_url = file_url('categories/'.$cat_event->icon_image, env('FILESYSTEM_DEFAULT'));
+    //             $event->cat_icon_image2_url = file_url('categories/'.$cat_event->icon_image2, env('FILESYSTEM_DEFAULT'));
 
-                $this->setImageUrl($event);
+    //             $this->setImageUrl($event);
 
-                $event->venue = $event->Venue()->where('avaibility', true)->first();
-                if(!empty($event->venue)){
-                    $event->venue_name = $event->venue->name;
-                    if(!empty($event->venue->city)){
-                        $event->city = ', '.$event->venue->city;
-                    }else{
-                        $event->city = '';
-                    }
-                }else{
-                    $event->venue_name = '';
-                    $event->city = '';
-                }
+    //             $event->venue = $event->Venue()->where('avaibility', true)->first();
+    //             if(!empty($event->venue)){
+    //                 $event->venue_name = $event->venue->name;
+    //                 if(!empty($event->venue->city)){
+    //                     $event->city = ', '.$event->venue->city;
+    //                 }else{
+    //                     $event->city = '';
+    //                 }
+    //             }else{
+    //                 $event->venue_name = '';
+    //                 $event->city = '';
+    //             }
 
-                $event->schedules = $event->EventSchedule()->orderBy('date_at', 'asc')->get();
-                $count = count($event->schedules);
-                if(!empty($event->schedules)){
-                    $i = 1;
-                    foreach ($event->schedules as $sc => $sch) {
-                        if($count == 1){
-                            $event->schedule_range = full_text_date($sch->date_at);
-                        }else{
-                            if($i == 1){
-                                $event->start_range = $sch->date_at;
-                            }elseif ($i == $count) {
-                                $event->end_range = $sch->date_at;
-                            }
-                            $event->schedule_range = date_from_to($event->start_range, $event->end_range);
-                        }
-                        $i++;
-                    }
-                }
+    //             $event->schedules = $event->EventSchedule()->orderBy('date_at', 'asc')->get();
+    //             $count = count($event->schedules);
+    //             if(!empty($event->schedules)){
+    //                 $i = 1;
+    //                 foreach ($event->schedules as $sc => $sch) {
+    //                     if($count == 1){
+    //                         $event->schedule_range = full_text_date($sch->date_at);
+    //                     }else{
+    //                         if($i == 1){
+    //                             $event->start_range = $sch->date_at;
+    //                         }elseif ($i == $count) {
+    //                             $event->end_range = $sch->date_at;
+    //                         }
+    //                         $event->schedule_range = date_from_to($event->start_range, $event->end_range);
+    //                     }
+    //                     $i++;
+    //                 }
+    //             }
 
-                if(!empty($event->schedule_title))
-                {
-                    $event->schedule = $event->schedule_title;
-                }else{
-                    $event->schedule = $event->schedule_range;
-                }
+    //             if(!empty($event->schedule_title))
+    //             {
+    //                 $event->schedule = $event->schedule_title;
+    //             }else{
+    //                 $event->schedule = $event->schedule_range;
+    //             }
 
-                //$event->date_set = full_text_date($event->date);
-            }
-            return $events;
-        }else{
-            return false;
-        }
-    }
+    //             //$event->date_set = full_text_date($event->date);
+    //         }
+    //         return $events;
+    //     }else{
+    //         return false;
+    //     }
+    // }
 
     public function getFeaturedEventByCategory($id, $category, $limit)
     {
