@@ -19,38 +19,38 @@ class Trail extends Model
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
 
-    public function insertTrail($desc)
-    {
+    // public function insertTrail($desc)
+    // {
 
-        $user_id = !empty(\Sentinel::getUser()) ? \Sentinel::getUser()->id : 0;
-        $session_id = session()->getId();
-        $ip_address = Request::ip();
-        //$data = [];
+    //     $user_id = !empty(\Sentinel::getUser()) ? \Sentinel::getUser()->id : 0;
+    //     $session_id = session()->getId();
+    //     $ip_address = Request::ip();
+    //     //$data = [];
 
-        // $trail = Trail::where('user_id', $user_id)
-        // ->where('session_id', $session_id)
-        // ->whereDate('created_at', '=', date('Y-m-d'))
-        // ->first();
-        // if(!empty($trail))
-        // {
+    //     // $trail = Trail::where('user_id', $user_id)
+    //     // ->where('session_id', $session_id)
+    //     // ->whereDate('created_at', '=', date('Y-m-d'))
+    //     // ->first();
+    //     // if(!empty($trail))
+    //     // {
 
-        //     $trail->description = '"'.$desc.'" has been accessed';
-        //     $trail->save();
-        // }else{
-        //     $this->user_id = $user_id;
-        //     $this->description = '"'.$desc.'" has been accessed';
-        //     $this->session_id = $session_id;
-        //     $this->ip_address = $ip_address;
-        //     $this->save();
-        // }
+    //     //     $trail->description = '"'.$desc.'" has been accessed';
+    //     //     $trail->save();
+    //     // }else{
+    //     //     $this->user_id = $user_id;
+    //     //     $this->description = '"'.$desc.'" has been accessed';
+    //     //     $this->session_id = $session_id;
+    //     //     $this->ip_address = $ip_address;
+    //     //     $this->save();
+    //     // }
         
-        $this->user_id = $user_id;
-        $this->description = '"'.$desc.'" has been accessed';
-        $this->session_id = $session_id;
-        $this->ip_address = $ip_address;
-        $this->save();
-        return $this;
-    }
+    //     $this->user_id = $user_id;
+    //     $this->description = '"'.$desc.'" has been accessed';
+    //     $this->session_id = $session_id;
+    //     $this->ip_address = $ip_address;
+    //     $this->save();
+    //     return $this;
+    // }
 
     public function insertNewTrail($param)
     {

@@ -1,7 +1,12 @@
 modal_loader = function(){
+    // HoldOn.open({
+    //     theme:"sk-circle",
+    //     message:"<h4>Proccessing....</h4>"
+    // });
     HoldOn.open({
-        theme:"sk-circle",
-        message:"<h4>Proccessing....</h4>"
+        theme:"custom",
+        content:'<img src="'+base_url+'/assets/frontend/images/logo-spin.png" class="logo-spin">',
+        message:"<h4>Loading ...</h4>"
     });
 };
 

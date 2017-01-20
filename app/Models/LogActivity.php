@@ -19,15 +19,15 @@ class LogActivity extends Model
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
 
-    public function insertLogActivity($data)
-    {
-        $this->user_id = $data['user_id'];
-        $this->description = $data['description'];
-        $this->ip_address = Request::ip()/*$data['ip_address']*/;
-        $this->save();
+    // public function insertLogActivity($data)
+    // {
+    //     $this->user_id = $data['user_id'];
+    //     $this->description = $data['description'];
+    //     $this->ip_address = Request::ip()/*$data['ip_address']*/;
+    //     $this->save();
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function insertNewLogActivity($param)
     {
