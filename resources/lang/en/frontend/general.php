@@ -55,6 +55,7 @@ return [
     'end_date' => 'End Date',
     'load_more_events' => 'Load More Events',
     'there_are_no_event' => 'There are no event.',
+    'there_are_no_events' => 'There are no events.',
     'load_more_promotions' => 'Load More Promotions',
     'there_are_no_promotion' => 'There are no promotion.',
     'back_to_summary'   => 'Back To Summary',

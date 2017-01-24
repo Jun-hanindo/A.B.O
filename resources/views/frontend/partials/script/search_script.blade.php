@@ -245,7 +245,7 @@
                             // $('.search-mobile .mobile-sidebar').css('height', 'auto');
                         });
                     }else{
-                        html = "<h3 class='text-center'>{{ trans('frontend/general.there_are_no_event') }}</h3>";
+                        html = "<h5 class='text-center' style='color:#000;'>{{ trans('frontend/general.there_are_no_events') }}</h5>";
                         $('.search-list table').append(html);
                         $('.search-list-mobile').append(html);
                     }

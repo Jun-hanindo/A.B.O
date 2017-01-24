@@ -129,7 +129,7 @@
                                         </tr>
                                     @endforeach
                                 @else
-                                    <tr><td><h3 class='text-center' style="color:#000;">{{ trans('frontend/general.there_are_no_event') }}</h3></td></tr>
+                                    <tr><td><h5 class='text-center' style="color:#000;">{{ trans('frontend/general.there_are_no_events') }}</h5></td></tr>
                                 @endif
                             </table>
                         </div>
@@ -287,7 +287,7 @@
                             </div>
                         @endforeach
                     @else
-                        <h3 class='text-center'>{{ trans('frontend/general.there_are_no_event') }}</h3>
+                        <h5 class='text-center'>{{ trans('frontend/general.there_are_no_events') }}</h5>
                     @endif
                 </div>
             </div>

@@ -6,7 +6,7 @@ modal_loader = function(){
     HoldOn.open({
         theme:"custom",
         content:'<img src="'+base_url+'/assets/frontend/images/logo-spin.png" class="logo-spin">',
-        message:"<h4>Loading ...</h4>"
+        message:"<h4>Loading...</h4>"
     });
 };
 
