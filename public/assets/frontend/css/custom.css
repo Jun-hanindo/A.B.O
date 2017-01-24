@@ -483,11 +483,29 @@ iframe[name="google_conversion_frame"]{
 .sk-circle .sk-circle12:before{
   content: "";
 }
-.logo-spin {
+/*.logo-spin {
   width: 60px;
   -webkit-animation:spin 2s linear infinite;
   -moz-animation:spin 2s linear infinite;
   animation:spin 2s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }*/
+
+#holdon-overlay {
+  background: rgba(0, 0, 0, 0.63) !important;
+  opacity: inherit !important;
+}
+#holdon-message p {
+   font-size: 14px;
+}
+.logo-spin {
+    width: 60px;
+    -webkit-animation:spin 2s linear infinite;
+    -moz-animation:spin 2s linear infinite;
+    animation:spin 2s linear infinite;
+    opacity: 10 !important
 }
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
