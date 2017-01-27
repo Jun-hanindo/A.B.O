@@ -337,7 +337,7 @@
                 hideShowBuyMessage(buyButton);
             })
 
-            $(".categories").select2();
+            $(".select2").select2();
 
             $('.colorpicker').colorpicker();
 

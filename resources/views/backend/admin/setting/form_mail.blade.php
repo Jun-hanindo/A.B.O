@@ -10,7 +10,7 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">{{ trans('backend/general.setting') }}</h3>
+                    <h3 class="box-title">{{ trans('backend/general.setting_mail') }}</h3>
                 </div>
 
                 {!! Form::open(array('url' => route('admin-update-setting'),'method'=>'POST','id'=>'form-setting', 'class' => "form-horizontal")) !!}

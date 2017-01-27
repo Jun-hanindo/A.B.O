@@ -18,6 +18,7 @@ use App\Models\Department;
 use App\Models\Career;
 use App\Models\Message;
 use App\Models\Subscription;
+use App\Models\VisaCheckout;
 use Mail;
 use App\Http\Requests\Frontend\SendMessageRequest;
 use App\Http\Requests\Frontend\FeedbackRequest;
@@ -196,6 +197,8 @@ class HomeController extends Controller
             $result['sliders'] = $this->model->getHomepage('slider');
             $result['events'] = $this->model->getHomepage('event');
             $result['promotions'] = $this->model->getHomepage('promotion');
+            $modelVisa = new VisaCheckout();
+            $result['visas'] = $modelVisa->getVisaCheckout();
 
             $trail['desc'] = 'Homepage front end';
             $insertTrail = new Trail();

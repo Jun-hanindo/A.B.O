@@ -251,6 +251,24 @@
             </div>
         </div>
     </div>
+    @if(!empty($visas))
+        @foreach($visas as $key => $visa)
+            <section class="banner banner-fullweb" style="background:{{ $visa->background_color }};">
+                <div class="banner-content">
+                  <a href="{{ $visa->link }}" title="{{ $visa->title }}">
+                      <img src="{{ $visa->src_banner_image }}" class="banner-logo-fullweb" >
+                  </a>
+                </div>
+            </section>
+            <section class="banner banner-mobile" style="background:{{ $visa->background_color }};">
+                <div class="banner-content">
+                  <a href="{{ $visa->link }}" title="{{ $visa->title }}">
+                      <img src="{{ $visa->src_banner_image_mobile }}" class="banner-logo-mobile" >
+                  </a>
+                </div>
+            </section>
+        @endforeach
+    @endif
     <div class="contentTab">
         <div class="container">
             <div class="tab-content">

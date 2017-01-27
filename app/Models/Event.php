@@ -84,6 +84,12 @@ class Event extends Model
 
     }
 
+    public function VisaCheckouts()
+    {
+        return $this->belongsToMany('App\Models\VisaCheckout', 'event_visa_checkouts', 'event_id', 'visa_checkout_id')->withTimestamps();
+
+    }
+
     /**
      * Return event's query for Datatables.
      *
@@ -405,6 +411,9 @@ class Event extends Model
             if(isset($param['categories'])){
                 $this->categories()->attach($param['categories']);
             }
+            if(isset($param['visa_checkouts'])){
+                $this->visacheckouts()->attach($param['visa_checkouts']);
+            }
             return $this;
         } else {
             return false;
@@ -653,6 +662,13 @@ class Event extends Model
                     $data->categories()->sync($param['categories']);
                 }else{
                     $data->categories()->detach();
+                }
+
+                //dd($param['visacheckouts']);
+                if(isset($param['visa_checkouts'])){
+                    $data->visacheckouts()->sync($param['visa_checkouts']);
+                }else{
+                    $data->visacheckouts()->detach();
                 }
                 
 
@@ -1050,6 +1066,12 @@ class Event extends Model
                 if(!$data->categories->isEmpty()){
                     foreach ($data->categories as $cat => $category) {
                         $newdata->categories()->attach($category);
+                    }
+                }
+
+                if(!$data->visacheckouts->isEmpty()){
+                    foreach ($data->visacheckouts as $cat => $category) {
+                        $newdata->visacheckouts()->attach($category);
                     }
                 }
 

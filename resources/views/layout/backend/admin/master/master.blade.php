@@ -129,7 +129,6 @@
         {!! Html::script('assets/plugins/HoldOn/HoldOn.min.js') !!}
         {!! Html::script('assets/plugins/pace/pace.min.js') !!}
         {!! Html::script('assets/plugins/sweetalert/sweetalert.min.js') !!}
-        {!! Html::script('assets/backend/admin/js/custom.js') !!}
         {{-- {!! Html::script('assets/plugins/tinymce/tinymce.min.js') !!} --}}
         {!! Html::script('assets/plugins/ckeditor/ckeditor.js') !!}
         {!! Html::script('assets/plugins/ckeditor/adapters/jquery.js') !!}
@@ -142,6 +141,7 @@
         {!! Html::script('assets/plugins/chartjs/Chart.bundle.min.js') !!}
         {!! Html::script('assets/plugins/chartjs/Chart.min.js') !!}
         {!! Html::script('assets/plugins/EasyAutocomplete/jquery.easy-autocomplete.min.js') !!}
+        {!! Html::script('assets/backend/admin/js/custom.js') !!}
         
         
 

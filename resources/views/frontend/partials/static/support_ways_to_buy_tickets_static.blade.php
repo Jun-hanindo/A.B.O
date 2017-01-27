@@ -48,6 +48,9 @@
                                                             <li>Ensure that you have your details entered correctly as we will be sending you an Order Confirmation and/or E-Ticket to your email.</li>
                                                             <li>Complete your payment details by entering your credit card information or via Visa Checkout (https://secure.checkout.visa.com/customer_support/faq?locale=en).</li>
                                                         </ol>
+                                                        <div class="banner_visa-checkout">
+                                                            <img src="{{ asset('assets/frontend/images/banner_visa-checkout.jpg') }}">
+                                                        </div>
                                                     </div>
                                                 </li>
                                                 <li class="li-ticket-content">
@@ -133,6 +136,9 @@
                                             <li>Ensure that you have your details entered correctly as we will be sending you an Order Confirmation and/or E-Ticket to your email.</li>
                                             <li>Complete your payment details by entering your credit card information or via Visa Checkout (https://secure.checkout.visa.com/customer_support/faq?locale=en).</li>
                                         </ol>
+                                        <div class="banner_visa-checkout mobile">
+                                            <img src="{{ asset('assets/frontend/images/banner_visa-checkout-mobile.jpg') }}">
+                                        </div>
                                     </div>
                                 </li>
                                 <li class="li-ticket-content-mobile">

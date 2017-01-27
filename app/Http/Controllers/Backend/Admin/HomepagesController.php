@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Homepage;
 use App\Models\LogActivity;
 use App\Models\Trail;
+use App\Models\VisaCheckout;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\homepage\HomepageRequest;
 

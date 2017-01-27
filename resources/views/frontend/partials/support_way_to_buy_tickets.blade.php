@@ -3,7 +3,7 @@
 @section('og_image', asset('assets/frontend/images/logo-share.jpg'))
 @section('content')
 @php
-  $tag = '<--mobile-->';
+    $search = '[visa_checkout]';
 @endphp
 <section class="about-content faq-content">
     <div class="row">
@@ -19,8 +19,19 @@
                         <h3 class="head-about head-ticket font-light">How to Buy Tickets</h3>
                         <div class="col-md-12 faq-content">
                             <div class="faq-categories">
-                                {{-- strstr($content, $tag, true) --}}
-                                {!! $content !!}
+                                @if(!empty($setting['visa_banner_image']))
+                                    @php
+                                        $img = file_url('settings/'.$setting['visa_banner_image'], env('FILESYSTEM_DEFAULT'));
+                                        $replace = '<div class="banner_visa-checkout">
+                                            <a href="'.$setting['visa_link'].'">
+                                              <img src="'.$img.'">
+                                            </a>
+                                        </div>';
+                                    @endphp
+                                    {!! str_replace($search, $replace, $content) !!}
+                                @else
+                                    {!! str_replace($search, '', $content) !!}
+                                @endif
                                 
                             </div>
                         </div>
@@ -46,8 +57,19 @@
                 <div class="mobile-page-title">
                     <h3 class="font-light">How to Buy Tickets</h3>
                 </div>
-                {{-- str_replace($tag, '', strstr($content, $tag)) --}}
-                {!! $responsive_content !!}
+                @if(!empty($setting['visa_banner_image_mobile']))
+                    @php
+                        $img = file_url('settings/'.$setting['visa_banner_image_mobile'], env('FILESYSTEM_DEFAULT'));
+                        $replace = '<div class="banner_visa-checkout mobile">
+                            <a href="'.$setting['visa_link'].'">
+                              <img src="'.$img.'">
+                            </a>
+                        </div>';
+                    @endphp
+                    {!! str_replace($search, $replace, $responsive_content) !!}
+                @else
+                    {!! str_replace($search, '', $responsive_content) !!}
+                @endif
             </div>
         </div>
     </div>

@@ -25,6 +25,7 @@ class SettingRequest extends Request
     { 
         //$req = Request::all();
         $req = Request::except('_token');
+        $rules = array();
         foreach ($req as $key => $settings) {
             foreach ($settings as $key => $value) {
 
@@ -46,8 +47,16 @@ class SettingRequest extends Request
                     $rules['setting.'.$key] = 'required|email';
                 }
 
-                if($key == 'header_logo'){
-                    $rules['setting.'.$key] = 'max:1024';
+                if($key == 'visa_banner_image'){
+                    $rules['setting.'.$key] = 'image|mimes:jpg,jpeg,png,gif|dimensions:width=1130,height=200|max:1024';
+                }
+
+                if($key == 'visa_banner_image_mobile'){
+                    $rules['setting.'.$key] = 'image|mimes:jpg,jpeg,png,gif|dimensions:width=520,height=400|max:1024';
+                }
+
+                if($key == 'visa_link'){
+                    $rules['setting.'.$key] = 'url';
                 }
             }
         }

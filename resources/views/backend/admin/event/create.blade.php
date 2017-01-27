@@ -262,13 +262,18 @@
                             </div>
                             <div class="form-group{{ Form::hasError('categories') }} category">
                                 {!! Form::label('category', trans('backend/general.category').' *') !!} <a href="javascript:void(0)" class="btn btn-primary btn-xs addCategory" title="Add"><i class="fa fa-plus fa-fw"></i></a>
-                                {!! Form::select('categories[]', $categories, null, ['class' => 'form-control categories', 'multiple' => 'multiple', 'id' => 'categories']) !!}
+                                {!! Form::select('categories[]', $categories, null, ['class' => 'form-control categories select2', 'multiple' => 'multiple', 'id' => 'categories']) !!}
                                 {!! Form::errorMsg('categories') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('background_color') }} background_color">
                                 {!! Form::label('background_color', trans('backend/general.background_color').' *') !!} 
                                 {!! Form::text('background_color', old('background_color'), ['id' => 'background_color', 'class' => 'form-control colorpicker','maxlength'=>'255', 'placeholder' => trans('backend/general.background_color')]) !!}
                                 {!! Form::errorMsg('background_color') !!}
+                            </div>
+                            <div class="form-group{{ Form::hasError('visa_checkouts') }} visa_checkouts">
+                                {!! Form::label('category', trans('backend/general.visa_checkout')) !!}
+                                {!! Form::select('visa_checkouts[]', $visa_checkouts, null, ['class' => 'form-control visa_checkouts select2', 'multiple' => 'multiple', 'id' => 'visa_checkouts']) !!}
+                                {!! Form::errorMsg('visa_checkouts') !!}
                             </div>
                             {{-- <div class="form-group{{ Form::hasError('event_id_tixtrack') }} event_id_tixtrack">
                                 {!! Form::label('event_id_tixtrack', trans('backend/general.event_id_tixtrack').' *') !!} 

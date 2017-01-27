@@ -892,6 +892,7 @@ class PagesTableSeeder extends Seeder
                                                             <li>Ensure that you have your details entered correctly as we will be sending you an Order Confirmation and/or E-Ticket to your email.</li>
                                                             <li>Complete your payment details by entering your credit card information or via Visa Checkout (https://secure.checkout.visa.com/customer_support/faq?locale=en).</li>
                                                         </ol>
+                                                        [visa_checkout]
                                                     </div>
                                                 </li>
                                                 <li class="li-ticket-content">
@@ -954,6 +955,7 @@ class PagesTableSeeder extends Seeder
                                             <li>Ensure that you have your details entered correctly as we will be sending you an Order Confirmation and/or E-Ticket to your email.</li>
                                             <li>Complete your payment details by entering your credit card information or via Visa Checkout (https://secure.checkout.visa.com/customer_support/faq?locale=en).</li>
                                         </ol>
+                                        [visa_checkout]
                                     </div>
                                 </li>
                                 <li class="li-ticket-content-mobile">

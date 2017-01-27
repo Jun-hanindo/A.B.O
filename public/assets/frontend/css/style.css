@@ -4802,3 +4802,31 @@ li.inbox-message.drawer-item .content h5 {
 .mobile-collapse-body-top li:nth-child(5) {
     padding-bottom: 15px;
 }
+
+/*VISA CHECKOUT*/
+.banner {
+  background: #399;
+  width: 100%;
+  max-height: 100px;
+}
+.banner-content {
+  max-width: 1140px;
+  width: 100%;
+  height: auto;
+  margin: auto;
+}
+.banner-mobile {
+  display: none;
+}
+img.banner-logo-fullweb,
+img.banner-logo-mobile {
+  width: 100%
+}
+.banner_visa-checkout img {
+    width: 100%;
+    margin-top: 15px;
+}
+.banner_visa-checkout a:after {
+    content: "";
+    display: none;
+}

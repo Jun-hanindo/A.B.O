@@ -195,6 +195,8 @@ $('#show-message').on('click',function(){
     });
 });
 
+$('.colorpicker').colorpicker();
+
 // $('.menu-disabled').on('click mouseover', function (e) {
 //     var title = $(this).attr('title');
 //     if(title != 'Events' && title != 'Accounts Management' && title != 'Homepage' && title != 'Venue' && 

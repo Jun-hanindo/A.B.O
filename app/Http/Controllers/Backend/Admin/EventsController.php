@@ -15,6 +15,7 @@ use App\Models\LogActivity;
 use App\Models\Trail;
 use App\Models\Icon;
 use App\Models\Currency;
+use App\Models\VisaCheckout;
 use App\Http\Controllers\Backend\Admin\BaseController;
 use App\Http\Requests\Backend\admin\event\EventRequest;
 
@@ -119,6 +120,7 @@ class EventsController extends BaseController
         try{
             $data['dropdown'] = Venue::dropdown();
             $data['categories'] = Category::dropdown();
+            $data['visa_checkouts'] = VisaCheckout::dropdown();
             $iconModel = new Icon();
             $data['icons'] = $iconModel->getIcon(); 
             $data['currencies'] = Currency::dropdownCode();
@@ -269,9 +271,17 @@ class EventsController extends BaseController
                 }
                 $data['selected'] = $selected;
 
+                $visa_selected = $data->visacheckouts()->get();
+                $selected_visa = [];
+                foreach ($visa_selected as $key2 => $value2) {
+                    $selected_visa[] = $value2->id;
+                }
+                $data['selected_visa'] = $selected_visa;
+
 
                 $data['dropdown'] = Venue::dropdown();
                 $data['categories'] = Category::dropdown();
+                $data['visa_checkouts'] = VisaCheckout::dropdown();
                 $iconModel = new Icon();
                 $data['icons'] = $iconModel->getIcon();
                 $data['currencies'] = Currency::dropdownCode();

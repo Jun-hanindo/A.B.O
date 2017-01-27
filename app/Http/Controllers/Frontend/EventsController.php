@@ -15,6 +15,7 @@ use App\Models\Venue;
 use App\Models\LogActivity;
 use App\Models\Trail;
 use App\Models\Subscription;
+use App\Models\VisaCheckout;
 use App\Http\Requests\Frontend\SubscribeRequest;
 use Mail;
 use File;
@@ -36,6 +37,8 @@ class EventsController extends Controller
                 $result['min'] = $this->model->minPrice($slug);
                 $result['src2'] = url('uploads/promotions').'/';
                 $result['currency_default'] = $this->setting['currency'];
+                $modelVisaCheckout = new VisaCheckout();
+                $result['visas'] = $modelVisaCheckout->getVisaCheckoutByEvent($result['event']->id);
                 $limit = 5;
                 
                 $trail['desc'] = $result['event']->title. ' front end';

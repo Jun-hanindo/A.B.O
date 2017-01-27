@@ -169,6 +169,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::get('general', array('as' => 'admin-index-setting', 'uses' => 'SettingsController@general'));
         Route::post('update', array('as' => 'admin-update-setting', 'uses' => 'SettingsController@storeUpdate'));
         Route::get('mail', array('as' => 'admin-mail-setting', 'uses' => 'SettingsController@mail'));
+        Route::get('visa', array('as' => 'admin-visa-setting', 'uses' => 'SettingsController@visa'));
         
         Route::get('currency', array('as' => 'admin-index-currency', 'uses' => 'CurrenciesController@index'));
         Route::get('currency/create', array('as' => 'admin-create-currency', 'uses' => 'CurrenciesController@create'));
@@ -177,6 +178,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::post('currency/{id}/update', array('as' => 'admin-update-currency', 'uses' => 'CurrenciesController@update'));
         Route::delete('currency/{id}/delete', array('as' => 'admin-delete-currency', 'uses' => 'CurrenciesController@destroy'));
         Route::delete('delete-logo', array('as' => 'admin-delete-header-logo', 'uses' => 'SettingsController@deleteLogo'));
+        Route::delete('{name}/delete-image', array('as' => 'admin-delete-setting-image', 'uses' => 'SettingsController@deleteImage'));
     });
 
     Route::group(['prefix' => 'subscription'], function () {
@@ -314,6 +316,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
     
         Route::get('truncate-member', array('as' => 'admin-tixtrack-truncate-member', 'uses' => 'ReportsController@truncateMember'));
         Route::get('truncate-transaction', array('as' => 'admin-tixtrack-truncate-transaction', 'uses' => 'ReportsController@truncateTransaction'));
+    });
+
+    Route::group(['prefix' => 'visa-checkout'], function () {
+        Route::get('', array('as' => 'admin-index-visa-checkout', 'uses' => 'VisaCheckoutsController@index'));
+        Route::get('create', array('as' => 'admin-create-visa-checkout', 'uses' => 'VisaCheckoutsController@create'));
+        Route::post('store', array('as' => 'admin-post-visa-checkout', 'uses' => 'VisaCheckoutsController@store'));
+        Route::get('{id}/edit', array('as' => 'admin-edit-visa-checkout', 'uses' => 'VisaCheckoutsController@edit'));
+        Route::post('{id}/update', array('as' => 'admin-update-visa-checkout', 'uses' => 'VisaCheckoutsController@update'));
+        Route::delete('{id}/delete', array('as' => 'admin-delete-visa-checkout', 'uses' => 'VisaCheckoutsController@destroy'));
+        Route::post('{id}/delete-image', array('as' => 'admin-delete-visa-checkout-image', 'uses' => 'VisaCheckoutsController@deleteImage'));
     });
 });
 

@@ -355,5 +355,11 @@ return [
     'desktop' => 'Desktop',
     'mobile' => 'Mobile',
     'header_logo' => 'Header Logo',
+    'setting_visa' => 'Setting Visa',
+    'setting_mail' => 'Setting Mail',
+    'link' => 'Link',
+    'banner_image' => 'Banner Image',
+    'banner_image_mobile' => 'Banner Image (Mobile)',
+    'visa_checkout' => 'Visa Checkout',
 
 ];

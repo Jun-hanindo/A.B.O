@@ -360,3 +360,6 @@ page {
 img[src=""] {
     display: none;
 }
+#form-visa_checkout .colorpicker{
+    z-index: 1;
+}

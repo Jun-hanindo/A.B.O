@@ -29,14 +29,14 @@ Route::group(['namespace' => 'Frontend'], function () {
     //
     
     Route::get('support', array('as' => 'support', 'uses' => 'HomeController@supportStatic'));
-    //Route::get('faq', array('as' => 'faq', 'uses' => 'HomeController@supportFaqStatic'));
-    //Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'HomeController@contactUsStatic'));
-    //Route::get('terms-of-ticket-sales', array('as' => 'terms-ticket-sales', 'uses' => 'HomeController@supportTermsTicketSalesStatic'));
-    //Route::get('terms-of-website-use', array('as' => 'terms-website-use', 'uses' => 'HomeController@supportTermsWebsiteUseStatic'));
-    //Route::get('privacy-policy', array('as' => 'privacy-policy', 'uses' => 'HomeController@supportPrivacyPolicyStatic'));
-    //Route::get('about-us', array('as' => 'about-us', 'uses' => 'HomeController@aboutUsStatic'));
-    //Route::get('careers', array('as' => 'careers', 'uses' => 'HomeController@aboutUsStatic'));
-    //Route::get('how-to-buy-tickets', array('as' => 'ways-to-buy-tickets', 'uses' => 'HomeController@supportWaysToBuyTicketsStatic'));
+    Route::get('static/faq', array('as' => 'static-faq', 'uses' => 'HomeController@supportFaqStatic'));
+    Route::get('static/contact-us', array('as' => 'static-contact-us', 'uses' => 'HomeController@contactUsStatic'));
+    Route::get('static/terms-of-ticket-sales', array('as' => 'static-terms-ticket-sales', 'uses' => 'HomeController@supportTermsTicketSalesStatic'));
+    Route::get('static/terms-of-website-use', array('as' => 'static-terms-website-use', 'uses' => 'HomeController@supportTermsWebsiteUseStatic'));
+    Route::get('static/privacy-policy', array('as' => 'static-privacy-policy', 'uses' => 'HomeController@supportPrivacyPolicyStatic'));
+    Route::get('static/about-us', array('as' => 'static-about-us', 'uses' => 'HomeController@aboutUsStatic'));
+    Route::get('static/careers', array('as' => 'static-careers', 'uses' => 'HomeController@aboutUsStatic'));
+    Route::get('static/how-to-buy-tickets', array('as' => 'static-ways-to-buy-tickets', 'uses' => 'HomeController@supportWaysToBuyTicketsStatic'));
     
     /*Dynamic*/
     //comment 161013

@@ -58,6 +58,22 @@ class SettingsController extends BaseController
         return view('backend.admin.setting.form_general', $result);
     }
 
+    public function visa()
+    {
+        $settings = Setting::all();
+        $data = [];
+        foreach ($settings as $key => $value) {
+            $data[$value->name] = $value->value;
+        }
+        $result['data'] = $data;
+
+        $trail['desc'] = 'Setting Visa';
+        $insertTrail = new Trail();
+        $insertTrail->insertNewTrail($trail);
+        
+        return view('backend.admin.setting.form_visa', $result);
+    }
+
     public function storeUpdate(SettingRequest $req)
     {
         try{
@@ -88,6 +104,31 @@ class SettingsController extends BaseController
     {
         try{
             $data = $this->model->deleteLogo();
+                return response()->json([
+                    'code' => 200,
+                    'status' => 'success',
+                    'message' => trans('general.delete_success')
+                ],200);
+
+        } catch (\Exception $e) {
+
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertNewLogActivity($log);
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'error',
+                'message' => trans('general.data_not_found')
+            ],400);
+
+        }
+    }
+
+    public function deleteImage($name)
+    {
+        try{
+            $data = $this->model->deleteImage($name);
                 return response()->json([
                     'code' => 200,
                     'status' => 'success',

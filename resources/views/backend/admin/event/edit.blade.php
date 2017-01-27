@@ -262,7 +262,7 @@
                             </div>
                             <div class="form-group{{ Form::hasError('categories') }} category">
                                 {!! Form::label('category', trans('backend/general.category').' *') !!} <a href="javascript:void(0)" class="btn btn-primary btn-xs addCategory" title="Edit"><i class="fa fa-plus fa-fw"></i></a>
-                                {!! Form::select('categories[]', $categories, $selected, ['class' => 'form-control categories', 'multiple' => 'multiple', 'id' => 'categories']) !!}
+                                {!! Form::select('categories[]', $categories, $selected, ['class' => 'form-control categories select2', 'multiple' => 'multiple', 'id' => 'categories']) !!}
                                 {!! Form::errorMsg('categories') !!}
                             </div>
                             <div class="form-group{{ Form::hasError('background_color') }} background_color">
@@ -275,6 +275,11 @@
                                 {!! Form::text('event_id_tixtrack', $event->event_id_tixtrack, ['id' => 'event_id_tixtrack', 'class' => 'form-control number-only','maxlength'=>'255', 'placeholder' => trans('backend/general.event_id_tixtrack')]) !!}
                                 {!! Form::errorMsg('event_id_tixtrack') !!}
                             </div> --}}
+                            <div class="form-group{{ Form::hasError('visa_checkouts') }} visa_checkouts">
+                                {!! Form::label('category', trans('backend/general.visa_checkout')) !!}
+                                {!! Form::select('visa_checkouts[]', $visa_checkouts, $selected_visa, ['class' => 'form-control visa_checkouts select2', 'multiple' => 'multiple', 'id' => 'visa_checkouts']) !!}
+                                {!! Form::errorMsg('visa_checkouts') !!}
+                            </div>
                             <div class="box-footer">
                                 <input class="btn btn-primary pull-right pull-right" title="{{ trans('backend/general.button_save') }}" type="submit" value="{{ trans('backend/general.button_publish') }}" id="button_submit">
                                 <button type="button" id="button_draft" class="btn btn-warning pull-right" title="{{ trans('backend/general.button_draft') }}">{{ trans('backend/general.button_draft') }}</button>

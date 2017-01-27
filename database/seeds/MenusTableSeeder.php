@@ -77,12 +77,15 @@ class MenusTableSeeder extends Seeder
                 ['name' => str_slug('Add Venue'), 'display_name' => 'Add Venue', 'icon' => 'plus-circle', 'href' => 'admin/venue/create', 'pattern' => 'admin/venue'],
                 ['name' => str_slug('List Venue'), 'display_name' => 'List Venue', 'icon' => 'bars', 'href' => 'admin/venue', 'pattern' => 'admin/venue'],
             ]],
+            ['is_parent' => false, 'name' => str_slug('Visa Checkout'), 'display_name' => 'Visa Checkout', 'icon' => 'cc-visa', 'href' => 'admin/visa-checkout', 'pattern' => 'admin/visa-checkout'],
+            
 
             ['is_parent' => false, 'name' => str_slug('Subscription'), 'display_name' => 'Subscription', 'icon' => 'envelope-o', 'href' => 'admin/subscription', 'pattern' => 'admin/subscription'],
             ['is_parent' => true, 'name' => str_slug('Settings'), 'display_name' => 'Settings', 'icon' => 'cogs', 'href' => '#', 'pattern' => 'admin/setting', 'child' => [
                 ['name' => str_slug('General'), 'display_name' => 'General', 'icon' => 'circle-o', 'href' => 'admin/setting/general', 'pattern' => 'admin/setting'],
                 ['name' => str_slug('Currency'), 'display_name' => 'Currency', 'icon' => 'money', 'href' => 'admin/setting/currency', 'pattern' => 'admin/setting'],
                 ['name' => str_slug('Mail'), 'display_name' => 'Mail', 'icon' => 'envelope-o', 'href' => 'admin/setting/mail', 'pattern' => 'admin/setting'],
+                ['name' => str_slug('Visa Checkout'), 'display_name' => 'Visa Checkout', 'icon' => 'cc-visa', 'href' => 'admin/setting/visa', 'pattern' => 'admin/setting'],
             ]],
             ['is_parent' => false, 'name' => str_slug('Trail'), 'display_name' => 'Trail', 'icon' => 'road', 'href' => 'admin/trail', 'pattern' => 'admin/trail'],
             ['is_parent' => false, 'name' => str_slug('System Log'), 'display_name' => 'System Log', 'icon' => 'archive', 'href' => 'admin/system-log', 'pattern' => 'admin/system-log'],

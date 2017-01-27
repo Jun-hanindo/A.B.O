@@ -64,6 +64,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend\Admin'], function () 
         Route::get('tixtrack-transaction', array('as' => 'datatables-tixtrack-transaction', 'uses' => 'TixTrack\ReportsController@datatablesTransaction'));
         Route::get('tixtrack-account', array('as' => 'datatables-tixtrack-account', 'uses' => 'TixTrack\AccountsController@datatables'));
         Route::get('tixtrack-login-account', array('as' => 'datatables-tixtrack-login-account', 'uses' => 'TixTrack\LoginAccountsController@datatables'));
+        Route::get('visa-checkout', array('as' => 'datatables-visa-checkout', 'uses' => 'VisaCheckoutsController@datatables'));
         
 
     });
