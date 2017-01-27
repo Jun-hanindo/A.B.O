@@ -28,7 +28,7 @@ class VisaCheckout extends Model
      */
     function datatables()
     {
-        return static::select('id', 'title', 'banner_image');
+        return static::select('id', 'title', 'banner_image', 'availability_homepage');
     
     }
 
@@ -194,7 +194,7 @@ class VisaCheckout extends Model
 
 
     public function getVisaCheckout(){
-        $datas = VisaCheckout::orderBy('title', 'asc')->get();
+        $datas = VisaCheckout::where('availability_homepage', true)->orderBy('title', 'asc')->get();
         
         if(!empty($datas)){
             foreach ($datas as $key => $data) {
@@ -263,6 +263,24 @@ class VisaCheckout extends Model
             return $datas;
         }else{
             return false;
+        }
+    }
+
+    public function changeAvailabilityHomepage($param, $id){
+        $data = $this->find($id);
+        if (!empty($data)) {
+            $data->availability_homepage = $param['availability_homepage'];
+            if($data->save()) {
+                return $data;
+            } else {
+                return false;
+
+            }
+        
+        } else {
+
+            return false;
+
         }
     }
 }

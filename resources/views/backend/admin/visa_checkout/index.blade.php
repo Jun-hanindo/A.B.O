@@ -32,6 +32,7 @@
                             <!-- <th><input name="select_all" value="1" type="checkbox" class="select_all-checkbox"></th> -->
                             <th class="center-align">{{ trans('backend/general.title') }}</th>
                             <th class="center-align">{{ trans('backend/general.banner_image') }}</th>
+                            <th width="20%" class="center-align">{{ trans('backend/general.availability_homepage') }}</th>
                             <th width="12%"></th>
                         </tr>
                     </thead>

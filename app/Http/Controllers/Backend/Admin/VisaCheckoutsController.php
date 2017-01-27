@@ -45,6 +45,14 @@ class VisaCheckoutsController extends BaseController
                 $img = '<img src="'.$img_src.'" width="50%" height="50%">';
                 return $img;
             })
+            ->editColumn('availability_homepage', function ($visa_checkout) {
+                if($visa_checkout->availability_homepage == TRUE){
+                    $checked = 'checked';
+                }else{
+                    $checked = '';
+                }
+                return '<input type="checkbox" name="availability_homepage['.$visa_checkout->id.']" class="availability_homepage-check" data-id="'.$visa_checkout->id.'" '.$checked.'>';
+            })
             ->addColumn('action', function ($visa_checkout) {
                 $url = route('admin-edit-visa-checkout',$visa_checkout->id);
                 return '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;
@@ -233,5 +241,36 @@ class VisaCheckoutsController extends BaseController
 
         }
 
+    }
+
+    public function availabilityHomepageUpdate(Request $req, $id)
+    {
+
+        try{
+            $param = $req->all();
+            $updateData = $this->model->changeAvailabilityHomepage($param, $id);
+            $log['description'] = 'Visa checkout "'.$updateData->title.'" availability was updated';
+            $insertLog = new LogActivity();
+            $insertLog->insertNewLogActivity($log);
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => '<strong>'.$updateData->title.'</strong> '.trans('general.update_success')
+            ],200);
+
+        } catch (\Exception $e) {
+
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertNewLogActivity($log);
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.update_error')
+            ],400);
+
+        }
     }
 }

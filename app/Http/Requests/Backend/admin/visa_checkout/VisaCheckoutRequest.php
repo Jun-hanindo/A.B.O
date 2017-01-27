@@ -28,14 +28,14 @@ class VisaCheckoutRequest extends Request
             $rules = [
                 'title'                  => 'required',
                 'link'                   => 'required|url',
-                'banner_image'           => 'image|mimes:jpg,jpeg,png,gif|dimensions:width=2280,height=200|max:1024',
+                'banner_image'           => 'image|mimes:jpg,jpeg,png,gif|dimensions:width=2280,height=240|max:1024',
                 'banner_image_mobile'    => 'image|mimes:jpg,jpeg,png,gif|dimensions:width=750,height=280|max:1024',
             ];
         }else{
             $rules = [
                 'title'                  => 'required',
                 'link'                   => 'required|url',
-                'banner_image'           => 'required|image|mimes:jpg,jpeg,png,gif|dimensions:width=2280,height=200|max:1024',
+                'banner_image'           => 'required|image|mimes:jpg,jpeg,png,gif|dimensions:width=2280,height=240|max:1024',
                 'banner_image_mobile'    => 'required|image|mimes:jpg,jpeg,png,gif|dimensions:width=750,height=280|max:1024',
             ];
 

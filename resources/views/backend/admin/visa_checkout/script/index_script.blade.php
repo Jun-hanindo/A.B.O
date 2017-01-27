@@ -6,6 +6,27 @@
     $(document).ready(function() {
         loadData();
 
+        $('#visa-checkout-datatables').on('switchChange.bootstrapSwitch', '.availability_homepage-check', function(event, state) {
+            var id = $(this).attr('data-id');
+            var uri = "{{ URL::route('admin-update-visa-checkout-avaibility-homepage', "::param") }}";
+            uri = uri.replace('::param', id);
+            var val = $(this).is(":checked") ? true : false;
+            $.ajax({
+                    url: uri,
+                    type: "POST",
+                    dataType: 'json',
+                    data: "availability_homepage="+val,
+                    success: function (data) {
+                        $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        loadData();
+                    },
+                    error: function(response){
+                        $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                        loadData();
+                    }
+                });
+        });
+
     });
 
     function loadData()
@@ -36,8 +57,13 @@
             columns: [
                 {data: 'title', name: 'title'},
                 {data: 'banner_image', name: 'banner_image'},
+                {data: 'availability_homepage', name: 'availability_homepage', class: 'center-align', searchable: false, orderable: false},
                 {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
             ],
+            "fnDrawCallback": function() {
+                //Initialize checkbos for enable/disable user
+                $(".availability_homepage-check").bootstrapSwitch({onText: "{{ trans('backend/general.enabled') }}", offText:"{{ trans('backend/general.disabled') }}", animate: false});
+            }
         });
 
         return table;

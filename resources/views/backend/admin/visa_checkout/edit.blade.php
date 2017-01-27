@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ Form::hasError('banner_image') }} banner_image">
-                            <label for="banner_image" class="col-sm-3 control-label">{{ trans('backend/general.banner_image').' *' }} <br>(2280px x 200px)</label>
+                            <label for="banner_image" class="col-sm-3 control-label">{{ trans('backend/general.banner_image').' *' }} <br>(2280px x 240px)</label>
                             (Max. size 1 mb)
                             <div class="col-sm-5">
                                 <input id="banner_image" name="banner_image" class="form-control image" data-name="promo_logo" type="file" value="">
