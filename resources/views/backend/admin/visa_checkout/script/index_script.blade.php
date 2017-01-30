@@ -27,20 +27,16 @@
                 });
         });
 
-
-
         $('#visa-checkout-datatables tbody').on('click', '.sort_asc',function(){
             var id_current = $(this).attr('data-id');
             var order = 'asc';
             saveSortOrder(order, id_current);
-            loadData();
         });
 
         $('#visa-checkout-datatables tbody').on('click', '.sort_desc',function(){
             var id_current = $(this).attr('data-id');
             var order = 'desc';
             saveSortOrder(order, id_current);
-            loadData();
 
         });
 
@@ -95,9 +91,11 @@
             data: "id_current=" + id_current + "&order=" + order,
             success: function (data) {
                 $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                loadData();
             },
             error: function(response){
                 $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                loadData();
             }
         });
     }
