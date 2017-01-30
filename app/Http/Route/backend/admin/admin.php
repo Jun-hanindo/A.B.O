@@ -327,6 +327,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'sentinel_auth', 'namespace' 
         Route::delete('{id}/delete', array('as' => 'admin-delete-visa-checkout', 'uses' => 'VisaCheckoutsController@destroy'));
         Route::post('{id}/delete-image', array('as' => 'admin-delete-visa-checkout-image', 'uses' => 'VisaCheckoutsController@deleteImage'));
         Route::post('{id}/avaibility-homepage-edit', array('as' => 'admin-update-visa-checkout-avaibility-homepage', 'uses' => 'VisaCheckoutsController@availabilityHomepageUpdate'));
+        Route::post('update-sort', array('as' => 'admin-visa-checkout-sort-order', 'uses' => 'VisaCheckoutsController@updateSortOrder'));
     });
 });
 

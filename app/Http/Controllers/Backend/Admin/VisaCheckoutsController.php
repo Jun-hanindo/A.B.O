@@ -40,6 +40,27 @@ class VisaCheckoutsController extends BaseController
     public function datatables()
     {
         return datatables($this->model->datatables())
+            ->addColumn('sort_order', function ($visa_checkout) {
+                $first = $this->model->getFirstSort()->sort_order;
+                $last = $this->model->getLastSort()->sort_order;
+                $style = 'style="display:inline-block"';
+                $style2 = 'style="display:none"';
+                if($visa_checkout->sort_order == 0){
+                    $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style.' data-id="'.$visa_checkout->id.'" data-sort="'.$visa_checkout->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                            <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style2.' data-id="'.$visa_checkout->id.'" data-sort="'.$visa_checkout->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+
+                }elseif($visa_checkout->sort_order == $first){
+                    $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style2.' data-id="'.$visa_checkout->id.'" data-sort="'.$visa_checkout->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                            <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style.' data-id="'.$visa_checkout->id.'" data-sort="'.$visa_checkout->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                }elseif($visa_checkout->sort_order == $last){
+                    $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style.' data-id="'.$visa_checkout->id.'" data-sort="'.$visa_checkout->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                            <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style2.' data-id="'.$visa_checkout->id.'" data-sort="'.$visa_checkout->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                }else{
+                    $sort = '<a href="javascript:void(0)" class="sort_asc btn btn-xs btn-default" '.$style.' data-id="'.$visa_checkout->id.'" data-sort="'.$visa_checkout->sort_order.'"><i class="fa fa-long-arrow-up fa-fw"></i></a>&nbsp;
+                            <a href="javascript:void(0)" class="sort_desc btn btn-xs btn-default" '.$style.' data-id="'.$visa_checkout->id.'" data-sort="'.$visa_checkout->sort_order.'"><i class="fa fa-long-arrow-down fa-fw"></i></a>';
+                }
+                return $sort;
+            })
             ->editColumn('banner_image', function ($visa_checkout) {
                 $img_src = file_url('visa_checkouts/'.$visa_checkout->banner_image, env('FILESYSTEM_DEFAULT'));
                 $img = '<img src="'.$img_src.'" width="50%" height="50%">';
@@ -271,6 +292,43 @@ class VisaCheckoutsController extends BaseController
                 'message' => trans('general.update_error')
             ],400);
 
+        }
+    }
+
+    /**
+     * Update sort order data homepage by category
+     * @param  Request $req id for homepage id, sort order for sort order of data
+     * @return Response
+     */
+    public function updateSortOrder(Request $req)
+    {
+
+        try{
+            $param = $req->all();
+            $updateData = $this->model->updateCurrentSortOrder($param);
+
+            $log['description'] = 'VisaCheckout Sort Order was updated';
+            $insertLog = new LogActivity();
+            $insertLog->insertNewLogActivity($log);
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'Sort Order '.trans('general.update_success')
+            ],200);
+        
+        } catch (\Exception $e) {
+
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertNewLogActivity($log);
+
+            return response()->json([
+                'code' => 400,
+                'status' => 'success',
+                'message' => trans('general.save_error')
+            ],400);
+        
         }
     }
 }

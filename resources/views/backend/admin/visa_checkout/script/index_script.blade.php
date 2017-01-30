@@ -27,6 +27,23 @@
                 });
         });
 
+
+
+        $('#visa-checkout-datatables tbody').on('click', '.sort_asc',function(){
+            var id_current = $(this).attr('data-id');
+            var order = 'asc';
+            saveSortOrder(order, id_current);
+            loadData();
+        });
+
+        $('#visa-checkout-datatables tbody').on('click', '.sort_desc',function(){
+            var id_current = $(this).attr('data-id');
+            var order = 'desc';
+            saveSortOrder(order, id_current);
+            loadData();
+
+        });
+
     });
 
     function loadData()
@@ -52,9 +69,9 @@
         $('#visa-checkout-datatables').DataTable({
             processing: true,
             serverSide: true,
-            order: [[ 0, 'desc' ]],
             ajax: '{!! URL::route("datatables-visa-checkout") !!}',
             columns: [
+                {data: 'sort_order', name: 'sort_order', class: 'center-align', searchable: false, orderable: false},
                 {data: 'title', name: 'title'},
                 {data: 'banner_image', name: 'banner_image'},
                 {data: 'availability_homepage', name: 'availability_homepage', class: 'center-align', searchable: false, orderable: false},
@@ -67,6 +84,22 @@
         });
 
         return table;
+    }
+
+    function saveSortOrder(order, id_current){
+        $('.error').html('');
+        $.ajax({
+            url: "{{ route('admin-visa-checkout-sort-order') }}",
+            type: "POST",
+            dataType: 'json',
+            data: "id_current=" + id_current + "&order=" + order,
+            success: function (data) {
+                $('.error').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+            },
+            error: function(response){
+                $('.error').html('<div class="alert alert-danger">' + response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+            }
+        });
     }
     </script>
     @include('backend.delete-modal-datatables')

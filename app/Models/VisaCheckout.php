@@ -28,8 +28,86 @@ class VisaCheckout extends Model
      */
     function datatables()
     {
-        return static::select('id', 'title', 'banner_image', 'availability_homepage');
+        return static::select('id', 'title', 'banner_image', 'availability_homepage', 'sort_order')
+            ->orderBy('sort_order', 'asc');
     
+    }
+
+    public function getFirstSort(){
+        return VisaCheckout::orderBy('sort_order', 'asc')->first();
+    }
+
+    public function getLastSort(){
+        return VisaCheckout::orderBy('sort_order', 'desc')->first();
+    }
+
+    public function getSortById($id){
+        return VisaCheckout::where('id', $id)->first();
+    }
+
+    public function getOtherSort($id, $order){
+        $data = $this->find($id);
+        if(!empty($data)){
+            $sort_no = $data->sort_order;
+            if($order == 'asc'){
+                if($sort_no == 0){
+                    $result = VisaCheckout::select('id', 'sort_order')->where('sort_order', '<=', $sort_no)
+                    ->orderBy('sort_order', 'desc')->orderBy('created_at', 'desc')->first();
+                }else{
+                    $result = VisaCheckout::select('id', 'sort_order')->where('sort_order', '<', $sort_no)
+                    ->orderBy('sort_order', 'desc')->orderBy('created_at', 'desc')->first();
+                }
+            }else{
+                if($sort_no == 0){
+                    $result = VisaCheckout::select('id', 'sort_order')->where('sort_order', '>=', $sort_no)
+                    ->orderBy('sort_order', 'asc')->orderBy('created_at', 'desc')->first();
+                }else{
+                    $result = VisaCheckout::select('id', 'sort_order')->where('sort_order', '>', $sort_no)
+                    ->orderBy('sort_order', 'asc')->orderBy('created_at', 'desc')->first();
+                }
+            }
+            return $result;
+        }else{
+            return false;
+        }
+    }
+
+    public function updateCurrentSortOrder($param)
+    {
+        $id = $param['id_current'];
+        $order = $param['order'];
+
+        $data = $this->getSortById($id);
+        $other = $this->getOtherSort($id, $order);
+        $current_sort = $data->sort_order;
+
+        if($other->sort_order == 0){
+            $last = $this->getLastSort();
+            $data->sort_order = $last->sort_order + 1;
+        }else{
+            $data->sort_order = $other->sort_order;
+        }
+
+        if($data->save()) {
+            $data2 = $this->getSortById($other->id);
+            if($current_sort == 0){
+                $last = $this->getLastSort();
+                $data2->sort_order = $last->sort_order + 1;
+            }else{
+                $data2->sort_order = $current_sort;
+            }
+            if($data2->save()) {
+                return $data2;
+            } else {
+
+                return false;
+
+            }
+        } else {
+
+            return false;
+
+        }
     }
 
 
@@ -42,6 +120,8 @@ class VisaCheckout extends Model
     	$this->title = $param['title'];
     	$this->link = $param['link'];
         $this->background_color = $param['background_color'];
+        $last = $this->getLastSort();
+        $this->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
         if (isset($param['banner_image'])) {
             $banner_image = $param['banner_image'];
             $extension = $banner_image->getClientOriginalExtension();
@@ -114,6 +194,12 @@ class VisaCheckout extends Model
             $data->title = $param['title'];
             $data->link = $param['link'];
             $data->background_color = $param['background_color'];
+
+            if($data->sort_order == 0){
+                $last = $this->getLastSort();
+                $data->sort_order = (empty($last)) ? 1 : $last->sort_order + 1;
+            }
+
             if (isset($param['banner_image'])) {
                 $oldImage = $data->banner_image;
                 
@@ -194,7 +280,7 @@ class VisaCheckout extends Model
 
 
     public function getVisaCheckout(){
-        $datas = VisaCheckout::where('availability_homepage', true)->orderBy('title', 'asc')->get();
+        $datas = VisaCheckout::where('availability_homepage', true)->orderBy('sort_order', 'asc')->get();
         
         if(!empty($datas)){
             foreach ($datas as $key => $data) {
@@ -244,7 +330,7 @@ class VisaCheckout extends Model
 
     public static function dropdown()
     {
-        return static::orderBy('title')->lists('title', 'id');
+        return static::orderBy('sort_order', 'asc')->lists('title', 'id');
     }
 
     public function getVisaCheckoutByEvent($event_id){
@@ -253,6 +339,7 @@ class VisaCheckout extends Model
             ->join('event_visa_checkouts', 'visa_checkouts.id', '=', 'event_visa_checkouts.visa_checkout_id')
             ->join('events', 'events.id', '=', 'event_visa_checkouts.event_id')
             ->where('event_id', $event_id)
+            ->orderBy('visa_checkouts.sort_order', 'asc')
             ->orderBy('visa_checkouts.title', 'asc')->get();
 
         if(!empty($datas)){

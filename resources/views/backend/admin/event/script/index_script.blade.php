@@ -4,7 +4,7 @@
 
     <script>
     // function saveSortOrder(order, id_current, current_sort, update_sort, id_other){
-    function saveSortOrder(order, id_current, current_sort){
+    function saveSortOrder(order, id_current){
         $('.error').html('');
         $.ajax({
             url: "{{ route('admin-event-sort-order') }}",

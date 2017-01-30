@@ -251,8 +251,8 @@
             </div>
         </div>
     </div>
-    @if(!empty($visas))
-        @foreach($visas as $key => $visa)
+    @if(!empty($event->visas))
+        @foreach($event->visas as $key => $visa)
             <section class="banner banner-fullweb" style="background:{{ $visa->background_color }};">
                 <div class="banner-content">
                   <a href="{{ $visa->link }}" title="{{ $visa->title }}">

@@ -246,6 +246,15 @@ class EventsController extends Controller
                 $event->cat =  $modelCategory->findCategoryByID($cat_id);
             }
 
+            $visas = array();
+            if(isset($event->visa_checkouts)){
+                foreach ($event->visa_checkouts as $key2 => $value2) {
+                   $modelVisaCheckout = new VisaCheckout();
+                   $visas[] =  $modelVisaCheckout->findVisaCheckoutByID($value2);
+                }   
+            }
+            $event->visas = $visas;
+
             $url_image = url('uploads/temp').'/';
             if(!isset($event->featured_image1)){
                 if(!empty($event->event_id)){
