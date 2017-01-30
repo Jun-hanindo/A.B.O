@@ -1070,8 +1070,8 @@ class Event extends Model
                 }
 
                 if(!$data->visacheckouts->isEmpty()){
-                    foreach ($data->visacheckouts as $cat => $category) {
-                        $newdata->visacheckouts()->attach($category);
+                    foreach ($data->visacheckouts as $vis => $visa) {
+                        $newdata->visacheckouts()->attach($visa);
                     }
                 }
 
