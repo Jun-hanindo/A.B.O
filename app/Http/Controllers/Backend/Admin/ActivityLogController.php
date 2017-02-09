@@ -22,21 +22,28 @@ class ActivityLogController extends BaseController
      */
     public function index()
     {
-        $userModel = new User();
-        $dropdown = $userModel->dropdown();
-        $drop = [];
-        foreach ($dropdown as $key => $value) {
-            $drop[0] = 'All';
-            $drop[$value->id] = $value->first_name.' '.$value->last_name;
+        try{
+            $userModel = new User();
+            $dropdown = $userModel->dropdown();
+            $drop = [];
+            foreach ($dropdown as $key => $value) {
+                $drop[0] = 'All';
+                $drop[$value->id] = $value->first_name.' '.$value->last_name;
+            }
+
+            $data['dropdown'] = $drop;
+
+            $trail['desc'] = 'System Log';
+            $insertTrail = new Trail();
+            $insertTrail->insertNewTrail($trail);
+
+            return view('backend.admin.activity_log.index', $data);
+        } catch (\Exception $e) {
+            
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertNewLogActivity($log);
         }
-
-        $data['dropdown'] = $drop;
-
-        $trail['desc'] = 'System Log';
-        $insertTrail = new Trail();
-        $insertTrail->insertNewTrail($trail);
-
-        return view('backend.admin.activity_log.index', $data);
     }
 
     /**

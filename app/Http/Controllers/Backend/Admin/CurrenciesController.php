@@ -58,10 +58,9 @@ class CurrenciesController extends BaseController
      */
     public function store(CurrencyRequest $req)
     {
-        //
-        $param = $req->all();
         
         try{
+            $param = $req->all();
             $saveData = $this->model->insertNewCurrency($param);
 
 

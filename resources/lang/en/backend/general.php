@@ -361,6 +361,7 @@ return [
     'banner_image' => 'Banner Image',
     'banner_image_mobile' => 'Banner Image (Mobile)',
     'visa_checkout' => 'Visa Checkout',
-    'availability_homepage' => 'Availability on Homepage'
+    'availability_homepage' => 'Availability on Homepage',
+    'confirm_date' => 'Confirm Date',
 
 ];

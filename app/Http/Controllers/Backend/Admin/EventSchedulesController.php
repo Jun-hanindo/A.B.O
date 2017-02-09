@@ -105,9 +105,9 @@ class EventSchedulesController extends BaseController
 
     public function update(EventScheduleRequest $req, $id)
     {
-        $param = $req->all();
 
         try{
+            $param = $req->all();
             $updateData = $this->model->updateEventSchedule($param,$id); 
             $log['description'] = 'Schedule "'.$updateData->date_at.'" of '.$updateData->Event->title.' was updated';
             $insertLog = new LogActivity();

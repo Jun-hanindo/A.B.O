@@ -430,15 +430,15 @@
                                     @include('flash::message')
                                     <div class="row">
                                         <div class="col-xs-6 col-1 first_name">
-                                            <input type="text" class="form-control first" name="first_name" id="first_name" placeholder="{{ trans('frontend/general.first_name') }}">
+                                            <input type="text" autocomplete="off" class="form-control first" name="first_name" id="first_name" placeholder="{{ trans('frontend/general.first_name') }}">
                                         </div>
                                         <div class="col-xs-6 col-2 last_name">
-                                            <input type="text" class="form-control last" name="last_name" id="last_name" placeholder="{{ trans('frontend/general.last_name') }}">
+                                            <input type="text" autocomplete="off" class="form-control last" name="last_name" id="last_name" placeholder="{{ trans('frontend/general.last_name') }}">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12 email">
-                                            <input type="email" placeholder="{{ trans('frontend/general.email') }}" name="email" id="email" class="form-control">
+                                            <input type="email" autocomplete="off" placeholder="{{ trans('frontend/general.email') }}" name="email" id="email" class="form-control">
                                         </div>
                                     </div>
                                     {{-- <div class="row">
@@ -451,7 +451,7 @@
                                     </div> --}}
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <button class="btn btn-primary btnSend font-bold" type="submit">{{ trans('frontend/general.send_me_updates') }}</button>
+                                            <button class="btn btn-primary btnSend font-bold" type="button" id="btnSubscribe">{{ trans('frontend/general.send_me_updates') }}</button>
                                         </div>
                                     </div>
                                     <div class="row last-row">
@@ -591,5 +591,7 @@
     </div>
 </div>
 @endif
+    @include('frontend.partials.subscribe_thanks_modal')
+    @include('frontend.partials.subscribe_already_modal')
 @stop
 @include('frontend.partials.script.subscribe_script')

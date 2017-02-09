@@ -20,11 +20,6 @@ use Storage;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Excel;
-// use League\Csv\Reader;
-// use League\Csv\Writer;
-// use Chumper\Zipper\Zipper;
-//use GuzzleHttp\Cookie\CookieJar;
-//use GuzzleHttp\Cookie\CookieJarInterface;
 
 class TransactionsController extends BaseController
 {
@@ -40,16 +35,22 @@ class TransactionsController extends BaseController
      */
     public function account()
     {
+        try{
+            $modelAccount = new TixtrackAccount();
+            $accounts = $modelAccount->dropdownByLogin(1);
+            $data['accounts'] = $accounts;
 
-        $modelAccount = new TixtrackAccount();
-        $accounts = $modelAccount->dropdownByLogin(1);
-        $data['accounts'] = $accounts;
+            $trail['desc'] = 'Update Transaction Tixtrack';
+            $insertTrail = new Trail();
+            $insertTrail->insertNewTrail($trail);
 
-        $trail['desc'] = 'Update Transaction Tixtrack';
-        $insertTrail = new Trail();
-        $insertTrail->insertNewTrail($trail);
-
-        return view('backend.admin.tixtrack.update_transaction', $data);
+            return view('backend.admin.tixtrack.update_transaction', $data);
+        } catch (\Exception $e) {
+            
+            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
+            $insertLog = new LogActivity();
+            $insertLog->insertNewLogActivity($log);
+        }
 
         
     }

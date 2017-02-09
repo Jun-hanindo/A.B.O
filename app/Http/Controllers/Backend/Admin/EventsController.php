@@ -150,9 +150,9 @@ class EventsController extends BaseController
      */
     public function store(EventRequest $req)
     {
-        $param = $req->all();
     
         try{
+            $param = $req->all();
 
             $user_id = ($this->currentUser->email != 'abo@hanindogroup.com') ? $this->currentUser->id : null;
             $saveData = $this->model->insertNewEvent($param, $user_id);

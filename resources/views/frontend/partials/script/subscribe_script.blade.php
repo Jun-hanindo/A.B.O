@@ -32,7 +32,11 @@
 
         function subscribe()
         {
-            //modal_loader();
+            $(".tooltip-field").remove();
+            $(".first-name, .last-name, .email, .first_name, .last_name").removeClass('has-error');
+            $('.error').removeClass('alert alert-danger');
+            $('.error').html('');
+            modal_loader();
             var data = $('#form-subscribe').serialize();
             $.ajax({
                 url: "{{ route('subscribe-store') }}",
@@ -48,10 +52,10 @@
                     }
                     
                         clearInput();
+                    HoldOn.close();
 
                 },
                 error: function(response){
-                    $('.tooltip-field').remove();
                     if (response.status === 422) {
                         var data = response.responseJSON;
                         $.each(data,function(key,val){
@@ -62,6 +66,7 @@
                         $('.error').html('<div class="alert alert-danger">' +response.responseJSON.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                         
                     }
+                    HoldOn.close();
                 }
             });
         }

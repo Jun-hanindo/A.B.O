@@ -25,17 +25,17 @@
                                         <div class="col-md-6">
                                             <div class="row">
                                                 <div class="col-xs-6 first-name first_name">
-                                                    <input type="text" name="first_name" id="first_name" placeholder="{{ trans('frontend/general.first_name') }}" class="input-subscribe form-control">
+                                                    <input type="text" autocomplete="off" name="first_name" id="first_name" placeholder="{{ trans('frontend/general.first_name') }}" class="input-subscribe form-control">
                                                 </div>
                                                 <div class="col-xs-6 last-name last_name">
-                                                    <input type="text" name="last_name" id="last_name" placeholder="{{ trans('frontend/general.last_name') }}" class="input-subscribe form-control">
+                                                    <input type="text" autocomplete="off" name="last_name" id="last_name" placeholder="{{ trans('frontend/general.last_name') }}" class="input-subscribe form-control">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="row">
                                                 <div class="col-md-7 email">
-                                                    <input type="text" name="email" id="email" placeholder="{{ trans('frontend/general.email') }}" class="input-subscribe form-control">
+                                                    <input type="text" autocomplete="off" name="email" id="email" placeholder="{{ trans('frontend/general.email') }}" class="input-subscribe form-control">
                                                 </div>
                                                 <div class="col-md-5 button">
                                                     <button type="button" class="btn btnBlackDefault font-bold" id="btnSubscribe">{{ trans('frontend/general.send_me_updates') }}</button>
@@ -52,37 +52,7 @@
                 </section>
             </div>
         </div>
-        <div class="modal fade" id="modalSubscribe" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">{{ trans('frontend/general.thanks_subscription') }}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>{{ trans('frontend/general.you_are_part_mailing_list') }}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btnBlackDefault" data-dismiss="modal">{{ trans('frontend/general.dismiss') }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="modalAlready" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">{{ trans('frontend/general.sorry') }}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>{{ trans('frontend/general.already_sucribed_us') }}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btnBlackDefault" data-dismiss="modal">{{ trans('frontend/general.dismiss') }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    @include('frontend.partials.subscribe_thanks_modal')
+    @include('frontend.partials.subscribe_already_modal')
 @stop
 @include('frontend.partials.script.subscribe_script')

@@ -2766,6 +2766,7 @@ td.type img {
 #modalSubscribe .modal-content{
   max-width: 430px;
   margin: 0 auto;
+  border-radius: 0
 }
 
 #modalYes .modal-content .modal-body p,
@@ -2778,6 +2779,8 @@ td.type img {
 #modalContact .modal-content .modal-footer,
 #modalSubscribe .modal-content .modal-footer{
   text-align: center;
+  border-top: 0;
+    padding-top: 0;
 }
 
 #modalYes .modal-content .modal-footer button,

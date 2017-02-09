@@ -27,7 +27,7 @@ class Subscription extends Model
     function datatables($start, $end)
     {
 
-        return static::select('id', 'email', 'first_name', 'last_name', 'created_at')
+        return static::select('id', 'email', 'first_name', 'last_name', 'created_at', 'confirmed_at')
             ->where(DB::raw('DATE(subscriptions.created_at)'), '>=', $start)
             ->where(DB::raw('DATE(subscriptions.created_at)'), '<=', $end);
     
@@ -48,18 +48,19 @@ class Subscription extends Model
      */
     function insertNewSubscription($param)
     {
-        $this->first_name = $param['first_name'];
-        $this->last_name = $param['last_name'];
+        $this->first_name = ucwords(strtolower($param['first_name']));
+        $this->last_name = ucwords(strtolower($param['last_name']));
         $this->email = $param['email'];
-        $country_code = isset($param['country_code']) ? $param['country_code']: '';
-        $contact_number = isset($param['contact_number']) ? $param['contact_number']: '';
-        $this->contact_number = $country_code.$contact_number;
+        $this->token = $param['token'];
+        //$country_code = isset($param['country_code']) ? $param['country_code']: '';
+        //$contact_number = isset($param['contact_number']) ? $param['contact_number']: '';
+        //$this->contact_number = $country_code.$contact_number;
         //$this->prefered_event = isset($param['event']) ? json_encode($param['event']): '';
 
         if($this->save()){
-            if(isset($param['event'])){
-                $this->Events()->attach($param['event']);
-            }
+            //if(isset($param['event'])){
+                //$this->Events()->attach($param['event']);
+            //}
             return $this;
         } else {
             return false;
@@ -85,32 +86,19 @@ class Subscription extends Model
     {
         $data = $this->findByEmail($email);
         if (!empty($data)) {
-            // $events = $data->prefered_event;
-            // if(!empty($events)){
-            //     $events = json_decode($events, true);
-            // }else{
-            //     $events = array();
-            // }
 
-            // if(isset($param['event'])){
-            //     $event = $param['event'];
-            // }else{
-            //     $event = array();
-            // }
-            // $events = $events + $event;
-
-            $data->first_name = $param['first_name'];
-            $data->last_name = $param['last_name'];
+            $data->first_name = ucwords(strtolower($param['first_name']));
+            $data->last_name = ucwords(strtolower($param['last_name']));
             $data->email = $param['email'];
-            $country_code = isset($param['country_code']) ? $param['country_code']: '';
-            $contact_number = isset($param['contact_number']) ? $param['contact_number']: '';
-            $data->contact_number = $country_code.$contact_number;
+            //$country_code = isset($param['country_code']) ? $param['country_code']: '';
+            //$contact_number = isset($param['contact_number']) ? $param['contact_number']: '';
+            //$data->contact_number = $country_code.$contact_number;
             //$data->prefered_event = json_encode($events);
 
             if($data->save()){
-                if(isset($param['event'])){
-                    $data->Events()->attach($param['event']);
-                }
+                //if(isset($param['event'])){
+                    //$data->Events()->attach($param['event']);
+                //}
 
                 return $data;
 
@@ -125,7 +113,8 @@ class Subscription extends Model
         }
     }
 
-    public function findByEmail($email){
+    public function findByEmail($email)
+    {
         $data = Subscription::where('email' , '=', $email)->first();
         if (!empty($data)) {
             return $data;
@@ -159,5 +148,23 @@ class Subscription extends Model
         $date2 = date('Y-m-d', $date);
         
         return Subscription::where(DB::raw('DATE(created_at)'), '>', $date2)->count();
+    }
+
+    public function activate($param)
+    {
+        $data = Subscription::where('token', $param['token'])->first();
+
+        if(!empty($data)){
+            $data->confirmed_at = date('Y-m-d H:i:s');
+            if($data->save()){
+
+                return $data;
+
+            } else {
+                return false;    
+            }
+        }else{
+            return false;
+        }
     }
 }

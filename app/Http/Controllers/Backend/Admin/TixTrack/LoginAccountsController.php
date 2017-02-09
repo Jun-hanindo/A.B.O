@@ -188,7 +188,6 @@ class LoginAccountsController extends BaseController
 
             return redirect()->route('admin-index-tixtrack-account');
 
-        //} else {
         } catch (\Exception $e) {
 
             flash()->error(trans('general.data_not_found'));

@@ -17,8 +17,6 @@ use DB;
 use Storage;
 use PDF;
 use PHPExcel_Worksheet_Drawing;
-//use GuzzleHttp\Cookie\CookieJar;
-//use GuzzleHttp\Cookie\CookieJarInterface;
 
 class ReportsController extends BaseController
 {
@@ -199,6 +197,7 @@ class ReportsController extends BaseController
                 $cats = $modelOrder->getCategoryEvent($event_id, $start_date, $end_date);
                 $dates = $modelOrder->getDateGroupLocal($event_id, $start_date, $end_date);
 
+                $labels = array();
                 foreach ($dates as $key => $value) {
                     $date = date('D,d-M-y', strtotime($value->local_created));
                     $labels[] = [

@@ -107,9 +107,9 @@ class VenuesController extends BaseController
      */
     public function store(VenueRequest $req)
     {
-        $param = $req->all();
         
         try{
+            $param = $req->all();
             $user_id = ($this->currentUser->email != 'abo@hanindogroup.com') ? $this->currentUser->id : null;
             $saveData = $this->model->insertNewVenue($param, $user_id);
         
@@ -186,9 +186,9 @@ class VenuesController extends BaseController
      */
     public function update(VenueRequest $req, $id)
     {
-        $param = $req->all();
 
         try{
+            $param = $req->all();
             $updateData = $this->model->updateVenue($param,$id);
 
             flash()->success($updateData->name.' '.trans('general.update_success'));
@@ -245,9 +245,9 @@ class VenuesController extends BaseController
 
     public function avaibilityUpdate(Request $req, $id)
     {
-        $param = $req->all();
 
         try{
+            $param = $req->all();
             $updateData = $this->model->changeAvaibility($param, $id);
             $log['description'] = 'Venue "'.$updateData->name.'" avaibility was updated';
             $insertLog = new LogActivity();

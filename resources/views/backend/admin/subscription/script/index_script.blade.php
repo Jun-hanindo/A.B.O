@@ -68,7 +68,8 @@ function loadData(start_date, end_date)
             {data: 'first_name', name: 'first_name'},
             {data: 'last_name', name: 'last_name'},
             {data: 'created_at', name: 'created_at', searchable: false},
-            {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false}
+            {data: 'confirmed_at', name: 'confirmed_at', searchable: false},
+            // {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false}
         ],
         "fnDrawCallback": function() {
             //Initialize checkbos for enable/disable user

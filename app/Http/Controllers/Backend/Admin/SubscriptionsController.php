@@ -46,6 +46,14 @@ class SubscriptionsController extends BaseController
                 $date = short_text_date_time($data->created_at);
                 return $date;
             })
+            ->editColumn('confirmed_at', function($data){
+                if($data->confirmed_at != null){
+                    $date = short_text_date_time($data->confirmed_at);
+                }else{
+                    $date = '';
+                }
+                return $date;
+            })
             ->editColumn('action', function ($subscription) {
                 $showUrl = route('admin-show-subscription',$subscription->id);
                 $action =  '<a href="'.$showUrl.'" class="btn btn-info btn-xs actShow" title="Show Detail" data-id="'.$subscription->id.'" data-button="show"><i class="fa fa-search fa-fw"></i></a>';

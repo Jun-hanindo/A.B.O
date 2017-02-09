@@ -39,7 +39,8 @@
                         <th class="center-align">{{ trans('backend/general.first_name') }}</th>
                         <th class="center-align">{{ trans('backend/general.last_name') }}</th>
                         <th class="center-align">{{ trans('backend/general.date') }}</th>
-                        <th width="12%">&nbsp;</th>
+                        <th class="center-align">{{ trans('backend/general.confirm_date') }}</th>
+                        <!-- <th width="12%">&nbsp;</th> -->
                     </tr>
                 </thead>
             </table>

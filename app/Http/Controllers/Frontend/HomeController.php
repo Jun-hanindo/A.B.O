@@ -17,12 +17,10 @@ use App\Models\Trail;
 use App\Models\Department;
 use App\Models\Career;
 use App\Models\Message;
-use App\Models\Subscription;
 use App\Models\VisaCheckout;
 use Mail;
 use App\Http\Requests\Frontend\SendMessageRequest;
 use App\Http\Requests\Frontend\FeedbackRequest;
-use App\Http\Requests\Frontend\SubscribeRequest;
 //use View;
 
 class HomeController extends Controller
@@ -670,86 +668,6 @@ class HomeController extends Controller
             $insertLog->insertNewLogActivity($log);
 
             return view('errors.404');
-        
-        }
-    }
-
-    public function subscribeUs()
-    {
-
-        try{
-
-            $trail['desc'] = 'Subscribe front end';
-            $insertTrail = new Trail();
-            $insertTrail->insertNewTrail($trail);
-
-            return view('frontend.partials.subscribe'); 
-        
-        } catch (\Exception $e) {
-
-            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-            $insertLog = new LogActivity();
-            $insertLog->insertNewLogActivity($log);
-
-        
-        }
-    }
-
-    public function subscribeUsStore(SubscribeRequest $req)
-    {
-        try{
-            $param = $req->all();
-
-            
-
-            $modelSubscription = new Subscription();
-            $findSubscriber = $modelSubscription->findByEmail($param['email']);
-            if(!empty($findSubscriber)){
-                $subscribe = $modelSubscription->updateSubscription($param, $param['email']);
-                $text = 'update';
-            }else{
-                Mail::send('frontend.emails.subscribe_reply', $param, function ($message) use ($param) {
-                    $message->to($param['email'], $param['first_name'].' '.$param['last_name'])->subject('Thanks for Your Subscription');
-
-                    $modelSubscription = new Subscription();
-                    $subscribe = $modelSubscription->insertNewSubscription($param);
-                });
-                $text = 'new';
-            }
-
-            if($req->ajax()){
-                return response()->json([
-                    'code' => 200,
-                    'status' => 'success',
-                    'message' => trans('general.subscribe_success'),
-                    'data'  => $text,
-                ],200);
-            }else{
-                if($text == 'new'){
-                    flash()->success(trans('frontend/general.you_are_part_mailing_list'));
-                }else{
-                    flash()->error(trans('frontend/general.already_sucribed_us'));
-                }
-                
-                return \Redirect::back();
-            }
-        
-        } catch (\Exception $e) {
- 
-            $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
-            $insertLog = new LogActivity();
-            $insertLog->insertNewLogActivity($log);
-
-            if($req->ajax()){
-                return response()->json([
-                    'code' => 400,
-                    'status' => 'success',
-                    'message' => trans('general.subscribe_error')
-                ],400);
-            }else{
-                flash()->error(trans('general.subscribe_error'));
-                return \Redirect::back();
-            }
         
         }
     }

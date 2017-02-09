@@ -155,9 +155,9 @@ class CategoriesController extends BaseController
      */
     public function update(CategoryRequest $req, $id)
     {
-        $param = $req->all();
 
         try{
+            $param = $req->all();
             $updateData = $this->model->updateCategory($param,$id);
 
             $log['description'] = 'Category "'.$updateData->name.'" was updated';
@@ -219,9 +219,9 @@ class CategoriesController extends BaseController
 
     public function avaibilityUpdate(Request $req, $id)
     {
-        $param = $req->all();
 
         try{
+            $param = $req->all();
 
             $count = count($this->model->getCategory());
             if($count <= 8 || $param['avaibility'] == 'false' ){
@@ -272,8 +272,8 @@ class CategoriesController extends BaseController
 
     public function statusUpdate(Request $req, $id)
     {
-        $param = $req->all();
         try{
+            $param = $req->all();
             $updateData = $this->model->changeStatus($param, $id);
 
             $log['description'] = 'Category "'.$updateData->name.'" status was updated';

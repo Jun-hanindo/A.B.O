@@ -115,9 +115,9 @@ class VisaCheckoutsController extends BaseController
      */
     public function store(VisaCheckoutRequest $req)
     {
-        $param = $req->all();
         
         try{
+            $param = $req->all();
             $saveData = $this->model->insertNewVisaCheckout($param);
         
             flash()->success($saveData->title.' '.trans('general.save_success'));

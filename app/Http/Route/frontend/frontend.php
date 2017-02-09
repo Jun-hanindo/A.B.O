@@ -63,9 +63,10 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('privacy-policy', array('as' => 'privacy-policy', 'uses' => 'HomeController@supportPrivacyPolicy'));
 
     Route::get('supports', array('as' => 'supports', 'uses' => 'HomeController@supports'));
-    Route::get('subscribe', array('as' => 'subscribe', 'uses' => 'HomeController@subscribeUs'));
-    Route::post('subscribe-store', array('as' => 'subscribe-store', 'uses' => 'HomeController@subscribeUsStore'));
-    Route::post('subscribe-event-store', array('as' => 'subscribe-event-store', 'uses' => 'EventsController@subscribeEventStore'));
+    Route::get('subscribe', array('as' => 'subscribe', 'uses' => 'SubscriptionsController@subscribeUs'));
+    Route::post('subscribe-store', array('as' => 'subscribe-store', 'uses' => 'SubscriptionsController@subscribeUsStore'));
+    Route::post('subscribe-event-store', array('as' => 'subscribe-event-store', 'uses' => 'SubscriptionsController@subscribeEventStore'));
+    Route::get('subscribe/confirm', array('as' => 'subscribe-confirm', 'uses' => 'SubscriptionsController@subscribeConfirm'));
     Route::get('discover/{slug}', array('as' => 'category-detail', 'uses' => 'CategoriesController@index'));
     Route::get('promotions/{slug}', array('as' => 'promotion-detail', 'uses' => 'PromotionsController@index'));
     Route::get('search/result', array('as' => 'event-search-get', 'uses' => 'EventsController@searchResult'));

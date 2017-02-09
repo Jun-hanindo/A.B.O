@@ -370,6 +370,7 @@
             success: function (data) {
                 HoldOn.close();
                 loadLoginData();
+                loadData();
                 $('#modal-login-form').modal('hide');
                 $('.error-login-account').html('<div class="alert alert-success">' + data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');  
             },

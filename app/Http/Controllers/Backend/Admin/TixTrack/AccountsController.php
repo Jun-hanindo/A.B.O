@@ -78,7 +78,6 @@ class AccountsController extends BaseController
                 'message' => '<strong>'.$saveData->name.'</strong> '.trans('general.save_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
@@ -117,7 +116,6 @@ class AccountsController extends BaseController
                 'data' => $data
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
@@ -157,7 +155,6 @@ class AccountsController extends BaseController
                 'message' => '<strong>'.$updateData->name.'</strong> '.trans('general.update_success')
             ],200);
         
-        //} else {
         } catch (\Exception $e) {
 
             $log['description'] = $e->getMessage().' '.$e->getFile().' on line:'.$e->getLine();
@@ -183,18 +180,15 @@ class AccountsController extends BaseController
     {
         try{
             $data = $this->model->deleteByID($id);
-        //if(!empty($data)) {
 
             flash()->success(trans('general.delete_success'));
 
             $log['description'] = 'Tixtrack Account "'.$data->name.'" was deleted';
-            //$log['ip_address'] = $req->ip();
             $insertLog = new LogActivity();
             $insertLog->insertNewLogActivity($log);
 
             return redirect()->route('admin-index-tixtrack-account');
 
-        //} else {
         } catch (\Exception $e) {
 
             flash()->error(trans('general.data_not_found'));

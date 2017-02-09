@@ -16,6 +16,16 @@ class SubscribeRequest extends Request
         return true;
     }
 
+    public function messages()
+    {
+        $required = 'This field is required.';
+        return [
+            'email.required' => $required,
+            'first_name.required' => $required,
+            'last_name.required' => $required,
+        ];
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *

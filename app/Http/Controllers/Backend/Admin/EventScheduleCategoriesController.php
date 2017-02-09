@@ -65,8 +65,8 @@ class EventScheduleCategoriesController extends BaseController
 
     public function store(EventScheduleCategoryRequest $req)
     {
-        $param = $req->all();
         try{
+            $param = $req->all();
             $saveData = $this->model->insertNewEventScheduleCategory($param);
 
             $log['description'] = 'Schedule Category "'.$saveData->additional_info.'" was created';
@@ -128,8 +128,8 @@ class EventScheduleCategoriesController extends BaseController
      */
     public function update(EventScheduleCategoryRequest $req, $id)
     {
-        $param = $req->all();
         try{
+            $param = $req->all();
             $updateData = $this->model->updateEventScheduleCategory($param, $id);
 
             $log['description'] = 'Schedule Category "'.$updateData->additional_info.'" was updated';
@@ -237,10 +237,11 @@ class EventScheduleCategoriesController extends BaseController
         }
     }
 
-    public function updateSortOrder(Request $req){
-        $param = $req->all();
+    public function updateSortOrder(Request $req)
+    {
 
         try{
+            $param = $req->all();
             $updateData = $this->model->updateCurrentSortOrder($param);
 
             return response()->json([

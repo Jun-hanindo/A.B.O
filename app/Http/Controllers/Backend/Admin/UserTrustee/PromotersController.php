@@ -44,18 +44,18 @@ class PromotersController extends BaseController
 
     public function datatables()
     {
-            return datatables($this->model->datatables())
-                ->addColumn('action', function ($promoter) {
-                    return '<a href="javascript:void(0)" data-id="'.$promoter->id.'" data-name="'.$promoter->name.'" class="btn btn-warning btn-xs actEdit" title="'.trans('general.edit').'"><i class="fa fa-pencil-square-o fa-fw"></i></a>
-                        &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="'.trans('general.delete').'" data-id="'.$promoter->id.'" data-name="'.$promoter->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
-                })
-                ->filterColumn('name', function($query, $keyword) {
-                    $query->whereRaw("LOWER(CAST(promoters.name as TEXT)) ilike ?", ["%{$keyword}%"]);
-                })
-                ->filterColumn('country', function($query, $keyword) {
-                    $query->whereRaw("LOWER(CAST(countries.name as TEXT)) ilike ?", ["%{$keyword}%"]);
-                })
-                ->make(true);
+        return datatables($this->model->datatables())
+            ->addColumn('action', function ($promoter) {
+                return '<a href="javascript:void(0)" data-id="'.$promoter->id.'" data-name="'.$promoter->name.'" class="btn btn-warning btn-xs actEdit" title="'.trans('general.edit').'"><i class="fa fa-pencil-square-o fa-fw"></i></a>
+                    &nbsp;<a href="#" class="btn btn-danger btn-xs actDelete" title="'.trans('general.delete').'" data-id="'.$promoter->id.'" data-name="'.$promoter->name.'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
+            })
+            ->filterColumn('name', function($query, $keyword) {
+                $query->whereRaw("LOWER(CAST(promoters.name as TEXT)) ilike ?", ["%{$keyword}%"]);
+            })
+            ->filterColumn('country', function($query, $keyword) {
+                $query->whereRaw("LOWER(CAST(countries.name as TEXT)) ilike ?", ["%{$keyword}%"]);
+            })
+            ->make(true);
     }
 
     /**
@@ -66,9 +66,9 @@ class PromotersController extends BaseController
      */
     public function store(PromoterRequest $req)
     {
-        $param = $req->all();
         
         try{
+            $param = $req->all();
             $saveData = $this->model->insertNewPromoter($param);
 
             $log['description'] = 'Promoter "'.$saveData->name.'" was created';
@@ -143,8 +143,8 @@ class PromotersController extends BaseController
      */
     public function update(PromoterRequest $req, $id)
     {
-        $param = $req->all();
         try{
+            $param = $req->all();
             $updateData = $this->model->updatePromoter($param,$id);
 
             $log['description'] = 'Promoter "'.$updateData->name.'" was updated';
@@ -208,7 +208,8 @@ class PromotersController extends BaseController
         }
     }
 
-    public function comboPromoter(Request $request){
+    public function comboPromoter(Request $request)
+    {
         $term = $request->q;
         
         $results = Promoter::where('name', 'ilike', '%'.$term.'%')->get();
