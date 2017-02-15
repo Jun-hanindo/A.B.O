@@ -41,6 +41,9 @@
 
         }
         @media (max-width: 1210px){
+            .title-subscribe {
+                font-size: 22px !important;
+            }
             .header{
                 height: 60px !important;
                 padding: 0px !important;
