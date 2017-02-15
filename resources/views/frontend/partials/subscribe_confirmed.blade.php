@@ -33,13 +33,6 @@
             font-style: normal;
 
         }
-
-        @media (min-width: 991px) {
-            .title-subscribe {
-                font-size: 22px !important;
-            }
-
-        }
         @media (max-width: 1210px){
             .title-subscribe {
                 font-size: 22px !important;
