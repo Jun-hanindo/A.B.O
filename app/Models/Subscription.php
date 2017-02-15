@@ -90,6 +90,7 @@ class Subscription extends Model
             $data->first_name = ucwords(strtolower($param['first_name']));
             $data->last_name = ucwords(strtolower($param['last_name']));
             $data->email = $param['email'];
+            $data->token = $param['token'];
             //$country_code = isset($param['country_code']) ? $param['country_code']: '';
             //$contact_number = isset($param['contact_number']) ? $param['contact_number']: '';
             //$data->contact_number = $country_code.$contact_number;
