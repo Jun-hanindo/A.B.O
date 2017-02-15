@@ -26,7 +26,7 @@
         <tbody>
             <tr>
                 <td align="center" style="display:table-cell; vertical-align: bottom; height: 100px; width: 100%">
-                    <p style="font-family:'proxima_nova_rgregular'; font-size: 16px; font-weight: 400;">Your Subscribtion to our list has been confirmed.</p>
+                    <p style="font-family:'proxima_nova_rgregular'; font-size: 16px; font-weight: 400;">Your Subscription to our list has been confirmed.</p>
                 </td>
             </tr>
             <tr>

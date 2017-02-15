@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ABO Email Subcribtion</title>
+    <title>ABO Email Subscription</title>
 </head>
 <body>
     <table width="100%">
         <tr>
             <td align="center" style="display:table-cell; vertical-align: middle; height: 100px; width: 100%">
-                <img src="{{ asset('assets/frontend/images/ABO-logo.svg') }}" width="170">
+                <img src="http://asiaboxoffice.com/assets/frontend/images/ABO-logo.svg" width="170">
             </td>
         </tr>
         <tr>
