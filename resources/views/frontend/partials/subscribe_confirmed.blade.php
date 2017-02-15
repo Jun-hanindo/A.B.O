@@ -1,32 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>{{ 'Subscription Confirmed - '.env('APP_NAME') }}</title>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,800,700,900' rel='stylesheet' type='text/css'>
-        <style type="text/css">
-            body{
-                margin:0;
-                padding:75px 0 0 0;
-                text-align:center;
-                -webkit-text-size-adjust:none;
-            } 
-            .wrapper{
-                width: 600px;
-                margin: 0 auto;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="wrapper">
-            <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/ABO-logo.svg') }}" class="logo"></a>
-            <h3>Subscription Confirmed</h3>
-            <table border="0" cellpadding="20" cellspacing="0" height="100%" width="100%" id="bodyTable" style="background-color:#eeeeee">
-                <tr>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-    </body>
+<html>
+<head>
+    <title>ABO Subscription</title>
+    <style>
+        @font-face {
+            font-family: 'proxima_nova_rgregular';
+            src: url('../assets/frontend/fonts/mark_simonson_-_proxima_nova_regular-webfont.woff2') format('woff2'),
+                 url('../assets/frontend/fonts/mark_simonson_-_proxima_nova_regular-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+    </style>
+</head>
+
+<body style="margin:0">
+    <table width="100%">
+        <thead>
+            <tr>
+                <th align="center" style="background: #000; padding: 15px">
+                    <img src="{{ asset('assets/frontend/images/ABO-logo.svg') }}" width="100" class="logo">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td align="center" style="display:table-cell; vertical-align: bottom; height: 100px; width: 100%">
+                    <p style="font-family:'proxima_nova_rgregular'; font-size: 16px; font-weight: 400;">Your Subscribtion to our list has been confirmed.</p>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="display:table-cell; vertical-align: bottom; height: 30px; width: 100%">
+                    <a href="{{URL::route('home')}}" style="background:#000; padding:12px 30px; border:none; color:#fff; text-decoration:none;border-radius:5px; font-family: 'proxima_nova_rgregular'; font-size: 13px">Continue to Our Website</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
 </html>

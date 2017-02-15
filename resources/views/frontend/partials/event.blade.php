@@ -437,7 +437,7 @@
                                     </div> --}}
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <button class="btn btn-primary btnSend font-bold" type="button" id="btnSubscribe">{{ trans('frontend/general.send_me_updates') }}</button>
+                                            <button class="btn btn-primary btnSend font-bold btnSubscribeEvent" type="button" id="btnSubscribe">{{ trans('frontend/general.send_me_updates') }}</button>
                                         </div>
                                     </div>
                                     <div class="row last-row">

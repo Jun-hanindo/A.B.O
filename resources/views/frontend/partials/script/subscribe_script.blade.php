@@ -5,7 +5,10 @@
         $(document).ready(function(){
 
             $("#btnSubscribe").on('click', function(e){
-                e.preventDefault();
+                // if ($(this).hasClass('btnSubscribeEvent')) {
+                //     var cls = 'subscribe-event';
+                //     $('.modal').addClass(cls);
+                // }
                 subscribe();
             });
             $("#modalNo .btnFeedback").on('click', function(){
@@ -27,6 +30,21 @@
                     $("#ul-search").hide();
                 }
             });
+
+            // $('.modal').on('show.bs.modal', function (){
+            //     scrollPos = $('body').scrollTop();
+            //     $('.subscribe-event').css({
+            //         position : 'relative',
+            //         top : '0',
+            //         transform : 'none',
+            //     });
+            // }).on('hide.bs.modal', function (){
+            //     $('.subscribe-event').css({
+            //         position: '',
+            //         top : '',
+            //         transform : '',
+            //     });
+            // });
 
 
         });

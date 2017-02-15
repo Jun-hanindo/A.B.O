@@ -521,6 +521,12 @@ iframe[name="google_conversion_frame"]{
 #modalAlready .modal-content .modal-footer button{
   padding-bottom: 10px;
 }
+.modal.subscribe-event#modalAlready,
+.modal.subscribe-event#modalSubscribe{
+  position: fixed;
+  top: 30%;
+  transform:none;
+}
 /*body.modal-open {
   position: absolute !important;
 }*/

@@ -1,35 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>{{ 'Please Confirm Subscriptipn - '.env('APP_NAME') }}</title>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,800,700,900' rel='stylesheet' type='text/css'>
-        <style type="text/css">
-        </style>
-    </head>
-    <body>
-        <table border="0" cellpadding="20" cellspacing="0" height="100%" width="100%" id="bodyTable" style="background-color:#eeeeee">
-            <tr>
-                <td><a href="{{ URL::route('subscribe-confirm', 'token='.$token)}}" target="_blank">Yes, subscribe me to the list</a></td>
-            </tr>
-        </table>
-        <div class="page-wrapper">
-            <header>
-                <div id="top-header">
-                    <div class="container">
-                        <div class="pull-left left-header">
-                            <nav class="main-menu" role="navigation">
-                                <ul class="nav-menu">
-                                    <li class="nav-item">
-                                        <a href="{{URL::route('home')}}"><img src="{{ asset('assets/frontend/images/ABO-logo.svg') }}" class="logo"></a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </header>
-        </div>
-    </body>
+<html>
+<head>
+    <title>ABO Email Subcribtion</title>
+</head>
+<body>
+    <table width="100%">
+        <tr>
+            <td align="center" style="display:table-cell; vertical-align: middle; height: 100px; width: 100%">
+                <img src="{{ asset('assets/frontend/images/ABO-logo.svg') }}" width="170">
+            </td>
+        </tr>
+        <tr>
+            <td align="center" style="display:table-cell; vertical-align: middle; height: 50px; width: 100%">
+                <a href="{{ URL::route('subscribe-confirm', 'token='.$token)}}" style="background:#000; padding:12px 30px; border:none; color:#fff; text-decoration:none;border-radius:5px; font-family:arial, helvetica, open-sans; font-size: 14px">Yes, subscribe me to this list!</a>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" style="display:table-cell; vertical-align: middle; height: 80px; width: 100%">
+                <p style="font-family:arial, helvetica, open-sans, sans-serif; font-size: 13px; font-weight: 400;margin: 0; padding-bottom: 5px">
+                    If you received this email by mistake, simply delete it.
+                </p>
+                <p style="font-family:arial, helvetica, open-sans, sans-serif; font-size: 13px; font-weight: 400;margin: 0">
+                    You won't be subscribed if you don't click the confirmation link above.
+                </p>
+            </td>
+        </tr>
+    </table>
+</body>
 </html>
