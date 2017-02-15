@@ -42,8 +42,8 @@
         }
         @media (max-width: 1210px){
             .header{
-                height: 30px !important;
-                padding: 13px !important;
+                height: 60px !important;
+                padding: 0px !important;
             }
             .header img{
                 height: 30px !important;
