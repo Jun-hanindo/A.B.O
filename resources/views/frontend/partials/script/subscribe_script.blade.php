@@ -4,7 +4,8 @@
 
         $(document).ready(function(){
 
-            $("#btnSubscribe").on('click', function(){
+            $("#btnSubscribe").on('click', function(e){
+                e.preventDefault();
                 subscribe();
             });
             $("#modalNo .btnFeedback").on('click', function(){
@@ -49,9 +50,11 @@
                         $('#modalSubscribe').modal('show');
                     }else{
                         $('#modalAlready').modal('show');
+                        var email = $('#email').val();
+                        $('#email-subcribed').html(email);
                     }
                     
-                        clearInput();
+                    clearInput();
                     HoldOn.close();
 
                 },

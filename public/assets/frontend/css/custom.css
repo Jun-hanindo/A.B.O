@@ -510,3 +510,23 @@ iframe[name="google_conversion_frame"]{
 #form-subscribe input#email {
     text-transform: none;
 }
+
+/*15 Feb 2017*/
+#form-subscribe .text-danger{
+  display: block;
+  margin-top: 5px;
+  text-align: left;
+}
+#modalSubscribe .modal-content .modal-footer button,
+#modalAlready .modal-content .modal-footer button{
+  padding-bottom: 10px;
+}
+/*body.modal-open {
+  position: absolute !important;
+}*/
+/*body #modalAlready{
+  position: relative;
+}*/
+/*body.modal-open {
+    position: absolute !important;
+}*/

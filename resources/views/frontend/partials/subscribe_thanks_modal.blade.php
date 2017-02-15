@@ -9,7 +9,7 @@
                 <p>{{ trans('frontend/general.look_for_confirmation_email') }}</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btnBlackDefault" data-dismiss="modal">{{ trans('frontend/general.got_it') }}</button>
+                <button type="button" class="btn btnBlackDefault font-bold" data-dismiss="modal">{{ trans('frontend/general.got_it') }}</button>
             </div>
         </div>
     </div>
