@@ -519,7 +519,7 @@ iframe[name="google_conversion_frame"]{
 }
 #modalSubscribe .modal-content .modal-footer button,
 #modalAlready .modal-content .modal-footer button{
-  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 .modal.subscribe-event#modalAlready,
 .modal.subscribe-event#modalSubscribe{
