@@ -47,6 +47,7 @@ class SubscriptionsController extends Controller
         try{
             $param = $req->all();
             $activation = md5($param['email']);
+            dd($activation);
             $param['token'] = $activation;
 
             
