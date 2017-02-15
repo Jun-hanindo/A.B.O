@@ -7,12 +7,12 @@
     <table width="100%">
         <tr>
             <td align="center" style="display:table-cell; vertical-align: middle; height: 100px; width: 100%">
-                <img src="http://asiaboxoffice.com/assets/frontend/images/about-logo.png" width="170">
+                <img src="http://asiabox.stagingapps.net/assets/frontend/images/abo-logo-email.png" width="170">
             </td>
         </tr>
         <tr>
             <td align="center" style="display:table-cell; vertical-align: middle; height: 50px; width: 100%">
-                <a href="{{ URL::route('subscribe-confirm', 'token='.$token)}}" style="background:#000; padding:12px 30px; border:none; color:#fff; text-decoration:none;border-radius:5px; font-family:arial, helvetica, open-sans; font-size: 14px">Yes, subscribe me to this list!</a>
+                <a href="{{ URL::route('subscribe-confirm', 'token='.$token)}}" style="background:#000; padding:12px 30px; border:none; color:#fff; text-decoration:none;border-radius:5px; font-family:arial, helvetica, open-sans; font-size: 14px; font-weight:bold;">Yes, subscribe me to this list!</a>
             </td>
         </tr>
         <tr>
