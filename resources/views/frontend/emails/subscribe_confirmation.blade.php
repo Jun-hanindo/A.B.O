@@ -7,7 +7,7 @@
     <table width="100%">
         <tr>
             <td align="center" style="display:table-cell; vertical-align: middle; height: 100px; width: 100%">
-                <img src="http://asiaboxoffice.com/assets/frontend/images/ABO-logo.svg" width="170">
+                <img src="http://asiaboxoffice.com/assets/frontend/images/about-logo.png" width="170">
             </td>
         </tr>
         <tr>
