@@ -7,7 +7,7 @@
     <table width="100%">
         <tr>
             <td align="center" style="display:table-cell; vertical-align: middle; height: 100px; width: 100%">
-                <img src="http://asiabox.stagingapps.net/assets/frontend/images/abo-logo-email.png" width="170">
+                <img src="http://www.asiaboxoffice.com//assets/frontend/images/abo-logo-email.png" width="170">
             </td>
         </tr>
         <tr>
