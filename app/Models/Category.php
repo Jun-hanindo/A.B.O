@@ -300,4 +300,16 @@ class Category extends Model
             return false;
         }
     }
+
+    public function search($param){
+        $q = $param['q'];
+        //$category = Category::where(DB::raw('LOWER(name)'), strtolower($q))->where('avaibility', true)->first();
+        $category = Category::where('name','ilike','%'.$q.'%')->where('avaibility', true)->first();
+        if(!empty($category)){
+            $category->icon_image2_url = file_url('categories/'.$category->icon_image2, env('FILESYSTEM_DEFAULT'));
+            return $category;
+        }else{
+            return null;
+        }
+    }
 }

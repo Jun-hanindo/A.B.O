@@ -318,6 +318,8 @@ class EventsController extends Controller
             $param = $req->all();
             $limit = 5;
             $results['events'] = $this->model->search($param, $limit);
+            $modelCategory = new Category(); 
+            $results['category'] = $modelCategory->search($param);
 
             if($req->ajax()) {
                 return response()->json([

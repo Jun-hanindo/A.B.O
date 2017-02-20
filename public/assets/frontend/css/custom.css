@@ -119,8 +119,8 @@ iframe[name="google_conversion_frame"]{
   box-shadow: rgba(0, 0, 0, 0.498039) 0px 5px 15px;
   background-color: rgb(255, 255, 255);
 }
-#ul-search #header-search,
-#ul-search-mobile #header-search{
+#ul-search .header-search,
+#ul-search-mobile .header-search{
   height: 80px;
   border-top: 0;
 }
@@ -130,7 +130,7 @@ iframe[name="google_conversion_frame"]{
   padding: 10px;
   height: 100%;
 }
-#header-search a .img-search{
+.header-search a .img-search{
   width: 88px;
   height: 100%;
   display: block;
@@ -144,7 +144,7 @@ iframe[name="google_conversion_frame"]{
   height:100%;
   float:left;
 }
-#header-search a div i{
+.header-search a div i{
   font-size: 30px;
   color: #fff;
 }
@@ -176,8 +176,8 @@ iframe[name="google_conversion_frame"]{
 #ul-search .content .all-result,
 #ul-search-mobile .content .all-result {
   margin: 0 auto;
-  position: absolute;
-  top: 30px;
+  position: relative;
+  top: 20px;
 }
 .slider-home .carousel-inner{
   border-radius: 0 !important;
@@ -536,3 +536,7 @@ iframe[name="google_conversion_frame"]{
 /*body.modal-open {
     position: absolute !important;
 }*/
+.header-search img{
+  float: none !important;
+  height: 30px !important;
+}

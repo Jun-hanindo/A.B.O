@@ -26,10 +26,6 @@ $(document).ready(function(){
             if (e.keyCode == 40) {
                 e.preventDefault();
                 $("#ul-search li").first().find('a').focus();
-                //$(".input-group-addon").css("background-color","white");
-                //$(".icon-search-header").css("color","black");
-                // $("#input-search").css("background-color","white");
-                // $("#input-search").css("color","black");
             }
         }
     });
@@ -38,18 +34,10 @@ $(document).ready(function(){
         if (e.keyCode == 40) {
             e.preventDefault();
             $("#ul-search a:focus").closest('li').next().find('a').focus();
-            //$(".input-group-addon").css("background-color","white");
-            //$(".icon-search-header").css("color","black");
-            // $("#input-search").css("background-color","white");
-            // $("#input-search").css("color","black");
         }
         if (e.keyCode == 38) {
             e.preventDefault();
             $("#ul-search a:focus").closest('li').prev().find('a').focus();
-            //$(".input-group-addon").css("background-color","white");
-            //$(".icon-search-header").css("color","black");
-            // $("#input-search").css("background-color","white");
-            // $("#input-search").css("color","black");
         }
     });
 
@@ -67,10 +55,6 @@ $(document).ready(function(){
             if (e.keyCode == 40) {
                 e.preventDefault();
                 $("#ul-search-mobile li").first().find('a').focus();
-                //$(".input-group-addon").css("background-color","white");
-                //$(".icon-search-header").css("color","black");
-                // $("#input-search").css("background-color","white");
-                // $("#input-search").css("color","black");
             }
         }
     });
@@ -81,18 +65,10 @@ $(document).ready(function(){
         if (e.keyCode == 40) {
             e.preventDefault();
             $("#ul-search-mobile a:focus").closest('li').next().find('a').focus();
-            //$(".input-group-addon").css("background-color","white");
-            //$(".icon-search-header").css("color","black");
-            // $("#input-search-mobile").css("background-color","white");
-            // $("#input-search-mobile").css("color","black");
         }
         if (e.keyCode == 38) {
             e.preventDefault();
             $("#ul-search-mobile a:focus").closest('li').prev().find('a').focus();
-            //$(".input-group-addon").css("background-color","white");
-            //$(".icon-search-header").css("color","black");
-            // $("#input-search-mobile").css("background-color","white");
-            // $("#input-search-mobile").css("color","black");
         }
     });
 
@@ -157,12 +133,56 @@ function autoSearch(q)
                     $(".drawer-item").remove();
                     $("#ul-search").show();
                     var results = response.data;
-                    if(results.events.length > 0){
-                        $("#ul-search").append('<li class="inbox-message drawer-item" id="header-search">'
-                            //+'<a href="'+base_url+'/search/result?q='+q+'&sort='+sort+'" class="btn-see-all">'
+                    if(results.events.length > 0 && results.category == null){
+                        var html = '<li class="inbox-message drawer-item header-search" id="header-search">'
                             +'<a href="'+base_url+'/search/result?q='+q+'" class="btn-see-all">'
                                 +'<div class="img-search"><i class="fa fa-search"></i></div><div class="content">'
-                                    + '<h5 class="all-result">All Results for "'+q+'"</h5></div></a></li>');
+                                    + '<h5 class="all-result">All Results for "'+q+'"</h5></div></a></li>';
+                    }else if(results.events.length > 0 && results.category != null){
+                        if(results.category.icon != null){
+                            var img = '<i class="fa fa-'+results.category.icon+'"></i>';
+                        }else{
+                            var img = '<img src="'+results.category.icon_image2_url+'">';
+                        }
+
+                        var html = '<li class="inbox-message drawer-item header-search" id="header-search">'
+                            +'<a href="'+base_url+'/search/result?q='+q+'" class="btn-see-all">'
+                                +'<div class="img-search"><i class="fa fa-search"></i></div><div class="content">'
+                                    + '<h5 class="all-result">All Results for "'+q+'"</h5></div></a></li>'
+                            +'<li class="inbox-message drawer-item header-search" id="header-search2">'
+                            +'<a href="'+base_url+'/search/result?q=&cat%5B%5D='+results.category.slug+'" class="btn-see-all">'
+                                +'<div class="img-search">'+img+'</div><div class="content">'
+                                    + '<h5 class="all-result">All '+results.category.name+'</h5></div></a></li>';
+                    }else if(results.events.length == 0 && results.category != null){
+                        if(results.category.icon != null){
+                            var img = '<i class="fa fa-'+results.category.icon+'"></i>';
+                        }else{
+                            var img = '<img src="'+results.category.icon_image2_url+'">';
+                        }
+                        var html = '<li class="inbox-message drawer-item header-search" id="header-search2">'
+                            +'<a href="'+base_url+'/search/result?q=&cat%5B%5D='+results.category.slug+'" class="btn-see-all">'
+                                +'<div class="img-search">'+img+'</div><div class="content">'
+                                    + '<h5 class="all-result">All '+results.category.name+'</h5></div></a></li>';
+                    }else{
+                        var html = '';
+                    }
+
+                    // if(results.category != null){
+                    //     var cat = '<li class="inbox-message drawer-item" id="header-search">'
+                    //         +'<a href="'+base_url+'/search/result?q='+q+'" class="btn-see-all">'
+                    //             +'<div class="img-search"><i class="fa fa-search"></i></div><div class="content">'
+                    //                 + '<h5 class="all-result">All Results for "'+q+'"</h5></div></a></li>';
+                    // }else{
+                    //     var cat = '';
+                    // }
+                    
+                    $("#ul-search").append(html);
+                    if(results.events.length > 0){
+                        // $("#ul-search").append('<li class="inbox-message drawer-item" id="header-search">'
+                        //     //+'<a href="'+base_url+'/search/result?q='+q+'&sort='+sort+'" class="btn-see-all">'
+                        //     +'<a href="'+base_url+'/search/result?q='+q+'" class="btn-see-all">'
+                        //         +'<div class="img-search"><i class="fa fa-search"></i></div><div class="content">'
+                        //             + '<h5 class="all-result">All Results for "'+q+'"</h5></div></a></li>');
                         $.each(results.events,function(key,val){
                             var html = '<li class="inbox-message drawer-item">'
                                     +'<a href="'+base_url+'/'+val.slug+'" data-id="'+val.id+'" class="li-notif" data-id="'+val.id+'">'
@@ -172,7 +192,7 @@ function autoSearch(q)
                                                 +'<span class="footer">'+val.schedule+', '+val.venue_name+val.city+'</span>'
                                             +'</div></a>'
                                     +'</li>';
-                            $(html).insertAfter('#header-search');
+                            $(html).insertAfter('.header-search:last');
                         });
                     }else{
                         //$("#ul-search").hide();
@@ -201,12 +221,47 @@ function autoSearchMobile(q)
                     $("#ul-search-mobile .drawer-item").remove();
                     $("#ul-search-mobile").show();
                     var results = response.data;
-                    if(results.events.length > 0){
-                        $("#ul-search-mobile").append('<li class="inbox-message drawer-item" id="header-search">'
-                            // +'<a href="'+base_url+'/search/result?q='+q+'&sort='+sort+'" class="btn-see-all">'
+                    if(results.events.length > 0 && results.category == null){
+                        var html = '<li class="inbox-message drawer-item header-search" id="header-search">'
                             +'<a href="'+base_url+'/search/result?q='+q+'" class="btn-see-all">'
                                 +'<div class="img-search"><i class="fa fa-search"></i></div><div class="content">'
-                                    + '<h5 class="all-result">All Results for "'+q+'"</h5></div></a></li>');
+                                    + '<h5 class="all-result">All Results for "'+q+'"</h5></div></a></li>';
+                    }else if(results.events.length > 0 && results.category != null){
+                        if(results.category.icon != null){
+                            var img = '<i class="fa fa-'+results.category.icon+'"></i>';
+                        }else{
+                            var img = '<img src="'+results.category.icon_image2_url+'">';
+                        }
+
+                        var html = '<li class="inbox-message drawer-item header-search" id="header-search">'
+                            +'<a href="'+base_url+'/search/result?q='+q+'" class="btn-see-all">'
+                                +'<div class="img-search"><i class="fa fa-search"></i></div><div class="content">'
+                                    + '<h5 class="all-result">All Results for "'+q+'"</h5></div></a></li>'
+                            +'<li class="inbox-message drawer-item header-search" id="header-search2">'
+                            +'<a href="'+base_url+'/search/result?q=&cat%5B%5D='+results.category.slug+'" class="btn-see-all">'
+                                +'<div class="img-search">'+img+'</div><div class="content">'
+                                    + '<h5 class="all-result">All '+results.category.name+'</h5></div></a></li>';
+                    }else if(results.events.length == 0 && results.category != null){
+                        if(results.category.icon != null){
+                            var img = '<i class="fa fa-'+results.category.icon+'"></i>';
+                        }else{
+                            var img = '<img src="'+results.category.icon_image2_url+'">';
+                        }
+                        var html = '<li class="inbox-message drawer-item header-search" id="header-search2">'
+                            +'<a href="'+base_url+'/search/result?q=&cat%5B%5D='+results.category.slug+'" class="btn-see-all">'
+                                +'<div class="img-search">'+img+'</div><div class="content">'
+                                    + '<h5 class="all-result">All '+results.category.name+'</h5></div></a></li>';
+                    }else{
+                        var html = '';
+                    }
+                    $("#ul-search-mobile").append(html);
+
+                    if(results.events.length > 0){
+                        // $("#ul-search-mobile").append('<li class="inbox-message drawer-item" id="header-search">'
+                        //     // +'<a href="'+base_url+'/search/result?q='+q+'&sort='+sort+'" class="btn-see-all">'
+                        //     +'<a href="'+base_url+'/search/result?q='+q+'" class="btn-see-all">'
+                        //         +'<div class="img-search"><i class="fa fa-search"></i></div><div class="content">'
+                        //             + '<h5 class="all-result">All Results for "'+q+'"</h5></div></a></li>');
                         $.each(results.events,function(key,val){
                             var html = '<li class="inbox-message drawer-item">'
                                     +'<a href="'+base_url+'/'+val.slug+'" data-id="'+val.id+'" class="li-notif" data-id="'+val.id+'">'
